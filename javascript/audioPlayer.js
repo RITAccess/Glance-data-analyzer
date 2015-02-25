@@ -17,8 +17,8 @@ AudioPlayer.prototype.playLine = function(startIndex, endIndex)
 {
   var delay = 0;
   //If the end is greater than the size of the array then it is set to the end index
-  var endIndex = Math.min(endIndex, this.audio.length);
-  for(var i = startIndex; i < endIndex; i++)
+  var endIndex = Math.min(endIndex, this.audio.length-1);
+  for(var i = startIndex; i <= endIndex; i++)
   {
     this.playPointWithDelay(i, i*this.duration*1000);
   }
