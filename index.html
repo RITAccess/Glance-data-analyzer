@@ -10,15 +10,18 @@
   <script src="javascript/files.js"></script>
   <script src="javascript/table.js"></script>
   <script src="javascript/chart.js"></script>
+  <script src="javascript/overlay.js"></script>
   <script src="javascript/main.js"></script>
   <link rel="stylesheet" href="handsontable/handsontable.full.min.css">
 </head>
 <body>
   <h1> Data Analyzer </h1>
-  <!-- <div id="visualization"></div> -->
-  <canvas title="SOME BORING CHART YEAH" id="myChart" width="800" height="400"></canvas>
-  <div id="example1" class="handsontable"></div>
   <input type="file" id="files" name="files[]" multiple />
-  <output id="list"></output>
+  <output id="list"></output><br/>
+  <svg id="overlay" width="800" height="400">
+    <rect id="selection" width="755" height="365" x="22" y="12"/>
+  </svg>
+  <canvas alt="Chart YEAH" title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
+  <div id="example1" class="handsontable"></div>
 </body>
 </html>

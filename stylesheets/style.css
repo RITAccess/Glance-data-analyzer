@@ -1,3 +1,17 @@
 body, html {
   font-family: sans-serif;
 }
+
+#overlay {
+  position: absolute;
+}
+
+#selection {
+  fill: lightblue;
+  fill-opacity: 0.3;
+}
+rect {
+  stroke:black;
+  stroke-width:1;
+  fill-opacity: 0.0;
+}
