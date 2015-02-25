@@ -3,7 +3,8 @@ body, html {
 }
 
 #overlay {
-  position: absolute;
+  position:fixed;
+  left:16px;
 }
 
 #selection {
