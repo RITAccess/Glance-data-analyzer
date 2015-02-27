@@ -11,7 +11,7 @@ body, html {
   fill: lightblue;
   fill-opacity: 0.3;
 }
-rect {
+svg * {
   stroke:black;
   stroke-width:1;
   fill-opacity: 0.0;

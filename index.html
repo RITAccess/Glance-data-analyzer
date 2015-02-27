@@ -10,7 +10,7 @@
   <script src="javascript/files.js"></script>
   <script src="javascript/table.js"></script>
   <script src="javascript/chart.js"></script>
-  <script src="javascript/overlay.js"></script>
+  <script src="javascript/overlay_type2.js"></script>
   <script src="javascript/main.js"></script>
   <script src="javascript/arrayInfo.js"></script>
   <script src="javascript/audioPlayer.js"></script>
@@ -24,7 +24,9 @@
   <input type="file" id="files" name="files[]" multiple />
   <output id="list"></output><br/>
   <svg id="overlay" width="800" height="400">
+    <rect x="22" y="12" width="755" height="365" id="background" />
     <rect x="22" y="12" width="755" height="365" id="selection" />
+    <line x1="400" y1="12" x2="400" y2="377" id="cursor" />
   </svg>
   <canvas alt="Chart YEAH" title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
   <div id="example1" class="handsontable"></div>
