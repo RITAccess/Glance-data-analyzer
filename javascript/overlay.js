@@ -4,7 +4,7 @@ function split(rect){
   if (rect === undefined){ rect = getSelection() }
   rect.setAttribute('width',rect.getAttribute('width') / 2);
   var attributes = {
-    'x':parseInt(rect.getAttribute('width')) + parseInt(rect.getAttribute('x')),
+    'x':Number(rect.getAttribute('width')) + Number(rect.getAttribute('x')),
     'y':rect.getAttribute('y'),
     'width':rect.getAttribute('width'),
     'height':rect.getAttribute('height')
@@ -20,8 +20,8 @@ function union(rect1,rect2){
   rect1.setAttribute('id',rect1.getAttribute('id') || "" + rect2.getAttribute('id') || "");
   rect1.setAttribute('x',Math.min(rect1.getAttribute('x'),rect2.getAttribute('x')));
   rect1.setAttribute('width',Math.max(
-    parseInt(rect1.getAttribute('x')) + parseInt(rect1.getAttribute('width')),
-    parseInt(rect2.getAttribute('x')) + parseInt(rect2.getAttribute('width'))) -
+    Number(rect1.getAttribute('x')) + Number(rect1.getAttribute('width')),
+    Number(rect2.getAttribute('x')) + Number(rect2.getAttribute('width'))) -
     Math.min(rect1.getAttribute('x'), rect2.getAttribute('x'))
   );
   rect1.setAttribute('x',Math.min(rect1.getAttribute('x'),rect2.getAttribute('x')));

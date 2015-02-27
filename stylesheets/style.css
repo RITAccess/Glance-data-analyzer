@@ -3,7 +3,7 @@ body, html {
 }
 
 #overlay {
-  position:fixed;
+  position:absolute;
   left:16px;
 }
 
