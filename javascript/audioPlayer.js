@@ -21,13 +21,12 @@ AudioPlayer.prototype.playPoint = function(line, point)
   this.audio[line][point].play();
 }
 
-//Play a set of points between the provided indices
+//Play a line. can also have optional parameters for start and ending index
 AudioPlayer.prototype.playLine = function(line, startIndex, endIndex)
 {
   var delay = 0;
-  //If the end is greater than the size of the array then it is set to the end index
-  var endIndex = Math.min(endIndex, this.audio[line].length-1);
-  for(var i = startIndex; i <= endIndex; i++)
+  //If startIndex or endIndex are undefined they will be set to the start and end of the line respectively
+  for(var i = (startIndex || 0); i < (endIndex || this.audio[line].length); i++)
   {
     this.playPointWithDelay(line, i, i*this.duration*1000);
   }
