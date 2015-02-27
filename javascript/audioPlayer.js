@@ -1,35 +1,52 @@
 //Creates a set of audio data from the provided arrayinfo
-function AudioPlayer(arrayInfo)
+function AudioPlayer()
 {
   this.duration = 0.5; //default duration of a single note
-  this.audio = jsfxlib.createWaves(this.genWaves(arrayInfo));
-  this.audio.length = arrayInfo.array.length;
+  this.maxFreq = 300;
+  this.minFreq = 1900;
+  this.audio = [];
+  this.numLines = 0;
+}
+
+AudioPlayer.prototype.addLine = function(arrayInfo)
+{
+  this.audio[this.numLines] = jsfxlib.createWaves(this.genWaves(arrayInfo));
+  this.audio[this.numLines].length = arrayInfo.array.length;
+  this.numLines++;
 }
 
 //Play a single point
-AudioPlayer.prototype.playPoint = function(point)
+AudioPlayer.prototype.playPoint = function(line, point)
 {
-  this.audio[point].play();
+  this.audio[line][point].play();
 }
 
 //Play a set of points between the provided indices
-AudioPlayer.prototype.playLine = function(startIndex, endIndex)
+AudioPlayer.prototype.playLine = function(line, startIndex, endIndex)
 {
   var delay = 0;
   //If the end is greater than the size of the array then it is set to the end index
-  var endIndex = Math.min(endIndex, this.audio.length-1);
+  var endIndex = Math.min(endIndex, this.audio[line].length-1);
   for(var i = startIndex; i <= endIndex; i++)
   {
-    this.playPointWithDelay(i, i*this.duration*1000);
+    this.playPointWithDelay(line, i, i*this.duration*1000);
+  }
+}
+
+AudioPlayer.prototype.playLines = function(lines, startIndex, endIndex)
+{
+  for (var line in lines)
+  {
+    this.playLine(line, startIndex, endIndex);
   }
 }
 
 //This function is nessesary so that there is a seperate copy of the
 //index for when the function is actualy called
-AudioPlayer.prototype.playPointWithDelay = function(index, delay)
+AudioPlayer.prototype.playPointWithDelay = function(line, index, delay)
 {
   var self = this;
-  setTimeout(function() {self.playPoint(index);}, delay);
+  setTimeout(function() {self.playPoint(line, index);}, delay);
 }
 
 //Using the arrayinfo a wave array is created
@@ -50,7 +67,7 @@ AudioPlayer.prototype.genWaves = function(arrayInfo)
 //Converts the value to a frquency between 500 and 2000.
 AudioPlayer.prototype.calcFrequency = function(value, min, max)
 {
-  return freq = ((1500*(value-min))/(max-min))+500;
+  return freq = (((this.maxFreq-this.minFreq)*(value-min))/(max-min))+this.minFreq;
 }
 
 //Creates a sound object

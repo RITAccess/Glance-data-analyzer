@@ -37,9 +37,6 @@ function dataset(data) {
     red += colorIncrease + 15;
     green += colorIncrease;
     blue += colorIncrease - 15;
-
-    console.log(color);
-    console.log(line);
   }
 
   return dataArray;
