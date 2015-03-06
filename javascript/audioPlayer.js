@@ -2,8 +2,8 @@
 function AudioPlayer()
 {
   this.duration = 0.5; //default duration of a single note
-  this.maxFreq = 300;
-  this.minFreq = 1900;
+  this.maxFreq = 64;
+  this.minFreq = 28;
   this.audio = [];
   this.numLines = 0;
 }
@@ -34,9 +34,9 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex)
 
 AudioPlayer.prototype.playLines = function(lines, startIndex, endIndex)
 {
-  for (var line in lines)
+  for (var i = 0; i < lines.length; i++)
   {
-    this.playLine(line, startIndex, endIndex);
+    this.playLine(lines[i], startIndex, endIndex);
   }
 }
 
@@ -63,10 +63,13 @@ AudioPlayer.prototype.genWaves = function(arrayInfo)
   return audioLibParams;
 }
 
-//Converts the value to a frquency between 500 and 2000.
+//Converts the value to a frquency between the min and max frequnecy.
 AudioPlayer.prototype.calcFrequency = function(value, min, max)
 {
-  return freq = (((this.maxFreq-this.minFreq)*(value-min))/(max-min))+this.minFreq;
+  var freq = (((this.maxFreq-this.minFreq)*(value-min))/(max-min))+this.minFreq;
+  freq = Math.pow(2,((freq-40)/12))*440;
+  console.log("Frequency:",freq);
+  return freq;
 }
 
 //Creates a sound object
