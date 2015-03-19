@@ -40,6 +40,7 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex)
   }
 }
 
+//PLay multiple lines at the same time. Takes in an array of lines and the start and end index.
 AudioPlayer.prototype.playLines = function(lines, startIndex, endIndex)
 {
   for (var i = 0; i < lines.length; i++)
@@ -80,6 +81,7 @@ AudioPlayer.prototype.calcFrequency = function(value, min, max)
   return freq;
 }
 
+//play the input array of audio data
 playNotes = function(notes)
 {
   this.sounds = [];
