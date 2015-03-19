@@ -10,15 +10,7 @@ function AudioPlayer()
 
 AudioPlayer.prototype.addLine = function(arrayInfo)
 {
-  this.audio[this.numLines] = jsfxlib.createWaves(this.genWaves(arrayInfo), false);
-  this.audio[this.numLines].info = arrayInfo;
-  this.numLines++;
-}
-
-AudioPlayer.prototype.addLineWithChords = function(arrayInfo)
-{
-  this.audio[this.numLines] = jsfxlib.createWaves(this.genWaves(arrayInfo), true);
-  this.audio[this.numLines].length = arrayInfo.array.length;
+  this.audio[this.numLines] = jsfxlib.createWaves(this.genWaves(arrayInfo));
   this.audio[this.numLines].info = arrayInfo;
   this.numLines++;
 }
@@ -48,18 +40,6 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex)
   }
 }
 
-AudioPlayer.prototype.playLineWithChords = function (line, startIndex, endIndex)
-{
-  var delay = 0;
-  //If startIndex or endIndex are undefined they will be set to the start and end of the line respectively
-  for(var i = (startIndex || 0); i < (endIndex || this.audio[line].length); i+=3)
-  {
-    this.playPointWithDelay(line, i, i*(this.duration-this.duration/8)*1000);
-    this.playPointWithDelay(line, i+1, i*(this.duration-this.duration/8)*1000);
-    this.playPointWithDelay(line, i+2, i*(this.duration-this.duration/8)*1000);
-  }
-}
-
 AudioPlayer.prototype.playLines = function(lines, startIndex, endIndex)
 {
   for (var i = 0; i < lines.length; i++)
@@ -77,7 +57,7 @@ AudioPlayer.prototype.playPointWithDelay = function(line, index, delay)
 }
 
 //Using the arrayinfo a wave array is created
-AudioPlayer.prototype.genWaves = function(arrayInfo, hasChords)
+AudioPlayer.prototype.genWaves = function(arrayInfo)
 {
   audioLibParams = {};
 
@@ -86,28 +66,10 @@ AudioPlayer.prototype.genWaves = function(arrayInfo, hasChords)
 
   for(var i = 0; i < arrayInfo.array.length; i++)
   {
-    if(hasChords)
-    {
-      //add chords here
-      audioLibParams[i] = this.genSoundArray(this.calcFrequency(arrayInfo.array[i], min, max));
-    }
-    else
-    {
-      audioLibParams[i] = this.genSoundArray(this.calcFrequency(arrayInfo.array[i], min, max));
-    }
+    audioLibParams[i] = this.genSoundArray(this.calcFrequency(arrayInfo.array[i], min, max));
   }
+
   return audioLibParams;
-}
-
-AudioPlayer.prototype.genChord = function(freq)
-{
-  chord = [3];
-
-  chord[0] = freq;
-  chord[1] = freq + freq/4;
-  chord[2] = freq + freq/2;
-
-  return chord;
 }
 
 //Converts the value to a frquency between the min and max frequnecy.
