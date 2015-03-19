@@ -1,3 +1,4 @@
+/*
 require(["handsontable/handsontable.full.min.js"]);
 require(["PapaParse/papaparse.min.js"]);
 require(["chartjs/Chart.min.js"]);
@@ -11,8 +12,7 @@ require(["javascript/overlay_type2.js"]);
 require(["javascript/arrayInfo.js"]);
 require(["javascript/audioPlayer.js"]);
 require(["javascript/arrayCollection.js"]);
-
-
+*/
 window.onload = function(){
   onloadFiles();
 }
