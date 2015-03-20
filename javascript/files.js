@@ -6,6 +6,8 @@ var openFile = function(event) {
   var results = Papa.parse(input.files[0], {
   	complete: function(results) {
   		loadData(results);
+      console.log(results.data);
+      loadControls(results.data[0].length);
   	}
   });
 };

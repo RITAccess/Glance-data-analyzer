@@ -16,3 +16,21 @@ svg * {
   stroke-width:1;
   fill-opacity: 0.0;
 }
+
+.slider1 {
+  width: 800px;
+  margin: 0px;
+  margin-bottom: 7px;
+  float: left;
+}
+
+.slider2 {
+  width: 800px;
+  margin: 0px;
+  margin-bottom: 7px;
+  float: left;
+}
+#slider-range {
+  margin-left: 22px;
+  width: 755px;
+}

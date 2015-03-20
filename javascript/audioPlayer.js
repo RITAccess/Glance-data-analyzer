@@ -72,34 +72,33 @@ AudioPlayer.prototype.calcFrequency = function(value, min, max)
 //Creates a sound object
 AudioPlayer.prototype.genSoundArray = function(frequency, duration)
 {
-  soundArray =
-  ["sine",
-  0.0000, //super sampling quality
-  0.1750, //master volume
-  0.0000, //attack time
-  duration/2, //sustain time
-  0.2500, //sustain punch
-  duration/2, //decat time
-  20.0000, //min frequency
-  frequency, //This is the frequency
-  2400.0000, //max frequency
-  -0.0250, //slide
-  -0.0250, //delta slide
-  0.0000, //vibrato slide
-  0.0000, //vibrato frequency
-  0.0000, //vibrato depth slide
-  0.0000, //vibrato frequency slide
-  -0.0100, //change amount
-  0.0000, //change speed
-  0.0000, //square duty
-  -0.0140, //square duty sweep
-  0.0000, //repeat speed
-  0.0080, //phaser offset
-  0.0100, //phaser sweep
-  1.0000, //lp filter cutoff
-  0.0100, //lp filter cutoff sweep
-  0.0000, //lp filter resonance
-  0.0000, //hp filter cutoff
-  0.0100]; //hp filter cutoff sweep
-  return soundArray;
+  return ["sine",
+    0.0000, //super sampling quality
+    0.1750, //master volume
+    0.0000, //attack time
+    duration/2, //sustain time
+    0.2500, //sustain punch
+    duration/2, //decat time
+    20.0000, //min frequency
+    frequency, //This is the frequency
+    2400.0000, //max frequency
+    -0.0250, //slide
+    -0.0250, //delta slide
+    0.0000, //vibrato slide
+    0.0000, //vibrato frequency
+    0.0000, //vibrato depth slide
+    0.0000, //vibrato frequency slide
+    -0.0100, //change amount
+    0.0000, //change speed
+    0.0000, //square duty
+    -0.0140, //square duty sweep
+    0.0000, //repeat speed
+    0.0080, //phaser offset
+    0.0100, //phaser sweep
+    1.0000, //lp filter cutoff
+    0.0100, //lp filter cutoff sweep
+    0.0000, //lp filter resonance
+    0.0000, //hp filter cutoff
+    0.0100 //hp filter cutoff sweep
+    ];
 }
