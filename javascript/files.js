@@ -10,6 +10,6 @@ var openFile = function(event) {
   });
 };
 
-onloadFiles = function(){
+var loadListener = function(){
   document.getElementById('files').addEventListener('change', openFile, false);
 }
