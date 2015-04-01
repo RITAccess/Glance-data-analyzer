@@ -7,6 +7,21 @@ body, html {
   left:16px;
 }
 
+header {
+  position: absolute;
+  top: 0px;
+  width: 700px;
+  background: white;
+  z-index: 1;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+#title {
+  font-weight: bold;
+  font-size: 2em;
+}
+
 #selection {
   fill: lightblue;
   fill-opacity: 0.3;
@@ -33,4 +48,38 @@ svg * {
 #slider-range {
   margin-left: 22px;
   width: 755px;
+  margin-top: 70px;
+}
+
+/* custom file select */
+input[type="file"] {
+  color: black;
+  cursor: pointer;
+}
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+input[type="file"]:before {
+  content: 'Load CSV';
+  display: inline-block;
+  background: #7074B8;
+  background: linear-gradient(to bottom right, #A8BDFF, #5156B5);
+  background: -webkit-linear-gradient(top, #A8BDFF, #5156B5);
+  border: 1px solid #8185C9;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  color: white;
+  text-shadow: 1px 1px #444;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+input[type="file"]:hover:before {
+  background: #7074B8;
+  text-shadow: 0px 0px #444;
 }
