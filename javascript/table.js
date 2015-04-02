@@ -1,28 +1,12 @@
-loadTable = function(fileData){
+var hot1 = null;
+var loadTable = function(fileData){
   /*
     Handsontable
   */
   var container1 = document.getElementById('table');
   var settings1 = { data: fileData };
-  var hot1 = new Handsontable(container1, settings1);
+  hot1 = new Handsontable(container1, settings1);
   hot1.render();
-  hot1.updateSettings({
-    beforeKeyDown: function (e) {
-      var selection = hot1.getSelected();
-      // ENTER
-      if (e.keyCode === 13) {
-        // if last change affected a single cell and did not change it's values
-        // if (lastChange && lastChange.length === 1 && lastChange[0][2] == lastChange[0][3]) {
-        //   e.stopImmediatePropagation();
-        //   hot.spliceCol(selection[1], selection[0], 0, ''); // add new cell
-        //   hot.selectCell(selection[0], selection[1]); // select new cell
-        // }
-        console.log("push enter");
-        console.log(selection);
-      }
-    }
-  });
-
 
   function bindDumpButton() {
 
@@ -39,4 +23,30 @@ loadTable = function(fileData){
     });
   }
   bindDumpButton();
+  return hot1;
+}
+
+var linkChart = function(chart){
+  //local hook (has same effect as a callback)
+  hot1.addHook('afterChange', function(changes, source) {
+    for (var changeNum = 0; changeNum < changes.length; changes++){
+      // changes[changeNum] = [row, col, old, new]
+      var newValue = changes[changeNum][3];
+      if (changes[changeNum][0]-1 == -1){
+        // the change was in a label
+        for (var row = 0; row < chart.datasets.length-1; row++){// TODO why not the last one?
+          chart.datasets[row].points[changes[changeNum][1]].label = newValue;
+        }
+      }
+      // if new value isn't a number, revert to old value.
+      else if (!isNaN(newValue)){
+        // change value
+        chart.datasets[changes[changeNum][0]-1].points[changes[changeNum][1]].value = newValue;
+      } else {
+        // revert to old value
+        hot1.setDataAtCell(changes[changeNum][0],changes[changeNum][1],changes[changeNum][2]);
+      }
+      chart.update();
+    }
+  });
 }

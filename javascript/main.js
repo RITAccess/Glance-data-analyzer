@@ -20,8 +20,9 @@ require(["javascript/arrayCollection.js"]);
 var loadData = function(data){
   document.querySelector('#overlay').setAttribute('style','');
   document.querySelector('#table').innerHTML = '';
-  loadTable(data.data);
+  var table = loadTable(data.data);
   var chart = loadChart(data.data);
+  linkChart(chart);
   var player = new AudioPlayer();
   var collection = new ArrayCollection(data.data);
   player.addCollection(collection.collection);
