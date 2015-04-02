@@ -2,7 +2,7 @@ loadTable = function(fileData){
   /*
     Handsontable
   */
-  var container1 = document.getElementById('example1');
+  var container1 = document.getElementById('table');
   var settings1 = { data: fileData };
   var hot1 = new Handsontable(container1, settings1);
   hot1.render();

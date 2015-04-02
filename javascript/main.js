@@ -18,6 +18,8 @@ require(["javascript/audioPlayer.js"]);
 require(["javascript/arrayCollection.js"]);
 
 var loadData = function(data){
+  document.querySelector('#overlay').setAttribute('style','');
+  document.querySelector('#table').innerHTML = '';
   loadTable(data.data);
   var chart = loadChart(data.data);
   var player = new AudioPlayer();

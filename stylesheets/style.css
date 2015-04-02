@@ -64,9 +64,9 @@ input[type="file"]:before {
   content: 'Load CSV';
   display: inline-block;
   background: #7074B8;
-  background: linear-gradient(to bottom right, #A8BDFF, #5156B5);
-  background: -webkit-linear-gradient(top, #A8BDFF, #5156B5);
-  border: 1px solid #8185C9;
+  background: linear-gradient(to bottom right, #9DB0EB, #5156B5);
+  background: -webkit-linear-gradient(top, #9DB0EB, #5156B5);
+  border: 1px solid #5156B5;
   border-radius: 3px;
   padding: 5px 8px;
   outline: none;
@@ -74,12 +74,11 @@ input[type="file"]:before {
   -webkit-user-select: none;
   cursor: pointer;
   color: white;
-  text-shadow: 1px 1px #444;
   font-weight: bold;
   font-size: 1.2em;
 }
 
 input[type="file"]:hover:before {
-  background: #7074B8;
+  background: #5156B5;
   text-shadow: 0px 0px #444;
 }
