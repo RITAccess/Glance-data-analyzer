@@ -18,9 +18,11 @@ require(["javascript/audioPlayer.js"]);
 require(["javascript/arrayCollection.js"]);
 
 var loadData = function(data){
-  loadTable(data.data);
-  loadControls(data.data[0].length);
+  document.querySelector('#overlay').setAttribute('style','');
+  document.querySelector('#table').innerHTML = '';
+  var table = loadTable(data.data);
   var chart = loadChart(data.data);
+  linkChart(chart);
   var player = new AudioPlayer();
   var collection = new ArrayCollection(data.data);
   player.addCollection(collection.collection);
