@@ -63,9 +63,9 @@ input[type="file"]::-webkit-file-upload-button {
 input[type="file"]:before {
   content: 'Load CSV';
   display: inline-block;
-  background: #7074B8;
-  background: linear-gradient(to bottom right, #A8BDFF, #5156B5);
-  background: -webkit-linear-gradient(top, #A8BDFF, #5156B5);
+  background: #84A2FF;
+  background: linear-gradient(to bottom right, #84A2FF, #5156B5);
+  background: -webkit-linear-gradient(top, #84A2FF, #5156B5);
   border: 1px solid #8185C9;
   border-radius: 3px;
   padding: 5px 8px;

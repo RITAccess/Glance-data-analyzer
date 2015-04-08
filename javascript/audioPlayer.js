@@ -17,10 +17,15 @@ AudioPlayer.prototype.addLine = function(arrayInfo)
 
 AudioPlayer.prototype.addCollection = function(collection)
 {
+  var dropdownString ="";
   for(var i = 0; i < collection.length; i++)
   {
     this.addLine(collection[i]);
+    dropdownString += "<option value="+i+">"+i+"</option>"
   }
+  document.getElementById("lineSelect").style.visibility = "visible";
+  document.getElementById("lineDropdown").innerHTML = dropdownString;
+  document.getElementById("bpm").style.visibility = "visible";
 }
 
 //Play a single point

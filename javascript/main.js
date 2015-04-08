@@ -19,6 +19,7 @@ require(["javascript/arrayCollection.js"]);
 
 var loadData = function(data){
   loadTable(data.data);
+  loadControls(data.data[0].length);
   var chart = loadChart(data.data);
   var player = new AudioPlayer();
   var collection = new ArrayCollection(data.data);
