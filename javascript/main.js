@@ -17,14 +17,21 @@ require(["javascript/arrayInfo.js"]);
 require(["javascript/audioPlayer.js"]);
 require(["javascript/arrayCollection.js"]);
 
+var player;
+
 var loadData = function(data){
   document.querySelector('#overlay').setAttribute('style','');
   document.querySelector('#table').innerHTML = '';
   var table = loadTable(data.data);
   var chart = loadChart(data.data);
   linkChart(chart);
-  var player = new AudioPlayer();
+  player = new AudioPlayer();
   var collection = new ArrayCollection(data.data);
   player.addCollection(collection.collection);
   //TODO: Add collection makes loading graph slow
+}
+
+var playAudioButton = function(){
+  console.log("Play Line: ", document.getElementById("lineDropdown").value);
+  player.playLine(document.getElementById("lineDropdown").value);
 }

@@ -82,3 +82,18 @@ input[type="file"]:hover:before {
   background: #5156B5;
   text-shadow: 0px 0px #444;
 }
+
+#audioSpan {
+  visibility: hidden;
+}
+
+#playButton {
+  height: 32px;
+  width: 32px;
+  position:relative;
+  margin: -10px 0px;
+}
+
+#bpm {
+  width:40px;
+}

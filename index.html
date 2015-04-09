@@ -12,13 +12,13 @@
     <span id="title"> Data Analyzer </span>
     <input type="file" id="files" name="files[]" multiple />
     <output id="list"></output>
-    <span id="lineSelect" style="visibility: hidden;"> Line
-      <select id = "lineDropdown"></select>
+    <span id="audioSpan">
+      <input id = "playButton" type="image" src="media/play105.png" value="" onclick="playAudioButton()"/>
+      line <select id = "lineDropdown"></select>
+      at bpm: <input type="number" id="bpm" value="120"/></span>
     </span>
-    <span id="bpm" style="visibility: hidden;">bpm: <input style="width:40px;" type="number" id="bmp"/></span>
   </header>
   <div id="slider-range"></div>
-
   <svg id="overlay" width="800" height="400" style='visibility:hidden;'>
     <rect x="22" y="12" width="755" height="365" id="background" />
     <rect x="22" y="12" width="755" height="365" id="selection" />

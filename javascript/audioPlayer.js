@@ -18,14 +18,13 @@ AudioPlayer.prototype.addLine = function(arrayInfo)
 AudioPlayer.prototype.addCollection = function(collection)
 {
   var dropdownString ="";
-  for(var i = 0; i < collection.length; i++)
+  for(var i = 0; i < collection.length-1; i++)
   {
     this.addLine(collection[i]);
-    dropdownString += "<option value="+i+">"+i+"</option>"
+    dropdownString += "<option value="+(i+1)+">"+(i+1)+"</option>"
   }
-  document.getElementById("lineSelect").style.visibility = "visible";
+  document.getElementById("audioSpan").style.visibility = "visible";
   document.getElementById("lineDropdown").innerHTML = dropdownString;
-  document.getElementById("bpm").style.visibility = "visible";
 }
 
 //Play a single point
