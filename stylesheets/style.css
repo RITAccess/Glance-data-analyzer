@@ -10,7 +10,7 @@ body, html {
 header {
   position: absolute;
   top: 0px;
-  width: 700px;
+  width: 740px;
   background: white;
   z-index: 1;
   margin-top: 20px;
@@ -85,13 +85,26 @@ input[type="file"]:hover:before {
 
 #audioSpan {
   visibility: hidden;
+  float:right;
 }
 
 #playButton {
   height: 32px;
   width: 32px;
-  position:relative;
-  margin: -10px 0px;
+  background: rgba(0,0,0,0);
+  border-color: rgba(0, 0, 0, 1);
+  border-radius: 100%;
+  border-style: solid;
+  cursor: pointer;
+  padding: 0px;
+  padding-left: 0.25em;
+  margin-right: .5em;
+  color:black;
+}
+
+#playButton:active {
+  background:black;
+  color:white;
 }
 
 #bpm {

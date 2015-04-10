@@ -38,9 +38,9 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex)
 {
   var delay = 0;
   //If startIndex or endIndex are undefined they will be set to the start and end of the line respectively
-  for(var i = (startIndex || 0); i < (endIndex || this.audio[line].info.array.length); i++)
+  for(var i = (startIndex || 0); i < (endIndex || this.audio[line-1].info.array.length); i++)
   {
-    this.playPointWithDelay(line, i, i*(this.duration-this.duration/8)*1000);
+    this.playPointWithDelay(line-1, i, i*(this.duration-this.duration/8)*1000);
   }
 }
 

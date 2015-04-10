@@ -2,10 +2,11 @@
 <html>
 <head>
   <title>Data Analyzer</title>
-  <script data-main = "javascript/main" src = "javascript/require.js"></script>
   <link rel="stylesheet" href="handsontable/handsontable.full.min.css">
   <link rel="stylesheet" href="jquery/jquery-ui.css"/>
   <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <script data-main="javascript/main" src="javascript/require.js"></script>
 </head>
 <body>
   <header>
@@ -13,8 +14,9 @@
     <input type="file" id="files" name="files[]" multiple />
     <output id="list"></output>
     <span id="audioSpan">
-      <input id = "playButton" type="image" src="media/play105.png" value="" onclick="playAudioButton()"/>
-      line <select id = "lineDropdown"></select>
+
+      <button id="playButton" onclick="playAudioButton()"><i class="fa fa-play"></i></button>
+      line <select id="lineDropdown"></select>
       at bpm: <input type="number" id="bpm" value="120"/></span>
     </span>
   </header>
