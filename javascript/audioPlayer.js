@@ -1,6 +1,7 @@
 //Creates a set of audio data from the provided arrayinfo
 function AudioPlayer() {
   this.duration = 0.5; //default duration of a single note
+  this.timeStep = 0.5;
   this.maxFreq = 64;
   this.minFreq = 28;
   this.audio = [];
@@ -67,9 +68,12 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex) {
     this.recalculateLines();
   }
 
+  this.timeStep = document.getElementById("bpm").value || 120;
+  this.timeStep = 60/this.timeStep;
+
   //If startIndex or endIndex are undefined they will be set to the start and end of the line respectively
   for(var i = (startIndex || 0); i < (endIndex || this.infoCollection.collection[line].array.length); i++) {
-    this.playPointWithDelay(line, i, i*(this.duration-this.duration/8)*1000);
+    this.playPointWithDelay(line, i, i*(this.timeStep-this.timeStep/8)*1000);
   }
 }
 
@@ -124,10 +128,10 @@ AudioPlayer.prototype.genSoundArray = function(frequency) {
   return ["sine",
   0.0000, //super sampling quality
   0.1750, //master volume
-  0.0075, //attack time
-  0.0750, //sustain time
+  this.duration*0.01287553648, //attack time
+  this.duration*0.1287553648, //sustain time
   0.0000, //sustain punch
-  0.5000, //decay time
+  this.duration*0.85836909871, //decay time
   20.0000, //min frequency
   frequency, //This is the frequency
   2400.0000, //max frequency
