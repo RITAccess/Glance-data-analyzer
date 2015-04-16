@@ -26,7 +26,7 @@ var loadTable = function(fileData){
   return hot1;
 }
 
-var linkTable = function(chart, player){
+var linkTable = function(chart, player, overlay){
   //local hook (has same effect as a callback)
   hot1.addHook('afterChange', function(changes, source) {
     // changes[changeNum] = [row, col, old, new]
@@ -53,7 +53,7 @@ var linkTable = function(chart, player){
           hot1.setDataAtCell(changes[changeNum][0],changes[changeNum][1],changes[changeNum][2]);
         }
         chart.update();
-        updateOverlaySize(chart);
+        overlay.updateSize(chart);
       }
     }
   });

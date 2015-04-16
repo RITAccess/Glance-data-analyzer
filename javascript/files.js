@@ -7,12 +7,9 @@ var openFile = function(event) {
   	complete: function(results) {
       var resData = results.data;
       if((resData[resData.length-1].length == 1) && (resData[resData.length-1][0] == "")){
-        console.log(results.data);
         results.data.pop();
-        console.log(results.data);
       }
   		loadData(results);
-      loadControls(results.data[0].length);
   	}
   });
 };
