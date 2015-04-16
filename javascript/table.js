@@ -26,29 +26,34 @@ var loadTable = function(fileData){
   return hot1;
 }
 
-var linkChart = function(chart){
+var linkTable = function(chart, player){
   //local hook (has same effect as a callback)
   hot1.addHook('afterChange', function(changes, source) {
+    // changes[changeNum] = [row, col, old, new]
     for (var changeNum = 0; changeNum < changes.length; changes++){
-      // changes[changeNum] = [row, col, old, new]
-      var newValue = changes[changeNum][3];
-      if (changes[changeNum][0]-1 == -1){
-        // the change was in a label
-        for (var row = 0; row < chart.datasets.length; row++){
-          // TODO How many labels do I actually have to update
-          console.log(chart.datasets[row].points[changes[changeNum][1]].label);
-          chart.datasets[row].points[changes[changeNum][1]].label = newValue;
+      //check to see if any changes were made
+      if(changes[changeNum][2] != changes[changeNum][3]){
+        var newValue = changes[changeNum][3];
+        if (changes[changeNum][0]-1 == -1){
+          // the change was in a label
+          for (var row = 0; row < chart.datasets.length; row++){
+            // TODO How many labels do I actually have to update
+            console.log(chart.datasets[row].points[changes[changeNum][1]].label);
+            chart.datasets[row].points[changes[changeNum][1]].label = newValue;
+          }
         }
+        // if new value isn't a number, revert to old value.
+        else if (!isNaN(newValue)){
+          //Update audio with new value
+          player.changeLine(changes[changeNum][0],changes[changeNum][2],changes[changeNum][3]);
+          // change value
+          chart.datasets[changes[changeNum][0]-1].points[changes[changeNum][1]].value = newValue;
+        } else {
+          // revert to old value
+          hot1.setDataAtCell(changes[changeNum][0],changes[changeNum][1],changes[changeNum][2]);
+        }
+        chart.update();
       }
-      // if new value isn't a number, revert to old value.
-      else if (!isNaN(newValue)){
-        // change value
-        chart.datasets[changes[changeNum][0]-1].points[changes[changeNum][1]].value = newValue;
-      } else {
-        // revert to old value
-        hot1.setDataAtCell(changes[changeNum][0],changes[changeNum][1],changes[changeNum][2]);
-      }
-      chart.update();
     }
   });
 }

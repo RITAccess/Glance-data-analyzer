@@ -1,108 +1,126 @@
 //Creates a set of audio data from the provided arrayinfo
-function AudioPlayer()
-{
+function AudioPlayer() {
   this.duration = 0.5; //default duration of a single note
   this.maxFreq = 64;
   this.minFreq = 28;
   this.audio = [];
-  this.numLines = 0;
+  this.infoCollection = new ArrayCollection([]);
+  this.isDirty = false;
 }
 
-AudioPlayer.prototype.addLine = function(arrayInfo)
-{
-  this.audio[this.numLines] = jsfxlib.createWaves(this.genWaves(arrayInfo));
-  this.audio[this.numLines].info = arrayInfo;
-  this.numLines++;
+//Add a single line to the audio player
+AudioPlayer.prototype.addLine = function(arrayInfo) {
+  this.infoCollection.addLine(arrayInfo);
 }
 
-AudioPlayer.prototype.addCollection = function(collection)
-{
+//Add a single line to the audio player
+AudioPlayer.prototype.addAudioLine = function(arrayInfo) {
+  this.audio.push(jsfxlib.createWaves(this.genWaves(arrayInfo)));
+}
+
+
+//Using an arrayCollection object you can add a group of lines to the audio object
+AudioPlayer.prototype.addCollection = function(collection) {
   var dropdownString ="";
-  for(var i = 0; i < collection.length-1; i++)
-  {
-    this.addLine(collection[i]);
-    dropdownString += "<option value="+(i+1)+">"+(i+1)+"</option>"
+  this.infoCollection.addCollection(collection);
+  for(var i = 1; i < collection.length; i++) {
+    dropdownString += "<option value="+(i)+">"+(i)+"</option>"
   }
+  this.isDirty = true;
   document.getElementById("audioSpan").style.visibility = "visible";
   document.getElementById("lineDropdown").innerHTML = dropdownString;
 }
 
-//Play a single point
-AudioPlayer.prototype.playPoint = function(line, point)
-{
-  this.audio[line][point].play();
+//A change was made to a line in the table
+AudioPlayer.prototype.changeLine = function(line, index, newValue) {
+  if(line != 0) {
+    this.infoCollection.changeLine(line,index,newValue);
+    this.isDirty = true;
+  }
+}
+
+AudioPlayer.prototype.recalculateLines = function() {
+  this.audio = [];
+  for(var i = 0; i < this.infoCollection.collection.length; i++) {
+    this.addAudioLine(this.infoCollection.collection[i]);
+  }
+  this.isDirty = false;
+}
+
+//play the input array of audio data
+playNotes = function(notes) {
+  this.sounds = [];
+  for(var i = 0; i < notes.length; i++) {
+    sounds[i] = jsfxlib.createWaves(notes);
+  }
+
+  for(var i = 0; i < notes.length; i++) {
+    sounds[i][0].play();
+  }
 }
 
 //Play a line. can also have optional parameters for start and ending index
-AudioPlayer.prototype.playLine = function(line, startIndex, endIndex)
-{
-  var delay = 0;
+AudioPlayer.prototype.playLine = function(line, startIndex, endIndex) {
+  //If the lines have been changed since the last time they
+  //were played then recalculate them
+  if(this.isDirty) {
+    this.recalculateLines();
+  }
+
   //If startIndex or endIndex are undefined they will be set to the start and end of the line respectively
-  for(var i = (startIndex || 0); i < (endIndex || this.audio[line-1].info.array.length); i++)
-  {
-    this.playPointWithDelay(line-1, i, i*(this.duration-this.duration/8)*1000);
+  for(var i = (startIndex || 0); i < (endIndex || this.infoCollection.collection[line].array.length); i++) {
+    this.playPointWithDelay(line, i, i*(this.duration-this.duration/8)*1000);
   }
 }
 
 //PLay multiple lines at the same time. Takes in an array of lines and the start and end index.
-AudioPlayer.prototype.playLines = function(lines, startIndex, endIndex)
-{
-  for (var i = 0; i < lines.length; i++)
-  {
+AudioPlayer.prototype.playLines = function(lines, startIndex, endIndex) {
+  if(this.isDirty) {
+    this.recalculateLines();
+  }
+
+  for (var i = 0; i < lines.length; i++) {
     this.playLine(lines[i], startIndex, endIndex);
   }
 }
 
+//Play a single point
+AudioPlayer.prototype.playPoint = function(line, point) {
+  this.audio[line][point].play();
+}
+
 //This function is nessesary so that there is a seperate copy of the
 //index for when the function is actualy called
-AudioPlayer.prototype.playPointWithDelay = function(line, index, delay)
-{
+AudioPlayer.prototype.playPointWithDelay = function(line, index, delay) {
   var self = this;
   setTimeout(function() {self.playPoint(line, index);}, delay);
 }
 
 //Using the arrayinfo a wave array is created
-AudioPlayer.prototype.genWaves = function(arrayInfo)
-{
+AudioPlayer.prototype.genWaves = function(arrayInfo) {
   audioLibParams = {};
 
-  var min = arrayInfo.trend.min;
-  var max = arrayInfo.trend.max;
-
-  for(var i = 0; i < arrayInfo.array.length; i++)
-  {
-    audioLibParams[i] = this.genSoundArray(this.calcFrequency(arrayInfo.array[i], min, max));
+  for(var i = 0; i < arrayInfo.array.length; i++) {
+    audioLibParams[i] = this.genSoundArray(
+      this.calcFrequency(
+        arrayInfo.array[i],
+        this.infoCollection.min,
+        this.infoCollection.max
+        ));
   }
 
   return audioLibParams;
 }
 
 //Converts the value to a frquency between the min and max frequnecy.
-AudioPlayer.prototype.calcFrequency = function(value, min, max)
-{
+AudioPlayer.prototype.calcFrequency = function(value, min, max) {
   var freq = (((this.maxFreq-this.minFreq)*(value-min))/(max-min))+this.minFreq;
   freq = Math.pow(2,((freq-40)/12))*440;
   return freq;
 }
 
-//play the input array of audio data
-playNotes = function(notes)
-{
-  this.sounds = [];
-  for(var i = 0; i < notes.length; i++)
-  {
-    sounds[i] = jsfxlib.createWaves(notes);
-  }
-
-  for(var i = 0; i < notes.length; i++)
-  {
-    sounds[i][0].play();
-  }
-}
-
 //Creates a sound object
-AudioPlayer.prototype.genSoundArray = function(frequency)
-{
+AudioPlayer.prototype.genSoundArray = function(frequency) {
   return ["sine",
   0.0000, //super sampling quality
   0.1750, //master volume

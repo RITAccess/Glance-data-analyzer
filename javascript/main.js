@@ -24,14 +24,13 @@ var loadData = function(data){
   document.querySelector('#table').innerHTML = '';
   var table = loadTable(data.data);
   var chart = loadChart(data.data);
-  linkChart(chart);
   player = new AudioPlayer();
+  linkTable(chart, player);
   var collection = new ArrayCollection(data.data);
   player.addCollection(collection.collection);
-  //TODO: Add collection makes loading graph slow
 }
 
+//The play button
 var playAudioButton = function(){
-  console.log("Play Line: ", document.getElementById("lineDropdown").value);
   player.playLine(document.getElementById("lineDropdown").value);
 }
