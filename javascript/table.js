@@ -53,6 +53,7 @@ var linkTable = function(chart, player){
           hot1.setDataAtCell(changes[changeNum][0],changes[changeNum][1],changes[changeNum][2]);
         }
         chart.update();
+        updateOverlaySize(chart);
       }
     }
   });

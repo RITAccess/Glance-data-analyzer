@@ -47,6 +47,20 @@ function getSelectedPoints(arraySize){
   return {'start':start, 'end':end};
 }
 
+function updateOverlaySize(chart){
+  resizeElements = [getSelection(), getBackground()];
+  for (ele in resizeElements){
+    resizeElements[ele].setAttribute('x', chart.scale.xScalePaddingLeft);
+    resizeElements[ele].setAttribute('width', chart.scale.width - chart.scale.xScalePaddingLeft - chart.scale.xScalePaddingRight);
+    resizeElements[ele].setAttribute('y', chart.scale.startPoint);
+    resizeElements[ele].setAttribute('height', chart.scale.endPoint - chart.scale.startPoint);
+  }
+  // resize slider
+  document.getElementById('slider-range').setAttribute(
+    'style', 'margin-left: ' + chart.scale.xScalePaddingLeft + 'px; width: ' +
+    (chart.scale.width - chart.scale.xScalePaddingLeft - chart.scale.xScalePaddingRight) + 'px');
+}
+
 function loadControls(arraySize){
   arraySize = arraySize -1;
   $(function() {
@@ -54,10 +68,14 @@ function loadControls(arraySize){
       range: true,
       min: 0,
       max: arraySize,
-      values: [ Math.ceil((1/3)*arraySize), Math.ceil((2/3)*arraySize) ],
+      values: [ 0, arraySize ],
       slide: function( event, ui ) {
-        getSelection().setAttribute("x",22 + ui.values[0] * (getBackground().getAttribute("width")/arraySize));
-        getSelection().setAttribute("width",(ui.values[1] - ui.values[0]) * (getBackground().getAttribute("width")/arraySize));
+        var startIndex = Number(ui.values[0]);
+        var endIndex = Number(ui.values[1]);
+        var leftPadding = Number(getBackground().getAttribute('x'));
+        var width = Number(getBackground().getAttribute('width'));
+        getSelection().setAttribute("x",leftPadding + (startIndex * ( width / arraySize)));
+        getSelection().setAttribute("width",(endIndex - startIndex) * (width / arraySize));
       }
     });
   });

@@ -1,6 +1,6 @@
 require(["handsontable/handsontable.full.min.js"]);
 require(["PapaParse/papaparse.min.js"]);
-require(["chartjs/Chart.min.js"]);
+require(["chartjs/Chart.js"]);
 require(["jquery/jquery-1.11.2.js"]);
 require(["jquery/jquery-ui.js"]);
 require(["jsfx/audio.js"], function(audio){
@@ -25,6 +25,7 @@ var loadData = function(data){
   var table = loadTable(data.data);
   var chart = loadChart(data.data);
   player = new AudioPlayer();
+  updateOverlaySize(chart);
   linkTable(chart, player);
   var collection = new ArrayCollection(data.data);
   player.addCollection(collection.collection);
