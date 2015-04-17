@@ -72,7 +72,7 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex) {
   this.timeStep = 60/this.timeStep;
 
   //If startIndex or endIndex are undefined they will be set to the start and end of the line respectively
-  for(var i = (startIndex || 0); i < (endIndex || this.infoCollection.collection[line].array.length); i++) {
+  for(var i = (startIndex || 0); i <= (endIndex || this.infoCollection.collection[line].array.length-1); i++) {
     this.playPointWithDelay(line, i, i*(this.timeStep-this.timeStep/8)*1000);
   }
 }
@@ -128,10 +128,10 @@ AudioPlayer.prototype.genSoundArray = function(frequency) {
   return ["sine",
   0.0000, //super sampling quality
   0.1750, //master volume
-  this.duration*0.01287553648, //attack time
-  this.duration*0.1287553648, //sustain time
+  this.duration*0.013, //attack time
+  this.duration*0.13, //sustain time
   0.0000, //sustain punch
-  this.duration*0.85836909871, //decay time
+  this.duration*0.86, //decay time
   20.0000, //min frequency
   frequency, //This is the frequency
   2400.0000, //max frequency
