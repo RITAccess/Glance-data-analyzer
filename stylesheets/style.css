@@ -85,6 +85,7 @@ input[type="file"]:hover:before {
 #audioSpan {
   visibility: hidden;
   float:right;
+  margin-top: 7px;
 }
 
 #playButton {
@@ -96,7 +97,7 @@ input[type="file"]:hover:before {
   border-style: solid;
   cursor: pointer;
   padding: 0px;
-  padding-left: 0.25em;
+  padding-left: 0.10em;
   margin-right: .5em;
   color:black;
 }
@@ -107,5 +108,5 @@ input[type="file"]:hover:before {
 }
 
 #bpm {
-  width:40px;
+  width:30px;
 }
