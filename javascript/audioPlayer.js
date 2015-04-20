@@ -7,6 +7,8 @@ function AudioPlayer() {
   this.audio = [];
   this.infoCollection = new ArrayCollection([]);
   this.isDirty = false;
+  this.timeoutQueue = [];
+  this.playing = false;
 }
 
 //Add a single line to the audio player
@@ -40,6 +42,8 @@ AudioPlayer.prototype.changeLine = function(line, index, newValue) {
   }
 }
 
+//This function causes the audio information to actually be calculated.
+//Should be called whenever the audio data changes
 AudioPlayer.prototype.recalculateLines = function() {
   this.audio = [];
   for(var i = 0; i < this.infoCollection.collection.length; i++) {
@@ -48,22 +52,26 @@ AudioPlayer.prototype.recalculateLines = function() {
   this.isDirty = false;
 }
 
-//play the input array of audio data
-playNotes = function(notes) {
-  this.sounds = [];
-  for(var i = 0; i < notes.length; i++) {
-    sounds[i] = jsfxlib.createWaves(notes);
+//Toggle playing either on or off
+AudioPlayer.prototype.playToggle = function(line, startIndex, endIndex) {
+  if(!this.playing) {
+    this.playLine(line, startIndex, endIndex);
   }
-
-  for(var i = 0; i < notes.length; i++) {
-    sounds[i][0].play();
+  else {
+    this.stopPlaying();
   }
+  this.updateIcon();
 }
 
 //Play a line. can also have optional parameters for start and ending index
 AudioPlayer.prototype.playLine = function(line, startIndex, endIndex) {
   //If the lines have been changed since the last time they
   //were played then recalculate them
+
+  //Reset the timeout queue
+  this.timeoutQueue = [];
+  this.playing = true;
+
   if(this.isDirty) {
     this.recalculateLines();
   }
@@ -71,9 +79,18 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex) {
   this.timeStep = document.getElementById("bpm").value || 120;
   this.timeStep = 60/this.timeStep;
 
+  var end = (endIndex || this.infoCollection.collection[line].array.length-1);
+  var self = this;
   //If startIndex or endIndex are undefined they will be set to the start and end of the line respectively
-  for(var i = (startIndex || 0); i <= (endIndex || this.infoCollection.collection[line].array.length-1); i++) {
+  for(var i = (startIndex || 0); i <= end; i++) {
     this.playPointWithDelay(line, i, i*(this.timeStep-this.timeStep/8)*1000);
+
+    if(i == end-1) {
+      this.timeoutQueue.push(setTimeout(
+        function(){self.playing = false; self.updateIcon();},
+        (i+1)*(this.timeStep-this.timeStep/8)*1000));
+    }
+
   }
 }
 
@@ -97,9 +114,29 @@ AudioPlayer.prototype.playPoint = function(line, point) {
 //index for when the function is actualy called
 AudioPlayer.prototype.playPointWithDelay = function(line, index, delay) {
   var self = this;
-  setTimeout(function() {self.playPoint(line, index);}, delay);
+  this.timeoutQueue.push(setTimeout(function() {self.playPoint(line, index);}, delay));
 }
 
+//If there is anything left in the timeout queue then stop them from playing
+AudioPlayer.prototype.stopPlaying = function() {
+  for(var i = 0; i < this.timeoutQueue.length; i++) {
+    clearTimeout(this.timeoutQueue[i]);
+  }
+  this.playing = false;
+}
+
+
+AudioPlayer.prototype.updateIcon = function() {
+  var iList = document.getElementById("icon").classList;
+  if(this.playing) {
+    iList.remove("fa-play");
+    iList.add("fa-stop");
+  }
+  else {
+    iList.remove("fa-stop");
+    iList.add("fa-play");
+  }
+}
 //Using the arrayinfo a wave array is created
 AudioPlayer.prototype.genWaves = function(arrayInfo) {
   audioLibParams = {};
@@ -153,4 +190,17 @@ AudioPlayer.prototype.genSoundArray = function(frequency) {
   0.0000, //lp filter resonance
   0.0000, //hp filter cutoff
   0.0100]; //hp filter cutoff sweep
+}
+
+//play the input array of audio data
+//Used for debugging
+playNotes = function(notes) {
+  this.sounds = [];
+  for(var i = 0; i < notes.length; i++) {
+    sounds[i] = jsfxlib.createWaves(notes);
+  }
+
+  for(var i = 0; i < notes.length; i++) {
+    sounds[i][0].play();
+  }
 }

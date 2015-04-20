@@ -33,6 +33,6 @@ var loadData = function(data){
 }
 
 //The play button
-var playAudioButton = function(){
-  player.playLine(document.getElementById("lineDropdown").value, overlay.slider[0], overlay.slider[1]);
+var playStopAudioButton = function(){
+  player.playToggle(document.getElementById("lineDropdown").value, overlay.slider[0], overlay.slider[1]);
 }
