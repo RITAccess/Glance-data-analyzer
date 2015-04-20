@@ -76,19 +76,19 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex) {
     this.recalculateLines();
   }
 
-  this.timeStep = document.getElementById("bpm").value || 120;
-  this.timeStep = 60/this.timeStep;
+  var speed = this.timeStep/(document.getElementById("bpm").value || 1);
+  console.log(speed);
 
   var end = (endIndex || this.infoCollection.collection[line].array.length-1);
   var self = this;
   //If startIndex or endIndex are undefined they will be set to the start and end of the line respectively
   for(var i = (startIndex || 0); i <= end; i++) {
-    this.playPointWithDelay(line, i, i*(this.timeStep-this.timeStep/8)*1000);
+    this.playPointWithDelay(line, i, i*(speed-speed/8)*1000);
 
     if(i == end-1) {
       this.timeoutQueue.push(setTimeout(
         function(){self.playing = false; self.updateIcon();},
-        (i+1)*(this.timeStep-this.timeStep/8)*1000));
+        (i+1)*(speed-speed/8)*1000));
     }
 
   }
