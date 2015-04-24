@@ -37,10 +37,23 @@ Overlay.prototype.updateSize = function(chart){
   document.getElementById('slider-range').setAttribute(
     'style', 'margin-left: ' + chart.scale.xScalePaddingLeft + 'px; width: ' +
     (chart.scale.width - chart.scale.xScalePaddingLeft - chart.scale.xScalePaddingRight) + 'px');
+  if (document.getElementById("slider-range")) {
+    var startData = document.getElementById("slider-range").getAttribute("data-start");
+    var arraySize = document.getElementById("slider-range").getAttribute("data-size");
+    var endData = document.getElementById("slider-range").getAttribute("data-end");
+    if(endData == -1) {
+      endData = arraySize;
+    }
+    var leftPadding = Number(this.getBackground().getAttribute('x'));
+    var width = Number(this.getBackground().getAttribute('width'));
+    this.getSelection().setAttribute("x",leftPadding + (startData * ( width / arraySize)));
+    this.getSelection().setAttribute("width",(endData - startData) * (width / arraySize));
+  }
 }
 
 Overlay.prototype.loadControls = function(arraySize){
-  arraySize = arraySize -1;
+  var arraySize = --arraySize;
+  document.getElementById("slider-range").setAttribute("data-size", arraySize);
   var self = this;
   $(function() {
     $( "#slider-range" ).slider({
@@ -48,7 +61,8 @@ Overlay.prototype.loadControls = function(arraySize){
       min: 0,
       max: arraySize,
       values: [ 0, arraySize ],
-      slide: function( event, ui ) {
+      slide: function(event, ui) {
+        var arraySize = document.getElementById("slider-range").getAttribute("data-size");
         var startIndex = Number(ui.values[0]);
         var endIndex = Number(ui.values[1]);
         var leftPadding = Number(self.getBackground().getAttribute('x'));
@@ -56,6 +70,8 @@ Overlay.prototype.loadControls = function(arraySize){
         self.getSelection().setAttribute("x",leftPadding + (startIndex * ( width / arraySize)));
         self.getSelection().setAttribute("width",(endIndex - startIndex) * (width / arraySize));
         self.slider = ui.values;
+        document.getElementById("slider-range").setAttribute("data-start", ui.values[0]);
+        document.getElementById("slider-range").setAttribute("data-end", ui.values[1]);
       }
     });
   });
