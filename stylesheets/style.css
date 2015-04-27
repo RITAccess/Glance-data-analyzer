@@ -1,5 +1,16 @@
 body, html {
   font-family: sans-serif;
+  width: 800px;
+}
+
+html {
+  display: table;
+  margin: auto;
+}
+
+body {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 #overlay {
@@ -84,7 +95,7 @@ input[type="file"]:hover:before {
 
 #audioSpan {
   visibility: hidden;
-  float:right;
+  float: right;
   margin-top: 7px;
 }
 
@@ -103,10 +114,27 @@ input[type="file"]:hover:before {
 }
 
 #playButton:active {
-  background:black;
-  color:white;
+  background: black;
+  color: white;
 }
 
 #bpm {
-  width:30px;
+  width: 30px;
+}
+
+#table {
+  text-align: center;
+}
+
+#table:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em;
+}
+
+.htContainer {
+  display: inline-block;
+  vertical-align: middle;
 }
