@@ -24,9 +24,9 @@ AudioPlayer.prototype.addAudioLine = function(arrayInfo) {
 
 
 //Using an arrayCollection object you can add a group of lines to the audio object
-AudioPlayer.prototype.addCollection = function(collection) {
+AudioPlayer.prototype.replaceCollection = function(collection) {
   var dropdownString ="";
-  this.infoCollection.addCollection(collection);
+  this.infoCollection.replaceCollection(collection);
   for(var i = 1; i < collection.length; i++) {
     dropdownString += "<option value="+(i)+">"+(i)+"</option>"
   }
@@ -126,7 +126,7 @@ AudioPlayer.prototype.stopPlaying = function() {
   this.playing = false;
 }
 
-
+// Updates the play / stop icon.
 AudioPlayer.prototype.updateIcon = function() {
   var iList = document.getElementById("icon").classList;
   if(this.playing) {

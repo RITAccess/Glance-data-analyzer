@@ -20,6 +20,8 @@ require(["javascript/arrayCollection.js"]);
 
 var player;
 var overlay;
+// initial data load
+// (this is called after fileOpen from files.js)
 var loadData = function(data){
   document.querySelector('#overlay').setAttribute('style','');
   document.querySelector('#table').innerHTML = '';
@@ -30,7 +32,7 @@ var loadData = function(data){
   overlay.updateSize(chart);
   linkTable(chart, player, overlay);
   var collection = new ArrayCollection(data.data);
-  player.addCollection(collection.collection);
+  player.replaceCollection(collection.collection);
 }
 
 //The play button

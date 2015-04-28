@@ -16,6 +16,7 @@ var loadChart = function(data){
   return myLineChart;
 }
 
+// sets the data for the chart in a selection of generated colors
 function dataset(data) {
   var dataArray = [];
   var red, green, blue;
@@ -44,6 +45,7 @@ function dataset(data) {
   return dataArray;
 }
 
+// deques elements off the array
 function deque(array) {
   var ele = array[0];
   array.splice(0,1);

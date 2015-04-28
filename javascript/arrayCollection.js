@@ -1,4 +1,6 @@
 "use strict"; // strict mode syntax
+
+// Takes an array of arrays and constructs an ArrayCollection with multiple ArrayInfo objects
 function ArrayCollection(array){
   this.collection = [];
 
@@ -9,14 +11,15 @@ function ArrayCollection(array){
   this.calcMinMax();
 }
 
-ArrayCollection.prototype.addCollection = function(nCollection) {
+// replaces a collection to the collection property
+ArrayCollection.prototype.replaceCollection = function(nCollection) {
   this.collection = nCollection;
 
   this.calcMinMax();
 }
 
+// calculates the mim and max values for a collection and sets them in this.min and this.max
 ArrayCollection.prototype.calcMinMax = function() {
-
   this.min = Number.MAX_VALUE;
   this.max = Number.MIN_VALUE;
 
@@ -26,11 +29,13 @@ ArrayCollection.prototype.calcMinMax = function() {
   }
 }
 
+// adds a line into the collection
 ArrayCollection.prototype.addLine = function(newInfo) {
   this.collection.push(new ArrayInfo(newInfo));
   this.calcMinMax();
 }
 
+// updates a single line in the arrayCollection
 ArrayCollection.prototype.changeLine = function(line, index, change) {
   this.collection[line][index] = change;
   this.collection[line].trend = this.collection[line].calcTrends();

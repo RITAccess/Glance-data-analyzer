@@ -1,4 +1,5 @@
 "use strict"; // strict mode syntax
+// initial object for the overlay
 var Overlay = function(data) {
   this.loadControls(data.data[0].length);
   this.slider = [0,0];
@@ -13,6 +14,7 @@ Overlay.prototype.makeSVG = function(previousNode, type, attributes){
   previousNode.parentNode.insertBefore(svgElement,previousNode.nextElementSibling);
 }
 
+// functions to get document elements easily
 Overlay.prototype.getSelection = function(){return document.getElementById("selection");}
 Overlay.prototype.getBackground = function(){return document.getElementById("background");}
 Overlay.prototype.getX = function(element){return Number(element.getAttribute("x"));}
@@ -26,6 +28,7 @@ Overlay.prototype.getSelectedPoints = function(arraySize){
   return {'start':start, 'end':end};
 }
 
+// updates the size of the overlay object
 Overlay.prototype.updateSize = function(chart){
   var resizeElements = [this.getSelection(), this.getBackground()];
   for (var ele in resizeElements){
@@ -52,6 +55,7 @@ Overlay.prototype.updateSize = function(chart){
   }
 }
 
+// provides a connection to the slider and the overlay
 Overlay.prototype.loadControls = function(arraySize){
   var arraySize = --arraySize;
   document.getElementById("slider-range").setAttribute("data-size", arraySize);

@@ -1,5 +1,6 @@
 "use strict"; // strict mode syntax
 var hot1 = null;
+// initial table properties, after getting the data from the file.
 var loadTable = function(fileData){
   /*
     Handsontable
@@ -27,6 +28,7 @@ var loadTable = function(fileData){
   return hot1;
 }
 
+// links the table object with the chart, the player, and the overlay
 var linkTable = function(chart, player, overlay){
   //local hook (has same effect as a callback)
   hot1.addHook('afterChange', function(changes, source) {
