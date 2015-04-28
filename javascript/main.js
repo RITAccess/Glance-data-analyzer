@@ -1,11 +1,11 @@
-require(["handsontable/handsontable.full.min.js"]);
-require(["PapaParse/papaparse.min.js"]);
-require(["chartjs/Chart.js"]);
-require(["jquery/jquery-1.11.2.js"]);
-require(["jquery/jquery-ui.js"]);
-require(["jsfx/audio.js"], function(audio){
-  require(["jsfx/jsfx.js"]);
-  require(["jsfx/jsfxlib.js"]);
+require(["libs/handsontable/handsontable.full.min.js"]);
+require(["libs/PapaParse/papaparse.min.js"]);
+require(["libs/chartjs/Chart.js"]);
+require(["libs/jquery/jquery-1.11.2.js"]);
+require(["libs/jquery/jquery-ui.js"]);
+require(["libs/jsfx/audio.js"], function(audio){
+  require(["libs/jsfx/jsfx.js"]);
+  require(["libs/jsfx/jsfxlib.js"]);
 });
 require(["javascript/files.js"], function(print){
   loadListener();
