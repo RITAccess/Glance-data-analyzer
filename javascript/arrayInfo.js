@@ -1,4 +1,4 @@
-"use strict";
+"use strict"; // strict mode syntax
 //This object stores some basic information about an array
 function ArrayInfo(nArray) {
   this.array = nArray;
