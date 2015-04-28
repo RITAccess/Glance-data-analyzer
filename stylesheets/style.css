@@ -1,6 +1,7 @@
 body, html {
   font-family: sans-serif;
   width: 800px;
+  background: url('halftone/halftone.png')
 }
 
 html {
@@ -20,16 +21,22 @@ body {
 header {
   position: absolute;
   top: 0px;
-  width: 740px;
-  background: white;
   z-index: 1;
-  margin-top: 20px;
-  margin-left: 30px;
+  padding: 1em 0px;
+  width: 100%;
+  left: 0;
+  margin-left: 0;
+  margin-top: 0;
+  background: url('footer_lodyas/footer_lodyas.png');
+  color:white;
+  text-shadow: 0px 0px 10px black;
+  box-shadow: 0px 0px 10px black;
 }
 
 #title {
   font-weight: bold;
   font-size: 2em;
+  padding-left: 1em;
 }
 
 #selection {
@@ -58,13 +65,16 @@ svg * {
 #slider-range {
   margin-left: 22px;
   width: 755px;
-  margin-top: 70px;
+  margin-top: 100px;
 }
 
 /* custom file select */
 input[type="file"] {
-  color: black;
+  height: 3em;
   cursor: pointer;
+  width: 200px;
+  padding: 8px;
+  color: white;
 }
 input[type="file"]::-webkit-file-upload-button {
   visibility: hidden;
@@ -73,49 +83,51 @@ input[type="file"]::-webkit-file-upload-button {
 input[type="file"]:before {
   content: 'Load CSV';
   display: inline-block;
-  background: #7074B8;
-  background: linear-gradient(to bottom right, #9DB0EB, #5156B5);
-  background: -webkit-linear-gradient(top, #9DB0EB, #5156B5);
-  border: 1px solid #5156B5;
-  border-radius: 3px;
   padding: 5px 8px;
   outline: none;
   white-space: nowrap;
   -webkit-user-select: none;
   cursor: pointer;
-  color: white;
   font-weight: bold;
   font-size: 1.2em;
+  background: rgba(0,0,0,0);
+  border: 2px solid white;
+  border-radius: 5px;
+  border-style: solid;
+  color:white;
+  box-shadow: 0px 5px 10px black;
+  text-shadow: 0px 3px 3px black;
 }
 
 input[type="file"]:hover:before {
-  background: #5156B5;
-  text-shadow: 0px 0px #444;
+  background: rgba(19, 73, 112, 1);
 }
 
 #audioSpan {
   visibility: hidden;
   float: right;
   margin-top: 7px;
+  padding-right: 1em;
 }
 
 #playButton {
   height: 32px;
   width: 32px;
-  background: rgba(0,0,0,0);
-  border-color: rgba(0, 0, 0, 1);
-  border-radius: 100%;
-  border-style: solid;
   cursor: pointer;
   padding: 0px;
   padding-left: 0.10em;
   margin-right: .5em;
-  color:black;
+  background: rgba(0,0,0,0);
+  border-color: rgba(255, 255, 255, 1);
+  border-radius: 100%;
+  border-style: solid;
+  color:white;
+  box-shadow: 0px 5px 10px black;
+  text-shadow: 0px 3px 3px black;
 }
 
-#playButton:active {
-  background: black;
-  color: white;
+#playButton:hover {
+  background: rgba(19, 73, 112, 1);
 }
 
 #bpm {
@@ -132,6 +144,12 @@ input[type="file"]:hover:before {
   height: 100%;
   vertical-align: middle;
   margin-right: -0.25em;
+}
+
+.drop-down {
+  box-shadow: 0px 5px 5px;
+  border-radius: 10px;
+  border: 2px solid white;
 }
 
 .htContainer {
