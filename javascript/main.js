@@ -1,3 +1,4 @@
+"use strict"; // strict mode syntax
 require(["libs/handsontable/handsontable.full.min.js"]);
 require(["libs/PapaParse/papaparse.min.js"]);
 require(["libs/chartjs/Chart.js"]);

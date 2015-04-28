@@ -1,3 +1,4 @@
+"use strict"; // strict mode syntax
 // Opens a file
 var openFile = function(event) {
   var input = event.target;

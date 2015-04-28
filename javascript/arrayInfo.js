@@ -1,3 +1,4 @@
+"use strict";
 //This object stores some basic information about an array
 function ArrayInfo(nArray) {
   this.array = nArray;
@@ -22,12 +23,12 @@ ArrayInfo.prototype.calcTrends = function() {
   tmpTrend.min = Math.min.apply(Math, this.array);
   tmpTrend.max = Math.max.apply(Math, this.array);
   tmpTrend.sum = 0;
-  for(i = 0; i < this.array.length; i++) {
+  for(var i = 0; i < this.array.length; i++) {
     tmpTrend.sum += this.array[i];
   }
   tmpTrend.avg = tmpTrend.sum/this.array.length;
 
   this.sorted = this.isSorted();
-  
+
   return tmpTrend;
 }

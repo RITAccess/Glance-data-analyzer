@@ -1,3 +1,4 @@
+"use strict"; // strict mode syntax
 //Creates a set of audio data from the provided arrayinfo
 function AudioPlayer() {
   this.duration = 0.5; //default duration of a single note
@@ -139,7 +140,7 @@ AudioPlayer.prototype.updateIcon = function() {
 }
 //Using the arrayinfo a wave array is created
 AudioPlayer.prototype.genWaves = function(arrayInfo) {
-  audioLibParams = {};
+  var audioLibParams = {};
 
   for(var i = 0; i < arrayInfo.array.length; i++) {
     audioLibParams[i] = this.genSoundArray(
@@ -194,7 +195,7 @@ AudioPlayer.prototype.genSoundArray = function(frequency) {
 
 //play the input array of audio data
 //Used for debugging
-playNotes = function(notes) {
+var playNotes = function(notes) {
   this.sounds = [];
   for(var i = 0; i < notes.length; i++) {
     sounds[i] = jsfxlib.createWaves(notes);

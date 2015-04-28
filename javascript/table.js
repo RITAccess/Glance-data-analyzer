@@ -1,3 +1,4 @@
+"use strict"; // strict mode syntax
 var hot1 = null;
 var loadTable = function(fileData){
   /*

@@ -1,3 +1,4 @@
+"use strict"; // strict mode syntax
 function ArrayCollection(array){
   this.collection = [];
 

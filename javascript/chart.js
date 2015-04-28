@@ -1,4 +1,5 @@
-loadChart = function(data){
+"use strict"; // strict mode syntax
+var loadChart = function(data){
   /*
     Using Chart.js
   */
@@ -17,7 +18,8 @@ loadChart = function(data){
 
 function dataset(data) {
   var dataArray = [];
-  var red = green = blue = 0;
+  var red, green, blue;
+  red = green = blue = 0;
   var colorIncrease = parseInt((255/ data.length).toFixed(0));
 
   for (var i = 1; i < data.length; i++) {

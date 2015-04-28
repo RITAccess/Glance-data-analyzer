@@ -1,3 +1,4 @@
+"use strict"; // strict mode syntax
 var Overlay = function(data) {
   this.loadControls(data.data[0].length);
   this.slider = [0,0];
@@ -26,8 +27,8 @@ Overlay.prototype.getSelectedPoints = function(arraySize){
 }
 
 Overlay.prototype.updateSize = function(chart){
-  resizeElements = [this.getSelection(), this.getBackground()];
-  for (ele in resizeElements){
+  var resizeElements = [this.getSelection(), this.getBackground()];
+  for (var ele in resizeElements){
     resizeElements[ele].setAttribute('x', chart.scale.xScalePaddingLeft);
     resizeElements[ele].setAttribute('width', chart.scale.width - chart.scale.xScalePaddingLeft - chart.scale.xScalePaddingRight);
     resizeElements[ele].setAttribute('y', chart.scale.startPoint);
