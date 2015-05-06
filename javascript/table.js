@@ -46,7 +46,7 @@ var linkTable = function(chart, player, overlay){
           }
         }
         // if new value isn't a number, revert to old value.
-        else if (!isNaN(newValue)){
+        else if ((!isNaN(newValue)) && (newValue != "")){
           //Update audio with new value
           player.changeLine(changes[changeNum][0],changes[changeNum][2],changes[changeNum][3]);
           // change value
