@@ -32,7 +32,7 @@ var loadData = function(data){
   overlay.updateSize(chart);
   linkTable(chart, player, overlay);
   var collection = new ArrayCollection(data.data);
-  player.replaceCollection(collection.collection);
+  player.setCollection(collection.collection);
 }
 
 //The play button

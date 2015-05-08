@@ -12,7 +12,7 @@ function AudioPlayer() {
   this.playing = false;
 }
 
-//Add a single line to the audio player
+//Add a line to the collection used to calculate audio lines
 AudioPlayer.prototype.addLine = function(arrayInfo) {
   this.infoCollection.addLine(arrayInfo);
 }
@@ -22,11 +22,10 @@ AudioPlayer.prototype.addAudioLine = function(arrayInfo) {
   this.audio.push(jsfxlib.createWaves(this.genWaves(arrayInfo)));
 }
 
-
 //Using an arrayCollection object you can add a group of lines to the audio object
-AudioPlayer.prototype.replaceCollection = function(collection) {
+AudioPlayer.prototype.setCollection = function(collection) {
   var dropdownString ="";
-  this.infoCollection.replaceCollection(collection);
+  this.infoCollection.setCollection(collection);
   for(var i = 1; i < collection.length; i++) {
     dropdownString += "<option value="+(i)+">"+(i)+"</option>"
   }
@@ -96,6 +95,7 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex) {
 }
 
 //PLay multiple lines at the same time. Takes in an array of lines and the start and end index.
+//Not used in the application
 AudioPlayer.prototype.playLines = function(lines, startIndex, endIndex) {
   if(this.isDirty) {
     this.recalculateLines();

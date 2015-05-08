@@ -11,8 +11,8 @@ function ArrayCollection(array){
   this.calcMinMax();
 }
 
-// replaces a collection to the collection property
-ArrayCollection.prototype.replaceCollection = function(nCollection) {
+// Set the collection equal to another collection
+ArrayCollection.prototype.setCollection = function(nCollection) {
   this.collection = nCollection;
 
   this.calcMinMax();
