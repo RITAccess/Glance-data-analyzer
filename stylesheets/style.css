@@ -146,6 +146,13 @@ input[type="file"]:hover:before {
   margin-right: -0.25em;
 }
 
+#tblContainer {
+  width: 800px;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
 .drop-down {
   box-shadow: 0px 5px 5px;
   border-radius: 10px;
