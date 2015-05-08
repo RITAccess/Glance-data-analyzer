@@ -75,8 +75,11 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex) {
   if(this.isDirty) {
     this.recalculateLines();
   }
-
-  var speed = this.timeStep/(document.getElementById("bpm").value || 1);
+  var multiplier = document.getElementById("bpm").value;
+  if(multiplier <= 0) {
+    multiplier = 1;
+  }
+  var speed = this.timeStep/(multiplier || 1);
 
   var end = (endIndex || this.infoCollection.collection[line].array.length-1);
   var self = this;
