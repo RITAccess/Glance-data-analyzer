@@ -37,11 +37,18 @@ function dataset(data) {
       data: data[i]
     }
     dataArray.push(line);
+
+    // log color into color editor
+    var entry = document.createElement('li');
+    entry.appendChild(document.createTextNode(color));
+    document.getElementById('colors').appendChild(entry);
+    console.log(color)
+
+
     red += colorIncrease + 15;
     green += colorIncrease;
     blue += colorIncrease - 15;
   }
-
   return dataArray;
 }
 

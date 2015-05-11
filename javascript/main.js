@@ -35,7 +35,13 @@ var loadData = function(data){
   player.setCollection(collection.collection);
 }
 
-//The play button
+// The play button
 var playStopAudioButton = function(){
   player.playToggle(document.getElementById("lineDropdown").value, overlay.slider[0], overlay.slider[1]);
+}
+
+// Opens the color editor
+var openColorEditor = function(){
+  var editor = document.getElementById('color-editor');
+  editor.style.display = editor.style.display == '' ? 'none' : '';
 }
