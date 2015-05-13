@@ -40,9 +40,8 @@ function dataset(data) {
 
     // log color into color editor
     var entry = document.createElement('li');
-    entry.appendChild(document.createTextNode(color));
+    entry.setAttribute("style", "background:rgb(" + color + ")");
     document.getElementById('colors').appendChild(entry);
-    console.log(color)
 
 
     red += colorIncrease + 15;

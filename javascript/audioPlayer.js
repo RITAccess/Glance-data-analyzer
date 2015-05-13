@@ -30,7 +30,7 @@ AudioPlayer.prototype.setCollection = function(collection) {
     dropdownString += "<option value="+(i)+">"+(i)+"</option>"
   }
   this.isDirty = true;
-  document.getElementById("audioSpan").style.visibility = "visible";
+  document.getElementById("audioSpan").style.display = "";
   document.getElementById("lineDropdown").innerHTML = dropdownString;
 }
 

@@ -155,7 +155,7 @@ input[type="file"]:hover:before {
 
 #color-expand {
   font-weight: bold;
-  background: rgba(0,0,0,0.2);
+  background: rgba(207, 205, 196, 1);
   text-align: center;
   padding: 10px;
   margin: 10px;
@@ -164,10 +164,24 @@ input[type="file"]:hover:before {
   -o-transition: background 0.5s;
   transition: background 0.5s;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 #color-expand:hover {
-  background: rgba(237, 235, 226, 1);
+  background: rgba(0,0,0,0.3);
+}
+
+#colors {
+  text-align: left;
+}
+
+#colors > li {
+  height: 1em;
+  width: 3em;
+  border: 2px solid black;
+  box-shadow: 2px 2px 2px black;
+  padding: 4px;
+  border-radius: 4px;
 }
 
 .drop-down {

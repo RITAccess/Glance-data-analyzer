@@ -21,14 +21,14 @@
     </span>
   </header>
   <div id="slider-range" data-start="0" data-end="-1" data-size="0"></div>
-  <svg id="overlay" width="800" height="400" style='visibility:hidden;'>
+  <svg id="overlay" width="800" height="400" style='display:none;'>
     <rect id="background" x="0" y="0" width="800" height="400" />
     <rect id="selection" x="0" y="0" width="800" height="400" />
   </svg>
   <canvas alt="Chart YEAH" title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
-  <div id='color-expand' onclick="openColorEditor()"> Color Editor
-    <div id="color-editor" style="display:none;"><ul id="colors"></ul></div>
-  </div>
   <div id="tblContainer"><div id="table" class="handsontable"></div></div>
+  <div id='color-expand' style="display:none;" onclick="openColorEditor()"> Color Editor
+    <div id="color-editor" style="display:none;"><ol id="colors"></ol></div>
+  </div>
 </body>
 </html>

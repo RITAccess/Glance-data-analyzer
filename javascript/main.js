@@ -33,6 +33,7 @@ var loadData = function(data){
   linkTable(chart, player, overlay);
   var collection = new ArrayCollection(data.data);
   player.setCollection(collection.collection);
+  document.getElementById("color-expand").style.display = ""
 }
 
 // The play button
@@ -41,7 +42,7 @@ var playStopAudioButton = function(){
 }
 
 // Opens the color editor
-var openColorEditor = function(){
+var openColorEditor = function(){;
   var editor = document.getElementById('color-editor');
   editor.style.display = editor.style.display == '' ? 'none' : '';
 }
