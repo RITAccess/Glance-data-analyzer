@@ -176,12 +176,15 @@ input[type="file"]:hover:before {
 }
 
 #colors > li {
-  height: 1em;
-  width: 3em;
+  margin: 4px;
+}
+
+.colorblock {
   border: 2px solid black;
-  box-shadow: 2px 2px 2px black;
-  padding: 4px;
+  box-shadow: 1px 1px 2px black;
+  padding-right: 3em;
   border-radius: 4px;
+  margin-right: 5px;
 }
 
 .drop-down {

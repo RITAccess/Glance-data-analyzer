@@ -40,7 +40,15 @@ function dataset(data) {
 
     // log color into color editor
     var entry = document.createElement('li');
-    entry.setAttribute("style", "background:rgb(" + color + ")");
+    var colorBlock = document.createElement('span');
+    var textInput = document.createElement('input');
+    //TODO:Text input needs an attribute where onInput calls a function that references
+    //which list item your on and updates the color and the chart
+    //pass the event through in a function
+    colorBlock.setAttribute("style", "background:rgb(" + color + ")");
+    colorBlock.setAttribute("class", "colorblock");
+    entry.appendChild(colorBlock);
+    entry.appendChild(textInput);
     document.getElementById('colors').appendChild(entry);
 
 
