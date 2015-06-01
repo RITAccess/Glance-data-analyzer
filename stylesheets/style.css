@@ -104,7 +104,6 @@ input[type="file"]:hover:before {
 }
 
 #audioSpan {
-  visibility: hidden;
   float: right;
   margin-top: 7px;
   padding-right: 1em;
