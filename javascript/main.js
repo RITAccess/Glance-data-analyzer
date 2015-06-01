@@ -42,7 +42,7 @@ var playStopAudioButton = function(){
 }
 
 // Opens the color editor
-var openColorEditor = function(){;
+var openColorEditor = function(){
   var editor = document.getElementById('color-editor');
   editor.style.display = editor.style.display == '' ? 'none' : '';
   console.log("Open/Close");
