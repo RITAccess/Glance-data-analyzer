@@ -31,6 +31,7 @@ AudioPlayer.prototype.setCollection = function(collection) {
   }
   this.isDirty = true;
   document.getElementById("audioSpan").style.display = "";
+  console.log("hi there");
   document.getElementById("lineDropdown").innerHTML = dropdownString;
 }
 

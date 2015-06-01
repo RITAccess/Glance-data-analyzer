@@ -2,7 +2,10 @@
 // Opens a file
 var openFile = function(event) {
   var input = event.target;
-
+  var colorlist = document.getElementById("colors");
+  while(colorlist.firstChild){
+    colorlist.removeChild(colorlist.firstChild);
+  }
   // use PapaParse for handing the csv file
   var results = Papa.parse(input.files[0], {
   	complete: function(results) {
