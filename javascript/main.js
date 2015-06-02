@@ -17,6 +17,7 @@ require(["javascript/overlay.js"]);
 require(["javascript/arrayInfo.js"]);
 require(["javascript/audioPlayer.js"]);
 require(["javascript/arrayCollection.js"]);
+require(["javascript/global.js"]);
 
 var player;
 var overlay;
