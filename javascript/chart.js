@@ -17,7 +17,6 @@ var loadChart = function(data){
 	chartdata.inputboxes[i].oninput = function(){
 					     var index = chartdata.inputboxes.indexOf(this);
 					     var newcolor = this.value;
-					     console.log(this.nextSibling);
 					     if(this.nextSibling.checked)
 						return;
 					     else{
@@ -48,7 +47,6 @@ var loadChart = function(data){
 					     };
 	chartdata.inputboxes[i].nextSibling.onclick = function(){
 						var index = chartdata.inputboxes.indexOf(this.previousSibling);
-			   			console.log(this.checked);
 			   			if(this.checked){
                                			  var transparent = [0,0,0].join(", ");
 			       			  transparent = "rgba(" + transparent +", 0)";
@@ -59,10 +57,8 @@ var loadChart = function(data){
 			   			  }
 						else{
                                			  var color = this.previousSibling.previousSibling.style.background;
-						  //console.log(color);
 						  color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
 						  console.log(color);
-			       			  //transparent = "rgba(" + transparent +", 0)";
 			       			  chartdata.data[index].strokeColor = color;
 			       			  chartdata.data[index].pointColor = color;
 			       			  chartdata.data[index].pointHighlightStroke = color;
@@ -107,17 +103,6 @@ function dataset(data) {
     entry.appendChild(colorBlock);
     entry.appendChild(textInput);
     entry.appendChild(toggleBox);
-    /*toggleBox.onclick = function(){
-			   console.log(this.checked);
-			   if(this.checked){
-                               var transparent = [0,0,0,0].join(", ");
-			       transparent = "rgba(" + transparent +")";
-		  	       dataArray[i].fillColor = transparent;
-			       dataArray[i].strokeColor = transparent;
-			       dataArray[i].pointColor = transparent;
-			       dataArray[i].pointHighlightStroke = transparent;
-			   }
-			}; */
     document.getElementById('colors').appendChild(entry);
     red += colorIncrease + 15;
     green += colorIncrease;
