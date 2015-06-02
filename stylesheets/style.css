@@ -1,6 +1,6 @@
 body, html {
   font-family: sans-serif;
-  width: 800px;
+  width: 100%;
   background: url('halftone/halftone.png')
 }
 
@@ -19,9 +19,6 @@ body {
 }
 
 header {
-  position: absolute;
-  top: 0px;
-  z-index: 1;
   padding: 1em 0px;
   width: 100%;
   left: 0;
@@ -31,12 +28,22 @@ header {
   color:white;
   text-shadow: 0px 0px 10px black;
   box-shadow: 0px 0px 10px black;
+  clear:both;
 }
 
 #title {
   font-weight: bold;
   font-size: 2em;
   padding-left: 1em;
+}
+
+
+#content{
+  width: 800px;
+  margin: auto; /* centers the contents including the slider and the graph */
+  margin-top: 20px;
+  padding-bottom: 25px;
+  clear: both;
 }
 
 #selection {
@@ -62,10 +69,10 @@ svg * {
   margin-bottom: 7px;
   float: left;
 }
+
 #slider-range {
   margin-left: 22px;
   width: 755px;
-  margin-top: 100px;
 }
 
 /* custom file select */
@@ -147,7 +154,8 @@ input[type="file"]:hover:before {
 
 #tblContainer {
   width: 800px;
-  overflow: auto;
+  margin: 5px;
+  /*overflow: auto;*/
   overflow-y: hidden;
   white-space: nowrap;
 }
@@ -201,4 +209,20 @@ input[type="file"]:hover:before {
 .htContainer {
   display: inline-block;
   vertical-align: middle;
+}
+
+#data-summary {
+  text-align: center;
+  font-weight: bold;
+  background: rgba(207, 205, 196, 1);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+#summary-header {
+  height: 100%;
+  width: 100%;
+  background: rgba(197, 195, 186, 1);
+  border-radius: 5px;
 }

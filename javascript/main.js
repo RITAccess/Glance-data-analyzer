@@ -35,6 +35,7 @@ var loadData = function(data){
   var collection = new ArrayCollection(data.data);
   player.setCollection(collection.collection);
   document.getElementById("color-expand").style.display = ""
+  document.getElementById("data-summary").style.display = ""
 }
 
 // The play button
@@ -46,5 +47,4 @@ var playStopAudioButton = function(){
 var openColorEditor = function(){
   var editor = document.getElementById('color-editor');
   editor.style.display = editor.style.display == '' ? 'none' : '';
-  console.log("Open/Close");
 }
