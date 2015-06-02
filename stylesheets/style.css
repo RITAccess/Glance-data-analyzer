@@ -90,7 +90,7 @@ input[type="file"]::-webkit-file-upload-button {
 input[type="file"]:before {
   content: 'Load CSV';
   display: inline-block;
-  padding: 5px 8px;
+  padding: 5px 2px;
   outline: none;
   white-space: nowrap;
   -webkit-user-select: none;
