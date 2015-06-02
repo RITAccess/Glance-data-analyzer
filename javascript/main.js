@@ -1,9 +1,9 @@
 "use strict"; // strict mode syntax
+require(["libs/jquery/jquery-1.11.2.js"]);
+require(["libs/jquery/jquery-ui.js"]);
 require(["libs/handsontable/handsontable.full.min.js"]);
 require(["libs/PapaParse/papaparse.min.js"]);
 require(["libs/chartjs/Chart.js"]);
-require(["libs/jquery/jquery-1.11.2.js"]);
-require(["libs/jquery/jquery-ui.js"]);
 require(["libs/jsfx/audio.js"], function(audio){
   require(["libs/jsfx/jsfx.js"]);
   require(["libs/jsfx/jsfxlib.js"]);
@@ -33,8 +33,8 @@ var loadData = function(data){
   linkTable(chart, player, overlay);
   var collection = new ArrayCollection(data.data);
   player.setCollection(collection.collection);
-  document.getElementById("color-expand").style.display = ""
-  document.getElementById("data-summary").style.display = ""
+  document.getElementById('color-expand').style.display = 'block';
+  document.getElementById('data-summary').style.display = 'block';
 }
 
 // The play button
@@ -45,5 +45,5 @@ var playStopAudioButton = function(){
 // Opens the color editor
 var openColorEditor = function(){
   var editor = document.getElementById('color-editor');
-  editor.style.display = editor.style.display == '' ? 'none' : '';
+  editor.style.display = editor.style.display == 'inline' ? 'none' : 'block';
 }
