@@ -17,30 +17,53 @@ var loadChart = function(data){
 	chartdata.inputboxes[i].oninput = function(){
 					     var index = chartdata.inputboxes.indexOf(this);
 					     var newcolor = this.value;
-					     if(/^#[0-9A-F]{6}$/i.test(newcolor)){
-					       var r = parseInt(newcolor.substring(1,3), 16);
-					       var g = parseInt(newcolor.substring(3,5), 16);
-					       var b = parseInt(newcolor.substring(5), 16);
-					       var color = [r, g, b].join(", ");
-					       chartdata.data[index].strokeColor = "rgba("+ color +", 1)";
-					       chartdata.data[index].pointColor = "rgba("+ color +", 1)";
-					       chartdata.data[index].pointHighlightStroke = "rgba("+ newcolor +", 1)";
-					       myLineChart = new Chart(ctx).Line(data);
-					       this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
-					     }
-					     else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase()])){
-					       var rgb = colors[newcolor.toLowerCase()];
-					       var r = parseInt(rgb.substring(1,3), 16);
-					       var g = parseInt(rgb.substring(3,5), 16);
-					       var b = parseInt(rgb.substring(5), 16);
-					       var color = [r, g, b].join(", ");
-					       chartdata.data[index].strokeColor = "rgba("+ color +", 1)";
-					       chartdata.data[index].pointColor = "rgba("+ color +", 1)";
-					       chartdata.data[index].pointHighlightStroke = "rgba("+ newcolor +", 1)";
-					       myLineChart = new Chart(ctx).Line(data);
-					       this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
-					     }
+					       if(/^#[0-9A-F]{6}$/i.test(newcolor)){
+					         var r = parseInt(newcolor.substring(1,3), 16);
+					         var g = parseInt(newcolor.substring(3,5), 16);
+					         var b = parseInt(newcolor.substring(5), 16);
+					         var color = [r, g, b].join(", ");
+						 if(!this.nextSibling.checked){
+					         chartdata.data[index].strokeColor = "rgba("+ color +", 1)";
+					         chartdata.data[index].pointColor = "rgba("+ color +", 1)";
+					         chartdata.data[index].pointHighlightStroke = "rgba("+ newcolor +", 1)";
+					         myLineChart = new Chart(ctx).Line(data);}
+					         this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
+					       }
+					       else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase()])){
+					         var rgb = colors[newcolor.toLowerCase()];
+					         var r = parseInt(rgb.substring(1,3), 16);
+					         var g = parseInt(rgb.substring(3,5), 16);
+					         var b = parseInt(rgb.substring(5), 16);
+					         var color = [r, g, b].join(", ");
+						 if(!this.nextSibling.checked){
+					         chartdata.data[index].strokeColor = "rgba("+ color +", 1)";
+					         chartdata.data[index].pointColor = "rgba("+ color +", 1)";
+					         chartdata.data[index].pointHighlightStroke = "rgba("+ newcolor +", 1)";
+					         myLineChart = new Chart(ctx).Line(data);}
+					         this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
+					       }
+					     
 					     };
+	chartdata.inputboxes[i].nextSibling.onclick = function(){
+						var index = chartdata.inputboxes.indexOf(this.previousSibling);
+			   			if(this.checked){
+                               			  var transparent = [0,0,0].join(", ");
+			       			  transparent = "rgba(" + transparent +", 0)";
+			       			  chartdata.data[index].strokeColor = transparent;
+			       			  chartdata.data[index].pointColor = transparent;
+			       			  chartdata.data[index].pointHighlightStroke = transparent;
+						  myLineChart = new Chart(ctx).Line(data);
+			   			  }
+						else{
+                               			  var color = this.previousSibling.previousSibling.style.background;
+						  color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
+						  console.log(color);
+			       			  chartdata.data[index].strokeColor = color;
+			       			  chartdata.data[index].pointColor = color;
+			       			  chartdata.data[index].pointHighlightStroke = color;
+						  myLineChart = new Chart(ctx).Line(data);
+						}
+						}; 
   }
   return myLineChart;
 }
@@ -71,17 +94,15 @@ function dataset(data) {
     var entry = document.createElement('li');
     var colorBlock = document.createElement('span');
     var textInput = document.createElement('input');
-    //TODO:Text input needs an attribute where onInput calls a function that references
-    //which list item your on and updates the color and the chart
-    //pass the event through in a function
+    var toggleBox = document.createElement('input');
     inputBoxArray.push(textInput);
     colorBlock.setAttribute("style", "background:rgb(" + color + ")");
     colorBlock.setAttribute("class", "colorblock");
+    toggleBox.setAttribute("type", "checkbox");
     entry.appendChild(colorBlock);
     entry.appendChild(textInput);
+    entry.appendChild(toggleBox);
     document.getElementById('colors').appendChild(entry);
-    
-
     red += colorIncrease + 15;
     green += colorIncrease;
     blue += colorIncrease - 15;

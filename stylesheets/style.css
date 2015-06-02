@@ -86,11 +86,11 @@ input[type="file"] {
 input[type="file"]::-webkit-file-upload-button {
   visibility: hidden;
 }
-
+/*
 input[type="file"]:before {
   content: 'Load CSV';
   display: inline-block;
-  padding: 5px 8px;
+  padding: 5px 2px;
   outline: none;
   white-space: nowrap;
   -webkit-user-select: none;
@@ -100,7 +100,6 @@ input[type="file"]:before {
   background: rgba(0,0,0,0);
   border: 2px solid white;
   border-radius: 5px;
-  border-style: solid;
   color:white;
   box-shadow: 0px 5px 10px black;
   text-shadow: 0px 3px 3px black;
@@ -108,13 +107,58 @@ input[type="file"]:before {
 
 input[type="file"]:hover:before {
   background: rgba(19, 73, 112, 1);
+}*/
+
+input[type="file"]:before {
+  content: 'Load CSV';
+  display: inline-block;
+  padding: 5px 6px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2em;
+  background: rgba(0,0,0,0);
+  border: 2px solid white;
+  border-radius: 5px;
+  background-color: #FFF;
+  color: #000;
+  box-shadow: 0px 5px 10px #000;
 }
+
+input[type="file"]:hover:before {
+  background: #000;
+  color: #FFF;
+}
+
 
 #audioSpan {
   float: right;
   margin-top: 7px;
   padding-right: 1em;
 }
+/*
+#playButton {
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+  padding: 0px;
+  padding-left: 0.10em;
+  margin-right: .5em;
+  background: #000;
+  border-color: #FFF;
+  border-radius: 100%;
+  border-style: solid;
+  color:white;
+  box-shadow: 0px 5px 10px black;
+}
+
+#playButton:hover {
+  background-color: #FFF;
+  border-color: #000;
+  color: #000;
+}*/
 
 #playButton {
   height: 32px;
@@ -123,21 +167,22 @@ input[type="file"]:hover:before {
   padding: 0px;
   padding-left: 0.10em;
   margin-right: .5em;
-  background: rgba(0,0,0,0);
-  border-color: rgba(255, 255, 255, 1);
+  background: #FFF;
+  border-color: #FFF;
   border-radius: 100%;
   border-style: solid;
-  color:white;
+  color: #000;
   box-shadow: 0px 5px 10px black;
-  text-shadow: 0px 3px 3px black;
 }
 
 #playButton:hover {
-  background: rgba(19, 73, 112, 1);
+  background-color: #000;
+  color: #FFF;
 }
 
 #bpm {
   width: 30px;
+  text-align: right;
 }
 
 #table {
@@ -153,9 +198,9 @@ input[type="file"]:hover:before {
 }
 
 #tblContainer {
-  width: 800px;
+  width: 98.7%;
   margin: 5px;
-  /*overflow: auto;*/
+  overflow: auto;
   overflow-y: hidden;
   white-space: nowrap;
 }
@@ -225,4 +270,9 @@ input[type="file"]:hover:before {
   width: 100%;
   background: rgba(197, 195, 186, 1);
   border-radius: 5px;
+}
+
+#tblSummary {
+  font-weight: normal;
+  margin: 3px;
 }

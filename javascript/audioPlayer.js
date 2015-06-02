@@ -26,8 +26,8 @@ AudioPlayer.prototype.addAudioLine = function(arrayInfo) {
 AudioPlayer.prototype.setCollection = function(collection) {
   var dropdownString ="";
   this.infoCollection.setCollection(collection);
-  for(var i = 1; i < collection.length; i++) {
-    dropdownString += "<option value="+(i)+">"+(i)+"</option>"
+  for(var i = 0; i < collection.length; i++) {
+    dropdownString += "<option value="+(i + 1)+">"+(i + 1)+"</option>"
   }
   this.isDirty = true;
   document.getElementById("audioSpan").style.display = "";
