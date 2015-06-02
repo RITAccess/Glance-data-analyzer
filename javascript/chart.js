@@ -14,7 +14,7 @@ var loadChart = function(data){
   var myLineChart = new Chart(ctx).Line(data);
   document.getElementById("myChart").setAttribute("title","chart read out"); // by setting the attribute we can make the chart accessible
   for(var i =0; i<data.datasets.length;i++){
-	chartdata.inputboxes[i].oninput = function(){ //console.log(this.value);
+	chartdata.inputboxes[i].oninput = function(){
 					     var index = chartdata.inputboxes.indexOf(this);
 					     var newcolor = this.value;
 					     if(/^#[0-9A-F]{6}$/i.test(newcolor)){
@@ -28,8 +28,8 @@ var loadChart = function(data){
 					       myLineChart = new Chart(ctx).Line(data);
 					       this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
 					     }
-					     else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor])){
-					       var rgb = colors[newcolor];
+					     else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase()])){
+					       var rgb = colors[newcolor.toLowerCase()];
 					       var r = parseInt(rgb.substring(1,3), 16);
 					       var g = parseInt(rgb.substring(3,5), 16);
 					       var b = parseInt(rgb.substring(5), 16);
