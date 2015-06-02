@@ -18,7 +18,7 @@
     <span id="audioSpan" style="display: none">
       <button id="playButton" onclick="playStopAudioButton()" title="play toggle"><i id="icon" class="fa fa-play"></i></button>
       line <select id="lineDropdown" class='drop-down' title="Line Selector"></select>
-      at speed <input id="bpm" class='drop-down' type="number" min="0" value="1" title="Speed Multiplier"/></span>
+      at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" title="Speed Multiplier"/>
     </span>
   </header>
 
@@ -28,7 +28,7 @@
       <rect id="background" x="0" y="0" width="800" height="400" />
       <rect id="selection" x="0" y="0" width="800" height="400" />
     </svg>
-    <canvas alt="Chart YEAH" title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
+    <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
     <div id="data-summary" style="display:none;">
       <div id="summary-header">Data Summary</div>
       <div id="tblContainer"><div id="table" class="handsontable"></div></div>
