@@ -27,7 +27,7 @@ ArrayInfo.prototype.calcTrends = function() {
     tmpTrend.sum += parseInt(this.array[i]);
   }
 
-  tmpTrend.avg = Math.round(tmpTrend.sum/this.array.length);
+  tmpTrend.avg = Math.round(100 * tmpTrend.sum/this.array.length)/ 100;
 
   this.sorted = this.isSorted();
 

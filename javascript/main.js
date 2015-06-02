@@ -39,6 +39,7 @@ var loadData = function(data){
 
   var summaryDiv = document.getElementById("tblSummary");
   for (var i = 0; i < collection.collection.length; i++) {
+      console.log(collection.collection[i]);
       summaryDiv.innerHTML += " Line " + (i + 1) + " : Max: " + collection.collection[i].trend.max + 
         " Min: " + collection.collection[i].trend.min + 
         " Average: " + collection.collection[i].trend.avg + "</br>";
@@ -70,5 +71,7 @@ var calcCollectionAvg = function(collection) {
   for (var i = 0; i < collection.collection.length; i++) {
       totalDataPoints += collection.collection[i].array.length;
   }
-  return collTotal/totalDataPoints;
+
+  var average = Math.round(100 * collTotal/totalDataPoints)/100;
+  return average;
  }
