@@ -153,9 +153,9 @@ input[type="file"]:hover:before {
 }
 
 #tblContainer {
-  width: 800px;
+  width: 98.7%;
   margin: 5px;
-  /*overflow: auto;*/
+  overflow: auto;
   overflow-y: hidden;
   white-space: nowrap;
 }
@@ -225,4 +225,9 @@ input[type="file"]:hover:before {
   width: 100%;
   background: rgba(197, 195, 186, 1);
   border-radius: 5px;
+}
+
+#tblSummary {
+  font-weight: normal;
+  margin: 3px;
 }
