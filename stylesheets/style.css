@@ -90,7 +90,7 @@ input[type="file"]::-webkit-file-upload-button {
 input[type="file"]:before {
   content: 'Load CSV';
   display: inline-block;
-  padding: 5px 8px;
+  padding: 5px 2px;
   outline: none;
   white-space: nowrap;
   -webkit-user-select: none;
@@ -198,9 +198,9 @@ input[type="file"]:hover:before {
 }
 
 #tblContainer {
-  width: 800px;
+  width: 98.7%;
   margin: 5px;
-  /*overflow: auto;*/
+  overflow: auto;
   overflow-y: hidden;
   white-space: nowrap;
 }
@@ -270,4 +270,9 @@ input[type="file"]:hover:before {
   width: 100%;
   background: rgba(197, 195, 186, 1);
   border-radius: 5px;
+}
+
+#tblSummary {
+  font-weight: normal;
+  margin: 3px;
 }
