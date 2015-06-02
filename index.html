@@ -2,12 +2,13 @@
 <html>
 <head>
   <title>Data Analyzer</title>
+  <meta charset="UTF-8">
+  <!-- load main.js after require.js -->
+  <script data-main="javascript/main" src="libs/require/Require.js"></script>
   <link rel="stylesheet" href="libs/handsontable/handsontable.full.min.css">
   <link rel="stylesheet" href="libs/jquery/jquery-ui.css"/>
   <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <!-- load main.js after require.js -->
-  <script data-main="javascript/main" src="libs/require/Require.js"></script>
 </head>
 <body>
   <header>
@@ -20,7 +21,7 @@
       at speed <input id="bpm" class='drop-down' type="number" min="0" value="1" title="Speed Multiplier"/></span>
     </span>
   </header>
-  
+
   <div id="content">
     <div id="slider-range" data-start="0" data-end="-1" data-size="0"></div>
     <svg id="overlay" width="800" height="400" style='display:none;'>
@@ -28,7 +29,7 @@
       <rect id="selection" x="0" y="0" width="800" height="400" />
     </svg>
     <canvas alt="Chart YEAH" title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
-    <div id="data-summary" style="display:none;"> 
+    <div id="data-summary" style="display:none;">
       <div id="summary-header">Data Summary</div>
       <div id="tblContainer"><div id="table" class="handsontable"></div></div>
       <div id="tblSummary"></div>

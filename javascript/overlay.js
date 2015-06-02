@@ -60,7 +60,7 @@ Overlay.prototype.loadControls = function(arraySize){
   var arraySize = --arraySize;
   document.getElementById("slider-range").setAttribute("data-size", arraySize);
   var self = this;
-  $(function() {
+  jQuery(function ($) {
     $( "#slider-range" ).slider({
       range: true,
       min: 0,
