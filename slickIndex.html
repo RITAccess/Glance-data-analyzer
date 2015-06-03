@@ -6,6 +6,9 @@
   <!-- load main.js after require.js -->
   <script data-main="javascript/main" src="libs/require/Require.js"></script>
   <link rel="stylesheet" href="libs/handsontable/handsontable.full.min.css">
+  <link rel="stylesheet" href="libs/SlickGrid/slick.grid.css" type="text/css"/>
+  <link rel="stylesheet" href="libs/SlickGrid/css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>
+  <link rel="stylesheet" href="libs/SlickGrid/examples/examples.css" type="text/css"/>
   <link rel="stylesheet" href="libs/jquery/jquery-ui.css"/>
   <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -32,7 +35,8 @@
     <div id="data-summary" style="display:none;">
       <div id="summary-header">Data Summary</div>
       <div id="tblContainer">
-		<div id="table" class="handsontable"></div>
+		<div id="tabbbble" style="width:500px;height:500px;"></div>
+		<!-- <div id="table" class="handsontable"> --></div>
 	  </div>
       <div id="tblSummary"></div>
     </div>
@@ -41,5 +45,48 @@
       <div id="color-editor" style="display:none;"><ol id="colors"></ol></div>
     </div>
   </div><!-- end div id="content"-->
+  
+<script src="libs/SlickGrid/lib/firebugx.js"></script>
+<script src="libs/SlickGrid/lib/jquery-1.7.min.js"></script>
+<script src="libs/SlickGrid/lib/jquery-ui-1.8.16.custom.min.js"></script>
+<script src="libs/SlickGrid/lib/jquery.event.drag-2.2.js"></script>
+
+<script src="libs/SlickGrid/slick.core.js"></script>
+<script src="libs/SlickGrid/slick.editors.js"></script>
+<script src="libs/SlickGrid/slick.grid.js"></script>
+
+<script>
+  var grid;
+  var columns = [
+    {id: "title", name: "Title", field: "title"},
+    {id: "duration", name: "Duration", field: "duration", editor: Slick.Editors.Integer},
+    {id: "%", name: "% Complete", field: "percentComplete"},
+    {id: "start", name: "Start", field: "start"},
+    {id: "finish", name: "Finish", field: "finish"},
+    {id: "effort-driven", name: "Effort Driven", field: "effortDriven"}
+  ];
+
+  var options = {
+	editable: true,
+    enableCellNavigation: true,
+    enableColumnReorder: false
+  };
+
+  $(function () {
+    var data = [];
+    for (var i = 0; i < 500; i++) {
+      data[i] = {
+        title: "Task " + i,
+        duration: i,
+        percentComplete: Math.round(Math.random() * 100),
+        start: "01/01/2009",
+        finish: "01/05/2009",
+        effortDriven: (i % 5 == 0)
+      };
+    }
+
+    grid = new Slick.Grid("#tabbbble", data, columns, options);
+  })
+</script>
 </body>
 </html>
