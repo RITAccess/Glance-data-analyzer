@@ -8,7 +8,9 @@ require(["libs/jsfx/audio.js"], function(audio){
   require(["libs/jsfx/jsfx.js"]);
   require(["libs/jsfx/jsfxlib.js"]);
 });
-require(["javascript/files.js"]);
+require(["javascript/files.js"], function(print){
+  loadListener();
+});
 require(["javascript/table.js"]);
 require(["javascript/chart.js"]);
 require(["javascript/overlay.js"]);
@@ -25,7 +27,6 @@ var chart;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function(data){
-
   document.querySelector('#overlay').setAttribute('style','');
   document.querySelector('#table').innerHTML = '';
   var table = loadTable(data.data);
@@ -43,7 +44,7 @@ var loadData = function(data){
   document.getElementById('summary-header').style.display = 'block';
   document.getElementById('dataSummary').style.display = 'block';
 }
-
+/*
 var load = function(){
     loadListener();
   $("input").hover(
@@ -60,7 +61,7 @@ var load = function(){
       document.getElementById("changer").style.color = "black";
     }
   );
-}
+}*/
 
 // The play button
 var playStopAudioButton = function(){
