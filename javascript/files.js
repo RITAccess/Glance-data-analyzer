@@ -23,5 +23,4 @@ var openFile = function(event) {
 // provides the openFile function call to the DOM
 var loadListener = function(){
   document.getElementById('files').addEventListener('change', openFile, false);
-
 }
