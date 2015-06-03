@@ -140,8 +140,11 @@ input[type="file"]:hover:before {
 
 #audioSpan {
   float: right;
+  position: absolute;
   margin-top: 7px;
+  top: 1em;
   padding-right: 1em;
+  right: 0em;
 }
 
 #playButton {
@@ -300,8 +303,9 @@ input.file {
 }
 
 #fileposition{
-  position: relative;
-  float: left;  
+  position: absolute;
+  top: 1em;
+  left: 20em; 
 }
 
 hover{
