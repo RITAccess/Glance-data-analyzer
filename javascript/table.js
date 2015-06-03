@@ -51,12 +51,15 @@ var linkTable = function(chart, player, overlay, summary){
           player.changeLine(changes[changeNum][0] - 1,changes[changeNum][2],changes[changeNum][3]);
           // change value
           chart.datasets[changes[changeNum][0]-1].points[changes[changeNum][1]].value = newValue;
+          console.log( chart.datasets[changes[changeNum][0]-1].points[changes[changeNum][1]].value);
+          console.log(newValue);
         } else {
           // revert to old value
           hot1.setDataAtCell(changes[changeNum][0],changes[changeNum][1],changes[changeNum][2]);
         }
         chart.update();
         overlay.updateSize(chart);
+        summary.update();      
       }
     }
   });

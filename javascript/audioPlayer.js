@@ -36,7 +36,7 @@ AudioPlayer.prototype.setCollection = function(collection) {
 
 //A change was made to a line in the table
 AudioPlayer.prototype.changeLine = function(line, index, newValue) {
-  if(line != 0) {
+  if(line != -1) {
     this.infoCollection.changeLine(line,index,newValue);
     this.isDirty = true;
   }
