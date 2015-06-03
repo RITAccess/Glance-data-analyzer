@@ -8,22 +8,28 @@
   <link rel="stylesheet" href="libs/handsontable/handsontable.full.min.css">
   <link rel="stylesheet" href="libs/jquery/jquery-ui.css"/>
   <script>
-    window.jQuery || document.write('<script src="http://mysite.com/jquery.min.js"><\/script>');
+  //  window.jQuery || document.write('<script src="http://mysite.com/jquery.min.js"><\/script>');
   </script>
   <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
-<body onload="load()" >
+<body>
   <header>
     <span id="title"> Data Analyzer </span>
-	<div id="fileposition">
+	<!--div id="fileposition">
 	<div id="fileinput" class="fileinputs">
 	<input type="file" id="files" class="file" />
 	<div class="fakefile" id="changer">
 		<div id="bc">Load CSV</div>
 	</div>
-        </div>
-	</div>
+  </div>
+</div-->
+<div class="styled">
+      <input type="file" id="files" name="files[]" />
+      <label for="files">
+          <div class="banner">Load CSV</div>
+      </label>
+    </div>
     <output id="list"></output>
     <span id="audioSpan" style="display: none">
       <button id="playButton" onclick="playStopAudioButton()" title="play toggle"><i id="icon" class="fa fa-play"></i></button>
