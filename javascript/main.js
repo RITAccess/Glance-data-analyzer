@@ -41,6 +41,9 @@ var loadData = function(data){
   document.getElementById('color-expand').style.display = 'block';
   document.getElementById('data-summary').style.display = 'block';
 
+}
+
+var load = function() {
   $("input").hover(
     function() {
       //$( "changer" ).addclass("hover");
