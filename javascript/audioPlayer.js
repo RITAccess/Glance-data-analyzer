@@ -4,7 +4,7 @@ function AudioPlayer() {
   this.duration = 0.5; //default duration of a single note
   this.timeStep = 0.5;
   this.maxFreq = 64;
-  this.minFreq = 28;
+  this.minFreq = 16;
   this.audio = [];
   this.infoCollection = new ArrayCollection([]);
   this.isDirty = false;
@@ -36,7 +36,7 @@ AudioPlayer.prototype.setCollection = function(collection) {
 
 //A change was made to a line in the table
 AudioPlayer.prototype.changeLine = function(line, index, newValue) {
-  if(line != 0) {
+  if(line != -1) {
     this.infoCollection.changeLine(line,index,newValue);
     this.isDirty = true;
   }
@@ -168,7 +168,7 @@ AudioPlayer.prototype.calcFrequency = function(value, min, max) {
 AudioPlayer.prototype.genSoundArray = function(frequency) {
   return ["sine",
   0.0000, //super sampling quality
-  0.1750, //master volume
+  0.1500, //master volume
   this.duration*0.013, //attack time
   this.duration*0.13, //sustain time
   0.0000, //sustain punch
