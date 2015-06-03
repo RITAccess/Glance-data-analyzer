@@ -37,7 +37,6 @@ header {
   font-size: 2em;
   padding-left: 1em;
   position: relative;
-  left: -9%;
 }
 
 
@@ -302,9 +301,7 @@ input.file {
 
 #fileposition{
   position: relative;
-  float: left;
-  left: 20%;
-  
+  float: left;  
 }
 
 hover{
