@@ -43,8 +43,8 @@ header {
 #content{
   width: 800px;
   margin: auto; /* centers the contents including the slider and the graph */
-  margin-top: 20px;
-  padding-bottom: 25px;
+  margin-top: 60px;
+  padding-bottom: 100px;
   clear: both;
 }
 
@@ -223,10 +223,9 @@ input[type="file"]:hover:before {
   text-align:center;
   font-weight: bold;
   border-radius: 5px;
-  padding-top: 10px;
+  padding-top: 35px;
   margin: 20px 0;
   font-size: 20px;
-  /*border: 3px solid #000;*/
 }
 
 #plot-header {
@@ -280,7 +279,7 @@ input[type="file"]:hover:before {
 }
 
 #colors > li {
-  margin: 4px;
+  margin: 30px;
 }
 
 .colorblock {
