@@ -41,6 +41,19 @@ var loadData = function(data){
   document.getElementById('color-expand').style.display = 'block';
   document.getElementById('data-summary').style.display = 'block';
 
+  $("input").hover(
+    function() {
+      //$( "changer" ).addclass("hover");
+      document.getElementById("changer").style.backgroundColor = "black";
+      document.getElementById("changer").style.color = "white";
+      console.log("enter");
+    }, function() {
+      //$( "changer" ).addclass("hover");
+      console.log("leave");
+      document.getElementById("changer").style.backgroundColor = "white";
+      document.getElementById("changer").style.color = "black";
+    }
+  );
 }
 
 // The play button
@@ -53,5 +66,4 @@ var openColorEditor = function(){
   var editor = document.getElementById('color-editor');
   editor.style.display = editor.style.display == 'inline' ? 'none' : 'block';
 }
-
 
