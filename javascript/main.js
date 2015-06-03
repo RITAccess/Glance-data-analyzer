@@ -8,9 +8,7 @@ require(["libs/jsfx/audio.js"], function(audio){
   require(["libs/jsfx/jsfx.js"]);
   require(["libs/jsfx/jsfxlib.js"]);
 });
-require(["javascript/files.js"], function(print){
-  loadListener();
-});
+require(["javascript/files.js"]);
 require(["javascript/table.js"]);
 require(["javascript/chart.js"]);
 require(["javascript/overlay.js"]);
@@ -26,6 +24,7 @@ var summary;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function(data){
+
   document.querySelector('#overlay').setAttribute('style','');
   document.querySelector('#table').innerHTML = '';
   var table = loadTable(data.data);
@@ -40,21 +39,19 @@ var loadData = function(data){
   linkTable(chart, player, overlay, summary);
   document.getElementById('color-expand').style.display = 'block';
   document.getElementById('data-summary').style.display = 'block';}
+
   var load = function(){
+    loadListener();
   $("input").hover(
     function() {
       //$( "changer" ).addclass("hover");
       document.getElementById("changer").style.backgroundColor = "black";
       document.getElementById("changer").style.color = "white";
-<<<<<<< HEAD
-    }, function() {
-      //$( "changer" ).addclass("hover");
-=======
+
       //console.log("enter");
     }, function() {
       //$( "changer" ).addclass("hover");
       //console.log("leave");
->>>>>>> ef8ec26e7542015effe8dc7aa2c3819302384552
       document.getElementById("changer").style.backgroundColor = "white";
       document.getElementById("changer").style.color = "black";
     }
