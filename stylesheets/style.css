@@ -194,6 +194,7 @@ input[type="file"]:hover:before {
 
 #color-expand {
   font-weight: bold;
+  font-size: 20px;
   background: rgba(207, 205, 196, 1);
   text-align: center;
   padding: 10px;
@@ -238,28 +239,35 @@ input[type="file"]:hover:before {
   vertical-align: middle;
 }
 
-#data-summary {
-  text-align: center;
+#data {
+  text-align:center;
   font-weight: bold;
-  background: rgba(207, 205, 196, 1);
+  /*background: rgba(207, 205, 196, 1);*/
   border-radius: 5px;
   padding: 10px;
-  margin: 10px;
+  margin: 10px;/*
+  border: 2px solid green;*/
+  font-size: 20px;
+}
+
+#plot-header {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+/*  border-bottom: 2px solid green;*/
 }
 
 #summary-header {
-  height: 100%;
+  text-align: center;
   width: 100%;
-  border-radius: 5px;
+  margin: auto;
+  margin-top: 20px;
 }
 
 #tblSummary {
   font-weight: normal;
   margin: 3px;
 }
-
-
-
 
 div.fileinputs {
 	position: relative;
@@ -305,12 +313,10 @@ input.file {
 #fileposition{
   position: absolute;
   top: 1em;
-  left: 20em; 
+  left: 20em;
 }
 
 hover{
   background: #000;
   color: #FFF;
 }
-
-

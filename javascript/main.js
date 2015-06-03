@@ -38,9 +38,11 @@ var loadData = function(data){
   summary.dataSummary();
   linkTable(chart, player, overlay, summary);
   document.getElementById('color-expand').style.display = 'block';
-  document.getElementById('data-summary').style.display = 'block';}
+  document.getElementById('plot-header').style.display = 'block';
+  document.getElementById('summary-header').style.display = 'block';
+}
 
-  var load = function(){
+var load = function(){
     loadListener();
   $("input").hover(
     function() {
@@ -68,4 +70,3 @@ var openColorEditor = function(){
   var editor = document.getElementById('color-editor');
   editor.style.display = editor.style.display == 'inline' ? 'none' : 'block';
 }
-
