@@ -39,18 +39,22 @@ var loadData = function(data){
   summary.dataSummary();
   linkTable(chart, player, overlay, summary);
   document.getElementById('color-expand').style.display = 'block';
-  document.getElementById('data-summary').style.display = 'block';
-
-}
-
-var load = function() {
+  document.getElementById('data-summary').style.display = 'block';}
+  var load = function(){
   $("input").hover(
     function() {
       //$( "changer" ).addclass("hover");
       document.getElementById("changer").style.backgroundColor = "black";
       document.getElementById("changer").style.color = "white";
+<<<<<<< HEAD
     }, function() {
       //$( "changer" ).addclass("hover");
+=======
+      //console.log("enter");
+    }, function() {
+      //$( "changer" ).addclass("hover");
+      //console.log("leave");
+>>>>>>> ef8ec26e7542015effe8dc7aa2c3819302384552
       document.getElementById("changer").style.backgroundColor = "white";
       document.getElementById("changer").style.color = "black";
     }
