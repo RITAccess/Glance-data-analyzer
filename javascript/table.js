@@ -29,7 +29,7 @@ var loadTable = function(fileData){
 }
 
 // links the table object with the chart, the player, and the overlay
-var linkTable = function(chart, player, overlay){
+var linkTable = function(chart, player, overlay, summary){
   //local hook (has same effect as a callback)
   hot1.addHook('afterChange', function(changes, source) {
     // changes[changeNum] = [row, col, old, new]
@@ -48,7 +48,7 @@ var linkTable = function(chart, player, overlay){
         // if new value isn't a number, revert to old value.
         else if ((!isNaN(newValue)) && (newValue != "")){
           //Update audio with new value
-          player.changeLine(changes[changeNum][0],changes[changeNum][2],changes[changeNum][3]);
+          player.changeLine(changes[changeNum][0] - 1,changes[changeNum][2],changes[changeNum][3]);
           // change value
           chart.datasets[changes[changeNum][0]-1].points[changes[changeNum][1]].value = newValue;
         } else {
