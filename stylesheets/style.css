@@ -190,6 +190,39 @@ input[type="file"]:hover:before {
   white-space: nowrap;
 }
 
+#dataPlot {
+  text-align:center;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 20px;
+}
+
+#plot-header {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
+
+#dataSummary {
+  text-align:center;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 2px solid #000;
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  margin: 20px 0;
+  padding: 10px 0;
+}
+
+#tblSummary {
+  font-weight: normal;
+  text-align: left;
+  padding: 10px;
+}
+
 #color-expand {
   font-weight: bold;
   font-size: 20px;
@@ -234,39 +267,6 @@ input[type="file"]:hover:before {
 .htContainer {
   display: inline-block;
   vertical-align: middle;
-}
-
-#dataPlot {
-  text-align:center;
-  font-weight: bold;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-  font-size: 20px;
-}
-
-#plot-header {
-  text-align: center;
-  width: 100%;
-  margin: auto;
-}
-
-#dataSummary {
-  text-align:center;
-  font-weight: bold;
-  border-radius: 5px;
-  border: 2px solid #000;
-  font-size: 20px;
-  text-align: center;
-  width: 100%;
-  margin: 20px 0;
-  padding: 10px 0;
-}
-
-#tblSummary {
-  font-weight: normal;
-  text-align: left;
-  padding: 10px;
 }
 
 div.fileinputs {
