@@ -13,7 +13,14 @@
 <body>
   <header>
     <span id="title"> Data Analyzer </span>
-    <input type="file" id="files" name="files[]" />
+	<div id="fileposition">
+	<div class="fileinputs">
+	<input type="file" id="files" class="file" />
+	<div class="fakefile" id="changer">
+		<div id="bc">Load CSV</div>
+	</div>
+        </div>
+	</div>
     <output id="list"></output>
     <span id="audioSpan" style="display: none">
       <button id="playButton" onclick="playStopAudioButton()" title="play toggle"><i id="icon" class="fa fa-play"></i></button>

@@ -47,6 +47,19 @@ var loadData = function(data){
   summaryDiv.innerHTML += "Total Data Summary : Max: " + collection.max + 
     " Min: " + collection.min + " Average: " + calcCollectionAvg(collection); 
 
+  $("input").hover(
+    function() {
+      //$( "changer" ).addclass("hover");
+      document.getElementById("changer").setAttribute("class","hover");
+      console.log("enter");
+    }, function() {
+      //$( "changer" ).addclass("hover");
+      console.log("leave");
+      document.getElementById("changer").setAttribute("class","bc");
+    }
+  );
+
+
 }
 
 // The play button
@@ -75,3 +88,5 @@ var calcCollectionAvg = function(collection) {
   var average = Math.round(100 * collTotal/totalDataPoints)/100;
   return average;
  }
+
+
