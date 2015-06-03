@@ -49,10 +49,8 @@ var load = function() {
       //$( "changer" ).addclass("hover");
       document.getElementById("changer").style.backgroundColor = "black";
       document.getElementById("changer").style.color = "white";
-      console.log("enter");
     }, function() {
       //$( "changer" ).addclass("hover");
-      console.log("leave");
       document.getElementById("changer").style.backgroundColor = "white";
       document.getElementById("changer").style.color = "black";
     }

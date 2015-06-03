@@ -43,6 +43,4 @@ DataSummary.prototype.update = function() {
 
     this.summaryDiv.innerHTML = "";
     this.dataSummary();
-    console.log("I updated!!");
-    console.log(this.currCollection.collection[0])
 }

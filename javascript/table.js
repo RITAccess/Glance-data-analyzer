@@ -20,7 +20,7 @@ var loadTable = function(fileData){
         var name = element.getAttribute('data-dump');
         var instance = element.getAttribute('data-instance');
         var hot = window[instance];
-        console.log('data of ' + name, hot.getData());
+        //console.log('data of ' + name, hot.getData());
       }
     });
   }
@@ -41,7 +41,7 @@ var linkTable = function(chart, player, overlay, summary){
           // the change was in a label
           for (var row = 0; row < chart.datasets.length; row++){
             // TODO How many labels do I actually have to update
-            console.log(chart.datasets[row].points[changes[changeNum][1]].label);
+            //console.log(chart.datasets[row].points[changes[changeNum][1]].label);
             chart.datasets[row].points[changes[changeNum][1]].label = newValue;
           }
         }
@@ -51,8 +51,6 @@ var linkTable = function(chart, player, overlay, summary){
           player.changeLine(changes[changeNum][0] - 1,changes[changeNum][2],changes[changeNum][3]);
           // change value
           chart.datasets[changes[changeNum][0]-1].points[changes[changeNum][1]].value = newValue;
-          console.log( chart.datasets[changes[changeNum][0]-1].points[changes[changeNum][1]].value);
-          console.log(newValue);
         } else {
           // revert to old value
           hot1.setDataAtCell(changes[changeNum][0],changes[changeNum][1],changes[changeNum][2]);
