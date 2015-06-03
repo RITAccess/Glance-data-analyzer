@@ -175,13 +175,9 @@ input[type="file"]:hover:before {
   border-radius: 5px;
 }
 
-#color-expand:hover {
-  background: rgba(0,0,0,0.3);
-}
 #color-header{
   height: 100%;
   width: 100%;
-  background: rgba(197, 195, 186, 1);
   border-radius: 5px;
 }
 
@@ -224,7 +220,6 @@ input[type="file"]:hover:before {
 #summary-header {
   height: 100%;
   width: 100%;
-  background: rgba(197, 195, 186, 1);
   border-radius: 5px;
 }
 
