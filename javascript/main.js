@@ -49,10 +49,15 @@ var load = function(){
       //$( "changer" ).addclass("hover");
       document.getElementById("changer").style.backgroundColor = "black";
       document.getElementById("changer").style.color = "white";
+<<<<<<< HEAD
+    }, function() {
+      //$( "changer" ).addclass("hover");
+=======
       //console.log("enter");
     }, function() {
       //$( "changer" ).addclass("hover");
       //console.log("leave");
+>>>>>>> ef8ec26e7542015effe8dc7aa2c3819302384552
       document.getElementById("changer").style.backgroundColor = "white";
       document.getElementById("changer").style.color = "black";
     }
