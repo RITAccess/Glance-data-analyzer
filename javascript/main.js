@@ -21,6 +21,7 @@ require(["javascript/summary.js"]);
 var player;
 var overlay;
 var summary;
+var chart;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function(data){
@@ -28,7 +29,7 @@ var loadData = function(data){
   document.querySelector('#overlay').setAttribute('style','');
   document.querySelector('#table').innerHTML = '';
   var table = loadTable(data.data);
-  var chart = loadChart(data.data);
+  chart = loadChart(data.data);
   player = new AudioPlayer();
   overlay = new Overlay(data);
   overlay.updateSize(chart);

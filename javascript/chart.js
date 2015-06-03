@@ -26,7 +26,9 @@ var loadChart = function(data){
 					         chartdata.data[index].strokeColor = "rgba("+ color +", 1)";
 					         chartdata.data[index].pointColor = "rgba("+ color +", 1)";
 					         chartdata.data[index].pointHighlightStroke = "rgba("+ newcolor +", 1)";
-					         myLineChart = new Chart(ctx).Line(data);}
+					         myLineChart = new Chart(ctx).Line(data);
+						 chart = myLineChart;
+						 }
 					         this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
 					       }
 					       else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase().split(' ').join('')])){
@@ -39,7 +41,10 @@ var loadChart = function(data){
 					         chartdata.data[index].strokeColor = "rgba("+ color +", 1)";
 					         chartdata.data[index].pointColor = "rgba("+ color +", 1)";
 					         chartdata.data[index].pointHighlightStroke = "rgba("+ newcolor +", 1)";
-					         myLineChart = new Chart(ctx).Line(data);}
+					         myLineChart = new Chart(ctx).Line(data);
+						 chart = myLineChart;
+					         console.log(chart.datasets);						 
+						 }
 					         this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
 					       }
 					     
@@ -53,6 +58,7 @@ var loadChart = function(data){
 			       			  chartdata.data[index].pointColor = transparent;
 			       			  chartdata.data[index].pointHighlightStroke = transparent;
 						  myLineChart = new Chart(ctx).Line(data);
+						  chart = myLineChart;
 			   			  }
 						else{
                                			  var color = this.previousSibling.previousSibling.style.background;
@@ -61,6 +67,7 @@ var loadChart = function(data){
 			       			  chartdata.data[index].pointColor = color;
 			       			  chartdata.data[index].pointHighlightStroke = color;
 						  myLineChart = new Chart(ctx).Line(data);
+						  chart = myLineChart;
 						}
 						}; 
   }
