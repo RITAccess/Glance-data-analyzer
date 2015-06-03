@@ -39,8 +39,8 @@ var loadData = function(data){
   summary.dataSummary();
   linkTable(chart, player, overlay, summary);
   document.getElementById('color-expand').style.display = 'block';
-  document.getElementById('data-summary').style.display = 'block';
-
+  document.getElementById('data-summary').style.display = 'block';}
+  var load = function(){
   $("input").hover(
     function() {
       //$( "changer" ).addclass("hover");
