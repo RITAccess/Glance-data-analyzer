@@ -76,14 +76,16 @@ var calcCollectionAvg = function(collection) {
   return average;
  }
 
-$("input").hover(
-  function() {
-    //$( "changer" ).addclass("hover");
-    document.getElementById("changer").setAttribute("class","hover");
-    //console.log("enter");
-  }, function() {
-    //$( "changer" ).addclass("hover");
-    //console.log("leave");
-    document.getElementById("changer").setAttribute("class","bc");
-  }
-);
+var load = function(){
+  $("input").hover(
+    function() {
+      //$( "changer" ).addclass("hover");
+      document.getElementById("changer").setAttribute("class","hover");
+      //console.log("enter");
+    }, function() {
+      //$( "changer" ).addclass("hover");
+      //console.log("leave");
+      document.getElementById("changer").setAttribute("class","bc");
+    }
+  );
+}
