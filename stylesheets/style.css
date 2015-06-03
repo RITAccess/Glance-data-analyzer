@@ -138,10 +138,6 @@ input[type="file"]:hover:before {
   display: none;
 }
 
-.styled input[type="file"] + label {
-  background: url('file.png') no-repeat;
-}
-
 .styled {
   display: inline-block;
 }
