@@ -26,8 +26,8 @@ header {
   margin-top: 0;
   background: url('footer_lodyas/footer_lodyas.png');
   color:white;
-  text-shadow: 0px 0px 10px black;
-  box-shadow: 0px 0px 10px black;
+  text-shadow: 0px 0px 10px #000;
+  box-shadow: 0px 0px 10px #000;
   clear:both;
   vertical-align:center;
 }
@@ -53,7 +53,7 @@ header {
   fill-opacity: 0.3;
 }
 svg * {
-  stroke:black;
+  stroke:#000;
   stroke-width:1;
   fill-opacity: 0.0;
 }
@@ -131,12 +131,10 @@ input[type="file"]:before {
   height: 50px;
 }
 
-
 input[type="file"]:hover:before {
   background: #000;
   color: #FFF;
 }
-
 
 #audioSpan {
   float: right;
@@ -159,7 +157,7 @@ input[type="file"]:hover:before {
   border-radius: 100%;
   border-style: solid;
   color: #000;
-  box-shadow: 0px 5px 10px black;
+  box-shadow: 0px 5px 10px #000;
 }
 
 #playButton:hover {
@@ -195,15 +193,14 @@ input[type="file"]:hover:before {
 #color-expand {
   font-weight: bold;
   font-size: 20px;
-  background: rgba(207, 205, 196, 1);
   text-align: center;
   padding: 10px;
-  margin: 10px;
   -webkit-transition: background 0.5s;
   -moz-transition: background 0.5s;
   -o-transition: background 0.5s;
   transition: background 0.5s;
   border-radius: 5px;
+  border: 2px solid #000;
 }
 
 #color-header{
@@ -221,8 +218,8 @@ input[type="file"]:hover:before {
 }
 
 .colorblock {
-  border: 2px solid black;
-  box-shadow: 1px 1px 2px black;
+  border: 2px solid #000;
+  box-shadow: 1px 1px 2px #000;
   padding-right: 3em;
   border-radius: 4px;
   margin-right: 5px;
@@ -239,14 +236,12 @@ input[type="file"]:hover:before {
   vertical-align: middle;
 }
 
-#data {
+#dataPlot {
   text-align:center;
   font-weight: bold;
-  /*background: rgba(207, 205, 196, 1);*/
   border-radius: 5px;
   padding: 10px;
-  margin: 10px;/*
-  border: 2px solid green;*/
+  margin: 10px;
   font-size: 20px;
 }
 
@@ -254,26 +249,31 @@ input[type="file"]:hover:before {
   text-align: center;
   width: 100%;
   margin: auto;
-/*  border-bottom: 2px solid green;*/
 }
 
-#summary-header {
+#dataSummary {
+  text-align:center;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 2px solid #000;
+  font-size: 20px;
   text-align: center;
   width: 100%;
-  margin: auto;
-  margin-top: 20px;
+  margin: 20px 0;
+  padding: 10px 0;
 }
 
 #tblSummary {
   font-weight: normal;
-  margin: 3px;
+  text-align: left;
+  padding: 10px;
 }
 
 div.fileinputs {
 	position: relative;
 	height: 3em;
 	cursor: pointer;
-  	color: white;
+  color: white;
 }
 
 div.fakefile {

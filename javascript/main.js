@@ -40,6 +40,7 @@ var loadData = function(data){
   document.getElementById('color-expand').style.display = 'block';
   document.getElementById('plot-header').style.display = 'block';
   document.getElementById('summary-header').style.display = 'block';
+  document.getElementById('dataSummary').style.display = 'block';
 }
 
 var load = function(){
