@@ -29,12 +29,15 @@ header {
   text-shadow: 0px 0px 10px black;
   box-shadow: 0px 0px 10px black;
   clear:both;
+  vertical-align:center;
 }
 
 #title {
   font-weight: bold;
   font-size: 2em;
   padding-left: 1em;
+  position: relative;
+  left: -9%;
 }
 
 
@@ -77,15 +80,16 @@ svg * {
 
 /* custom file select */
 input[type="file"] {
-  height: 3em;
+  height: 44px;
   cursor: pointer;
-  width: 200px;
-  padding: 8px;
+  width: 115px;
   color: white;
 }
 input[type="file"]::-webkit-file-upload-button {
   visibility: hidden;
 }
+
+
 /*
 input[type="file"]:before {
   content: 'Load CSV';
@@ -116,7 +120,6 @@ input[type="file"]:before {
   outline: none;
   white-space: nowrap;
   -webkit-user-select: none;
-  cursor: pointer;
   font-weight: bold;
   font-size: 1.2em;
   background: rgba(0,0,0,0);
@@ -125,7 +128,10 @@ input[type="file"]:before {
   background-color: #FFF;
   color: #000;
   box-shadow: 0px 5px 10px #000;
+  width: 107px;
+  height: 50px;
 }
+
 
 input[type="file"]:hover:before {
   background: #000;
@@ -164,7 +170,7 @@ input[type="file"]:hover:before {
   height: 32px;
   width: 32px;
   cursor: pointer;
-  padding: 0px;
+  padding: 7px;
   padding-left: 0.10em;
   margin-right: .5em;
   background: #FFF;
@@ -276,3 +282,60 @@ input[type="file"]:hover:before {
   font-weight: normal;
   margin: 3px;
 }
+
+
+
+
+div.fileinputs {
+	position: relative;
+	height: 3em;
+	cursor: pointer;
+  	color: white;
+}
+
+div.fakefile {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  padding: 6px;
+  background-color: #fff;
+  text-shadow: none;
+  box-shadow: 0px 5px 10px #000;
+  border-radius: 5px;
+  color: #000;
+  border: 2px solid white;
+}
+
+input.file {
+	position: relative;
+	text-align: right;
+	-moz-opacity:0 ;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+}
+
+#bc{
+    content: 'Load CSV';
+  display: inline-block;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#fileposition{
+  position: relative;
+  float: left;
+  left: 20%;
+}
+
+hover{
+  background: #000;
+  color: #FFF;
+}
+
+
