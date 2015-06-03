@@ -209,31 +209,34 @@ input[type="file"]:hover:before {
   text-align:center;
   font-weight: bold;
   border-radius: 5px;
-  border: 2px solid #000;
+  border: 4px solid #000;
   font-size: 20px;
   text-align: center;
   width: 100%;
   margin: 20px 0;
-  padding: 10px 0;
+  padding-top: 10px;
 }
 
 #tblSummary {
   font-weight: normal;
   text-align: left;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 28px;
 }
 
 #color-expand {
   font-weight: bold;
   font-size: 20px;
   text-align: center;
-  padding: 10px;
   -webkit-transition: background 0.5s;
   -moz-transition: background 0.5s;
   -o-transition: background 0.5s;
   transition: background 0.5s;
   border-radius: 5px;
-  border: 2px solid #000;
+  border: 4px solid #000;
+  width: 100%;
+  padding: 10px 0;
 }
 
 #color-header{
