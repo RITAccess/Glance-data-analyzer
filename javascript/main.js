@@ -11,7 +11,6 @@ require(["libs/jsfx/audio.js"], function(audio){
 require(["javascript/files.js"], function(print){
   loadListener();
 });
-//require(["javascript/table.js"]);
 require(["javascript/slickTable.js"]);
 require(["javascript/chart.js"]);
 require(["javascript/overlay.js"]);

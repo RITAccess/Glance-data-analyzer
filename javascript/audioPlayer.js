@@ -4,7 +4,7 @@ function AudioPlayer() {
   this.duration = 0.5; //default duration of a single note
   this.timeStep = 0.5;
   this.maxFreq = 64;
-  this.minFreq = 28;
+  this.minFreq = 16;
   this.audio = [];
   this.infoCollection = new ArrayCollection([]);
   this.isDirty = false;
@@ -36,21 +36,19 @@ AudioPlayer.prototype.setCollection = function(collection) {
 
 //A change was made to a line in the table
 AudioPlayer.prototype.changeLine = function(line, index, newValue) {
-  //if(line != 0) {
+  if(line != -1) {
     this.infoCollection.changeLine(line,index,newValue);
 	console.log([line,index,newValue]);
     this.isDirty = true;
-  //}
+  }
 }
 
-//This function causes the audio information to actually be calculated.
+///This function causes the audio information to actually be calculated.
 //Should be called whenever the audio data changes
 AudioPlayer.prototype.recalculateLines = function() {
   this.audio = [];
   for(var i = 0; i < this.infoCollection.collection.length; i++) {
     this.addAudioLine(this.infoCollection.collection[i]);
-	var a = this.infoCollection.collection[i];
-	console.log(a);
   }
   this.isDirty = false;
 }
@@ -74,30 +72,45 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex) {
   //Reset the timeout queue
   this.timeoutQueue = [];
   this.playing = true;
+  var timeoutAmount = 0;
+  var allHtml = document.getElementsByTagName("*");
 
   if(this.isDirty) {
-    this.recalculateLines();
-  }
-  var multiplier = document.getElementById("bpm").value;
-  if(multiplier <= 0) {
-    multiplier = 1;
-  }
-  var speed = this.timeStep/(multiplier || 1);
-
-  var end = (endIndex || this.infoCollection.collection[line].array.length-1);
-  var self = this;
-  var startIndex = (startIndex || 0);
-  //If startIndex or endIndex are undefined they will be set to the start and end of the line respectively
-  for(var i = startIndex; i <= end; i++) {
-    this.playPointWithDelay(line, i, (i-startIndex)*(speed-speed/8)*1000);
-
-    if(i == end-1) {
-      this.timeoutQueue.push(setTimeout(
-        function(){self.playing = false; self.updateIcon();},
-        ((i+1)-startIndex)*(speed-speed/8)*1000));
+    for(var i = 0; i < allHtml.length; i++) {
+      allHtml[i].style.cursor = "wait";
     }
-
+    this.recalculateLines();
+    timeoutAmount = 125*this.infoCollection.collection.length;
+    console.log("Start Timeout");
   }
+  
+  var self = this;
+
+  setTimeout(function(){
+    console.log("EndTimeout");
+      for(var i = 0; i < allHtml.length; i++) {
+        allHtml[i].style.cursor = "default";
+      }
+    var multiplier = document.getElementById("bpm").value;
+    if(multiplier <= 0) {
+      multiplier = 1;
+    }
+    var speed = self.timeStep/(multiplier || 1);
+
+    var end = (endIndex || self.infoCollection.collection[line].array.length-1);
+    var startIndex = (startIndex || 0);
+    //If startIndex or endIndex are undefined they will be set to the start and end of the line respectively
+    for(var i = startIndex; i <= end; i++) {
+      self.playPointWithDelay(line, i, (i-startIndex)*(speed-speed/8)*1000);
+
+      if(i == end-1) {
+        self.timeoutQueue.push(setTimeout(
+          function(){self.playing = false; self.updateIcon();},
+          ((i+1)-startIndex)*(speed-speed/8)*1000));
+      }
+
+    }
+  },timeoutAmount);
 }
 
 //PLay multiple lines at the same time. Takes in an array of lines and the start and end index.
@@ -171,7 +184,7 @@ AudioPlayer.prototype.calcFrequency = function(value, min, max) {
 AudioPlayer.prototype.genSoundArray = function(frequency) {
   return ["sine",
   0.0000, //super sampling quality
-  0.1750, //master volume
+  0.1500, //master volume
   this.duration*0.013, //attack time
   this.duration*0.13, //sustain time
   0.0000, //sustain punch
