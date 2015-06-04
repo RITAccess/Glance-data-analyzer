@@ -36,10 +36,11 @@ AudioPlayer.prototype.setCollection = function(collection) {
 
 //A change was made to a line in the table
 AudioPlayer.prototype.changeLine = function(line, index, newValue) {
-  if(line != 0) {
+  //if(line != 0) {
     this.infoCollection.changeLine(line,index,newValue);
+	console.log([line,index,newValue]);
     this.isDirty = true;
-  }
+  //}
 }
 
 //This function causes the audio information to actually be calculated.
@@ -48,6 +49,8 @@ AudioPlayer.prototype.recalculateLines = function() {
   this.audio = [];
   for(var i = 0; i < this.infoCollection.collection.length; i++) {
     this.addAudioLine(this.infoCollection.collection[i]);
+	var a = this.infoCollection.collection[i];
+	console.log(a);
   }
   this.isDirty = false;
 }
