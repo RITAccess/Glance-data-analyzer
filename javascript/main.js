@@ -11,7 +11,7 @@ require(["libs/jsfx/audio.js"], function(audio){
 require(["javascript/files.js"], function(print){
   loadListener();
 });
-require(["javascript/table.js"]);
+//require(["javascript/table.js"]);
 require(["javascript/slickTable.js"]);
 require(["javascript/chart.js"]);
 require(["javascript/overlay.js"]);
@@ -27,13 +27,13 @@ var overlay;
 var loadData = function(data){
   document.querySelector('#overlay').setAttribute('style','');
   document.querySelector('#table').innerHTML = '';
-  var table = loadTable(data.data);
+  //var table = loadTable(data.data);
   var slickTable = loadSlickTable(data.data);
   var chart = loadChart(data.data);
   player = new AudioPlayer();
   overlay = new Overlay(data);
   overlay.updateSize(chart);
-  linkTable(chart, player, overlay);
+  //linkTable(chart, player, overlay);
   linkSlickTable(chart,player,overlay);
   var collection = new ArrayCollection(data.data);
   player.setCollection(collection.collection);
