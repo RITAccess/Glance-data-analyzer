@@ -43,6 +43,7 @@ var loadData = function(data){
   document.getElementById('plot-header').style.display = 'block';
   document.getElementById('summary-header').style.display = 'block';
   document.getElementById('dataSummary').style.display = 'block';
+  document.getElementById('chart-key').style.display = 'block';
 }
 /*
 var load = function(){
