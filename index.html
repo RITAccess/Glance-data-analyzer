@@ -7,21 +7,36 @@
   <script data-main="javascript/main" src="libs/require/Require.js"></script>
   <link rel="stylesheet" href="libs/handsontable/handsontable.full.min.css">
   <link rel="stylesheet" href="libs/jquery/jquery-ui.css"/>
+  <script>
+  //  window.jQuery || document.write('<script src="http://mysite.com/jquery.min.js"><\/script>');
+  </script>
   <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
   <header>
     <span id="title"> Data Analyzer </span>
-    <input type="file" id="files" name="files[]" />
+  	<!--div id="fileposition">
+    	<div id="fileinput" class="fileinputs">
+    	<input type="file" id="files" class="file" />
+    	<div class="fakefile" id="changer">
+    		<div id="bc">Load CSV</div>
+    	</div>
+      </div>
+    </div-->
+    <div class="inputBtnSection">
+      <label class="fileUpload">
+          <input id="files" type="file" class="upload" />
+          <span class="uploadBtn">Load CSV</span>
+      </label>
+    </div>
     <output id="list"></output>
     <span id="audioSpan" style="display: none">
-      <button id="playButton" onclick="playStopAudioButton()" title="play toggle"><i id="icon" class="fa fa-play"></i></button>
+      <button id="playButton" onclick="playStopAudioButton()" title="play toggle"><i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
       line <select id="lineDropdown" class='drop-down' title="Line Selector"></select>
       at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" title="Speed Multiplier"/>
     </span>
   </header>
-
   <div id="content">
     <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" role=chart-slider></div>
     <svg id="overlay" width="800" height="400" style='display:none;'>
@@ -29,16 +44,17 @@
       <rect id="selection" x="0" y="0" width="800" height="400" />
     </svg>
     <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
-    <div id="data-summary" style="display:none;">
-      <div id="summary-header">Data Summary</div>
-      <div id="tblContainer">
-		<div id="table" class="handsontable"></div>
-	  </div>
-      <div id="tblSummary"></div>
+    <div id="dataPlot">
+      <div id="plot-header" style="display:none;"> Data Plot </div>
+      <div id="tblContainer"><div id="table" class="handsontable"></div></div>
     </div>
+    <div id="dataSummary" style="display:none;">
+        <div id="summary-header" style="display:none;"> Data Summary </div>
+      <div id="tblSummary"></div>
+  </div>
     <div id='color-expand' style="display:none;">
-      <div id='color-header' onclick="openColorEditor()">Color Editor</div>
-      <div id="color-editor" style="display:none;"><ol id="colors"></ol></div>
+      <div id='color-header' >Color Editor</div>
+      <div id="color-editor" ><ol id="colors"></ol></div>
     </div>
   </div><!-- end div id="content"-->
 </body>

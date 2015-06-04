@@ -20,7 +20,7 @@ var loadTable = function(fileData){
         var name = element.getAttribute('data-dump');
         var instance = element.getAttribute('data-instance');
         var hot = window[instance];
-        console.log('data of ' + name, hot.getData());
+        //console.log('data of ' + name, hot.getData());
       }
     });
   }
@@ -41,7 +41,7 @@ var linkTable = function(chart, player, overlay, summary){
           // the change was in a label
           for (var row = 0; row < chart.datasets.length; row++){
             // TODO How many labels do I actually have to update
-            console.log(chart.datasets[row].points[changes[changeNum][1]].label);
+            //console.log(chart.datasets[row].points[changes[changeNum][1]].label);
             chart.datasets[row].points[changes[changeNum][1]].label = newValue;
           }
         }
@@ -57,6 +57,7 @@ var linkTable = function(chart, player, overlay, summary){
         }
         chart.update();
         overlay.updateSize(chart);
+        summary.update();      
       }
     }
   });
