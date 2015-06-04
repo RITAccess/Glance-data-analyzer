@@ -19,6 +19,8 @@ DataSummary.prototype.dataSummary = function() {
   // Writes the max, min, and average of the total table data
   this.summaryDiv.innerHTML += "Total Data Summary: Max: " + this.currCollection.max +
     " Min: " + this.currCollection.min + " Average: " + this.calcCollectionAvg() + "</br></br>";
+
+    this.summaryDiv.setAttribute("tabIndex", "0");
 }
 
 // Calculates the average for the entire set of data

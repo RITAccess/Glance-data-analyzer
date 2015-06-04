@@ -113,6 +113,7 @@ function dataset(data) {
     inputBoxArray.push(textInput);
     colorBlock.setAttribute("style", "background:rgb(" + color + ")");
     colorBlock.setAttribute("class", "colorblock");
+    textInput.setAttribute("title", "Enter new line " + i + " color");
     toggleBox.setAttribute("type", "checkbox");
     toggleBox.setAttribute("checked", "checked");
     entry.appendChild(colorBlock);
