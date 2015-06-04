@@ -27,7 +27,6 @@ var overlay;
 var loadData = function(data){
   document.querySelector('#overlay').setAttribute('style','');
   document.querySelector('#table').innerHTML = '';
-  document.querySelector('#slickTable').innerHTML = '';
   var table = loadTable(data.data);
   var slickTable = loadSlickTable(data.data);
   var chart = loadChart(data.data);
@@ -35,6 +34,7 @@ var loadData = function(data){
   overlay = new Overlay(data);
   overlay.updateSize(chart);
   linkTable(chart, player, overlay);
+  linkSlickTable(chart,player,overlay);
   var collection = new ArrayCollection(data.data);
   player.setCollection(collection.collection);
   document.getElementById('color-expand').style.display = 'block';
