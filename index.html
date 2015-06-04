@@ -16,18 +16,18 @@
 <body>
   <header>
     <span id="title"> Data Analyzer </span>
-	<!--div id="fileposition">
-	<div id="fileinput" class="fileinputs">
-	<input type="file" id="files" class="file" />
-	<div class="fakefile" id="changer">
-		<div id="bc">Load CSV</div>
-	</div>
-  </div>
-</div-->
-<div class="styled">
-      <input type="file" id="files" name="files[]" />
-      <label for="files">
-          <div class="banner">Load CSV</div>
+  	<!--div id="fileposition">
+    	<div id="fileinput" class="fileinputs">
+    	<input type="file" id="files" class="file" />
+    	<div class="fakefile" id="changer">
+    		<div id="bc">Load CSV</div>
+    	</div>
+      </div>
+    </div-->
+    <div class="inputBtnSection">
+      <label class="fileUpload">
+          <input id="files" type="file" class="upload" />
+          <span class="uploadBtn">Load CSV</span>
       </label>
     </div>
     <output id="list"></output>
@@ -37,7 +37,6 @@
       at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" title="Speed Multiplier"/>
     </span>
   </header>
-
   <div id="content">
     <div id="slider-range" data-start="0" data-end="-1" data-size="0"></div>
     <svg id="overlay" width="800" height="400" style='display:none;'>

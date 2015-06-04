@@ -26,3 +26,6 @@ var openFile = function(event) {
 var loadListener = function(){
   document.getElementById('files').addEventListener('change', openFile, false);
 }
+/*document.getElementById("uploadBtn").onchange = function () {
+    document.getElementById("uploadFile").value = this.value;
+};*/
