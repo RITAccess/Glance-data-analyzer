@@ -39,7 +39,6 @@ header {
   position: relative;
 }
 
-
 #content{
   width: 800px;
   margin: auto; /* centers the contents including the slider and the graph */
@@ -325,6 +324,10 @@ input[type="file"]:hover:before {
   margin: 30px;
 }
 
+.color-editor-input input:focus {
+  background: #dadada;
+}
+
 .colorblock {
   border: 2px solid #000;
   box-shadow: 1px 1px 2px #000;
@@ -344,6 +347,7 @@ input[type="file"]:hover:before {
   display: inline-block;
   vertical-align: middle;
 }
+
 /*
 div.fileinputs {
 	position: relative;
