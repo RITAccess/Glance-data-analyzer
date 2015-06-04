@@ -22,17 +22,17 @@ var loadChart = function(data){
 					         var g = parseInt(newcolor.substring(3,5), 16);
 					         var b = parseInt(newcolor.substring(5), 16);
 					         var color = [r, g, b].join(", ");
-						if(this.nextSibling.checked){
-						 chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
-					         chart.datasets[index].pointColor = "rgba("+ color +", 1)";
-					         chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
-						 for(var i = 0; i<chart.datasets[index].points.length;i++){
-						   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
-						   //chart.datasets[index].points[i].highlightFill= "rgba("+ color +", 1)";
-					          // chart.datasets[index].points[i].highlightStroke= "rgba("+ color +", 1)";
-						 }
-						 chart.update();						 
-						 }
+        						 if(this.nextSibling.checked){
+        						 chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
+        					         chart.datasets[index].pointColor = "rgba("+ color +", 1)";
+        					         chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
+          						 for(var i = 0; i<chart.datasets[index].points.length;i++){
+          						   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
+          						   //chart.datasets[index].points[i].highlightFill= "rgba("+ color +", 1)";
+          					          // chart.datasets[index].points[i].highlightStroke= "rgba("+ color +", 1)";
+          						 }
+        						 chart.update();
+        						 }
 					         this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
 					       }
 					       else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase().split(' ').join('')])){
@@ -48,11 +48,11 @@ var loadChart = function(data){
 						 for(var i = 0; i<chart.datasets[index].points.length;i++){
 						   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
 						 }
-						 chart.update();						 
+						 chart.update();
 						 }
 					         this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
 					       }
-					     
+
 					     };
 	chartdata.inputboxes[i].nextSibling.onclick = function(){
 						var index = chartdata.inputboxes.indexOf(this.previousSibling);
@@ -65,7 +65,7 @@ var loadChart = function(data){
 						  for(var i = 0; i<chart.datasets[index].points.length;i++){
 						   chart.datasets[index].points[i].fillColor= transparent;
 						  }
-						  chart.update();						 
+						  chart.update();
 			   			  }
 						else{
                                			  var color = this.previousSibling.previousSibling.style.background;
@@ -78,7 +78,7 @@ var loadChart = function(data){
 						  }
 						  chart.update();
 						}
-						}; 
+						};
   }
   return myLineChart;
 }
@@ -98,6 +98,7 @@ function dataset(data) {
       fillColor: "rgba(220, 220, 220, 0)",
       strokeColor: "rgba("+ color +", 1)",
       pointColor: "rgba("+ color +", 1)",
+
       //pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba("+ color +", 1)",
@@ -112,7 +113,6 @@ function dataset(data) {
     inputBoxArray.push(textInput);
     colorBlock.setAttribute("style", "background:rgb(" + color + ")");
     colorBlock.setAttribute("class", "colorblock");
-    textInput.setAttribute("title", "Enter new line " + i + " color");
     toggleBox.setAttribute("type", "checkbox");
     toggleBox.setAttribute("checked", "checked");
     entry.appendChild(colorBlock);
