@@ -26,14 +26,12 @@ var overlay;
 // (this is called after fileOpen from files.js)
 var loadData = function(data){
   document.querySelector('#overlay').setAttribute('style','');
-  document.querySelector('#table').innerHTML = '';
-  //var table = loadTable(data.data);
+  document.querySelector('#slickTable').innerHTML = '';
   var slickTable = loadSlickTable(data.data);
   var chart = loadChart(data.data);
   player = new AudioPlayer();
   overlay = new Overlay(data);
   overlay.updateSize(chart);
-  //linkTable(chart, player, overlay);
   linkSlickTable(chart,player,overlay);
   var collection = new ArrayCollection(data.data);
   player.setCollection(collection.collection);
