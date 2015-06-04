@@ -46,11 +46,11 @@ var loadChart = function(data){
 						 for(var i = 0; i<chart.datasets[index].points.length;i++){
 						   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
 						 }
-						 chart.update();						 
+						 chart.update();
 						 }
 					         this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
 					       }
-					     
+
 					     };
 	chartdata.inputboxes[i].nextSibling.onclick = function(){
 						var index = chartdata.inputboxes.indexOf(this.previousSibling);
@@ -63,7 +63,7 @@ var loadChart = function(data){
 						  for(var i = 0; i<chart.datasets[index].points.length;i++){
 						   chart.datasets[index].points[i].fillColor= transparent;
 						  }
-						  chart.update();						 
+						  chart.update();
 			   			  }
 						else{
                                			  var color = this.previousSibling.previousSibling.style.background;
@@ -76,7 +76,7 @@ var loadChart = function(data){
 						  }
 						  chart.update();
 						}
-						}; 
+						};
   }
   return myLineChart;
 }
@@ -98,6 +98,7 @@ function dataset(data) {
       fillColor: "rgba(220, 220, 220, 0)",
       strokeColor: "rgba("+ color +", 1)",
       pointColor: "rgba("+ color +", 1)",
+
       //pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba("+ color +", 1)",
