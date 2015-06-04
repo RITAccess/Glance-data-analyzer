@@ -178,7 +178,6 @@ input[type="file"]:hover:before {
   height: 32px;
   width: 32px;
   cursor: pointer;
-  padding: 0px;
   padding-left: 0.10em;
   margin-right: .5em;
   background: #FFF;
