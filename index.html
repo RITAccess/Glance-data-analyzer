@@ -32,12 +32,15 @@
     </div>
     <output id="list"></output>
     <span id="audioSpan" style="display: none">
-      <button id="playButton" onclick="playStopAudioButton()" title="play toggle"><i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
+      <button id="playButton" onclick="playStopAudioButton()" title="Play Toggle"><i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
       line <select id="lineDropdown" class='drop-down' title="Line Selector"></select>
       at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" title="Speed Multiplier"/>
     </span>
   </header>
   <div id="content">
+    <div id="chart-key" style="display:none;">
+      <div id="chart-key-header"> Key </div>
+    </div>
     <div id="slider-range" data-start="0" data-end="-1" data-size="0"></div>
     <svg id="overlay" width="800" height="400" style='display:none;'>
       <rect id="background" x="0" y="0" width="800" height="400" />
@@ -54,7 +57,7 @@
   </div>
     <div id='color-expand' style="display:none;">
       <div id='color-header' >Color Editor</div>
-      <div id="color-editor" ><ol id="colors"></ol></div>
+      <div id="color-editor" class="color-editor-input"><ol id="colors"></ol></div>
     </div>
   </div><!-- end div id="content"-->
 </body>
