@@ -337,6 +337,7 @@ input[type="file"]:hover:before {
 }
 
 .drop-down {
+  width: 50px;
   box-shadow: 0px 5px 5px;
   border-radius: 10px;
   border: 2px solid white;
