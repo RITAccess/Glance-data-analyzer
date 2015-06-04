@@ -238,7 +238,7 @@ input[type="file"]:hover:before {
 
 #bpm {
   width: 65px;
-  text-align: right;
+  text-align: center;
   font-size: 15px;
 }
 
