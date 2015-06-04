@@ -55,6 +55,16 @@ DataSummary.prototype.calcCollectionAvg = function() {
 // Updates the summary if a change is made to the table
 DataSummary.prototype.update = function() {
 
-    this.summaryDiv.innerHTML = "";
+    this.summaryDiv.lastChild.remove();
+    for (var i = 0; i < this.currCollection.collection.length; i++){
+      var child = 0;
+      var line = this.summaryDiv.firstChild;
+      while(child<i){
+        child++;
+        line = line.nextSibling;
+      }
+      line.removeChild(line.firstChild);
+      line.removeChild(line.firstChild);
+    }
     this.dataSummary();
 }
