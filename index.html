@@ -7,23 +7,12 @@
   <script data-main="javascript/main" src="libs/require/Require.js"></script>
   <link rel="stylesheet" href="libs/handsontable/handsontable.full.min.css">
   <link rel="stylesheet" href="libs/jquery/jquery-ui.css"/>
-  <script>
-  //  window.jQuery || document.write('<script src="http://mysite.com/jquery.min.js"><\/script>');
-  </script>
   <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
   <header>
     <span id="title"> Data Analyzer </span>
-  	<!--div id="fileposition">
-    	<div id="fileinput" class="fileinputs">
-    	<input type="file" id="files" class="file" />
-    	<div class="fakefile" id="changer">
-    		<div id="bc">Load CSV</div>
-    	</div>
-      </div>
-    </div-->
     <div class="inputBtnSection">
       <label class="fileUpload">
           <input id="files" type="file" class="upload" />
@@ -38,9 +27,6 @@
     </span>
   </header>
   <div id="content">
-    <div id="chart-key" style="display:none;">
-      <div id="chart-key-header"> Key </div>
-    </div>
     <div id="slider-range" data-start="0" data-end="-1" data-size="0"></div>
     <svg id="overlay" width="800" height="400" style='display:none;'>
       <rect id="background" x="0" y="0" width="800" height="400" />
@@ -51,12 +37,8 @@
       <div id="plot-header" style="display:none;"> Data Plot </div>
       <div id="tblContainer" tabindex="0" title="Data Points"><div id="table" class="handsontable"></div></div>
     </div>
-    <div id="dataSummary" style="display:none;">
-      <div id="summary-header" style="display:none;"> Data Summary </div>
-    <div id="tblSummary"></div>
-  </div>
     <div id='color-expand' style="display:none;">
-      <div id='color-header' >Color Editor</div>
+      <div id='color-header' >Line Data</div>
       <div id="color-editor" class="color-editor-input"><ol id="colors"></ol></div>
     </div>
   </div><!-- end div id="content"-->

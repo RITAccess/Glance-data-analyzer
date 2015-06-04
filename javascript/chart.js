@@ -1,10 +1,10 @@
 "use strict"; // strict mode syntax
-var loadChart = function(data){
+var loadChart = function(data, collection){
   /*
     Using Chart.js
   */
   var data1 = data;
-  var chartdata = dataset(data1);
+  var chartdata = dataset(data1, collection);
   var data = {
     labels: data1[0],
     datasetFill: false,
@@ -22,33 +22,37 @@ var loadChart = function(data){
 					         var g = parseInt(newcolor.substring(3,5), 16);
 					         var b = parseInt(newcolor.substring(5), 16);
 					         var color = [r, g, b].join(", ");
-						if(this.nextSibling.checked){
-						 chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
-					         chart.datasets[index].pointColor = "rgba("+ color +", 1)";
-					         chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
-						 for(var i = 0; i<chart.datasets[index].points.length;i++){
-						   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
-						   }
-						 chart.update();						 
-						 }
-					         this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
+
+        						if(this.nextSibling.checked){
+        						 chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
+        					         chart.datasets[index].pointColor = "rgba("+ color +", 1)";
+        					         chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
+        						 for(var i = 0; i<chart.datasets[index].points.length;i++){
+        						   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
+        						   }
+        						 chart.update();						 
+        						}
+
+					         this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margin-right: 5px;");
 					       }
+
 					       else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase().split(' ').join('')])){
 					         var rgb = colors[newcolor.toLowerCase().split(' ').join('')];
 					         var r = parseInt(rgb.substring(1,3), 16);
 					         var g = parseInt(rgb.substring(3,5), 16);
 					         var b = parseInt(rgb.substring(5), 16);
 					         var color = [r, g, b].join(", ");
-						 if(this.nextSibling.checked){
-						 chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
-					         chart.datasets[index].pointColor = "rgba("+ color +", 1)";
-					         chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
-						 for(var i = 0; i<chart.datasets[index].points.length;i++){
-						   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
-						 }
-						 chart.update();
-						 }
-					         this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
+        						 if(this.nextSibling.checked){
+        						 chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
+        					         chart.datasets[index].pointColor = "rgba("+ color +", 1)";
+        					         chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
+        						 for(var i = 0; i<chart.datasets[index].points.length;i++){
+        						   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
+        						 }
+        						 chart.update();
+        						 }
+
+					         this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margin-right: 5px;");
 					       }
 
 					     };
@@ -82,15 +86,12 @@ var loadChart = function(data){
 }
 
 // sets the data for the chart in a selection of generated colors
-function dataset(data) {
+function dataset(data, collection) {
   var dataArray = [];
   var inputBoxArray = [];
   var red, green, blue;
   red = green = blue = 0;
   var colorIncrease = parseInt((255/ data.length).toFixed(0));
-  //var key = document.getElementById("chart-key");
-  //var keyList = document.createElement('ol');
-  //key.appendChild(keyList);
   for (var i = 1; i < data.length; i++) {
     var color = [red, green, blue].join(", ");
     var line =
@@ -107,27 +108,23 @@ function dataset(data) {
     dataArray.push(line);
     // log color into color editor
     var entry = document.createElement('li');
-    var colorBlock = document.createElement('span');
     var textInput = document.createElement('input');
     var toggleBox = document.createElement('input');
+    var keyValue = document.createElement('p');
+    var keyLabel = document.createTextNode(shapes[(i-1)%6]);
     inputBoxArray.push(textInput);
-    colorBlock.setAttribute("style", "background:rgb(" + color + ")");
-    colorBlock.setAttribute("class", "colorblock");
     textInput.setAttribute("title", "Enter new line " + i + " color");
     toggleBox.setAttribute("type", "checkbox");
     toggleBox.setAttribute("checked", "checked");
-    entry.appendChild(colorBlock);
+    keyValue.setAttribute('style', 'color:rgb(' + color + '); display: inline; margin-right: 5px;');
+    keyValue.appendChild(keyLabel);
+    entry.appendChild(keyValue);
     entry.appendChild(textInput);
     entry.appendChild(toggleBox);
     document.getElementById('colors').appendChild(entry);
     red += colorIncrease + 15;
     green += colorIncrease;
     blue += colorIncrease - 15;
-    //var newKey = document.createElement("li");
-    //var keyLabel = document.createTextNode(shapes[(i-1)%6]);
-    //newKey.setAttribute("style", "color:rgb(" + color + ")" );
-    //newKey.appendChild(keyLabel);
-    //keyList.appendChild(newKey);
   }
   var returndata = new Object();
   returndata.data = dataArray;

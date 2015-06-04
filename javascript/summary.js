@@ -26,11 +26,13 @@ DataSummary.prototype.dataSummary = function() {
       line.insertBefore(br,line.firstChild.nextSibling);
       //info.setAttribute("tabIndex", "0");
   }
+  var lastEntry = document.createElement("li");
+
   // Writes the max, min, and average of the total table data
   var finalSummary =document.createTextNode( "Total Data Summary: Max: " + this.currCollection.max +
     " Min: " + this.currCollection.min + " Average: " + this.calcCollectionAvg());
-    this.summaryDiv.appendChild(finalSummary);
-    //finalSummary.setAttribute("tabIndex", "0");
+    lastEntry.appendChild(finalSummary);
+    this.summaryDiv.appendChild(lastEntry);
 }
 
 // Calculates the average for the entire set of data

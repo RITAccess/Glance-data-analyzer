@@ -7,8 +7,6 @@ var openFile = function(event) {
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
-  var summaryDiv = document.getElementById("tblSummary");
-  summaryDiv.innerHTML = "";
   // use PapaParse for handing the csv file
   var results = Papa.parse(input.files[0], {
   	complete: function(results) {
@@ -26,6 +24,3 @@ var openFile = function(event) {
 var loadListener = function(){
   document.getElementById('files').addEventListener('change', openFile, false);
 }
-/*document.getElementById("uploadBtn").onchange = function () {
-    document.getElementById("uploadFile").value = this.value;
-};*/

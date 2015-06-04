@@ -41,9 +41,6 @@ var loadData = function(data){
   linkTable(chart, player, overlay, summary);
   document.getElementById('color-expand').style.display = 'block';
   document.getElementById('plot-header').style.display = 'block';
-  document.getElementById('summary-header').style.display = 'block';
-  document.getElementById('dataSummary').style.display = 'block';
-  document.getElementById('chart-key').style.display = 'block';
 }
 
 // The play button
