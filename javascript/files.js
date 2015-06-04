@@ -1,7 +1,6 @@
 "use strict"; // strict mode syntax
 // Opens a file
 var openFile = function(event) {
-  if(event.target.files[0]){
   var input = event.target;
   var colorlist = document.getElementById("colors");
   while(colorlist.firstChild){
@@ -19,13 +18,9 @@ var openFile = function(event) {
   		loadData(results);
   	}
   });
-  }
 };
 
 // provides the openFile function call to the DOM
 var loadListener = function(){
   document.getElementById('files').addEventListener('change', openFile, false);
 }
-/*document.getElementById("uploadBtn").onchange = function () {
-    document.getElementById("uploadFile").value = this.value;
-};*/

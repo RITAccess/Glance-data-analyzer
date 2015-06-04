@@ -19,12 +19,9 @@ require(["javascript/arrayInfo.js"]);
 require(["javascript/audioPlayer.js"]);
 require(["javascript/arrayCollection.js"]);
 require(["javascript/global.js"]);
-require(["javascript/summary.js"]);
 
 var player;
 var overlay;
-var summary;
-var chart;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function(data){
@@ -37,34 +34,23 @@ var loadData = function(data){
   player = new AudioPlayer();
   overlay = new Overlay(data);
   overlay.updateSize(chart);
+  linkTable(chart, player, overlay);
   var collection = new ArrayCollection(data.data);
   player.setCollection(collection.collection);
-  summary = new DataSummary(collection);
-  summary.dataSummary();
-  linkTable(chart, player, overlay, summary);
   document.getElementById('color-expand').style.display = 'block';
-  document.getElementById('plot-header').style.display = 'block';
-  document.getElementById('summary-header').style.display = 'block';
-  document.getElementById('dataSummary').style.display = 'block';
-}
-/*
-var load = function(){
-    loadListener();
-  $("input").hover(
-    function() {
-      //$( "changer" ).addclass("hover");
-      document.getElementById("changer").style.backgroundColor = "black";
-      document.getElementById("changer").style.color = "white";
+  document.getElementById('data-summary').style.display = 'block';
 
-      //console.log("enter");
-    }, function() {
-      //$( "changer" ).addclass("hover");
-      //console.log("leave");
-      document.getElementById("changer").style.backgroundColor = "white";
-      document.getElementById("changer").style.color = "black";
-    }
-  );
-}*/
+  var summaryDiv = document.getElementById("tblSummary");
+  for (var i = 0; i < collection.collection.length; i++) {
+      console.log(collection.collection[i]);
+      summaryDiv.innerHTML += " Line " + (i + 1) + " : Max: " + collection.collection[i].trend.max + 
+        " Min: " + collection.collection[i].trend.min + 
+        " Average: " + collection.collection[i].trend.avg + "</br>";
+  }
+  summaryDiv.innerHTML += "Total Data Summary : Max: " + collection.max + 
+    " Min: " + collection.min + " Average: " + calcCollectionAvg(collection); 
+
+}
 
 // The play button
 var playStopAudioButton = function(){
@@ -76,3 +62,19 @@ var openColorEditor = function(){
   var editor = document.getElementById('color-editor');
   editor.style.display = editor.style.display == 'inline' ? 'none' : 'block';
 }
+
+var calcCollectionAvg = function(collection) {
+  var collTotal = 0;
+
+  for (var i = 0; i < collection.collection.length; i++){
+    collTotal += collection.collection[i].trend.sum;
+  }
+
+  var totalDataPoints = 0;
+  for (var i = 0; i < collection.collection.length; i++) {
+      totalDataPoints += collection.collection[i].array.length;
+  }
+
+  var average = Math.round(100 * collTotal/totalDataPoints)/100;
+  return average;
+ }

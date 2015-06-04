@@ -15,70 +15,56 @@ var loadChart = function(data){
   document.getElementById("myChart").setAttribute("title","chart read out"); // by setting the attribute we can make the chart accessible
   for(var i =0; i<data.datasets.length;i++){
 	chartdata.inputboxes[i].oninput = function(){
-					     var index = chartdata.inputboxes.indexOf(this);
-					     var newcolor = this.value;
-					       if(/^#[0-9A-F]{6}$/i.test(newcolor)){
-					         var r = parseInt(newcolor.substring(1,3), 16);
-					         var g = parseInt(newcolor.substring(3,5), 16);
-					         var b = parseInt(newcolor.substring(5), 16);
-					         var color = [r, g, b].join(", ");
-						if(this.nextSibling.checked){
-						 chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
-					         chart.datasets[index].pointColor = "rgba("+ color +", 1)";
-					         chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
-						 for(var i = 0; i<chart.datasets[index].points.length;i++){
-						   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
-						   //chart.datasets[index].points[i].highlightFill= "rgba("+ color +", 1)";
-					          // chart.datasets[index].points[i].highlightStroke= "rgba("+ color +", 1)";
-						 }
-						 chart.update();						 
-						 }
-					         this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
-					       }
-					       else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase().split(' ').join('')])){
-					         var rgb = colors[newcolor.toLowerCase().split(' ').join('')];
-					         var r = parseInt(rgb.substring(1,3), 16);
-					         var g = parseInt(rgb.substring(3,5), 16);
-					         var b = parseInt(rgb.substring(5), 16);
-					         var color = [r, g, b].join(", ");
-						 if(this.nextSibling.checked){
-						 chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
-					         chart.datasets[index].pointColor = "rgba("+ color +", 1)";
-					         chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
-						 for(var i = 0; i<chart.datasets[index].points.length;i++){
-						   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
-						 }
-						 chart.update();						 
-						 }
-					         this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
-					       }
-					     
-					     };
+		var index = chartdata.inputboxes.indexOf(this);
+		var newcolor = this.value;
+		if(/^#[0-9A-F]{6}$/i.test(newcolor)){
+			var r = parseInt(newcolor.substring(1,3), 16);
+		    var g = parseInt(newcolor.substring(3,5), 16);
+			var b = parseInt(newcolor.substring(5), 16);
+			var color = [r, g, b].join(", ");
+		    if(!this.nextSibling.checked){
+				chartdata.data[index].strokeColor = "rgba("+ color +", 1)";
+				chartdata.data[index].pointColor = "rgba("+ color +", 1)";
+				chartdata.data[index].pointHighlightStroke = "rgba("+ newcolor +", 1)";
+				myLineChart = new Chart(ctx).Line(data);
+				}
+			this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
+		    }
+		    else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase()])){
+				var rgb = colors[newcolor.toLowerCase()];
+				var r = parseInt(rgb.substring(1,3), 16);
+				var g = parseInt(rgb.substring(3,5), 16);
+				var b = parseInt(rgb.substring(5), 16);
+				var color = [r, g, b].join(", ");
+				if(!this.nextSibling.checked){
+					chartdata.data[index].strokeColor = "rgba("+ color +", 1)";
+				    chartdata.data[index].pointColor = "rgba("+ color +", 1)";
+				    chartdata.data[index].pointHighlightStroke = "rgba("+ newcolor +", 1)";
+				    myLineChart = new Chart(ctx).Line(data);
+				}
+				this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
+			}			     
+	};
 	chartdata.inputboxes[i].nextSibling.onclick = function(){
-						var index = chartdata.inputboxes.indexOf(this.previousSibling);
-			   			if(!this.checked){
-                               			  var transparent = [0,0,0].join(", ");
-			       			  transparent = "rgba(" + transparent +", 0)";
-			       			  chart.datasets[index].strokeColor = transparent;
-					          chart.datasets[index].pointColor = transparent;
-					          chart.datasets[index].pointHighlightStroke = transparent;
-						  for(var i = 0; i<chart.datasets[index].points.length;i++){
-						   chart.datasets[index].points[i].fillColor= transparent;
-						  }
-						  chart.update();						 
-			   			  }
-						else{
-                               			  var color = this.previousSibling.previousSibling.style.background;
-						  color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
-			       			  chart.datasets[index].strokeColor = color;
-					          chart.datasets[index].pointColor = color;
-					          chart.datasets[index].pointHighlightStroke = color;
-						  for(var i = 0; i<chart.datasets[index].points.length;i++){
-						   chart.datasets[index].points[i].fillColor= color;
-						  }
-						  chart.update();
-						}
-						}; 
+		var index = chartdata.inputboxes.indexOf(this.previousSibling);
+		if(this.checked){
+			var transparent = [0,0,0].join(", ");
+			transparent = "rgba(" + transparent +", 0)";
+			chartdata.data[index].strokeColor = transparent;
+			chartdata.data[index].pointColor = transparent;
+			chartdata.data[index].pointHighlightStroke = transparent;
+			myLineChart = new Chart(ctx).Line(data);
+		}
+		else{
+            var color = this.previousSibling.previousSibling.style.background;
+			color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
+			console.log(color);
+			chartdata.data[index].strokeColor = color;
+			chartdata.data[index].pointColor = color;
+			chartdata.data[index].pointHighlightStroke = color;
+			myLineChart = new Chart(ctx).Line(data);
+			}
+		}; 
   }
   return myLineChart;
 }
@@ -114,7 +100,6 @@ function dataset(data) {
     colorBlock.setAttribute("style", "background:rgb(" + color + ")");
     colorBlock.setAttribute("class", "colorblock");
     toggleBox.setAttribute("type", "checkbox");
-    toggleBox.setAttribute("checked", "checked");
     entry.appendChild(colorBlock);
     entry.appendChild(textInput);
     entry.appendChild(toggleBox);

@@ -26,25 +26,23 @@ header {
   margin-top: 0;
   background: url('footer_lodyas/footer_lodyas.png');
   color:white;
-  text-shadow: 0px 0px 10px #000;
-  box-shadow: 0px 0px 10px #000;
+  text-shadow: 0px 0px 10px black;
+  box-shadow: 0px 0px 10px black;
   clear:both;
-  vertical-align:center;
 }
 
 #title {
   font-weight: bold;
   font-size: 2em;
   padding-left: 1em;
-  position: relative;
 }
 
 
 #content{
   width: 800px;
   margin: auto; /* centers the contents including the slider and the graph */
-  margin-top: 60px;
-  padding-bottom: 100px;
+  margin-top: 20px;
+  padding-bottom: 25px;
   clear: both;
 }
 
@@ -53,7 +51,7 @@ header {
   fill-opacity: 0.3;
 }
 svg * {
-  stroke:#000;
+  stroke:black;
   stroke-width:1;
   fill-opacity: 0.0;
 }
@@ -77,11 +75,12 @@ svg * {
   width: 755px;
 }
 
-/* custom file select *//*
+/* custom file select */
 input[type="file"] {
-  height: 44px;
+  height: 3em;
   cursor: pointer;
-  width: 115px;
+  width: 200px;
+  padding: 8px;
   color: white;
 }
 input[type="file"]::-webkit-file-upload-button {
@@ -91,119 +90,37 @@ input[type="file"]::-webkit-file-upload-button {
 input[type="file"]:before {
   content: 'Load CSV';
   display: inline-block;
-  padding: 5px 2px;
+  padding: 5px;
   outline: none;
   white-space: nowrap;
   -webkit-user-select: none;
   cursor: pointer;
   font-weight: bold;
   font-size: 1.2em;
-  background: rgba(0,0,0,0);
-  border: 2px solid white;
-  border-radius: 5px;
-  color:white;
-  box-shadow: 0px 5px 10px black;
-  text-shadow: 0px 3px 3px black;
-}
-
-input[type="file"]:hover:before {
-  background: rgba(19, 73, 112, 1);
-}
-
-input[type="file"]:before {
-  content: 'Load CSV';
-  display: inline-block;
-  padding: 5px;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  font-weight: bold;
-  font-size: 20px;
   background-color: #FFF;
   border: 2px solid white;
   border-radius: 5px;
   color: #000;
   box-shadow: 0px 5px 10px #000;
-  width: 107px;
-  height: 50px;
 }
 
 input[type="file"]:hover:before {
   background: #000;
   color: #FFF;
-}*/
+}
 
-/**  changing Browse to Load CSV  **/
-* {
-    box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -webkit-box-sizing:border-box;
-}
-.inputBtnSection {
-    display:inline-block;
-    vertical-align:top;
-    font-size:0;
-    font-family:verdana;
-    margin-left: 10px;
-}
-.disableInputField {
-    display:inline-block;
-    vertical-align:top;
-    margin: 0;
-    font-size:14px;
-    padding:0 3px;
-}
-.fileUpload {
-    position: relative;
-    overflow: hidden;
-    border: 2px solid #FFF;
-    border-radius: 5px;
-    display:inline-block;
-    vertical-align:top;
-    width: 100%;
-    height: 50%;
-}
-.uploadBtn {
-    display:inline-block;
-    vertical-align:top;
-    cursor: pointer;
-    background: #FFF;
-    font-size:20px;
-    padding:10px;
-    color:#000;
-    font-weight: bold;
-    box-shadow: 0px 5px 10px #000;
-    text-shadow: none;
-}
-.uploadBtn:hover {
-  background: #000;
-  color: #FFF;
-}
-.fileUpload input.upload {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    cursor: pointer;
-}
-/***********************************/
 
 #audioSpan {
   float: right;
-  position: absolute;
   margin-top: 7px;
-  top: 1em;
   padding-right: 1em;
-  right: 0em;
 }
 
 #playButton {
   height: 32px;
   width: 32px;
   cursor: pointer;
+  padding: 0px;
   padding-left: 0.10em;
   margin-right: .5em;
   background: #FFF;
@@ -244,58 +161,27 @@ input[type="file"]:hover:before {
   white-space: nowrap;
 }
 
-#dataPlot {
-  text-align:center;
-  font-weight: bold;
-  border-radius: 5px;
-  padding-top: 35px;
-  margin: 20px 0;
-  font-size: 20px;
-}
-
-#plot-header {
-  text-align: center;
-  width: 100%;
-  margin: auto;
-}
-
-#dataSummary {
-  text-align:center;
-  font-weight: bold;
-  border-radius: 5px;
-  border: 3px solid #000;
-  font-size: 20px;
-  text-align: center;
-  width: 100%;
-  margin: 60px 0;
-  padding-top: 10px;
-}
-
-#tblSummary {
-  font-weight: normal;
-  text-align: left;
-  padding-top: 15px;
-  padding-bottom: 20px;
-  padding-left: 28px;
-}
-
 #color-expand {
   font-weight: bold;
-  font-size: 20px;
+  background: rgba(207, 205, 196, 1);
   text-align: center;
+  padding: 10px;
+  margin: 10px;
   -webkit-transition: background 0.5s;
   -moz-transition: background 0.5s;
   -o-transition: background 0.5s;
   transition: background 0.5s;
+  cursor: pointer;
   border-radius: 5px;
-  border: 3px solid #000;
-  width: 100%;
-  padding: 10px 0;
 }
 
+#color-expand:hover {
+  background: rgba(0,0,0,0.3);
+}
 #color-header{
   height: 100%;
   width: 100%;
+  background: rgba(197, 195, 186, 1);
   border-radius: 5px;
 }
 
@@ -304,12 +190,12 @@ input[type="file"]:hover:before {
 }
 
 #colors > li {
-  margin: 30px;
+  margin: 4px;
 }
 
 .colorblock {
-  border: 2px solid #000;
-  box-shadow: 1px 1px 2px #000;
+  border: 2px solid black;
+  box-shadow: 1px 1px 2px black;
   padding-right: 3em;
   border-radius: 4px;
   margin-right: 5px;
@@ -325,56 +211,24 @@ input[type="file"]:hover:before {
   display: inline-block;
   vertical-align: middle;
 }
-/*
-div.fileinputs {
-	position: relative;
-	height: 3em;
-	cursor: pointer;
-  color: white;
-}
 
-div.fakefile {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  z-index: 1;
-  padding: 6px;
-  background-color: #fff;
-  text-shadow: none;
-  box-shadow: 0px 5px 10px #000;
-  border-radius: 5px;
-  color: #000;
-  border: 2px solid white;
-}
-
-input.file {
-	position: relative;
-	text-align: right;
-	-moz-opacity:0 ;
-	filter:alpha(opacity: 0);
-	opacity: 0;
-	z-index: 2;
-}
-
-#bc{
-    content: 'Load CSV';
-  display: inline-block;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  cursor: pointer;
+#data-summary {
+  text-align: center;
   font-weight: bold;
-  font-size: 1.2em;
+  background: rgba(207, 205, 196, 1);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
 }
 
-#fileposition{
-  position: absolute;
-  top: 1em;
-  left: 20em;
+#summary-header {
+  height: 100%;
+  width: 100%;
+  background: rgba(197, 195, 186, 1);
+  border-radius: 5px;
 }
 
-hover{
-  background: #000;
-  color: #FFF;
+#tblSummary {
+  font-weight: normal;
+  margin: 3px;
 }
-*/
