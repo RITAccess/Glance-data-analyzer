@@ -37,7 +37,7 @@ ArrayCollection.prototype.addLine = function(newInfo) {
 
 // updates a single line in the arrayCollection
 ArrayCollection.prototype.changeLine = function(line, index, change) {
-  this.collection[line][index] = change;
+  this.collection[line].array[index] = change;
   this.collection[line].trend = this.collection[line].calcTrends();
   this.calcMinMax();
 }
