@@ -6,13 +6,15 @@ var loadSlickTable = function(fileData){
 	var grid;
 	var data = [];
 	var columns = [];
+	var w = parseInt(800 / (fileData[0].length)); //width divided between columns
+	console.log(w);
 	//now we push the values of the columns into the grid
 	for(var i = 0; i < fileData[0].length; i++){
 		columns.push({
 			id: i,
 			name: fileData[0][i],
 			field: i,
-			width: 60,
+			width: 66,
 			editor: Slick.Editors.Integer
 		
 		});
@@ -26,14 +28,16 @@ var loadSlickTable = function(fileData){
   };
 
   $(function () {
+	
     for (var i = 0; i < fileData.length-1; i++) {
 			console.log(fileData[i+1]);
 			var d = (data[i] = {});
-			for(var j = 0; j < columns.length-1; j++){
-				console.log(fileData[i+1][j]);
+			d["id"] = i;
+			for(var j = 0; j < columns.length; j++){
+				//console.log(fileData[i+1][j]);
 				d[j] = parseInt(fileData[i+1][j]);
 			}
-	  }
+	}
     grid = new Slick.Grid(c1, data, columns, options);
   });
   return grid;

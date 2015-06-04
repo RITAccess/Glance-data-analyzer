@@ -12,6 +12,7 @@ require(["javascript/files.js"], function(print){
   loadListener();
 });
 require(["javascript/table.js"]);
+require(["javascript/slickTable.js"]);
 require(["javascript/chart.js"]);
 require(["javascript/overlay.js"]);
 require(["javascript/arrayInfo.js"]);
@@ -26,7 +27,9 @@ var overlay;
 var loadData = function(data){
   document.querySelector('#overlay').setAttribute('style','');
   document.querySelector('#table').innerHTML = '';
+  document.querySelector('#slickTable').innerHTML = '';
   var table = loadTable(data.data);
+  var slickTable = loadSlickTable(data.data);
   var chart = loadChart(data.data);
   player = new AudioPlayer();
   overlay = new Overlay(data);
