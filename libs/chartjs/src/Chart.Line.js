@@ -229,7 +229,8 @@
 					x: this.scale.calculateX(this.scale.valuesCount+1),
 					y: this.scale.endPoint,
 					strokeColor : this.datasets[datasetIndex].pointStrokeColor,
-					fillColor : this.datasets[datasetIndex].pointColor
+					fillColor : this.datasets[datasetIndex].pointColor,
+					shape:"this"
 				}));
 			},this);
 

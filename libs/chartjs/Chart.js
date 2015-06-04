@@ -1145,13 +1145,77 @@
 			return ((Math.pow(chartX-this.x, 2)+Math.pow(chartY-this.y, 2)) < Math.pow(hitDetectionRange,2));
 		},
 		draw : function(){
-			if (this.display){
+			var line =null;
+			for(var i = 0; i< chart.datasets.length; i++){
+				//console.log(this.fillColor);
+				//console.log(chart.datasets[i].strokeColor);
+				if(this.fillColor === chart.datasets[i].strokeColor){
+				line = i;				
+				}
+			}
+				//console.log(line);
+			if(this.display){
 				var ctx = this.ctx;
 				ctx.beginPath();
-
-				ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+				if(line%6 ===0){
+				  //Circle
+				  //TODO TESTING TODO 
+				  ctx.arc(this.x, this.y, this.radius*1.2, 0, Math.PI*2);				  
+				}
+				else if(line%6 ===1){
+				  //Square
+				  ctx.lineTo(this.x- this.radius*1.2, this.y + this.radius*1.2);			
+				  ctx.lineTo(this.x + this.radius*1.2, this.y + this.radius*1.2);
+				  ctx.lineTo(this.x + this.radius*1.2, this.y- this.radius*1.2);
+				  ctx.lineTo(this.x - this.radius*1.2, this.y - this.radius*1.2);
+				}
+				else if(line%6 ===2){
+				  //Parallelogram
+				  ctx.lineTo(this.x- this.radius, this.y + this.radius);			
+				  ctx.lineTo(this.x + this.radius*2, this.y + this.radius);
+				  ctx.lineTo(this.x + this.radius, this.y- this.radius);
+				  ctx.lineTo(this.x - this.radius*2, this.y - this.radius);
+				}
+				else if(line%6 ===3){
+				  //Triangle
+				  ctx.lineTo(this.x- this.radius*1.2, this.y + this.radius*1.2);			
+				  ctx.lineTo(this.x , this.y - this.radius*1.2);
+				  ctx.lineTo(this.x + this.radius*1.2, this.y + this.radius*1.2);
+				}
+				else if(line%6 ===4){
+				  //Diamond
+				  ctx.lineTo(this.x- this.radius*1.4, this.y);			
+				  ctx.lineTo(this.x, this.y -this.radius*1.4);
+				  ctx.lineTo(this.x+ this.radius*1.4, this.y);
+				  ctx.lineTo(this.x, this.y + this.radius*1.4);
+				}
+				else{
+				  //Hourglass
+				  ctx.moveTo(this.x + this.radius*2, this.y);
+		  		  ctx.lineTo(this.x - this.radius*2, this.y);
+				  ctx.lineTo(this.x, this.y - this.radius*2);
+				  ctx.lineTo(this.x, this.y + this.radius*2);
+				}
 				ctx.closePath();
-
+				ctx.strokeStyle = this.strokeColor;
+				ctx.lineWidth = this.strokeWidth;
+				ctx.fillStyle = this.fillColor;
+				ctx.fill();
+				ctx.stroke();
+			}
+			/*else if(this.display){
+				var ctx = this.ctx;
+				ctx.beginPath();
+				//CHANGED SOMETHING HERE TODO JM
+				//ctx.arc(this.x, this.y, this.radius, 0, 1);
+				//TODO DUN DUN DUNNNN	
+				ctx.lineTo(this.x- this.radius, this.y + this.radius);			
+				ctx.lineTo(this.x , this.y - this.radius);
+				ctx.lineTo(this.x + this.radius, this.y + this.radius);
+				//ctx.lineTo(this.x - this.radius, this.y - this.radius);
+				//</TODO> DUN DUN DUNNNNN
+				ctx.closePath();
+				//console.log(this.fillColor);
 				ctx.strokeStyle = this.strokeColor;
 				ctx.lineWidth = this.strokeWidth;
 
@@ -1159,7 +1223,7 @@
 
 				ctx.fill();
 				ctx.stroke();
-			}
+			}*/
 
 
 			//Quick debug for bezier curve splining

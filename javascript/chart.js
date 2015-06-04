@@ -98,7 +98,6 @@ function dataset(data) {
       fillColor: "rgba(220, 220, 220, 0)",
       strokeColor: "rgba("+ color +", 1)",
       pointColor: "rgba("+ color +", 1)",
-
       //pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba("+ color +", 1)",
