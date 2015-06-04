@@ -28,9 +28,7 @@ var loadChart = function(data){
 					         chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
 						 for(var i = 0; i<chart.datasets[index].points.length;i++){
 						   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
-						   //chart.datasets[index].points[i].highlightFill= "rgba("+ color +", 1)";
-					          // chart.datasets[index].points[i].highlightStroke= "rgba("+ color +", 1)";
-						 }
+						   }
 						 chart.update();						 
 						 }
 					         this.parentNode.firstChild.setAttribute("style", "background:rgb(" + color + ")");
@@ -90,7 +88,9 @@ function dataset(data) {
   var red, green, blue;
   red = green = blue = 0;
   var colorIncrease = parseInt((255/ data.length).toFixed(0));
-
+  //var key = document.getElementById("chart-key");
+  //var keyList = document.createElement('ol');
+  //key.appendChild(keyList);
   for (var i = 1; i < data.length; i++) {
     var color = [red, green, blue].join(", ");
     var line =
@@ -122,6 +122,11 @@ function dataset(data) {
     red += colorIncrease + 15;
     green += colorIncrease;
     blue += colorIncrease - 15;
+    //var newKey = document.createElement("li");
+    //var keyLabel = document.createTextNode(shapes[(i-1)%6]);
+    //newKey.setAttribute("style", "color:rgb(" + color + ")" );
+    //newKey.appendChild(keyLabel);
+    //keyList.appendChild(newKey);
   }
   var returndata = new Object();
   returndata.data = dataArray;

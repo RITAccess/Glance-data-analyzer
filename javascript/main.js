@@ -45,24 +45,6 @@ var loadData = function(data){
   document.getElementById('dataSummary').style.display = 'block';
   document.getElementById('chart-key').style.display = 'block';
 }
-/*
-var load = function(){
-    loadListener();
-  $("input").hover(
-    function() {
-      //$( "changer" ).addclass("hover");
-      document.getElementById("changer").style.backgroundColor = "black";
-      document.getElementById("changer").style.color = "white";
-
-      //console.log("enter");
-    }, function() {
-      //$( "changer" ).addclass("hover");
-      //console.log("leave");
-      document.getElementById("changer").style.backgroundColor = "white";
-      document.getElementById("changer").style.color = "black";
-    }
-  );
-}*/
 
 // The play button
 var playStopAudioButton = function(){
