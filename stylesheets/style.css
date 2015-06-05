@@ -295,3 +295,21 @@ svg * {
   display: inline-block;
   vertical-align: middle;
 }
+
+@media print{
+  #title{
+    text-shadow: none;
+    color: #000;
+  }
+
+  .inputBtnSection{
+    display: none;
+  }
+
+  #playButton{
+    display: none;
+  }
+  .drop-down{
+    display: none;
+  }
+}
