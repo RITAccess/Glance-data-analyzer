@@ -23,13 +23,14 @@ require(["javascript/summary.js"]);
 var player;
 var overlay;
 var summary;
+var chart;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function(data){
   document.querySelector('#overlay').setAttribute('style','');
   document.querySelector('#slickTable').innerHTML = '';
   var slickTable = loadSlickTable(data.data);
-  var chart = loadChart(data.data);
+  chart = loadChart(data.data);
   player = new AudioPlayer();
   overlay = new Overlay(data);
   overlay.updateSize(chart);
@@ -39,7 +40,7 @@ var loadData = function(data){
   summary.dataSummary();
   linkSlickTable(chart,player,overlay, summary);
   document.getElementById('color-expand').style.display = 'block';
-  document.getElementById('dataSummary').style.display = 'block';
+  document.getElementById('data-summary').style.display = 'block';
   document.getElementById('plot-header').style.display = 'block';
 
 }

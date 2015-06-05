@@ -10,10 +10,10 @@ var loadSlickTable = function(fileData){
 	for(var i = 0; i < fileData[0].length; i++){
 		columns.push({
 			id: i,
-			name: fileData[0][i],
+			name: '',
 			field: i,
 			width: w,
-			editor: Slick.Editors.Integer,
+			editor: Slick.Editors.Text,
 			minWidth: 60, //sets range for width of columns
 			maxWidth: 80
 		});
@@ -26,16 +26,21 @@ var loadSlickTable = function(fileData){
     enableColumnReorder: false,
 	autoHeight: true, //these three just make the
 	forceFitColumns: true, //table look nice/fit
-	fullWidthRows: true
+	fullWidthRows: true,
   };
 
   $(function () {
 	// adding in the data to the grid
-    for (var i = 0; i < fileData.length-1; i++) {
+    for (var i = 0; i < fileData.length; i++) {
 			var d = (data[i] = {});
 			d["id"] = i;
 			for(var j = 0; j < columns.length; j++){
-				d[j] = parseInt(fileData[i+1][j]);
+				if(i > 0){
+					d[j] = parseInt(fileData[i][j]);
+				}
+				else {
+					d[j] = fileData[i][j];
+				}
 			}
 	}
     grid = new Slick.Grid(c1, data, columns, options);
@@ -45,21 +50,27 @@ var loadSlickTable = function(fileData){
 
 var linkSlickTable = function(chart, player, overlay, summary){
 	grid.onCellChange.subscribe(function (e, args) {
-		/*
-		console.log(args) prints out....
-		Object {row: (row #) , cell: (column #), item: Object, grid: SlickGrid}
-		*/
+		//args = Object {row: (row #) , cell: (column #), item: Object, grid: SlickGrid}
 		var row = args.row;
 		var col = args.cell;
 		var newVal = grid.getData()[row][col];
 		
-		//Update audio with new value
-        player.changeLine(row,col,newVal);
-        // change value in chart
-        chart.datasets[row].points[col].value = newVal;
-		
+		// if a label 
+		if (row == 0){			
+			chart.scale.xLabels[col] = newVal;
+		}
+		// not a label - check to see if it's a number. 
+		// If not, do nothing
+		else if ((!isNaN(newVal)) && (newVal != "")){
+			newVal = parseInt(newVal);
+			//Update audio with new value
+			player.changeLine(row-1,col,newVal);
+			// change value in chart
+			chart.datasets[row-1].points[col].value = newVal;
+		}
+		//update chart and overlay
 		chart.update();
-        overlay.updateSize(chart);
-        
+		summary.update();
+        overlay.updateSize(chart); 
 	});
 }
