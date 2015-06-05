@@ -1146,20 +1146,21 @@
 		},
 		draw : function(){
 			var line =null;
+			//Find Line that contains the point
 			for(var i = 0; i< chart.datasets.length; i++){
-				//console.log(this.fillColor);
-				//console.log(chart.datasets[i].strokeColor);
-				if(this.fillColor === chart.datasets[i].strokeColor){
+				if(this.datasetLabel === chart.datasets[i].label){
 				line = i;				
 				}
 			}
-				//console.log(line);
 			if(this.display){
 				var ctx = this.ctx;
 				ctx.beginPath();
+				/* Loops through such that up to 6 lines will have unique shapes
+				*  Afterwards, it will keep cycling through shapes in the order:
+				*  circle, square, parallelogram, triangle, diamond, hourglass				
+				*/
 				if(line%6 ===0){
 				  //Circle
-				  //TODO TESTING TODO 
 				  ctx.arc(this.x, this.y, this.radius*1.2, 0, Math.PI*2);				  
 				}
 				else if(line%6 ===1){
