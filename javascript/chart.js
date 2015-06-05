@@ -16,71 +16,66 @@ var loadChart = function(data, collection){
   for(var i =0; i<data.datasets.length;i++){
 	//Setting input functions for each line in order to set new colors
 	chartdata.inputboxes[i].oninput = function(){
-	     var index = chartdata.inputboxes.indexOf(this);
-	     var newcolor = this.value;
-	       if(/^#[0-9A-F]{6}$/i.test(newcolor)){
-	         var r = parseInt(newcolor.substring(1,3), 16);
-	         var g = parseInt(newcolor.substring(3,5), 16);
-	         var b = parseInt(newcolor.substring(5), 16);
-	         var color = [r, g, b].join(", ");
-
-        		if(this.nextSibling.checked){
-        		 chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
-        	         chart.datasets[index].pointColor = "rgba("+ color +", 1)";
-        	         chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
-        		 for(var i = 0; i<chart.datasets[index].points.length;i++){
-        		   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
-        		   }
-        		 chart.update();						 
-        		}
-
-	         this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margin-right: 5px;");
-	       }
-
-	       else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase().split(' ').join('')])){
-	         var rgb = colors[newcolor.toLowerCase().split(' ').join('')];
-	         var r = parseInt(rgb.substring(1,3), 16);
-	         var g = parseInt(rgb.substring(3,5), 16);
-	         var b = parseInt(rgb.substring(5), 16);
-	         var color = [r, g, b].join(", ");
-        		 if(this.nextSibling.checked){
-        		 chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
-        	         chart.datasets[index].pointColor = "rgba("+ color +", 1)";
-        	         chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
-        		 for(var i = 0; i<chart.datasets[index].points.length;i++){
-        		   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
-        		 }
-        		 chart.update();
-        		 }
-
-	         this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margin-right: 5px;");
-					       }
-
-					     };
+		var index = chartdata.inputboxes.indexOf(this);
+		var newcolor = this.value;
+			if(/^#[0-9A-F]{6}$/i.test(newcolor)){
+			    var r = parseInt(newcolor.substring(1,3), 16);
+		        var g = parseInt(newcolor.substring(3,5), 16);
+			    var b = parseInt(newcolor.substring(5), 16);
+			    var color = [r, g, b].join(", ");
+				if(this.nextSibling.checked){
+				    chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
+				    chart.datasets[index].pointColor = "rgba("+ color +", 1)";
+				    chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
+					for(var i = 0; i<chart.datasets[index].points.length;i++){
+						chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
+					}
+					chart.update();						 
+				}
+				this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "background:rgb(" + color + "); display: inline; margine-right: 5px;");
+	        }
+		    else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase().split(' ').join('')])){
+			    var rgb = colors[newcolor.toLowerCase().split(' ').join('')];
+			    var r = parseInt(rgb.substring(1,3), 16);
+			    var g = parseInt(rgb.substring(3,5), 16);
+			    var b = parseInt(rgb.substring(5), 16);
+			    var color = [r, g, b].join(", ");
+				if(this.nextSibling.checked){
+				    chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
+				    chart.datasets[index].pointColor = "rgba("+ color +", 1)";
+				    chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
+					for(var i = 0; i<chart.datasets[index].points.length;i++){
+					   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
+					}
+					chart.update();
+				}
+				this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "background:rgb(" + color + "); display: inline; margin-right: 5px;");
+			}
+        };
 	//Setting behavior for all toggleboxes
-		chartdata.inputboxes[i].nextSibling.onclick = function(){
+	chartdata.inputboxes[i].nextSibling.onclick = function(){
 		var index = chartdata.inputboxes.indexOf(this.previousSibling);
-		   if(!this.checked){
-                   var transparent = [0,0,0].join(", ");
-	           transparent = "rgba(" + transparent +", 0)";
-		   chart.datasets[index].strokeColor = transparent;
-	           chart.datasets[index].pointColor = transparent;
-	           chart.datasets[index].pointHighlightStroke = transparent;
-	       	   for(var i = 0; i<chart.datasets[index].points.length;i++){
-		   chart.datasets[index].points[i].fillColor= transparent;
-		  }
-		  chart.update();
-		     }
+		if(!this.checked){
+            var transparent = [0,0,0].join(", ");
+			transparent = "rgba(" + transparent +", 0)";
+			chart.datasets[index].strokeColor = transparent;
+			chart.datasets[index].pointColor = transparent;
+			chart.datasets[index].pointHighlightStroke = transparent;
+			for(var i = 0; i<chart.datasets[index].points.length;i++){
+			    chart.datasets[index].points[i].fillColor= transparent;
+			}
+			chart.update();						 
+		}
 		else{
-                  var color = this.previousSibling.previousSibling.style.color;
-		  color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
-		  chart.datasets[index].strokeColor = color;
-	          chart.datasets[index].pointColor = color;
-	          chart.datasets[index].pointHighlightStroke = color;
-		  for(var i = 0; i<chart.datasets[index].points.length;i++){
-		   chart.datasets[index].points[i].fillColor= color;
-		  }
-		  chart.update();
+            var color = this.previousSibling.previousSibling.style.color;
+			color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
+			chart.datasets[index].strokeColor = color;
+			chart.datasets[index].pointColor = color;
+			chart.datasets[index].pointHighlightStroke = color;
+			for(var i = 0; i<chart.datasets[index].points.length;i++){
+			    chart.datasets[index].points[i].fillColor= color;
+			}
+			chart.update();
 		}
 		};
   }
@@ -94,6 +89,7 @@ function dataset(data, collection) {
   var red, green, blue;
   red = green = blue = 0;
   var colorIncrease = parseInt((255/ data.length).toFixed(0));
+
   for (var i = 1; i < data.length; i++) {
     var color = [red, green, blue].join(", ");
     var line =
@@ -102,6 +98,7 @@ function dataset(data, collection) {
       strokeColor: "rgba("+ color +", 1)",
       pointColor: "rgba("+ color +", 1)",
       label: i,
+
       //pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba("+ color +", 1)",

@@ -11,7 +11,7 @@ require(["libs/jsfx/audio.js"], function(audio){
 require(["javascript/files.js"], function(print){
   loadListener();
 });
-require(["javascript/table.js"]);
+require(["javascript/slickTable.js"]);
 require(["javascript/chart.js"]);
 require(["javascript/overlay.js"]);
 require(["javascript/arrayInfo.js"]);
@@ -23,14 +23,13 @@ require(["javascript/summary.js"]);
 var player;
 var overlay;
 var summary;
-var chart;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function(data){
   document.querySelector('#overlay').setAttribute('style','');
-  document.querySelector('#table').innerHTML = '';
-  var table = loadTable(data.data);
-  chart = loadChart(data.data);
+  document.querySelector('#slickTable').innerHTML = '';
+  var slickTable = loadSlickTable(data.data);
+  var chart = loadChart(data.data);
   player = new AudioPlayer();
   overlay = new Overlay(data);
   overlay.updateSize(chart);
@@ -38,9 +37,11 @@ var loadData = function(data){
   player.setCollection(collection.collection);
   summary = new DataSummary(collection);
   summary.dataSummary();
-  linkTable(chart, player, overlay, summary);
+  linkSlickTable(chart,player,overlay, summary);
   document.getElementById('color-expand').style.display = 'block';
+  document.getElementById('dataSummary').style.display = 'block';
   document.getElementById('plot-header').style.display = 'block';
+
 }
 
 // The play button

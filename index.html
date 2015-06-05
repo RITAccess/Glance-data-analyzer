@@ -5,11 +5,13 @@
   <meta charset="UTF-8">
   <!-- load main.js after require.js -->
   <script data-main="javascript/main" src="libs/require/Require.js"></script>
-  <link rel="stylesheet" href="libs/handsontable/handsontable.full.min.css">
+  <link rel="stylesheet" href="libs/SlickGrid/slick.grid.css" type="text/css"/>
+  <link rel="stylesheet" href="libs/SlickGrid/css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>
+  <link rel="stylesheet" href="libs/SlickGrid/examples/examples.css" type="text/css"/>
   <link rel="stylesheet" href="libs/jquery/jquery-ui.css"/>
   <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-</head>
+  </head>
 <body>
   <header>
     <span id="title"> Data Analyzer </span>
@@ -27,7 +29,7 @@
     </span>
   </header>
   <div id="content">
-    <div id="slider-range" data-start="0" data-end="-1" data-size="0"></div>
+    <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" role=chart-slider></div>
     <svg id="overlay" width="800" height="400" style='display:none;'>
       <rect id="background" x="0" y="0" width="800" height="400" />
       <rect id="selection" x="0" y="0" width="800" height="400" />
@@ -35,12 +37,26 @@
     <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
     <div id="dataPlot">
       <div id="plot-header" style="display:none;"> Data Plot </div>
-      <div id="tblContainer" tabindex="0" title="Data Points"><div id="table" class="handsontable"></div></div>
+      <div id="tblContainer" tabindex="0" title="Data Points"><div id="slickTable" style="width:100%;"></div></div>
+
+    <div id="data-summary" style="display:none;">
+      <div id="summary-header">Data Summary</div>
+      <div id="tblSummary"></div>
     </div>
     <div id='color-expand' style="display:none;" tabindex="0">
-      <div id='color-header'  tabindex="1">Line Data</div>
-      <div id="color-editor" class="color-editor-input"><ol id="colors"></ol></div>
+      <div id='color-header' onclick="openColorEditor()" tabindex="1">Line Data</div>
+      <div id="color-editor" class="color-editor-input" style="display:none;"><ol id="colors"></ol></div>
     </div>
   </div><!-- end div id="content"-->
+  
+<script src="libs/SlickGrid/lib/firebugx.js"></script>
+<script src="libs/SlickGrid/lib/jquery-1.7.min.js"></script>
+<script src="libs/SlickGrid/lib/jquery-ui-1.8.16.custom.min.js"></script>
+<script src="libs/SlickGrid/lib/jquery.event.drag-2.2.js"></script>
+
+<script src="libs/SlickGrid/slick.core.js"></script>
+<script src="libs/SlickGrid/slick.editors.js"></script>
+<script src="libs/SlickGrid/slick.grid.js"></script>
+
 </body>
 </html>
