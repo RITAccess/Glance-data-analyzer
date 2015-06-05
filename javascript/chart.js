@@ -70,7 +70,8 @@ var loadChart = function(data, collection){
 						  chart.update();
 			   			  }
 						else{
-                               			  var color = this.previousSibling.previousSibling.style.background;
+                               			  var color = this.previousSibling.previousSibling.style.color;
+						  console.log(color);
 						  color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
 			       			  chart.datasets[index].strokeColor = color;
 					          chart.datasets[index].pointColor = color;
