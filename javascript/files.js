@@ -1,13 +1,12 @@
 "use strict"; // strict mode syntax
 // Opens a file
 var openFile = function(event) {
+  if(event.target.files[0]){
   var input = event.target;
   var colorlist = document.getElementById("colors");
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
-  var summaryDiv = document.getElementById("tblSummary");
-  summaryDiv.innerHTML = "";
   // use PapaParse for handing the csv file
   var results = Papa.parse(input.files[0], {
   	complete: function(results) {
@@ -18,6 +17,7 @@ var openFile = function(event) {
   		loadData(results);
   	}
   });
+  }
 };
 
 // provides the openFile function call to the DOM

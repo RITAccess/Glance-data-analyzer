@@ -1145,13 +1145,78 @@
 			return ((Math.pow(chartX-this.x, 2)+Math.pow(chartY-this.y, 2)) < Math.pow(hitDetectionRange,2));
 		},
 		draw : function(){
-			if (this.display){
+			var line =null;
+			//Find Line that contains the point
+			for(var i = 0; i< chart.datasets.length; i++){
+				if(this.datasetLabel === chart.datasets[i].label){
+				line = i;				
+				}
+			}
+			if(this.display){
 				var ctx = this.ctx;
 				ctx.beginPath();
-
-				ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+				/* Loops through such that up to 6 lines will have unique shapes
+				*  Afterwards, it will keep cycling through shapes in the order:
+				*  circle, square, parallelogram, triangle, diamond, hourglass				
+				*/
+				if(line%6 ===0){
+				  //Circle
+				  ctx.arc(this.x, this.y, this.radius*1.2, 0, Math.PI*2);				  
+				}
+				else if(line%6 ===1){
+				  //Square
+				  ctx.lineTo(this.x- this.radius*1.2, this.y + this.radius*1.2);			
+				  ctx.lineTo(this.x + this.radius*1.2, this.y + this.radius*1.2);
+				  ctx.lineTo(this.x + this.radius*1.2, this.y- this.radius*1.2);
+				  ctx.lineTo(this.x - this.radius*1.2, this.y - this.radius*1.2);
+				}
+				else if(line%6 ===2){
+				  //Parallelogram
+				  ctx.lineTo(this.x- this.radius, this.y + this.radius);			
+				  ctx.lineTo(this.x + this.radius*2, this.y + this.radius);
+				  ctx.lineTo(this.x + this.radius, this.y- this.radius);
+				  ctx.lineTo(this.x - this.radius*2, this.y - this.radius);
+				}
+				else if(line%6 ===3){
+				  //Triangle
+				  ctx.lineTo(this.x- this.radius*1.2, this.y + this.radius*1.2);			
+				  ctx.lineTo(this.x , this.y - this.radius*1.2);
+				  ctx.lineTo(this.x + this.radius*1.2, this.y + this.radius*1.2);
+				}
+				else if(line%6 ===4){
+				  //Diamond
+				  ctx.lineTo(this.x- this.radius*1.4, this.y);			
+				  ctx.lineTo(this.x, this.y -this.radius*1.4);
+				  ctx.lineTo(this.x+ this.radius*1.4, this.y);
+				  ctx.lineTo(this.x, this.y + this.radius*1.4);
+				}
+				else{
+				  //Hourglass
+				  ctx.moveTo(this.x + this.radius*2, this.y);
+		  		  ctx.lineTo(this.x - this.radius*2, this.y);
+				  ctx.lineTo(this.x, this.y - this.radius*2);
+				  ctx.lineTo(this.x, this.y + this.radius*2);
+				}
 				ctx.closePath();
-
+				ctx.strokeStyle = this.strokeColor;
+				ctx.lineWidth = this.strokeWidth;
+				ctx.fillStyle = this.fillColor;
+				ctx.fill();
+				ctx.stroke();
+			}
+			/*else if(this.display){
+				var ctx = this.ctx;
+				ctx.beginPath();
+				//CHANGED SOMETHING HERE TODO JM
+				//ctx.arc(this.x, this.y, this.radius, 0, 1);
+				//TODO DUN DUN DUNNNN	
+				ctx.lineTo(this.x- this.radius, this.y + this.radius);			
+				ctx.lineTo(this.x , this.y - this.radius);
+				ctx.lineTo(this.x + this.radius, this.y + this.radius);
+				//ctx.lineTo(this.x - this.radius, this.y - this.radius);
+				//</TODO> DUN DUN DUNNNNN
+				ctx.closePath();
+				//console.log(this.fillColor);
 				ctx.strokeStyle = this.strokeColor;
 				ctx.lineWidth = this.strokeWidth;
 
@@ -1159,7 +1224,7 @@
 
 				ctx.fill();
 				ctx.stroke();
-			}
+			}*/
 
 
 			//Quick debug for bezier curve splining

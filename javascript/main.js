@@ -18,35 +18,29 @@ require(["javascript/arrayInfo.js"]);
 require(["javascript/audioPlayer.js"]);
 require(["javascript/arrayCollection.js"]);
 require(["javascript/global.js"]);
+require(["javascript/summary.js"]);
 
 var player;
 var overlay;
+var summary;
+var chart;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function(data){
   document.querySelector('#overlay').setAttribute('style','');
   document.querySelector('#table').innerHTML = '';
   var table = loadTable(data.data);
-  var chart = loadChart(data.data);
+  chart = loadChart(data.data);
   player = new AudioPlayer();
   overlay = new Overlay(data);
   overlay.updateSize(chart);
-  linkTable(chart, player, overlay);
   var collection = new ArrayCollection(data.data);
   player.setCollection(collection.collection);
+  summary = new DataSummary(collection);
+  summary.dataSummary();
+  linkTable(chart, player, overlay, summary);
   document.getElementById('color-expand').style.display = 'block';
-  document.getElementById('data-summary').style.display = 'block';
-
-  var summaryDiv = document.getElementById("tblSummary");
-  for (var i = 0; i < collection.collection.length; i++) {
-      console.log(collection.collection[i]);
-      summaryDiv.innerHTML += " Line " + (i + 1) + " : Max: " + collection.collection[i].trend.max + 
-        " Min: " + collection.collection[i].trend.min + 
-        " Average: " + collection.collection[i].trend.avg + "</br>";
-  }
-  summaryDiv.innerHTML += "Total Data Summary : Max: " + collection.max + 
-    " Min: " + collection.min + " Average: " + calcCollectionAvg(collection); 
-
+  document.getElementById('plot-header').style.display = 'block';
 }
 
 // The play button
@@ -58,34 +52,4 @@ var playStopAudioButton = function(){
 var openColorEditor = function(){
   var editor = document.getElementById('color-editor');
   editor.style.display = editor.style.display == 'inline' ? 'none' : 'block';
-}
-
-var calcCollectionAvg = function(collection) {
-  var collTotal = 0;
-
-  for (var i = 0; i < collection.collection.length; i++){
-    collTotal += collection.collection[i].trend.sum;
-  }
-
-  var totalDataPoints = 0;
-  for (var i = 0; i < collection.collection.length; i++) {
-      totalDataPoints += collection.collection[i].array.length;
-  }
-
-  var average = Math.round(100 * collTotal/totalDataPoints)/100;
-  return average;
- }
-
-var load = function(){
-  $("input").hover(
-    function() {
-      //$( "changer" ).addclass("hover");
-      document.getElementById("changer").setAttribute("class","hover");
-      //console.log("enter");
-    }, function() {
-      //$( "changer" ).addclass("hover");
-      //console.log("leave");
-      document.getElementById("changer").setAttribute("class","bc");
-    }
-  );
 }

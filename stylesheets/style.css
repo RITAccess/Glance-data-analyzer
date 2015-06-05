@@ -26,8 +26,8 @@ header {
   margin-top: 0;
   background: url('footer_lodyas/footer_lodyas.png');
   color:white;
-  text-shadow: 0px 0px 10px black;
-  box-shadow: 0px 0px 10px black;
+  text-shadow: 0px 0px 10px #000;
+  box-shadow: 0px 0px 10px #000;
   clear:both;
   vertical-align:center;
 }
@@ -37,15 +37,13 @@ header {
   font-size: 2em;
   padding-left: 1em;
   position: relative;
-  left: -9%;
 }
-
 
 #content{
   width: 800px;
   margin: auto; /* centers the contents including the slider and the graph */
-  margin-top: 20px;
-  padding-bottom: 25px;
+  margin-top: 60px;
+  padding-bottom: 100px;
   clear: both;
 }
 
@@ -54,11 +52,28 @@ header {
   fill-opacity: 0.3;
 }
 svg * {
-  stroke:black;
+  stroke:#000;
   stroke-width:1;
   fill-opacity: 0.0;
 }
 
+#chart-key { /* key for chart shape */
+  font-weight: bold;
+  border-radius: 5px;
+  border: 3px solid #000;
+  font-size: 20px;
+  width: 100%;
+  margin: 40px 0;
+  padding-top: 10px;
+}
+
+#chart-key-header {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
+
+/*
 .slider1 {
   width: 800px;
   margin: 0px;
@@ -72,84 +87,84 @@ svg * {
   margin-bottom: 7px;
   float: left;
 }
+*/
 
 #slider-range {
   margin-left: 22px;
   width: 755px;
 }
 
-/* custom file select */
-input[type="file"] {
-  height: 44px;
-  cursor: pointer;
-  width: 115px;
-  color: white;
+/**  changing Browse to Load CSV  **/
+* {
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
 }
-input[type="file"]::-webkit-file-upload-button {
-  visibility: hidden;
+.inputBtnSection {
+  display:inline-block;
+  vertical-align:top;
+  font-size:0;
+  font-family:verdana;
+  margin-left: 10px;
 }
-
-
-/*
-input[type="file"]:before {
-  content: 'Load CSV';
-  display: inline-block;
-  padding: 5px 2px;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1.2em;
-  background: rgba(0,0,0,0);
-  border: 2px solid white;
+.disableInputField {
+  display:inline-block;
+  vertical-align:top;
+  margin: 0;
+  font-size:14px;
+  padding:0 3px;
+}
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #FFF;
   border-radius: 5px;
-  color:white;
-  box-shadow: 0px 5px 10px black;
-  text-shadow: 0px 3px 3px black;
+  display:inline-block;
+  vertical-align:top;
+  width: 100%;
+  height: 50%;
 }
-
-input[type="file"]:hover:before {
-  background: rgba(19, 73, 112, 1);
-}*/
-
-
-input[type="file"]:before {
-  content: 'Load CSV';
-  display: inline-block;
-  padding: 5px;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
+.uploadBtn {
+  display:inline-block;
+  vertical-align:top;
+  cursor: pointer;
+  background: #FFF;
+  font-size:20px;
+  padding:10px;
+  color:#000;
   font-weight: bold;
-  font-size: 1.2em;
-  background-color: #FFF;
-  border: 2px solid white;
-  border-radius: 5px;
-  color: #000;
   box-shadow: 0px 5px 10px #000;
-  width: 107px;
-  height: 50px;
+  text-shadow: none;
 }
-
-
-input[type="file"]:hover:before {
+.uploadBtn:hover {
   background: #000;
   color: #FFF;
 }
-
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+}
+/***********************************/
 
 #audioSpan {
   float: right;
+  position: absolute;
   margin-top: 7px;
+  top: 1em;
   padding-right: 1em;
+  right: 0em;
 }
 
 #playButton {
   height: 32px;
   width: 32px;
   cursor: pointer;
-  padding: 7px;
   padding-left: 0.10em;
   margin-right: .5em;
   background: #FFF;
@@ -166,8 +181,9 @@ input[type="file"]:hover:before {
 }
 
 #bpm {
-  width: 30px;
-  text-align: right;
+  width: 65px;
+  text-align: center;
+  font-size: 15px;
 }
 
 #table {
@@ -190,131 +206,91 @@ input[type="file"]:hover:before {
   white-space: nowrap;
 }
 
+#dataPlot {
+  text-align:center;
+  font-weight: bold;
+  border-radius: 5px;
+  padding-top: 20px;
+  padding-bottom: 25px;
+  margin: 20px 0;
+  font-size: 20px;
+}
+
+#plot-header {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
+
+#dataSummary {
+  text-align:center;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 3px solid #000;
+  font-size: 20px;
+  width: 100%;
+  margin: 40px 0;
+  padding-top: 10px;
+}
+
+#tblSummary {
+  font-weight: normal;
+  text-align: left;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  padding-left: 28px;
+}
+
 #color-expand {
   font-weight: bold;
-  background: rgba(207, 205, 196, 1);
+  font-size: 20px;
   text-align: center;
-  padding: 10px;
-  margin: 10px;
   -webkit-transition: background 0.5s;
   -moz-transition: background 0.5s;
   -o-transition: background 0.5s;
   transition: background 0.5s;
-  cursor: pointer;
   border-radius: 5px;
+  border: 3px solid #000;
+  width: 100%;
+  padding: 10px 0;
 }
 
-#color-expand:hover {
-  background: rgba(0,0,0,0.3);
-}
 #color-header{
   height: 100%;
   width: 100%;
-  background: rgba(197, 195, 186, 1);
   border-radius: 5px;
 }
 
 #colors {
   text-align: left;
+  list-style: none;
 }
 
 #colors > li {
-  margin: 4px;
+  margin: 30px;
+}
+
+.color-editor-input input:focus {
+  background: #dadada;
 }
 
 .colorblock {
-  border: 2px solid black;
-  box-shadow: 1px 1px 2px black;
+  border: 2px solid #000;
+  box-shadow: 1px 1px 2px #000;
   padding-right: 3em;
   border-radius: 4px;
   margin-right: 5px;
 }
 
 .drop-down {
+  width: 50px;
   box-shadow: 0px 5px 5px;
   border-radius: 10px;
   border: 2px solid white;
+  font-size: 15px;
 }
 
 .htContainer {
   display: inline-block;
   vertical-align: middle;
 }
-
-#data-summary {
-  text-align: center;
-  font-weight: bold;
-  background: rgba(207, 205, 196, 1);
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-}
-
-#summary-header {
-  height: 100%;
-  width: 100%;
-  background: rgba(197, 195, 186, 1);
-  border-radius: 5px;
-}
-
-#tblSummary {
-  font-weight: normal;
-  margin: 3px;
-}
-
-
-
-
-div.fileinputs {
-	position: relative;
-	height: 3em;
-	cursor: pointer;
-  	color: white;
-}
-
-div.fakefile {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  z-index: 1;
-  padding: 6px;
-  background-color: #fff;
-  text-shadow: none;
-  box-shadow: 0px 5px 10px #000;
-  border-radius: 5px;
-  color: #000;
-  border: 2px solid white;
-}
-
-input.file {
-	position: relative;
-	text-align: right;
-	-moz-opacity:0 ;
-	filter:alpha(opacity: 0);
-	opacity: 0;
-	z-index: 2;
-}
-
-#bc{
-    content: 'Load CSV';
-  display: inline-block;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-#fileposition{
-  position: relative;
-  float: left;
-  left: 20%;
-}
-
-hover{
-  background: #000;
-  color: #FFF;
-}
-
-
