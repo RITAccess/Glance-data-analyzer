@@ -1149,7 +1149,7 @@
 			for(var i = 0; i< chart.datasets.length; i++){
 				//console.log(this.fillColor);
 				//console.log(chart.datasets[i].strokeColor);
-				if(this.fillColor === chart.datasets[i].strokeColor){
+				if(this.value === chart.datasets[i].points[this.label-1].value){
 				line = i;				
 				}
 			}
@@ -1159,7 +1159,6 @@
 				ctx.beginPath();
 				if(line%6 ===0){
 				  //Circle
-				  //TODO TESTING TODO 
 				  ctx.arc(this.x, this.y, this.radius*1.2, 0, Math.PI*2);				  
 				}
 				else if(line%6 ===1){
