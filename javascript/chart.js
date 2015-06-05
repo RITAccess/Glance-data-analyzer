@@ -32,7 +32,7 @@ var loadChart = function(data, collection){
 					}
 					chart.update();						 
 				}
-				this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "background:rgb(" + color + "); display: inline; margine-right: 5px;");
+				this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margine-right: 5px;");
 	        }
 		    else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase().split(' ').join('')])){
 			    var rgb = colors[newcolor.toLowerCase().split(' ').join('')];
@@ -49,7 +49,7 @@ var loadChart = function(data, collection){
 					}
 					chart.update();
 				}
-				this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "background:rgb(" + color + "); display: inline; margin-right: 5px;");
+				this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margin-right: 5px;");
 			}
         };
 	//Setting behavior for all toggleboxes

@@ -245,10 +245,11 @@ svg * {
   font-weight: bold;
   font-size: 20px;
   text-align: center;
-  -webkit-transition: background 0.5s;
+  /*-webkit-transition: background 0.5s;
   -moz-transition: background 0.5s;
   -o-transition: background 0.5s;
   transition: background 0.5s;
+  */
   border-radius: 5px;
   border: 3px solid #000;
   width: 100%;
