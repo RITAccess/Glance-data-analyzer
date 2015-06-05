@@ -38,7 +38,6 @@ AudioPlayer.prototype.setCollection = function(collection) {
 AudioPlayer.prototype.changeLine = function(line, index, newValue) {
   if(line != -1) {
     this.infoCollection.changeLine(line,index,newValue);
-	console.log([line,index,newValue]);
     this.isDirty = true;
   }
 }

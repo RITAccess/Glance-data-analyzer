@@ -11,6 +11,8 @@ function DataSummary(collection) {
 DataSummary.prototype.dataSummary = function() {
 
   // Writes the max, min, and average of each line in the graph
+	var globalmax = this.currCollection.collection[0].trend.max;
+	var globalmin = this.currCollection.collection[0].trend.min;
   for (var i = 0; i < this.currCollection.collection.length; i++) {
       var child = 0;
       var line = this.summaryDiv.firstChild;
@@ -18,6 +20,12 @@ DataSummary.prototype.dataSummary = function() {
         child++;
         line = line.nextSibling;
       }
+	  if (this.currCollection.collection[i].trend.max > globalmax){
+		  globalmax = this.currCollection.collection[i].trend.max;
+	  }
+	  if (this.currCollection.collection[i].trend.min < globalmin){
+		globalmin = this.currCollection.collection[i].trend.min;
+	  }
       var info = document.createTextNode("Line " + (i + 1) + ": Max: " + this.currCollection.collection[i].trend.max +
         " Min: " + this.currCollection.collection[i].trend.min +
         " Average: " + this.currCollection.collection[i].trend.avg+"\n");
@@ -29,8 +37,8 @@ DataSummary.prototype.dataSummary = function() {
   var lastEntry = document.createElement("li");
 
   // Writes the max, min, and average of the total table data
-  var finalSummary =document.createTextNode( "Total Data Summary: Max: " + this.currCollection.max +
-    " Min: " + this.currCollection.min + " Average: " + this.calcCollectionAvg());
+  var finalSummary =document.createTextNode( "Total Data Summary: Max: " + globalmax +
+    " Min: " + globalmin + " Average: " + this.calcCollectionAvg());
     lastEntry.appendChild(finalSummary);
     this.summaryDiv.appendChild(lastEntry);
 }
