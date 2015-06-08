@@ -21,6 +21,7 @@
           <span class="uploadBtn">Load CSV</span>
       </label>
     </div>
+
     <output id="list"></output>
     <span id="audioSpan" style="display: none" class="no-print">
       <button id="playButton" onclick="playStopAudioButton()" title="Play Toggle">
@@ -48,7 +49,14 @@
       <div id="color-editor" class="color-editor-input" ><ol id="colors"></ol></div>
     </div>
   </div><!-- end div id="content"-->
-
+    <div id="dialogoverlay"></div>
+<div id="dialogbox">
+  <div>
+    <div id="dialogboxhead"></div>
+    <div id="dialogboxbody"></div>
+    <div id="dialogboxfoot"></div>
+  </div>
+</div>
 <script src="libs/SlickGrid/lib/firebugx.js"></script>
 <script src="libs/SlickGrid/lib/jquery-1.7.min.js"></script>
 <script src="libs/SlickGrid/lib/jquery-ui-1.8.16.custom.min.js"></script>

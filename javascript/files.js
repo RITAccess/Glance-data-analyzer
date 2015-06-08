@@ -1,8 +1,13 @@
 "use strict"; // strict mode syntax
 // Opens a file
-var openFile = function(event) {
-  var input = event.target;
-  type = askType();
+var event;
+var openFile = function(e) {
+  event = e;
+  Alert.render("which type of graph?");
+};
+
+function loadFile(){
+  var input = event.target; 
   var colorlist = document.getElementById("colors");
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
@@ -17,7 +22,7 @@ var openFile = function(event) {
   		loadData(results);
   	}
   });
-};
+}
 
 // provides the openFile function call to the DOM
 var loadListener = function(){
