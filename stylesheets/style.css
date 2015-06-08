@@ -147,8 +147,10 @@ svg * {
     text-shadow: none;
     border: 2px solid #FFF;
     border-radius: 5px;
+    margin-right: 10px;
+    /* positioning button to bottom right of parent container dataPlot */
     position: absolute;
-    bottom: 0;
+    right: 0;
 }
 
 #audioSpan {
@@ -199,7 +201,7 @@ svg * {
 
 #tblContainer {
   width: 98.7%;
-  margin: 5px;
+  margin: 5px 5px 10px 5px;
   overflow: auto;
   overflow-y: hidden;
   white-space: nowrap;
