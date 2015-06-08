@@ -323,4 +323,9 @@ svg * {
   #overlay{
     display: none;
   }
+
+  #tblContainer{
+    overflow: visible;
+    white-space: pre-wrap;
+  }
 }
