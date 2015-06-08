@@ -43,7 +43,7 @@ header {
   width: 800px;
   margin: auto; /* centers the contents including the slider and the graph */
   margin-top: 60px;
-  padding-bottom: 100px;
+  margin-bottom: 100px;
   clear: both;
 }
 
@@ -310,6 +310,10 @@ svg * {
   .spanText{ /* takes out everything inside the span
     including the buttons; especially the texts */
     display: none;
+  }
+
+  #content{
+    margin-bottom: 0px;
   }
 
   #slider-range{
