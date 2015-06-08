@@ -3,7 +3,6 @@
 var ev;
 var openFile = function(openfile) {
   ev = openfile;
-  //event = jQuery.extend(true,{},openFile);
   Alert.render("Choose a type of graph: ");
 };
 
