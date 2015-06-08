@@ -18,7 +18,6 @@ require(["javascript/audioPlayer.js"]);
 require(["javascript/arrayCollection.js"]);
 require(["javascript/global.js"]);
 require(["javascript/summary.js"]);
-
 var player;
 var overlay;
 var summary;
@@ -105,7 +104,8 @@ var openColorEditor = function () {
             dialogbox.style.top = "100px";
             dialogbox.style.display = "block";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='Line'>Line</option><option onclick='Alert.ok()' value='Bar'>Bar</option></select>";
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='Line'>Line</option><option value='Bar'>Bar</option></select>";
+            document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert.ok()'>Submit</button>"
         }
         this.ok = function () {
             var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
