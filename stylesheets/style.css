@@ -295,3 +295,28 @@ svg * {
   display: inline-block;
   vertical-align: middle;
 }
+
+/* media query for printing */
+@media print{
+  #title{
+    text-shadow: none;
+    color: #000;
+  }
+
+  .inputBtnSection{
+    display: none;
+  }
+
+  .spanText{ /* takes out everything inside the span
+    including the buttons; especially the texts */
+    display: none;
+  }
+
+  #slider-range{
+    display: none;
+  }
+
+  #overlay{
+    display: none;
+  }
+}
