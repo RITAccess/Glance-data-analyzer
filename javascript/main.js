@@ -40,7 +40,7 @@ var loadData = function(data){
   linkSlickTable(chart,player,overlay, summary);
   document.getElementById('color-expand').style.display = 'block';
   document.getElementById('plot-header').style.display = 'block';
-
+  document.getElementById('downloadCSV').style.display = 'block'
 }
 
 // The play button
@@ -65,7 +65,7 @@ function download() {
 				if(k+1<chart.datasets[i].points.length)
 				s+= ",";
 			}
-			s+= "\n";		
+			s+= "\n";
 		}
 		s+=chart.datasets[i].points[j].value;
 		if(j+1 < chart.datasets[i].points.length)
