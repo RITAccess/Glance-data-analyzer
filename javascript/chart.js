@@ -11,7 +11,10 @@ var loadChart = function(data, collection){
     datasets: chartdata.data
   };
   var ctx = document.getElementById("myChart").getContext("2d");
+  if(type === "line")
   var myLineChart = new Chart(ctx).Line(data);
+  else if(type === "bar")
+  var myLineChart = new Chart(ctx).Bar(data);
   document.getElementById("myChart").setAttribute("title","chart read out"); // by setting the attribute we can make the chart accessible
   for(var i =0; i<data.datasets.length;i++){
 	//Setting input functions for each line in order to set new colors
@@ -27,8 +30,13 @@ var loadChart = function(data, collection){
 				    chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
 				    chart.datasets[index].pointColor = "rgba("+ color +", 1)";
 				    chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
+					if(type==="line"){
 					for(var i = 0; i<chart.datasets[index].points.length;i++){
-						chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
+					   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
+					}
+					}
+					else if(type==="bar"){
+					   chart.datasets[index].fillColor= "rgba("+ color +", 1)";
 					}
 					chart.update();						 
 				}
@@ -44,8 +52,10 @@ var loadChart = function(data, collection){
 				    chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
 				    chart.datasets[index].pointColor = "rgba("+ color +", 1)";
 				    chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
+					if(type==="line"){
 					for(var i = 0; i<chart.datasets[index].points.length;i++){
 					   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
+					}
 					}
 					chart.update();
 				}
@@ -103,6 +113,9 @@ function dataset(data, collection) {
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba("+ color +", 1)",
       data: data[i]
+    }
+    if(type === "bar"){
+	line.fillColor = line.strokeColor;
     }
     dataArray.push(line);
     // log color into color editor

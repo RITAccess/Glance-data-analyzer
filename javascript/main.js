@@ -23,6 +23,7 @@ var player;
 var overlay;
 var summary;
 var chart;
+var type;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function(data){
@@ -79,9 +80,16 @@ function download() {
   pom.setAttribute('download', "Data Analyzer.csv");
 
   pom.style.display = 'none';
-  document.body.appendChild(pom);
+  if(document.createEvent){
+   var e = document.createEvent('MouseEvents');
+        e.initEvent('click' ,true ,true);
+        pom.dispatchEvent(e);
+        return true;
+}
 
-  pom.click();
+  //document.body.appendChild(pom);
 
-  document.body.removeChild(pom);
+  //pom.click();
+
+  //document.body.removeChild(pom);
 }

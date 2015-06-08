@@ -2,6 +2,7 @@
 // Opens a file
 var openFile = function(event) {
   var input = event.target;
+  type = askType();
   var colorlist = document.getElementById("colors");
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
@@ -22,4 +23,23 @@ var openFile = function(event) {
 var loadListener = function(){
   document.getElementById('files').addEventListener('change', openFile, false);
 
+}
+
+function askType(){
+	var type = prompt("Enter desired chart type", "Line");
+	if(!type){
+		return "line";
+	}
+	else if(type.toLowerCase() === "bar"){
+		//console.log("bar");
+		return "bar";
+	}
+	else if(type.toLowerCase() === "line"){
+		//console.log("line");
+		return "line";
+	}
+	else{
+		//console.log("line");
+		return "line";
+	}
 }
