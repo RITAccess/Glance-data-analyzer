@@ -109,9 +109,7 @@ var openColorEditor = function () {
         }
         this.ok = function () {
             var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
-            console.log(e);
             type = e.options[e.selectedIndex].value.toLowerCase();
-            console.log(type);
             document.getElementById('dialogbox').style.display = "none";
             document.getElementById('dialogoverlay').style.display = "none";
             loadFile();

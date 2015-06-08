@@ -36,7 +36,10 @@ var loadChart = function(data, collection){
 					}
 					}
 					else if(type==="bar"){
-					   chart.datasets[index].fillColor= "rgba("+ color +", 1)";
+					   for(var i = 0; i<chart.datasets[index].bars.length;i++){
+          chart.datasets[index].bars[i].fillColor= "rgba("+ color +", 1)";
+          chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+      }
 					}
 					chart.update();						 
 				}
@@ -57,6 +60,12 @@ var loadChart = function(data, collection){
 					   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
 					}
 					}
+          else if(type==="bar"){
+             for(var i = 0; i<chart.datasets[index].bars.length;i++){
+          chart.datasets[index].bars[i].fillColor= "rgba("+ color +", 1)";
+          chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+      }
+          }
 					chart.update();
 				}
 				this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margin-right: 5px;");
@@ -77,7 +86,10 @@ var loadChart = function(data, collection){
 			}
       }
       else if(type === "bar"){
-        chart.datasets[index].fillColor=transparent;
+        for(var i = 0; i<chart.datasets[index].bars.length;i++){
+          chart.datasets[index].bars[i].fillColor= transparent;
+          chart.datasets[index].bars[i].strokeColor= transparent;
+      }
       }
 			chart.update();						 
 		}
@@ -87,9 +99,17 @@ var loadChart = function(data, collection){
 			chart.datasets[index].strokeColor = color;
 			chart.datasets[index].pointColor = color;
 			chart.datasets[index].pointHighlightStroke = color;
+      if(type === "line"){
 			for(var i = 0; i<chart.datasets[index].points.length;i++){
 			    chart.datasets[index].points[i].fillColor= color;
 			}
+    }
+      else if(type === "bar"){
+        for(var i = 0; i<chart.datasets[index].bars.length;i++){
+          chart.datasets[index].bars[i].fillColor= color;
+          chart.datasets[index].bars[i].strokeColor= color;
+      }
+      }
 			chart.update();
 		}
 		};
