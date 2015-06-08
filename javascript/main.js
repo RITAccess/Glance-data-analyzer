@@ -80,12 +80,17 @@ function download() {
   pom.setAttribute('download', "Data Analyzer.csv");
 
   pom.style.display = 'none';
+    if(pom.download !== undefined){
+	pom.download = "Data Analyzer.csv";
+ }
   if(document.createEvent){
    var e = document.createEvent('MouseEvents');
         e.initEvent('click' ,true ,true);
         pom.dispatchEvent(e);
         return true;
-}
+	}
+  var query = '?download';
+  window.open(pom + query);
 
   //document.body.appendChild(pom);
 
