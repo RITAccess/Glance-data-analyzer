@@ -152,6 +152,20 @@ svg * {
 }
 /***********************************/
 
+#downloadCSV{
+    cursor: pointer;
+    background: #FFF;
+    font-size:20px;
+    padding:10px;
+    color:#000;
+    font-weight: bold;
+    box-shadow: 0px 5px 10px #000;
+    text-shadow: none;
+    border: 2px solid #FFF;
+    border-radius: 5px;
+    float: right;
+}
+
 #audioSpan {
   float: right;
   position: absolute;
@@ -323,9 +337,10 @@ svg * {
   #overlay{
     display: none;
   }
-
+/*
   #tblContainer{
     overflow: visible;
     white-space: pre-wrap;
+*/
   }
 }
