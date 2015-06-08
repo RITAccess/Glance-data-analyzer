@@ -15,14 +15,14 @@
 <body>
   <header>
     <span id="title"> Data Analyzer </span>
-    <div class="inputBtnSection">
+    <div class="inputBtnSection no-print">
       <label class="fileUpload">
           <input id="files" type="file" class="upload" />
           <span class="uploadBtn">Load CSV</span>
       </label>
     </div>
     <output id="list"></output>
-    <span id="audioSpan" class="spanText" style="display: none">
+    <span id="audioSpan" style="display: none" class="no-print">
       <button id="playButton" onclick="playStopAudioButton()" title="Play Toggle">
         <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
       line <select id="lineDropdown" class='drop-down' title="Line Selector"></select>
@@ -30,8 +30,8 @@
     </span>
   </header>
   <div id="content">
-    <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" role=chart-slider></div>
-    <svg id="overlay" width="800" height="400" style='display:none;'>
+    <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" role=chart-slider class="no-print"></div>
+    <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
       <rect id="background" x="0" y="0" width="800" height="400" />
       <rect id="selection" x="0" y="0" width="800" height="400" />
     </svg>
@@ -41,7 +41,7 @@
       <div id="tblContainer" tabindex="0" title="Data Plot">
 	       <div id="slickTable" style="width:100%;"></div>
       </div> <!-- end id="tblContainer" -->
-      <button id="downloadCSV" onclick="download()" style="display:none;">Download CSV</button>
+      <button id="downloadCSV" onclick="download()" style="display:none;" class="no-print">Download CSV</button>
     </div>
     <div id='color-expand' style="display:none;" tabindex="0">
       <div id='color-header' onclick="openColorEditor()" tabindex="1">Line Data</div>
