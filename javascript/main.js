@@ -1,7 +1,6 @@
 "use strict"; // strict mode syntax
-require(["libs/jquery/jquery-1.11.2.js"]);
+//require(["libs/jquery/jquery-1.11.2.js"]);
 require(["libs/jquery/jquery-ui.js"]);
-require(["libs/handsontable/handsontable.full.min.js"]);
 require(["libs/PapaParse/papaparse.min.js"]);
 require(["libs/chartjs/Chart.js"]);
 require(["libs/jsfx/audio.js"], function(audio){
