@@ -296,6 +296,7 @@ svg * {
   vertical-align: middle;
 }
 
+/* media query for printing */
 @media print{
   #title{
     text-shadow: none;
@@ -306,10 +307,8 @@ svg * {
     display: none;
   }
 
-  #playButton{
-    display: none;
-  }
-  .drop-down{
+  .spanText{ /* takes out everything inside the span
+    including the buttons; especially the texts */
     display: none;
   }
 }
