@@ -27,6 +27,7 @@ var loadSlickTable = function(fileData){
 	autoHeight: true, //these three just make the
 	forceFitColumns: true, //table look nice/fit
 	fullWidthRows: true,
+	rowHeight: 28
   };
 
   $(function () {
