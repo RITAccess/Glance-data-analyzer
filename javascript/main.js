@@ -78,23 +78,16 @@ function download() {
   var pom = document.createElement('a');
   pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(s));
   pom.setAttribute('download', "Data Analyzer.csv");
-
   pom.style.display = 'none';
-    if(pom.download !== undefined){
-	pom.download = "Data Analyzer.csv";
- }
-  if(document.createEvent){
-   var e = document.createEvent('MouseEvents');
-        e.initEvent('click' ,true ,true);
-        pom.dispatchEvent(e);
-        return true;
+  if(typeof safari !=="undefined"){
+	pom.href = "data:"+pom.href.replace(/^data:([\w\/\-\+]+)/, u);
+        if(!window.open(pom.href)){ // popup blocked, offer direct download:
+	if(confirm("Displaying New Document\n\nUse Save As... to download, then click back to return to this page.")){ location.href=url; }
 	}
-  var query = '?download';
-  window.open(pom + query);
-
-  //document.body.appendChild(pom);
-
-  //pom.click();
-
-  //document.body.removeChild(pom);
+}
+  else{
+  document.body.appendChild(pom);
+  pom.click();
+  document.body.removeChild(pom);
+  }
 }
