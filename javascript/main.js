@@ -57,6 +57,7 @@ var openColorEditor = function () {
     function download() {
         var s;
         //retrieve chart data and put into a csv file
+        if(type === "line"){
         for (var i = 0; i < chart.datasets.length; i++) {
             for (var j = 0; j < chart.datasets[i].points.length; j++) {
                 if (i === 0 && j === 0) {
@@ -71,23 +72,32 @@ var openColorEditor = function () {
             }
             s += "\n";
         }
+    }
+        else if(type === "bar"){
+            for (var i = 0; i < chart.datasets.length; i++) {
+            for (var j = 0; j < chart.datasets[i].bars.length; j++) {
+                if (i === 0 && j === 0) {
+                    for (var k = 0; k < chart.datasets[i].bars.length; k++) {
+                        s += chart.datasets[i].bars[k].label;
+                        if (k + 1 < chart.datasets[i].bars.length) s += ",";
+                    }
+                    s += "\n";
+                }
+                s += chart.datasets[i].bars[j].value;
+                if (j + 1 < chart.datasets[i].bars.length) s += ",";
+            }
+            s += "\n";
+        }
+
+        }
         s = s.substring(9); //Do this to remove strange 'undefined' that is appended to beginning of file
         var pom = document.createElement('a');
         pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(s));
         pom.setAttribute('download', "Data Analyzer.csv");
         pom.style.display = 'none';
-        if (typeof safari !== "undefined") {
-            pom.href = "data:" + pom.href.replace(/^data:([\w\/\-\+]+)/, u);
-            if (!window.open(pom.href)) { // popup blocked, offer direct download:
-                if (confirm("Displaying New Document\n\nUse Save As... to download, then click back to return to this page.")) {
-                    location.href = url;
-                }
-            }
-        } else {
             document.body.appendChild(pom);
             pom.click();
             document.body.removeChild(pom);
-        }
     }
 
 
