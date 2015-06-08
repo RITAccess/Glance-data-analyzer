@@ -57,22 +57,6 @@ svg * {
   fill-opacity: 0.0;
 }
 
-#chart-key { /* key for chart shape */
-  font-weight: bold;
-  border-radius: 5px;
-  border: 3px solid #000;
-  font-size: 20px;
-  width: 100%;
-  margin: 40px 0;
-  padding-top: 10px;
-}
-
-#chart-key-header {
-  text-align: center;
-  width: 100%;
-  margin: auto;
-}
-
 /*
 .slider1 {
   width: 800px;
@@ -152,6 +136,23 @@ svg * {
 }
 /***********************************/
 
+#downloadCSV{
+    cursor: pointer;
+    background: #FFF;
+    font-size:20px;
+    padding:10px;
+    color:#000;
+    font-weight: bold;
+    box-shadow: 0px 5px 10px #000;
+    text-shadow: none;
+    border: 2px solid #FFF;
+    border-radius: 5px;
+    margin-right: 10px;
+    /* positioning button to bottom right of parent container dataPlot */
+    position: absolute;
+    right: 0;
+}
+
 #audioSpan {
   float: right;
   position: absolute;
@@ -200,7 +201,7 @@ svg * {
 
 #tblContainer {
   width: 98.7%;
-  margin: 5px;
+  margin: 5px 5px 10px 5px;
   overflow: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -212,8 +213,9 @@ svg * {
   border-radius: 5px;
   padding-top: 20px;
   padding-bottom: 25px;
-  margin: 20px 0;
+  margin: 20px 0 50px 0;
   font-size: 20px;
+  position: relative; /* part of making download button bottom of div*/
 }
 
 #plot-header {
@@ -252,6 +254,7 @@ svg * {
   */
   border-radius: 5px;
   border: 3px solid #000;
+  margin-top: 35px;
   width: 100%;
   padding: 10px 0;
 }
@@ -322,5 +325,11 @@ svg * {
 
   #overlay{
     display: none;
+  }
+/*
+  #tblContainer{
+    overflow: visible;
+    white-space: pre-wrap;
+*/
   }
 }

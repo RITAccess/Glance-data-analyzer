@@ -39,9 +39,8 @@ var loadData = function(data){
   summary.dataSummary();
   linkSlickTable(chart,player,overlay, summary);
   document.getElementById('color-expand').style.display = 'block';
-  //document.getElementById('dataSummary').style.display = 'block';
   document.getElementById('plot-header').style.display = 'block';
-
+  document.getElementById('downloadCSV').style.display = 'block'
 }
 
 // The play button
@@ -53,4 +52,36 @@ var playStopAudioButton = function(){
 var openColorEditor = function(){
   var editor = document.getElementById('color-editor');
   editor.style.display = editor.style.display == 'inline' ? 'none' : 'block';
+}
+//Download CSV file of current chart
+function download() {
+  var s;
+  //retrieve chart data and put into a csv file
+  for(var i = 0; i< chart.datasets.length; i++){
+  	for(var j = 0; j<chart.datasets[i].points.length; j++){
+		if(i===0&&j===0){
+			for(var k = 0; k<chart.datasets[i].points.length; k++){
+				s+= chart.datasets[i].points[k].label;
+				if(k+1<chart.datasets[i].points.length)
+				s+= ",";
+			}
+			s+= "\n";
+		}
+		s+=chart.datasets[i].points[j].value;
+		if(j+1 < chart.datasets[i].points.length)
+		s+=",";
+	}
+	s+="\n";
+  }
+  s = s.substring(9); //Do this to remove strange 'undefined' that is appended to beginning of file
+  var pom = document.createElement('a');
+  pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(s));
+  pom.setAttribute('download', "Data Analyzer.csv");
+
+  pom.style.display = 'none';
+  document.body.appendChild(pom);
+
+  pom.click();
+
+  document.body.removeChild(pom);
 }
