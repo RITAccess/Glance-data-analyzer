@@ -43,7 +43,7 @@ header {
   width: 800px;
   margin: auto; /* centers the contents including the slider and the graph */
   margin-top: 60px;
-  padding-bottom: 100px;
+  margin-bottom: 100px;
   clear: both;
 }
 
@@ -312,11 +312,20 @@ svg * {
     display: none;
   }
 
+  #content{
+    margin-bottom: 0px;
+  }
+
   #slider-range{
     display: none;
   }
 
   #overlay{
     display: none;
+  }
+
+  #tblContainer{
+    overflow: visible;
+    white-space: pre-wrap;
   }
 }
