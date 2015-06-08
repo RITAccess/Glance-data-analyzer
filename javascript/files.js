@@ -29,22 +29,3 @@ var loadListener = function(){
   document.getElementById('files').addEventListener('change', openFile, false);
 
 }
-
-function askType(){
-	var type = prompt("Enter desired chart type", "Line");
-	if(!type){
-		return "line";
-	}
-	else if(type.toLowerCase() === "bar"){
-		//console.log("bar");
-		return "bar";
-	}
-	else if(type.toLowerCase() === "line"){
-		//console.log("line");
-		return "line";
-	}
-	else{
-		//console.log("line");
-		return "line";
-	}
-}

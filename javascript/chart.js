@@ -71,9 +71,14 @@ var loadChart = function(data, collection){
 			chart.datasets[index].strokeColor = transparent;
 			chart.datasets[index].pointColor = transparent;
 			chart.datasets[index].pointHighlightStroke = transparent;
+      if(type==="line"){
 			for(var i = 0; i<chart.datasets[index].points.length;i++){
 			    chart.datasets[index].points[i].fillColor= transparent;
 			}
+      }
+      else if(type === "bar"){
+        chart.datasets[index].fillColor=transparent;
+      }
 			chart.update();						 
 		}
 		else{

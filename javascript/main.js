@@ -104,12 +104,12 @@ var openColorEditor = function () {
             dialogbox.style.left = (winW / 2) - (550 * .5) + "px";
             dialogbox.style.top = "100px";
             dialogbox.style.display = "block";
-            document.getElementById('dialogboxhead').innerHTML = "Acknowledge This Message";
-            document.getElementById('dialogboxbody').innerHTML = dialog;
-            document.getElementById('dialogboxfoot').innerHTML = "<select><option onclick='Alert.ok()' value='Line'>Line</option><option onclick='Alert.ok()' value='Bar'>Bar</option></select>"
+            document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='Line'>Line</option><option onclick='Alert.ok()' value='Bar'>Bar</option></select>";
         }
         this.ok = function () {
-            var e = document.getElementById('dialogboxfoot').firstChild;
+            var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
+            console.log(e);
             type = e.options[e.selectedIndex].value.toLowerCase();
             console.log(type);
             document.getElementById('dialogbox').style.display = "none";
