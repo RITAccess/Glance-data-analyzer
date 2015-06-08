@@ -76,7 +76,7 @@ function download() {
   s = s.substring(9); //Do this to remove strange 'undefined' that is appended to beginning of file
   var pom = document.createElement('a');
   pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(s));
-  pom.setAttribute('download', "myChart.csv");
+  pom.setAttribute('download', "Data Analyzer.csv");
 
   pom.style.display = 'none';
   document.body.appendChild(pom);
