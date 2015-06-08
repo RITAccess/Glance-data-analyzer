@@ -71,6 +71,6 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		//update chart and overlay
 		chart.update();
 		summary.update();
-        overlay.updateSize(chart); 
+        	//overlay.updateSize(chart); 
 	});
 }

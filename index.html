@@ -22,8 +22,9 @@
       </label>
     </div>
     <output id="list"></output>
-    <span id="audioSpan" style="display: none">
-      <button id="playButton" onclick="playStopAudioButton()" title="Play Toggle"><i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
+    <span id="audioSpan" class="spanText" style="display: none">
+      <button id="playButton" onclick="playStopAudioButton()" title="Play Toggle">
+        <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
       line <select id="lineDropdown" class='drop-down' title="Line Selector"></select>
       at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" title="Speed Multiplier"/>
     </span>
@@ -38,14 +39,15 @@
     <div id="dataPlot">
       <div id="plot-header" style="display:none;"> Data Plot </div>
       <div id="tblContainer" tabindex="0" title="Data Points">
-	  <div id="slickTable" style="width:100%;"></div></div>
-	  </div>
+	  <div id="slickTable" style="width:100%;"></div>
+      </div>
+    </div>
     <div id='color-expand' style="display:none;" tabindex="0">
       <div id='color-header' onclick="openColorEditor()" tabindex="1">Line Data</div>
       <div id="color-editor" class="color-editor-input" ><ol id="colors"></ol></div>
     </div>
   </div><!-- end div id="content"-->
-  
+
 <script src="libs/SlickGrid/lib/firebugx.js"></script>
 <script src="libs/SlickGrid/lib/jquery-1.7.min.js"></script>
 <script src="libs/SlickGrid/lib/jquery-ui-1.8.16.custom.min.js"></script>
