@@ -311,4 +311,12 @@ svg * {
     including the buttons; especially the texts */
     display: none;
   }
+
+  #slider-range{
+    display: none;
+  }
+
+  #overlay{
+    display: none;
+  }
 }
