@@ -300,7 +300,8 @@ svg * {
 
 /* media query for printing */
 @media print{
-  #title{
+  header{
+    box-shadow: none;
     text-shadow: none;
     color: #000;
   }
@@ -320,8 +321,7 @@ svg * {
   }
   */
 
-  .no-print, .no-print *
-    {
-        display: none !important;
-    }
+  .no-print, .no-print * {
+    display: none !important;
+  }
 } /* end media print */
