@@ -185,8 +185,12 @@ function dataset(data, collection) {
 		var textInput = document.createElement('input');
 		var toggleBox = document.createElement('input');
 		var keyValue = document.createElement('p');
+    if(type === "line")
 		var keyLabel = document.createTextNode(shapes[(i-1)%6]);
-		if(type === "bar"){
+		else if(type === "scatter"){
+      var keyLabel = document.createTextNode(shapes[0]);
+    }
+    else if(type === "bar"){
 		keyLabel = document.createElement('span');
 		keyLabel.setAttribute("style", "background:"+newColor);
 		keyLabel.setAttribute("class", "colorblock");
