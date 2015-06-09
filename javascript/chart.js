@@ -10,7 +10,7 @@ var loadChart = function(data, type, collection){
 		datasetFill: false,
 		datasets: chartdata.data
 	};
-	
+
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLineChart;
 	if(type === "scatter")
@@ -20,8 +20,8 @@ var loadChart = function(data, type, collection){
 	else
 	  myLineChart = new Chart(ctx).Line(data);
 	document.getElementById("myChart").setAttribute("title","chart read out"); // by setting the attribute we can make the chart accessible
-  
-  
+
+
 	for(var i =0; i<data.datasets.length;i++){
 		//Setting input functions for each line in order to set new colors
 		chartdata.inputboxes[i].oninput = function(){
@@ -47,7 +47,7 @@ var loadChart = function(data, type, collection){
 								chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";
 							}
 						}
-						chart.update();						 
+						chart.update();
 					}
 					if(type === "line" || type === "scatter")
 						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margine-right: 5px;");
@@ -66,7 +66,7 @@ var loadChart = function(data, type, collection){
 						if(type==="line" || type==="scatter"){
 							for(var i = 0; i<chart.datasets[index].points.length;i++){
 								chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
-							}	
+							}
 						}
 						else if(type==="bar"){
 							for(var i = 0; i<chart.datasets[index].bars.length;i++){
@@ -80,7 +80,7 @@ var loadChart = function(data, type, collection){
 						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margine-right: 5px;");
 					else if(type === "bar")
 						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; margine-right: 5px;");
-				}
+          }
 			};
 		//Setting behavior for all toggleboxes
 		chartdata.inputboxes[i].nextSibling.onclick = function(){
@@ -102,7 +102,7 @@ var loadChart = function(data, type, collection){
 						chart.datasets[index].bars[i].strokeColor= transparent;
 					}
 				}
-				chart.update();						 
+				chart.update();
 			}
 			else{
 				if(type === "bar")
@@ -182,7 +182,7 @@ function dataset(data, collection) {
 		green += colorIncrease;
 		blue += colorIncrease - 15;
 	}
-	
+
 	var returndata = new Object();
 	returndata.data = dataArray;
 	returndata.inputboxes = inputBoxArray;
