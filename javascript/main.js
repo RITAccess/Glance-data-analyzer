@@ -116,13 +116,17 @@ var openColorEditor = function () {
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
             document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='Line'>Line</option><option value='Bar'>Bar</option></select>";
             document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert.ok()'>Submit</button>"
+            document.getElementById('dialogbox').style.visibility = "visible";
+            document.getElementById('dialogoverlay').style.visibility = "visible";
         }
         this.ok = function () {
-            var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
-            type = e.options[e.selectedIndex].value.toLowerCase();
-            document.getElementById('dialogbox').style.display = "none";
-            document.getElementById('dialogoverlay').style.display = "none";
-            loadFile();
+          var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
+          type = e.options[e.selectedIndex].value.toLowerCase();
+          loadFile();
+
+          document.getElementById('dialogbox').style.visibility = "hidden";
+          document.getElementById('dialogoverlay').style.visibility = "hidden";
+          document.getElementsByClassName('uploadBtn')[0].focus();
         }
     }
 var Alert = new CustomAlert();
