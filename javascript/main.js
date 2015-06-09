@@ -9,6 +9,7 @@ require(["libs/jsfx/audio.js"], function (audio) {
 });
 require(["javascript/files.js"], function (print) {
     loadListener();
+    createListener();
 });
 require(["javascript/slickTable.js"]);
 require(["javascript/chart.js"]);
@@ -30,7 +31,7 @@ var loadData = function (data) {
     document.querySelector('#overlay').setAttribute('style', '');
     document.querySelector('#slickTable').innerHTML = '';
     var slickTable = loadSlickTable(data.data);
-    chart = loadChart(data.data);
+    chart = loadChart(data.data, type);
     player = new AudioPlayer();
     overlay = new Overlay(data);
     overlay.updateSize(chart);
@@ -39,6 +40,8 @@ var loadData = function (data) {
     summary = new DataSummary(collection);
     summary.dataSummary();
     linkSlickTable(chart, player, overlay, summary);
+    // document.getElementById('addNewRow').addEventListener('click', addRow(data));
+    // document.getElementById('addNewCol').addEventListener('click', addColumn(data));
     document.getElementById('color-expand').style.display = 'block';
     document.getElementById('plot-header').style.display = 'block';
     document.getElementById('downloadCSV').style.display = 'block';
@@ -99,7 +102,31 @@ var openColorEditor = function () {
         document.body.appendChild(pom);
         pom.click();
         document.body.removeChild(pom);
+
+
+        document.body.removeChild(pom);
     }
+
+    // Place a new row on the end of the existing table
+    // function addRow(data) {
+    //   var newRow = [data.data.length];
+    //   for (var i = 0; i < newRow.length; i++) {
+    //     newRow[i] = 0;
+    //   }
+    //   data.data.push(newRow);
+    // }
+
+    // // Place a new column on the end of the existing table
+    // function addColumn(data) {
+    //   for (var i = 0; i < data.data.length; i++) {
+    //       console.log(data.data[i]);
+    //     for (var j = 0; j < data.data[i].length; i++) {
+    //         data.data[i].push(0);
+    //     }
+    //   }
+
+    //   data.data[0][data.data[0].length - 1] = "Label " + data.data[0].length;
+    // }
 
 
     //File Alert Box
@@ -115,7 +142,7 @@ var openColorEditor = function () {
             dialogbox.style.top = "100px";
             dialogbox.style.display = "block";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='Line'>Line</option><option value='Bar'>Bar</option></select>";
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='Line'>Line</option><option value='Bar'>Bar</option><option value='scatter'>Scatter Plot</option></select>";
             document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert.ok()'>Submit</button>"
             document.getElementById('dialogbox').style.visibility = "visible";
             document.getElementById('dialogoverlay').style.visibility = "visible";
@@ -124,30 +151,53 @@ var openColorEditor = function () {
             var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
             type = e.options[e.selectedIndex].value.toLowerCase();
             loadFile();
-            if(type === "line")
-              document.getElementById("lineRadioButton").checked = true;
-            else if(type === "bar")
-              document.getElementById("barRadioButton").checked=true;
-            else if(type === "scatter")
-              document.getElementById("scatterRadioButton").checked = true;
+            if (type === "line") document.getElementById("lineRadioButton").checked = true;
+            else if (type === "bar") document.getElementById("barRadioButton").checked = true;
+            else if (type === "scatter") document.getElementById("scatterRadioButton").checked = true;
             document.getElementById('dialogbox').style.visibility = "hidden";
             document.getElementById('dialogoverlay').style.visibility = "hidden";
             document.getElementsByClassName('uploadBtn')[0].focus();
         }
     }
-var Alert = new CustomAlert();
 
+    function CustomAlert2() {
+        this.render = function (dialog) {
+            var winW = window.innerWidth;
+            var winH = window.innerHeight;
+            var dialogoverlay = document.getElementById('dialogoverlay');
+            var dialogbox = document.getElementById('dialogbox');
+            dialogoverlay.style.display = "block";
+            dialogoverlay.style.height = winH + "px";
+            dialogbox.style.left = (winW / 2) - (550 * .5) + "px";
+            dialogbox.style.top = "100px";
+            dialogbox.style.display = "block";
+            document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>Line</option><option value='Bar'>Bar</option></select><p>How many rows?</p><input id='rows' type='text' value='0' /><p>How many columns?</p><input id='columns' type='text' value='0' />";
+            document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert2.ok()'>Submit</button>"
+        }
+        this.ok = function () {
+            var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
+            type = e.options[e.selectedIndex].value.toLowerCase();
+            createFile(document.getElementById('rows').value, document.getElementById('columns').value);
 
-    //Radio Button Chart/Graph Type Selection
-    var rType = function(rType){
-      var selType = document.getElementById("rTypeSel");
-      if(selType.firstChild.nextSibling.checked)
-        type= "line";
-      else if(document.getElementById("barRadioButton").checked){
-        type= "bar";
-      }
-      else if(document.getElementById("scatterRadioButton").checked){
-        type= "scatter";
-      }
-      loadFile();
+            document.getElementById('dialogbox').style.visibility = "hidden";
+            document.getElementById('dialogoverlay').style.visibility = "hidden";
+            document.getElementsByClassName('createBtn')[0].focus();
+
+        }
     }
+var Alert = new CustomAlert();
+var Alert2 = new CustomAlert2();
+
+
+//Radio Button Chart/Graph Type Selection
+var rType = function (rType) {
+    var selType = document.getElementById("rTypeSel");
+    if (selType.firstChild.nextSibling.checked) type = "line";
+    else if (document.getElementById("barRadioButton").checked) {
+        type = "bar";
+    } else if (document.getElementById("scatterRadioButton").checked) {
+        type = "scatter";
+    }
+    loadFile();
+}

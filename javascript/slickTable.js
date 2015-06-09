@@ -1,5 +1,5 @@
 "use strict"; // strict mode syntax
-var grid = null; 
+var grid = null;
 // initial table properties, after getting the data from the file.
 var loadSlickTable = function(fileData){
 	var c1 = document.getElementById('slickTable');
@@ -37,7 +37,7 @@ var loadSlickTable = function(fileData){
 			d["id"] = i;
 			for(var j = 0; j < columns.length; j++){
 				if(i > 0){
-					d[j] = parseInt(fileData[i][j]);
+					d[j] = parseFloat(fileData[i][j]);
 				}
 				else {
 					d[j] = fileData[i][j];
@@ -55,15 +55,15 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		var row = args.row;
 		var col = args.cell;
 		var newVal = grid.getData()[row][col];
-		
-		// if a label 
-		if (row == 0){			
+
+		// if a label
+		if (row == 0){
 			chart.scale.xLabels[col] = newVal;
 		}
-		// not a label - check to see if it's a number. 
+		// not a label - check to see if it's a number.
 		// If not, do nothing
 		else if ((!isNaN(newVal)) && (newVal != "")){
-			newVal = parseInt(newVal);
+			newVal = parseFloat(newVal);
 			//Update audio with new value
 			player.changeLine(row-1,col,newVal);
 			// change value in chart
@@ -75,6 +75,6 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		//update chart and overlay
 		chart.update();
 		summary.update();
-        	//overlay.updateSize(chart); 
+        	//overlay.updateSize(chart);
 	});
 }
