@@ -1138,7 +1138,6 @@
 
 	Chart.Element.extend = inherits;
 
-
 	Chart.Point = Chart.Element.extend({
 		display: true,
 		inRange: function(chartX,chartY){
@@ -1161,28 +1160,6 @@
 				ctx.fill();
 				ctx.stroke();
 			}
-			/*else if(this.display){
-				var ctx = this.ctx;
-				ctx.beginPath();
-				//CHANGED SOMETHING HERE TODO JM
-				//ctx.arc(this.x, this.y, this.radius, 0, 1);
-				//TODO DUN DUN DUNNNN	
-				ctx.lineTo(this.x- this.radius, this.y + this.radius);			
-				ctx.lineTo(this.x , this.y - this.radius);
-				ctx.lineTo(this.x + this.radius, this.y + this.radius);
-				//ctx.lineTo(this.x - this.radius, this.y - this.radius);
-				//</TODO> DUN DUN DUNNNNN
-				ctx.closePath();
-				//console.log(this.fillColor);
-				ctx.strokeStyle = this.strokeColor;
-				ctx.lineWidth = this.strokeWidth;
-
-				ctx.fillStyle = this.fillColor;
-
-				ctx.fill();
-				ctx.stroke();
-			}*/
-
 
 			//Quick debug for bezier curve splining
 			//Highlights control points and the line between them.
@@ -2022,7 +1999,6 @@
 			}, 50);
 		};
 	})());
-
 
 	if (amd) {
 		define(function(){
