@@ -50,8 +50,11 @@ var loadChart = function(data, type, collection){
 					}
 					chart.update();						 
 				}
-				this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margine-right: 5px;");
-	        }
+        if(type === "line")
+				  this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margine-right: 5px;");
+	      else if(type === "bar")
+          this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; margine-right: 5px;");
+          }
 		    else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase().split(' ').join('')])){
 			    var rgb = colors[newcolor.toLowerCase().split(' ').join('')];
 			    var r = parseInt(rgb.substring(1,3), 16);
@@ -76,7 +79,10 @@ var loadChart = function(data, type, collection){
           }
 					chart.update();
 				}
-				this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margin-right: 5px;");
+				if(type === "line")
+          this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margine-right: 5px;");
+        else if(type === "bar")
+          this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; margine-right: 5px;");
 			}
         };
 	//Setting behavior for all toggleboxes
@@ -102,7 +108,7 @@ var loadChart = function(data, type, collection){
 			chart.update();						 
 		}
 		else{
-            var color = this.previousSibling.previousSibling.style.color;
+            var color = this.previousSibling.previousSibling.firstChild.style.background;
 			color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
 			chart.datasets[index].strokeColor = color;
 			chart.datasets[index].pointColor = color;
@@ -157,6 +163,11 @@ function dataset(data, collection) {
     var toggleBox = document.createElement('input');
     var keyValue = document.createElement('p');
     var keyLabel = document.createTextNode(shapes[(i-1)%6]);
+    if(type === "bar"){
+      keyLabel = document.createElement('span');
+      keyLabel.setAttribute("style", "background:rgb(" + color + ")");
+      keyLabel.setAttribute("class", "colorblock");
+    }
     inputBoxArray.push(textInput);
     textInput.setAttribute("title", "Enter new line " + i + " color");
     toggleBox.setAttribute("type", "checkbox");
