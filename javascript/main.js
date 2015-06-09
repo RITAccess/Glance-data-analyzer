@@ -1,17 +1,31 @@
 "use strict"; // strict mode syntax
-//require(["libs/jquery/jquery-1.11.2.js"]);
-require(["libs/jquery/jquery-ui.js"]);
+
+//Any file that requires jQuery should be
+//placed within this annon function
+require(["libs/jquery/jquery-1.11.2.js"],function(jquery) {
+  require(["libs/jquery/jquery-ui.js"]);
+  require(["libs/SlickGrid/lib/jquery.event.drag-2.2.js"],function(drag) {
+    require(["libs/SlickGrid/slick.core.js"]);
+    require(["libs/SlickGrid/slick.editors.js"]);
+    require(["libs/SlickGrid/lib/firebugx.js"]);
+    require(["javascript/slickTable.js"]);
+    require(["libs/SlickGrid/slick.grid.js"]);
+  });
+});
+
 require(["libs/PapaParse/papaparse.min.js"]);
 require(["libs/chartjs/Chart.js"]);
+
 require(["libs/jsfx/audio.js"], function (audio) {
     require(["libs/jsfx/jsfx.js"]);
     require(["libs/jsfx/jsfxlib.js"]);
 });
+
 require(["javascript/files.js"], function(print){
   loadListener();
   createListener();
 });
-require(["javascript/slickTable.js"]);
+
 require(["javascript/chart.js"]);
 require(["javascript/overlay.js"]);
 require(["javascript/arrayInfo.js"]);
@@ -19,6 +33,7 @@ require(["javascript/audioPlayer.js"]);
 require(["javascript/arrayCollection.js"]);
 require(["javascript/global.js"]);
 require(["javascript/summary.js"]);
+
 var player;
 var overlay;
 var summary;
@@ -39,8 +54,8 @@ var loadData = function (data) {
     summary = new DataSummary(collection);
     summary.dataSummary();
     linkSlickTable(chart, player, overlay, summary);
-  // document.getElementById('addNewRow').addEventListener('click', addRow(data));
-  // document.getElementById('addNewCol').addEventListener('click', addColumn(data));
+    // document.getElementById('addNewRow').addEventListener('click', addRow(data));
+    // document.getElementById('addNewCol').addEventListener('click', addColumn(data));
     document.getElementById('color-expand').style.display = 'block';
     document.getElementById('plot-header').style.display = 'block';
     document.getElementById('downloadCSV').style.display = 'block'
@@ -101,7 +116,7 @@ var openColorEditor = function () {
             document.body.appendChild(pom);
             pom.click();
             document.body.removeChild(pom);
-    
+
 
   document.body.removeChild(pom);
 }
@@ -121,7 +136,7 @@ var openColorEditor = function () {
 //       console.log(data.data[i]);
 //     for (var j = 0; j < data.data[i].length; i++) {
 //         data.data[i].push(0);
-//     } 
+//     }
 //   }
 
 //   data.data[0][data.data[0].length - 1] = "Label " + data.data[0].length;
@@ -155,7 +170,7 @@ var openColorEditor = function () {
           document.getElementById('dialogbox').style.visibility = "hidden";
           document.getElementById('dialogoverlay').style.visibility = "hidden";
           document.getElementsByClassName('uploadBtn')[0].focus();
-            
+
         }
     }
 
