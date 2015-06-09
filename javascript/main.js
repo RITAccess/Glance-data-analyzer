@@ -63,19 +63,23 @@ var openColorEditor = function () {
         var s;
         //retrieve chart data and put into a csv file
         if(type === "line" || type === "scatter"){
-        for (var i = 0; i < chart.datasets.length; i++) {
-            for (var j = 0; j < chart.datasets[i].points.length; j++) {
-                if (i === 0 && j === 0) {
-                    for (var k = 0; k < chart.datasets[i].points.length; k++) {
-                        s += chart.datasets[i].points[k].label;
-                        if (k + 1 < chart.datasets[i].points.length) s += ",";
-                    }
-                    s += chart.datasets[i].points[j].value;
-                    if (j + 1 < chart.datasets[i].points.length) s += ",";
-                }
-                s += "\n";
-            }
-        } else if (type === "bar") {
+			for (var i = 0; i < chart.datasets.length; i++) {
+				for (var j = 0; j < chart.datasets[i].points.length; j++) {
+					if (i === 0 && j === 0) {
+						for (var k = 0; k < chart.datasets[i].points.length; k++) {
+							s += chart.datasets[i].points[k].label;
+							if (k + 1 < chart.datasets[i].points.length) 
+								s += ",";
+						}
+						s += chart.datasets[i].points[j].value;
+						if (j + 1 < chart.datasets[i].points.length) 
+							s += ",";
+					}
+					s += "\n";
+				}
+			}
+		}		
+		else if (type === "bar") {
             for (var i = 0; i < chart.datasets.length; i++) {
                 for (var j = 0; j < chart.datasets[i].bars.length; j++) {
                     if (i === 0 && j === 0) {
