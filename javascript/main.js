@@ -172,8 +172,8 @@ var openColorEditor = function () {
             dialogbox.style.top = "100px";
             dialogbox.style.display = "block";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>Line</option><option value='Bar'>Bar</option></select><p>How many rows?</p><input id='rows' type='text' value='0' /><p>How many columns?</p><input id='columns' type='text' value='0' />";
-            document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert2.ok()'>Submit</button>"
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>Line</option><option value='Bar'>Bar</option></select><br>Rows: <input id='rows' type='text' value='0' /><br>Columns: <input id='columns' type='text' value='0' />";
+            document.getElementById('dialogboxfoot').innerHTML = "<button>Cancel</button><button onclick='Alert2.reset()'>Reset</button><button onclick='Alert2.ok()'>Submit</button>"
         }
         this.ok = function () {
             var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
