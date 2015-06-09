@@ -189,15 +189,10 @@ var openColorEditor = function () {
             dialogbox.style.top = "100px";
             dialogbox.style.display = "block";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-<<<<<<< HEAD
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>Line</option><option value='Bar'>Bar</option></option><option value='Scatter'>Scatter</option></select><br>Choose number of rows: <input id='rows' type='text' value='0' /><br>Choose number of columns: <input id='columns' type='text' value='0' />";
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>Line</option><option value='Bar'>Bar</option><option value='scatter'>Scatter Plot</option></select><br><label>Choose number of row: </label><input id='rows' type='text' value='0' /><br><label>Choose number of column: </label><input id='columns' type='text' value='0' />";
             document.getElementById('dialogboxfoot').innerHTML = "<button>Cancel</button><input type='reset' value='Reset' /><button onclick='Alert2.ok()'>Submit</button>";
-=======
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>Line</option><option value='Bar'>Bar</option><option value='scatter'>Scatter Plot</option></select><p>How many rows?</p><input id='rows' type='text' value='0' /><p>How many columns?</p><input id='columns' type='text' value='0' />";
-            document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert2.ok()'>Submit</button>"
             document.getElementById('dialogbox').style.visibility = "visible";
             document.getElementById('dialogoverlay').style.visibility = "visible";
->>>>>>> ec5859876db7f6000749e9b754745ca00e712553
         }
         this.ok = function () {
             var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
@@ -227,5 +222,5 @@ var rType = function (rType) {
     }
         document.getElementById("colors").innerHTML="";
         changeType();
-    
+
 }
