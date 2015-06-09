@@ -32,6 +32,7 @@ var loadChart = function(data, type, collection){
 					var g = parseInt(newcolor.substring(3,5), 16);
 					var b = parseInt(newcolor.substring(5), 16);
 					var color = [r, g, b].join(", ");
+          lineColors[index] = "rgba("+ color +", 1)";
 					if(this.nextSibling.checked){
             if(type==="line")
 						chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
@@ -61,6 +62,7 @@ var loadChart = function(data, type, collection){
 					var g = parseInt(rgb.substring(3,5), 16);
 					var b = parseInt(rgb.substring(5), 16);
 					var color = [r, g, b].join(", ");
+          lineColors[index] = "rgba("+ color +", 1)";
 					if(this.nextSibling.checked){
             if(type==="line")
             chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
@@ -156,10 +158,27 @@ function dataset(data, collection) {
 		pointHighlightStroke: "rgba("+ color +", 1)",
 		data: data[i]
 		}
+    //Fill Bar Color
 		if(type === "bar"){
 			line.fillColor = line.strokeColor;
 		}
+    //Put line into data Array
 		dataArray.push(line);
+    //Chech if previous line color existed
+    if(lineColors.length<i){
+      //If not, add it
+      lineColors.push(line.strokeColor);
+    }
+    else{
+      //If so, inherit previous color
+      line.strokeColor = lineColors[i-1];
+      line.pointColor= lineColors[i-1];
+      line.pointHighlightStroke = lineColors[i-1];
+      if(type === "bar"){
+        //Bar will inherit fill color as well
+        line.fillColor = lineColors[i-1];
+      }
+    }
 		// log color into color editor
 		var entry = document.createElement('li');
 		var textInput = document.createElement('input');
@@ -185,7 +204,6 @@ function dataset(data, collection) {
 		green += colorIncrease;
 		blue += colorIncrease - 15;
 	}
-
 	var returndata = new Object();
 	returndata.data = dataArray;
 	returndata.inputboxes = inputBoxArray;

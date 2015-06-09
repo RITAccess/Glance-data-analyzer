@@ -40,6 +40,7 @@ var overlay;
 var summary;
 var chart;
 var type = null;
+var lineColors = [];
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function (data) {
