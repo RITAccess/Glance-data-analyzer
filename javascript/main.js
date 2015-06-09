@@ -40,7 +40,6 @@ var overlay;
 var summary;
 var chart;
 var type = null;
-var rValue = null;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function (data) {
@@ -190,8 +189,15 @@ var openColorEditor = function () {
             dialogbox.style.top = "100px";
             dialogbox.style.display = "block";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
+<<<<<<< HEAD
             document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>Line</option><option value='Bar'>Bar</option></option><option value='Scatter'>Scatter</option></select><br>Choose number of rows: <input id='rows' type='text' value='0' /><br>Choose number of columns: <input id='columns' type='text' value='0' />";
             document.getElementById('dialogboxfoot').innerHTML = "<button>Cancel</button><input type='reset' value='Reset' /><button onclick='Alert2.ok()'>Submit</button>";
+=======
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>Line</option><option value='Bar'>Bar</option><option value='scatter'>Scatter Plot</option></select><p>How many rows?</p><input id='rows' type='text' value='0' /><p>How many columns?</p><input id='columns' type='text' value='0' />";
+            document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert2.ok()'>Submit</button>"
+            document.getElementById('dialogbox').style.visibility = "visible";
+            document.getElementById('dialogoverlay').style.visibility = "visible";
+>>>>>>> ec5859876db7f6000749e9b754745ca00e712553
         }
         this.ok = function () {
             var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
@@ -201,7 +207,6 @@ var openColorEditor = function () {
             document.getElementById('dialogbox').style.visibility = "hidden";
             document.getElementById('dialogoverlay').style.visibility = "hidden";
             document.getElementsByClassName('createBtn')[0].focus();
-
         }
         this.rest = function () {
             document.getElementById("newFileDialogOverlay").reset();
@@ -220,5 +225,7 @@ var rType = function (rType) {
     } else if (document.getElementById("scatterRadioButton").checked) {
         type = "scatter";
     }
-    loadFile();
+        document.getElementById("colors").innerHTML="";
+        changeType();
+    
 }
