@@ -24,7 +24,6 @@ var overlay;
 var summary;
 var chart;
 var type = null;
-var rValue = null;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function (data) {
@@ -172,7 +171,7 @@ var openColorEditor = function () {
             dialogbox.style.top = "100px";
             dialogbox.style.display = "block";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>Line</option><option value='Bar'>Bar</option></select><p>How many rows?</p><input id='rows' type='text' value='0' /><p>How many columns?</p><input id='columns' type='text' value='0' />";
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='Line'>Line</option><option value='Bar'>Bar</option><option value='scatter'>Scatter Plot</option></select><p>How many rows?</p><input id='rows' type='text' value='0' /><p>How many columns?</p><input id='columns' type='text' value='0' />";
             document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert2.ok()'>Submit</button>"
         }
         this.ok = function () {
@@ -199,5 +198,7 @@ var rType = function (rType) {
     } else if (document.getElementById("scatterRadioButton").checked) {
         type = "scatter";
     }
-    loadFile();
+        document.getElementById("colors").innerHTML="";
+        changeType();
+    
 }
