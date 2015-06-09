@@ -96,6 +96,5 @@ var changeType= function(){
         results.data[i].push(resData[i][key]);
       }
     }
-    console.log(results);
     loadData(results);
 }
