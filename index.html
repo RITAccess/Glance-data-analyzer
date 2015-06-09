@@ -55,10 +55,10 @@
           <div id="tblContainer" title="Data Plot">
               <div id="slickTable" style="width:100%;"></div>
           </div> <!-- end id="tblContainer" -->
-      <div id="tableControls" class="no-print" style="display: none">
-      <button id="addNewRow"> Add Row</button>
-      <button id="addNewCol">Add Column</button>
-      <button id="downloadCSV" onclick="download()">Download CSV</button>
+      <div id="tableControls" style="display: none" class="no-print">
+        <button id="addNewRow" onclick="addRow()"> Add Row</button>
+        <button id="addNewCol" onclick="addColumn()">Add Column</button>
+        <button id="downloadCSV" onclick="download()">Download CSV</button>
       </div>
     </div>
     <div id='color-expand' style="display:none;">

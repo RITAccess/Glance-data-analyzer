@@ -47,7 +47,7 @@ var createFile = function(rows, columns) {
     columns = 2;
   }
 
-  // Reset color list(?)
+  // Reset color list
   var colorlist = document.getElementById("colors");
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
@@ -98,3 +98,67 @@ var changeType= function(){
     }
     loadData(results);
 }
+
+
+// Place a new row on the end of the existing table
+ var addRow = function() {
+
+    // Reset color list
+  var colorlist = document.getElementById("colors");
+  while(colorlist.firstChild){
+    colorlist.removeChild(colorlist.firstChild);
+  }
+
+  var currTable = new Object();
+  currTable.data = [];
+  currTable.errors = [];
+  var resData = grid.getData();
+
+  for(var i = 0; i< resData.length; i++){
+    currTable.data[i]= [];
+    for(var key in resData[i]){
+      if(key != "id")
+      currTable.data[i].push(resData[i][key]);
+    }
+  }
+
+  var newRow = new Array(currTable.data[0].length);
+  for (var i = 0; i < newRow.length; i++) {
+    newRow[i] = 0;
+  }
+  currTable.data.push(newRow);
+  loadData(currTable);
+ }
+
+// // Place a new column on the end of the existing table
+var addColumn = function() {
+  // Reset color list
+  var colorlist = document.getElementById("colors");
+  while(colorlist.firstChild){
+    colorlist.removeChild(colorlist.firstChild);
+  }
+
+  var currTable = new Object();
+  currTable.data = [];
+  currTable.errors = [];
+
+  var resData = grid.getData();
+      for(var i = 0; i< resData.length; i++){
+        currTable.data[i]= [];
+        for(var key in resData[i]){
+          if(key != "id")
+          currTable.data[i].push(resData[i][key]);
+        }
+      }
+
+    for (var i = 0; i < currTable.data.length; i++) {
+      currTable.data[i].push(0);
+    }
+
+    currTable.data[0][currTable.data[0].length - 1] = "Label " + currTable.data[0].length;
+    loadData(currTable);
+ }
+
+
+
+

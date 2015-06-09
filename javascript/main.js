@@ -56,8 +56,6 @@ var loadData = function (data) {
     summary = new DataSummary(collection);
     summary.dataSummary();
     linkSlickTable(chart, player, overlay, summary);
-    // document.getElementById('addNewRow').addEventListener('click', addRow(data));
-    // document.getElementById('addNewCol').addEventListener('click', addColumn(data));
     document.getElementById('color-expand').style.display = 'block';
     document.getElementById('plot-header').style.display = 'block';
     document.getElementById('tableControls').style.display = 'block';
@@ -124,29 +122,7 @@ var openColorEditor = function () {
 
         document.body.removeChild(pom);
     }
-
-// Place a new row on the end of the existing table
-// function addRow(data) {
-//   var newRow = [data.data.length];
-//   for (var i = 0; i < newRow.length; i++) {
-//     newRow[i] = 0;
-//   }
-//   data.data.push(newRow);
-// }
-
-// // Place a new column on the end of the existing table
-// function addColumn(data) {
-//   for (var i = 0; i < data.data.length; i++) {
-//       console.log(data.data[i]);
-//     for (var j = 0; j < data.data[i].length; i++) {
-//         data.data[i].push(0);
-//     }
-//   }
-
-//   data.data[0][data.data[0].length - 1] = "Label " + data.data[0].length;
-// }
-
-
+    
     //File Alert Box
     function CustomAlert() {
         this.render = function (dialog) {
