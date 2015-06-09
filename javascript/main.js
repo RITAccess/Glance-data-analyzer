@@ -158,7 +158,7 @@ var openColorEditor = function () {
             else if (type === "scatter") document.getElementById("scatterRadioButton").checked = true;
             document.getElementById('dialogbox').style.visibility = "hidden";
             document.getElementById('dialogoverlay').style.visibility = "hidden";
-            document.getElementsByClassName('uploadBtn')[0].focus();
+            document.getElementsByClassName('uploadBtn')[0].focus(); 
         }
     }
 
@@ -174,8 +174,10 @@ var openColorEditor = function () {
             dialogbox.style.top = "100px";
             dialogbox.style.display = "block";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>Line</option><option value='Bar'>Bar</option></select><p>How many rows?</p><input id='rows' type='text' value='0' /><p>How many columns?</p><input id='columns' type='text' value='0' />";
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>Line</option><option value='Bar'>Bar</option><option value='scatter'>Scatter Plot</option></select><p>How many rows?</p><input id='rows' type='text' value='0' /><p>How many columns?</p><input id='columns' type='text' value='0' />";
             document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert2.ok()'>Submit</button>"
+            document.getElementById('dialogbox').style.visibility = "visible";
+            document.getElementById('dialogoverlay').style.visibility = "visible";
         }
         this.ok = function () {
             var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
@@ -185,7 +187,6 @@ var openColorEditor = function () {
             document.getElementById('dialogbox').style.visibility = "hidden";
             document.getElementById('dialogoverlay').style.visibility = "hidden";
             document.getElementsByClassName('createBtn')[0].focus();
-
         }
     }
 var Alert = new CustomAlert();

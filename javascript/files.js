@@ -40,6 +40,12 @@ var createListener = function() {
 
 // Creates empty table value
 var createFile = function(rows, columns) {
+  if (rows <= 1) {
+    rows = 2;
+  }
+  if (columns <= 1) {
+    columns = 2;
+  }
 
   // Reset color list(?)
   var colorlist = document.getElementById("colors");
