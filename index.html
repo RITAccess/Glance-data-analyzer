@@ -29,6 +29,11 @@
       </span>
   </header>
   <div id="content">
+      <form action="" id="rTypeSel" style="display:none;">
+          <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" onclick="rType()"> Line Graph
+          <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" onclick="rType()"> Bar Graph
+          <input id="scatterRadioButton" type="radio" name="rGraphSel" value="Scatter" onclick="rType()"> Scatter Plot
+      </form>
       <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" role=chart-slider class="no-print"></div>
       <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
           <rect id="background" x="0" y="0" width="800" height="400" />

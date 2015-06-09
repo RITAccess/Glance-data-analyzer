@@ -40,6 +40,10 @@ header {
     margin-bottom: 100px;
     clear: both;
 }
+#rTypeSel{/* chart/graph type radio selection */
+  text-align: center;
+  margin-bottom: 20px;
+}
 #selection {
     fill: lightblue;
     fill-opacity: 0.3;

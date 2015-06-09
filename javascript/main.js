@@ -23,6 +23,7 @@ var overlay;
 var summary;
 var chart;
 var type = null;
+var rValue = null;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function (data) {
@@ -40,7 +41,8 @@ var loadData = function (data) {
     linkSlickTable(chart, player, overlay, summary);
     document.getElementById('color-expand').style.display = 'block';
     document.getElementById('plot-header').style.display = 'block';
-    document.getElementById('downloadCSV').style.display = 'block'
+    document.getElementById('downloadCSV').style.display = 'block';
+    document.getElementById('rTypeSel').style.display = 'block';
 }
 
 // The play button
@@ -57,37 +59,36 @@ var openColorEditor = function () {
     function download() {
         var s;
         //retrieve chart data and put into a csv file
-        if(type === "line"){
-        for (var i = 0; i < chart.datasets.length; i++) {
-            for (var j = 0; j < chart.datasets[i].points.length; j++) {
-                if (i === 0 && j === 0) {
-                    for (var k = 0; k < chart.datasets[i].points.length; k++) {
-                        s += chart.datasets[i].points[k].label;
-                        if (k + 1 < chart.datasets[i].points.length) s += ",";
-                    }
-                    s += "\n";
-                }
-                s += chart.datasets[i].points[j].value;
-                if (j + 1 < chart.datasets[i].points.length) s += ",";
-            }
-            s += "\n";
-        }
-    }
-        else if(type === "bar"){
+        if (type === "line") {
             for (var i = 0; i < chart.datasets.length; i++) {
-            for (var j = 0; j < chart.datasets[i].bars.length; j++) {
-                if (i === 0 && j === 0) {
-                    for (var k = 0; k < chart.datasets[i].bars.length; k++) {
-                        s += chart.datasets[i].bars[k].label;
-                        if (k + 1 < chart.datasets[i].bars.length) s += ",";
+                for (var j = 0; j < chart.datasets[i].points.length; j++) {
+                    if (i === 0 && j === 0) {
+                        for (var k = 0; k < chart.datasets[i].points.length; k++) {
+                            s += chart.datasets[i].points[k].label;
+                            if (k + 1 < chart.datasets[i].points.length) s += ",";
+                        }
+                        s += "\n";
                     }
-                    s += "\n";
+                    s += chart.datasets[i].points[j].value;
+                    if (j + 1 < chart.datasets[i].points.length) s += ",";
                 }
-                s += chart.datasets[i].bars[j].value;
-                if (j + 1 < chart.datasets[i].bars.length) s += ",";
+                s += "\n";
             }
-            s += "\n";
-        }
+        } else if (type === "bar") {
+            for (var i = 0; i < chart.datasets.length; i++) {
+                for (var j = 0; j < chart.datasets[i].bars.length; j++) {
+                    if (i === 0 && j === 0) {
+                        for (var k = 0; k < chart.datasets[i].bars.length; k++) {
+                            s += chart.datasets[i].bars[k].label;
+                            if (k + 1 < chart.datasets[i].bars.length) s += ",";
+                        }
+                        s += "\n";
+                    }
+                    s += chart.datasets[i].bars[j].value;
+                    if (j + 1 < chart.datasets[i].bars.length) s += ",";
+                }
+                s += "\n";
+            }
 
         }
         s = s.substring(9); //Do this to remove strange 'undefined' that is appended to beginning of file
@@ -95,9 +96,9 @@ var openColorEditor = function () {
         pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(s));
         pom.setAttribute('download', "Data Analyzer.csv");
         pom.style.display = 'none';
-            document.body.appendChild(pom);
-            pom.click();
-            document.body.removeChild(pom);
+        document.body.appendChild(pom);
+        pom.click();
+        document.body.removeChild(pom);
     }
 
 
@@ -120,13 +121,33 @@ var openColorEditor = function () {
             document.getElementById('dialogoverlay').style.visibility = "visible";
         }
         this.ok = function () {
-          var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
-          type = e.options[e.selectedIndex].value.toLowerCase();
-          loadFile();
-
-          document.getElementById('dialogbox').style.visibility = "hidden";
-          document.getElementById('dialogoverlay').style.visibility = "hidden";
-          document.getElementsByClassName('uploadBtn')[0].focus();
+            var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
+            type = e.options[e.selectedIndex].value.toLowerCase();
+            loadFile();
+            if(type === "line")
+              document.getElementById("lineRadioButton").checked = true;
+            else if(type === "bar")
+              document.getElementById("barRadioButton").checked=true;
+            else if(type === "scatter")
+              document.getElementById("scatterRadioButton").checked = true;
+            document.getElementById('dialogbox').style.visibility = "hidden";
+            document.getElementById('dialogoverlay').style.visibility = "hidden";
+            document.getElementsByClassName('uploadBtn')[0].focus();
         }
     }
 var Alert = new CustomAlert();
+
+
+    //Radio Button Chart/Graph Type Selection
+    var rType = function(rType){
+      var selType = document.getElementById("rTypeSel");
+      if(selType.firstChild.nextSibling.checked)
+        type= "line";
+      else if(document.getElementById("barRadioButton").checked){
+        type= "bar";
+      }
+      else if(document.getElementById("scatterRadioButton").checked){
+        type= "scatter";
+      }
+      loadFile();
+    }
