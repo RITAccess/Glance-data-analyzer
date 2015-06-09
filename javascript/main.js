@@ -161,7 +161,7 @@ var openColorEditor = function () {
           dialogbox.style.display = "block";
           document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
           document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='graphSelect'>select a type of graph</option><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select>";
-          document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert.ok()'>Submit</button>"
+          document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert2.cancel()'>Cancel</button><button onclick='Alert.ok()'>Submit</button>"
           document.getElementById('dialogbox').style.visibility = "visible";
           document.getElementById('dialogoverlay').style.visibility = "visible";
         }
@@ -175,6 +175,11 @@ var openColorEditor = function () {
           document.getElementById('dialogbox').style.visibility = "hidden";
           document.getElementById('dialogoverlay').style.visibility = "hidden";
           document.getElementsByClassName('uploadBtn')[0].focus();
+        }
+        this.cancel= function(){
+          document.getElementById('dialogbox').style.visibility = "hidden";
+          document.getElementById('dialogoverlay').style.visibility = "hidden";
+          document.getElementsByClassName('createBtn')[0].focus();
         }
     }
 
