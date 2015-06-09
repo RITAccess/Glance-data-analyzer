@@ -160,7 +160,7 @@ var openColorEditor = function () {
           dialogbox.style.top = "100px";
           dialogbox.style.display = "block";
           document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-          document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='graphSelect'>Select type of graph</option><option value='Line'>Line</option><option value='Bar'>Bar</option><option value='scatter'>Scatter Plot</option></select>";
+          document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='graphSelect'>no selection</option><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select>";
           document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert.ok()'>Submit</button>"
           document.getElementById('dialogbox').style.visibility = "visible";
           document.getElementById('dialogoverlay').style.visibility = "visible";
@@ -190,7 +190,7 @@ var openColorEditor = function () {
             dialogbox.style.top = "100px";
             dialogbox.style.display = "block";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='graphSelect'>Select type of graph</option><option value='Line'>Line</option><option value='Bar'>Bar</option><option value='scatter'>Scatter Plot</option></select><br><label>Choose number of row: </label><input id='rows' type='text' value='0' /><br><label>Choose number of column: </label><input id='columns' type='text' value='0' />";
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='graphSelect'>no selection</option><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select><br><label>Choose number of row: </label><input id='rows' type='text' value='0' /><br><label>Choose number of column: </label><input id='columns' type='text' value='0' />";
             document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert2.cancel()'>Cancel</button><button onclick=Alert2.reset()>Reset</button><button onclick='Alert2.ok()'>Submit</button>";
             document.getElementById('dialogbox').style.visibility = "visible";
             document.getElementById('dialogoverlay').style.visibility = "visible";
