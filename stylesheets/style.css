@@ -318,12 +318,17 @@ svg * {
     padding:10px;
     text-align:right;
 }
-#dialogboxbody input{
+#dialogboxbody input {
     margin-top: 10px;
 }
-#dialogboxfoot button{ /* also inherits from the other button styles */
+#dialogboxfoot button { /* also inherits from the other button styles */
     padding:5px;
     border: none;
+}
+.sChartType select, .sChartType input{ /* chart type select tags */
+    border: 2px solid #FFF;
+    border-radius: 2px;
+    font-size: 15px;
 }
 /* style for pop-up chart list ENDS */
 /************************************/
