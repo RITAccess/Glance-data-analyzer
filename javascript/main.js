@@ -1,17 +1,32 @@
 "use strict"; // strict mode syntax
-//require(["libs/jquery/jquery-1.11.2.js"]);
-require(["libs/jquery/jquery-ui.js"]);
+
+//Any file that requires jQuery should be
+//placed within this annon function
+require(["libs/jquery/jquery-1.11.2.js"],function(jquery) {
+  require(["libs/jquery/jquery-ui.js"]);
+  require(["libs/SlickGrid/lib/jquery.event.drag-2.2.js"],function(drag) {
+    require(["libs/SlickGrid/slick.core.js"], function(core) {
+      require(["libs/SlickGrid/slick.editors.js"]);
+      require(["libs/SlickGrid/lib/firebugx.js"]);
+      require(["javascript/slickTable.js"]);
+      require(["libs/SlickGrid/slick.grid.js"]);
+    });
+  });
+});
+
 require(["libs/PapaParse/papaparse.min.js"]);
 require(["libs/chartjs/Chart.js"]);
+
 require(["libs/jsfx/audio.js"], function (audio) {
     require(["libs/jsfx/jsfx.js"]);
     require(["libs/jsfx/jsfxlib.js"]);
 });
-require(["javascript/files.js"], function (print) {
-    loadListener();
-    createListener();
+
+require(["javascript/files.js"], function(print){
+  loadListener();
+  createListener();
 });
-require(["javascript/slickTable.js"]);
+
 require(["javascript/chart.js"]);
 require(["javascript/overlay.js"]);
 require(["javascript/arrayInfo.js"]);
@@ -19,12 +34,12 @@ require(["javascript/audioPlayer.js"]);
 require(["javascript/arrayCollection.js"]);
 require(["javascript/global.js"]);
 require(["javascript/summary.js"]);
+
 var player;
 var overlay;
 var summary;
 var chart;
 var type = null;
-var rValue = null;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function (data) {
@@ -68,17 +83,17 @@ var openColorEditor = function () {
 					if (i === 0 && j === 0) {
 						for (var k = 0; k < chart.datasets[i].points.length; k++) {
 							s += chart.datasets[i].points[k].label;
-							if (k + 1 < chart.datasets[i].points.length) 
+							if (k + 1 < chart.datasets[i].points.length)
 								s += ",";
 						}
 						s += chart.datasets[i].points[j].value;
-						if (j + 1 < chart.datasets[i].points.length) 
+						if (j + 1 < chart.datasets[i].points.length)
 							s += ",";
 					}
 					s += "\n";
 				}
 			}
-		}		
+		}
 		else if (type === "bar") {
             for (var i = 0; i < chart.datasets.length; i++) {
                 for (var j = 0; j < chart.datasets[i].bars.length; j++) {
@@ -109,56 +124,56 @@ var openColorEditor = function () {
         document.body.removeChild(pom);
     }
 
-    // Place a new row on the end of the existing table
-    // function addRow(data) {
-    //   var newRow = [data.data.length];
-    //   for (var i = 0; i < newRow.length; i++) {
-    //     newRow[i] = 0;
-    //   }
-    //   data.data.push(newRow);
-    // }
+// Place a new row on the end of the existing table
+// function addRow(data) {
+//   var newRow = [data.data.length];
+//   for (var i = 0; i < newRow.length; i++) {
+//     newRow[i] = 0;
+//   }
+//   data.data.push(newRow);
+// }
 
-    // // Place a new column on the end of the existing table
-    // function addColumn(data) {
-    //   for (var i = 0; i < data.data.length; i++) {
-    //       console.log(data.data[i]);
-    //     for (var j = 0; j < data.data[i].length; i++) {
-    //         data.data[i].push(0);
-    //     }
-    //   }
+// // Place a new column on the end of the existing table
+// function addColumn(data) {
+//   for (var i = 0; i < data.data.length; i++) {
+//       console.log(data.data[i]);
+//     for (var j = 0; j < data.data[i].length; i++) {
+//         data.data[i].push(0);
+//     }
+//   }
 
-    //   data.data[0][data.data[0].length - 1] = "Label " + data.data[0].length;
-    // }
+//   data.data[0][data.data[0].length - 1] = "Label " + data.data[0].length;
+// }
 
 
     //File Alert Box
     function CustomAlert() {
         this.render = function (dialog) {
-            var winW = window.innerWidth;
-            var winH = window.innerHeight;
-            var dialogoverlay = document.getElementById('dialogoverlay');
-            var dialogbox = document.getElementById('dialogbox');
-            dialogoverlay.style.display = "block";
-            dialogoverlay.style.height = winH + "px";
-            dialogbox.style.left = (winW / 2) - (550 * .5) + "px";
-            dialogbox.style.top = "100px";
-            dialogbox.style.display = "block";
-            document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='Line'>Line</option><option value='Bar'>Bar</option><option value='scatter'>Scatter Plot</option></select>";
-            document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert.ok()'>Submit</button>"
-            document.getElementById('dialogbox').style.visibility = "visible";
-            document.getElementById('dialogoverlay').style.visibility = "visible";
+          var winW = window.innerWidth;
+          var winH = window.innerHeight;
+          var dialogoverlay = document.getElementById('dialogoverlay');
+          var dialogbox = document.getElementById('dialogbox');
+          dialogoverlay.style.display = "block";
+          dialogoverlay.style.height = winH + "px";
+          dialogbox.style.left = (winW / 2) - (550 * .5) + "px";
+          dialogbox.style.top = "100px";
+          dialogbox.style.display = "block";
+          document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
+          document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='Line'>Line</option><option value='Bar'>Bar</option><option value='scatter'>Scatter Plot</option></select>";
+          document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert.ok()'>Submit</button>"
+          document.getElementById('dialogbox').style.visibility = "visible";
+          document.getElementById('dialogoverlay').style.visibility = "visible";
         }
         this.ok = function () {
-            var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
-            type = e.options[e.selectedIndex].value.toLowerCase();
-            loadFile();
-            if (type === "line") document.getElementById("lineRadioButton").checked = true;
-            else if (type === "bar") document.getElementById("barRadioButton").checked = true;
-            else if (type === "scatter") document.getElementById("scatterRadioButton").checked = true;
-            document.getElementById('dialogbox').style.visibility = "hidden";
-            document.getElementById('dialogoverlay').style.visibility = "hidden";
-            document.getElementsByClassName('uploadBtn')[0].focus(); 
+          var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
+          type = e.options[e.selectedIndex].value.toLowerCase();
+          loadFile();
+          if (type === "line") document.getElementById("lineRadioButton").checked = true;
+          else if (type === "bar") document.getElementById("barRadioButton").checked = true;
+          else if (type === "scatter") document.getElementById("scatterRadioButton").checked = true;
+          document.getElementById('dialogbox').style.visibility = "hidden";
+          document.getElementById('dialogoverlay').style.visibility = "hidden";
+          document.getElementsByClassName('uploadBtn')[0].focus();
         }
     }
 
@@ -202,5 +217,7 @@ var rType = function (rType) {
     } else if (document.getElementById("scatterRadioButton").checked) {
         type = "scatter";
     }
-    loadFile();
+        document.getElementById("colors").innerHTML="";
+        changeType();
+    
 }

@@ -80,13 +80,11 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex) {
     }
     this.recalculateLines();
     timeoutAmount = 125*this.infoCollection.collection.length;
-    console.log("Start Timeout");
   }
-  
+
   var self = this;
 
   setTimeout(function(){
-    console.log("EndTimeout");
       for(var i = 0; i < allHtml.length; i++) {
         allHtml[i].style.cursor = "default";
       }

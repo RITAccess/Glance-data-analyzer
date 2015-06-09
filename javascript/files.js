@@ -18,15 +18,15 @@ function loadFile(){
     colorlist.removeChild(colorlist.firstChild);
   }
   // use PapaParse for handing the csv file
-  var results = Papa.parse(input.files[0], {
-  	complete: function(results) {
-      var resData = results.data;
-      if((resData[resData.length-1].length == 1) && (resData[resData.length-1][0] == "")){
-        results.data.pop();
-      }
-  		loadData(results);
-  	}
-  });
+    var results = Papa.parse(input.files[0], {
+    	complete: function(results) {
+        var resData = results.data;
+       if((resData[resData.length-1].length == 1) && (resData[resData.length-1][0] == "")){
+          results.data.pop();
+        }
+  	 	loadData(results);
+  	 }
+    });
 }
 
 // provides the openFile function call to the DOM
@@ -75,4 +75,27 @@ var createFile = function(rows, columns) {
 
   // Load new table :)
   loadData(newTable);
+}
+var changeType= function(){
+    var results = new Object();
+    results.data= [];
+    results.errors=[];
+    var m ={
+      aborted:false,
+      cursor:94,
+      delimiter: ",",
+      linebreak: "",
+      truncated: false
+    }
+    results.meta = m;
+    var resData = grid.getData();
+    for(var i = 0; i< resData.length; i++){
+      results.data[i]= [];
+      for(var key in resData[i]){
+        if(key != "id")
+        results.data[i].push(resData[i][key]);
+      }
+    }
+    console.log(results);
+    loadData(results);
 }

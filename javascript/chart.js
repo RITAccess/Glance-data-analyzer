@@ -33,10 +33,11 @@ var loadChart = function(data, type, collection){
 					var b = parseInt(newcolor.substring(5), 16);
 					var color = [r, g, b].join(", ");
 					if(this.nextSibling.checked){
+            if(type==="line")
 						chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
 						chart.datasets[index].pointColor = "rgba("+ color +", 1)";
 						chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
-						if(type==="line"){
+						if(type==="line"|| type==="scatter"){
 							for(var i = 0; i<chart.datasets[index].points.length;i++){
 								chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
 							}
@@ -61,6 +62,8 @@ var loadChart = function(data, type, collection){
 					var b = parseInt(rgb.substring(5), 16);
 					var color = [r, g, b].join(", ");
 					if(this.nextSibling.checked){
+            if(type==="line")
+            chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
 						chart.datasets[index].pointColor = "rgba("+ color +", 1)";
 						chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
 						if(type==="line" || type==="scatter"){
