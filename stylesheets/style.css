@@ -130,7 +130,7 @@ svg * {
 }
 /***********************************/
 
-#downloadCSV, #addNewRow, #addNewCol {
+#downloadCSV, #addNewRow, #addNewCol, #dialogboxfoot button {
     cursor: pointer;
     background: #FFF;
     font-size:20px;
@@ -315,6 +315,10 @@ svg * {
 }
 #dialogboxbody input{
     margin-top: 10px;
+}
+#dialogboxfoot button{ /* also inherits from the other button styles */
+    padding:5px;
+    border: none;
 }
 /* style for pop-up chart list ENDS */
 /************************************/
