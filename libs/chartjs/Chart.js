@@ -1146,15 +1146,7 @@
 			return ((Math.pow(chartX-this.x, 2)+Math.pow(chartY-this.y, 2)) < Math.pow(hitDetectionRange,2));
 		},
 		draw : function(){
-			var line =null;
-			//Find Line that contains the point
-			for(var i = 0; i< chart.datasets.length; i++){
-				if(this.datasetLabel === chart.datasets[i].label){
-				line = i;				
-				}
-			}
-			if(this.display){
-				
+			if (this.display){
 				var ctx = this.ctx;
 				ctx.beginPath();
 
