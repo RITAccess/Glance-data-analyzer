@@ -29,7 +29,7 @@ var loadData = function(data){
   document.querySelector('#overlay').setAttribute('style','');
   document.querySelector('#slickTable').innerHTML = '';
   var slickTable = loadSlickTable(data.data);
-  chart = loadChart(data.data);
+  chart = loadChart(data.data,"scatter");
   player = new AudioPlayer();
   overlay = new Overlay(data);
   overlay.updateSize(chart);

@@ -1,18 +1,26 @@
 "use strict"; // strict mode syntax
-var loadChart = function(data, collection){
+var loadChart = function(data, type, collection){
   /*
     Using Chart.js
   */
   var data1 = data;
   var chartdata = dataset(data1, collection);
   var data = {
-    labels: data1[0],
-    datasetFill: false,
-    datasets: chartdata.data
-  };
+		labels: data1[0],
+		datasetFill: false,
+		datasets: chartdata.data
+	};
+	
   var ctx = document.getElementById("myChart").getContext("2d");
-  var myLineChart = new Chart(ctx).Line(data);
+  var myLineChart;
+  if(type == "scatter"){
+	myLineChart = new Chart(ctx).ScatterPlot(data);
+  }
+  else
+	myLineChart = new Chart(ctx).Line(data);
   document.getElementById("myChart").setAttribute("title","chart read out"); // by setting the attribute we can make the chart accessible
+  
+  
   for(var i =0; i<data.datasets.length;i++){
 	//Setting input functions for each line in order to set new colors
 	chartdata.inputboxes[i].oninput = function(){
@@ -24,7 +32,8 @@ var loadChart = function(data, collection){
 			    var b = parseInt(newcolor.substring(5), 16);
 			    var color = [r, g, b].join(", ");
 				if(this.nextSibling.checked){
-				    chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
+					if(type != ("scatter"))
+						chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
 				    chart.datasets[index].pointColor = "rgba("+ color +", 1)";
 				    chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
 					for(var i = 0; i<chart.datasets[index].points.length;i++){
@@ -41,7 +50,8 @@ var loadChart = function(data, collection){
 			    var b = parseInt(rgb.substring(5), 16);
 			    var color = [r, g, b].join(", ");
 				if(this.nextSibling.checked){
-				    chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
+					if(type != ("scatter"))
+						chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
 				    chart.datasets[index].pointColor = "rgba("+ color +", 1)";
 				    chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
 					for(var i = 0; i<chart.datasets[index].points.length;i++){
