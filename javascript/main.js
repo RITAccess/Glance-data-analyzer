@@ -190,8 +190,8 @@ var openColorEditor = function () {
             dialogbox.style.top = "100px";
             dialogbox.style.display = "block";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>Line</option><option value='Bar'>Bar</option></select><br>Rows: <input id='rows' type='text' value='0' /><br>Columns: <input id='columns' type='text' value='0' />";
-            document.getElementById('dialogboxfoot').innerHTML = "<button>Cancel</button><button onclick='Alert2.reset()'>Reset</button><button onclick='Alert2.ok()'>Submit</button>"
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>Line</option><option value='Bar'>Bar</option></option><option value='Scatter'>Scatter</option></select><br>Choose number of rows: <input id='rows' type='text' value='0' /><br>Choose number of columns: <input id='columns' type='text' value='0' />";
+            document.getElementById('dialogboxfoot').innerHTML = "<button>Cancel</button><input type='reset' value='Reset' /><button onclick='Alert2.ok()'>Submit</button>";
         }
         this.ok = function () {
             var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
@@ -202,6 +202,9 @@ var openColorEditor = function () {
             document.getElementById('dialogoverlay').style.visibility = "hidden";
             document.getElementsByClassName('createBtn')[0].focus();
 
+        }
+        this.rest = function () {
+            document.getElementById("newFileDialogOverlay").reset();
         }
     }
 var Alert = new CustomAlert();
