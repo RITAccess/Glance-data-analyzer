@@ -120,7 +120,7 @@ svg * {
   text-shadow: none;
 }
 .uploadBtn:hover, .createBtn:hover {
-  background: #000;
+  background-color: #000;
   color: #FFF;
 }
 .fileUpload input.upload, .createNew input.emptyTable {
@@ -148,7 +148,15 @@ svg * {
     border-radius: 5px;
     margin-right: 10px;
 }
-
+#downloadCSV:hover, #addNewRow:hover, #addNewCol:hover {
+  background-color: #000;
+  color: #FFF;
+}
+#dialogboxfoot button:hover {
+  background-color: #000;
+  color: #FFF;
+  border-color: #FFF;
+}
 #tableControls {
   /* positioning buttons to bottom right of parent container dataPlot */
   position: absolute;
@@ -176,8 +184,8 @@ svg * {
     box-shadow: 0px 5px 10px black;
 }
 #playButton:hover {
-    background-color: #000;
-    color: #FFF;
+  background-color: #000;
+  color: #FFF;
 }
 #bpm {
     width: 65px;
@@ -323,7 +331,6 @@ svg * {
 }
 #dialogboxfoot button { /* also inherits from the other button styles */
     padding:5px;
-    border: none;
 }
 .sChartType select, .sChartType input{ /* chart type select tags */
     border: 2px solid #FFF;
