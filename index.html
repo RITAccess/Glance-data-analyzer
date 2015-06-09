@@ -21,7 +21,7 @@
           <span class="uploadBtn">Load CSV</span>
       </label>
     </div>
-    <div class="newBtnSection">
+    <div class="newBtnSection no-print">
       <label class="createNew">
         <input id="newTable" type="button" class="emptyTable" />
         <span class="createBtn">Create New Table</span>
@@ -55,7 +55,7 @@
           <div id="tblContainer" title="Data Plot">
               <div id="slickTable" style="width:100%;"></div>
           </div> <!-- end id="tblContainer" -->
-      <div id="tableControls" style="display: none">
+      <div id="tableControls" class="no-print" style="display: none">
       <button id="addNewRow"> Add Row</button>
       <button id="addNewCol">Add Column</button>
       <button id="downloadCSV" onclick="download()">Download CSV</button>
