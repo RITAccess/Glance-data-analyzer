@@ -47,7 +47,7 @@
 		datasetStrokeWidth : 2,
 
 		//Boolean - Whether to fill the dataset with a colour
-		datasetFill : true,
+		datasetFill : false,
 
 		//String - A legend template
 		legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>",
@@ -56,7 +56,7 @@
 		offsetGridLines : false
 
 	};
-
+	//TODO Regression line
 
 	Chart.Type.extend({
 		name: "ScatterPlot",
@@ -91,7 +91,10 @@
 					this.showTooltip(activePoints);
 				});
 			}
-
+			
+			var trans = [0,0,0].join(", ");
+			trans = "rgba(" + trans +", 0)";
+			
 			//Iterate through each of the datasets, and build this into a property of the chart
 			helpers.each(data.datasets,function(dataset){
 
@@ -220,12 +223,11 @@
 				});
 			}
 
-
 			this.scale = new Chart.Scale(scaleOptions);
 		},
 		addData : function(valuesArray,label){
 			//Map the values array for each of the datasets
-
+			
 			helpers.each(valuesArray,function(value,datasetIndex){
 				//Add a new point for each piece of data, passing any required data to draw.
 				this.datasets[datasetIndex].points.push(new this.PointClass({
@@ -277,7 +279,6 @@
 
 			this.scale.draw(easingDecimal);
 
-
 			helpers.each(this.datasets,function(dataset){
 				var pointsWithValues = helpers.where(dataset.points, hasValue);
 
@@ -292,79 +293,6 @@
 						}, easingDecimal);
 					}
 				},this);
-
-
-				// Control points need to be calculated in a seperate loop, because we need to know the current x/y of the point
-				// This would cause issues when there is no animation, because the y of the next point would be 0, so beziers would be skewed
-				if (this.options.bezierCurve){
-					helpers.each(pointsWithValues, function(point, index){
-						var tension = (index > 0 && index < pointsWithValues.length - 1) ? this.options.bezierCurveTension : 0;
-						point.controlPoints = helpers.splineCurve(
-							previousPoint(point, pointsWithValues, index),
-							point,
-							nextPoint(point, pointsWithValues, index),
-							tension
-						);
-
-						// Prevent the bezier going outside of the bounds of the graph
-
-						// Cap puter bezier handles to the upper/lower scale bounds
-						if (point.controlPoints.outer.y > this.scale.endPoint){
-							point.controlPoints.outer.y = this.scale.endPoint;
-						}
-						else if (point.controlPoints.outer.y < this.scale.startPoint){
-							point.controlPoints.outer.y = this.scale.startPoint;
-						}
-
-						// Cap inner bezier handles to the upper/lower scale bounds
-						if (point.controlPoints.inner.y > this.scale.endPoint){
-							point.controlPoints.inner.y = this.scale.endPoint;
-						}
-						else if (point.controlPoints.inner.y < this.scale.startPoint){
-							point.controlPoints.inner.y = this.scale.startPoint;
-						}
-					},this);
-				}
-
-
-				//Draw the line between all the points
-				ctx.lineWidth = this.options.datasetStrokeWidth;
-				ctx.strokeStyle = dataset.strokeColor;
-				ctx.beginPath();
-
-				helpers.each(pointsWithValues, function(point, index){
-					if (index === 0){
-						ctx.moveTo(point.x, point.y);
-					}
-					else{
-						if(this.options.bezierCurve){
-							var previous = previousPoint(point, pointsWithValues, index);
-
-							ctx.bezierCurveTo(
-								previous.controlPoints.outer.x,
-								previous.controlPoints.outer.y,
-								point.controlPoints.inner.x,
-								point.controlPoints.inner.y,
-								point.x,
-								point.y
-							);
-						}
-						else{
-							ctx.lineTo(point.x,point.y);
-						}
-					}
-				}, this);
-
-				ctx.stroke();
-
-				if (this.options.datasetFill && pointsWithValues.length > 0){
-					//Round off the line by going to the base of the chart, back to the start, then fill.
-					ctx.lineTo(pointsWithValues[pointsWithValues.length - 1].x, this.scale.endPoint);
-					ctx.lineTo(pointsWithValues[0].x, this.scale.endPoint);
-					ctx.fillStyle = dataset.fillColor;
-					ctx.closePath();
-					ctx.fill();
-				}
 
 				//Now draw the points over the line
 				//A little inefficient double looping, but better than the line

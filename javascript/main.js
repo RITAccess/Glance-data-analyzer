@@ -26,25 +26,24 @@ var chart;
 var type = null;
 // initial data load
 // (this is called after fileOpen from files.js)
-
-var loadData = function(data){
-  document.querySelector('#overlay').setAttribute('style','');
-  document.querySelector('#slickTable').innerHTML = '';
-  var slickTable = loadSlickTable(data.data);
-  chart = loadChart(data.data);
-  player = new AudioPlayer();
-  overlay = new Overlay(data);
-  overlay.updateSize(chart);
-  var collection = new ArrayCollection(data.data);
-  player.setCollection(collection.collection);
-  summary = new DataSummary(collection);
-  summary.dataSummary();
-  linkSlickTable(chart,player,overlay, summary);
+var loadData = function (data) {
+    document.querySelector('#overlay').setAttribute('style', '');
+    document.querySelector('#slickTable').innerHTML = '';
+    var slickTable = loadSlickTable(data.data);
+    chart = loadChart(data.data, type);
+    player = new AudioPlayer();
+    overlay = new Overlay(data);
+    overlay.updateSize(chart);
+    var collection = new ArrayCollection(data.data);
+    player.setCollection(collection.collection);
+    summary = new DataSummary(collection);
+    summary.dataSummary();
+    linkSlickTable(chart, player, overlay, summary);
   // document.getElementById('addNewRow').addEventListener('click', addRow(data));
   // document.getElementById('addNewCol').addEventListener('click', addColumn(data));
-  document.getElementById('color-expand').style.display = 'block';
-  document.getElementById('plot-header').style.display = 'block';
-  document.getElementById('tableControls').style.display = 'block';
+    document.getElementById('color-expand').style.display = 'block';
+    document.getElementById('plot-header').style.display = 'block';
+    document.getElementById('downloadCSV').style.display = 'block'
 }
 
 // The play button
@@ -142,16 +141,20 @@ var openColorEditor = function () {
             dialogbox.style.top = "100px";
             dialogbox.style.display = "block";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='Line'>Line</option><option value='Bar'>Bar</option></select>";
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='Line'>Line</option><option value='Bar'>Bar</option><option value='scatter'>Scatter Plot</option></select>";
             document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert.ok()'>Submit</button>"
+            document.getElementById('dialogbox').style.visibility = "visible";
+            document.getElementById('dialogoverlay').style.visibility = "visible";
         }
         this.ok = function () {
-            var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
-            type = e.options[e.selectedIndex].value.toLowerCase();
-            document.getElementById('dialogbox').style.display = "none";
-            document.getElementById('dialogoverlay').style.display = "none";
 
-            loadFile();
+          var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
+          type = e.options[e.selectedIndex].value.toLowerCase();
+          loadFile();
+
+          document.getElementById('dialogbox').style.visibility = "hidden";
+          document.getElementById('dialogoverlay').style.visibility = "hidden";
+          document.getElementsByClassName('uploadBtn')[0].focus();
             
         }
     }
@@ -174,10 +177,12 @@ var openColorEditor = function () {
         this.ok = function () {
             var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
             type = e.options[e.selectedIndex].value.toLowerCase();
-            document.getElementById('dialogbox').style.display = "none";
-            document.getElementById('dialogoverlay').style.display = "none";
             createFile(document.getElementById('rows').value, document.getElementById('columns').value);
-            
+
+          document.getElementById('dialogbox').style.visibility = "hidden";
+          document.getElementById('dialogoverlay').style.visibility = "hidden";
+          document.getElementsByClassName('createBtn')[0].focus();
+
         }
     }
 var Alert = new CustomAlert();
