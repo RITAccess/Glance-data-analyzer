@@ -10,6 +10,8 @@ html {
 body {
     display: table-cell;
     vertical-align: middle;
+    font-size: 20px;
+    font-weight: bold;
 }
 #overlay {
     position:absolute;
@@ -43,6 +45,9 @@ header {
 #rTypeSel{/* chart/graph type radio selection */
   text-align: center;
   margin-bottom: 20px;
+}
+#rTypeSel label {
+  padding-right: 5%;
 }
 #selection {
     fill: lightblue;
@@ -130,12 +135,12 @@ svg * {
 }
 /***********************************/
 
-#downloadCSV, #addNewRow, #addNewCol {
+#downloadCSV, #addNewRow, #addNewCol, #dialogboxfoot button {
     cursor: pointer;
     background: #FFF;
-    font-size:20px;
-    padding:10px;
-    color:#000;
+    font-size: 20px;
+    padding: 10px;
+    color: #000;
     font-weight: bold;
     box-shadow: 0px 5px 10px #000;
     text-shadow: none;
@@ -312,6 +317,13 @@ svg * {
 #dialogbox > div > #dialogboxfoot {
     padding:10px;
     text-align:right;
+}
+#dialogboxbody input{
+    margin-top: 10px;
+}
+#dialogboxfoot button{ /* also inherits from the other button styles */
+    padding:5px;
+    border: none;
 }
 /* style for pop-up chart list ENDS */
 /************************************/

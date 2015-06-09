@@ -180,21 +180,26 @@ function dataset(data, collection) {
       }
     }
 		// log color into color editor
+    var newColor = lineColors[i-1];
 		var entry = document.createElement('li');
 		var textInput = document.createElement('input');
 		var toggleBox = document.createElement('input');
 		var keyValue = document.createElement('p');
+    if(type === "line")
 		var keyLabel = document.createTextNode(shapes[(i-1)%6]);
-		if(type === "bar"){
+		else if(type === "scatter"){
+      var keyLabel = document.createTextNode(shapes[0]);
+    }
+    else if(type === "bar"){
 		keyLabel = document.createElement('span');
-		keyLabel.setAttribute("style", "background:rgb(" + color + ")");
+		keyLabel.setAttribute("style", "background:"+newColor);
 		keyLabel.setAttribute("class", "colorblock");
 		}
 		inputBoxArray.push(textInput);
 		textInput.setAttribute("title", "Enter new line " + i + " color");
 		toggleBox.setAttribute("type", "checkbox");
 		toggleBox.setAttribute("checked", "checked");
-		keyValue.setAttribute('style', 'color:rgb(' + color + '); display: inline; margin-right: 5px;');
+		keyValue.setAttribute('style', 'color:' + newColor +'; display: inline; margin-right: 5px;');
 		keyValue.appendChild(keyLabel);
 		entry.appendChild(keyValue);
 		entry.appendChild(textInput);
