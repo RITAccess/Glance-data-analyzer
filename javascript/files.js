@@ -24,7 +24,6 @@ function loadFile(){
        if((resData[resData.length-1].length == 1) && (resData[resData.length-1][0] == "")){
           results.data.pop();
         }
-      input.files = null;
   	 	loadData(results);
   	 }
     });
