@@ -5,11 +5,12 @@
 require(["libs/jquery/jquery-1.11.2.js"],function(jquery) {
   require(["libs/jquery/jquery-ui.js"]);
   require(["libs/SlickGrid/lib/jquery.event.drag-2.2.js"],function(drag) {
-    require(["libs/SlickGrid/slick.core.js"]);
-    require(["libs/SlickGrid/slick.editors.js"]);
-    require(["libs/SlickGrid/lib/firebugx.js"]);
-    require(["javascript/slickTable.js"]);
-    require(["libs/SlickGrid/slick.grid.js"]);
+    require(["libs/SlickGrid/slick.core.js"], function(core) {
+      require(["libs/SlickGrid/slick.editors.js"]);
+      require(["libs/SlickGrid/lib/firebugx.js"]);
+      require(["javascript/slickTable.js"]);
+      require(["libs/SlickGrid/slick.grid.js"]);
+    });
   });
 });
 
