@@ -11,7 +11,10 @@ var loadChart = function(data, collection){
     datasets: chartdata.data
   };
   var ctx = document.getElementById("myChart").getContext("2d");
+  if(type === "line")
   var myLineChart = new Chart(ctx).Line(data);
+  else if(type === "bar")
+  var myLineChart = new Chart(ctx).Bar(data);
   document.getElementById("myChart").setAttribute("title","chart read out"); // by setting the attribute we can make the chart accessible
   for(var i =0; i<data.datasets.length;i++){
 	//Setting input functions for each line in order to set new colors
@@ -27,8 +30,16 @@ var loadChart = function(data, collection){
 				    chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
 				    chart.datasets[index].pointColor = "rgba("+ color +", 1)";
 				    chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
-					for(var i = 0; i<chart.datasets[index].points.length;i++){
-						chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
+					if(type==="line"){
+  					for(var i = 0; i<chart.datasets[index].points.length;i++){
+  					   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
+  					}
+					}
+					else if(type==="bar"){
+					   for(var i = 0; i<chart.datasets[index].bars.length;i++){
+              chart.datasets[index].bars[i].fillColor= "rgba("+ color +", 1)";
+              chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+            }
 					}
 					chart.update();						 
 				}
@@ -44,9 +55,17 @@ var loadChart = function(data, collection){
 				    chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
 				    chart.datasets[index].pointColor = "rgba("+ color +", 1)";
 				    chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
+					if(type==="line"){
 					for(var i = 0; i<chart.datasets[index].points.length;i++){
 					   chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
 					}
+					}
+          else if(type==="bar"){
+             for(var i = 0; i<chart.datasets[index].bars.length;i++){
+          chart.datasets[index].bars[i].fillColor= "rgba("+ color +", 1)";
+          chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+      }
+          }
 					chart.update();
 				}
 				this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margin-right: 5px;");
@@ -61,9 +80,17 @@ var loadChart = function(data, collection){
 			chart.datasets[index].strokeColor = transparent;
 			chart.datasets[index].pointColor = transparent;
 			chart.datasets[index].pointHighlightStroke = transparent;
+      if(type==="line"){
 			for(var i = 0; i<chart.datasets[index].points.length;i++){
 			    chart.datasets[index].points[i].fillColor= transparent;
 			}
+      }
+      else if(type === "bar"){
+        for(var i = 0; i<chart.datasets[index].bars.length;i++){
+          chart.datasets[index].bars[i].fillColor= transparent;
+          chart.datasets[index].bars[i].strokeColor= transparent;
+      }
+      }
 			chart.update();						 
 		}
 		else{
@@ -72,9 +99,17 @@ var loadChart = function(data, collection){
 			chart.datasets[index].strokeColor = color;
 			chart.datasets[index].pointColor = color;
 			chart.datasets[index].pointHighlightStroke = color;
+      if(type === "line"){
 			for(var i = 0; i<chart.datasets[index].points.length;i++){
 			    chart.datasets[index].points[i].fillColor= color;
 			}
+    }
+      else if(type === "bar"){
+        for(var i = 0; i<chart.datasets[index].bars.length;i++){
+          chart.datasets[index].bars[i].fillColor= color;
+          chart.datasets[index].bars[i].strokeColor= color;
+      }
+      }
 			chart.update();
 		}
 		};
@@ -103,6 +138,9 @@ function dataset(data, collection) {
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba("+ color +", 1)",
       data: data[i]
+    }
+    if(type === "bar"){
+	line.fillColor = line.strokeColor;
     }
     dataArray.push(line);
     // log color into color editor
