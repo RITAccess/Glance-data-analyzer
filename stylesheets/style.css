@@ -313,6 +313,9 @@ svg * {
     padding:10px;
     text-align:right;
 }
+#dialogboxbody input{
+    margin-top: 10px;
+}
 /* style for pop-up chart list ENDS */
 /************************************/
 /************************************/
