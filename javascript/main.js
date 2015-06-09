@@ -60,7 +60,7 @@ var loadData = function (data) {
     // document.getElementById('addNewCol').addEventListener('click', addColumn(data));
     document.getElementById('color-expand').style.display = 'block';
     document.getElementById('plot-header').style.display = 'block';
-    document.getElementById('downloadCSV').style.display = 'block';
+    document.getElementById('tableControls').style.display = 'block';
     document.getElementById('rTypeSel').style.display = 'block';
 }
 
@@ -199,7 +199,9 @@ var openColorEditor = function () {
             var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
             type = e.options[e.selectedIndex].value.toLowerCase();
             createFile(document.getElementById('rows').value, document.getElementById('columns').value);
-
+            if (type === "line") document.getElementById("lineRadioButton").checked = true;
+            else if (type === "bar") document.getElementById("barRadioButton").checked = true;
+            else if (type === "scatter") document.getElementById("scatterRadioButton").checked = true;
             document.getElementById('dialogbox').style.visibility = "hidden";
             document.getElementById('dialogoverlay').style.visibility = "hidden";
             document.getElementsByClassName('createBtn')[0].focus();
