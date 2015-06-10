@@ -29,7 +29,9 @@ DataSummary.prototype.dataSummary = function() {
       var info = document.createTextNode("Data Set " + (i + 1) + ": Max: " + this.currCollection.collection[i].trend.max +
         " Min: " + this.currCollection.collection[i].trend.min +
         " Average: " + this.currCollection.collection[i].trend.avg+"\n");
-      line.insertBefore(info,line.firstChild);
+      var infoLabel = document.createElement('label');
+      infoLabel.appendChild(info);
+      line.insertBefore(infoLabel,line.firstChild);
       var br = document.createElement("br");
       line.insertBefore(br,line.firstChild.nextSibling);
       //info.setAttribute("tabIndex", "0");

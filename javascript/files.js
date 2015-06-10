@@ -67,7 +67,7 @@ var createFile = function(rows, columns) {
   } 
 
   for (var i = 0; i < rowArray[0].length; i++) {
-    rowArray[0][i] = "Label " + i;
+    rowArray[0][i] = "Label " + (i + 1);
   }
 
   // Create object
