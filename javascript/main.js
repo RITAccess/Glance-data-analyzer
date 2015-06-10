@@ -35,6 +35,7 @@ require(["javascript/arrayCollection.js"]);
 require(["javascript/global.js"]);
 require(["javascript/summary.js"]);
 require(["javascript/prompts.js"]);
+require(["javascript/printer.js"]);
 
 var player;
 var overlay;
