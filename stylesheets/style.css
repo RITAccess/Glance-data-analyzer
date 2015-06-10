@@ -220,7 +220,7 @@ svg * {
     text-align: center;
     padding-left: 20px
 }
-#rowLabel, #columnLabel, #downloadCSV, #dialogboxfoot button {
+#rowLabel, #columnLabel, #downloadCSV, #printButton, #dialogboxfoot button {
     display: inline;
     cursor: pointer;
     background: #FFF;
@@ -250,9 +250,13 @@ svg * {
     border-radius: 20px;
     vertical-align: middle;
 }
-#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover {
+#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover {
     background-color: #000;
     color: #FFF;
+}
+#printButton a{
+  text-decoration: none;
+  color:inherit;
 }
 #dialogboxfoot button:hover {
     background-color: #000;
