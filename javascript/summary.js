@@ -41,9 +41,7 @@ DataSummary.prototype.dataSummary = function() {
   // Writes the max, min, and average of the total table data
   var finalSummary =document.createTextNode( "Total Data Summary: Max: " + globalmax +
     " Min: " + globalmin + " Average: " + this.calcCollectionAvg());
-    var lastEntryLabel = document.createElement("label");
-    lastEntryLabel.appendChild(lastEntry);
-    lastEntryLabel.appendChild(finalSummary);
+    lastEntry.appendChild(finalSummary);
     this.summaryDiv.appendChild(lastEntry);
 }
 
