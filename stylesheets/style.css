@@ -187,7 +187,7 @@ svg * {
     font-weight: bold;
     border-radius: 5px;
     padding-bottom: 75px;
-    margin: 40px 0px 60px 0px;
+    margin: 20px 0px 40px 0px;
     font-size: 20px;
     position: relative;/* part of making download button bottom of div*/
 }
