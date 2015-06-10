@@ -356,9 +356,17 @@ svg * {
     #content {
         margin: 0px;
     }
+    #tblContainer{
+        height: auto;
+        overflow: hidden;
+    }
     #dataPlot {
         margin: 20px 0;
         /*page-break-after: auto;*/
+    }
+    #color-expand{
+        height: auto;
+        overflow: hidden;
     }
     /*
     #tblContainer{
