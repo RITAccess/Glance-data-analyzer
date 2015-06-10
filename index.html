@@ -31,9 +31,8 @@
     <span id="audioSpan" class="no-print" style="display: none">
       <label for="lineDropdown"> Data Set</label>
       <select id="lineDropdown" class='drop-down' title="selected"></select>
-      <label for="bpm"> at speed</label>
-      <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1"/>
-      <button id="playButton" onclick="playStopAudioButton()" title="Play Graph">
+      with speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" title="set speed"/>
+      <button id="playButton" onclick="playStopAudioButton()" title="Play">
         <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
     </span>
   </header>
@@ -59,14 +58,14 @@
           </div> <!-- end id="tblContainer" -->
       <div id="tableControls" style="display: none" class="no-print">
         <div id="rowLabel">
-          <button id="subtractRow" onclick="subtractRow()"> - </button>
+          <button id="subtractRow" title="Remove Row" onclick="subtractRow()"><label> - </label></button>
           <p style="display: inline">Rows</p>
-          <button id="addNewRow" onclick="addRow()"> + </button>
+          <button id="addNewRow" title="Add New Row" onclick="addRow()"><label> + </label></button>
         </div>
         <div id="columnLabel">
-          <button id="subtractColumn" onclick="subtractColumn()"> - </button>
+          <button id="subtractColumn" title="Remove Column"onclick="subtractColumn()"><label> - </label></button>
           <p style="display: inline"> Columns</p>
-          <button id="addNewCol" onclick="addColumn()"> + </button>
+          <button id="addNewCol" title="Add New Column" onclick="addColumn()"><label> + </label></button>
         </div>
         <button id="downloadCSV" onclick="download()">Download CSV</button>
       </div>
