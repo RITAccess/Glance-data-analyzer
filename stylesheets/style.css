@@ -141,9 +141,9 @@ svg * {
 #audioSpan {
     float: right;
     position: absolute;
-    margin-top: 7px;
-    top: 1em;
     padding-right: 1em;
+    margin-top: 0.6%;
+    top: 1em;
     right: 0em;
 }
 #playButton {
@@ -151,7 +151,7 @@ svg * {
     width: 32px;
     cursor: pointer;
     padding-left: 0.10em;
-    margin-right: .5em;
+    margin-left: 0.5em;
     background: #FFF;
     border-color: #FFF;
     border-radius: 100%;
