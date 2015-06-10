@@ -58,14 +58,18 @@
           </div> <!-- end id="tblContainer" -->
       <div id="tableControls" style="display: none" class="no-print">
         <div id="rowLabel">
-          <button id="subtractRow" onclick="subtractRow()"> - </button>
+          <button id="subtractRow" title="Remove Row" onclick="subtractRow()"></button>
+          <label for="subtractRow"> - </label>
           <p style="display: inline">Rows</p>
-          <button id="addNewRow" onclick="addRow()"> + </button>
+          <label for="addNewRow"> + </label>
+          <button id="addNewRow" title="Add New Row" onclick="addRow()"></button>
         </div>
         <div id="columnLabel">
-          <button id="subtractColumn" onclick="subtractColumn()"> - </button>
+          <button id="subtractColumn" title="Remove Column"onclick="subtractColumn()"></button>
+          <label for="subtractColumn"> - </label>
           <p style="display: inline"> Columns</p>
-          <button id="addNewCol" onclick="addColumn()"> + </button>
+          <label for="addNewCol"> + </label>
+          <button id="addNewCol" title="Add New Column" onclick="addColumn()"></button>
         </div>
         <button id="downloadCSV" onclick="download()">Download CSV</button>
       </div>
