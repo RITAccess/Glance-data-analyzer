@@ -29,14 +29,15 @@
     </div>
     <output id="list"></output>
     <span id="audioSpan" class="no-print" style="display: none">
-      <button id="playButton" onclick="playStopAudioButton()" title="Play Toggle">
+      <label for="lineDropdown"> Data Set</label>
+      <select id="lineDropdown" class='drop-down' title="selected"></select>
+      with speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" title="set speed"/>
+      <button id="playButton" onclick="playStopAudioButton()" title="Play">
         <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
-      line <select id="lineDropdown" class='drop-down' title="Line Selector"></select>
-      at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" title="Speed Multiplier"/>
     </span>
   </header>
   <div id="content">
-      <form action="" id="rTypeSel" style="display:none;">
+      <form action="" id="rTypeSel" style="display:none;" class="no-print">
           <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" onclick="rType()">
           <label for="lineRadioButton">Line Graph</label>
           <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" onclick="rType()">
@@ -51,14 +52,23 @@
       </svg>
       <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
       <div id="dataPlot">
-          <div id="plot-header" style="display:none;">Data Plot</div>
-          <div id="tblContainer" title="Data Plot">
+          <div id="plot-header" style="display:none;">Data Table</div>
+          <div id="tblContainer" title="Data Table">
               <div id="slickTable" style="width:100%;"></div>
           </div> <!-- end id="tblContainer" -->
       <div id="tableControls" style="display: none" class="no-print">
-        <button id="addNewRow" onclick="addRow()"> Add Row</button>
-        <button id="addNewCol" onclick="addColumn()">Add Column</button>
+        <div id="rowLabel">
+          <button id="subtractRow" title="Remove Row" onclick="subtractRow()"><label> - </label></button>
+          <p style="display: inline">Rows</p>
+          <button id="addNewRow" title="Add New Row" onclick="addRow()"><label> + </label></button>
+        </div>
+        <div id="columnLabel">
+          <button id="subtractColumn" title="Remove Column"onclick="subtractColumn()"><label> - </label></button>
+          <p style="display: inline"> Columns</p>
+          <button id="addNewCol" title="Add New Column" onclick="addColumn()"><label> + </label></button>
+        </div>
         <button id="downloadCSV" onclick="download()">Download CSV</button>
+        <button id="downloadCSV" onclick="printPage()">Print Page</button>
       </div>
     </div>
     <div id='color-expand' style="display:none;">

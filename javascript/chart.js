@@ -97,15 +97,12 @@ var loadChart = function(data, type, collection){
 				chart.datasets[index].pointColor = transparent;
 				chart.datasets[index].pointHighlightStroke = transparent;
 				if(type==="line" || type === "scatter"){
-					for(var i = 0; i<chart.datasets[index].points.length;i++){
-						chart.datasets[index].points[i].fillColor= transparent;
-					}
+          chart.datasets[index].oldData = chart.datasets[index].points;
+          chart.datasets[index].points = null;
 				}
 				else if(type === "bar"){
-					for(var i = 0; i<chart.datasets[index].bars.length;i++){
-						chart.datasets[index].bars[i].fillColor= transparent;
-						chart.datasets[index].bars[i].strokeColor= transparent;
-					}
+          chart.datasets[index].oldData = chart.datasets[index].bars;
+          chart.datasets[index].bars = null;
 				}
 				chart.update();
 			}
@@ -119,15 +116,10 @@ var loadChart = function(data, type, collection){
 				chart.datasets[index].pointColor = color;
 				chart.datasets[index].pointHighlightStroke = color;
 				if(type === "line" || type === "scatter"){
-					for(var i = 0; i<chart.datasets[index].points.length;i++){
-						chart.datasets[index].points[i].fillColor= color;
-					}
+          chart.datasets[index].points = chart.datasets[index].oldData;
 				}
 				else if(type === "bar"){
-					for(var i = 0; i<chart.datasets[index].bars.length;i++){
-						chart.datasets[index].bars[i].fillColor= color;
-						chart.datasets[index].bars[i].strokeColor= color;
-					}
+          chart.datasets[index].bars = chart.datasets[index].oldData;
 				}
 				chart.update();
 			}

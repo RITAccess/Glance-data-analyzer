@@ -40,8 +40,8 @@ var createListener = function() {
 
 // Creates empty table value
 var createFile = function(rows, columns) {
-  if (rows <= 1) {
-    rows = 2;
+  if (rows < 1) {
+    rows = 1;
   }
   if (columns <= 1) {
     columns = 2;
@@ -56,7 +56,7 @@ var createFile = function(rows, columns) {
   // Used to create appropriately formated object to be passed in
   var emptyArray = [];
   var emptyObject = { };
-  var rowArray = new Array(parseInt(rows));
+  var rowArray = new Array(parseInt(rows) + 1);
 
   for (var i = 0; i < rowArray.length; i++) {
     rowArray[i] = new Array(parseInt(columns));
@@ -67,7 +67,7 @@ var createFile = function(rows, columns) {
   } 
 
   for (var i = 0; i < rowArray[0].length; i++) {
-    rowArray[0][i] = "Label " + i;
+    rowArray[0][i] = "Label " + (i + 1);
   }
 
   // Create object
@@ -159,6 +159,61 @@ var addColumn = function() {
     loadData(currTable);
  }
 
+ var subtractRow = function() {
+  // Reset color list
+  var colorlist = document.getElementById("colors");
+  while(colorlist.firstChild){
+    colorlist.removeChild(colorlist.firstChild);
+  }
+
+  var currTable = new Object();
+  currTable.data = [];
+  currTable.errors = [];
+
+  var resData = grid.getData();
+      for(var i = 0; i< resData.length; i++){
+        currTable.data[i]= [];
+        for(var key in resData[i]){
+          if(key != "id")
+          currTable.data[i].push(resData[i][key]);
+        }
+      }
+  if (currTable.data.length > 2) {
+    currTable.data.pop(); 
+  }
+
+  loadData(currTable);
+ }
+
+ var subtractColumn = function() {
+  // Reset color list
+  var colorlist = document.getElementById("colors");
+  while(colorlist.firstChild){
+    colorlist.removeChild(colorlist.firstChild);
+  }
+
+  var currTable = new Object();
+  currTable.data = [];
+  currTable.errors = [];
+
+  var resData = grid.getData();
+      for(var i = 0; i< resData.length; i++){
+        currTable.data[i]= [];
+        for(var key in resData[i]){
+          if(key != "id")
+          currTable.data[i].push(resData[i][key]);
+        }
+      }
+
+    for (var i = 0; i < currTable.data.length; i++) {
+      if (currTable.data[i].length > 2) {
+        currTable.data[i].pop();
+      }
+    }
+
+    loadData(currTable);
+ }
+
 
 //Download CSV file of current chart
     function download() {
@@ -166,20 +221,19 @@ var addColumn = function() {
         //retrieve chart data and put into a csv file
         if(type === "line" || type === "scatter"){
       for (var i = 0; i < chart.datasets.length; i++) {
-        for (var j = 0; j < chart.datasets[i].points.length; j++) {
-          if (i === 0 && j === 0) {
-            for (var k = 0; k < chart.datasets[i].points.length; k++) {
-              s += chart.datasets[i].points[k].label;
-              if (k + 1 < chart.datasets[i].points.length)
-                s += ",";
+                for (var j = 0; j < chart.datasets[i].points.length; j++) {
+                    if (i === 0 && j === 0) {
+                        for (var k = 0; k < chart.datasets[i].points.length; k++) {
+                            s += chart.datasets[i].points[k].label;
+                            if (k + 1 < chart.datasets[i].points.length) s += ",";
+                        }
+                        s += "\n";
+                    }
+                    s += chart.datasets[i].points[j].value;
+                    if (j + 1 < chart.datasets[i].points.length) s += ",";
+                }
+                s += "\n";
             }
-            s += chart.datasets[i].points[j].value;
-            if (j + 1 < chart.datasets[i].points.length)
-              s += ",";
-          }
-          s += "\n";
-        }
-      }
     }
     else if (type === "bar") {
             for (var i = 0; i < chart.datasets.length; i++) {

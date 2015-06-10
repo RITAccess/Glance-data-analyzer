@@ -20,7 +20,7 @@
           var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
           type = e.options[e.selectedIndex].value.toLowerCase();
           if(type != "line" && type != "bar" && type!= "scatter"){
-              alert("No graph type has been selected!");
+              alert("No graph type has been selected! Please select a type of graph.");
               return;
             }
           loadFile();
@@ -50,7 +50,7 @@
             dialogbox.style.top = "100px";
             dialogbox.style.display = "block";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='graphSelect'>select a type of graph</option><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select><br><label>Choose number of row: </label><input id='rows' type='text' value='0' /><br><label>Choose number of column: </label><input id='columns' type='text' value='0' />";
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='graphSelect'>select a type of graph</option><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select><br><label>Choose number of rows: </label><input id='rows' type='text' value='0' title='Choose number of rows'/><br><label>Choose number of columns: </label><input id='columns' type='text' value='0' title='Choose number of columns'/>";
             document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert2.cancel()'>Cancel</button><button onclick=Alert2.reset()>Reset</button><button onclick='Alert2.ok()'>Submit</button>";
             document.getElementById('dialogbox').style.visibility = "visible";
             document.getElementById('dialogoverlay').style.visibility = "visible";
@@ -59,9 +59,15 @@
             var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
             type = e.options[e.selectedIndex].value.toLowerCase();
             if(type != "line" && type != "bar" && type!= "scatter"){
-              alert("No graph type has been selected!");
+              alert("No graph type has been selected! Please select a type of graph.");
               return;
             }
+            if(document.getElementById('rows').value * document.getElementById('columns').value >= 1000 ||document.getElementById('columns').value >= 1000 ||document.getElementById('rows').value >= 1000){
+              if(!confirm("Large data set may cause browser instability, continue anyways?")){
+                this.reset;
+                return;
+              }
+            } 
             createFile(document.getElementById('rows').value, document.getElementById('columns').value);
             if (type === "line") document.getElementById("lineRadioButton").checked = true;
             else if (type === "bar") document.getElementById("barRadioButton").checked = true;
