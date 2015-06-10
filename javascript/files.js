@@ -159,6 +159,57 @@ var addColumn = function() {
     loadData(currTable);
  }
 
+ var subtractRow = function() {
+  // Reset color list
+  var colorlist = document.getElementById("colors");
+  while(colorlist.firstChild){
+    colorlist.removeChild(colorlist.firstChild);
+  }
+
+  var currTable = new Object();
+  currTable.data = [];
+  currTable.errors = [];
+
+  var resData = grid.getData();
+      for(var i = 0; i< resData.length; i++){
+        currTable.data[i]= [];
+        for(var key in resData[i]){
+          if(key != "id")
+          currTable.data[i].push(resData[i][key]);
+        }
+      }
+
+  currTable.data.pop();
+  loadData(currTable);
+ }
+
+ var subtractColumn = function() {
+  // Reset color list
+  var colorlist = document.getElementById("colors");
+  while(colorlist.firstChild){
+    colorlist.removeChild(colorlist.firstChild);
+  }
+
+  var currTable = new Object();
+  currTable.data = [];
+  currTable.errors = [];
+
+  var resData = grid.getData();
+      for(var i = 0; i< resData.length; i++){
+        currTable.data[i]= [];
+        for(var key in resData[i]){
+          if(key != "id")
+          currTable.data[i].push(resData[i][key]);
+        }
+      }
+
+  for (var i = 0; i < currTable.data.length; i++) {
+    currTable.data[i].pop();
+  }
+
+  loadData(currTable);
+ }
+
 
 //Download CSV file of current chart
     function download() {
