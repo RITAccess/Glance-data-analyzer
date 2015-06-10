@@ -62,6 +62,12 @@
               alert("No graph type has been selected! Please select a type of graph.");
               return;
             }
+            if(document.getElementById('rows').value * document.getElementById('columns').value >= 1000 ||document.getElementById('columns').value >= 1000 ||document.getElementById('rows').value >= 1000){
+              if(!confirm("Large data set may cause browser instability, continue anyways?")){
+                this.reset;
+                return;
+              }
+            } 
             createFile(document.getElementById('rows').value, document.getElementById('columns').value);
             if (type === "line") document.getElementById("lineRadioButton").checked = true;
             else if (type === "bar") document.getElementById("barRadioButton").checked = true;
