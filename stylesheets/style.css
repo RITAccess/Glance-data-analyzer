@@ -220,6 +220,20 @@ svg * {
     position: absolute;
     right: 0;
 }
+#rowLabel, #columnLabel {
+    cursor: none;
+}
+#addNewRow, #addNewCol, #subtractRow, #subtractColumn {
+    min-width: 35px;
+    cursor: pointer;
+    background: #FFF;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: none;
+    text-shadow: none;
+    border: 2px solid #FFF;
+    border-radius: 20px;
+}
 #downloadCSV, #dialogboxfoot button, #rowLabel, #columnLabel {
     display: inline;
     cursor: pointer;
@@ -243,23 +257,6 @@ svg * {
     color: #FFF;
     border-color: #FFF;
 }
-#rowLabel, #columnLabel {
-    cursor: none;
-}
-#addNewRow, #addNewCol, #subtractRow, #subtractColumn {
-    min-width: 35px;
-    cursor: pointer;
-    background: #FFF;
-    font-size: 20px;
-    font-weight: bold;
-    box-shadow: none;
-    text-shadow: none;
-    border: 2px solid #FFF;
-    border-radius: 20px;
-}/*
-#subtractRow, #subtractColumn {
-    margin-right: 10px;
-}*/
 #color-expand {
     width: 100%;
     height: 400px;
