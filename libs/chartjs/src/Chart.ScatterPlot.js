@@ -136,7 +136,7 @@
 
 			},this);
 
-
+			this.calcBestFit();
 			this.render();
 		},
 		update : function(){
@@ -148,6 +148,9 @@
 			this.eachPoints(function(point){
 				point.save();
 			});
+			
+			this.calcBestFit();
+			
 			this.render();
 		},
 		eachPoints : function(callback){
@@ -301,8 +304,107 @@
 					point.draw();
 				});
 			},this);
-		}
+		},
+		
+		calcBestFit : function() {
+			//best fit (linear first)
+			var xValues = [];
+			// if the labels aren't x values...
+			// TODO should check all labels & if any aren't numbers
+			// normalize them (0 through whatever)
+			if(isNaN(this.datasets[0].points[0].label)){
+				for(var i = 0; i < this.datasets[0].points.length; i++){
+					xValues.push(i);
+				}
+			}
+			//else, use the labels (any row in the data will work)
+			else{
+				for(var i = 0; i < this.datasets[0].points.length; i++){	
+					xValues.push(this.datasets[0].points[i].label);
+				}
+			}
+			
+			var xmean = 0.0;
+			var ymean = 0.0;
+			
+			//calculating mean x value
+			for(var i = 0; i < xValues.length; i++){
+				xmean += parseFloat(xValues[i]);
+			}						
+			xmean = xmean / (parseFloat(xValues.length));
+			
+			//calculating mean y value
+			for(var i = 0; i < this.datasets.length; i++){
+				for(var j = 0; j < this.datasets[i].points.length; j++){
+					ymean += parseFloat(this.datasets[i].points[j].value);
+				}
+			}
+			ymean = ymean / parseFloat((parseFloat(this.datasets.length) * parseFloat(this.datasets[0].points.length)));
+			
+			//calculating slope 
+			var bottom = 0; 
+			var top = 0; 
+			for(var i = 0; i < this.datasets.length; i++){
+				for(var j = 0; j < this.datasets[i].points.length; j++){
+					var value = [parseFloat(xValues[i]), parseFloat(this.datasets[i].points[j].value)];
+					var ydiff = value[1] - ymean;
+					var xdiff = value[0] - xmean;
+					bottom += (xdiff * xdiff);
+					top += xdiff * ydiff;
+				}
+			}
+			
+			var slope = top / bottom;
+			var yint = ymean - slope * xmean;
+			
+			//generate points on line for each x value
+			// y = mx + b
+			//frontier
+			var values = [];
+			for(var i = 0; i < xValues.length; i++){
+				var val = slope * parseFloat(xValues[i]) + yint;
+				values.push(val);
+			}			
+			
+			//drawLine(values,"linReg");
+		}/*,
+		// made to draw a point for each column & connect
+		drawLine : function(yValues, label){
+			
+			ctx.lineWidth = this.options.datasetStrokeWidth;
+			ctx.strokeStyle = dataset.strokeColor;
+			ctx.beginPath();
+			/* x and y scaled values: 
+			 * y : this.scale.calculateY(point.value),
+			 * x : this.scale.calculateX(index)
+			 
+			var pointarray = [];
+			
+			
+			helpers.each(pointsWithValues, function(point, index){
+				if (index === 0){
+					ctx.moveTo(point.x, point.y);					
+				}
+					else{
+						if(this.options.bezierCurve){
+							var previous = previousPoint(point, pointsWithValues, index);
+							ctx.bezierCurveTo(
+								previous.controlPoints.outer.x,
+								previous.controlPoints.outer.y,
+								point.controlPoints.inner.x,
+								point.controlPoints.inner.y,
+								point.x,
+								point.y
+							);
+						}
+						else{
+							ctx.lineTo(point.x,point.y);
+						}
+					}
+			}, this);
+
+			ctx.stroke();	
+		}*/
+		
 	});
-
-
 }).call(this);
