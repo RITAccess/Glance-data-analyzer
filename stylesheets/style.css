@@ -1,5 +1,5 @@
 body, html {
-    font-family: sans-serif;
+    font-family: sans-serif, verdana;
     width: 100%;
     background: url('halftone/halftone.png')
 }
@@ -91,7 +91,6 @@ svg * {
     display:inline-block;
     vertical-align:top;
     font-size:0;
-    font-family:verdana;
     margin-left: 10px;
 }
 .disableInputField {
