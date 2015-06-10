@@ -40,8 +40,8 @@ var createListener = function() {
 
 // Creates empty table value
 var createFile = function(rows, columns) {
-  if (rows <= 1) {
-    rows = 2;
+  if (rows < 1) {
+    rows = 1;
   }
   if (columns <= 1) {
     columns = 2;
@@ -56,7 +56,7 @@ var createFile = function(rows, columns) {
   // Used to create appropriately formated object to be passed in
   var emptyArray = [];
   var emptyObject = { };
-  var rowArray = new Array(parseInt(rows));
+  var rowArray = new Array(parseInt(rows) + 1);
 
   for (var i = 0; i < rowArray.length; i++) {
     rowArray[i] = new Array(parseInt(columns));
@@ -178,8 +178,10 @@ var addColumn = function() {
           currTable.data[i].push(resData[i][key]);
         }
       }
+  if (currTable.data.length > 2) {
+    currTable.data.pop(); 
+  }
 
-  currTable.data.pop();
   loadData(currTable);
  }
 
@@ -203,11 +205,13 @@ var addColumn = function() {
         }
       }
 
-  for (var i = 0; i < currTable.data.length; i++) {
-    currTable.data[i].pop();
-  }
+    for (var i = 0; i < currTable.data.length; i++) {
+      if (currTable.data[i].length > 2) {
+        currTable.data[i].pop();
+      }
+    }
 
-  loadData(currTable);
+    loadData(currTable);
  }
 
 
