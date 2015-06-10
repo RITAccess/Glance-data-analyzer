@@ -53,18 +53,26 @@
       </svg>
       <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
       <div id="dataPlot">
-          <div id="plot-header" style="display:none;">Data Table</div>
-          <div id="tblContainer" title="Data Table">
+          <div id="plot-header" style="display:none;">Data Plot</div>
+          <div id="tblContainer" title="Data Plot">
               <div id="slickTable" style="width:100%;"></div>
           </div> <!-- end id="tblContainer" -->
       <div id="tableControls" style="display: none" class="no-print">
-        <button id="addNewRow" onclick="addRow()"> Add Row</button>
-        <button id="addNewCol" onclick="addColumn()">Add Column</button>
+        <div id="rowLabel">
+          <button id="subtractRow" onclick="subtractRow()"> - </button>
+          <p style="display: inline">Rows</p>
+          <button id="addNewRow" onclick="addRow()"> + </button>
+        </div>
+        <div id="columnLabel">
+          <button id="subtractColumn" onclick="subtractColumn()"> - </button>
+          <p style="display: inline"> Columns</p>
+          <button id="addNewCol" onclick="addColumn()"> + </button>
+        </div>
         <button id="downloadCSV" onclick="download()">Download CSV</button>
       </div>
     </div>
     <div id='color-expand' style="display:none;">
-      <div id='color-header' onclick="openColorEditor()">Graph Data</div>
+      <div id='color-header' onclick="openColorEditor()">Line Data</div>
       <div id="color-editor" class="color-editor-input" >
         <ol id="colors"></ol>
       </div>
