@@ -58,7 +58,7 @@ var loadData = function (data) {
     summary.dataSummary();
     linkSlickTable(chart, player, overlay, summary);
     document.getElementById('color-expand').style.display = 'block';
-    document.getElementById('dataPlot').style.display = 'block';
+    document.getElementById('plot-header').style.display = 'block';
     document.getElementById('tableControls').style.display = 'block';
     document.getElementById('rTypeSel').style.display = 'block';
 }

@@ -51,8 +51,8 @@
           <rect id="selection" x="0" y="0" width="800" height="400" />
       </svg>
       <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
-      <div id="dataPlot" style="display:none;">
-          <div id="plot-header">Data Table</div>
+      <div id="dataPlot">
+          <div id="plot-header" style="display:none;">Data Table</div>
           <div id="tblContainer" title="Data Table">
               <div id="slickTable" style="width:100%;"></div>
           </div> <!-- end id="tblContainer" -->
@@ -85,5 +85,12 @@
             <div id="dialogboxfoot"></div>
         </div>
     </div> <!-- end div for chart pop-up list -->
+    <div id="newFileDialogOverlay">
+      <div id="newFileDialogBox">
+        <div id="newFileDialogHead"></div>
+        <div id="newFileDialogBody" class="sChartType"></div>
+        <div id="newFileDialogFoot"></div>
+      </div>
+    </div>
 </body>
 </html>

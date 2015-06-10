@@ -185,7 +185,6 @@ svg * {
 #dataPlot {
     text-align:center;
     font-weight: bold;
-    border: 3px solid #000;
     border-radius: 5px;
     padding-bottom: 75px;
     margin: 40px 0px 60px 0px;
