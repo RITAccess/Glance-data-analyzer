@@ -20,7 +20,7 @@
           var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
           type = e.options[e.selectedIndex].value.toLowerCase();
           if(type != "line" && type != "bar" && type!= "scatter"){
-              alert("No graph type has been selected!");
+              alert("No graph type has been selected! Please select a type of graph.");
               return;
             }
           loadFile();
@@ -59,7 +59,7 @@
             var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
             type = e.options[e.selectedIndex].value.toLowerCase();
             if(type != "line" && type != "bar" && type!= "scatter"){
-              alert("No graph type has been selected!");
+              alert("No graph type has been selected! Please select a type of graph.");
               return;
             }
             if(document.getElementById('rows').value * document.getElementById('columns').value >= 1000 ||document.getElementById('columns').value >= 1000 ||document.getElementById('rows').value >= 1000){
