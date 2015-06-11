@@ -253,10 +253,6 @@ svg * {
     background-color: #000;
     color: #FFF;
 }
-#printButton a{
-    text-decoration: none;
-    color:inherit;
-}
 #dialogboxfoot button:hover {
     background-color: #000;
     color: #FFF;
