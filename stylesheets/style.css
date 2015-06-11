@@ -365,10 +365,14 @@ table, th, td, .printTable{
     text-align: center;
 }
 table, .printTable{
+    font-size: 20px;
     margin: 30px;
+    table-layout: fixed;
 }
 th, td, .printTable{
-    padding: 10px; 
+    padding: 10px;
+    word-wrap:break-word;
+    max-width:150px; 
 }
 /* Table Style for print ENDS */
 
