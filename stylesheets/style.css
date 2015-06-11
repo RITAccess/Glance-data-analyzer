@@ -358,6 +358,20 @@ svg * {
 }
 /* style for pop-up chart list ENDS */
 
+/* Table Style for print STARTS*/
+table, th, td, .printTable{
+    border: 1px solid #000;
+    border-collapse: collapse;
+    text-align: center;
+}
+table, .printTable{
+    margin: 30px;
+}
+th, td, .printTable{
+    padding: 10px; 
+}
+/* Table Style for print ENDS */
+
 /************************************/
 
 /************************************/
