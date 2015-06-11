@@ -30,7 +30,7 @@
     <output id="list"></output>
     <span id="audioSpan" class="no-print" style="display: none">
       <label for="lineDropdown"> Data Set</label>
-      <select id="lineDropdown" class='drop-down' aria-label="Data set selected"></select>
+      <select id="lineDropdown" class='drop-down' title="selected"></select>
       with speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="set speed"/>
       <button id="playButton" onclick="playStopAudioButton()" aria-label="Play">
         <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
@@ -72,7 +72,7 @@
       </div>
     </div>
     <div id='color-expand' style="display:none;">
-      <div id='color-header' onclick="openColorEditor()">Line Data</div>
+      <div id='color-header' onclick="openColorEditor()">Graph Data </div>
       <div id="color-editor" class="color-editor-input" >
         <ol id="colors"></ol>
       </div>
