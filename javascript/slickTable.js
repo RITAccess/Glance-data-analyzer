@@ -14,7 +14,7 @@ var loadSlickTable = function(fileData){
 			field: i,
 			width: w,
 			editor: Slick.Editors.Text,
-			minWidth: 60, //sets range for width of columns
+			minWidth: 80, //sets range for width of columns
 			maxWidth: 80
 		});
 	}
@@ -44,7 +44,20 @@ var loadSlickTable = function(fileData){
 				}
 			}
 	}
+
+	//Dynamic container width
+	var container = document.getElementById('tblContainer')
+	var cwidthNum; 
+    if (fileData[0].length < 9)
+    	cwidthNum = fileData[0].length * 80; // max/min width (80)
+    else if (fileData[0].length >= 9)
+    	cwidthNum = 720
+    var cwidthString = cwidthNum + "px";
+   	container.setAttribute("style", "width:" + cwidthString);
+
+   	//Grid creation
     grid = new Slick.Grid(c1, data, columns, options);
+
   });
   return grid;
 }
