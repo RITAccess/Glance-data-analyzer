@@ -16,40 +16,53 @@ function printPage()
    var ind2 = html.indexOf(str2);*/
    var s = "<table class='printTable'>";
    if(type === "bar"){
-      s+="<tr>";
-      for(var i = 0; i<chart.datasets[0].bars.length; i++){
-         s+="<th>" + chart.datasets[0].bars[i].label + "</th>";
+      var counter = 0;
+      for(var j = 0; j<(chart.datasets[0].bars.length/15); j++){
+         s+="<tr>";
+         for(var i = 0; (i<chart.datasets[0].bars.length && counter<15 && chart.datasets[0].bars[(15*j)+i]!= undefined); i++){
+            s+="<th>" + chart.datasets[0].bars[(15*j)+i].label + "</th>";
+            counter++;
+         }
+         s+="</tr>";
+         counter = 0;
+         for (var i = 0; i < chart.datasets.length; i++) {
+            s+="<tr>";
+            for(var k = 0; (k<chart.datasets[i].bars.length && counter<15 && chart.datasets[i].bars[(15*j)+k]!= undefined); k++) {
+               s+= "<td>" + chart.datasets[i].bars[(15*j) + k].value + "</td>"; 
+               counter++;
+            }
+            counter = 0;
+            s += "</tr>";
+         }
+
+         s+="</table><br /><table class='printTable'>";
+         counter = 0;
       }
-      s+="</tr>";
    }
    else{
-      s+="<tr>";
-      for(var i = 0; i<chart.datasets[0].points.length; i++){
-         s+="<th>" + chart.datasets[0].points[i].label + "</th>";
-      }
-      s+="</tr>";
-   }
-   if(type === "bar"){
-      for (var i = 0; i < chart.datasets.length; i++) {
+      var counter = 0;
+      for(var j = 0; j<(chart.datasets[0].points.length/15); j++){
          s+="<tr>";
-         for (var j = 0; j < chart.datasets[i].bars.length; j++) {
-            s+= "<td>" + chart.datasets[i].bars[j].value + "</td>";
+         for(var i = 0; (i<chart.datasets[0].points.length && counter<15 && chart.datasets[0].points[(15*j)+i]!= undefined); i++){
+            s+="<th>" + chart.datasets[0].points[(15*j)+i].label + "</th>";
+            counter++;
          }
-         s += "</tr>";   
+         s+="</tr>";
+         counter = 0;
+         for (var i = 0; i < chart.datasets.length; i++) {
+            s+="<tr>";
+            for(var k = 0; (k<chart.datasets[i].points.length && counter<15 && chart.datasets[i].points[(15*j)+k]!= undefined); k++) {
+               s+= "<td>" + chart.datasets[i].points[(15*j) + k].value + "</td>"; 
+               counter++;
+            }
+            counter = 0;
+            s += "</tr>";
+         }
+
+         s+="</table><br /><table class='printTable'>";
+         counter = 0;
       }
    }
-   else{
-       for (var i = 0; i < chart.datasets.length; i++) {
-         s+="<tr>";
-         for (var j = 0; j < chart.datasets[i].points.length; j++) {
-            s+= "<td>" + chart.datasets[i].points[j].value + "</td>";
-         }
-         s += "</tr>";   
-      }   
-      
-      }
-         s+= "</table>";
-   
    html+= s;
    html += "</body></html>";
    printWin = window.open("','_blank','left=0,top=0,width=500,height=500,fullscreen=1,toolbar=0,scrollbars=0,status  =0");
