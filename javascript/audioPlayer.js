@@ -67,7 +67,6 @@ AudioPlayer.prototype.playToggle = function(line, startIndex, endIndex) {
 AudioPlayer.prototype.playLine = function(line, startIndex, endIndex) {
   //If the lines have been changed since the last time they
   //were played then recalculate them
-
   //Reset the timeout queue
   this.timeoutQueue = [];
   this.playing = true;
@@ -83,11 +82,12 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex) {
   }
 
   var self = this;
+  var index = startIndex;
 
   setTimeout(function(){
-      for(var i = 0; i < allHtml.length; i++) {
-        allHtml[i].style.cursor = "default";
-      }
+    for(var i = 0; i < allHtml.length; i++) {
+      allHtml[i].style.cursor = "default";
+    }
     var multiplier = document.getElementById("bpm").value;
     if(multiplier <= 0) {
       multiplier = 1;
@@ -95,7 +95,7 @@ AudioPlayer.prototype.playLine = function(line, startIndex, endIndex) {
     var speed = self.timeStep/(multiplier || 1);
 
     var end = (endIndex || self.infoCollection.collection[line].array.length-1);
-    var startIndex = (startIndex || 0);
+    var startIndex = (index || 0);
     //If startIndex or endIndex are undefined they will be set to the start and end of the line respectively
     for(var i = startIndex; i <= end; i++) {
       self.playPointWithDelay(line, i, (i-startIndex)*(speed-speed/8)*1000);
