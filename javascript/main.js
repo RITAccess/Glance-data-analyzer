@@ -46,6 +46,7 @@ var lineColors = [];
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function (data) {
+    document.getElementById('start').style.display = 'none';
     document.querySelector('#overlay').setAttribute('style', '');
     document.querySelector('#slickTable').innerHTML = '';
     var slickTable = loadSlickTable(data.data);
