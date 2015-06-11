@@ -188,9 +188,10 @@ function dataset(data, collection) {
 		keyLabel.setAttribute("class", "colorblock");
 		}
 		inputBoxArray.push(textInput);
-		textInput.setAttribute("title", "Enter new line " + i + " color");
+		textInput.setAttribute("title", "Enter new color for Data Set " + i);
 		toggleBox.setAttribute("type", "checkbox");
 		toggleBox.setAttribute("checked", "checked");
+		toggleBox.setAttribute("title", "Display Data Set " + i);
 		keyValue.setAttribute('style', 'color:' + newColor +'; display: inline; margin-right: 5px;');
 		keyValue.appendChild(keyLabel);
 		entry.appendChild(keyValue);

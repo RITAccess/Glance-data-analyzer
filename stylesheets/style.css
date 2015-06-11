@@ -64,17 +64,16 @@ svg * {
 }
 /*
 .slider1 {
-  width: 800px;
-  margin: 0px;
-  margin-bottom: 7px;
-  float: left;
+    width: 800px;
+    margin: 0px;
+    margin-bottom: 7px;
+    float: left;
 }
-
 .slider2 {
-  width: 800px;
-  margin: 0px;
-  margin-bottom: 7px;
-  float: left;
+    width: 800px;
+    margin: 0px;
+    margin-bottom: 7px;
+    float: left;
 }
 */
  #slider-range {
@@ -254,10 +253,6 @@ svg * {
     background-color: #000;
     color: #FFF;
 }
-#printButton a{
-  text-decoration: none;
-  color:inherit;
-}
 #dialogboxfoot button:hover {
     background-color: #000;
     color: #FFF;
@@ -365,6 +360,24 @@ svg * {
 
 /************************************/
 
+/* Table Style for print STARTS*/
+table, th, td, .printTable{
+    border: 1px solid #000;
+    border-collapse: collapse;
+    text-align: center;
+}
+table, .printTable{
+    font-size: 20px;
+    margin: 30px;
+    table-layout: fixed;
+}
+th, td, .printTable{
+    padding: 10px;
+    word-wrap:break-word;
+    max-width:150px; 
+}
+/* Table Style for print ENDS */
+
 /************************************/
 
 /* media query for printing STARTS  */
@@ -389,11 +402,6 @@ svg * {
         height: auto;
         overflow: hidden;
     }
-    /*
-    #tblContainer{
-      overflow: visible;
-      white-space: pre-wrap;
-    }*/
     .no-print, .no-print * {
         display: none !important;
     }
