@@ -367,11 +367,14 @@ table, th, td, .printTable{
     text-align: center;
 }
 table, .printTable{
-    margin-top: 30px;
-    margin-left: 15px;
+    font-size: 20px;
+    margin: 30px;
+    table-layout: fixed;
 }
 th, td, .printTable{
     padding: 10px;
+    word-wrap:break-word;
+    max-width:150px; 
 }
 /* Table Style for print ENDS */
 

@@ -307,6 +307,7 @@
 		},
 		
 		calcBestFit : function() {
+			console.log("best fit");
 			//best fit (linear first)
 			var xValues = [];
 			// if the labels aren't x values...
