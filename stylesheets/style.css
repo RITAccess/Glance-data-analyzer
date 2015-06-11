@@ -64,17 +64,16 @@ svg * {
 }
 /*
 .slider1 {
-  width: 800px;
-  margin: 0px;
-  margin-bottom: 7px;
-  float: left;
+    width: 800px;
+    margin: 0px;
+    margin-bottom: 7px;
+    float: left;
 }
-
 .slider2 {
-  width: 800px;
-  margin: 0px;
-  margin-bottom: 7px;
-  float: left;
+    width: 800px;
+    margin: 0px;
+    margin-bottom: 7px;
+    float: left;
 }
 */
  #slider-range {
@@ -255,8 +254,8 @@ svg * {
     color: #FFF;
 }
 #printButton a{
-  text-decoration: none;
-  color:inherit;
+    text-decoration: none;
+    color:inherit;
 }
 #dialogboxfoot button:hover {
     background-color: #000;
