@@ -358,6 +358,8 @@ svg * {
 }
 /* style for pop-up chart list ENDS */
 
+/************************************/
+
 /* Table Style for print STARTS*/
 table, th, td, .printTable{
     border: 1px solid #000;
@@ -365,14 +367,13 @@ table, th, td, .printTable{
     text-align: center;
 }
 table, .printTable{
-    margin: 30px;
+    margin-top: 30px;
+    margin-left: 15px;
 }
 th, td, .printTable{
-    padding: 10px; 
+    padding: 10px;
 }
 /* Table Style for print ENDS */
-
-/************************************/
 
 /************************************/
 
@@ -398,11 +399,6 @@ th, td, .printTable{
         height: auto;
         overflow: hidden;
     }
-    /*
-    #tblContainer{
-      overflow: visible;
-      white-space: pre-wrap;
-    }*/
     .no-print, .no-print * {
         display: none !important;
     }
