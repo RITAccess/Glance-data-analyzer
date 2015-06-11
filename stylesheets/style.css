@@ -358,6 +358,8 @@ svg * {
 }
 /* style for pop-up chart list ENDS */
 
+/************************************/
+
 /* Table Style for print STARTS*/
 table, th, td, .printTable{
     border: 1px solid #000;
@@ -375,8 +377,6 @@ th, td, .printTable{
     max-width:150px; 
 }
 /* Table Style for print ENDS */
-
-/************************************/
 
 /************************************/
 
@@ -402,11 +402,6 @@ th, td, .printTable{
         height: auto;
         overflow: hidden;
     }
-    /*
-    #tblContainer{
-      overflow: visible;
-      white-space: pre-wrap;
-    }*/
     .no-print, .no-print * {
         display: none !important;
     }

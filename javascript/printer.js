@@ -6,10 +6,13 @@ function printPage()
    html += document.getElementsByTagName('head')[0].innerHTML;
    html += "</head>"
    html += "<body>";
-   html += "<img src='" + chart.toBase64Image() + "'/>";
+   html += "<header><span id='title'> Data Analyzer </span>";
+   html += "</header>";
+   html += "<div id='content'>";
+   html += "<div style='margin-bottom: 50px;'><img width='800px' src='" + chart.toBase64Image() + "'/></div>";
    html += "<div id='color-expand' style='display: block;'>";
    html += document.getElementById('color-expand').innerHTML;
-   html += "</div>"
+   html += "</div><div style='text-align: center; margin-top: 60px;'>Data Table</div>";
    var s = "<table class='printTable'>";
    if(type === "bar"){
       var counter = 0;
@@ -59,7 +62,8 @@ function printPage()
          counter = 0;
       }
    }
-   html+= s;
+   html += s;
+   html += "</content>";
    html += "</body></html>";
    printWin = window.open("','_blank','left=0,top=0,width=500,height=500,fullscreen=1,toolbar=0,scrollbars=0,status  =0");
    printWin.document.write(html);
