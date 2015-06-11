@@ -43,13 +43,14 @@ var summary;
 var chart;
 var type = null;
 var lineColors = [];
+var slickTable;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function (data) {
     document.getElementById('start').style.display = 'none';
     document.querySelector('#overlay').setAttribute('style', '');
     document.querySelector('#slickTable').innerHTML = '';
-    var slickTable = loadSlickTable(data.data);
+    slickTable = loadSlickTable(data.data);
     chart = loadChart(data.data, type);
     player = new AudioPlayer();
     overlay = new Overlay(data);

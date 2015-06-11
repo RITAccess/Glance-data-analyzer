@@ -31,8 +31,8 @@
     <span id="audioSpan" class="no-print" style="display: none">
       <label for="lineDropdown"> Data Set</label>
       <select id="lineDropdown" class='drop-down' title="selected"></select>
-      with speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" title="set speed"/>
-      <button id="playButton" onclick="playStopAudioButton()" title="Play">
+      with speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="set speed"/>
+      <button id="playButton" onclick="playStopAudioButton()" aria-label="Play">
         <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
     </span>
   </header>
@@ -60,7 +60,7 @@
           <input id="scatterRadioButton" type="radio" name="rGraphSel" value="Scatter" onclick="rType()">
           <label for="scatterRadioButton">Scatter Plot</label>
       </form>
-      <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" role=chart-slider class="no-print"></div>
+      <div id="slider-range" aria-label="Adjust sliders left or right to hear specific range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" role=chart-slider class="no-print"></div>
       <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
           <rect id="background" x="0" y="0" width="800" height="400" />
           <rect id="selection" x="0" y="0" width="800" height="400" />
@@ -73,24 +73,23 @@
           </div> <!-- end id="tblContainer" -->
       <div id="tableControls" style="display: none" class="no-print">
         <div id="rowLabel">
-          <button id="subtractRow" title="Remove Row" onclick="subtractRow()"><label> - </label></button>
+          <button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"><label> - </label></button>
           <p style="display: inline">Rows</p>
-          <button id="addNewRow" title="Add New Row" onclick="addRow()"><label> + </label></button>
+          <button id="addNewRow" aria-label="Add New Row" onclick="addRow()"><label> + </label></button>
         </div>
         <div id="columnLabel">
-          <button id="subtractColumn" title="Remove Column"onclick="subtractColumn()"><label> - </label></button>
+          <button id="subtractColumn" aria-label="Remove Column"onclick="subtractColumn()"><label> - </label></button>
           <p style="display: inline"> Columns</p>
-          <button id="addNewCol" title="Add New Column" onclick="addColumn()"><label> + </label></button>
+          <button id="addNewCol" aria-label="Add New Column" onclick="addColumn()"><label> + </label></button>
         </div>
         <button id="downloadCSV" onclick="download()">Download CSV</button>
-        <button id="printButton" onclick="printPage()">Print Page</button>
+        <button id="printButton" onclick="printPage()">Print</button>
       </div>
     </div>
     <div id='color-expand' style="display:none;">
-      <div id='color-header' onclick="openColorEditor()">Line Data</div>
+      <div id='color-header' onclick="openColorEditor()">Graph Data </div>
       <div id="color-editor" class="color-editor-input" >
-        <ol id="colors"></ol>
-      </div>
+        <ol id="colors" ></ol>
     </div>
   </div><!-- end div id="content"-->
   <div id="dialogoverlay"></div> <!-- div for chart pop-up list -->
