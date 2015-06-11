@@ -6,14 +6,10 @@ function printPage()
    html += document.getElementsByTagName('head')[0].innerHTML;
    html += "</head>"
    html += "<body>";
-   /*html+="<div id='dataPlot'>";
-   html+= document.getElementById('dataPlot').innerHTML;
-   html+="</div>"
-   html+="</body></html>";
-   var str = document.getElementById("dataPlot").innerHTML;
-   var ind = html.indexOf(str);
-   var str2 = document.getElementById("rTypeSel");
-   var ind2 = html.indexOf(str2);*/
+   html += "<img src='" + chart.toBase64Image() + "'/>";
+   html += "<div id='color-expand' style='display: block;'>";
+   html += document.getElementById('color-expand').innerHTML;
+   html += "</div>"
    var s = "<table class='printTable'>";
    if(type === "bar"){
       var counter = 0;
