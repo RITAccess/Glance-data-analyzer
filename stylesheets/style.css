@@ -35,6 +35,10 @@ header {
     padding-left: 1em;
     position: relative;
 }
+#title a{
+    text-decoration: none;
+    color: inherit;
+}
 #content {
     width: 800px;
     margin: auto;/* centers the contents including the slider and the graph */
@@ -383,14 +387,20 @@ table, th, td, .printTable{
     text-align: center;
 }
 table, .printTable{
-    font-size: 20px;
-    margin: 30px;
+    width: 100%;
+    font-size: 15px;
+    margin: auto;
+    margin-top: 30px;
     table-layout: fixed;
 }
 th, td, .printTable{
+    max-width: 90%;
     padding: 10px;
     word-wrap:break-word;
+<<<<<<< HEAD
     max-width:150px;
+=======
+>>>>>>> 9de2d75eeb8a766ea4c2b695e6244de8c510f4cc
 }
 /* Table Style for print ENDS */
 
