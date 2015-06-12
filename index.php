@@ -87,7 +87,7 @@
       </div>
     </div>
     <?php
-        include 'ajax.php';
+        include '/php/ajax.php';
       ?>
     <div id='color-expand' style="display:none;">
       <div id='color-header' onclick="openColorEditor()">Graph Data </div>
