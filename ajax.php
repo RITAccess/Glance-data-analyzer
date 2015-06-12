@@ -24,8 +24,8 @@ function writeFile($filename, $data){
 	$f = fopen("$filename", 'w');
 	fwrite($filename, $data);
 	fclose($filename);
-	//ob_clean();
-    //flush();
+	ob_clean();
+    flush();
 }
 
 ?>
