@@ -46,6 +46,16 @@ header {
     text-align: center;
     margin-bottom: 20px;
 }
+#files {
+  width: 118px;
+  height: 47px;
+  z-index: -1;
+}
+#newTable {
+  width: 186px;
+  height: 47px;
+  z-index: -1;
+}
 #rTypeSel input{
     cursor: pointer;
 }
@@ -166,6 +176,20 @@ svg * {
     text-align: center;
     font-size: 15px;
 }
+#start {
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 5px;
+  border: 3px solid #000;
+  width: 100%;
+}
+#start h3 {
+  font-weight: bold;
+}
+#start li {
+  text-align: left;
+  margin: 10px;
+}
 #table {
     text-align: center;
 }
@@ -179,6 +203,8 @@ svg * {
 #tblContainer {
     height: 300px;
     margin: 5px 20px 10px 20px;
+    margin-left: auto;
+    margin-right: auto;
     overflow: auto;
 }
 #dataPlot {
@@ -358,6 +384,8 @@ svg * {
 }
 /* style for pop-up chart list ENDS */
 
+/************************************/
+
 /* Table Style for print STARTS*/
 table, th, td, .printTable{
     border: 1px solid #000;
@@ -365,14 +393,19 @@ table, th, td, .printTable{
     text-align: center;
 }
 table, .printTable{
+    font-size: 20px;
     margin: 30px;
+    table-layout: fixed;
 }
 th, td, .printTable{
     padding: 10px;
+<<<<<<< HEAD
+=======
+    word-wrap:break-word;
+    max-width:150px;
+>>>>>>> b3064d731cedd0366bb314604f1bfcb59f65fc95
 }
 /* Table Style for print ENDS */
-
-/************************************/
 
 /************************************/
 
@@ -398,11 +431,6 @@ th, td, .printTable{
         height: auto;
         overflow: hidden;
     }
-    /*
-    #tblContainer{
-      overflow: visible;
-      white-space: pre-wrap;
-    }*/
     .no-print, .no-print * {
         display: none !important;
     }

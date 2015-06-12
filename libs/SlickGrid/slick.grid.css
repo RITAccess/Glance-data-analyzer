@@ -23,6 +23,7 @@ classes should alter those!
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
+  width: 80px;
   height: 16px;
   line-height: 16px;
   margin: 0;
