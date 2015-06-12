@@ -35,6 +35,10 @@ header {
     padding-left: 1em;
     position: relative;
 }
+#title a{
+    text-decoration: none;
+    color: inherit;
+}
 #content {
     width: 800px;
     margin: auto;/* centers the contents including the slider and the graph */
@@ -338,33 +342,33 @@ svg * {
     position: fixed;
     top: 0px;
     left: 0px;
-    background-color: #000;
+    background-color: #FFF;
     width: 100%;
     z-index: 10;
 }
 #dialogbox {
     display: none;
     position: fixed;
-    background-color: #FFF;
+    background-color: #000;
     border-radius:5px;
     width:550px;
     z-index: 10;
 }
 #dialogbox > div {
-    background-color: #000;
-    border: 2px solid #000;
+    background-color: #FFF;
+    border: 2px solid #FFF;
     border-radius:5px;
     margin:8px;
 }
 #dialogbox > div > #dialogboxhead {
     font-size:19px;
     padding:10px;
-    color:#FFF;
+    color:#000;
 }
 #dialogbox > div > #dialogboxbody {
-    border-top: 2px solid #FFF;
+    border-top: 2px solid #000;
     padding:20px;
-    color:#FFF;
+    color:#000;
 }
 #dialogbox > div > #dialogboxfoot {
     padding:10px;
@@ -378,7 +382,7 @@ svg * {
 }
 .sChartType select, .sChartType input {
     /* chart type select tags */
-    border: 2px solid #FFF;
+    border: 2px solid #000;
     border-radius: 2px;
     font-size: 15px;
 }
@@ -393,18 +397,17 @@ table, th, td, .printTable{
     text-align: center;
 }
 table, .printTable{
-    font-size: 20px;
-    margin: 30px;
+    width: 100%;
+    font-size: 15px;
+    margin: auto;
+    margin-top: 30px;
     table-layout: fixed;
 }
 th, td, .printTable{
+    max-width: 90%;
     padding: 10px;
-<<<<<<< HEAD
-=======
     word-wrap:break-word;
     max-width:150px;
->>>>>>> b3064d731cedd0366bb314604f1bfcb59f65fc95
-}
 /* Table Style for print ENDS */
 
 /************************************/
