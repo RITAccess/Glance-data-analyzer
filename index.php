@@ -14,7 +14,7 @@
   </head>
 <body>
   <header>
-    <span id="title"><a href="index.html">Data Analyzer</a></span>
+    <span id="title"><a href="index.php">Data Analyzer</a></span>
     <div class="inputBtnSection no-print">
       <label class="fileUpload">
           <input id="files" type="file" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
