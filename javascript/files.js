@@ -257,7 +257,15 @@ var addColumn = function() {
         pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(s));
         pom.setAttribute('download', "Data Analyzer.csv");
         pom.style.display = 'none';
+        
+        var clk = document.createEvent("MouseEvent");
+        clk.initEvent("click",true,true);
+        pom.dispatchEvent(clk);
         document.body.appendChild(pom);
-        pom.click();
-        document.body.removeChild(pom);
+        pom.onclick = new function(event){
+          document.body.removeChild(event.target);
+        }
+        pom.dispatchEvent(clk);
+        //pom.click();
+        //document.body.removeChild(pom);
     }
