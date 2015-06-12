@@ -35,6 +35,10 @@ header {
     padding-left: 1em;
     position: relative;
 }
+#title a{
+    text-decoration: none;
+    color: inherit;
+}
 #content {
     width: 800px;
     margin: auto;/* centers the contents including the slider and the graph */
