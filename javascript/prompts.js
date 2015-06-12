@@ -101,5 +101,4 @@ var rType = function (rType) {
     }
         document.getElementById("colors").innerHTML="";
         changeType();
-
 }

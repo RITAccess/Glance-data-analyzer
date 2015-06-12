@@ -121,7 +121,7 @@ svg * {
     box-shadow: 0px 5px 10px #000;
     text-shadow: none;
 }
-.uploadBtn:hover, .createBtn:hover {
+.uploadBtn:hover, .createBtn:hover, .uploadBtn:focus, .createBtn:focus {
     background-color: #000;
     color: #FFF;
 }
@@ -249,11 +249,11 @@ svg * {
     border-radius: 20px;
     vertical-align: middle;
 }
-#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover {
+#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus {
     background-color: #000;
     color: #FFF;
 }
-#dialogboxfoot button:hover {
+#dialogboxfoot button:hover, #dialogboxfoot button:focus {
     background-color: #000;
     color: #FFF;
     border-color: #FFF;
@@ -368,7 +368,7 @@ table, .printTable{
     margin: 30px;
 }
 th, td, .printTable{
-    padding: 10px; 
+    padding: 10px;
 }
 /* Table Style for print ENDS */
 
