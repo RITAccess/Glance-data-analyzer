@@ -383,14 +383,16 @@ table, th, td, .printTable{
     text-align: center;
 }
 table, .printTable{
+    width: 100%;
     font-size: 15px;
-    margin: 30px;
+    margin: auto;
+    margin-top: 30px;
     table-layout: fixed;
 }
 th, td, .printTable{
+    max-width: 90%;
     padding: 10px;
     word-wrap:break-word;
-    max-width:55px; 
 }
 /* Table Style for print ENDS */
 
