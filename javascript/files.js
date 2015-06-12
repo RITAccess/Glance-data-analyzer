@@ -253,7 +253,15 @@ var addColumn = function() {
 
         }
         s = s.substring(9); //Do this to remove strange 'undefined' that is appended to beginning of file
-        var pom = document.createElement('a');
+        //var value = download();
+      var ajaxurl = 'ajax.php',
+      data = {'action':s};
+      $.post(ajaxurl,data,function (response){
+        //alert(response);
+        window.open(response);
+      });
+        return s;
+        /*var pom = document.createElement('a');
         pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(s));
         pom.setAttribute('download', "Data Analyzer.csv");
         pom.style.display = 'none';
@@ -267,5 +275,5 @@ var addColumn = function() {
         }
         pom.dispatchEvent(clk);
         //pom.click();
-        //document.body.removeChild(pom);
+        //document.body.removeChild(pom);*/
     }
