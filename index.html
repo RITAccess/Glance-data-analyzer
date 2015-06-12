@@ -23,7 +23,7 @@
     </div>
     <div class="newBtnSection no-print">
       <label class="createNew">
-        <input id="newTable" type="button" class="emptyTable" />
+        <input id="newTable" type="button" class="emptyTable" value="Create New Table" />
         <span class="createBtn">Create New Table</span>
       </label>
     </div>
@@ -40,7 +40,7 @@
     <div id="start">
       <h3 tabindex="0">Welcome to Data Analyzer!</h3>
       <p tabindex="0">
-        This web application was designed to help you analyze data through graphs, calculated values, and sound.</br>
+        This web application was designed to help you analyze data through graphs, calculated values, and sound.<br>
         Here's a quick look at how to use our application:
       </p>
       <ul>
@@ -52,7 +52,7 @@
       </ul>
       <p tabindex="0" >To get started, select Load CSV or Create New Table at the top!</p>
     </div>
-      <form action="" id="rTypeSel" style="display:none;" class="no-print">
+      <form id="rTypeSel" style="display:none;" class="no-print">
           <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" onclick="rType()">
           <label for="lineRadioButton">Line Graph</label>
           <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" onclick="rType()">
@@ -73,14 +73,14 @@
           </div> <!-- end id="tblContainer" -->
       <div id="tableControls" style="display: none" class="no-print">
         <div id="rowLabel">
-          <button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"><label> - </label></button>
+          <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"> - </button></label>
           <p style="display: inline">Rows</p>
-          <button id="addNewRow" aria-label="Add New Row" onclick="addRow()"><label> + </label></button>
+          <label><button id="addNewRow" aria-label="Add New Row" onclick="addRow()"> + </button></label>
         </div>
         <div id="columnLabel">
-          <button id="subtractColumn" aria-label="Remove Column"onclick="subtractColumn()"><label> - </label></button>
+          <label><button id="subtractColumn" aria-label="Remove Column" onclick="subtractColumn()"> - </button></label>
           <p style="display: inline"> Columns</p>
-          <button id="addNewCol" aria-label="Add New Column" onclick="addColumn()"><label> + </label></button>
+          <label><button id="addNewCol" aria-label="Add New Column" onclick="addColumn()"> + </button></label>
         </div>
         <button id="downloadCSV" onclick="download()">Download CSV</button>
         <button id="printButton" onclick="printPage()">Print</button>
@@ -88,24 +88,28 @@
     </div>
     <div id='color-expand' style="display:none;">
       <div id='color-header' onclick="openColorEditor()">Graph Data </div>
-      <div id="color-editor" class="color-editor-input" >
+      <div id="color-editor" class="color-editor-input">
         <ol id="colors" ></ol>
+      </div>
     </div>
   </div><!-- end div id="content"-->
-  <div id="dialogoverlay"></div> <!-- div for chart pop-up list -->
+<!-- div for LOAD CSV pop-up list -->
+  <div id="dialogoverlay"></div>
     <div id="dialogbox">
         <div>
             <div id="dialogboxhead"></div>
             <div id="dialogboxbody" class="sChartType"></div>
             <div id="dialogboxfoot"></div>
         </div>
-    </div> <!-- end div for chart pop-up list -->
-    <div id="newFileDialogOverlay">
-      <div id="newFileDialogBox">
-        <div id="newFileDialogHead"></div>
-        <div id="newFileDialogBody" class="sChartType"></div>
-        <div id="newFileDialogFoot"></div>
-      </div>
     </div>
+<!-- END div for LOAD CSV pop-up list -->
+<!-- div for CREATE NEW TABLE pop-up list -->
+  <div id="newFileDialogOverlay"></div>
+    <div id="newFileDialogBox">
+      <div id="newFileDialogHead"></div>
+      <div id="newFileDialogBody" class="sChartType"></div>
+      <div id="newFileDialogFoot"></div>
+    </div>
+<!-- END div for CREATE NEW TABLE pop-up list -->
 </body>
 </html>
