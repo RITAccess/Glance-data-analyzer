@@ -390,7 +390,7 @@ table, .printTable{
 th, td, .printTable{
     padding: 10px;
     word-wrap:break-word;
-    max-width:150px; 
+    max-width:150px;
 }
 /* Table Style for print ENDS */
 
