@@ -254,11 +254,11 @@ var addColumn = function() {
         }
         s = s.substring(9); //Do this to remove strange 'undefined' that is appended to beginning of file
         //var value = download();
-      var ajaxurl = 'ajax.php',
+      var ajaxurl = '/php/ajax.php',
       data = {'action':s};
       $.post(ajaxurl,data,function (response){
         //alert(response);
-        window.open('fileDownload.php');
+        window.open('/php/fileDownload.php');
       });
         return s;
         /*var pom = document.createElement('a');
