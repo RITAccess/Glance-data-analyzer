@@ -258,7 +258,7 @@ var addColumn = function() {
       data = {'action':s};
       $.post(ajaxurl,data,function (response){
         //alert(response);
-        window.open(response);
+        window.open('fileDownload.php');
       });
         return s;
         /*var pom = document.createElement('a');
