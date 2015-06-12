@@ -21,11 +21,11 @@ if(isset($_POST['action'])){
 }
 
 function writeFile($filename, $data){
-	$f = fopen("php://output", 'w');
-	fwrite($f, $data);
-	fclose($f);
-	ob_clean();
-    flush();
+	$f = fopen("$filename", 'w');
+	fwrite($filename, $data);
+	fclose($filename);
+	//ob_clean();
+    //flush();
 }
 
 ?>
