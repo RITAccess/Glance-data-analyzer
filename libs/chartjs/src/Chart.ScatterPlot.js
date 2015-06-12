@@ -360,29 +360,43 @@
 			
 			//generate points on line for each x value
 			// y = mx + b
-			//frontier
 			var values = [];
 			for(var i = 0; i < xValues.length; i++){
 				var val = slope * parseFloat(xValues[i]) + yint;
 				values.push(val);
 			}			
-			
-			//drawLine(values,"linReg");
-		}/*,
+			//frontier
+			drawLine(values,"linReg");
+		},
 		// made to draw a point for each column & connect
 		drawLine : function(yValues, label){
+			
+			/* x and y scaled values: 
+			 * y : this.scale.calculateY(point.value),
+			 * x : this.scale.calculateX(index)
+			 */
+			
+			//var pointarray = [];
+			for(var i = 0; i < yValues.length; i++){
+				//pointarray.push(new this.PointClass({
+				yValues[i] = new this.PointClass({
+					value: yValues[i],
+					label: label,
+					x: this.scale.calculateX(i),
+					y: this.scale.calculateY(yValues[i]),
+					strokeColor : dataset.pointStrokeColor,
+					fillColor : dataset.pointColor,
+					highlightFill : dataset.pointHighlightFill || dataset.pointColor,
+					highlightStroke : dataset.pointHighlightStroke || dataset.pointStrokeColor
+			
+				});
+			}
 			
 			ctx.lineWidth = this.options.datasetStrokeWidth;
 			ctx.strokeStyle = dataset.strokeColor;
 			ctx.beginPath();
-			/* x and y scaled values: 
-			 * y : this.scale.calculateY(point.value),
-			 * x : this.scale.calculateX(index)
-			 
-			var pointarray = [];
 			
-			
-			helpers.each(pointsWithValues, function(point, index){
+			helpers.each(yValues, function(point, index){
 				if (index === 0){
 					ctx.moveTo(point.x, point.y);					
 				}
@@ -405,7 +419,7 @@
 			}, this);
 
 			ctx.stroke();	
-		}*/
+		}
 		
 	});
 }).call(this);

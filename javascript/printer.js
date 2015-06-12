@@ -12,7 +12,8 @@ function printPage()
    html += "<div style='margin-bottom: 50px;'><img width='800px' src='" + chart.toBase64Image() + "'/></div>";
    html += "<div id='color-expand' style='display: block;'>";
    html += document.getElementById('color-expand').innerHTML;
-   html += "</div><div style='text-align: center; margin-top: 60px;'>Data Table</div>";
+   html += "</div><div style='margin-left: 35px; margin-top: 60px;'>Data Table</div>";
+   html += "<div style='margin-top: 10px; border-top: 3px solid #000;'>";
    var s = "<table class='printTable'>";
    if(type === "bar"){
       var counter = 0;
@@ -27,7 +28,7 @@ function printPage()
          for (var i = 0; i < chart.datasets.length; i++) {
             s+="<tr>";
             for(var k = 0; (k<chart.datasets[i].bars.length && counter<10 && chart.datasets[i].bars[(10*j)+k]!= undefined); k++) {
-               s+= "<td>" + chart.datasets[i].bars[(10*j) + k].value + "</td>"; 
+               s+= "<td>" + chart.datasets[i].bars[(10*j) + k].value + "</td>";
                counter++;
             }
             counter = 0;
@@ -51,7 +52,7 @@ function printPage()
          for (var i = 0; i < chart.datasets.length; i++) {
             s+="<tr>";
             for(var k = 0; (k<chart.datasets[i].points.length && counter<10 && chart.datasets[i].points[(10*j)+k]!= undefined); k++) {
-               s+= "<td>" + chart.datasets[i].points[(10*j) + k].value + "</td>"; 
+               s+= "<td>" + chart.datasets[i].points[(10*j) + k].value + "</td>";
                counter++;
             }
             counter = 0;
@@ -63,6 +64,7 @@ function printPage()
       }
    }
    html += s;
+   html += "</div>";
    html += "</content>";
    html += "</body></html>";
    printWin = window.open("','_blank','left=0,top=0,width=500,height=500,fullscreen=1,toolbar=0,scrollbars=0,status  =0");

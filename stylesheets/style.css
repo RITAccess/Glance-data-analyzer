@@ -166,6 +166,20 @@ svg * {
     text-align: center;
     font-size: 15px;
 }
+#start {
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 5px;
+  border: 3px solid #000;
+  width: 100%;
+}
+#start h3 {
+  font-weight: bold;
+}
+#start li {
+  text-align: left;
+  margin: 10px;
+}
 #table {
     text-align: center;
 }
@@ -179,6 +193,8 @@ svg * {
 #tblContainer {
     height: 300px;
     margin: 5px 20px 10px 20px;
+    margin-left: auto;
+    margin-right: auto;
     overflow: auto;
 }
 #dataPlot {
