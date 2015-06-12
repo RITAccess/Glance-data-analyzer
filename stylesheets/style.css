@@ -135,7 +135,7 @@ svg * {
     box-shadow: 0px 5px 10px #000;
     text-shadow: none;
 }
-.uploadBtn:hover, .createBtn:hover, .uploadBtn:focus, .createBtn:focus {
+.uploadBtn:hover, .createBtn:hover{
     background-color: #000;
     color: #FFF;
 }
@@ -171,7 +171,7 @@ svg * {
     color: #000;
     box-shadow: 0px 5px 10px black;
 }
-#playButton:hover {
+#playButton:hover, #playButton:focus {
     background-color: #000;
     color: #FFF;
 }

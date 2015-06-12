@@ -17,13 +17,13 @@
     <span id="title"><a href="index.html">Data Analyzer</a></span>
     <div class="inputBtnSection no-print">
       <label class="fileUpload">
-          <input id="files" type="file" class="upload" />
+          <input id="files" type="file" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
           <span class="uploadBtn">Load CSV</span>
       </label>
     </div>
     <div class="newBtnSection no-print">
       <label class="createNew">
-        <input id="newTable" type="button" class="emptyTable" aria-label="Create New Table"/>
+        <input id="newTable" type="button" class="emptyTable" aria-label="Create New Table" onfocus="focusElement('createBtn')" onblur="blurElement('createBtn')"/>
         <span class="createBtn">Create New Table</span>
       </label>
     </div>
