@@ -21,9 +21,12 @@ if(isset($_POST['action'])){
 }
 
 function writeFile($filename, $data){
-	$f = fopen("$filename", 'w');
-	fwrite($filename, $data);
-	fclose($filename);
+	
+	$f = fopen("$filename", 'w') or die("file open failed ");
+	fwrite($f, $data);
+	fclose($f);
+	//echo $data;
+	//readfile($filename);
 	ob_clean();
     flush();
 }
