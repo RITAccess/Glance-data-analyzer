@@ -314,9 +314,7 @@ function removeRows(start,skip){
   for(var key in resData[0]){
     k++;
   }
-  console.log(resData.length);
   if(resData.length < 3){
-    console.log("Alert");
     alert("Not enough rows to remove!");
     return;
   }

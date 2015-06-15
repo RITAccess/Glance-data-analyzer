@@ -198,11 +198,6 @@ function dataset(data, collection) {
 		removeButton.innerHTML = "Remove";
 		removeButton.value=i;
 		removeButton.onclick = function(){
-			// //var i = parseInt(this.innerHTML);
-			// var i = this.innerHTML;
-			// i = i.substring(i.indexOf(" ")+ 1);
-			// i = i.substring(i.indexOf(" ") +1);
-			// console.log(i);
 			removeRows(this.value-1,1);
 		};
 		entry.appendChild(keyValue);
