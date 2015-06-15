@@ -102,5 +102,6 @@ function fixSlick(){
 		c.value = i;
 		c.onclick = function(){removeColumns(this.value,1);}
 		c = c.nextSibling;
+		i++;
 	}
 }

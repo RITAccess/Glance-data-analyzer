@@ -10,7 +10,6 @@ if(isset($_POST['action'])){
 	//Return name of file to open
 	echo $filename;
     exit;
-
 }
 /*
 * Writes CSV data ($data) to file
@@ -24,5 +23,4 @@ function writeFile($filename, $data){
 	ob_clean();
     flush();
 }
-
 ?>
