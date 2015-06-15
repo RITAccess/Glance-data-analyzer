@@ -88,9 +88,62 @@
           document.getElementsByClassName('createBtn')[0].focus();
         }
     }
+
+    //Second Alert Box
+    function CustomAlert3() {
+        this.render = function (dialog) {
+            var winW = window.innerWidth;
+            var winH = window.innerHeight;
+            var dialogoverlay = document.getElementById('dialogoverlay');
+            var dialogbox = document.getElementById('dialogbox');
+            dialogoverlay.style.display = "block";
+            dialogoverlay.style.height = winH + "px";
+            dialogbox.style.left = (winW / 2) - (550 * .5) + "px";
+            dialogbox.style.top = "100px";
+            dialogbox.style.display = "block";
+            document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select id='removalSelector' aria-label='Do you want to remove rows or columns?'><option onclick='Alert2.ok()' value='rows'> none selected </option><option value='Rows'>Rows</option><option value='columns'>Columns</option><option value='both'>Both</option></select><br><label>Choose starting point: </label><input id='startingPoint' type='text' value='0' aria-label='Choose starting point'/><br><label>Choose number to remove: </label><input id='remove' type='text' value='0' aria-label='Choose number of columns'/>";
+            document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert3.cancel()'>Cancel</button><button onclick=Alert3.reset()>Reset</button><button onclick='Alert3.ok()'>Submit</button>";
+            document.getElementById('dialogbox').style.visibility = "visible";
+            document.getElementById('dialogoverlay').style.visibility = "visible";
+            document.getElementById('removalSelector').focus();
+        }
+        this.ok = function () {
+            var e = document.getElementById('removalSelector');
+            var action = e.options[e.selectedIndex].value.toLowerCase();
+            var start = document.getElementById("startingPoint").value;
+            var skip = document.getElementById("remove").value;
+            if(action==="rows"){
+              removeRows(start,skip);
+            }
+            else if(action === "columns"){
+              removeColumns(start,skip);
+            }
+            else if(action === "both"){
+              removeRows(start,skip);
+              removeColumns(start,skip);
+            }
+            else{
+              alert("No removal type selected!");
+              return;
+            }
+            document.getElementById('dialogbox').style.visibility = "hidden";
+            document.getElementById('dialogoverlay').style.visibility = "hidden";
+            document.getElementsByClassName('createBtn')[0].focus();
+        }
+        this.reset = function () {
+            document.getElementById("startingPoint").value=0;
+            document.getElementById("remove").value=0;
+        }
+        this.cancel= function(){
+          document.getElementById('dialogbox').style.visibility = "hidden";
+          document.getElementById('dialogoverlay').style.visibility = "hidden";
+          document.getElementsByClassName('createBtn')[0].focus();
+        }
+    }
 var Alert = new CustomAlert();
 var Alert2 = new CustomAlert2();
-
+var Alert3 = new CustomAlert3();
 
 //Radio Button Chart/Graph Type Selection
 var rType = function (rType) {

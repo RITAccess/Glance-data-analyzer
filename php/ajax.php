@@ -1,34 +1,26 @@
-<?php 
+<?php
+/*
+* Receives post call from javascript
+*/ 
 if(isset($_POST['action'])){
+	//Make new csv file
 	$filename = "data-analyzer.csv";
+	//Write posted data to csv
 	writeFile($filename, $_POST['action']);
-	//$content = $_POST['action'];
-	//$f = fopen("php://output", 'w');
-	//fwrite($f, $_POST['action']);
-	//fclose($f);
-	/*
-	header('Content-Description: File Transfer');
-    header('Content-Type: text/csv');
-    header('Content-Disposition: attachment; filename='.$filename);
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
-    header('Content-Length: ' . filesize($filename));*/
-    echo $filename;
-    //echo getcwd();
+	//Return name of file to open
+	echo $filename;
     exit;
-
 }
-
+/*
+* Writes CSV data ($data) to file
+*/
 function writeFile($filename, $data){
-	
+	//Open file and write to it. If the file opening failed, say so.
 	$f = fopen("$filename", 'w') or die("file open failed ");
 	fwrite($f, $data);
 	fclose($f);
-	//echo $data;
-	//readfile($filename);
+	//Clean current buffer
 	ob_clean();
     flush();
 }
-
 ?>

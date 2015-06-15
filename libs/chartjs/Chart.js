@@ -3906,7 +3906,6 @@
 				points[i][0] = this.scale.calculateX(points[i][0]-1);
 				points[i][1] = this.scale.calculateY(points[i][1]);
 			}
-			
 			ctx.lineWidth = this.options.datasetStrokeWidth;
 			ctx.strokeStyle = dataset.strokeColor;
 			ctx.beginPath();

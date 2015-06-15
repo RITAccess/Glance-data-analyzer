@@ -211,70 +211,130 @@ var addColumn = function() {
         currTable.data[i].pop();
       }
     }
-
     loadData(currTable);
  }
 
 
 //Download CSV file of current chart
-    function download() {
-        var s;
-        //retrieve chart data and put into a csv file
-        if(type === "line" || type === "scatter"){
-      for (var i = 0; i < chart.datasets.length; i++) {
-                for (var j = 0; j < chart.datasets[i].points.length; j++) {
-                    if (i === 0 && j === 0) {
-                        for (var k = 0; k < chart.datasets[i].points.length; k++) {
-                            s += chart.datasets[i].points[k].label;
-                            if (k + 1 < chart.datasets[i].points.length) s += ",";
-                        }
-                        s += "\n";
-                    }
-                    s += chart.datasets[i].points[j].value;
-                    if (j + 1 < chart.datasets[i].points.length) s += ",";
+function download() {
+var s;
+//retrieve chart data and put into a csv file
+if(type === "line" || type === "scatter"){
+for (var i = 0; i < chart.datasets.length; i++) {
+        for (var j = 0; j < chart.datasets[i].points.length; j++) {
+            if (i === 0 && j === 0) {
+                for (var k = 0; k < chart.datasets[i].points.length; k++) {
+                    s += chart.datasets[i].points[k].label;
+                    if (k + 1 < chart.datasets[i].points.length) s += ",";
                 }
                 s += "\n";
             }
+            s += chart.datasets[i].points[j].value;
+            if (j + 1 < chart.datasets[i].points.length) s += ",";
+        }
+        s += "\n";
     }
-    else if (type === "bar") {
-            for (var i = 0; i < chart.datasets.length; i++) {
-                for (var j = 0; j < chart.datasets[i].bars.length; j++) {
-                    if (i === 0 && j === 0) {
-                        for (var k = 0; k < chart.datasets[i].bars.length; k++) {
-                            s += chart.datasets[i].bars[k].label;
-                            if (k + 1 < chart.datasets[i].bars.length) s += ",";
-                        }
-                        s += "\n";
-                    }
-                    s += chart.datasets[i].bars[j].value;
-                    if (j + 1 < chart.datasets[i].bars.length) s += ",";
+}
+else if (type === "bar") {
+    for (var i = 0; i < chart.datasets.length; i++) {
+        for (var j = 0; j < chart.datasets[i].bars.length; j++) {
+            if (i === 0 && j === 0) {
+                for (var k = 0; k < chart.datasets[i].bars.length; k++) {
+                    s += chart.datasets[i].bars[k].label;
+                    if (k + 1 < chart.datasets[i].bars.length) s += ",";
                 }
                 s += "\n";
             }
-
+            s += chart.datasets[i].bars[j].value;
+            if (j + 1 < chart.datasets[i].bars.length) s += ",";
         }
-        s = s.substring(9); //Do this to remove strange 'undefined' that is appended to beginning of file
-        //var value = download();
-      var ajaxurl = 'php/ajax.php',
-      data = {'action':s};
-      $.post(ajaxurl,data,function (response){
-        //alert(response);
-        window.open('php/fileDownload.php');
-      });
-        return s;
-        /*var pom = document.createElement('a');
-        pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(s));
-        pom.setAttribute('download', "Data Analyzer.csv");
-        pom.style.display = 'none';
-
-        var clk = document.createEvent("MouseEvent");
-        clk.initEvent("click",true,true);
-        pom.dispatchEvent(clk);
-        document.body.appendChild(pom);
-        pom.onclick = new function(event){
-          document.body.removeChild(event.target);
-        }
-        pom.dispatchEvent(clk);
-        //pom.click();
-        //document.body.removeChild(pom);*/
+        s += "\n";
     }
+
+}
+s = s.substring(9); //Do this to remove strange 'undefined' that is appended to beginning of file
+var ajaxurl = 'php/ajax.php',
+data = {'action':s};
+//Post request to generate csv file
+$.post(ajaxurl,data,function (response){
+//Open new window which will commence download of generated file
+window.open('php/fileDownload.php');
+});
+return s;
+}
+
+//Delete a certain number (skip) of columns in the graph starting at a certain point (start)
+function removeColumns(start,skip){
+  if(skip === 0){
+    return;
+  }
+  var currTable = new Object();
+  currTable.data = [];
+  currTable.errors = [];
+  var tempData = [];
+  var resData = grid.getData();
+  var k = 0;
+  for(var key in resData[0]){
+    k++;
+  }
+  if(k-skip < 3){
+    alert("Not enough columns to remove!");
+    return;
+  }
+ for(var i = 0 ; i< resData.length; i++){
+    currTable.data[i] = [];
+    for(var j = 0; j<k-1; j++){
+      if(j>=start){
+        if(j=== start){
+          j += skip; 
+        }
+        var key = (j-skip).toString();
+        currTable.data[i].push(resData[i][j]);
+      }
+      else{
+        var key = j.toString();
+        currTable.data[i].push(resData[i][j]); 
+      }
+    }
+  }
+  loadData(currTable);
+}
+
+//Delete a certain number (skip) of rows in the graph starting at a certain point (start)
+function removeRows(start,skip){
+  if(skip === 0){
+    return;
+  }
+  var currTable = new Object();
+  currTable.data = [];
+  currTable.errors = [];
+  var tempData = [];
+  var resData = grid.getData();
+  var k = 0;
+  for(var key in resData[0]){
+    k++;
+  }
+  if(resData.length < 3){
+    alert("Not enough rows to remove!");
+    return;
+  }
+ for(var i = 0 ; i< resData.length; i++){
+    if(i <= start){
+      currTable.data[i] = [];
+    }
+    else{
+      currTable.data[i-skip] = [];
+    }
+    for(var j = 0; j<k-1; j++){
+      if(i>=start){
+        if(i === start){
+          i += skip;
+        }
+        currTable.data[i-skip].push(resData[i][j]);
+      }
+      else{
+        currTable.data[i].push(resData[i][j]);} 
+    }
+    }
+  loadData(currTable);
+}
