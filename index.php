@@ -48,7 +48,7 @@
         <li tabindex="0">Graph: You can choose from three separate options when making your graph: Line, Bar, and Scatter Plot. There is also an overlay on our graph that you can control to highlight only certain parts of the graph to be turned into sound. </li>
         <li tabindex="0">Data Table: There are two options with the data table. You can either load a pre-made CSV file (Comma Separated Value) and interact with that, or you can choose to create your own empty table to work with from scratch. You can also add or subtract rows and columns from your table at will. Want to save your changes? Not a problem, from our site you can download your new CSV file to keep for later.
         </li>
-        <li tabindex="0">Line Data: In our line data section, you can choose what colors you want for your data points on the graph, as well as toggle their visibility. Line data is also where we display your minimums, maximums, and averages for each row of data, including the minimum, maximum, and average of the total data set.</li>
+        <li tabindex="0">Graph Data: In our graph data section, you can customize colors, as well as set their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set and the overall total.</li>
       </ul>
       <p tabindex="0" >To get started, select Load CSV or Create New Table at the top!</p>
     </div>
@@ -68,7 +68,7 @@
       <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
       <div id="dataPlot">
           <div id="plot-header" style="display:none;">Data Table</div>
-          <div id="tblContainer" title="Data Table">
+          <div id="tblContainer" style="display:none;" title="Data Table">
               <div id="slickTable" style="width:100%;"></div>
           </div> <!-- end id="tblContainer" -->
       <div id="tableControls" style="display: none" class="no-print">
