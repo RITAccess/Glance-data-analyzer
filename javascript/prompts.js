@@ -11,7 +11,7 @@
           dialogbox.style.top = "100px";
           dialogbox.style.display = "block";
           document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-          document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert.ok()' value='Line'>select a type of graph</option><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select>";
+          document.getElementById('dialogboxbody').innerHTML = dialog + "<select aria-label='Choose a type of graph'><option value='Line'> none selected </option><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select>";
           document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert2.cancel()'>Cancel</button><button onclick='Alert.ok()'>Submit</button>"
           document.getElementById('dialogbox').style.visibility = "visible";
           document.getElementById('dialogoverlay').style.visibility = "visible";
@@ -50,7 +50,7 @@
             dialogbox.style.top = "100px";
             dialogbox.style.display = "block";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select><option onclick='Alert2.ok()' value='Line'>select a type of graph</option><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select><br><label>Choose number of rows: </label><input id='rows' type='text' value='0' aria-labelledby='Choose number of rows'/><br><label>Choose number of columns: </label><input id='columns' type='text' value='0' aria-labelledby='Choose number of columns'/>";
+            document.getElementById('dialogboxbody').innerHTML = dialog + "<select aria-label='Choose a type of graph'><option onclick='Alert2.ok()' value='Line'> none selected </option><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select><br><label>Choose number of rows: </label><input id='rows' type='text' value='0' aria-label='Choose number of rows'/><br><label>Choose number of columns: </label><input id='columns' type='text' value='0' aria-label='Choose number of columns'/>";
             document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert2.cancel()'>Cancel</button><button onclick=Alert2.reset()>Reset</button><button onclick='Alert2.ok()'>Submit</button>";
             document.getElementById('dialogbox').style.visibility = "visible";
             document.getElementById('dialogoverlay').style.visibility = "visible";
@@ -101,5 +101,4 @@ var rType = function (rType) {
     }
         document.getElementById("colors").innerHTML="";
         changeType();
-
 }

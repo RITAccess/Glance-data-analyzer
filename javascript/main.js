@@ -64,7 +64,9 @@ var loadData = function (data) {
     document.getElementById('plot-header').style.display = 'block';
     document.getElementById('tableControls').style.display = 'block';
     document.getElementById('rTypeSel').style.display = 'block';
+    
 }
+
 
 // The play button
 var playStopAudioButton = function () {
@@ -75,4 +77,14 @@ var playStopAudioButton = function () {
 var openColorEditor = function () {
     var editor = document.getElementById('color-editor');
     editor.style.display = editor.style.display == 'inline' ? 'none' : 'block';
+}
+
+var focusElement = function(elementClass) {
+  document.getElementsByClassName(elementClass)[0].style.backgroundColor = "#000";
+  document.getElementsByClassName(elementClass)[0].style.color = "#FFF";
+}
+
+var blurElement = function(elementClass) {
+  document.getElementsByClassName(elementClass)[0].style.backgroundColor = "#FFF";
+  document.getElementsByClassName(elementClass)[0].style.color = "#000";
 }

@@ -35,6 +35,10 @@ header {
     padding-left: 1em;
     position: relative;
 }
+#title a{
+    text-decoration: none;
+    color: inherit;
+}
 #content {
     width: 800px;
     margin: auto;/* centers the contents including the slider and the graph */
@@ -45,6 +49,16 @@ header {
 #rTypeSel {/* chart/graph type radio selection */
     text-align: center;
     margin-bottom: 20px;
+}
+#files {
+  width: 118px;
+  height: 47px;
+  z-index: -1;
+}
+#newTable {
+  width: 186px;
+  height: 47px;
+  z-index: -1;
 }
 #rTypeSel input{
     cursor: pointer;
@@ -121,7 +135,7 @@ svg * {
     box-shadow: 0px 5px 10px #000;
     text-shadow: none;
 }
-.uploadBtn:hover, .createBtn:hover {
+.uploadBtn:hover, .createBtn:hover{
     background-color: #000;
     color: #FFF;
 }
@@ -157,7 +171,7 @@ svg * {
     color: #000;
     box-shadow: 0px 5px 10px black;
 }
-#playButton:hover {
+#playButton:hover, #playButton:focus {
     background-color: #000;
     color: #FFF;
 }
@@ -265,11 +279,11 @@ svg * {
     border-radius: 20px;
     vertical-align: middle;
 }
-#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover {
+#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus {
     background-color: #000;
     color: #FFF;
 }
-#dialogboxfoot button:hover {
+#dialogboxfoot button:hover, #dialogboxfoot button:focus {
     background-color: #000;
     color: #FFF;
     border-color: #FFF;
@@ -328,33 +342,33 @@ svg * {
     position: fixed;
     top: 0px;
     left: 0px;
-    background-color: #000;
+    background-color: #FFF;
     width: 100%;
     z-index: 10;
 }
 #dialogbox {
     display: none;
     position: fixed;
-    background-color: #FFF;
+    background-color: #000;
     border-radius:5px;
     width:550px;
     z-index: 10;
 }
 #dialogbox > div {
-    background-color: #000;
-    border: 2px solid #000;
+    background-color: #FFF;
+    border: 2px solid #FFF;
     border-radius:5px;
     margin:8px;
 }
 #dialogbox > div > #dialogboxhead {
     font-size:19px;
     padding:10px;
-    color:#FFF;
+    color:#000;
 }
 #dialogbox > div > #dialogboxbody {
-    border-top: 2px solid #FFF;
+    border-top: 2px solid #000;
     padding:20px;
-    color:#FFF;
+    color:#000;
 }
 #dialogbox > div > #dialogboxfoot {
     padding:10px;
@@ -368,7 +382,7 @@ svg * {
 }
 .sChartType select, .sChartType input {
     /* chart type select tags */
-    border: 2px solid #FFF;
+    border: 2px solid #000;
     border-radius: 2px;
     font-size: 15px;
 }
@@ -383,15 +397,17 @@ table, th, td, .printTable{
     text-align: center;
 }
 table, .printTable{
-    font-size: 20px;
-    margin: 30px;
+    width: 100%;
+    font-size: 15px;
+    margin: auto;
+    margin-top: 30px;
     table-layout: fixed;
 }
 th, td, .printTable{
+    max-width: 90%;
     padding: 10px;
     word-wrap:break-word;
-    max-width:150px; 
-}
+    max-width:150px;
 /* Table Style for print ENDS */
 
 /************************************/

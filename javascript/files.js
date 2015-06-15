@@ -3,6 +3,7 @@
 var ev;
 var openFile = function(openfile) {
   ev = openfile;
+  if(ev.target.files[0]!=null)
   Alert.render("Choose a type of graph: ");
 };
 
@@ -64,7 +65,7 @@ var createFile = function(rows, columns) {
     for (var j = 0; j < rowArray[i].length; j++) {
       rowArray[i][j] = 0;
     }
-  } 
+  }
 
   for (var i = 0; i < rowArray[0].length; i++) {
     rowArray[0][i] = "Label " + (i + 1);
@@ -179,7 +180,7 @@ var addColumn = function() {
         }
       }
   if (currTable.data.length > 2) {
-    currTable.data.pop(); 
+    currTable.data.pop();
   }
 
   loadData(currTable);
@@ -253,11 +254,27 @@ var addColumn = function() {
 
         }
         s = s.substring(9); //Do this to remove strange 'undefined' that is appended to beginning of file
-        var pom = document.createElement('a');
+        //var value = download();
+      var ajaxurl = 'php/ajax.php',
+      data = {'action':s};
+      $.post(ajaxurl,data,function (response){
+        //alert(response);
+        window.open('php/fileDownload.php');
+      });
+        return s;
+        /*var pom = document.createElement('a');
         pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(s));
         pom.setAttribute('download', "Data Analyzer.csv");
         pom.style.display = 'none';
+
+        var clk = document.createEvent("MouseEvent");
+        clk.initEvent("click",true,true);
+        pom.dispatchEvent(clk);
         document.body.appendChild(pom);
-        pom.click();
-        document.body.removeChild(pom);
+        pom.onclick = new function(event){
+          document.body.removeChild(event.target);
+        }
+        pom.dispatchEvent(clk);
+        //pom.click();
+        //document.body.removeChild(pom);*/
     }

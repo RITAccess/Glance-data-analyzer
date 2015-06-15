@@ -58,7 +58,7 @@ DataSummary.prototype.calcCollectionAvg = function() {
       totalDataPoints += this.currCollection.collection[i].array.length;
   }
 
-  var average = Math.round(100 * collTotal/totalDataPoints)/100;
+  var average = parseFloat(collTotal/totalDataPoints).toFixed(3);
   return average;
  }
 
