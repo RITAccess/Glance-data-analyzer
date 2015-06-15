@@ -135,7 +135,7 @@ function dataset(data, collection) {
 	var red, green, blue;
 	red = green = blue = 0;
 	var colorIncrease = parseInt((255/ data.length).toFixed(0));
-
+	document.getElementById('colors').innerHTML= "";
 	for (var i = 1; i < data.length; i++) {
 		var color = [red, green, blue].join(", ");
 		var line =
@@ -177,6 +177,7 @@ function dataset(data, collection) {
 		var textInput = document.createElement('input');
 		var toggleBox = document.createElement('input');
 		var keyValue = document.createElement('p');
+		var removeButton = document.createElement('button');
     if(type === "line")
 		var keyLabel = document.createTextNode(shapes[(i-1)%6]);
 		else if(type === "scatter"){
@@ -194,9 +195,21 @@ function dataset(data, collection) {
 		toggleBox.setAttribute("title", "Display Data Set " + i);
 		keyValue.setAttribute('style', 'color:' + newColor +'; display: inline; margin-right: 5px;');
 		keyValue.appendChild(keyLabel);
+		removeButton.innerHTML = "Remove";
+		removeButton.value=i;
+		removeButton.onclick = function(){
+			// //var i = parseInt(this.innerHTML);
+			// var i = this.innerHTML;
+			// i = i.substring(i.indexOf(" ")+ 1);
+			// i = i.substring(i.indexOf(" ") +1);
+			// console.log(i);
+			removeRows(this.value-1,1);
+		};
 		entry.appendChild(keyValue);
 		entry.appendChild(textInput);
 		entry.appendChild(toggleBox);
+		entry.appendChild(removeButton);
+
 		document.getElementById('colors').appendChild(entry);
 		red += colorIncrease + 15;
 		green += colorIncrease;

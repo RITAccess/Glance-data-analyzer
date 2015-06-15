@@ -3861,7 +3861,6 @@
 				yValues[i].draw();
 			}
 			
-			console.log(yValues);
 			
 			ctx.lineWidth = this.options.datasetStrokeWidth;
 			ctx.strokeStyle = dataset.strokeColor;

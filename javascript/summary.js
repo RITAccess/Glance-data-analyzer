@@ -9,7 +9,7 @@ function DataSummary(collection) {
 
 // Populates the div
 DataSummary.prototype.dataSummary = function() {
-
+  //this.summaryDiv.innerHTML = "";
   // Writes the max, min, and average of each line in the graph
 	var globalmax = this.currCollection.collection[0].trend.max;
 	var globalmin = this.currCollection.collection[0].trend.min;
@@ -43,6 +43,7 @@ DataSummary.prototype.dataSummary = function() {
     " Min: " + globalmin + " Average: " + this.calcCollectionAvg());
     lastEntry.appendChild(finalSummary);
     this.summaryDiv.appendChild(lastEntry);
+    overlay.updateSize(chart)
 }
 
 // Calculates the average for the entire set of data

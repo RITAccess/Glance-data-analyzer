@@ -72,5 +72,4 @@ function printPage()
    printWin.document.close();
    printWin.focus();
    printWin.print();
-   //printWin.close();
 }

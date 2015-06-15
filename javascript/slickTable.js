@@ -91,3 +91,16 @@ var linkSlickTable = function(chart, player, overlay, summary){
         	//overlay.updateSize(chart);
 	});
 }
+
+function fixSlick(){
+	var e = document.getElementById('slickTable').firstChild.nextSibling.firstChild;
+	e.style.unselectable = "off";
+	var c = e.firstChild;
+	var i = 0;
+	while(c){
+		c.style.width="80px";
+		c.value = i;
+		c.onclick = function(){removeColumns(this.value,1);}
+		c = c.nextSibling;
+	}
+}
