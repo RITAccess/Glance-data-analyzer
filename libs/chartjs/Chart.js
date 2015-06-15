@@ -3190,6 +3190,7 @@
 	});
 
 }).call(this);
+
 (function(){
 	"use strict";
 
@@ -3587,7 +3588,6 @@
 		offsetGridLines : false
 
 	};
-	//TODO Regression line
 
 	Chart.Type.extend({
 		name: "ScatterPlot",
@@ -3639,31 +3639,90 @@
 				};
 
 				this.datasets.push(datasetObject);
-
-
-				helpers.each(dataset.data,function(dataPoint,index){
-					//Add a new point for each piece of data, passing any required data to draw.
-					datasetObject.points.push(new this.PointClass({
-						value : dataPoint,
-						label : data.labels[index],
-						datasetLabel: dataset.label,
-						strokeColor : dataset.pointStrokeColor,
-						fillColor : dataset.pointColor,
-						highlightFill : dataset.pointHighlightFill || dataset.pointColor,
-						highlightStroke : dataset.pointHighlightStroke || dataset.pointStrokeColor
-					}));
-				},this);
-
+				
+				// we want to sort the data
+				// then consolidate repeating x values
+				// labels need to be every number in the range
+				// create an array of x,y values from labels and dataset
+				// all this is only for numerical labels as input
+				//console.log(data.labels);
+				
+				//TODO make it more versatile
+				if(!isNaN(data.labels[0])){
+					var pts = [];
+			
+					for(var i = 0; i < dataset.data.length; i++){
+						pts.push([data.labels[i], dataset.data[i]]);
+					}
+			
+					pts.sort(function(a,b) {
+					return a[0]-b[0]
+					});
+					
+					//took a shortcut, will create a value for every int in range
+					var numLabels = parseFloat(data.labels[data.labels.length-1]) + 1 - parseFloat(data.labels[0]);
+					console.log(numLabels);
+					var labels = [];
+					for(var i = 0; i < numLabels; i++){
+						var num = parseFloat(i) + parseFloat(data.labels[0]);
+						labels.push(num);
+					}
+					
+					data.labels = labels;
+					
+					console.log(data.labels);
+					
+					
+					helpers.each(dataset.data, function(dataPoint,index){
+						//console.log(pts[index][0]);
+						datasetObject.points.push(new this.PointClass({
+								value : parseFloat(pts[index][1]),
+								label : pts[index][0],
+								strokeColor : dataset.pointStrokeColor,
+								fillColor : dataset.pointColor,
+								highlightFill : dataset.pointHighlightFill || dataset.pointColor,
+								highlightStroke : dataset.pointHighlightStroke || dataset.pointStrokeColor
+						}));
+						
+					}, this);
+					console.log(this.datasets[0].points);
+				
 				this.buildScale(data.labels);
-
 
 				this.eachPoints(function(point, index){
 					helpers.extend(point, {
-						x: this.scale.calculateX(index),
+						x: 50,//this.scale.calculateX(pts[index][0]),
 						y: this.scale.endPoint
 					});
 					point.save();
 				}, this);
+				
+				}
+				
+				else{
+					helpers.each(dataset.data,function(dataPoint,index){
+						//Add a new point for each piece of data, passing any required data to draw.
+						datasetObject.points.push(new this.PointClass({
+							value : dataPoint,
+							label : data.labels[index],
+							datasetLabel: dataset.label,
+							strokeColor : dataset.pointStrokeColor,
+							fillColor : dataset.pointColor,
+							highlightFill : dataset.pointHighlightFill || dataset.pointColor,
+							highlightStroke : dataset.pointHighlightStroke || dataset.pointStrokeColor
+						}));
+					},this);
+					
+				this.buildScale(data.labels);
+
+				this.eachPoints(function(point, index){
+					helpers.extend(point, {
+						x: this.scale.calculateX(parseFloat(point.label)),
+						y: this.scale.endPoint
+					});
+					point.save();
+				}, this);
+				}
 
 			},this);
 
@@ -3823,7 +3882,7 @@
 					if (point.hasValue()){
 						point.transition({
 							y : this.scale.calculateY(point.value),
-							x : this.scale.calculateX(index)
+							x : this.scale.calculateX(point.label-1)
 						}, easingDecimal);
 					}
 				},this);
@@ -3860,8 +3919,7 @@
 				});
 				yValues[i].draw();
 			}
-			
-			
+						
 			ctx.lineWidth = this.options.datasetStrokeWidth;
 			ctx.strokeStyle = dataset.strokeColor;
 			ctx.beginPath();
@@ -3891,7 +3949,7 @@
 			}, this);
 
 			
-			ctx.closePath();
+			//ctx.closePath();
 			ctx.fill();
 			ctx.stroke();
 			this.render();

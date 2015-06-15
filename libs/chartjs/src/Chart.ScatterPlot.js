@@ -306,8 +306,68 @@
 			},this);
 		},
 		
+		// made to draw a point for each column & connect
+		drawLine : function(yValues, label){
+			var ctx = this.chart.ctx;
+			/* x and y scaled values: 
+			 * y : this.scale.calculateY(point.value),
+			 * x : this.scale.calculateX(index)
+			 */
+			
+			for(var i = 0; i < yValues.length; i++){
+				//pointarray.push(new this.PointClass({
+				yValues[i] = new this.PointClass({
+					value: String(yValues[i]),
+					label: label,
+					datasetLabel: 2,
+					x: this.datasets[0].points[i].x,
+					y: this.datasets[0].points[i].y,
+					strokeColor : "rgba(255, 255, 255, 1)", // white, visible
+					fillColor : "rgba(255, 255, 255, 1)",
+					highlightFill : this.datasets[0].pointHighlightFill || this.datasets[0].pointColor,
+					highlightStroke : this.datasets[0].pointHighlightStroke || this.datasets[0].pointStrokeColor
+				});
+				yValues[i].draw();
+			}
+			
+			console.log(yValues);
+			
+			ctx.lineWidth = this.options.datasetStrokeWidth;
+			ctx.strokeStyle = dataset.strokeColor;
+			ctx.beginPath();
+			
+			helpers.each(yValues, function(point, index){
+				if (index === 0){
+					//ctx.arc(this.x, this.y, this.radius*1.2, 0, Math.PI*2);
+					ctx.moveTo(point.x, point.y);					
+				}
+					else{
+						if(this.options.bezierCurve){
+							var previous = previousPoint(point, pointsWithValues, index);
+							ctx.bezierCurveTo(
+								previous.controlPoints.outer.x,
+								previous.controlPoints.outer.y,
+								point.controlPoints.inner.x,
+								point.controlPoints.inner.y,
+								point.x,
+								point.y
+							);
+						}
+						else{
+							//ctx.arc(this.x, this.y, this.radius*1.2, 0, Math.PI*2);
+							ctx.lineTo(point.x,point.y);
+						}
+					}
+			}, this);
+
+			
+			//ctx.closePath();
+			ctx.fill();
+			ctx.stroke();
+			this.render();
+		},
+		
 		calcBestFit : function() {
-			console.log("best fit");
 			//best fit (linear first)
 			var xValues = [];
 			// if the labels aren't x values...
@@ -366,60 +426,7 @@
 				values.push(val);
 			}			
 			//frontier
-			drawLine(values,"linReg");
-		},
-		// made to draw a point for each column & connect
-		drawLine : function(yValues, label){
-			
-			/* x and y scaled values: 
-			 * y : this.scale.calculateY(point.value),
-			 * x : this.scale.calculateX(index)
-			 */
-			
-			//var pointarray = [];
-			for(var i = 0; i < yValues.length; i++){
-				//pointarray.push(new this.PointClass({
-				yValues[i] = new this.PointClass({
-					value: yValues[i],
-					label: label,
-					x: this.scale.calculateX(i),
-					y: this.scale.calculateY(yValues[i]),
-					strokeColor : dataset.pointStrokeColor,
-					fillColor : dataset.pointColor,
-					highlightFill : dataset.pointHighlightFill || dataset.pointColor,
-					highlightStroke : dataset.pointHighlightStroke || dataset.pointStrokeColor
-			
-				});
-			}
-			
-			ctx.lineWidth = this.options.datasetStrokeWidth;
-			ctx.strokeStyle = dataset.strokeColor;
-			ctx.beginPath();
-			
-			helpers.each(yValues, function(point, index){
-				if (index === 0){
-					ctx.moveTo(point.x, point.y);					
-				}
-					else{
-						if(this.options.bezierCurve){
-							var previous = previousPoint(point, pointsWithValues, index);
-							ctx.bezierCurveTo(
-								previous.controlPoints.outer.x,
-								previous.controlPoints.outer.y,
-								point.controlPoints.inner.x,
-								point.controlPoints.inner.y,
-								point.x,
-								point.y
-							);
-						}
-						else{
-							ctx.lineTo(point.x,point.y);
-						}
-					}
-			}, this);
-
-			ctx.stroke();	
+			this.drawLine(values,"linReg");
 		}
-		
 	});
 }).call(this);
