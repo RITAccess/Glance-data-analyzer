@@ -38,17 +38,17 @@
   </header>
   <div id="content">
     <div id="start">
-      <h3 tabindex="0">Welcome to Data Analyzer!</h3>
+      <font tabindex="0" size="6">Welcome to Data Analyzer</font>
       <p tabindex="0">
-        This web application was designed to help you analyze data through graphs, calculated values, and sound.<br>
-        Here's a quick look at how to use our application:
+        This web application was designed to help analyze data through graphs, calculated values, and sound.
+        Here's a quick look at how to use the application:
       </p>
       <ul>
-        <li tabindex="0">Audio Controls: Our audio controls allow you to choose which set of data to play and at what speed. </li>
-        <li tabindex="0">Graph: You can choose from three separate options when making your graph: Line, Bar, and Scatter Plot. There is also an overlay on our graph that you can control to highlight only certain parts of the graph to be turned into sound. </li>
-        <li tabindex="0">Data Table: There are two options with the data table. You can either load a pre-made CSV file (Comma Separated Value) and interact with that, or you can choose to create your own empty table to work with from scratch. You can also add or subtract rows and columns from your table at will. Want to save your changes? Not a problem, from our site you can download your new CSV file to keep for later.
+        <li tabindex="0">Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li>
+        <li tabindex="0">Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The overlay on the graph can highlight certain parts of the data to be turned into sound.</li>
+        <li tabindex="0">Data Table: There are two options with the data table; load a pre-made CSV file (Comma Separated Value), or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.
         </li>
-        <li tabindex="0">Line Data: In our line data section, you can choose what colors you want for your data points on the graph, as well as toggle their visibility. Line data is also where we display your minimums, maximums, and averages for each row of data, including the minimum, maximum, and average of the total data set.</li>
+        <li tabindex="0">Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
       </ul>
       <p tabindex="0" >To get started, select Load CSV or Create New Table at the top!</p>
     </div>
@@ -68,7 +68,7 @@
       <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
       <div id="dataPlot">
           <div id="plot-header" style="display:none;">Data Table</div>
-          <div id="tblContainer" title="Data Table">
+          <div id="tblContainer" style="display:none;" title="Data Table">
               <div id="slickTable" style="width:100%;"></div>
           </div> <!-- end id="tblContainer" -->
       <div id="tableControls" style="display: none" class="no-print">
