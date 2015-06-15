@@ -3,6 +3,7 @@
 var ev;
 var openFile = function(openfile) {
   ev = openfile;
+  if(ev.target.files[0]!=null)
   Alert.render("Choose a type of graph: ");
 };
 
