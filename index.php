@@ -67,7 +67,10 @@
       </svg>
       <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
       <div id="dataPlot">
+        <div style="display:block;">
           <div id="plot-header" style="display:none;">Data Table</div>
+          <div id="tableCount"></div>
+        </div>
           <div id="tblContainer" style="display:none;" title="Data Table">
               <div id="slickTable" style="width:100%;"></div>
           </div> <!-- end id="tblContainer" -->

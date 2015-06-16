@@ -226,6 +226,11 @@ svg * {
     text-align: center;
     width: 100%;
     margin: auto;
+    margin-left: 190px;
+}
+#tableCount {
+    display: inline;
+    float: right;
 }
 #dataSummary {
     text-align:center;

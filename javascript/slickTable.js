@@ -36,8 +36,8 @@ var loadSlickTable = function(fileData){
 			var d = (data[i] = {});
 			d["id"] = i;
 			for(var j = 0; j < columns.length; j++){
-				if(i > 0){
-					d[j] = parseFloat(fileData[i][j]);
+				if(i > 0 && j > 0){
+						d[j] = parseFloat(fileData[i][j]);
 				}
 				else {
 					d[j] = fileData[i][j];
@@ -68,10 +68,13 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		var row = args.row;
 		var col = args.cell;
 		var newVal = grid.getData()[row][col];
-
+		var oldVal = chart.datasets[row-1].points[col - 1].value;
 		// if a label
 		if (row == 0){
-			chart.scale.xLabels[col] = newVal;
+			chart.scale.xLabels[col - 1] = newVal;
+			if (col === 0) {
+				grid.getData()[0][0] = " ";
+			}
 		}
 		// not a label - check to see if it's a number.
 		// If not, do nothing
@@ -85,10 +88,14 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			else
 				chart.datasets[row-1].points[col - 1].value = newVal;
 		}
+		else {
+			grid.getData()[row][col] = oldVal;
+			console.log(grid.getData()[row][col]);
+		}
+
 		//update chart and overlay
 		chart.update();
 		summary.update();
-        	//overlay.updateSize(chart);
 	});
 }
 

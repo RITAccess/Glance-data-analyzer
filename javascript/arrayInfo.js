@@ -24,7 +24,7 @@ ArrayInfo.prototype.calcTrends = function() {
   tmpTrend.max = Math.max.apply(Math, this.array);
   tmpTrend.sum = 0;
   for(var i = 0; i < this.array.length; i++) {
-    tmpTrend.sum += parseInt(this.array[i]);
+    tmpTrend.sum += parseFloat(this.array[i]);
   }
 
   tmpTrend.avg = parseFloat(tmpTrend.sum/this.array.length).toFixed(3);

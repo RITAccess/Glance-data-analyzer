@@ -26,7 +26,7 @@ DataSummary.prototype.dataSummary = function() {
 	  if (this.currCollection.collection[i].trend.min < globalmin){
 		globalmin = this.currCollection.collection[i].trend.min;
 	  }
-      var info = document.createTextNode("Data Set " + (i + 1) + ": Max: " + this.currCollection.collection[i].trend.max +
+      var info = document.createTextNode("Row " + (i + 1) + ": Max: " + this.currCollection.collection[i].trend.max +
         " Min: " + this.currCollection.collection[i].trend.min +
         " Average: " + this.currCollection.collection[i].trend.avg+"\n");
       var infoLabel = document.createElement('label');
@@ -39,7 +39,7 @@ DataSummary.prototype.dataSummary = function() {
   var lastEntry = document.createElement("li");
 
   // Writes the max, min, and average of the total table data
-  var finalSummary =document.createTextNode( "Total Data Summary: Max: " + globalmax +
+  var finalSummary =document.createTextNode( "Total Table Summary: Max: " + globalmax +
     " Min: " + globalmin + " Average: " + this.calcCollectionAvg());
     lastEntry.appendChild(finalSummary);
     this.summaryDiv.appendChild(lastEntry);

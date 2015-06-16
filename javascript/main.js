@@ -51,6 +51,7 @@ var loadData = function (data) {
     document.querySelector('#overlay').setAttribute('style', '');
     document.querySelector('#slickTable').innerHTML = '';
     slickTable = loadSlickTable(data.data);
+    document.getElementById('tableCount').innerHTML = "Rows: " + (data.data.length - 1) + " Columns: " + (data.data[0].length - 1);
     chart = loadChart(data.data, type);
     player = new AudioPlayer();
     overlay = new Overlay(data);
@@ -61,7 +62,7 @@ var loadData = function (data) {
     summary.dataSummary();
     linkSlickTable(chart, player, overlay, summary);
     document.getElementById('color-expand').style.display = 'block';
-    document.getElementById('plot-header').style.display = 'block';
+    document.getElementById('plot-header').style.display = 'inline';
     document.getElementById('tableControls').style.display = 'block';
     document.getElementById('rTypeSel').style.display = 'block';
     fixSlick();

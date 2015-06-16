@@ -22,6 +22,14 @@ function loadFile(){
     var results = Papa.parse(input.files[0], {
     	complete: function(results) {
         var resData = results.data;
+        if (results.data[0][0].split(' ').join('') != '') {
+          for (var i = 0; i < results.data.length; i++) {
+            var firstCol = results.data[i][0];
+            console.log(firstCol);
+            results.data[i].splice(0, 1, i, firstCol);
+          }
+          results.data[0][0] = " ";
+        } 
        if((resData[resData.length-1].length == 1) && (resData[resData.length-1][0] == "")){
           results.data.pop();
         }
