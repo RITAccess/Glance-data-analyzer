@@ -1,4 +1,6 @@
 "use strict"; // strict mode syntax
+var hidden = [];
+var oldData = [];
 var loadChart = function(data, type, collection){
 	/*
 	Using Chart.js
@@ -92,37 +94,47 @@ var loadChart = function(data, type, collection){
 		chartdata.inputboxes[i].nextSibling.onclick = function(){
 			var index = chartdata.inputboxes.indexOf(this.previousSibling);
 			if(!this.checked){
-				var transparent = [0,0,0].join(", ");
-				transparent = "rgba(" + transparent +", 0)";
-				chart.datasets[index].strokeColor = transparent;
-				chart.datasets[index].pointColor = transparent;
-				chart.datasets[index].pointHighlightStroke = transparent;
-				if(type==="line" || type === "scatter"){
-          chart.datasets[index].oldData = chart.datasets[index].points;
-          chart.datasets[index].points = null;
+				if(hidden[index]!= false){
+					hidden[index] = false;
+					var transparent = [0,0,0].join(", ");
+					transparent = "rgba(" + transparent +", 0)";
+					chart.datasets[index].strokeColor = transparent;
+					chart.datasets[index].pointColor = transparent;
+					chart.datasets[index].pointHighlightStroke = transparent;
+					if(type==="line" || type === "scatter"){
+	          			oldData[index] = chart.datasets[index].points;
+	          			chart.datasets[index].points = undefined;
+					}
+					else if(type === "bar"){
+	          			oldData[index] = chart.datasets[index].bars;
+	          			chart.datasets[index].bars = undefined;
+					}
+					chart.update();
+					linkSlickTable(chart,player,overlay,summary);
 				}
-				else if(type === "bar"){
-          chart.datasets[index].oldData = chart.datasets[index].bars;
-          chart.datasets[index].bars = null;
-				}
-				chart.update();
 			}
 			else{
-				if(type === "bar")
-					var color = this.previousSibling.previousSibling.firstChild.style.background;
-				else
-					var color = this.previousSibling.previousSibling.style.color;
-				color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
-				chart.datasets[index].strokeColor = color;
-				chart.datasets[index].pointColor = color;
-				chart.datasets[index].pointHighlightStroke = color;
-				if(type === "line" || type === "scatter"){
-          chart.datasets[index].points = chart.datasets[index].oldData;
-				}
-				else if(type === "bar"){
-          chart.datasets[index].bars = chart.datasets[index].oldData;
-				}
-				chart.update();
+				if(hidden[index]!= true){
+					hidden[index]= true;
+					if(type === "bar")
+						var color = this.previousSibling.previousSibling.firstChild.style.background;
+					else
+						var color = this.previousSibling.previousSibling.style.color;
+					color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
+					chart.datasets[index].strokeColor = color;
+					chart.datasets[index].pointColor = color;
+					chart.datasets[index].pointHighlightStroke = color;
+					if(type === "line" || type === "scatter"){
+	          			chart.datasets[index].points = oldData[index];
+	          			oldData[index] = undefined;
+					}
+					else if(type === "bar"){
+	          			chart.datasets[index].bars = oldData[index];
+	          			oldData[index]= undefined;
+					}
+					chart.update();
+					linkSlickTable(chart,player,overlay,summary);
+					}
 			}
 		};
 	}
@@ -157,6 +169,9 @@ function dataset(data, collection) {
 			line.fillColor = line.strokeColor;
 		}
     //Put line into data Array
+    	if(hidden[i-1]==false && oldData[i-1] != undefined){
+    		line.data = undefined;
+    	}
 		dataArray.push(line);
     //Chech if previous line color existed
     if(lineColors.length<i){
@@ -190,10 +205,14 @@ function dataset(data, collection) {
 		keyLabel.setAttribute("style", "background:"+newColor);
 		keyLabel.setAttribute("class", "colorblock");
 		}
+		if(hidden.length<= i-1){
+			hidden.push(true);
+		}
 		inputBoxArray.push(textInput);
 		textInput.setAttribute("title", "Enter new color for Data Set " + i);
 		toggleBox.setAttribute("type", "checkbox");
-		toggleBox.setAttribute("checked", "checked");
+		if(hidden[i-1]===true)
+			toggleBox.setAttribute("checked", "checked");
 		toggleBox.setAttribute("title", "Display Data Set " + i);
 		keyValue.setAttribute('style', 'color:' + newColor +'; display: inline; margin-right: 5px;');
 		keyValue.appendChild(keyLabel);
@@ -211,6 +230,7 @@ function dataset(data, collection) {
 		red += colorIncrease + 15;
 		green += colorIncrease;
 		blue += colorIncrease - 15;
+		
 	}
 	var returndata = new Object();
 	returndata.data = dataArray;
