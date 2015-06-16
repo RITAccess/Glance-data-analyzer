@@ -56,7 +56,6 @@
 		offsetGridLines : false
 
 	};
-	//TODO Regression line
 
 	Chart.Type.extend({
 		name: "ScatterPlot",
@@ -108,23 +107,77 @@
 				};
 
 				this.datasets.push(datasetObject);
-
-
-				helpers.each(dataset.data,function(dataPoint,index){
-					//Add a new point for each piece of data, passing any required data to draw.
-					datasetObject.points.push(new this.PointClass({
-						value : dataPoint,
-						label : data.labels[index],
-						datasetLabel: dataset.label,
-						strokeColor : dataset.pointStrokeColor,
-						fillColor : dataset.pointColor,
-						highlightFill : dataset.pointHighlightFill || dataset.pointColor,
-						highlightStroke : dataset.pointHighlightStroke || dataset.pointStrokeColor
-					}));
-				},this);
-
+				
+				// we want to sort the data
+				// then consolidate repeating x values
+				// labels need to be every number in the range
+				// create an array of x,y values from labels and dataset
+				// all this is only for numerical labels as input
+				
+				//TODO make it more versatile
+				if(!isNaN(data.labels[0])){
+					var pts = [];
+			
+					for(var i = 0; i < dataset.data.length; i++){
+						pts.push([data.labels[i], dataset.data[i]]);
+					}
+			
+					pts.sort(function(a,b) {
+					return a[0]-b[0]
+					});
+					
+					//took a shortcut, will create a value for every int in range
+					//TODO don't take shortcuts
+					var numLabels = parseFloat(data.labels[data.labels.length-1]) + 1 - parseFloat(data.labels[0]);
+					var labels = [];
+					for(var i = 0; i < numLabels; i++){
+						var num = parseFloat(i) + parseFloat(data.labels[0]);
+						labels.push(num);
+					}
+					
+					data.labels = labels;
+					
+					
+					helpers.each(dataset.data, function(dataPoint,index){
+						datasetObject.points.push(new this.PointClass({
+								value : parseFloat(pts[index][1]),
+								label : pts[index][0],
+								strokeColor : dataset.pointStrokeColor,
+								fillColor : dataset.pointColor,
+								highlightFill : dataset.pointHighlightFill || dataset.pointColor,
+								highlightStroke : dataset.pointHighlightStroke || dataset.pointStrokeColor
+						}));
+						
+					}, this);
+				
 				this.buildScale(data.labels);
 
+				this.eachPoints(function(point, index){
+					helpers.extend(point, {
+						//need to make it zero-based
+						x: this.scale.calculateX(pts[index][0] - pts[0][0]),
+						y: this.scale.endPoint
+					});
+					point.save();
+				}, this);
+				
+				}
+				
+				else{
+					helpers.each(dataset.data,function(dataPoint,index){
+						//Add a new point for each piece of data, passing any required data to draw.
+						datasetObject.points.push(new this.PointClass({
+							value : dataPoint,
+							label : data.labels[index],
+							datasetLabel: dataset.label,
+							strokeColor : dataset.pointStrokeColor,
+							fillColor : dataset.pointColor,
+							highlightFill : dataset.pointHighlightFill || dataset.pointColor,
+							highlightStroke : dataset.pointHighlightStroke || dataset.pointStrokeColor
+						}));
+					},this);
+					
+				this.buildScale(data.labels);
 
 				this.eachPoints(function(point, index){
 					helpers.extend(point, {
@@ -133,10 +186,12 @@
 					});
 					point.save();
 				}, this);
+				}
 
 			},this);
+			
+			console.log(this.datasets[0].points);
 
-			this.calcBestFit();
 			this.render();
 		},
 		update : function(){
@@ -148,8 +203,6 @@
 			this.eachPoints(function(point){
 				point.save();
 			});
-			
-			this.calcBestFit();
 			
 			this.render();
 		},
@@ -268,7 +321,8 @@
 			this.clear();
 
 			var ctx = this.chart.ctx;
-
+//			this.drawLine(ctx);
+			
 			// Some helper methods for getting the next/prev points
 			var hasValue = function(item){
 				return item.value !== null;
@@ -292,7 +346,7 @@
 					if (point.hasValue()){
 						point.transition({
 							y : this.scale.calculateY(point.value),
-							x : this.scale.calculateX(index)
+							x : point.x //this.scale.calculateX(index)
 						}, easingDecimal);
 					}
 				},this);
@@ -307,36 +361,38 @@
 		},
 		
 		// made to draw a point for each column & connect
-		drawLine : function(yValues, label){
-			var ctx = this.chart.ctx;
+		drawLine : function(ctx){
+			
+			yValues = calcBestFit();
+			label = "linReg";
 			/* x and y scaled values: 
 			 * y : this.scale.calculateY(point.value),
 			 * x : this.scale.calculateX(index)
 			 */
-			
+			var yPoints = [];
 			for(var i = 0; i < yValues.length; i++){
 				//pointarray.push(new this.PointClass({
-				yValues[i] = new this.PointClass({
-					value: String(yValues[i]),
-					label: label,
+				yPoints[i] = new this.PointClass({
+					value: yValues[i],
+					label: this.datasets[0].points[i].label,
 					datasetLabel: 2,
-					x: this.datasets[0].points[i].x,
-					y: this.datasets[0].points[i].y,
+					x: 50,//this.scale.calculateX(yValues[i]),
+					y: i*50,//this.scale.calculateY(i),
 					strokeColor : "rgba(255, 255, 255, 1)", // white, visible
 					fillColor : "rgba(255, 255, 255, 1)",
 					highlightFill : this.datasets[0].pointHighlightFill || this.datasets[0].pointColor,
 					highlightStroke : this.datasets[0].pointHighlightStroke || this.datasets[0].pointStrokeColor
 				});
-				yValues[i].draw();
+				yPoints[i].draw();
 			}
 			
-			console.log(yValues);
+			console.log(yPoints);
 			
 			ctx.lineWidth = this.options.datasetStrokeWidth;
 			ctx.strokeStyle = dataset.strokeColor;
 			ctx.beginPath();
 			
-			helpers.each(yValues, function(point, index){
+			helpers.each(yPoints, function(point, index){
 				if (index === 0){
 					//ctx.arc(this.x, this.y, this.radius*1.2, 0, Math.PI*2);
 					ctx.moveTo(point.x, point.y);					
@@ -359,11 +415,9 @@
 						}
 					}
 			}, this);
-
 			
-			//ctx.closePath();
 			ctx.fill();
-			ctx.stroke();
+			ctx.stroke(); 
 			this.render();
 		},
 		
@@ -426,7 +480,9 @@
 				values.push(val);
 			}			
 			//frontier
-			this.drawLine(values,"linReg");
+			
+			return values;
+			//this.drawLine(ctx, values,"linReg");
 		}
 	});
 }).call(this);
