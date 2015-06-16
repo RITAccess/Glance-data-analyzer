@@ -3892,6 +3892,9 @@
 		drawLine : function(ctx){
 			
 			var points = this.calcBestFit();
+			//if there's literally no data
+			if (points == undefined)
+				return;
 			//var label = "linReg";
 			/* x and y scaled values: 
 			 * y : this.scale.calculateY(point.value),
@@ -3924,18 +3927,32 @@
 		// best fit (simple linear right now)
 		calcBestFit : function() {
 			var xValues = [];
+			
+			//have to check to make sure data is present (not undefined)
+			//probably an isolated enough issue that it doesn't need to be included
+			//could also be changed to use the helpers hasValue function
+			var validRows = []; 
+			for(var i = 0; i < this.datasets.length; i++){
+				if(this.datasets[i].points != undefined)
+					validRows.push(i);
+			}
+			
+			//if there's literally no data
+			if(validRows.length == 0)
+				return undefined;
+			console.log(validRows);
 			// if first label isn't a number...
 			// TODO should check all labels & if any aren't numbers
 			// normalize them (0 through whatever)
-			if(isNaN(this.datasets[0].points[0].label)){
-				for(var i = 0; i < this.datasets[0].points.length; i++){
+			if(isNaN(this.datasets[validRows[0]].points[0].label)){
+				for(var i = 0; i < this.datasets[validRows[0]].points.length; i++){
 					xValues.push(i);
 				}
 			}
 			// else, use the labels (any row in the data will work)
 			else{
-				for(var i = 0; i < this.datasets[0].points.length; i++){	
-					xValues.push(this.datasets[0].points[i].label);
+				for(var i = 0; i < this.datasets[validRows[0]].points.length; i++){	
+					xValues.push(this.datasets[validRows[0]].points[i].label);
 				}
 			}
 			
@@ -3949,22 +3966,24 @@
 			xmean = xmean / (parseFloat(xValues.length));
 			
 			// calculating mean y value
-			for(var i = 0; i < this.datasets.length; i++){
-				for(var j = 0; j < this.datasets[i].points.length; j++){
-					ymean += parseFloat(this.datasets[i].points[j].value);
+			for(var i = 0; i < validRows.length; i++){
+				for(var j = 0; j < this.datasets[validRows[i]].points.length; j++){
+					ymean += parseFloat(this.datasets[validRows[i]].points[j].value);
 				}
 			}
-			ymean = ymean / parseFloat((parseFloat(this.datasets.length) * parseFloat(this.datasets[0].points.length)));
+			ymean = ymean / parseFloat((parseFloat(validRows.length) * parseFloat(this.datasets[validRows[0]].points.length)));
 			
 			// calculating slope 
 			var bottom = 0.0; 
 			var top = 0.0; 
-				for(var j = 0; j < this.datasets[0].points.length; j++){
-					var value = [parseFloat(xValues[j]), parseFloat(this.datasets[0].points[j].value)];
-					var ydiff = value[1] - ymean;
-					var xdiff = value[0] - xmean;
-					bottom += (xdiff * xdiff);
-					top += (xdiff * ydiff);
+				for(var i = 0; i < validRows.length; i++){
+					for(var j = 0; j < this.datasets[validRows[i]].points.length; j++){
+						var value = [parseFloat(xValues[j]), parseFloat(this.datasets[validRows[i]].points[j].value)];
+						var ydiff = value[1] - ymean;
+						var xdiff = value[0] - xmean;
+						bottom += (xdiff * xdiff);
+						top += (xdiff * ydiff);
+					}	
 				}
 			
 			var slope = parseFloat(top) / parseFloat(bottom);
@@ -3975,8 +3994,8 @@
 			// y = mx + b
 			var values = [];
 			// if we had numerical x-values...
-			if(!isNaN(this.datasets[0].points[0].label)){
-			for(var i = this.datasets[0].points[0].label; i <= this.datasets[0].points[this.datasets[0].points.length-1].label; i++){
+			if(!isNaN(this.datasets[validRows[0]].points[0].label)){
+			for(var i = this.datasets[validRows[0]].points[0].label; i <= this.datasets[validRows[0]].points[this.datasets[0].points.length-1].label; i++){
 					values.push([i,(slope * parseFloat(i) + yint)]);
 				}
 			}
