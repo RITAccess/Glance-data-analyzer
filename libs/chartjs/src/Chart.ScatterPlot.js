@@ -7,7 +7,7 @@
 
 	var defaultConfig = {
 
-		///Boolean - Whether grid lines are shown across the chart
+		//Boolean - Whether grid lines are shown across the chart
 		scaleShowGridLines : true,
 
 		//String - Colour of the grid lines
@@ -53,7 +53,11 @@
 		legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>",
 
 		//Boolean - Whether to horizontally center the label and point dot inside the grid
-		offsetGridLines : false
+		offsetGridLines : false,
+		
+		//My own custom option.
+		//String - the color of the regression line
+		linRegLineColor : "rgba(255,0,0,1)"
 
 	};
 
@@ -133,8 +137,6 @@
 					}
 					
 					data.labels = labels;
-					
-					
 					helpers.each(dataset.data, function(dataPoint,index){
 						datasetObject.points.push(new this.PointClass({
 								value : parseFloat(pts[index][1]),
@@ -146,8 +148,7 @@
 						}));
 						
 					}, this);
-				
-					this.buildScale(data.labels);
+				this.buildScale(data.labels);
 
 					this.eachPoints(function(point, index){
 						helpers.extend(point, {
@@ -370,7 +371,7 @@
 				points[i][1] = this.scale.calculateY(points[i][1]);
 			}
 			ctx.lineWidth = this.options.datasetStrokeWidth;
-			ctx.strokeStyle = "red";//dataset.strokeColor;
+			ctx.strokeStyle = this.options.linRegLineColor;
 			ctx.beginPath();
 			
 			helpers.each(points, function(point, index){
@@ -388,10 +389,10 @@
 			ctx.stroke();
 		},
 		
+		// best fit (simple linear right now)
 		calcBestFit : function() {
-			//best fit (simple linear right now)
 			var xValues = [];
-			// if the labels aren't x values...
+			// if first label isn't a number...
 			// TODO should check all labels & if any aren't numbers
 			// normalize them (0 through whatever)
 			if(isNaN(this.datasets[0].points[0].label)){
@@ -399,7 +400,7 @@
 					xValues.push(i);
 				}
 			}
-			//else, use the labels (any row in the data will work)
+			// else, use the labels (any row in the data will work)
 			else{
 				for(var i = 0; i < this.datasets[0].points.length; i++){	
 					xValues.push(this.datasets[0].points[i].label);
@@ -409,13 +410,13 @@
 			var xmean = 0.0;
 			var ymean = 0.0;
 			
-			//calculating mean x value
+			// calculating mean x value
 			for(var i = 0; i < xValues.length; i++){
 				xmean += parseFloat(xValues[i]);
 			}						
 			xmean = xmean / (parseFloat(xValues.length));
 			
-			//calculating mean y value
+			// calculating mean y value
 			for(var i = 0; i < this.datasets.length; i++){
 				for(var j = 0; j < this.datasets[i].points.length; j++){
 					ymean += parseFloat(this.datasets[i].points[j].value);
@@ -423,7 +424,7 @@
 			}
 			ymean = ymean / parseFloat((parseFloat(this.datasets.length) * parseFloat(this.datasets[0].points.length)));
 			
-			//calculating slope 
+			// calculating slope 
 			var bottom = 0.0; 
 			var top = 0.0; 
 				for(var j = 0; j < this.datasets[0].points.length; j++){
@@ -437,18 +438,18 @@
 			var slope = parseFloat(top) / parseFloat(bottom);
 			var yint = ymean - slope * xmean;
 			
-			//generate points on line for each x int value in range
-			//PRECONDITION: data MUST be sorted.
+			// generate points on line for each x int value in range
+			// PRECONDITION: data MUST be sorted.
 			// y = mx + b
 			var values = [];
-			//if we had numerical x-values...
+			// if we had numerical x-values...
 			if(!isNaN(this.datasets[0].points[0].label)){
 			for(var i = this.datasets[0].points[0].label; i <= this.datasets[0].points[this.datasets[0].points.length-1].label; i++){
 					values.push([i,(slope * parseFloat(i) + yint)]);
 				}
 			}
-			//otherwise, assume there's no gaps in the data
-			// Jan-Feb-Mar-May.....etc.
+			// otherwise, assume there's no gaps in the data
+			// Just push ints within the range for spacing purposes.
 			else{
 				for(var i = 0; i < xValues.length; i++){
 					values.push([i+1,(slope * parseFloat(i) + yint)]);
