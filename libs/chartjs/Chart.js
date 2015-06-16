@@ -3622,10 +3622,7 @@
 					this.showTooltip(activePoints);
 				});
 			}
-			
-			var trans = [0,0,0].join(", ");
-			trans = "rgba(" + trans +", 0)";
-			
+
 			//Iterate through each of the datasets, and build this into a property of the chart
 			helpers.each(data.datasets,function(dataset){
 
@@ -3682,16 +3679,16 @@
 						
 					}, this);
 				
-				this.buildScale(data.labels);
+					this.buildScale(data.labels);
 
-				this.eachPoints(function(point, index){
-					helpers.extend(point, {
-						//need to make it zero-based
-						x: this.scale.calculateX(pts[index][0] - pts[0][0]),
-						y: this.scale.endPoint
-					});
-					point.save();
-				}, this);
+					this.eachPoints(function(point, index){
+						helpers.extend(point, {
+							//need to make it zero-based
+							x: this.scale.calculateX(pts[index][0] - pts[0][0]),
+							y: this.scale.endPoint
+						});
+						point.save();
+					}, this);
 				
 				}
 				
@@ -3721,8 +3718,6 @@
 				}
 
 			},this);
-			
-			console.log(this.datasets[0].points);
 
 			this.render();
 		},
@@ -3907,7 +3902,7 @@
 				points[i][1] = this.scale.calculateY(points[i][1]);
 			}
 			ctx.lineWidth = this.options.datasetStrokeWidth;
-			ctx.strokeStyle = dataset.strokeColor;
+			ctx.strokeStyle = "red";//dataset.strokeColor;
 			ctx.beginPath();
 			
 			helpers.each(points, function(point, index){
@@ -3926,7 +3921,7 @@
 		},
 		
 		calcBestFit : function() {
-			//best fit (linear first)
+			//best fit (simple linear right now)
 			var xValues = [];
 			// if the labels aren't x values...
 			// TODO should check all labels & if any aren't numbers
@@ -3978,9 +3973,19 @@
 			//PRECONDITION: data MUST be sorted.
 			// y = mx + b
 			var values = [];
+			//if we had numerical x-values...
+			if(!isNaN(this.datasets[0].points[0].label)){
 			for(var i = this.datasets[0].points[0].label; i <= this.datasets[0].points[this.datasets[0].points.length-1].label; i++){
-				values.push([i,(slope * parseFloat(i) + yint)]);
-			}			
+					values.push([i,(slope * parseFloat(i) + yint)]);
+				}
+			}
+			//otherwise, assume there's no gaps in the data
+			// Jan-Feb-Mar-May.....etc.
+			else{
+				for(var i = 0; i < xValues.length; i++){
+					values.push([i+1,(slope * parseFloat(i) + yint)]);
+				}
+			}
 			return values;
 		}
 	});

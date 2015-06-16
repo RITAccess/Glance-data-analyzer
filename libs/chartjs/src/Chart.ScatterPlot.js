@@ -90,10 +90,7 @@
 					this.showTooltip(activePoints);
 				});
 			}
-			
-			var trans = [0,0,0].join(", ");
-			trans = "rgba(" + trans +", 0)";
-			
+
 			//Iterate through each of the datasets, and build this into a property of the chart
 			helpers.each(data.datasets,function(dataset){
 
@@ -150,16 +147,16 @@
 						
 					}, this);
 				
-				this.buildScale(data.labels);
+					this.buildScale(data.labels);
 
-				this.eachPoints(function(point, index){
-					helpers.extend(point, {
-						//need to make it zero-based
-						x: this.scale.calculateX(pts[index][0] - pts[0][0]),
-						y: this.scale.endPoint
-					});
-					point.save();
-				}, this);
+					this.eachPoints(function(point, index){
+						helpers.extend(point, {
+							//need to make it zero-based
+							x: this.scale.calculateX(pts[index][0] - pts[0][0]),
+							y: this.scale.endPoint
+						});
+						point.save();
+					}, this);
 				
 				}
 				
@@ -189,8 +186,6 @@
 				}
 
 			},this);
-			
-			console.log(this.datasets[0].points);
 
 			this.render();
 		},
@@ -321,7 +316,7 @@
 			this.clear();
 
 			var ctx = this.chart.ctx;
-//			this.drawLine(ctx);
+			this.drawLine(ctx);
 			
 			// Some helper methods for getting the next/prev points
 			var hasValue = function(item){
@@ -363,66 +358,38 @@
 		// made to draw a point for each column & connect
 		drawLine : function(ctx){
 			
-			yValues = calcBestFit();
-			label = "linReg";
+			var points = this.calcBestFit();
+			//var label = "linReg";
 			/* x and y scaled values: 
 			 * y : this.scale.calculateY(point.value),
 			 * x : this.scale.calculateX(index)
 			 */
-			var yPoints = [];
-			for(var i = 0; i < yValues.length; i++){
-				//pointarray.push(new this.PointClass({
-				yPoints[i] = new this.PointClass({
-					value: yValues[i],
-					label: this.datasets[0].points[i].label,
-					datasetLabel: 2,
-					x: 50,//this.scale.calculateX(yValues[i]),
-					y: i*50,//this.scale.calculateY(i),
-					strokeColor : "rgba(255, 255, 255, 1)", // white, visible
-					fillColor : "rgba(255, 255, 255, 1)",
-					highlightFill : this.datasets[0].pointHighlightFill || this.datasets[0].pointColor,
-					highlightStroke : this.datasets[0].pointHighlightStroke || this.datasets[0].pointStrokeColor
-				});
-				yPoints[i].draw();
+			 // we need to scale the x and y values for the canvas
+			for(var i = 0; i < points.length; i++){
+				points[i][0] = this.scale.calculateX(points[i][0]-1);
+				points[i][1] = this.scale.calculateY(points[i][1]);
 			}
-			
-			console.log(yPoints);
-			
 			ctx.lineWidth = this.options.datasetStrokeWidth;
-			ctx.strokeStyle = dataset.strokeColor;
+			ctx.strokeStyle = "red";//dataset.strokeColor;
 			ctx.beginPath();
 			
-			helpers.each(yPoints, function(point, index){
+			helpers.each(points, function(point, index){
 				if (index === 0){
-					//ctx.arc(this.x, this.y, this.radius*1.2, 0, Math.PI*2);
-					ctx.moveTo(point.x, point.y);					
+					ctx.arc(this[0], this[1], this.radius*1.2, 0, Math.PI*2);
+					ctx.moveTo(point[0], point[1]);					
 				}
-					else{
-						if(this.options.bezierCurve){
-							var previous = previousPoint(point, pointsWithValues, index);
-							ctx.bezierCurveTo(
-								previous.controlPoints.outer.x,
-								previous.controlPoints.outer.y,
-								point.controlPoints.inner.x,
-								point.controlPoints.inner.y,
-								point.x,
-								point.y
-							);
-						}
-						else{
-							//ctx.arc(this.x, this.y, this.radius*1.2, 0, Math.PI*2);
-							ctx.lineTo(point.x,point.y);
-						}
+				else{
+					ctx.arc(this[0], this[1], this.radius*1.2, 0, Math.PI*2);
+					ctx.lineTo(point[0],point[1]);
 					}
 			}, this);
 			
 			ctx.fill();
-			ctx.stroke(); 
-			this.render();
+			ctx.stroke();
 		},
 		
 		calcBestFit : function() {
-			//best fit (linear first)
+			//best fit (simple linear right now)
 			var xValues = [];
 			// if the labels aren't x values...
 			// TODO should check all labels & if any aren't numbers
@@ -457,32 +424,37 @@
 			ymean = ymean / parseFloat((parseFloat(this.datasets.length) * parseFloat(this.datasets[0].points.length)));
 			
 			//calculating slope 
-			var bottom = 0; 
-			var top = 0; 
-			for(var i = 0; i < this.datasets.length; i++){
-				for(var j = 0; j < this.datasets[i].points.length; j++){
-					var value = [parseFloat(xValues[i]), parseFloat(this.datasets[i].points[j].value)];
+			var bottom = 0.0; 
+			var top = 0.0; 
+				for(var j = 0; j < this.datasets[0].points.length; j++){
+					var value = [parseFloat(xValues[j]), parseFloat(this.datasets[0].points[j].value)];
 					var ydiff = value[1] - ymean;
 					var xdiff = value[0] - xmean;
 					bottom += (xdiff * xdiff);
-					top += xdiff * ydiff;
+					top += (xdiff * ydiff);
 				}
-			}
 			
-			var slope = top / bottom;
+			var slope = parseFloat(top) / parseFloat(bottom);
 			var yint = ymean - slope * xmean;
 			
-			//generate points on line for each x value
+			//generate points on line for each x int value in range
+			//PRECONDITION: data MUST be sorted.
 			// y = mx + b
 			var values = [];
-			for(var i = 0; i < xValues.length; i++){
-				var val = slope * parseFloat(xValues[i]) + yint;
-				values.push(val);
-			}			
-			//frontier
-			
+			//if we had numerical x-values...
+			if(!isNaN(this.datasets[0].points[0].label)){
+			for(var i = this.datasets[0].points[0].label; i <= this.datasets[0].points[this.datasets[0].points.length-1].label; i++){
+					values.push([i,(slope * parseFloat(i) + yint)]);
+				}
+			}
+			//otherwise, assume there's no gaps in the data
+			// Jan-Feb-Mar-May.....etc.
+			else{
+				for(var i = 0; i < xValues.length; i++){
+					values.push([i+1,(slope * parseFloat(i) + yint)]);
+				}
+			}
 			return values;
-			//this.drawLine(ctx, values,"linReg");
 		}
 	});
 }).call(this);
