@@ -283,7 +283,7 @@ function removeColumns(start,skip){
   }
  for(var i = 0 ; i< resData.length; i++){
     currTable.data[i] = [];
-    for(var j = 0; j<k-1; j++){
+    for(var j = 0; j<k; j++){
       if(j>=start){
         if(j=== start){
           j += skip; 
@@ -297,11 +297,16 @@ function removeColumns(start,skip){
       }
     }
   }
+  currTable.data[0].pop();  
+  
   loadData(currTable);
+  changeType();
 }
 
 //Delete a certain number (skip) of rows in the graph starting at a certain point (start)
 function removeRows(start,skip){
+  start += 1;
+  //console.log(start);
   if(skip === 0){
     return;
   }
@@ -318,23 +323,36 @@ function removeRows(start,skip){
     alert("Not enough rows to remove!");
     return;
   }
- for(var i = 0 ; i< resData.length; i++){
-    if(i <= start){
+  //console.log(resData.length);
+  currTable.data[0] = [];
+  for(var key in resData[0]){
+    currTable.data[0].push(resData[0][key]);
+  }
+  currTable.data[0].pop();
+  if(start === resData.length-1){
+    resData.length-=1;
+  }
+ for(var i = 1 ; i< resData.length; i++){
+    if(i < start){
       currTable.data[i] = [];
     }
     else{
-      currTable.data[i-skip] = [];
-    }
-    for(var j = 0; j<k-1; j++){
-      if(i>=start){
-        if(i === start){
+      if(i === start){
           i += skip;
         }
+      currTable.data[i-skip] = [];
+    }
+    for(var j = 0; j<k; j++){
+      if(i>=start){
+        if(resData[i][j]!= undefined)
         currTable.data[i-skip].push(resData[i][j]);
       }
       else{
+        if(resData[i][j] != undefined)
         currTable.data[i].push(resData[i][j]);} 
     }
     }
+  //console.log(currTable);
   loadData(currTable);
+  changeType();
 }

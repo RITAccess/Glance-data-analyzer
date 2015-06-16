@@ -3665,8 +3665,6 @@
 					}
 					
 					data.labels = labels;
-					
-					
 					helpers.each(dataset.data, function(dataPoint,index){
 						datasetObject.points.push(new this.PointClass({
 								value : parseFloat(pts[index][1]),
@@ -3678,8 +3676,7 @@
 						}));
 						
 					}, this);
-				
-					this.buildScale(data.labels);
+				this.buildScale(data.labels);
 
 					this.eachPoints(function(point, index){
 						helpers.extend(point, {

@@ -105,6 +105,7 @@ var loadChart = function(data, type, collection){
           chart.datasets[index].bars = null;
 				}
 				chart.update();
+				linkSlickTable(chart,player,overlay,summary);
 			}
 			else{
 				if(type === "bar")
@@ -122,6 +123,7 @@ var loadChart = function(data, type, collection){
           chart.datasets[index].bars = chart.datasets[index].oldData;
 				}
 				chart.update();
+				linkSlickTable(chart,player,overlay,summary);
 			}
 		};
 	}
