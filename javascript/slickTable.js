@@ -78,12 +78,12 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		else if ((!isNaN(newVal)) && (newVal != "")){
 			newVal = parseFloat(newVal);
 			//Update audio with new value
-			player.changeLine(row-1,col,newVal);
+			player.changeLine(row-1,col - 1,newVal);
 			// change value in chart
 			if(type ==="bar")
-				chart.datasets[row-1].bars[col].value = newVal;
+				chart.datasets[row-1].bars[col - 1].value = newVal;
 			else
-				chart.datasets[row-1].points[col].value = newVal;
+				chart.datasets[row-1].points[col - 1].value = newVal;
 		}
 		//update chart and overlay
 		chart.update();

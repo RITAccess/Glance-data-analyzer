@@ -45,7 +45,7 @@ var createFile = function(rows, columns) {
     rows = 1;
   }
   if (columns <= 1) {
-    columns = 2;
+    columns = 3;
   }
 
   // Reset color list
@@ -65,11 +65,13 @@ var createFile = function(rows, columns) {
     for (var j = 0; j < rowArray[i].length; j++) {
       rowArray[i][j] = 0;
     }
+    rowArray[i][0] = i;
   }
 
   for (var i = 0; i < rowArray[0].length; i++) {
-    rowArray[0][i] = "Label " + (i + 1);
+    rowArray[0][i] = "Label " + i;
   }
+  rowArray[0][0] = " ";
 
   // Create object
   var newTable = {data: rowArray, errors: emptyArray, meta: emptyObject };
@@ -127,7 +129,14 @@ var changeType= function(){
   for (var i = 0; i < newRow.length; i++) {
     newRow[i] = 0;
   }
+
+  currTable.data[0][0] = " ";
   currTable.data.push(newRow);
+
+   for (var i = 1; i < currTable.data.length; i++) {
+    currTable.data[i][0] = parseInt((currTable.data[i - 1][0] + 1));
+  }
+
   loadData(currTable);
  }
 
@@ -156,7 +165,7 @@ var addColumn = function() {
       currTable.data[i].push(0);
     }
 
-    currTable.data[0][currTable.data[0].length - 1] = "Label " + currTable.data[0].length;
+    currTable.data[0][currTable.data[0].length - 1] = "Label " + (currTable.data[0].length - 1);
     loadData(currTable);
  }
 
@@ -265,7 +274,7 @@ return s;
 
 //Delete a certain number (skip) of columns in the graph starting at a certain point (start)
 function removeColumns(start,skip){
-  if(skip === 0){
+  if (start === 0 || skip === 0) {
     return;
   }
   var currTable = new Object();
@@ -277,11 +286,11 @@ function removeColumns(start,skip){
   for(var key in resData[0]){
     k++;
   }
-  if(k-skip < 3){
+  if(k-skip <= 3){
     alert("Not enough columns to remove!");
     return;
   }
- for(var i = 0 ; i< resData.length; i++){
+ for(var i = 0; i< resData.length; i++){
     currTable.data[i] = [];
     for(var j = 0; j<k; j++){
       if(j>=start){

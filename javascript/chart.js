@@ -6,6 +6,7 @@ var loadChart = function(data, type, collection){
 	Using Chart.js
 	*/
 	var data1 = data;
+	data1[0].splice(0, 1);
 	var chartdata = dataset(data1, collection);
 	var data = {
 		labels: data1[0],
@@ -150,6 +151,7 @@ function dataset(data, collection) {
 	document.getElementById('colors').innerHTML= "";
 	for (var i = 1; i < data.length; i++) {
 		var color = [red, green, blue].join(", ");
+		data[i].splice(0, 1);
 		var line =
 		{
 		fillColor: "rgba(220, 220, 220, 0)",
