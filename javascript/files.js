@@ -305,6 +305,8 @@ function removeColumns(start,skip){
 
 //Delete a certain number (skip) of rows in the graph starting at a certain point (start)
 function removeRows(start,skip){
+  hidden.splice(start,skip);
+  oldData.splice(start,skip);
   start += 1;
   //console.log(start);
   if(skip === 0){
