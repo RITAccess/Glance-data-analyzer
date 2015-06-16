@@ -3661,7 +3661,6 @@
 					
 					//took a shortcut, will create a value for every int in range
 					var numLabels = parseFloat(data.labels[data.labels.length-1]) + 1 - parseFloat(data.labels[0]);
-					console.log(numLabels);
 					var labels = [];
 					for(var i = 0; i < numLabels; i++){
 						var num = parseFloat(i) + parseFloat(data.labels[0]);
@@ -3669,10 +3668,7 @@
 					}
 					
 					data.labels = labels;
-					
-					console.log(data.labels);
-					
-					
+										
 					helpers.each(dataset.data, function(dataPoint,index){
 						//console.log(pts[index][0]);
 						datasetObject.points.push(new this.PointClass({
@@ -3685,8 +3681,7 @@
 						}));
 						
 					}, this);
-					console.log(this.datasets[0].points);
-				
+					
 				this.buildScale(data.labels);
 
 				this.eachPoints(function(point, index){
