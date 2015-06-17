@@ -53,27 +53,26 @@
       <p tabindex="0" >To get started, select Load CSV or Create New Table at the top!</p>
     </div>
       <form id="rTypeSel" style="display:none;" class="no-print">
-          <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" onclick="rType()">
-          <label for="lineRadioButton">Line Graph</label>
-          <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" onclick="rType()">
-          <label for="barRadioButton">Bar Graph</label>
-          <input id="scatterRadioButton" type="radio" name="rGraphSel" value="Scatter" onclick="rType()">
-          <label for="scatterRadioButton">Scatter Plot</label>
+        <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" onclick="rType()">
+        <label for="lineRadioButton">Line Graph</label>
+        <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" onclick="rType()">
+        <label for="barRadioButton">Bar Graph</label>
+        <input id="scatterRadioButton" type="radio" name="rGraphSel" value="Scatter" onclick="rType()">
+        <label for="scatterRadioButton">Scatter Plot</label>
       </form>
       <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" class="no-print"></div>
       <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
-          <rect id="background" x="0" y="0" width="800" height="400" />
-          <rect id="selection" x="0" y="0" width="800" height="400" />
+        <rect id="background" x="0" y="0" width="800" height="400" />
+        <rect id="selection" x="0" y="0" width="800" height="400" />
       </svg>
       <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
       <div id="dataPlot">
-        <div style="display:block;">
-          <div id="plot-header" style="display:none;">Data Table</div>
-          <div id="tableCount"></div>
-        </div>
-          <div id="tblContainer" style="display:none;" title="Data Table">
-              <div id="slickTable" style="width:100%;"></div>
-          </div> <!-- end id="tblContainer" -->
+        <div id="plot-header" style="display:none;">Data Table</div>
+        <div id="tblContainer" style="display:none;" title="Data Table">
+          <div id="slickTable" style="width:100%;"></div>
+        </div> <!-- end id="tblContainer" -->
+        <div id="tableCount"></div>
+        <div id="remInstruction"></div>
       <div id="tableControls" style="display: none" class="no-print">
         <div id="rowLabel">
           <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"> - </button></label>
