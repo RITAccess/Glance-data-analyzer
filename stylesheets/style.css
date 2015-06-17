@@ -207,30 +207,35 @@ svg * {
 }
 #tblContainer {
     height: 300px;
-    margin: 5px 20px 10px 20px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 2%;
     overflow: auto;
 }
+/* START: for print button page, table section */
+#printTable{
+    margin-top: 8%;
+}
+#printTableHeader{
+    margin-left: 5%;
+}
+#printTableBody{
+    margin-top: 2%;
+    border-top: 3px solid #000;
+}
+/* END: for print button page, table section */
 #dataPlot {
+    width: 100%;
     text-align:center;
     font-weight: bold;
     border-radius: 5px;
-    padding-bottom: 75px;
-    margin: 20px 0px 40px 0px;
+    margin: 5% 0 15% 0;
     font-size: 20px;
     position: relative;/* part of making download button bottom of div*/
 }
 #plot-header {
-    padding: 20px 0px;
-    text-align: center;
-    width: 100%;
-    margin: auto;
-    margin-left: 190px;
+    padding: 5% 0;
 }
 #tableCount {
-    display: inline;
-    float: right;
+    padding: 2%;
 }
 #dataSummary {
     text-align:center;
@@ -403,17 +408,17 @@ table, th, td, .printTable{
     text-align: center;
 }
 table, .printTable{
-    width: 100%;
+    /*width: 100%;*/
     font-size: 15px;
     margin: auto;
     margin-top: 30px;
     table-layout: fixed;
 }
 th, td, .printTable{
-    max-width: 90%;
+    /*max-width: 90%;*/
     padding: 10px;
     word-wrap:break-word;
-    max-width:150px;
+    /*max-width:150px;*/
 /* Table Style for print ENDS */
 
 /************************************/
