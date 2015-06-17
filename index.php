@@ -17,7 +17,7 @@
     <span id="title"><a href="index.php">Data Analyzer</a></span>
     <div class="inputBtnSection no-print">
       <label class="fileUpload">
-          <input id="files" type="file" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
+          <input id="files" type="file" accept=".csv" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
           <span class="uploadBtn" onmouseover="focusElement('uploadBtn')" onmouseleave="blurElement('uploadBtn')">Load CSV</span>
       </label>
     </div>

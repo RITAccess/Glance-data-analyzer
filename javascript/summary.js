@@ -78,4 +78,5 @@ DataSummary.prototype.update = function() {
       line.removeChild(line.firstChild);
     }
     this.dataSummary();
+    //checkRemove();
 }

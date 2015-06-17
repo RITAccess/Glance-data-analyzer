@@ -74,8 +74,9 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			chart.scale.xLabels[col - 1] = newVal;
 			if (col === 0) {
 				grid.getData()[0][0] = " ";
-				console.log("Hi there");
+				//console.log("Hi there");
 			}
+			setTimeout(function(){ checkRemove(); }, 1);	
 		}
 
 		// not a label - check to see if it's a number.
@@ -108,10 +109,37 @@ function fixSlick(){
 	var c = e.firstChild;
 	var i = 0;
 	while(c){
+		c.style.display="none";
 		c.style.width="80px";
 		c.value = i;
 		c.onclick = function(){removeColumns(this.value,1);}
 		c = c.nextSibling;
 		i++;
+	}
+}
+
+function checkRemove(){
+	var k = 0;
+	for(var key in grid.getData()[0]){
+		if(key != "id")
+		k++;
+	}
+	//Check for columns to remove
+	for(var i = 1; i < k; i++){
+		if(grid.getData()[0][i]===""){
+			if(confirm("Delete column " + i + "?"))	//Confirm with user
+				removeColumns(i,1);	//Remove is confirmed
+			else
+				grid.getData()[0][i] = i;	//Set back to default value if not
+		}
+	}
+	//Check for rows to remove
+	for(var i = 0; i < grid.getData().length; i++){
+		if(grid.getData()[i][0]===""){
+			if(confirm("Delete row " + i + "?"))	//Confirm with user
+				removeRows(i,1);	//Remove if confirmed
+			else
+				grid.getData()[i][0] = i;	//Set back to default value if not
+		}
 	}
 }
