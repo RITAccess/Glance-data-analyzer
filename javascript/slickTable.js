@@ -103,23 +103,23 @@ var linkSlickTable = function(chart, player, overlay, summary){
 	});
 }
 
+//Hides slick grid header bars
 function fixSlick(){
 	var e = document.getElementById('slickTable').firstChild.nextSibling.firstChild;
-	e.style.unselectable = "off";
 	var c = e.firstChild;
-	var i = 0;
+	//Loop through slickgrid headers
 	while(c){
 		c.style.display="none";
-		c.style.width="80px";
-		c.value = i;
-		c.onclick = function(){removeColumns(this.value,1);}
 		c = c.nextSibling;
-		i++;
 	}
 }
 
+/*Checks first elements of rows and columns to see if there are any
+* blank labels, indicating removal.
+*/
 function checkRemove(){
 	var k = 0;
+	//Get number of keys in grid data item
 	for(var key in grid.getData()[0]){
 		if(key != "id")
 		k++;
