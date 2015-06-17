@@ -22,17 +22,38 @@ function loadFile(){
     var results = Papa.parse(input.files[0], {
     	complete: function(results) {
         var resData = results.data;
-        if (results.data[0][0].split(' ').join('') != '') {
-          for (var i = 0; i < results.data.length-1; i++) {
-            var firstCol = results.data[i][0];
-            results.data[i].splice(0, 1, i, firstCol);
-          }
-          results.data[0][0] = " ";
-        } 
-       if((resData[resData.length-1].length == 1) && (resData[resData.length-1][0] == "")){
+
+       // Check for if there are blank lines at the end of the data set
+       for (var i = 0; i < results.data.length; i++) {
+
+        if(results.data[results.data.length-1].join().split(" ").join("") === "") {
           results.data.pop();
         }
-  	 	loadData(results);
+       }
+
+       // Check for if there are any blank lines in the data set
+       for (var i = 0; i < results.data.length; i++) {
+
+        if (results.data[i].join().split(" ").join("") === "") {
+          results.data.splice(i, 1);
+        }
+       }
+
+       // Check for if the CSV already has designated column labels or not
+      if (results.data[0][0].split(' ').join('') != '') {
+
+        // If not, it adds column labels onto the table
+        for (var i = 0; i < results.data.length; i++) {
+          var firstCol = results.data[i][0];
+          results.data[i].splice(0, 1, i, firstCol);
+        }
+        results.data[0][0] = " ";
+      } 
+      
+     if((resData[resData.length-1].length == 1) && (resData[resData.length-1][0] == "")){
+        results.data.pop();
+      }
+	 	 loadData(results);
   	 }
     });
 }

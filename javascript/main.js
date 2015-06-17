@@ -51,7 +51,7 @@ var loadData = function (data) {
     document.querySelector('#overlay').setAttribute('style', '');
     document.querySelector('#slickTable').innerHTML = '';
     slickTable = loadSlickTable(data.data);
-    document.getElementById('tableCount').innerHTML = "Rows: " + (data.data.length - 1) + " Columns: " + (data.data[0].length - 1);
+    document.getElementById('tableCount').innerHTML = "[ Total Rows: " + (data.data.length - 1) + " ] [ Total Columns: " + (data.data[0].length - 1) + " ]";
     chart = loadChart(data.data, type);
     player = new AudioPlayer();
     overlay = new Overlay(data);
