@@ -209,8 +209,6 @@ svg * {
     height: 300px;
     margin-top: 2%;
     overflow: auto;
-    margin-left: auto;
-    margin-right: auto;
 }
 /* START: for print button page, table section */
 #printTable{

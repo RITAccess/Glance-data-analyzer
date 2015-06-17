@@ -51,8 +51,8 @@ var loadSlickTable = function(fileData){
     if (fileData[0].length < 9)
     	cwidthNum = fileData[0].length * 80; // max/min width (80)
     else if (fileData[0].length >= 9)
-    	cwidthNum = 720;
-    var cwidthString = cwidthNum + "px";
+    	cwidthNum = 100;
+    var cwidthString = cwidthNum + "%";
    	container.setAttribute("style", "width:" + cwidthString);
 
    	//Grid creation
@@ -76,7 +76,7 @@ var linkSlickTable = function(chart, player, overlay, summary){
 				grid.getData()[0][0] = " ";
 				//console.log("Hi there");
 			}
-			setTimeout(function(){ checkRemove(); }, 1);	
+			setTimeout(function(){ checkRemove(); }, 1);
 		}
 
 		// not a label - check to see if it's a number.
