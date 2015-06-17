@@ -213,6 +213,7 @@ svg * {
 /* START: for print button page, table section */
 #printTable{
     margin-top: 8%;
+    /*page-break-before: always;*/
 }
 #printTableHeader{
     margin-left: 5%;
@@ -234,12 +235,6 @@ svg * {
 #plot-header {
     padding: 5% 0;
 }
-#tableCount {
-    padding: 1%;
-}
-#remInstruction {
-    padding-bottom: 2%;
-}
 #dataSummary {
     text-align:center;
     font-weight: bold;
@@ -256,6 +251,12 @@ svg * {
     padding-top: 15px;
     padding-bottom: 20px;
     padding-left: 28px;
+}
+#tableCount {
+    padding: 5% 0 3% 0;
+}
+#remInstruction {
+    padding-bottom: 3%;
 }
 #tableControls {/* positioning buttons to bottom CENTER of parent container dataPlot */
     position: absolute;
