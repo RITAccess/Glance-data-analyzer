@@ -68,14 +68,16 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		var row = args.row;
 		var col = args.cell;
 		var newVal = grid.getData()[row][col];
-		var oldVal = chart.datasets[row-1].points[col - 1].value;
+
 		// if a label
-		if (row == 0){
+		if (row == 0 || col == 0){
 			chart.scale.xLabels[col - 1] = newVal;
 			if (col === 0) {
 				grid.getData()[0][0] = " ";
+				console.log("Hi there");
 			}
 		}
+
 		// not a label - check to see if it's a number.
 		// If not, do nothing
 		else if ((!isNaN(newVal)) && (newVal != "")){
@@ -89,6 +91,7 @@ var linkSlickTable = function(chart, player, overlay, summary){
 				chart.datasets[row-1].points[col - 1].value = newVal;
 		}
 		else {
+			var oldVal = chart.datasets[row-1].points[col - 1].value;
 			grid.getData()[row][col] = oldVal;
 			console.log(grid.getData()[row][col]);
 		}

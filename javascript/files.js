@@ -52,7 +52,7 @@ var createFile = function(rows, columns) {
   if (rows < 1) {
     rows = 1;
   }
-  if (columns <= 1) {
+  if (columns <= 2) {
     columns = 3;
   }
 
@@ -224,7 +224,7 @@ var addColumn = function() {
       }
 
     for (var i = 0; i < currTable.data.length; i++) {
-      if (currTable.data[i].length > 2) {
+      if (currTable.data[i].length > 3) {
         currTable.data[i].pop();
       }
     }
