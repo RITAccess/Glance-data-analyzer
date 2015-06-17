@@ -46,13 +46,13 @@ var loadSlickTable = function(fileData){
 	}
 
 	//Dynamic container width
-	var container = document.getElementById('tblContainer')
+	var container = document.getElementById('tblContainer');
 	var cwidthNum;
     if (fileData[0].length < 9)
     	cwidthNum = fileData[0].length * 80; // max/min width (80)
     else if (fileData[0].length >= 9)
-    	cwidthNum = 100
-    var cwidthString = cwidthNum + "%";
+    	cwidthNum = 720;
+    var cwidthString = cwidthNum + "px";
    	container.setAttribute("style", "width:" + cwidthString);
 
    	//Grid creation
