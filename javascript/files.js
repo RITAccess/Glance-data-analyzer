@@ -45,7 +45,7 @@ function loadFile(){
         // If not, it adds column labels onto the table
         for (var i = 0; i < results.data.length; i++) {
           var firstCol = results.data[i][0];
-          results.data[i].splice(0, 1, i, firstCol);
+          results.data[i].splice(0, 1, "Row " + i, firstCol);
         }
         results.data[0][0] = " ";
       } 
@@ -93,7 +93,7 @@ var createFile = function(rows, columns) {
     for (var j = 0; j < rowArray[i].length; j++) {
       rowArray[i][j] = 0;
     }
-    rowArray[i][0] = i;
+    rowArray[i][0] = "Row " + i;
   }
 
   for (var i = 0; i < rowArray[0].length; i++) {
@@ -162,7 +162,8 @@ var changeType= function(){
   currTable.data.push(newRow);
 
    for (var i = 1; i < currTable.data.length; i++) {
-    currTable.data[i][0] = parseInt((currTable.data[i - 1][0] + 1));
+    var tempInt =  (currTable.data.length-1);
+    currTable.data[currTable.data.length-1][0] = "Row " + tempInt.toString();
   }
 
   loadData(currTable);
