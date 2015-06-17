@@ -394,8 +394,7 @@ svg * {
 #dialogboxfoot button {/* also inherits from the other button styles */
     padding:5px;
 }
-.sChartType select, .sChartType input {
-    /* chart type select tags */
+.sChartType select, .sChartType input {/* chart type select tags */
     border: 2px solid #000;
     border-radius: 2px;
     font-size: 15px;
@@ -411,17 +410,15 @@ table, th, td, .printTable{
     text-align: center;
 }
 table, .printTable{
-    /*width: 100%;*/
     font-size: 15px;
     margin: auto;
     margin-top: 30px;
     table-layout: fixed;
 }
 th, td, .printTable{
-    /*max-width: 90%;*/
     padding: 10px;
     word-wrap:break-word;
-    /*max-width:150px;*/
+}
 /* Table Style for print ENDS */
 
 /************************************/
