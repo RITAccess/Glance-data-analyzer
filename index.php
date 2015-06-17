@@ -17,21 +17,21 @@
     <span id="title"><a href="index.php">Data Analyzer</a></span>
     <div class="inputBtnSection no-print">
       <label class="fileUpload">
-          <input id="files" type="file" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
+          <input id="files" type="file" accept=".csv" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
           <span class="uploadBtn" onmouseover="focusElement('uploadBtn')" onmouseleave="blurElement('uploadBtn')">Load CSV</span>
       </label>
     </div>
     <div class="newBtnSection no-print">
       <label class="createNew">
-        <input id="newTable" type="button" class="emptyTable" value="Create New Table" onfocus="focusElement('createBtn')" onblur="blurElement('createBtn')"/>
+        <input id="newTable" type="button" class="emptyTable" onfocus="focusElement('createBtn')" onblur="blurElement('createBtn')"/>
         <span class="createBtn" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
       </label>
     </div>
     <output id="list"></output>
     <span id="audioSpan" class="no-print" style="display: none">
-      <label for="lineDropdown" tabindex="0"> Data Set</label>
-      <select id="lineDropdown" class='drop-down' aria-label="Choose Data Set" title="selected"></select>
-      with speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="set speed"/>
+      <label for="lineDropdown" tabindex="0"> Row number </label>
+      <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
+       at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>
       <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
         <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
     </span>
