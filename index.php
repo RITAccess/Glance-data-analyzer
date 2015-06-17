@@ -45,7 +45,7 @@
       </p>
       <ul>
         <li tabindex="0">Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li>
-        <li tabindex="0">Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The overlay on the graph can highlight certain parts of the data to be turned into sound.</li>
+        <li tabindex="0">Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The sliders above the graph can highlight a certain section of the data to be turned into sound.</li>
         <li tabindex="0">Data Table: There are two options with the data table; load a pre-made CSV file (Comma Separated Value), or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.
         </li>
         <li tabindex="0">Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
@@ -72,7 +72,7 @@
           <div id="slickTable" style="width:100%;"></div>
         </div> <!-- end id="tblContainer" -->
         <div id="tableCount"></div>
-        <div id="remInstruction" class="no-print"></div>
+        <div id="remInstruction"></div>
       <div id="tableControls" style="display: none" class="no-print">
         <div id="rowLabel">
           <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"> - </button></label>
