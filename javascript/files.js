@@ -166,6 +166,7 @@ var changeType= function(){
   }
 
   loadData(currTable);
+  document.getElementById('tblContainer').style.width="100%";
  }
 
 // // Place a new column on the end of the existing table
@@ -195,6 +196,7 @@ var addColumn = function() {
 
     currTable.data[0][currTable.data[0].length - 1] = "Label " + (currTable.data[0].length - 1);
     loadData(currTable);
+    document.getElementById('tblContainer').style.width="100%";
  }
 
  var subtractRow = function() {
@@ -221,6 +223,7 @@ var addColumn = function() {
   }
 
   loadData(currTable);
+  document.getElementById('tblContainer').style.width="100%";
  }
 
  var subtractColumn = function() {
@@ -249,6 +252,7 @@ var addColumn = function() {
       }
     }
     loadData(currTable);
+    document.getElementById('tblContainer').style.width="100%";
  }
 
 
