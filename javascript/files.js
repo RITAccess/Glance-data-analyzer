@@ -321,13 +321,11 @@ function removeColumns(start,skip){
 
 //Delete a certain number (skip) of rows in the graph starting at a certain point (start)
 function removeRows(start,skip){
-  hidden.splice(start,skip);
-  oldData.splice(start,skip);
-  start += 1;
-  //console.log(start);
-  if(skip === 0){
+  if(start === 0 || skip ===0){
     return;
   }
+  hidden.splice(start,skip);
+  oldData.splice(start,skip);
   var currTable = new Object();
   currTable.data = [];
   currTable.errors = [];
@@ -341,7 +339,6 @@ function removeRows(start,skip){
     alert("Not enough rows to remove!");
     return;
   }
-  //console.log(resData.length);
   currTable.data[0] = [];
   for(var key in resData[0]){
     currTable.data[0].push(resData[0][key]);
@@ -370,7 +367,6 @@ function removeRows(start,skip){
         currTable.data[i].push(resData[i][j]);} 
     }
     }
-  //console.log(currTable);
   loadData(currTable);
   changeType();
 }
