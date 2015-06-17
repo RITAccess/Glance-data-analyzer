@@ -338,6 +338,7 @@ function removeColumns(start,skip){
   
   loadData(currTable);
   changeType();
+  document.getElementById('tblContainer').style.width = "100%";
 }
 
 //Delete a certain number (skip) of rows in the graph starting at a certain point (start)

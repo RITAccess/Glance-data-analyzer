@@ -127,8 +127,14 @@ function checkRemove(){
 	//Check for columns to remove
 	for(var i = 1; i < k; i++){
 		if(grid.getData()[0][i]===""){
-			if(confirm("Delete column " + i + "?"))	//Confirm with user
+			if(confirm("Delete column " + i + "?")){	//Confirm with user
 				removeColumns(i,1);	//Remove is confirmed
+				if(grid.getCellNode(0,i)!= null)
+					grid.gotoCell(0,i);
+				else{
+					grid.gotoCell(0,i-1);
+				}
+			}
 			else
 				grid.getData()[0][i] = i;	//Set back to default value if not
 		}
@@ -136,10 +142,17 @@ function checkRemove(){
 	//Check for rows to remove
 	for(var i = 0; i < grid.getData().length; i++){
 		if(grid.getData()[i][0]===""){
-			if(confirm("Delete row " + i + "?"))	//Confirm with user
+			if(confirm("Delete row " + i + "?")){	//Confirm with user
 				removeRows(i,1);	//Remove if confirmed
+				if(grid.getCellNode(i,0)!= null)
+					grid.gotoCell(i,0);
+				else{
+					grid.gotoCell(i-1,0);
+				}
+			}
 			else
 				grid.getData()[i][0] = i;	//Set back to default value if not
 		}
 	}
+	document.getElementById('tblContainer').style.width="100%";
 }
