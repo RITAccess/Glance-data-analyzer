@@ -235,7 +235,10 @@ svg * {
     padding: 5% 0;
 }
 #tableCount {
-    padding: 2%;
+    padding: 1%;
+}
+#remInstruction {
+    padding: 1%;
 }
 #dataSummary {
     text-align:center;

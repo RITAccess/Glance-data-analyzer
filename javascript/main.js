@@ -52,6 +52,7 @@ var loadData = function (data) {
     document.querySelector('#slickTable').innerHTML = '';
     slickTable = loadSlickTable(data.data);
     document.getElementById('tableCount').innerHTML = "[ Total Rows: " + (data.data.length - 1) + " ] [ Total Columns: " + (data.data[0].length - 1) + " ]";
+    document.getElementById('remInstruction').innerHTML = "*Remove specific row or column: delete the contents in the chosen labels cell"
     chart = loadChart(data.data, type);
     player = new AudioPlayer();
     overlay = new Overlay(data);
