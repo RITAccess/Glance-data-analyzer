@@ -238,7 +238,7 @@ svg * {
     padding: 1%;
 }
 #remInstruction {
-    padding: 1%;
+    padding-bottom: 2%;
 }
 #dataSummary {
     text-align:center;
