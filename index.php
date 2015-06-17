@@ -72,6 +72,7 @@
           <div id="slickTable" style="width:100%;"></div>
         </div> <!-- end id="tblContainer" -->
         <div id="tableCount"></div>
+        <div id="remInstruction"></div>
       <div id="tableControls" style="display: none" class="no-print">
         <div id="rowLabel">
           <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"> - </button></label>
