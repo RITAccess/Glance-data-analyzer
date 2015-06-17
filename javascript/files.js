@@ -23,9 +23,8 @@ function loadFile(){
     	complete: function(results) {
         var resData = results.data;
         if (results.data[0][0].split(' ').join('') != '') {
-          for (var i = 0; i < results.data.length; i++) {
+          for (var i = 0; i < results.data.length-1; i++) {
             var firstCol = results.data[i][0];
-            console.log(firstCol);
             results.data[i].splice(0, 1, i, firstCol);
           }
           results.data[0][0] = " ";
