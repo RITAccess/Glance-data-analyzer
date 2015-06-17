@@ -209,7 +209,7 @@ function dataset(data, collection) {
 			hidden.push(true);
 		}
 		inputBoxArray.push(textInput);
-		textInput.setAttribute("title", "Enter new color for Data Set " + i);
+		textInput.setAttribute("title", "Enter color");
 		toggleBox.setAttribute("type", "checkbox");
 		if(hidden[i-1]===true)
 			toggleBox.setAttribute("checked", "checked");
@@ -230,7 +230,7 @@ function dataset(data, collection) {
 		red += colorIncrease + 15;
 		green += colorIncrease;
 		blue += colorIncrease - 15;
-		
+
 	}
 	var returndata = new Object();
 	returndata.data = dataArray;
