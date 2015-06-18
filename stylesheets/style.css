@@ -39,11 +39,33 @@ header {
     text-decoration: none;
     color: inherit;
 }
+/* START style for about section */
+#start {
+    width: 800px;
+    text-align: justify;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 8%;
+    padding: 1% 5% 3% 5%;
+    border-radius: 5px;
+    border: 3px solid #000;
+}
+#start h1 {
+    text-align: center;
+}
+#start li {
+    margin: 1% 0;
+    padding: 1% 0;
+}
+#startInst{ /* instruction to get started */
+    text-align: center;
+}
+/* END style for about section */
 #content {
     width: 800px;
     margin: auto;/* centers the contents including the slider and the graph */
-    margin-top: 60px;
-    margin-bottom: 100px;
+    margin-top: 5%;
+    margin-bottom: 8%;
     clear: both;
 }
 #rTypeSel {/* chart/graph type radio selection */
@@ -51,14 +73,14 @@ header {
     margin-bottom: 20px;
 }
 #files {
-  width: 118px;
-  height: 47px;
-  z-index: -1;
+    width: 118px;
+    height: 47px;
+    z-index: -1;
 }
 #newTable {
-  width: 186px;
-  height: 47px;
-  z-index: -1;
+    width: 186px;
+    height: 47px;
+    z-index: -1;
 }
 #rTypeSel input{
     cursor: pointer;
@@ -179,21 +201,6 @@ svg * {
     width: 65px;
     text-align: center;
     font-size: 15px;
-}
-#start {
-  margin: 0 auto;
-  text-align: center;
-  border-radius: 5px;
-  border: 3px solid #000;
-  width: 100%;
-  padding: 1%;
-}
-#start h3 {
-  font-weight: bold;
-}
-#start li {
-  text-align: left;
-  margin: 10px;
 }
 #table {
     text-align: center;

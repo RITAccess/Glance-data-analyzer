@@ -66,6 +66,7 @@ var loadData = function (data) {
     document.getElementById('plot-header').style.display = 'inline';
     document.getElementById('tableControls').style.display = 'block';
     document.getElementById('rTypeSel').style.display = 'block';
+    /*document.getElementById('content').style.display = 'block';*/
     fixSlick();
 }
 

@@ -36,22 +36,22 @@
         <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
     </span>
   </header>
+  <div id="start">
+    <h1 tabindex="0" size="6">Welcome to Data Analyzer</h1>
+    <p tabindex="0">
+      This web application was designed to help analyze data through graphs, calculated values, and sound.
+      Here's a quick look at how to use the application:
+    </p>
+    <ul>
+      <li tabindex="0">Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li>
+      <li tabindex="0">Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The sliders above the graph can highlight a certain section of the data to be turned into sound.</li>
+      <li tabindex="0">Data Table: There are two options with the data table; load a pre-made CSV file (Comma Separated Value), or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.
+      </li>
+      <li tabindex="0">Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
+    </ul>
+    <h3 id="startInst" tabindex="0">To get started, select Load CSV or Create New Table at the top!</h3>
+  </div> <!-- end id="start" -->
   <div id="content">
-    <div id="start">
-      <font tabindex="0" size="6">Welcome to Data Analyzer</font>
-      <p tabindex="0">
-        This web application was designed to help analyze data through graphs, calculated values, and sound.
-        Here's a quick look at how to use the application:
-      </p>
-      <ul>
-        <li tabindex="0">Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li>
-        <li tabindex="0">Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The sliders above the graph can highlight a certain section of the data to be turned into sound.</li>
-        <li tabindex="0">Data Table: There are two options with the data table; load a pre-made CSV file (Comma Separated Value), or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.
-        </li>
-        <li tabindex="0">Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
-      </ul>
-      <p tabindex="0" >To get started, select Load CSV or Create New Table at the top!</p>
-    </div>
       <form id="rTypeSel" style="display:none;" class="no-print">
         <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" onclick="rType()">
         <label for="lineRadioButton">Line Graph</label>
@@ -73,7 +73,7 @@
         </div> <!-- end id="tblContainer" -->
         <div id="tableCount"></div>
         <div id="remInstruction"></div>
-      <div id="tableControls" style="display: none" class="no-print">
+      <div id="tableControls" style="display:none" class="no-print">
         <div id="rowLabel">
           <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"> - </button></label>
           <p style="display: inline">Rows</p>
