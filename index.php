@@ -51,7 +51,7 @@
     </ul>
     <h3 id="startInst" tabindex="0">To get started, select Load CSV or Create New Table at the top!</h3>
   </div> <!-- end id="start" -->
-  <div id="content">
+  <div id="content" style="position: absolute; top: -9999px; left: -9999px;">
       <form id="rTypeSel" style="display:none;" class="no-print">
         <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" onclick="rType()">
         <label for="lineRadioButton">Line Graph</label>
