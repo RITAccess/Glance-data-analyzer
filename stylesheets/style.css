@@ -205,9 +205,9 @@ svg * {
     text-align: center;
     font-size: 15px;
 }
-#fieldset {
+#radioOutline {
+  border: 0px;
   padding: 15px;
-  margin-bottom: 35px;
 }
 #table {
     text-align: center;
