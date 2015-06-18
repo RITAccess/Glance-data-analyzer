@@ -76,12 +76,12 @@
       <div id="tableControls" style="display:none" class="no-print">
         <div id="rowLabel">
           <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"> - </button></label>
-          <p style="display: inline">Rows</p>
+          <p style="display: inline">Row</p>
           <label><button id="addNewRow" aria-label="Add New Row" onclick="addRow()"> + </button></label>
         </div>
         <div id="columnLabel">
           <label><button id="subtractColumn" aria-label="Remove Column" onclick="subtractColumn()"> - </button></label>
-          <p style="display: inline"> Columns</p>
+          <p style="display: inline">Column</p>
           <label><button id="addNewCol" aria-label="Add New Column" onclick="addColumn()"> + </button></label>
         </div>
         <button id="downloadCSV" onclick="download()">Download CSV</button>
