@@ -217,6 +217,7 @@ svg * {
 }
 #tblContainer {
     height: 300px;
+    margin: auto;
     margin-top: 2%;
     overflow: auto;
 }

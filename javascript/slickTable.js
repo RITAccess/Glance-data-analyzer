@@ -14,8 +14,8 @@ var loadSlickTable = function(fileData){
 			field: i,
 			width: w,
 			editor: Slick.Editors.Text,
-			minWidth: 80, //sets range for width of columns
-			maxWidth: 80
+			minWidth: 130, //sets range for width of columns
+			maxWidth: 130
 		});
 	}
 
@@ -48,11 +48,11 @@ var loadSlickTable = function(fileData){
 	//Dynamic container width
 	var container = document.getElementById('tblContainer');
 	var cwidthNum;
-    if (fileData[0].length < 9)
-    	cwidthNum = fileData[0].length * 80; // max/min width (80)
-    else if (fileData[0].length >= 9)
-    	cwidthNum = 100;
-    var cwidthString = cwidthNum + "%";
+    if (fileData[0].length < 6)
+    	cwidthNum = fileData[0].length * 130; // max/min width (130)
+    else if (fileData[0].length >= 6)
+    	cwidthNum = 780;
+    var cwidthString = cwidthNum + "px";
    	container.setAttribute("style", "width:" + cwidthString);
 
    	//Grid creation

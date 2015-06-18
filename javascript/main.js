@@ -62,11 +62,10 @@ var loadData = function (data) {
     summary = new DataSummary(collection);
     summary.dataSummary();
     linkSlickTable(chart, player, overlay, summary);
-    document.getElementById('color-expand').style.display = 'block';
+    document.getElementById('rTypeSel').style.display = 'block';
     document.getElementById('plot-header').style.display = 'inline';
     document.getElementById('tableControls').style.display = 'block';
-    document.getElementById('rTypeSel').style.display = 'block';
-    /*document.getElementById('content').style.display = 'block';*/
+    document.getElementById('color-expand').style.display = 'block';
     fixSlick();
 }
 
