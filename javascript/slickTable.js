@@ -1,5 +1,8 @@
 "use strict"; // strict mode syntax
 var grid = null;
+
+var ColumnWidth = 130; //** CHANGE THIS TO CHANGE COLUMN WIDTH! **
+
 // initial table properties, after getting the data from the file.
 var loadSlickTable = function(fileData){
 	var c1 = document.getElementById('slickTable');
@@ -12,10 +15,10 @@ var loadSlickTable = function(fileData){
 			id: i,
 			name: '',
 			field: i,
-			width: w,
+			width: ColumnWidth,
 			editor: Slick.Editors.Text,
-			minWidth: 130, //sets range for width of columns
-			maxWidth: 130
+			minWidth: ColumnWidth, //sets range for width of columns
+			maxWidth: ColumnWidth
 		});
 	}
 
@@ -45,15 +48,20 @@ var loadSlickTable = function(fileData){
 			}
 	}
 
-	//Dynamic container width
+	//Dynamic Container Width
+	//NOTE: To change the Column Width of the table please change "ColumnWidth" at the top of the file!
 	var container = document.getElementById('tblContainer');
-	var cwidthNum;
-    if (fileData[0].length < 6)
-    	cwidthNum = fileData[0].length * 130; // max/min width (130)
-    else if (fileData[0].length >= 6)
-    	cwidthNum = 780;
-    var cwidthString = cwidthNum + "px";
-   	container.setAttribute("style", "width:" + cwidthString);
+	var maxCol = Math.floor(800/ColumnWidth); //800 is maximum acceptable size for the table's container
+	var maxContainerWidthNum = ColumnWidth * maxCol;
+	var ContainerWidthNum;
+
+	//Logic for Dynamic Container Width
+    if (fileData[0].length < maxCol)
+    	ContainerWidthNum = fileData[0].length * ColumnWidth; // max/min width (130)
+    else if (fileData[0].length >= maxCol)
+    	ContainerWidthNum = maxContainerWidthNum;
+    var ContainerWidthString = ContainerWidthNum + "px";
+   	container.setAttribute("style", "width:" + ContainerWidthString);
 
    	//Grid creation
     grid = new Slick.Grid(c1, data, columns, options);
