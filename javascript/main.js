@@ -51,7 +51,7 @@ var loadData = function (data) {
     document.querySelector('#overlay').setAttribute('style', '');
     document.querySelector('#slickTable').innerHTML = '';
     slickTable = loadSlickTable(data.data);
-    document.getElementById('tableCount').innerHTML = "[ Total Rows: " + (data.data.length - 1) + " ] [ Total Columns: " + (data.data[0].length - 1) + " ]";
+    document.getElementById('tableCount').innerHTML = "[ Total Row: " + (data.data.length - 1) + " ] [ Total Column: " + (data.data[0].length - 1) + " ]";
     document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen labels cell"
     chart = loadChart(data.data, type);
     player = new AudioPlayer();

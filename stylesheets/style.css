@@ -13,9 +13,6 @@ body {
     font-size: 20px;
     font-weight: bold;
 }
-#overlay {
-    position:absolute;
-}
 header {
     padding: 1em 0px;
     width: 100%;
@@ -118,6 +115,9 @@ svg * {
  #slider-range {
     margin-left: 22px;
     width: 755px;
+}
+#overlay {
+    position:absolute;
 }
 /**  START changing Browse to Load CSV **/
  * {
@@ -302,7 +302,7 @@ svg * {
     box-shadow: none;
     text-shadow: none;
     border: 2px solid #FFF;
-    border-radius: 20px;
+    border-radius: 100%;
     vertical-align: middle;
 }
 #addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus {
