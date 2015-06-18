@@ -53,6 +53,9 @@ header {
 #start h1 {
     text-align: center;
 }
+#start ul {
+    list-style-type: decimal;
+}
 #start li {
     margin: 1% 0;
     padding: 1% 0;
