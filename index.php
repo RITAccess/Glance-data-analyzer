@@ -16,13 +16,13 @@
   <header>
     <span id="title"><a href="index.php">Data Analyzer</a></span>
     <div class="inputBtnSection no-print">
-      <label class="fileUpload">
+      <label class="fileUpload" for="files">
           <input id="files" type="file" accept=".csv" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
           <span class="uploadBtn" onmouseover="focusElement('uploadBtn')" onmouseleave="blurElement('uploadBtn')">Load CSV</span>
       </label>
     </div>
     <div class="newBtnSection no-print">
-      <label class="createNew">
+      <label class="createNew" for="newTable">
         <input id="newTable" type="button" class="emptyTable" onfocus="focusElement('createBtn')" onblur="blurElement('createBtn')"/>
         <span class="createBtn" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
       </label>
@@ -92,7 +92,7 @@
         include 'php/ajax.php';
     ?>
     <div id='color-expand' style="display:none;">
-      <div id='color-header' onclick="openColorEditor()">Graph Data </div>
+      <div id='color-header' onclick="openColorEditor()">Graph Data</div>
       <div id="color-editor" class="color-editor-input">
         <ol id="colors" ></ol>
       </div>
