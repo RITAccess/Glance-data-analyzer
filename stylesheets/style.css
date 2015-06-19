@@ -72,8 +72,13 @@ header {
     clear: both;
 }
 #rTypeSelBody{/* chart/graph type radio selection */
-    margin-bottom: 5%;
+    width: 95%;
     text-align: center;
+    border: 2px solid #000;
+    border-radius: 5px;
+    margin: auto;
+    margin-bottom: 5%;
+    padding-bottom: 3%;
 }
 #files {
     width: 118px;
