@@ -69,7 +69,7 @@
       </svg>
       <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
       <div id="dataPlot">
-        <div id="plot-header" style="display:none;">Data Table</div>
+        <h3 id="plot-header" style="display:none;">Data Table</h3>
         <div id="tblContainer" style="display:none;" title="Data Table">
           <div id="slickTable" style="width:100%;"></div>
         </div> <!-- end id="tblContainer" -->
@@ -94,7 +94,7 @@
         include 'php/ajax.php';
     ?>
     <div id='color-expand' style="display:none;">
-      <div id='color-header' onclick="openColorEditor()">Graph Data</div>
+      <h3 id='color-header' onclick="openColorEditor()">Graph Data</h3>
       <div id="color-editor" class="color-editor-input">
         <ol id="colors" ></ol>
       </div>
