@@ -13,6 +13,9 @@ body {
     font-size: 20px;
     font-weight: bold;
 }
+.centerText{
+  text-align: center;
+}
 header {
     padding: 2% 0;
     width: 100%;
@@ -68,9 +71,9 @@ header {
     margin-bottom: 8%;
     clear: both;
 }
-#rTypeSel {/* chart/graph type radio selection */
+#rTypeSelBody{/* chart/graph type radio selection */
+    margin-bottom: 5%;
     text-align: center;
-    margin-bottom: 20px;
 }
 #files {
     width: 118px;
