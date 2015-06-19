@@ -12,7 +12,7 @@ function printPage()
    html += "<div style='margin-bottom: 50px;'><img width='800px' src='" + chart.toBase64Image() + "'/></div>";
    html += "<div id='color-expand' style='display: block;'>";
    html += document.getElementById('color-expand').innerHTML;
-   html += "</div><div id='printTable'><div id='printTableHeader'>Data Table</div>";
+   html += "</div><div id='printTable'><h3 id='printTableHeader'>Data Table</h3>";
    html += "<div id='printTableBody'>";
    var s = "<table class='printTable'>";
    if(type === "bar"){

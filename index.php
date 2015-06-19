@@ -51,9 +51,9 @@
     <h3 id="startInst" tabindex="0">To get started, select Load CSV or Create New Table at the top!</h3>
   </div> <!-- end id="start" -->
   <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!--style: hide content when page first load-->
-      <div id="rTypeSelBody">
+      <div id="rTypeSelBody" class="no-print">
         <h3 class="centerText">Data Analyzer Graph</h3>
-        <form id="rTypeSel" style="display:none;" class="no-print">
+        <form id="rTypeSel" style="display:none;">
           <input id="lineRadioButton" type="radio" name="rGraphSel" aria-label="Change to" value="Line" onclick="rType()">
           <label for="lineRadioButton">Line Graph</label>
           <input id="barRadioButton" type="radio" name="rGraphSel" aria-label="Change to" value="Bar" onclick="rType()">
