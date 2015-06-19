@@ -14,6 +14,7 @@ require(["libs/jquery/jquery-1.11.2.js"],function(jquery) {
   });
 });
 
+
 require(["libs/PapaParse/papaparse.min.js"]);
 require(["libs/chartjs/Chart.js"]);
 
@@ -54,7 +55,7 @@ var loadData = function (data) {
     document.getElementById('tableCount').innerHTML = "[ Total Row: " + (data.data.length - 1) + " ] [ Total Column: " + (data.data[0].length - 1) + " ]";
     document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen labels cell"
     chart = loadChart(data.data, type);
-    player = new AudioPlayer();
+    player = new Instrument(2);
     overlay = new Overlay(data);
     overlay.updateSize(chart);
     var collection = new ArrayCollection(data.data);
