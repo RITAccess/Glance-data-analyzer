@@ -112,10 +112,12 @@ svg * {
     float: left;
 }
 */
+/*
  #slider-range {
     margin-left: 22px;
     width: 755px;
 }
+*//*delete(?): slider-range styles conflicts with element.style, and doesn't seem to effect anything when comment sliger-range out*/
 #overlay {
     position:absolute;
 }
@@ -180,7 +182,6 @@ svg * {
     position: absolute;
     padding-right: 2%;
     margin-top: 0.6%;
-    /*top: 1em;*/
     right: 0em;
 }
 #playButton {
@@ -204,11 +205,11 @@ svg * {
     width: 65px;
     text-align: center;
     font-size: 15px;
-}
+}/*
 #radioOutline {
   border: 0px;
   padding: 15px;
-}
+}*//*delete(?): declared here but not used in any file*/
 #table {
     text-align: center;
 }
@@ -251,12 +252,12 @@ svg * {
     padding: 5% 0;
 }
 #dataSummary {
+    width: 100%;
     text-align:center;
+    font-size: 20px;
     font-weight: bold;
     border-radius: 5px;
     border: 3px solid #000;
-    font-size: 20px;
-    width: 100%;
     margin: 40px 0;
     padding-top: 10px;
 }
@@ -330,7 +331,7 @@ svg * {
     transition: background 0.5s; */
     border-radius: 5px;
     border: 3px solid #000;
-    padding: 20px 0px 10px 0px;
+    padding: 4% 0;
     overflow: auto;
 }
 #color-header {
@@ -342,12 +343,12 @@ svg * {
     list-style: none;
 }
 #colors > li {
-    margin: 30px 0px;
+    margin: 4% 0;
 }
 .color-editor-input input:focus {
     background: #dadada;
 }
-.colorblock {
+.colorblock {/*called in chart.js only*/
     border: 2px solid #000;
     box-shadow: 1px 1px 2px #000;
     padding-right: 3em;
@@ -368,7 +369,7 @@ svg * {
 /* style for pop-up chart list STARTS */
  #dialogoverlay {
     display: none;
-    opacity: .8;
+    opacity: 0.8;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -423,12 +424,12 @@ svg * {
 table, th, td, .printTable{
     border: 1px solid #000;
     border-collapse: collapse;
-    text-align: center;
+    text-align: center; /*center texts (especially) inside td*/
 }
 table, .printTable{
     font-size: 15px;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 5%;
     table-layout: fixed;
 }
 th, td, .printTable{
@@ -454,7 +455,7 @@ th, td, .printTable{
         overflow: hidden;
     }
     #dataPlot {
-        margin: 20px 0;
+        margin: 5% 0;
         /*page-break-after: auto;*/
     }
     #color-expand{
@@ -471,10 +472,6 @@ th, td, .printTable{
 
 /* START media query max-width: 1068px */
 @media screen and (max-width: 1068px) {
-    /*header{
-        box-shadow: none;
-        border-bottom: 2px solid #888;
-    }*/
     #audioSpan{
         width: 100%;
         background: url('footer_lodyas/footer_lodyas.png');
