@@ -67,7 +67,7 @@
         <rect id="background" x="0" y="0" width="800" height="400" />
         <rect id="selection" x="0" y="0" width="800" height="400" />
       </svg>
-      <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
+      <canvas title="CHART YEAH" alt="Graph" id="myChart" width="800" height="400"></canvas>
       <div id="dataPlot">
         <h3 id="plot-header" style="display:none;">Data Table</h3>
         <div id="tblContainer" style="display:none;" title="Data Table">

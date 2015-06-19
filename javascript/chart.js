@@ -22,7 +22,7 @@ var loadChart = function(data, type, collection){
 		myLineChart = new Chart(ctx).Bar(data);
 	else
 	  myLineChart = new Chart(ctx).Line(data);
-	document.getElementById("myChart").setAttribute("title","chart read out"); // by setting the attribute we can make the chart accessible
+	document.getElementById("myChart").setAttribute("title","image of graph"); // by setting the attribute we can make the chart accessible
 
 	for(var i =0; i<data.datasets.length;i++){
 		//Setting input functions for each line in order to set new colors
