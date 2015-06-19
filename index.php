@@ -52,17 +52,16 @@
   </div> <!-- end id="start" -->
   <div id="content" style="position: absolute; top: -9999px; left: -9999px;">
       <div id="rTypeSelBody">
-        <h3>Change Graph Type</h3>
+        <h3 class="centerText">Data Analyzer Graph</h3>
         <form id="rTypeSel" style="display:none;" class="no-print">
-          <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" onclick="rType()">
+          <input id="lineRadioButton" type="radio" name="rGraphSel" aria-label="Change to" value="Line" onclick="rType()">
           <label for="lineRadioButton">Line Graph</label>
-          <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" onclick="rType()">
+          <input id="barRadioButton" type="radio" name="rGraphSel" aria-label="Change to" value="Bar" onclick="rType()">
           <label for="barRadioButton">Bar Graph</label>
-          <input id="scatterRadioButton" type="radio" name="rGraphSel" value="Scatter" onclick="rType()">
+          <input id="scatterRadioButton" type="radio" name="rGraphSel" aria-label="Change to" value="Scatter" onclick="rType()">
           <label for="scatterRadioButton">Scatter Plot</label>
         </form>
       </div>
-      <h3 class="centerText">Data Analyzer Graph</h3>
       <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" class="no-print"></div>
       <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
         <rect id="background" x="0" y="0" width="800" height="400" />
