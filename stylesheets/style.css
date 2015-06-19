@@ -14,7 +14,7 @@ body {
     font-weight: bold;
 }
 header {
-    padding: 1em 0px;
+    padding: 2% 0;
     width: 100%;
     left: 0;
     margin-left: 0;
@@ -23,8 +23,8 @@ header {
     color:white;
     text-shadow: 0px 0px 10px #000;
     box-shadow: 0px 0px 10px #000;
-    clear:both;
-    vertical-align:center;
+    clear: both;
+    vertical-align: middle;
 }
 #title {
     font-weight: bold;
@@ -90,7 +90,7 @@ header {
     cursor: pointer;
 }
 #selection {
-    fill: lightblue;
+    fill: lightblue;/*#ADD8E6*/
     fill-opacity: 0.3;
 }
 svg * {
@@ -471,19 +471,18 @@ th, td, .printTable{
 
 /* START media query max-width: 1068px */
 @media screen and (max-width: 1068px) {
-    header{
+    /*header{
         box-shadow: none;
         border-bottom: 2px solid #888;
-    }
+    }*/
     #audioSpan{
         width: 100%;
         background: url('footer_lodyas/footer_lodyas.png');
         position: initial;
         float: left;
-        margin-top: 2%;
         margin-bottom: 5%;
         padding: 2% 3.5%;
-        box-shadow: 0px 0px 10px #000;
+        box-shadow: 0px 10px 10px -10px #000;
     }
     #audioSpan:before{
         content: '\A';/* acts like break tag */

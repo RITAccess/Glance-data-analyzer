@@ -17,7 +17,7 @@
     <span id="title"><a href="index.php">Data Analyzer</a></span>
     <div class="inputBtnSection no-print">
       <label class="fileUpload" for="files">
-          <input id="files" type="file" accept=".csv" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
+          <input id="files" type="file" accept=".csv" class="upload" onfocus="focusElement('uploadBtn')" onblur="blurElement('uploadBtn')"/>
           <span class="uploadBtn" onmouseover="focusElement('uploadBtn')" onmouseleave="blurElement('uploadBtn')">Load CSV</span>
       </label>
     </div>
@@ -29,7 +29,7 @@
     </div>
     <output id="list"></output>
     <span id="audioSpan" class="no-print" style="display: none">
-      <label for="lineDropdown" tabindex="0">Row number </label>
+      <label for="lineDropdown" tabindex="0">Row number</label>
       <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
        at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>
       <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
@@ -45,8 +45,7 @@
     <ul>
       <li tabindex="0">Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li>
       <li tabindex="0">Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The sliders above the graph can highlight a certain section of the data to be turned into sound.</li>
-      <li tabindex="0">Data Table: There are two options with the data table; load a pre-made CSV file (Comma Separated Value), or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.
-      </li>
+      <li tabindex="0">Data Table: There are two options with the data table; load a pre-made CSV file (Comma Separated Value), or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.</li>
       <li tabindex="0">Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
     </ul>
     <h3 id="startInst" tabindex="0">To get started, select Load CSV or Create New Table at the top!</h3>
