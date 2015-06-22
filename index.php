@@ -62,11 +62,11 @@
       <div id="rTypeSelBody">
         <h3>Data Analyzer Graph</h3>
         <form id="rTypeSel" style="display:none;" class="no-print">
-          <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" onclick="rType()">
+          <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" aria-label="Change Graph Type" onclick="rType()">
           <label for="lineRadioButton">Line Graph</label>
-          <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" onclick="rType()">
+          <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" aria-label="Change Graph Type" onclick="rType()">
           <label for="barRadioButton">Bar Graph</label>
-          <input id="scatterRadioButton" type="radio" name="rGraphSel" value="Scatter" onclick="rType()">
+          <input id="scatterRadioButton" type="radio" name="rGraphSel" aria-label="Change Graph Type" value="Scatter" onclick="rType()">
           <label for="scatterRadioButton">Scatter Plot</label>
         </form>
       </div><!-- END id="rTypeSelBody" -->
@@ -102,7 +102,7 @@
         include 'php/ajax.php';
     ?>
     <div id='summaryBox' style="display:none;">
-      <h3 id='summary-header' onclick="openColorEditor()">Graph Data</h3>
+      <h3 id='summary-header'>Graph Data</h3>
       <div id="summary-editor" class="color-editor-input">
         <ol id="colors" ></ol>
       </div>
