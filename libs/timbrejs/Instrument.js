@@ -40,7 +40,7 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
 			self.playing = false;
 			self.updateIcon();
 		}
-		console.log(self.infoCollection.collection[j].array[i]);
+		//console.log(self.infoCollection.collection[j].array[i]);
 		T.soundfont.play(parseInt(self.infoCollection.collection[j].array[i]));
 		i++;
 	}).on("ended",function(){

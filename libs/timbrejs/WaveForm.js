@@ -146,7 +146,7 @@ WaveForm.prototype.changePitch = function(pitch){
 
 //Play series of notes
 WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
-	console.log("S " + startIndex + " " + "E " + endIndex);
+	//console.log("S " + startIndex + " " + "E " + endIndex);
 	this.playing = true;
 	this.updateIcon();
 	var j = line;
@@ -166,7 +166,7 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 			self.start();
 		}
 		self.changePitch(parseInt(self.infoCollection.collection[j].array[i]));
-		console.log(self.pitch);
+		//console.log(self.pitch);
 		if(i === 0){
 			self.start();
 		}
