@@ -101,7 +101,8 @@
     <?php
         include 'php/ajax.php';
     ?>
-      <h3 id='summary-header' tabindex="0" onclick="openColorEditor()">Graph Data</h3>
+    <div id='summaryBox' style="display:none;">
+      <h3 id='summary-header' tabindex="0">Graph Data</h3>
       <div id="summary-editor" class="color-editor-input">
         <ol id="colors" ></ol>
       </div>
