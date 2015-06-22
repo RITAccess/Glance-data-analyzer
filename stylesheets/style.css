@@ -36,6 +36,9 @@ header {
     text-decoration: none;
     color: inherit;
 }
+
+/*********************************/
+
 /* START style for about section */
 #start {
     text-align: justify;
@@ -61,6 +64,9 @@ header {
     text-align: center;
 }
 /* END style for about section */
+
+/*********************************/
+
 #files {/*style for acutal Load CSV button*/
     width: 118px;
     height: 47px;
@@ -99,6 +105,9 @@ svg * {
     stroke-width:1;
     fill-opacity: 0.0;
 }
+
+/*******************************/
+
 /*
 .slider1 {
     width: 800px;
@@ -118,10 +127,17 @@ svg * {
     margin-left: 22px;
     width: 755px;
 }
-*//*delete(?): slider-range styles conflicts with element.style, and doesn't seem to effect anything when comment sliger-range out*/
+*//*delete(?): slider-range styles conflicts with element.style,
+and doesn't seem to effect anything when comment sliger-range out*/
+
+/*******************************/
+
 #overlay {
     position:absolute;
 }
+
+/*******************************/
+
 /**  START changing Browse to Load CSV **/
  * {
     box-sizing:border-box;
@@ -132,19 +148,17 @@ svg * {
     display:inline-block;
     vertical-align:top;
     font-size:0;
-    margin-left: 1%;
+    margin-left: 2%;
 }
 .disableInputField {
     display:inline-block;
     vertical-align:top;
     margin: 0;
     font-size:14px;
-    padding:0 3px;
 }
 .fileUpload, .createNew {
     position: relative;
     overflow: hidden;
-    margin: 10px;
 }
 .uploadBtn, .createBtn {
     cursor: pointer;
@@ -176,6 +190,9 @@ svg * {
     filter: alpha(opacity=0);
 }
 /** END changing Browse to Load CSV **/
+
+/*******************************/
+
 #audioSpan {
     float: right;
     position: absolute;
@@ -204,11 +221,17 @@ svg * {
     width: 65px;
     text-align: center;
     font-size: 15px;
-}/*
-#radioOutline {
+}
+
+/*******************************/
+
+/*#radioOutline {
   border: 0px;
   padding: 15px;
 }*//*delete(?): declared here but not used in any file*/
+
+/*******************************/
+
 #table {
     text-align: center;
 }
@@ -225,6 +248,9 @@ svg * {
     margin-top: 2%;
     overflow: auto;
 }
+
+/*******************************/
+
 /* START: for print button page, table section */
 #printTable{
     margin-top: 8%;
@@ -238,6 +264,9 @@ svg * {
     border-top: 3px solid #000;
 }
 /* END: for print button page, table section */
+
+/*******************************/
+
 #dataPlot {
     width: 100%;
     text-align:center;
@@ -365,6 +394,9 @@ svg * {
     display: inline-block;
     vertical-align: middle;
 }
+
+/*******************************/
+
 /* style for pop-up chart list STARTS */
  #dialogoverlay {
     display: none;
@@ -415,11 +447,11 @@ svg * {
     border-radius: 2px;
     font-size: 15px;
 }
-/* style for pop-up chart list ENDS */
+/* END style for pop-up chart list */
 
 /************************************/
 
-/* Table Style for print STARTS*/
+/* START Table Style for print */
 table, th, td, .printTable{
     border: 1px solid #000;
     border-collapse: collapse;
@@ -435,11 +467,11 @@ th, td, .printTable{
     padding: 10px;
     word-wrap:break-word;
 }
-/* Table Style for print ENDS */
+/* END Table Style for print */
 
 /************************************/
 
-/* media query for printing STARTS  */
+/* START media query for printing */
  @media print {
     header {
         box-shadow: none;
@@ -481,7 +513,9 @@ th, td, .printTable{
         box-shadow: 0px 10px 10px -10px #000;
     }
     #audioSpan:before{
-        content: '\A';/* acts like break tag */
+        content: '\A'; /* acts like break tag */
     }
 }
 /* END media query max-width: 1068px */
+
+/*******************************/
