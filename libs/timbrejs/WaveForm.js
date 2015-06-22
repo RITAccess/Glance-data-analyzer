@@ -33,7 +33,7 @@ WaveForm.prototype.makeBuffer = function(){
 	  		this.buffer[i]= sign;
 		}
 	}
-	else if(this.type = "triangle"){
+	else if(this.type === "triangle"){
 		var totalSamples = 0;
 		for(var i = 0; i< this.len && totalSamples<this.len; i++){
 			var samples = this.len/8;
@@ -51,7 +51,7 @@ WaveForm.prototype.makeBuffer = function(){
 			}
 		}
 	}
-	else{
+	else {
 		var totalSamples = 0;
 		for(var i = 0; i< this.len && totalSamples<this.len; i++){
 			var samples = this.len/8;
@@ -71,55 +71,6 @@ WaveForm.prototype.makeBuffer = function(){
 //Set Pitch of the WaveForm
 WaveForm.prototype.setPitch = function(pitch){
 	this.t_object.pitch=(pitch);
-};
-
-//Insert sawtooth Wave into buffer
-WaveForm.prototype.sawtooth = function(){
-	var totalSamples = 0;
-	for(var i = 0; i< this.len && totalSamples<this.len; i++){
-		var samples = len/8;
-		var step = 2/samples;
-		var tempSample = -1;
-		var samplesWritten = 0;
-		while(samplesWritten<samples){
-			tempSample+= step;
-			this.buffer[totalSamples] = tempSample;
-			samplesWritten ++;
-			totalSamples ++;
-		}
-}
-	
-};
-
-//Insert square Wave into buffer
-WaveForm.prototype.square = function(){
-	for (var i = 0; i < this.len; i++) {
-	  var sign = Math.sin(Math.PI * 8/len * i);
-	  sign = sign && sign / Math.abs(sign);
-	  this.buffer[i]= sign;
-	}
-	
-};
-
-//Insert triangle wave into buffer
-WaveForm.prototype.triangle = function(){
-	var totalSamples = 0;
-	for(var i = 0; i< this.len && totalSamples<this.len; i++){
-		var samples = len/8;
-		var step = 3/samples;
-		var tempSample = -1;
-		var samplesWritten = 0;
-		while(samplesWritten<samples){
-			if(samplesWritten<samples/2)
-			tempSample+= step;
-			else
-			tempSample-= step;
-			this.buffer[totalSamples] = tempSample;
-			samplesWritten ++;
-			totalSamples ++;
-		}
-}
-	
 };
 
 //Start playing WaveForm
@@ -146,7 +97,6 @@ WaveForm.prototype.changePitch = function(pitch){
 
 //Play series of notes
 WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
-	//console.log("S " + startIndex + " " + "E " + endIndex);
 	this.playing = true;
 	this.updateIcon();
 	var j = line;
@@ -161,19 +111,18 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 			self.stop();
 			return;
 		}
-		//console.log(i);
 		if(!self.playing){
 			self.start();
 		}
-		self.changePitch(parseInt(self.infoCollection.collection[j].array[i]));
-		//console.log(self.pitch);
+		self.changePitch(30 + parseInt(self.infoCollection.collection[j].array[i]));
 		if(i === 0){
 			self.start();
 		}
 		i++;
 	}).on("ended",function(){
-		t.stop();
+		this.stop();
 	}).start();
+	self.playing = false;
 };
 
 //Set Beats per minute of waveform when series is played
@@ -204,7 +153,6 @@ WaveForm.prototype.changeLine = function(line, index, newValue) {
 //Toggle playing either on or off
 WaveForm.prototype.playToggle = function(line, startIndex, endIndex) {
   if(!this.playing) {
-    //this.playLine(line, startIndex, endIndex);
     this.playSeries(line,startIndex,endIndex);
   }
   else {

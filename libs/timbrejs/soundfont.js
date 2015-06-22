@@ -153,7 +153,7 @@
 
 	// this can be overridden by end users
 	soundfont.onLoad = function (audio,note) {
-		this.play(note);
+		//this.play(note);
 		//this.emptyCache();
 	};
 
