@@ -34,18 +34,19 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
   var j = line;
   var self = this;
 	timbre.bpm = this.bpm;
-	var t = T("interval", {interval:"L2",timeout:"55sec"},function(){
-		if(i>=endIndex){
-			t.stop();
+	var t = T("interval", {interval:"L4",timeout:"55sec"},function(){
+		if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
 			self.playing = false;
 			self.updateIcon();
+      t.stop();
 		}
 		//console.log(self.infoCollection.collection[j].array[i]);
-		T.soundfont.play(20 + parseInt(self.infoCollection.collection[j].array[i]));
+		T.soundfont.play(15 + parseInt(self.infoCollection.collection[j].array[i]));
 		i++;
 	}).on("ended",function(){
 		this.stop();
 	}).start();
+  self.playing = false;
 }
 
 //Using an arrayCollection object you can add a group of lines to the audio object
@@ -72,13 +73,15 @@ Instrument.prototype.changeLine = function(line, index, newValue) {
 Instrument.prototype.playToggle = function(line, startIndex, endIndex) {
   if(!this.playing) {
     //this.playLine(line, startIndex, endIndex);
-    T.soundfont.preload(parseInt(this.infoCollection.collection[line].array));
-    this.playDataSet(line,startIndex,endIndex);
+    var loader = []
+    for(var i = 0; i < this.infoCollection.collection[line].array.length; i++){
+      loader.push(parseInt(this.infoCollection.collection[line].array[i]));
+    }
+    //console.log(loader);
+    var self = this;
+    setTimeout(T.soundfont.preload(loader),1);
+    self.playDataSet(line,startIndex,endIndex);
   }
-  else {
-    //this.stopPlaying();
-  }
-  this.updateIcon();
 }
 
 // Updates the play / stop icon.

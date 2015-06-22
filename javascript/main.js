@@ -55,7 +55,7 @@ var loadData = function (data) {
     document.getElementById('tableCount').innerHTML = "[ Total Row: " + (data.data.length - 1) + " ] [ Total Column: " + (data.data[0].length - 1) + " ]";
     document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen labels cell"
     chart = loadChart(data.data, type);
-    player = new Instrument(26);
+    player = new Instrument(2);
     overlay = new Overlay(data);
     overlay.updateSize(chart);
     var collection = new ArrayCollection(data.data);
@@ -73,9 +73,15 @@ var loadData = function (data) {
     fixSlick();
 }
 
+console.warn = function(){};
 
 // The play button
 var playStopAudioButton = function () {
+    var bpm = 80 + 40 * document.getElementById('bpm').value;
+    player.bpm = bpm;
+    if(overlay.slider[0] === 0 && overlay.slider[1] === 0){
+      overlay.slider[1] = chart.datasets[0].length;
+    }
     player.playToggle(document.getElementById("lineDropdown").value - 1, overlay.slider[0], overlay.slider[1]);
 }
 
