@@ -63,10 +63,10 @@ var loadData = function (data) {
     summary = new DataSummary(collection);
     summary.dataSummary();
     linkSlickTable(chart, player, overlay, summary);
-    document.getElementById("content").style.position = "inherit"; //overides corresponding style in index.html that hides the content tag
-    document.getElementById("content").style.top = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
-    document.getElementById("content").style.left = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
-    document.getElementById('rTypeSel').style.display = 'block';
+    document.getElementById('content').style.position = "inherit"; //overides corresponding style in index.html that hides the content tag
+    document.getElementById('content').style.top = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
+    document.getElementById('content').style.left = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
+    document.getElementById('rTypeSelBody').style.display = 'block';
     document.getElementById('plot-header').style.display = 'inline';
     document.getElementById('tableControls').style.display = 'block';
     document.getElementById('summaryBox').style.display = 'block';

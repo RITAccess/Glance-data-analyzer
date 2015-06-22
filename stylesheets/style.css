@@ -20,16 +20,17 @@ header {
     margin-left: 0;
     margin-top: 0;
     background: url('footer_lodyas/footer_lodyas.png');
-    color:white;
+    color: #FFF;
     text-shadow: 0px 0px 10px #000;
     box-shadow: 0px 0px 10px #000;
     clear: both;
     vertical-align: middle;
 }
 #title {
+    display: inline;
     font-weight: bold;
     font-size: 2em;
-    padding-left: 3.5%;
+    margin-left: 3.5%;
     position: relative;
 }
 #title a{
