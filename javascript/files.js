@@ -45,7 +45,7 @@ function loadFile(){
         // If not, it adds column labels onto the table
         for (var i = 0; i < results.data.length; i++) {
           var firstCol = results.data[i][0];
-          results.data[i].splice(0, 1, i, firstCol);
+          results.data[i].splice(0, 1, "Row " + i, firstCol);
         }
         results.data[0][0] = " ";
       } 
@@ -93,7 +93,7 @@ var createFile = function(rows, columns) {
     for (var j = 0; j < rowArray[i].length; j++) {
       rowArray[i][j] = 0;
     }
-    rowArray[i][0] = i;
+    rowArray[i][0] = "Row " + i;
   }
 
   for (var i = 0; i < rowArray[0].length; i++) {
@@ -162,10 +162,12 @@ var changeType= function(){
   currTable.data.push(newRow);
 
    for (var i = 1; i < currTable.data.length; i++) {
-    currTable.data[i][0] = parseInt((currTable.data[i - 1][0] + 1));
+    var tempInt =  (currTable.data.length-1);
+    currTable.data[currTable.data.length-1][0] = "Row " + tempInt.toString();
   }
 
   loadData(currTable);
+  document.getElementById('tblContainer').style.width="100%";
  }
 
 // // Place a new column on the end of the existing table
@@ -195,6 +197,7 @@ var addColumn = function() {
 
     currTable.data[0][currTable.data[0].length - 1] = "Label " + (currTable.data[0].length - 1);
     loadData(currTable);
+    document.getElementById('tblContainer').style.width="100%";
  }
 
  var subtractRow = function() {
@@ -221,6 +224,7 @@ var addColumn = function() {
   }
 
   loadData(currTable);
+  document.getElementById('tblContainer').style.width="100%";
  }
 
  var subtractColumn = function() {
@@ -249,6 +253,7 @@ var addColumn = function() {
       }
     }
     loadData(currTable);
+    document.getElementById('tblContainer').style.width="100%";
  }
 
 
@@ -338,6 +343,7 @@ function removeColumns(start,skip){
   
   loadData(currTable);
   changeType();
+  document.getElementById('tblContainer').style.width = "100%";
 }
 
 //Delete a certain number (skip) of rows in the graph starting at a certain point (start)

@@ -1,5 +1,8 @@
 "use strict"; // strict mode syntax
 var grid = null;
+
+var ColumnWidth = 130; //** CHANGE THIS TO CHANGE COLUMN WIDTH! **
+
 // initial table properties, after getting the data from the file.
 var loadSlickTable = function(fileData){
 	var c1 = document.getElementById('slickTable');
@@ -12,10 +15,10 @@ var loadSlickTable = function(fileData){
 			id: i,
 			name: '',
 			field: i,
-			width: w,
+			width: ColumnWidth,
 			editor: Slick.Editors.Text,
-			minWidth: 80, //sets range for width of columns
-			maxWidth: 80
+			minWidth: ColumnWidth, //sets range for width of columns
+			maxWidth: ColumnWidth
 		});
 	}
 
@@ -45,15 +48,20 @@ var loadSlickTable = function(fileData){
 			}
 	}
 
-	//Dynamic container width
-	var container = document.getElementById('tblContainer')
-	var cwidthNum; 
-    if (fileData[0].length < 9)
-    	cwidthNum = fileData[0].length * 80; // max/min width (80)
-    else if (fileData[0].length >= 9)
-    	cwidthNum = 720
-    var cwidthString = cwidthNum + "px";
-   	container.setAttribute("style", "width:" + cwidthString);
+	//Dynamic Container Width
+	//NOTE: To change the Column Width of the table please change "ColumnWidth" at the top of the file!
+	var container = document.getElementById('tblContainer');
+	var maxCol = Math.floor(800/ColumnWidth); //800 is maximum acceptable size for the table's container
+	var maxContainerWidthNum = ColumnWidth * maxCol;
+	var ContainerWidthNum;
+
+	//Logic for Dynamic Container Width
+    if (fileData[0].length < maxCol)
+    	ContainerWidthNum = fileData[0].length * ColumnWidth; // max/min width (130)
+    else if (fileData[0].length >= maxCol)
+    	ContainerWidthNum = maxContainerWidthNum;
+    var ContainerWidthString = ContainerWidthNum + "px";
+   	container.setAttribute("style", "width:" + ContainerWidthString);
 
    	//Grid creation
     grid = new Slick.Grid(c1, data, columns, options);
@@ -75,7 +83,7 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			if (col === 0) {
 				grid.getData()[0][0] = " ";
 			}
-			setTimeout(function(){ checkRemove(); }, 1);	
+			setTimeout(function(){ checkRemove(); }, 1);
 		}
 
 		// not a label - check to see if it's a number.
@@ -102,23 +110,23 @@ var linkSlickTable = function(chart, player, overlay, summary){
 	});
 }
 
+//Hides slick grid header bars
 function fixSlick(){
 	var e = document.getElementById('slickTable').firstChild.nextSibling.firstChild;
-	e.style.unselectable = "off";
 	var c = e.firstChild;
-	var i = 0;
+	//Loop through slickgrid headers
 	while(c){
 		c.style.display="none";
-		c.style.width="80px";
-		c.value = i;
-		c.onclick = function(){removeColumns(this.value,1);}
 		c = c.nextSibling;
-		i++;
 	}
 }
 
+/*Checks first elements of rows and columns to see if there are any
+* blank labels, indicating removal.
+*/
 function checkRemove(){
 	var k = 0;
+	//Get number of keys in grid data item
 	for(var key in grid.getData()[0]){
 		if(key != "id")
 		k++;
@@ -126,8 +134,14 @@ function checkRemove(){
 	//Check for columns to remove
 	for(var i = 1; i < k; i++){
 		if(grid.getData()[0][i]===""){
-			if(confirm("Delete column " + i + "?"))	//Confirm with user
+			if(confirm("Delete column " + i + "?")){	//Confirm with user
 				removeColumns(i,1);	//Remove is confirmed
+				if(grid.getCellNode(0,i)!= null)
+					grid.gotoCell(0,i);
+				else{
+					grid.gotoCell(0,i-1);
+				}
+			}
 			else
 				grid.getData()[0][i] = i;	//Set back to default value if not
 		}
@@ -135,10 +149,17 @@ function checkRemove(){
 	//Check for rows to remove
 	for(var i = 0; i < grid.getData().length; i++){
 		if(grid.getData()[i][0]===""){
-			if(confirm("Delete row " + i + "?"))	//Confirm with user
+			if(confirm("Delete row " + i + "?")){	//Confirm with user
 				removeRows(i,1);	//Remove if confirmed
+				if(grid.getCellNode(i,0)!= null)
+					grid.gotoCell(i,0);
+				else{
+					grid.gotoCell(i-1,0);
+				}
+			}
 			else
 				grid.getData()[i][0] = i;	//Set back to default value if not
 		}
 	}
+	document.getElementById('tblContainer').style.width="100%";
 }

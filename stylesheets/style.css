@@ -13,11 +13,11 @@ body {
     font-size: 20px;
     font-weight: bold;
 }
-#overlay {
-    position:absolute;
+.centerText{
+  text-align: center;
 }
 header {
-    padding: 1em 0px;
+    padding: 2% 0;
     width: 100%;
     left: 0;
     margin-left: 0;
@@ -26,39 +26,65 @@ header {
     color:white;
     text-shadow: 0px 0px 10px #000;
     box-shadow: 0px 0px 10px #000;
-    clear:both;
-    vertical-align:center;
+    clear: both;
+    vertical-align: middle;
 }
 #title {
     font-weight: bold;
     font-size: 2em;
-    padding-left: 1em;
+    padding-left: 3.5%;
     position: relative;
 }
 #title a{
     text-decoration: none;
     color: inherit;
 }
+/* START style for about section */
+#start {
+    width: 800px;
+    text-align: justify;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 8%;
+    padding: 1% 5% 3% 5%;
+    border-radius: 5px;
+    border: 3px solid #000;
+}
+#start h1 {
+    text-align: center;
+}
+#start ul {
+    list-style-type: decimal;
+}
+#start li {
+    margin: 1% 0;
+    padding: 1% 0;
+}
+#startInst{ /* instruction to get started */
+    text-align: center;
+}
+/* END style for about section */
+#files {/*style for acutal Load CSV button*/
+    width: 118px;
+    height: 47px;
+    z-index: -1;
+}
+#newTable {/*style for actual Create New Table button*/
+    width: 186px;
+    height: 47px;
+    z-index: -1;
+}
 #content {
     width: 800px;
     margin: auto;/* centers the contents including the slider and the graph */
-    margin-top: 60px;
-    margin-bottom: 100px;
+    margin-top: 5%;
+    margin-bottom: 8%;
     clear: both;
 }
-#rTypeSel {/* chart/graph type radio selection */
+#rTypeSelBody{/* chart/graph type radio selection */
     text-align: center;
-    margin-bottom: 20px;
-}
-#files {
-  width: 118px;
-  height: 47px;
-  z-index: -1;
-}
-#newTable {
-  width: 186px;
-  height: 47px;
-  z-index: -1;
+    margin: auto;
+    margin-bottom: 3%;
 }
 #rTypeSel input{
     cursor: pointer;
@@ -68,7 +94,7 @@ header {
     cursor: pointer;
 }
 #selection {
-    fill: lightblue;
+    fill: lightblue;/*#ADD8E6*/
     fill-opacity: 0.3;
 }
 svg * {
@@ -90,9 +116,14 @@ svg * {
     float: left;
 }
 */
+/*
  #slider-range {
     margin-left: 22px;
     width: 755px;
+}
+*//*delete(?): slider-range styles conflicts with element.style, and doesn't seem to effect anything when comment sliger-range out*/
+#overlay {
+    position:absolute;
 }
 /**  START changing Browse to Load CSV **/
  * {
@@ -104,7 +135,7 @@ svg * {
     display:inline-block;
     vertical-align:top;
     font-size:0;
-    margin-left: 10px;
+    margin-left: 1%;
 }
 .disableInputField {
     display:inline-block;
@@ -153,9 +184,8 @@ svg * {
 #audioSpan {
     float: right;
     position: absolute;
-    padding-right: 1em;
+    padding-right: 2%;
     margin-top: 0.6%;
-    top: 1em;
     right: 0em;
 }
 #playButton {
@@ -179,22 +209,11 @@ svg * {
     width: 65px;
     text-align: center;
     font-size: 15px;
-}
-#start {
-  margin: 0 auto;
-  text-align: center;
-  border-radius: 5px;
-  border: 3px solid #000;
-  width: 100%;
-  padding: 1%;
-}
-#start h3 {
-  font-weight: bold;
-}
-#start li {
-  text-align: left;
-  margin: 10px;
-}
+}/*
+#radioOutline {
+  border: 0px;
+  padding: 15px;
+}*//*delete(?): declared here but not used in any file*/
 #table {
     text-align: center;
 }
@@ -207,38 +226,42 @@ svg * {
 }
 #tblContainer {
     height: 300px;
-    margin: 5px 20px 10px 20px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
+    margin-top: 2%;
     overflow: auto;
 }
+/* START: for print button page, table section */
+#printTable{
+    margin-top: 8%;
+    /*page-break-before: always;*/
+}
+#printTableHeader{
+    text-align: center;/*margin-left: 5%;*/
+}
+#printTableBody{
+    margin-top: 2%;
+    border-top: 3px solid #000;
+}
+/* END: for print button page, table section */
 #dataPlot {
+    width: 100%;
     text-align:center;
     font-weight: bold;
     border-radius: 5px;
-    padding-bottom: 75px;
-    margin: 20px 0px 40px 0px;
+    margin: 5% 0 15% 0;
     font-size: 20px;
     position: relative;/* part of making download button bottom of div*/
 }
 #plot-header {
-    padding: 20px 0px;
-    text-align: center;
-    width: 100%;
-    margin: auto;
-    margin-left: 190px;
-}
-#tableCount {
-    display: inline;
-    float: right;
+    padding: 5% 0;
 }
 #dataSummary {
+    width: 100%;
     text-align:center;
+    font-size: 20px;
     font-weight: bold;
     border-radius: 5px;
     border: 3px solid #000;
-    font-size: 20px;
-    width: 100%;
     margin: 40px 0;
     padding-top: 10px;
 }
@@ -249,25 +272,31 @@ svg * {
     padding-bottom: 20px;
     padding-left: 28px;
 }
+#tableCount {
+    padding: 5% 0 3% 0;
+}
+#remInstruction {
+    padding-bottom: 3%;
+}
 #tableControls {/* positioning buttons to bottom CENTER of parent container dataPlot */
     position: absolute;
     width: 100%;
     text-align: center;
-    padding-left: 20px
+    padding-left: 2.5%;
 }
 #rowLabel, #columnLabel, #downloadCSV, #printButton, #dialogboxfoot button {
     display: inline;
     cursor: pointer;
     background: #FFF;
     font-size: 20px;
-    padding: 10px;
+    padding: 1.5%;
     color: #000;
     font-weight: bold;
     box-shadow: 0px 5px 10px #000;
     text-shadow: none;
     border: 2px solid #FFF;
     border-radius: 5px;
-    margin-right: 20px;
+    margin-right: 2.5%;
     vertical-align: middle;
 }
 #rowLabel, #columnLabel {
@@ -282,7 +311,7 @@ svg * {
     box-shadow: none;
     text-shadow: none;
     border: 2px solid #FFF;
-    border-radius: 20px;
+    border-radius: 100%;
     vertical-align: middle;
 }
 #addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus {
@@ -306,7 +335,7 @@ svg * {
     transition: background 0.5s; */
     border-radius: 5px;
     border: 3px solid #000;
-    padding: 20px 0px 10px 0px;
+    padding: 1% 0 4% 0;
     overflow: auto;
 }
 #color-header {
@@ -318,12 +347,12 @@ svg * {
     list-style: none;
 }
 #colors > li {
-    margin: 30px 0px;
+    margin: 4% 0;
 }
 .color-editor-input input:focus {
     background: #dadada;
 }
-.colorblock {
+.colorblock {/*called in chart.js only*/
     border: 2px solid #000;
     box-shadow: 1px 1px 2px #000;
     padding-right: 3em;
@@ -344,7 +373,7 @@ svg * {
 /* style for pop-up chart list STARTS */
  #dialogoverlay {
     display: none;
-    opacity: .8;
+    opacity: 0.8;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -386,8 +415,7 @@ svg * {
 #dialogboxfoot button {/* also inherits from the other button styles */
     padding:5px;
 }
-.sChartType select, .sChartType input {
-    /* chart type select tags */
+.sChartType select, .sChartType input {/* chart type select tags */
     border: 2px solid #000;
     border-radius: 2px;
     font-size: 15px;
@@ -400,20 +428,18 @@ svg * {
 table, th, td, .printTable{
     border: 1px solid #000;
     border-collapse: collapse;
-    text-align: center;
+    text-align: center; /*center texts (especially) inside td*/
 }
 table, .printTable{
-    width: 100%;
     font-size: 15px;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 5%;
     table-layout: fixed;
 }
 th, td, .printTable{
-    max-width: 90%;
     padding: 10px;
     word-wrap:break-word;
-    max-width:150px;
+}
 /* Table Style for print ENDS */
 
 /************************************/
@@ -433,7 +459,7 @@ th, td, .printTable{
         overflow: hidden;
     }
     #dataPlot {
-        margin: 20px 0;
+        margin: 5% 0;
         /*page-break-after: auto;*/
     }
     #color-expand{
@@ -445,3 +471,22 @@ th, td, .printTable{
     }
 }
 /* END media print */
+
+/************************************/
+
+/* START media query max-width: 1068px */
+@media screen and (max-width: 1068px) {
+    #audioSpan{
+        width: 100%;
+        background: url('footer_lodyas/footer_lodyas.png');
+        position: initial;
+        float: left;
+        margin-bottom: 5%;
+        padding: 2% 3.5%;
+        box-shadow: 0px 10px 10px -10px #000;
+    }
+    #audioSpan:before{
+        content: '\A';/* acts like break tag */
+    }
+}
+/* END media query max-width: 1068px */

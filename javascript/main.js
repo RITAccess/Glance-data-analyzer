@@ -14,6 +14,7 @@ require(["libs/jquery/jquery-1.11.2.js"],function(jquery) {
   });
 });
 
+
 require(["libs/PapaParse/papaparse.min.js"]);
 require(["libs/chartjs/Chart.js"]);
 
@@ -51,9 +52,10 @@ var loadData = function (data) {
     document.querySelector('#overlay').setAttribute('style', '');
     document.querySelector('#slickTable').innerHTML = '';
     slickTable = loadSlickTable(data.data);
-    document.getElementById('tableCount').innerHTML = "Rows: " + (data.data.length - 1) + " Columns: " + (data.data[0].length - 1);
+    document.getElementById('tableCount').innerHTML = "[ Total Row: " + (data.data.length - 1) + " ] [ Total Column: " + (data.data[0].length - 1) + " ]";
+    document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen labels cell"
     chart = loadChart(data.data, type);
-    player = new AudioPlayer();
+    player = new Instrument(2);
     overlay = new Overlay(data);
     overlay.updateSize(chart);
     var collection = new ArrayCollection(data.data);
@@ -61,10 +63,13 @@ var loadData = function (data) {
     summary = new DataSummary(collection);
     summary.dataSummary();
     linkSlickTable(chart, player, overlay, summary);
-    document.getElementById('color-expand').style.display = 'block';
+    document.getElementById("content").style.position = "inherit"; //overides corresponding style in index.html that hides the content tag
+    document.getElementById("content").style.top = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
+    document.getElementById("content").style.left = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
+    document.getElementById('rTypeSel').style.display = 'block';
     document.getElementById('plot-header').style.display = 'inline';
     document.getElementById('tableControls').style.display = 'block';
-    document.getElementById('rTypeSel').style.display = 'block';
+    document.getElementById('color-expand').style.display = 'block';
     fixSlick();
 }
 

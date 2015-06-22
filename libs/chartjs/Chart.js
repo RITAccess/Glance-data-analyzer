@@ -3986,6 +3986,7 @@
 			//if there's literally no data
 			if(validRows.length == 0)
 				return undefined;
+
 			// if first label isn't a number...
 			// TODO should check all labels & if any aren't numbers
 			// normalize them (0 through whatever)

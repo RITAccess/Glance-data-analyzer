@@ -12,8 +12,8 @@ function printPage()
    html += "<div style='margin-bottom: 50px;'><img width='800px' src='" + chart.toBase64Image() + "'/></div>";
    html += "<div id='color-expand' style='display: block;'>";
    html += document.getElementById('color-expand').innerHTML;
-   html += "</div><div style='margin-left: 35px; margin-top: 60px;'>Data Table</div>";
-   html += "<div style='margin-top: 10px; border-top: 3px solid #000;'>";
+   html += "</div><div id='printTable'><h3 id='printTableHeader'>Data Table</h3>";
+   html += "<div id='printTableBody'>";
    var s = "<table class='printTable'>";
    if(type === "bar"){
       var counter = 0;
@@ -64,7 +64,7 @@ function printPage()
       }
    }
    html += s;
-   html += "</div>";
+   html += "</div></div>";
    html += "</content>";
    html += "</body></html>";
    printWin = window.open("','_blank','left=0,top=0,width=500,height=500,fullscreen=1,toolbar=0,scrollbars=0,status  =0");

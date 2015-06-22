@@ -22,21 +22,24 @@ var loadChart = function(data, type, collection){
 		myLineChart = new Chart(ctx).Bar(data);
 	else
 	  myLineChart = new Chart(ctx).Line(data);
-	document.getElementById("myChart").setAttribute("title","chart read out"); // by setting the attribute we can make the chart accessible
-
+	document.getElementById("myChart").setAttribute("title","image of graph"); // by setting the attribute we can make the chart accessible
 
 	for(var i =0; i<data.datasets.length;i++){
 		//Setting input functions for each line in order to set new colors
 		chartdata.inputboxes[i].oninput = function(){
 			var index = chartdata.inputboxes.indexOf(this);
 			var newcolor = this.value;
+				//Regex check for correctly formatted RGB color value
 				if(/^#[0-9A-F]{6}$/i.test(newcolor)){
+					//If test passes, parse out red, green, and blue.
 					var r = parseInt(newcolor.substring(1,3), 16);
 					var g = parseInt(newcolor.substring(3,5), 16);
 					var b = parseInt(newcolor.substring(5), 16);
+					//Combine them to make a new color
 					var color = [r, g, b].join(", ");
 					lineColors[index] = "rgba("+ color +", 1)";
 					if(this.nextSibling.checked){
+						//Set necessary color values based on graph type
 						if(type==="line" || type==="scatter")
 							chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
 							chart.datasets[index].pointColor = "rgba("+ color +", 1)";
@@ -52,23 +55,29 @@ var loadChart = function(data, type, collection){
 								chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";
 							}
 						}
+						//Redraw graph
 						chart.update();
 					}
+					//Set Graph data color indication color to match new color
 					if(type === "line" || type === "scatter")
 						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margine-right: 5px;");
 					else if(type === "bar")
 						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; margine-right: 5px;");
 				}
+				//Check color list for name match
 				else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase().split(' ').join('')])){
+					//If there is a match, get red, green, and blue values from the corresponding color
 					var rgb = colors[newcolor.toLowerCase().split(' ').join('')];
 					var r = parseInt(rgb.substring(1,3), 16);
 					var g = parseInt(rgb.substring(3,5), 16);
 					var b = parseInt(rgb.substring(5), 16);
+					//Using red, green, and blue values, make a new color.
 					var color = [r, g, b].join(", ");
-          lineColors[index] = "rgba("+ color +", 1)";
+          			lineColors[index] = "rgba("+ color +", 1)";
 					if(this.nextSibling.checked){
-            if(type==="line")
-            chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
+						//Set necessary colors based on graph type
+            			if(type==="line")
+            			chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
 						chart.datasets[index].pointColor = "rgba("+ color +", 1)";
 						chart.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
 						if(type==="line" || type==="scatter"){
@@ -82,8 +91,10 @@ var loadChart = function(data, type, collection){
 								chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";
 							}
 						}
+						//Redraw graph
 						chart.update();
 					}
+					//Set graph data color indicator
 					if(type === "line" || type==="scatter")
 						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margine-right: 5px;");
 					else if(type === "bar")
@@ -93,6 +104,7 @@ var loadChart = function(data, type, collection){
 		//Setting behavior for all toggleboxes
 		chartdata.inputboxes[i].nextSibling.onclick = function(){
 			var index = chartdata.inputboxes.indexOf(this.previousSibling);
+			//If not hidden, hide
 			if(!this.checked){
 				if(hidden[index]!= false){
 					hidden[index] = false;
@@ -113,6 +125,7 @@ var loadChart = function(data, type, collection){
 					linkSlickTable(chart,player,overlay,summary);
 				}
 			}
+			//If hidden, bring the line back
 			else{
 				if(hidden[index]!= true){
 					hidden[index]= true;
@@ -216,16 +229,9 @@ function dataset(data, collection) {
 		toggleBox.setAttribute("title", "Display Data Set " + i);
 		keyValue.setAttribute('style', 'color:' + newColor +'; display: inline; margin-right: 5px;');
 		keyValue.appendChild(keyLabel);
-		/*removeButton.innerHTML = "Remove";
-		removeButton.value=i;
-		removeButton.onclick = function(){
-			removeRows(this.value-1,1);
-		};*/
 		entry.appendChild(keyValue);
 		entry.appendChild(textInput);
 		entry.appendChild(toggleBox);
-		//entry.appendChild(removeButton);
-
 		document.getElementById('colors').appendChild(entry);
 		red += colorIncrease + 15;
 		green += colorIncrease;

@@ -1,0 +1,34 @@
+{
+	"name": "timbre.soundfont",
+	"description": "Play soundfont urls using timbre.js",
+	"version": "0.1.5",
+	"homepage": "http://skratchdot.com/projects/timbre.soundfont.js/",
+	"author": {
+		"name": "skratchdot",
+		"email": "git@skratchdot.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/skratchdot/timbre.soundfont.js.git"
+	},
+	"bugs": {
+		"url": "https://github.com/skratchdot/timbre.soundfont.js/issues"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://skratchdot.com/projects/timbre.soundfont.js//blob/master/LICENSE-MIT"
+		}
+	],
+	"devDependencies": {
+		"grunt-contrib-jshint": "~0.6.2",
+		"grunt-contrib-uglify": "~0.2.2",
+		"grunt": "~0.4.1"
+	},
+	"keywords": [
+		"timbre",
+		"mp3",
+		"midi",
+		"soundfont"
+	]
+}
