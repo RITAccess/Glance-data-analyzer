@@ -363,7 +363,6 @@
 			//if there's literally no data
 			if (points == undefined)
 				return;
-			//var label = "linReg";
 			/* x and y scaled values: 
 			 * y : this.scale.calculateY(point.value),
 			 * x : this.scale.calculateX(index)
