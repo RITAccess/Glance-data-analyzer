@@ -75,7 +75,7 @@
         <rect id="background" x="0" y="0" width="800" height="400" />
         <rect id="selection" x="0" y="0" width="800" height="400" />
       </svg>
-      <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
+      <canvas title="Data Analyzer Graph" id="myChart" width="800" height="400"></canvas>
       <div id="dataPlot">
         <h3 id="plot-header" style="display:none;">Data Table</h3>
         <div id="tblContainer" style="display:none;" title="Data Table">
@@ -102,7 +102,11 @@
         include 'php/ajax.php';
     ?>
     <div id='summaryBox' style="display:none;">
+<<<<<<< HEAD
       <h3 id='summary-header'>Graph Data</h3>
+=======
+      <h3 id='summary-header' tabindex="0" onclick="openColorEditor()">Graph Data</h3>
+>>>>>>> caac4ac297ab82dadfc6d83159765d1825858773
       <div id="summary-editor" class="color-editor-input">
         <ol id="colors" ></ol>
       </div>
