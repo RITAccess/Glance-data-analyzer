@@ -30,7 +30,7 @@ header {
     display: inline;
     font-weight: bold;
     font-size: 2em;
-    padding-left: 3.5%;
+    margin-left: 3.5%;
     position: relative;
 }
 #title a{
