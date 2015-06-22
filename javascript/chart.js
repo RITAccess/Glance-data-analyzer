@@ -197,9 +197,9 @@ function dataset(data, collection) {
 		//var removeButton = document.createElement('button');
     if(type === "line")
 		var keyLabel = document.createTextNode(shapes[(i-1)%6]);
-		else if(type === "scatter"){
-      var keyLabel = document.createTextNode(shapes[0]);
-    }
+	else if(type === "scatter"){
+		var keyLabel = document.createTextNode(shapes[0]);
+		}
     else if(type === "bar"){
 		keyLabel = document.createElement('span');
 		keyLabel.setAttribute("style", "background:"+newColor);

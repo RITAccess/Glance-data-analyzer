@@ -3587,7 +3587,7 @@
 		//Boolean - Whether to horizontally center the label and point dot inside the grid
 		offsetGridLines : false,
 		
-		//My own custom option.
+		//My own custom option. Default - red
 		//String - the color of the regression line
 		linRegLineColor : "rgba(255,0,0,1)"
 
@@ -3596,7 +3596,16 @@
 	Chart.Type.extend({
 		name: "ScatterPlot",
 		defaults : defaultConfig,
+		numeric : true, //my own variable to support two different types of scatter.
 		initialize:  function(data){
+			console.log("initialize");
+			// set up numeric
+			for(var i = 0; i < data.labels.length; i++){
+				if(isNaN(data.labels[i])){
+					this.numeric = false;
+				}
+			}
+			
 			//Declare the extension of the default point, to cater for the options passed in to the constructor
 			this.PointClass = Chart.Point.extend({
 				offsetGridLines : this.options.offsetGridLines,
@@ -3648,12 +3657,15 @@
 				// all this is only for numerical labels as input
 				
 				//TODO make it more versatile
-				if(!isNaN(data.labels[0])){
+				if(this.numeric){
+					console.log("if numeric is true - initialize");
 					var pts = [];
 			
 					for(var i = 0; i < dataset.data.length; i++){
 						pts.push([data.labels[i], dataset.data[i]]);
 					}
+					
+					console.log(pts);
 			
 					pts.sort(function(a,b) {
 					return a[0]-b[0]
@@ -3707,30 +3719,47 @@
 						}));
 					},this);
 					
-				this.buildScale(data.labels);
+					this.buildScale(data.labels);
 
-				this.eachPoints(function(point, index){
-					helpers.extend(point, {
-						x: this.scale.calculateX(index),
-						y: this.scale.endPoint
-					});
-					point.save();
-				}, this);
+					this.eachPoints(function(point, index){
+						helpers.extend(point, {
+							x: this.scale.calculateX(index),
+							y: this.scale.endPoint
+						});
+						point.save();
+					}, this);
 				}
 
 			},this);
 
 			this.render();
 		},
+		
 		update : function(){
+			console.log("update");
 			this.scale.update();
 			// Reset any highlight colours before updating.
 			helpers.each(this.activeElements, function(activeElement){
 				activeElement.restore(['fillColor', 'strokeColor']);
 			});
-			this.eachPoints(function(point){
-				point.save();
-			});
+			
+			
+			if(this.numeric){
+			this.eachPoints(function(point, index){
+						helpers.extend(point, {
+							//need to make it zero-based
+							x: this.scale.calculateX(pts[index][0] - pts[0][0]),
+							y: this.scale.endPoint
+						});
+						point.save();
+					}, this);	
+			}
+			
+			else{
+				this.eachPoints(function(point){
+					point.save();
+				});
+			}
 			
 			this.render();
 		},
@@ -3811,19 +3840,37 @@
 		},
 		addData : function(valuesArray,label){
 			//Map the values array for each of the datasets
-			
-			helpers.each(valuesArray,function(value,datasetIndex){
-				//Add a new point for each piece of data, passing any required data to draw.
-				this.datasets[datasetIndex].points.push(new this.PointClass({
+			//TODO add if else for numeric / other
+			if(this.numeric) {
+				helpers.each(valuesArray,function(value,datasetIndex){
+				this.datasets[datasetIndex].points.push(new this.PointClass({	
 					value : value,
-					label : label,
-					datasetLabel: this.datasets[datasetIndex].label,
-					x: this.scale.calculateX(this.scale.valuesCount+1),
-					y: this.scale.endPoint,
+					label : parseFloat(label),
+					datasetLabel : this.datasets[datasetIndex].label,
+					x : this.scale.calculateX(parseFloat(label) - parseFloat(this.datasets[datasetIndex].label)),
+					y : this.scale.endPoint,
 					strokeColor : this.datasets[datasetIndex].pointStrokeColor,
 					fillColor : this.datasets[datasetIndex].pointColor
-				}));
-			},this);
+					}));
+				}, this);
+			}
+			
+			
+			else{
+				helpers.each(valuesArray,function(value,datasetIndex){
+					//Add a new point for each piece of data, passing any required data to draw.
+					this.datasets[datasetIndex].points.push(new this.PointClass({
+						value : value,
+						label : label,
+						datasetLabel: this.datasets[datasetIndex].label,
+						x: this.scale.calculateX(this.scale.valuesCount+1),
+						y: this.scale.endPoint,
+						strokeColor : this.datasets[datasetIndex].pointStrokeColor,
+						fillColor : this.datasets[datasetIndex].pointColor
+					}));
+				},this);
+			}
+			
 
 			this.scale.addXLabel(label);
 			//Then re-render the chart.
@@ -3895,7 +3942,6 @@
 			//if there's literally no data
 			if (points == undefined)
 				return;
-			//var label = "linReg";
 			/* x and y scaled values: 
 			 * y : this.scale.calculateY(point.value),
 			 * x : this.scale.calculateX(index)
@@ -3940,7 +3986,6 @@
 			//if there's literally no data
 			if(validRows.length == 0)
 				return undefined;
-			console.log(validRows);
 			// if first label isn't a number...
 			// TODO should check all labels & if any aren't numbers
 			// normalize them (0 through whatever)

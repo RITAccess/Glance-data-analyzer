@@ -74,13 +74,11 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			chart.scale.xLabels[col - 1] = newVal;
 			if (col === 0) {
 				grid.getData()[0][0] = " ";
-				//console.log("Hi there");
 			}
 			setTimeout(function(){ checkRemove(); }, 1);	
 		}
 
 		// not a label - check to see if it's a number.
-		// If not, do nothing
 		else if ((!isNaN(newVal)) && (newVal != "")){
 			newVal = parseFloat(newVal);
 			//Update audio with new value
@@ -91,6 +89,7 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			else
 				chart.datasets[row-1].points[col - 1].value = newVal;
 		}
+		// If not, revert to old value (from chart)
 		else {
 			var oldVal = chart.datasets[row-1].points[col - 1].value;
 			grid.getData()[row][col] = oldVal;
