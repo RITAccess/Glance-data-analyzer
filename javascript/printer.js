@@ -6,7 +6,7 @@ function printPage()
    html += document.getElementsByTagName('head')[0].innerHTML;
    html += "</head>"
    html += "<body>";
-   html += "<header><span id='title'> Data Analyzer </span>";
+   html += "<header><span id='title'><a href='index.php'>Data Analyzer</a></span>";
    html += "</header>";
    html += "<div id='content'>";
    html += "<div style='margin-bottom: 50px;'><img width='800px' src='" + chart.toBase64Image() + "'/></div>";
