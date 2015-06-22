@@ -48,8 +48,8 @@ function loadFile(){
           results.data[i].splice(0, 1, "Row " + i, firstCol);
         }
         results.data[0][0] = " ";
-      } 
-      
+      }
+
      if((resData[resData.length-1].length == 1) && (resData[resData.length-1][0] == "")){
         results.data.pop();
       }
@@ -328,19 +328,19 @@ function removeColumns(start,skip){
     for(var j = 0; j<k; j++){
       if(j>=start){
         if(j=== start){
-          j += skip; 
+          j += skip;
         }
         var key = (j-skip).toString();
         currTable.data[i].push(resData[i][j]);
       }
       else{
         var key = j.toString();
-        currTable.data[i].push(resData[i][j]); 
+        currTable.data[i].push(resData[i][j]);
       }
     }
   }
-  currTable.data[0].pop();  
-  
+  currTable.data[0].pop();
+
   loadData(currTable);
   changeType();
   document.getElementById('tblContainer').style.width = "100%";
@@ -391,7 +391,7 @@ function removeRows(start,skip){
       }
       else{
         if(resData[i][j] != undefined)
-        currTable.data[i].push(resData[i][j]);} 
+        currTable.data[i].push(resData[i][j]);}
     }
     }
   loadData(currTable);

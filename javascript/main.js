@@ -69,7 +69,7 @@ var loadData = function (data) {
     document.getElementById('rTypeSel').style.display = 'block';
     document.getElementById('plot-header').style.display = 'inline';
     document.getElementById('tableControls').style.display = 'block';
-    //document.getElementById('color-expand').style.display = 'block';
+    document.getElementById('summaryBox').style.display = 'block';
     fixSlick();
 }
 
@@ -87,7 +87,7 @@ var playStopAudioButton = function () {
 
 // Opens the color editor
 var openColorEditor = function () {
-    var editor = document.getElementById('color-editor');
+    var editor = document.getElementById('summary-editor');
     editor.style.display = editor.style.display == 'inline' ? 'none' : 'block';
 }
 

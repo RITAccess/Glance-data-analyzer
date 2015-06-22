@@ -13,9 +13,6 @@ body {
     font-size: 20px;
     font-weight: bold;
 }
-.centerText{
-  text-align: center;
-}
 header {
     padding: 2% 0;
     width: 100%;
@@ -39,6 +36,9 @@ header {
     text-decoration: none;
     color: inherit;
 }
+
+/*********************************/
+
 /* START style for about section */
 #start {
     text-align: justify;
@@ -64,6 +64,9 @@ header {
     text-align: center;
 }
 /* END style for about section */
+
+/*********************************/
+
 #files {/*style for acutal Load CSV button*/
     width: 118px;
     height: 47px;
@@ -80,6 +83,9 @@ header {
     margin-top: 5%;
     margin-bottom: 8%;
     clear: both;
+}
+#graphImg{/*printer.js: image of graph in the print page */
+    margin-bottom: 7%;
 }
 #rTypeSelBody{/* chart/graph type radio selection */
     text-align: center;
@@ -102,6 +108,9 @@ svg * {
     stroke-width:1;
     fill-opacity: 0.0;
 }
+
+/*******************************/
+
 /*
 .slider1 {
     width: 800px;
@@ -121,10 +130,17 @@ svg * {
     margin-left: 22px;
     width: 755px;
 }
-*//*delete(?): slider-range styles conflicts with element.style, and doesn't seem to effect anything when comment sliger-range out*/
+*//*delete(?): slider-range styles conflicts with element.style,
+and doesn't seem to effect anything when comment sliger-range out*/
+
+/*******************************/
+
 #overlay {
     position:absolute;
 }
+
+/*******************************/
+
 /**  START changing Browse to Load CSV **/
  * {
     box-sizing:border-box;
@@ -135,30 +151,29 @@ svg * {
     display:inline-block;
     vertical-align:top;
     font-size:0;
-    margin-left: 1%;
+    margin-left: 2%;
 }
 .disableInputField {
     display:inline-block;
     vertical-align:top;
     margin: 0;
     font-size:14px;
-    padding:0 3px;
 }
 .fileUpload, .createNew {
     position: relative;
     overflow: hidden;
-    margin: 10px;
 }
 .uploadBtn, .createBtn {
-    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    background: #FFF;
+    color: #000;
     display:inline-block;
     vertical-align:top;
-    cursor: pointer;
-    background: #FFF;
-    font-size: 20px;
+    border: 3px solid #FFF;
+    border-radius: 5px;
     padding: 10px;
-    color: #000;
-    font-weight: bold;
     box-shadow: 0px 5px 10px #000;
     text-shadow: none;
 }
@@ -178,11 +193,14 @@ svg * {
     filter: alpha(opacity=0);
 }
 /** END changing Browse to Load CSV **/
+
+/*******************************/
+
 #audioSpan {
     float: right;
     position: absolute;
     padding-right: 2%;
-    margin-top: 0.6%;
+    margin-top: 0.9%;
     right: 0em;
 }
 #playButton {
@@ -206,11 +224,17 @@ svg * {
     width: 65px;
     text-align: center;
     font-size: 15px;
-}/*
-#radioOutline {
+}
+
+/*******************************/
+
+/*#radioOutline {
   border: 0px;
   padding: 15px;
 }*//*delete(?): declared here but not used in any file*/
+
+/*******************************/
+
 #table {
     text-align: center;
 }
@@ -227,6 +251,9 @@ svg * {
     margin-top: 2%;
     overflow: auto;
 }
+
+/*******************************/
+
 /* START: for print button page, table section */
 #printTable{
     margin-top: 8%;
@@ -240,6 +267,9 @@ svg * {
     border-top: 3px solid #000;
 }
 /* END: for print button page, table section */
+
+/*******************************/
+
 #dataPlot {
     width: 100%;
     text-align:center;
@@ -320,7 +350,7 @@ svg * {
     color: #FFF;
     border-color: #FFF;
 }
-#color-expand {
+#summaryBox {
     width: 100%;
     height: 400px;
     font-weight: bold;
@@ -335,7 +365,7 @@ svg * {
     padding: 1% 0 4% 0;
     overflow: auto;
 }
-#color-header {
+#summary-header {
     width: 100%;
     border-radius: 5px;
 }
@@ -346,7 +376,7 @@ svg * {
 #colors > li {
     margin: 4% 0;
 }
-.color-editor-input input:focus {
+.summary-editor-input input:focus {
     background: #dadada;
 }
 .colorblock {/*called in chart.js only*/
@@ -367,6 +397,9 @@ svg * {
     display: inline-block;
     vertical-align: middle;
 }
+
+/*******************************/
+
 /* style for pop-up chart list STARTS */
  #dialogoverlay {
     display: none;
@@ -417,11 +450,11 @@ svg * {
     border-radius: 2px;
     font-size: 15px;
 }
-/* style for pop-up chart list ENDS */
+/* END style for pop-up chart list */
 
 /************************************/
 
-/* Table Style for print STARTS*/
+/* START Table Style for print */
 table, th, td, .printTable{
     border: 1px solid #000;
     border-collapse: collapse;
@@ -437,11 +470,11 @@ th, td, .printTable{
     padding: 10px;
     word-wrap:break-word;
 }
-/* Table Style for print ENDS */
+/* END Table Style for print */
 
 /************************************/
 
-/* media query for printing STARTS  */
+/* START media query for printing */
  @media print {
     header {
         box-shadow: none;
@@ -459,7 +492,7 @@ th, td, .printTable{
         margin: 5% 0;
         /*page-break-after: auto;*/
     }
-    #color-expand{
+    #summaryBox{
         height: auto;
         overflow: hidden;
     }
@@ -483,7 +516,9 @@ th, td, .printTable{
         box-shadow: 0px 10px 10px -10px #000;
     }
     #audioSpan:before{
-        content: '\A';/* acts like break tag */
+        content: '\A'; /* acts like break tag */
     }
 }
 /* END media query max-width: 1068px */
+
+/*******************************/
