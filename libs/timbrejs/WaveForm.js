@@ -162,7 +162,10 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 			return;
 		}
 		//console.log(i);
-		self.changePitch(self.infoCollection.collection[j].array[i]);
+		if(!self.playing){
+			self.start();
+		}
+		self.changePitch(parseInt(self.infoCollection.collection[j].array[i]));
 		console.log(self.pitch);
 		if(i === 0){
 			self.start();
