@@ -84,6 +84,9 @@ header {
     margin-bottom: 8%;
     clear: both;
 }
+#graphImg{/*printer.js: image of graph in the print page */
+    margin-bottom: 7%;
+}
 #rTypeSelBody{/* chart/graph type radio selection */
     text-align: center;
     margin: auto;

@@ -6,10 +6,9 @@ function printPage()
    html += document.getElementsByTagName('head')[0].innerHTML;
    html += "</head>"
    html += "<body>";
-   html += "<header><span id='title'><a href='index.php'>Data Analyzer</a></span>";
-   html += "</header>";
+   html += "<header><span id='title'><a href='index.php'>Data Analyzer</a></span></header>";
    html += "<div id='content'>";
-   html += "<div style='margin-bottom: 50px;'><img width='800px' src='" + chart.toBase64Image() + "'/></div>";
+   html += "<div id='graphImg' tabindex='0'><img alt='Data Analyzer Graph' width='800px' src='" + chart.toBase64Image() + "'/></div>";
    html += "<div id='summaryBox' style='display: block;'>";
    html += document.getElementById('summaryBox').innerHTML;
    html += "</div><div id='printTable'><h3 id='printTableHeader'>Data Table</h3>";
