@@ -52,16 +52,16 @@
       <ul>
         <li tabindex="0">Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li>
         <li tabindex="0">Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The overlay on the graph can highlight certain parts of the data to be turned into sound.</li>
-        <li tabindex="0">Data Table: There are two options with the data table; load a pre-made CSV file (Comma Separated Value), or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.
+        <li tabindex="0">Data Table: There are two options with the data table; load a pre-made CSV (Comma Separated Value) file, or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.
         </li>
         <li tabindex="0">Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
       </ul>
       <h3 id="startInst" tabindex="0" >To get started, select Load CSV or Create New Table at the top!</h3>
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;">
-      <div id="rTypeSelBody">
+      <div id="rTypeSelBody" style="display:none;">
         <h3 tabindex="0">Data Analyzer Graph</h3>
-        <form id="rTypeSel" style="display:none;" class="no-print">
+        <form id="rTypeSel" class="no-print">
           <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" aria-label="Change Graph Type" onclick="rType()">
           <label for="lineRadioButton">Line Graph</label>
           <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" aria-label="Change Graph Type" onclick="rType()">
@@ -75,7 +75,7 @@
         <rect id="background" x="0" y="0" width="800" height="400" />
         <rect id="selection" x="0" y="0" width="800" height="400" />
       </svg>
-      <canvas tabindex="0" title="Data Analyzer Graph" id="myChart" width="800" height="400"></canvas>
+      <canvas id="myChart" tabindex="0" title="Data Analyzer Graph"  width="800" height="400"></canvas>
       <div id="dataPlot">
         <h3 id="plot-header" style="display:none;">Data Table</h3>
         <div id="tblContainer" style="display:none;" title="Data Table">
