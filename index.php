@@ -59,14 +59,17 @@
       <h3 id="startInst" tabindex="0" >To get started, select Load CSV or Create New Table at the top!</h3>
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;">
-      <form id="rTypeSel" style="display:none;" class="no-print">
-        <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" onclick="rType()">
-        <label for="lineRadioButton">Line Graph</label>
-        <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" onclick="rType()">
-        <label for="barRadioButton">Bar Graph</label>
-        <input id="scatterRadioButton" type="radio" name="rGraphSel" value="Scatter" onclick="rType()">
-        <label for="scatterRadioButton">Scatter Plot</label>
-      </form>
+      <div id="rTypeSelBody">
+        <h3>Data Analyzer Graph</h3>
+        <form id="rTypeSel" style="display:none;" class="no-print">
+          <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" onclick="rType()">
+          <label for="lineRadioButton">Line Graph</label>
+          <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" onclick="rType()">
+          <label for="barRadioButton">Bar Graph</label>
+          <input id="scatterRadioButton" type="radio" name="rGraphSel" value="Scatter" onclick="rType()">
+          <label for="scatterRadioButton">Scatter Plot</label>
+        </form>
+      </div><!-- END id="rTypeSelBody" -->
       <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" class="no-print"></div>
       <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
         <rect id="background" x="0" y="0" width="800" height="400" />
@@ -74,7 +77,7 @@
       </svg>
       <canvas title="CHART YEAH" id="myChart" width="800" height="400"></canvas>
       <div id="dataPlot">
-        <div id="plot-header" style="display:none;">Data Table</div>
+        <h3 id="plot-header" style="display:none;">Data Table</h3>
         <div id="tblContainer" style="display:none;" title="Data Table">
           <div id="slickTable" style="width:100%;"></div>
         </div> <!-- end id="tblContainer" -->
@@ -99,7 +102,7 @@
         include 'php/ajax.php';
     ?>
     <div id='summaryBox' style="display:none;">
-      <div id='summary-header' onclick="openColorEditor()">Graph Data </div>
+      <h3 id='summary-header' onclick="openColorEditor()">Graph Data</h3>
       <div id="summary-editor" class="color-editor-input">
         <ol id="colors" ></ol>
       </div>
