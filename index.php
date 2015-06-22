@@ -44,7 +44,7 @@
     </span>
   </header>
     <div id="start">
-      <font tabindex="0" size="6">Welcome to Data Analyzer</font>
+      <h1 tabindex="0">Welcome to Data Analyzer</h1>
       <p tabindex="0">
         This web application was designed to help analyze data through graphs, calculated values, and sound.
         Here's a quick look at how to use the application:
@@ -56,9 +56,9 @@
         </li>
         <li tabindex="0">Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
       </ul>
-      <p tabindex="0" >To get started, select Load CSV or Create New Table at the top!</p>
+      <h3 id="startInst" tabindex="0" >To get started, select Load CSV or Create New Table at the top!</h3>
     </div> <!-- End of start div -->
-    <div id="content" style="position: absolute; top: -9999px; left: -9999px;">    
+    <div id="content" style="position: absolute; top: -9999px; left: -9999px;">
       <form id="rTypeSel" style="display:none;" class="no-print">
         <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" onclick="rType()">
         <label for="lineRadioButton">Line Graph</label>
