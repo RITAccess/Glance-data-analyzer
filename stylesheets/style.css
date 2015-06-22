@@ -336,7 +336,7 @@ svg * {
     padding: 1% 0 4% 0;
     overflow: auto;
 }
-#color-header {
+#summary-header {
     width: 100%;
     border-radius: 5px;
 }
@@ -347,7 +347,7 @@ svg * {
 #colors > li {
     margin: 4% 0;
 }
-.color-editor-input input:focus {
+.summary-editor-input input:focus {
     background: #dadada;
 }
 .colorblock {/*called in chart.js only*/

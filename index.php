@@ -99,8 +99,8 @@
         include 'php/ajax.php';
     ?>
     <div id='summaryBox' style="display:none;">
-      <div id='color-header' onclick="openColorEditor()">Graph Data </div>
-      <div id="color-editor" class="color-editor-input">
+      <div id='summary-header' onclick="openColorEditor()">Graph Data </div>
+      <div id="summary-editor" class="color-editor-input">
         <ol id="colors" ></ol>
       </div>
     </div>
