@@ -43,7 +43,6 @@
         <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
     </span>
   </header>
-  <div id="content">
     <div id="start">
       <font tabindex="0" size="6">Welcome to Data Analyzer</font>
       <p tabindex="0">
@@ -58,7 +57,8 @@
         <li tabindex="0">Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
       </ul>
       <p tabindex="0" >To get started, select Load CSV or Create New Table at the top!</p>
-    </div>
+    </div> <!-- End of start div -->
+    <div id="content" style="position: absolute; top: -9999px; left: -9999px;">    
       <form id="rTypeSel" style="display:none;" class="no-print">
         <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" onclick="rType()">
         <label for="lineRadioButton">Line Graph</label>
