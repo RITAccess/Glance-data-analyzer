@@ -60,7 +60,7 @@
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;">
       <div id="rTypeSelBody">
-        <h3>Data Analyzer Graph</h3>
+        <h3 tabindex="0">Data Analyzer Graph</h3>
         <form id="rTypeSel" style="display:none;" class="no-print">
           <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" aria-label="Change Graph Type" onclick="rType()">
           <label for="lineRadioButton">Line Graph</label>
@@ -75,7 +75,7 @@
         <rect id="background" x="0" y="0" width="800" height="400" />
         <rect id="selection" x="0" y="0" width="800" height="400" />
       </svg>
-      <canvas title="Data Analyzer Graph" id="myChart" width="800" height="400"></canvas>
+      <canvas tabindex="0" title="Data Analyzer Graph" id="myChart" width="800" height="400"></canvas>
       <div id="dataPlot">
         <h3 id="plot-header" style="display:none;">Data Table</h3>
         <div id="tblContainer" style="display:none;" title="Data Table">
