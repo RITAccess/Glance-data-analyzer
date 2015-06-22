@@ -41,7 +41,7 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
       t.stop();
 		}
 		//console.log(self.infoCollection.collection[j].array[i]);
-		T.soundfont.play(15 + parseInt(self.infoCollection.collection[j].array[i]));
+		T.soundfont.play(15 + parseInt(self.infoCollection.collection[j].array[i]),false);
 		i++;
 	}).on("ended",function(){
 		this.stop();
@@ -51,11 +51,20 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
 
 //Using an arrayCollection object you can add a group of lines to the audio object
 Instrument.prototype.setCollection = function(collection) {
+  console.log("coll");
   var dropdownString ="";
   this.infoCollection.setCollection(collection);
   for(var i = 0; i < collection.length; i++) {
     dropdownString += "<option value="+(i + 1)+">"+(i + 1)+"</option>"
   }
+  this.isLoading = true;
+  for(var i = 0; i < collection.length; i++){
+    for(var j = 0; j < this.infoCollection.collection[i].array.length; j++){
+        T.soundfont.preload([15 + parseInt(this.infoCollection.collection[i].array[j])]);
+        //console.log(parseInt(this.infoCollection.collection[i].array[j]));
+    }
+  }
+  this.isLoading = false;
   this.isDirty = true;
   document.getElementById("audioSpan").style.display = "";
   document.getElementById("lineDropdown").innerHTML = dropdownString;
@@ -65,21 +74,23 @@ Instrument.prototype.setCollection = function(collection) {
 Instrument.prototype.changeLine = function(line, index, newValue) {
   if(line != -1) {
     this.infoCollection.changeLine(line,index,newValue);
-    this.isDirty = true;
+    //this.isDirty = true;
+    T.soundfont.preload([newValue]);
   }
 }
 
 //Toggle playing either on or off
 Instrument.prototype.playToggle = function(line, startIndex, endIndex) {
   if(!this.playing) {
-    //this.playLine(line, startIndex, endIndex);
-    var loader = []
-    for(var i = 0; i < this.infoCollection.collection[line].array.length; i++){
-      loader.push(parseInt(this.infoCollection.collection[line].array[i]));
+    if(this.isLoading){
+      while(this.isLoading){
+        if(!this.isLoading)
+          break;
+      }
     }
+    //this.playLine(line, startIndex, endIndex);
     //console.log(loader);
     var self = this;
-    setTimeout(T.soundfont.preload(loader),1);
     self.playDataSet(line,startIndex,endIndex);
   }
 }
