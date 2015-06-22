@@ -41,7 +41,7 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
 			self.updateIcon();
 		}
 		//console.log(self.infoCollection.collection[j].array[i]);
-		T.soundfont.play(parseInt(self.infoCollection.collection[j].array[i]));
+		T.soundfont.play(20 + parseInt(self.infoCollection.collection[j].array[i]));
 		i++;
 	}).on("ended",function(){
 		this.stop();
