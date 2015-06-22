@@ -5,6 +5,13 @@
   <meta charset="UTF-8">
   <!-- load main.js after require.js -->
   <script data-main="javascript/main" src="libs/require/Require.js"></script>
+  <script src="libs/timbrejs/timbre.js"></script>
+  <script src="libs/timbrejs/audio-jsonp.js"></script>
+  <script src="libs/timbrejs/jsmad.js"></script>
+  <script src="libs/timbrejs/mp3_decode.js"></script>
+  <script src="libs/timbrejs/soundfont.js"></script>
+  <script src="libs/timbrejs/Instrument.js"></script>
+  <script src="libs/timbrejs/WaveForm.js"></script>
   <link rel="stylesheet" href="libs/SlickGrid/slick.grid.css" type="text/css"/>
   <link rel="stylesheet" href="libs/SlickGrid/css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>
   <link rel="stylesheet" href="libs/SlickGrid/examples/examples.css" type="text/css"/>
@@ -36,7 +43,7 @@
         <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
     </span>
   </header>
-  <div id="content">
+  <div id="content" style="position: absolute; top: -9999px; left: -9999px;">
     <div id="start">
       <font tabindex="0" size="6">Welcome to Data Analyzer</font>
       <p tabindex="0">
@@ -72,6 +79,7 @@
           <div id="slickTable" style="width:100%;"></div>
         </div> <!-- end id="tblContainer" -->
         <div id="tableCount"></div>
+        <div id="remInstruction"></div>
       <div id="tableControls" style="display: none" class="no-print">
         <div id="rowLabel">
           <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"> - </button></label>
