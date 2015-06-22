@@ -94,17 +94,17 @@
         <button id="downloadCSV" onclick="download()">Download CSV</button>
         <button id="printButton" onclick="printPage()">Print</button>
       </div>
-    </div>
+    </div><!-- END id="tableCount" -->
     <?php
         include 'php/ajax.php';
     ?>
-    <div id='color-expand' style="display:none;">
+    <div id='summaryBox' style="display:none;">
       <div id='color-header' onclick="openColorEditor()">Graph Data </div>
       <div id="color-editor" class="color-editor-input">
         <ol id="colors" ></ol>
       </div>
     </div>
-  </div><!-- end div id="content"-->
+  </div><!-- end div id="content" -->
 <!-- div for LOAD CSV pop-up list -->
   <div id="dialogoverlay"></div>
     <div id="dialogbox">

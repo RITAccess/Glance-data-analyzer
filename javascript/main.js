@@ -69,7 +69,7 @@ var loadData = function (data) {
     document.getElementById('rTypeSel').style.display = 'block';
     document.getElementById('plot-header').style.display = 'inline';
     document.getElementById('tableControls').style.display = 'block';
-    //document.getElementById('color-expand').style.display = 'block';
+    document.getElementById('summaryBox').style.display = 'block';
     fixSlick();
 }
 
