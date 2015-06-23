@@ -142,35 +142,52 @@ function checkRemove(){
 	}
 	//Check for columns to remove
 	for(var i = 1; i < k; i++){
-		if(grid.getData()[0][i]===""){
-			if(confirm("Delete column " + i + "?")){	//Confirm with user
-				removeColumns(i,1);	//Remove is confirmed
-				if(grid.getCellNode(0,i)!= null)
-					grid.gotoCell(0,i);
+		console.log(k);
+		if (k > 3) {
+			if(grid.getData()[0][i]===""){
+				if(confirm("Delete column " + i + "?")){	//Confirm with user
+					removeColumns(i,1);	//Remove is confirmed
+					if(grid.getCellNode(0,i)!= null)
+						grid.gotoCell(0,i);
+					else{
+						grid.gotoCell(0,i-1);
+					}
+				}
 				else{
-					grid.gotoCell(0,i-1);
+					grid.gotoCell(0, i);
+					grid.getData()[0][i] = oldGrid[0][i];	//Set back to default value if not
+					chart.scale.xLabels[i-1] = oldGrid[0][i];
 				}
 			}
-			else{
-				grid.getData()[0][i] = oldGrid[0][i];	//Set back to default value if not
-				chart.scale.xLabels[i-1] = oldGrid[0][i];
-			}
+		} 
+		else if (grid.getData()[0][i] === "") {
+			grid.gotoCell(0, i);
+			grid.getData()[0][i] = oldGrid[0][i];
+			chart.scale.xLabels[i-1] = oldGrid[0][i];
 		}
 	}
 	//Check for rows to remove
 	for(var i = 0; i < grid.getData().length; i++){
-		if(grid.getData()[i][0]===""){
-			if(confirm("Delete row " + i + "?")){	//Confirm with user
-				removeRows(i,1);	//Remove if confirmed
-				if(grid.getCellNode(i,0)!= null)
-					grid.gotoCell(i,0);
+		console.log(grid.getData().length);
+		if(grid.getData().length - 1 >= 2) {
+			if(grid.getData()[i][0]===""){
+				if(confirm("Delete row " + i + "?")){	//Confirm with user
+					removeRows(i,1);	//Remove if confirmed
+					if(grid.getCellNode(i,0)!= null)
+						grid.gotoCell(i,0);
+					else{
+						grid.gotoCell(i-1,0);
+					}
+				}
 				else{
-					grid.gotoCell(i-1,0);
+					grid.gotoCell(i, 0);
+					grid.getData()[i][0] = oldGrid[i][0];	//Set back to default value if not
 				}
 			}
-			else{
-				grid.getData()[i][0] = oldGrid[i][0];	//Set back to default value if not
-			}
+		} 
+		else if (grid.getData()[i][0] === "") {
+			grid.gotoCell(i, 0);
+			grid.getData()[i][0] = oldGrid[i][0];
 		}
 	}
    	oldGrid = [];
