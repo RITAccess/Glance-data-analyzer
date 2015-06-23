@@ -73,7 +73,7 @@ var createFile = function(rows, columns) {
     rows = 1;
   }
   if (columns <= 2) {
-    columns = 3;
+    columns = 2;
   }
 
   // Reset color list
@@ -88,7 +88,7 @@ var createFile = function(rows, columns) {
   var rowArray = new Array(parseInt(rows) + 1);
 
   for (var i = 0; i < rowArray.length; i++) {
-    rowArray[i] = new Array(parseInt(columns));
+    rowArray[i] = new Array(parseInt(columns)+1);
 
     for (var j = 0; j < rowArray[i].length; j++) {
       rowArray[i][j] = 0;
@@ -165,7 +165,13 @@ var changeType= function(){
     var tempInt =  (currTable.data.length-1);
     currTable.data[currTable.data.length-1][0] = "Row " + tempInt.toString();
   }
-
+  oldGrid = [];
+      for(var i = 0; i < grid.getData().length; i++){
+        oldGrid[i] = [];
+        for(var key in grid.getData()[i]){
+          oldGrid[i].push(grid.getData()[i][key]);
+        }
+      }
   loadData(currTable);
   document.getElementById('tblContainer').style.width="100%";
  }
@@ -198,6 +204,13 @@ var addColumn = function() {
     currTable.data[0][currTable.data[0].length - 1] = "Label " + (currTable.data[0].length - 1);
     loadData(currTable);
     document.getElementById('tblContainer').style.width="100%";
+    oldGrid = [];
+      for(var i = 0; i < grid.getData().length; i++){
+        oldGrid[i] = [];
+        for(var key in grid.getData()[i]){
+          oldGrid[i].push(grid.getData()[i][key]);
+        }
+      }
  }
 
  var subtractRow = function() {
