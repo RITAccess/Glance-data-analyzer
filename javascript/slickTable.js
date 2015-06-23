@@ -151,8 +151,10 @@ function checkRemove(){
 					grid.gotoCell(0,i-1);
 				}
 			}
-			else
+			else{
 				grid.getData()[0][i] = oldGrid[0][i];	//Set back to default value if not
+				chart.scale.xLabels[i-1] = oldGrid[0][i];
+			}
 		}
 	}
 	//Check for rows to remove
@@ -166,8 +168,9 @@ function checkRemove(){
 					grid.gotoCell(i-1,0);
 				}
 			}
-			else
+			else{
 				grid.getData()[i][0] = oldGrid[i][0];	//Set back to default value if not
+			}
 		}
 	}
    	oldGrid = [];
@@ -177,6 +180,6 @@ function checkRemove(){
     			oldGrid[i].push(grid.getData()[i][key]);
     		}
     	}
-
+    chart.update();
 	document.getElementById('tblContainer').style.width="100%";
 }
