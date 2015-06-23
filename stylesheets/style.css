@@ -247,10 +247,11 @@ and doesn't seem to effect anything when comment sliger-range out*/
     margin-right: -0.25em;
 }
 #tblContainer {
-    height: 300px;
+    height: auto;
+    max-height: 300px;
     margin: auto;
     margin-top: 2%;
-    overflow: auto;
+    overflow-x: hidden;
 }
 
 /*******************************/
