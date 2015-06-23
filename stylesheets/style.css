@@ -37,7 +37,6 @@ header {
     text-decoration: none;
     color: inherit;
 }
-
 /*********************************/
 
 /* START style for about section */
@@ -67,7 +66,6 @@ header {
 /* END style for about section */
 
 /*********************************/
-
 #files {/*style for acutal Load CSV button*/
     width: 118px;
     height: 47px;
@@ -109,7 +107,6 @@ svg * {
     stroke-width:1;
     fill-opacity: 0.0;
 }
-
 /*******************************/
 
 /*
@@ -135,11 +132,9 @@ svg * {
 and doesn't seem to effect anything when comment sliger-range out*/
 
 /*******************************/
-
 #overlay {
     position:absolute;
 }
-
 /*******************************/
 
 /**  START changing Browse to Load CSV **/
@@ -196,7 +191,6 @@ and doesn't seem to effect anything when comment sliger-range out*/
 /** END changing Browse to Load CSV **/
 
 /*******************************/
-
 #audioSpan {
     float: right;
     position: absolute;
@@ -226,16 +220,8 @@ and doesn't seem to effect anything when comment sliger-range out*/
     text-align: center;
     font-size: 15px;
 }
-
 /*******************************/
-
-/*#radioOutline {
-  border: 0px;
-  padding: 15px;
-}*//*delete(?): declared here but not used in any file*/
-
 /*******************************/
-
 #table {
     text-align: center;
 }
@@ -251,9 +237,8 @@ and doesn't seem to effect anything when comment sliger-range out*/
     max-height: 300px;
     margin: auto;
     margin-top: 2%;
-    overflow-x: hidden;
+    overflow: auto;
 }
-
 /*******************************/
 
 /* START: for print button page, table section */
@@ -271,7 +256,6 @@ and doesn't seem to effect anything when comment sliger-range out*/
 /* END: for print button page, table section */
 
 /*******************************/
-
 #dataPlot {
     width: 100%;
     text-align:center;
@@ -400,7 +384,6 @@ and doesn't seem to effect anything when comment sliger-range out*/
     display: inline-block;
     vertical-align: middle;
 }
-
 /*******************************/
 
 /* style for pop-up chart list STARTS */
