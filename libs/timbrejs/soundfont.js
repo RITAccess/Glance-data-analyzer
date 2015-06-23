@@ -153,8 +153,8 @@
 
 	// this can be overridden by end users
 	soundfont.onLoad = function (audio,note) {
-		console.log(note);
-		setTimeout(function() {}, 10);
+		//console.log(note);
+		//setTimeout(function() {}, 10);
 		//this.play(note);
 		//this.emptyCache();
 	};

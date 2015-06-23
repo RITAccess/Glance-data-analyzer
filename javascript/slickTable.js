@@ -1,6 +1,6 @@
 "use strict"; // strict mode syntax
 var grid = null;
-
+var oldGrid = null;
 var ColumnWidth = 130; //** CHANGE THIS TO CHANGE COLUMN WIDTH! **
 
 // initial table properties, after getting the data from the file.
@@ -65,6 +65,15 @@ var loadSlickTable = function(fileData){
 
    	//Grid creation
     grid = new Slick.Grid(c1, data, columns, options);
+    if(oldGrid === null){
+    	oldGrid = [];
+    	for(var i = 0; i < grid.getData().length; i++){
+    		oldGrid[i] = [];
+    		for(var key in grid.getData()[i]){
+    			oldGrid[i].push(grid.getData()[i][key]);
+    		}
+    	}
+	}
 
   });
   return grid;
@@ -143,7 +152,7 @@ function checkRemove(){
 				}
 			}
 			else
-				grid.getData()[0][i] = i;	//Set back to default value if not
+				grid.getData()[0][i] = oldGrid[0][i];	//Set back to default value if not
 		}
 	}
 	//Check for rows to remove
@@ -158,8 +167,16 @@ function checkRemove(){
 				}
 			}
 			else
-				grid.getData()[i][0] = i;	//Set back to default value if not
+				grid.getData()[i][0] = oldGrid[i][0];	//Set back to default value if not
 		}
 	}
+   	oldGrid = [];
+    	for(var i = 0; i < grid.getData().length; i++){
+    		oldGrid[i] = [];
+    		for(var key in grid.getData()[i]){
+    			oldGrid[i].push(grid.getData()[i][key]);
+    		}
+    	}
+
 	document.getElementById('tblContainer').style.width="100%";
 }
