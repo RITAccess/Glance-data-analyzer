@@ -251,7 +251,9 @@ and doesn't seem to effect anything when comment sliger-range out*/
     max-height: 300px;
     margin: auto;
     margin-top: 2%;
-    overflow-x: hidden;
+}
+#slickTable {
+    overflow: scroll;
 }
 
 /*******************************/
