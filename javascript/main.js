@@ -55,7 +55,10 @@ var loadData = function (data) {
     document.getElementById('tableCount').innerHTML = "[ Total Row: " + (data.data.length - 1) + " ] [ Total Column: " + (data.data[0].length - 1) + " ]";
     document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen labels cell"
     chart = loadChart(data.data, type);
-    player = new Instrument(26);
+    if(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)
+      player = new WaveForm("sine");
+    else
+      player = new Instrument(26);
     overlay = new Overlay(data);
     overlay.updateSize(chart);
     var collection = new ArrayCollection(data.data);
