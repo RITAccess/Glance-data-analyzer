@@ -95,6 +95,7 @@
           <label><button id="addNewCol" aria-label="Add New Column" onclick="addColumn()"> + </button></label>
         </div>
         <button id="downloadCSV" onclick="download()">Download CSV</button>
+        <button id="undoButton" onclick="undo()">Undo</button>
         <button id="printButton" onclick="printPage()">Print</button>
       </div>
     </div><!-- END id="tableCount" -->

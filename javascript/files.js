@@ -332,10 +332,6 @@ function removeColumns(start,skip){
   for(var key in resData[0]){
     k++;
   }
-  if(k-skip <= 3){
-    alert("Not enough columns to remove!");
-    return;
-  }
  for(var i = 0; i< resData.length; i++){
     currTable.data[i] = [];
     for(var j = 0; j<k; j++){
@@ -353,6 +349,12 @@ function removeColumns(start,skip){
     }
   }
   currTable.data[0].pop();
+
+  for(var i = start; i < currTable.data[0].length;i++) {
+    if (currTable.data[0][i].includes("Label ")) {
+      currTable.data[0][i] = "Label " + i;
+    }
+  }
 
   loadData(currTable);
   changeType();
@@ -374,10 +376,6 @@ function removeRows(start,skip){
   var k = 0;
   for(var key in resData[0]){
     k++;
-  }
-  if(resData.length < 3){
-    alert("Not enough rows to remove!");
-    return;
   }
   currTable.data[0] = [];
   for(var key in resData[0]){
@@ -405,7 +403,13 @@ function removeRows(start,skip){
       else{
         if(resData[i][j] != undefined)
         currTable.data[i].push(resData[i][j]);}
+      }
     }
+
+    for(var i = start; i < currTable.data.length; i++) {
+      if (currTable.data[i][0].includes("Row ")) {
+        currTable.data[i][0] = "Row " + i;
+      }
     }
   loadData(currTable);
   changeType();
