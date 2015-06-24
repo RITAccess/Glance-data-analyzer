@@ -18,11 +18,6 @@ require(["libs/jquery/jquery-1.11.2.js"],function(jquery) {
 require(["libs/PapaParse/papaparse.min.js"]);
 require(["libs/chartjs/Chart.js"]);
 
-require(["libs/jsfx/audio.js"], function (audio) {
-    require(["libs/jsfx/jsfx.js"]);
-    require(["libs/jsfx/jsfxlib.js"]);
-});
-
 require(["javascript/files.js"], function(print){
   loadListener();
   createListener();
@@ -31,7 +26,6 @@ require(["javascript/files.js"], function(print){
 require(["javascript/chart.js"]);
 require(["javascript/overlay.js"]);
 require(["javascript/arrayInfo.js"]);
-require(["javascript/audioPlayer.js"]);
 require(["javascript/arrayCollection.js"]);
 require(["javascript/global.js"]);
 require(["javascript/summary.js"]);
