@@ -479,7 +479,7 @@ th, td, .printTable{
         /*page-break-after: auto;*/
     }
     #summaryBox{
-        height: auto;
+        max-height: none;
         overflow: hidden;
     }
     .no-print, .no-print * {
