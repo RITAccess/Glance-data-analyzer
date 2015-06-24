@@ -40,7 +40,7 @@
       <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
        at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>
       <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
-        <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
+        <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
     </span>
   </header>
     <div id="start">
@@ -95,7 +95,6 @@
           <label><button id="addNewCol" aria-label="Add New Column" onclick="addColumn()"> + </button></label>
         </div>
         <button id="downloadCSV" onclick="download()">Download CSV</button>
-        <button id="undoButton" onclick="undo()">Undo</button>
         <button id="printButton" onclick="printPage()">Print</button>
       </div>
     </div><!-- END id="tableCount" -->
