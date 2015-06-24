@@ -199,10 +199,9 @@ and doesn't seem to effect anything when comment sliger-range out*/
     right: 0em;
 }
 #playButton {
-    height: 32px;
-    width: 32px;
+    height: 35px;
+    width: 35px;
     cursor: pointer;
-    padding-left: 0.10em;
     margin-left: 0.5em;
     background: #FFF;
     border-color: #FFF;
