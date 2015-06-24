@@ -6,6 +6,7 @@ function WaveForm(type){
 	this.buffer = null;
 	this.pitch = 50;
 	this.bpm = 120;
+	this.subdiv = "L4";
 	this.t_object = null;
 	this.makeBuffer();
 	this.makeTObject();
@@ -103,13 +104,12 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	var i = startIndex;
 	timbre.bpm = this.bpm;
 	var self = this;
-	this.t = T("interval", {interval:"L4",timeout:"55sec"},function(){
-		if(i>endIndex){
-			this.stop();
+	this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+		if(i>=endIndex) {
 			self.playing = false;
 			self.updateIcon();
 			self.stop();
-			return;
+			this.stop();
 		}
 		if(!self.playing){
 			self.start();
@@ -122,12 +122,19 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	}).on("ended",function(){
 		this.stop();
 	}).start();
-	self.playing = false;
+	this.playing = false;
 };
 
 //Set Beats per minute of waveform when series is played
 WaveForm.prototype.setBpm = function(bpm){
-	this.bpm = bpm;
+  this.subdiv = "L4";
+  if(bpm > 280){
+    while(bpm>280){
+      this.subdiv = "L" + parseInt(this.subdiv.substr(1))*2;
+      bpm /= 2;
+    }
+  }
+  this.bpm = bpm;
 }
 
 //Using an arrayCollection object you can add a group of lines to the audio object

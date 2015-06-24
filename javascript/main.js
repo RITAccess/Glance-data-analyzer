@@ -58,7 +58,7 @@ var loadData = function (data) {
     if(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)
       player = new WaveForm("sine");
     else
-      player = new Instrument(26);
+      player = new Instrument(2);
     overlay = new Overlay(data);
     overlay.updateSize(chart);
     var collection = new ArrayCollection(data.data);
@@ -80,8 +80,8 @@ var loadData = function (data) {
 // The play button
 var playStopAudioButton = function () {
   //Change the speed of the audio based on speed input.
-  var bpm = 80 + 40 * document.getElementById('bpm').value;
-  player.bpm = bpm;
+  var bpm = 80 + 20 * document.getElementById('bpm').value;
+  player.setBpm(bpm);
   //DO NOT CHANGE/DELETE: Fixes audio issue involving slider 
   if(overlay.slider[0] === 0 && overlay.slider[1] === 0){
    overlay.slider[1] = chart.datasets[0].length;

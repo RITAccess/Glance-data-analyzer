@@ -4,6 +4,7 @@ require(["libs/timbrejs/soundfont.js"]);
 function Instrument(number){
 	this.number = number;
 	this.bpm = 120;	//Default tempo
+  this.subdiv = "L4";
 	this.makeSoundFont(number);
 	this.infoCollection = new ArrayCollection([]);
 	this.playing = false;
@@ -34,7 +35,7 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
   var j = line;
   var self = this;
 	timbre.bpm = this.bpm;
-	var t = T("interval", {interval:"L4",timeout:"55sec"},function(){
+	var t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
 		if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
 			self.playing = false;
 			self.updateIcon();
@@ -110,4 +111,15 @@ Instrument.prototype.updateIcon = function() {
     iList.remove("fa-stop");
     iList.add("fa-play");
   }
+}
+
+Instrument.prototype.setBpm = function(bpm){
+  this.subdiv = "L4";
+  if(bpm > 280){
+    while(bpm>280){
+      this.subdiv = "L" + parseInt(this.subdiv.substr(1))*2;
+      bpm /= 2;
+    }
+  }
+  this.bpm = bpm;
 }
