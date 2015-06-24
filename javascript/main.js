@@ -55,7 +55,7 @@ var loadData = function (data) {
     document.getElementById('tableCount').innerHTML = "[ Total Row: " + (data.data.length - 1) + " ] [ Total Column: " + (data.data[0].length - 1) + " ]";
     document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen labels cell"
     chart = loadChart(data.data, type);
-    player = new Instrument(2);
+    player = new Instrument(26);
     overlay = new Overlay(data);
     overlay.updateSize(chart);
     var collection = new ArrayCollection(data.data);
@@ -63,25 +63,19 @@ var loadData = function (data) {
     summary = new DataSummary(collection);
     summary.dataSummary();
     linkSlickTable(chart, player, overlay, summary);
-    document.getElementById('content').style.position = "inherit"; //overides corresponding style in index.html that hides the content tag
-    document.getElementById('content').style.top = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
-    document.getElementById('content').style.left = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
-    document.getElementById('rTypeSelBody').style.display = 'block';
+    document.getElementById("content").style.position = "inherit"; //overides corresponding style in index.html that hides the content tag
+    document.getElementById("content").style.top = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
+    document.getElementById("content").style.left = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
+    document.getElementById('rTypeSel').style.display = 'block';
     document.getElementById('plot-header').style.display = 'inline';
     document.getElementById('tableControls').style.display = 'block';
     document.getElementById('summaryBox').style.display = 'block';
     fixSlick();
 }
 
-console.warn = function(){};
 
 // The play button
 var playStopAudioButton = function () {
-    var bpm = 80 + 40 * document.getElementById('bpm').value;
-    player.bpm = bpm;
-    if(overlay.slider[0] === 0 && overlay.slider[1] === 0){
-      overlay.slider[1] = chart.datasets[0].length;
-    }
     player.playToggle(document.getElementById("lineDropdown").value - 1, overlay.slider[0], overlay.slider[1]);
 }
 

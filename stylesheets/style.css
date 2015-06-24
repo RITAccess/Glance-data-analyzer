@@ -293,11 +293,11 @@ and doesn't seem to effect anything when comment sliger-range out*/
 }
 #tableControls {/* positioning buttons to bottom CENTER of parent container dataPlot */
     position: absolute;
-    width: 100%;
+    width: 110%;
     text-align: center;
-    padding-left: 2.5%;
+    padding-right: 5.5%;
 }
-#rowLabel, #columnLabel, #downloadCSV, #printButton, #dialogboxfoot button {
+#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #dialogboxfoot button {
     display: inline;
     cursor: pointer;
     background: #FFF;
@@ -327,7 +327,7 @@ and doesn't seem to effect anything when comment sliger-range out*/
     border-radius: 100%;
     vertical-align: middle;
 }
-#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus {
+#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #undoButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus {
     background-color: #000;
     color: #FFF;
 }
