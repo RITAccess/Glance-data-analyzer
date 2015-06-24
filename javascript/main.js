@@ -66,7 +66,7 @@ var loadData = function (data) {
     document.getElementById("content").style.position = "inherit"; //overides corresponding style in index.html that hides the content tag
     document.getElementById("content").style.top = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
     document.getElementById("content").style.left = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
-    document.getElementById('rTypeSel').style.display = 'block';
+    document.getElementById('rTypeSelBody').style.display = 'block';
     document.getElementById('plot-header').style.display = 'inline';
     document.getElementById('tableControls').style.display = 'block';
     document.getElementById('summaryBox').style.display = 'block';
@@ -76,6 +76,13 @@ var loadData = function (data) {
 
 // The play button
 var playStopAudioButton = function () {
+  //Change the speed of the audio based on speed input.
+  var bpm = 80 + 40 * document.getElementById('bpm').value;
+  player.bpm = bpm;
+  //DO NOT CHANGE/DELETE: Fixes audio issue involving slider 
+  if(overlay.slider[0] === 0 && overlay.slider[1] === 0){
+   overlay.slider[1] = chart.datasets[0].length;
+  }
     player.playToggle(document.getElementById("lineDropdown").value - 1, overlay.slider[0], overlay.slider[1]);
 }
 
