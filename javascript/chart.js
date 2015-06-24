@@ -8,6 +8,28 @@ var loadChart = function(data, type, collection){
 	var data1 = data;
 	data1[0].splice(0, 1);
 	var chartdata = dataset(data1, collection);
+
+	for(var i = 0; i <chartdata.data.length; i ++){
+		if(oldData[i] && hidden[i]=== false){
+			//console.log(chartdata.data[i]);
+			if(type === "bar"){
+				//oldData[i].bars= chartdata.data[i].bars;
+				//chartdata.data[i].bars = undefined;
+			}
+			else{
+				//oldData[i].points= data.datasets[i].points;
+				//chartdata.data[i].data = undefined;
+			}
+		}
+		else{
+			if(oldData[i])
+				if(oldData[i].data && !oldData[i].bars && !oldData[i].points)
+					chartdata.data[i].data = oldData[i].data;
+			//oldData[i] = undefined;0
+		}
+	}
+	//console.log(chartdata.data);
+
 	var data = {
 		labels: data1[0],
 		datasetFill: false,
@@ -23,7 +45,6 @@ var loadChart = function(data, type, collection){
 	else
 	  myLineChart = new Chart(ctx).Line(data);
 	document.getElementById("myChart").setAttribute("title","image of graph"); // by setting the attribute we can make the chart accessible
-
 	for(var i =0; i<data.datasets.length;i++){
 		//Setting input functions for each line in order to set new colors
 		chartdata.inputboxes[i].oninput = function(){
@@ -114,11 +135,15 @@ var loadChart = function(data, type, collection){
 					chart.datasets[index].pointColor = transparent;
 					chart.datasets[index].pointHighlightStroke = transparent;
 					if(type==="line" || type === "scatter"){
-	          			oldData[index] = chart.datasets[index].points;
+						if(!oldData[index])
+							oldData[index] = {};
+	          			oldData[index].points = chart.datasets[index].points;
 	          			chart.datasets[index].points = undefined;
 					}
 					else if(type === "bar"){
-	          			oldData[index] = chart.datasets[index].bars;
+						if(!oldData[index])
+							oldData[index] = {};
+	          			oldData[index].bars = chart.datasets[index].bars;
 	          			chart.datasets[index].bars = undefined;
 					}
 					chart.update();
@@ -138,12 +163,12 @@ var loadChart = function(data, type, collection){
 					chart.datasets[index].pointColor = color;
 					chart.datasets[index].pointHighlightStroke = color;
 					if(type === "line" || type === "scatter"){
-	          			chart.datasets[index].points = oldData[index];
-	          			oldData[index] = undefined;
+	          			chart.datasets[index].points = oldData[index].points;
+	          			//oldData[index].points = undefined;
 					}
 					else if(type === "bar"){
-	          			chart.datasets[index].bars = oldData[index];
-	          			oldData[index]= undefined;
+	          			chart.datasets[index].bars = oldData[index].bars;
+	          			//oldData[index].bars= undefined;
 					}
 					chart.update();
 					linkSlickTable(chart,player,overlay,summary);
@@ -182,7 +207,8 @@ function dataset(data, collection) {
 			line.fillColor = line.strokeColor;
 		}
     //Put line into data Array
-    	if(hidden[i-1]==false && oldData[i-1] != undefined){
+    	if(hidden[i-1]===false){
+    		oldData[i-1].data = line;
     		line.data = undefined;
     	}
 		dataArray.push(line);

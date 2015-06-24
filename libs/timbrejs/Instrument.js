@@ -58,6 +58,10 @@ Instrument.prototype.setCollection = function(collection) {
     dropdownString += "<option value="+(i + 1)+">"+(i + 1)+"</option>"
   }
   this.isLoading = true;
+  /*[DO NOT MOVE]: This section preloads all of the notes in the current collection
+  * in order to make playback even and uniform (if you're getting a sound that resembles
+  * an individual sitting on a piano, then you probably moved this)
+  */
   for(var i = 0; i < collection.length; i++){
     for(var j = 0; j < this.infoCollection.collection[i].array.length; j++){
         T.soundfont.preload([15 + parseInt(this.infoCollection.collection[i].array[j])]);

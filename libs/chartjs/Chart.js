@@ -2166,6 +2166,7 @@
 			});
 
 			this.eachBars(function(bar){
+				//console.log(bar);
 				bar.save();
 			});
 			this.render();
