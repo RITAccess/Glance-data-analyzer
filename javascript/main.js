@@ -42,6 +42,7 @@ var slickTable;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function (data) {
+    document.getElementById('myChart').style.display = 'inline';
     document.getElementById('start').style.display = 'none';
     document.querySelector('#overlay').setAttribute('style', '');
     document.querySelector('#slickTable').innerHTML = '';
@@ -76,7 +77,7 @@ var playStopAudioButton = function () {
   //Change the speed of the audio based on speed input.
   var bpm = 80 + 20 * document.getElementById('bpm').value;
   player.setBpm(bpm);
-  //DO NOT CHANGE/DELETE: Fixes audio issue involving slider 
+  //DO NOT CHANGE/DELETE: Fixes audio issue involving slider
   if(overlay.slider[0] === 0 && overlay.slider[1] === 0){
    overlay.slider[1] = chart.datasets[0].length;
   }
