@@ -3737,7 +3737,6 @@
 		},
 		
 		update : function(){
-			console.log("update");
 			this.scale.update();
 			// Reset any highlight colours before updating.
 			helpers.each(this.activeElements, function(activeElement){
