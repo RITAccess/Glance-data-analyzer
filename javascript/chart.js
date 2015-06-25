@@ -125,6 +125,7 @@ var loadChart = function(data, type, collection){
 	          			chart.datasets[index].bars = undefined;
 					}
 					chart.update();
+					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
 				}
 			}
@@ -149,6 +150,7 @@ var loadChart = function(data, type, collection){
 	          			//oldData[index].bars= undefined;
 					}
 					chart.update();
+					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
 					}
 			}
@@ -281,23 +283,25 @@ function convertPointsToBars(){
 			}
 		}
 		else{
-			oldData[i].bars = [];
-			for(var j = 0; j <oldData[i].points.length; j++){
-				var point = oldData[i].points[j];
-				var bar = new chart.BarClass();
-				bar.base = chart.scale.endPoint;
-				bar.datasetLabel = point.datasetLabel;
-				bar.fillColor = point.fillColor;
-				bar.highlightFill = point.fillColor;
-				bar.highlightStroke = point.fillColor;
-				bar.label = point.label;
-				bar.strokeColor = point.fillColor;
-				bar.value = point.value;
-				bar.width = chart.scale.calculateBarWidth(chart.datasets.length);
-				bar.x = chart.scale.calculateBarX(datasetLen,i,j);
-				bar.y = point.y;
-				oldData[i].bars.push(bar);
-			}	
+			if(oldData[i]){
+				oldData[i].bars = [];
+				for(var j = 0; j <oldData[i].points.length; j++){
+					var point = oldData[i].points[j];
+					var bar = new chart.BarClass();
+					bar.base = chart.scale.endPoint;
+					bar.datasetLabel = point.datasetLabel;
+					bar.fillColor = point.fillColor;
+					bar.highlightFill = point.fillColor;
+					bar.highlightStroke = point.fillColor;
+					bar.label = point.label;
+					bar.strokeColor = point.fillColor;
+					bar.value = point.value;
+					bar.width = chart.scale.calculateBarWidth(chart.datasets.length);
+					bar.x = chart.scale.calculateBarX(datasetLen,i,j);
+					bar.y = point.y;
+					oldData[i].bars.push(bar);
+				}
+			}
 		}
 	}
 }
