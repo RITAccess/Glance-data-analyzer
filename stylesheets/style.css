@@ -342,7 +342,6 @@ and doesn't seem to effect anything when comment sliger-range out*/
 #summaryBox {
     width: 100%;
     height: auto;
-    max-height: 400px;
     font-weight: bold;
     font-size: 20px;
     text-align: center;

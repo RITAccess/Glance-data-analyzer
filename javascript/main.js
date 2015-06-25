@@ -89,7 +89,7 @@ var playStopAudioButton = function () {
 
 // Opens the color editor
 var openColorEditor = function () {
-    var editor = document.getElementById('summary-editor');
+    var editor = document.getElementById('colors');
     editor.style.display = editor.style.display == 'inline' ? 'none' : 'block';
 }
 

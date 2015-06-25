@@ -102,9 +102,7 @@
     ?>
     <div id='summaryBox' style="display:none;">
       <h3 id='summary-header'>Graph Data</h3>
-      <div id="summary-editor" class="color-editor-input">
-        <ol id="colors" ></ol>
-      </div>
+        <ol id="colors" class="color-editor-input"></ol>
     </div>
   </div><!-- end div id="content" -->
 <!-- div for LOAD CSV pop-up list -->
