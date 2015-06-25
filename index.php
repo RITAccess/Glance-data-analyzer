@@ -37,8 +37,8 @@
     <output id="list"></output>
     <span id="audioSpan" class="no-print" style="display: none">
       <label for="lineDropdown" tabindex="0"> Row number </label>
-      <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
-       at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>
+      <select id="lineDropdown" class='drop-down' title="selected"></select>
+       at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1"/>
       <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
         <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
     </span>
@@ -62,11 +62,11 @@
       <div id="rTypeSelBody" style="display:none;">
         <h3 tabindex="0">Data Analyzer Graph</h3>
         <form id="rTypeSel" class="no-print">
-          <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" aria-label="Change Graph Type" onclick="rType()">
+          <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" aria-label="Change Graph Type to Line" onclick="rType()">
           <label for="lineRadioButton">Line Graph</label>
-          <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" aria-label="Change Graph Type" onclick="rType()">
+          <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" aria-label="Change Graph Type to Bar" onclick="rType()">
           <label for="barRadioButton">Bar Graph</label>
-          <input id="scatterRadioButton" type="radio" name="rGraphSel" aria-label="Change Graph Type" value="Scatter" onclick="rType()">
+          <input id="scatterRadioButton" type="radio" name="rGraphSel" aria-label="Change Graph Type to Scatter" value="Scatter" onclick="rType()">
           <label for="scatterRadioButton">Scatter Plot</label>
         </form>
       </div><!-- END id="rTypeSelBody" -->

@@ -26,6 +26,10 @@ header {
     clear: both;
     vertical-align: middle;
 }
+
+#slickTable .slick-viewport {
+    overflow-y: scroll;
+}
 #title {
     display: inline;
     font-weight: bold;
