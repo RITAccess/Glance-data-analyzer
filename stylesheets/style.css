@@ -359,6 +359,7 @@ and doesn't seem to effect anything when comment sliger-range out*/
     border-radius: 5px;
 }
 #colors {
+    max-height: 300px;
     text-align: left;
     list-style: none;
     overflow: auto;
