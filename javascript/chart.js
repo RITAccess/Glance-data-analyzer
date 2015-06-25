@@ -8,28 +8,6 @@ var loadChart = function(data, type, collection){
 	var data1 = data;
 	data1[0].splice(0, 1);
 	var chartdata = dataset(data1, collection);
-
-	for(var i = 0; i <chartdata.data.length; i ++){
-		if(oldData[i] && hidden[i]=== false){
-			//console.log(chartdata.data[i]);
-			if(type === "bar"){
-				//oldData[i].bars= chartdata.data[i].bars;
-				//chartdata.data[i].bars = undefined;
-			}
-			else{
-				//oldData[i].points= data.datasets[i].points;
-				//chartdata.data[i].data = undefined;
-			}
-		}
-		else{
-			if(oldData[i])
-				if(oldData[i].data && !oldData[i].bars && !oldData[i].points)
-					chartdata.data[i].data = oldData[i].data;
-			//oldData[i] = undefined;0
-		}
-	}
-	//console.log(chartdata.data);
-
 	var data = {
 		labels: data1[0],
 		datasetFill: false,
@@ -147,6 +125,7 @@ var loadChart = function(data, type, collection){
 	          			chart.datasets[index].bars = undefined;
 					}
 					chart.update();
+					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
 				}
 			}
@@ -171,6 +150,7 @@ var loadChart = function(data, type, collection){
 	          			//oldData[index].bars= undefined;
 					}
 					chart.update();
+					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
 					}
 			}
@@ -207,6 +187,7 @@ function dataset(data, collection) {
 			line.fillColor = line.strokeColor;
 		}
     //Put line into data Array
+    	//console.log(line);
     	if(hidden[i-1]===false){
     		oldData[i-1].data = line;
     		line.data = undefined;
@@ -275,4 +256,52 @@ function deque(array) {
 	var ele = array[0];
 	array.splice(0,1);
 	return ele;
+}
+
+function convertPointsToBars(){
+	var datasetLen = chart.datasets.length;
+	var chartBase = chart.scale.endPoint;
+
+	for(var i = 0; i < chart.datasets.length; i ++){
+		if(chart.datasets[i].points){
+			chart.datasets[i].bars = [];
+			for(var j = 0; j <chart.datasets[i].points.length; j++){
+				var point = chart.datasets[i].points[j];
+				var bar = new chart.BarClass();
+				bar.base = chart.scale.endPoint;
+				bar.datasetLabel = point.datasetLabel;
+				bar.fillColor = point.fillColor;
+				bar.highlightFill = point.fillColor;
+				bar.highlightStroke = point.fillColor;
+				bar.label = point.label;
+				bar.strokeColor = point.fillColor;
+				bar.value = point.value;
+				bar.width = chart.scale.calculateBarWidth(chart.datasets.length);
+				bar.x = chart.scale.calculateBarX(datasetLen,i,j);
+				bar.y = point.y;
+				chart.datasets[i].bars.push(bar);
+			}
+		}
+		else{
+			if(oldData[i]){
+				oldData[i].bars = [];
+				for(var j = 0; j <oldData[i].points.length; j++){
+					var point = oldData[i].points[j];
+					var bar = new chart.BarClass();
+					bar.base = chart.scale.endPoint;
+					bar.datasetLabel = point.datasetLabel;
+					bar.fillColor = point.fillColor;
+					bar.highlightFill = point.fillColor;
+					bar.highlightStroke = point.fillColor;
+					bar.label = point.label;
+					bar.strokeColor = point.fillColor;
+					bar.value = point.value;
+					bar.width = chart.scale.calculateBarWidth(chart.datasets.length);
+					bar.x = chart.scale.calculateBarX(datasetLen,i,j);
+					bar.y = point.y;
+					oldData[i].bars.push(bar);
+				}
+			}
+		}
+	}
 }
