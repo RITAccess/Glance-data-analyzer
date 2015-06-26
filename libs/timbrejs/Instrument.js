@@ -8,6 +8,7 @@ function Instrument(number){
 	this.makeSoundFont(number);
 	this.infoCollection = new ArrayCollection([]);
 	this.playing = false;
+  this.isLoading = false;
 }
 
 //Create a T soundfont object based on number
@@ -17,8 +18,16 @@ Instrument.prototype.makeSoundFont = function(number){
 
 //Change instrument number of this instrument
 Instrument.prototype.changeInstrument = function(number){
-	this.number = number;
+	if(this.number === number)
+    return;
+  //T.soundfont.emptyCache();
+  this.isLoading = true;
+  //console.log(true);
+  this.number = number;
 	this.makeSoundFont(this.number);
+  //setTimeout(function() {}, 10);
+  this.setCollection(this.infoCollection.collection);
+  //console.log(false);
 }
 
 //Play a single note
@@ -59,6 +68,7 @@ Instrument.prototype.setCollection = function(collection) {
     dropdownString += "<option value="+(i + 1)+">"+(i + 1)+"</option>"
   }
   this.isLoading = true;
+  //console.log(true)
   /*[DO NOT MOVE]: This section preloads all of the notes in the current collection
   * in order to make playback even and uniform (if you're getting a sound that resembles
   * an individual sitting on a piano, then you probably moved this)
@@ -70,9 +80,10 @@ Instrument.prototype.setCollection = function(collection) {
     }
   }
   this.isLoading = false;
-  this.isDirty = true;
+  //console.log(false);
   document.getElementById("audioSpan").style.display = "";
   document.getElementById("lineDropdown").innerHTML = dropdownString;
+  //return true;
 }
 
 //A change was made to a line in the table
@@ -87,11 +98,14 @@ Instrument.prototype.changeLine = function(line, index, newValue) {
 //Toggle playing either on or off
 Instrument.prototype.playToggle = function(line, startIndex, endIndex) {
   if(!this.playing) {
-    if(this.isLoading){
-      while(this.isLoading){
-        if(!this.isLoading)
+      //this.isLoading = true;
+      while(true){
+        //console.log("loop");
+        if(!this.isLoading){
+          //console.log("paused");
+          setTimeout(function() {}, 100);
           break;
-      }
+        }
     }
     //this.playLine(line, startIndex, endIndex);
     //console.log(loader);
