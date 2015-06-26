@@ -42,7 +42,7 @@
       <label for="instrumentDropdown" tabindex="0"> Instrument </label>
       <select id="instrumentDropdown" class='drop-down instr-drop-down' aria-label="Instrument" title="selected"></select>
       <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
-        <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
+        <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
     </span>
   </header>
     <div id="start">
