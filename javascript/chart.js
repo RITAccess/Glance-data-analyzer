@@ -283,7 +283,7 @@ function convertPointsToBars(){
 			}
 		}
 		else{
-			if(oldData[i]){
+			if(oldData[i] && oldData[i].points){
 				oldData[i].bars = [];
 				for(var j = 0; j <oldData[i].points.length; j++){
 					var point = oldData[i].points[j];

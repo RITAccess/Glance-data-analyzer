@@ -3661,7 +3661,6 @@
 				if(this.numeric){
 					console.log("if numeric is true - initialize");
 					var pts = [];
-			
 					for(var i = 0; i < dataset.data.length; i++){
 						pts.push([data.labels[i], dataset.data[i]]);
 					}
@@ -3984,7 +3983,7 @@
 			}
 			
 			//if there's literally no data
-			if(validRows.length == 0 || !this.datasets[validRows[0]].points[0].label)
+			if(validRows.length == 0 || !this.datasets[validRows[0]].points[0])
 				return undefined;
 
 			// if first label isn't a number...
