@@ -40,9 +40,9 @@
       <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
        at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>
       <label for="instrumentDropdown" tabindex="0"> Instrument </label>
-      <select id="instrumentDropdown" class='drop-down' aria-label="Instrument" title="selected"></select>
+      <select id="instrumentDropdown" class='drop-down instr-drop-down' aria-label="Instrument" title="selected"></select>
       <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
-        <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
+        <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
     </span>
   </header>
     <div id="start">
@@ -79,10 +79,10 @@
       <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
       <div id="dataPlot">
         <h3 id="plot-header" style="display:none;">Data Table</h3>
+        <div id="tableCount"></div>
         <div id="tblContainer" style="display:none;" title="Data Table">
           <div id="slickTable" style="width:100%;"></div>
         </div> <!-- end id="tblContainer" -->
-        <div id="tableCount"></div>
         <div id="remInstruction" class="no-print"></div>
       <div id="tableControls" style="display: none" class="no-print">
         <div id="rowLabel">
