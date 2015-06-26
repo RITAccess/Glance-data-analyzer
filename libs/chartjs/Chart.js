@@ -3984,7 +3984,7 @@
 			}
 			
 			//if there's literally no data
-			if(validRows.length == 0)
+			if(validRows.length == 0 || !this.datasets[validRows[0]].points[0].label)
 				return undefined;
 
 			// if first label isn't a number...
