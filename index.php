@@ -40,7 +40,7 @@
       <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
        at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>
       <label for="instrumentDropdown" tabindex="0"> Instrument </label>
-      <select id="instrumentDropdown" class='drop-down' aria-label="Instrument" title="selected"></select>
+      <select id="instrumentDropdown" class='drop-down instr-drop-down' aria-label="Instrument" title="selected"></select>
       <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
         <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
     </span>

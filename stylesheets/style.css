@@ -195,12 +195,22 @@ and doesn't seem to effect anything when comment sliger-range out*/
 /** END changing Browse to Load CSV **/
 
 /*******************************/
+/*
 #audioSpan {
     float: right;
     position: absolute;
     padding-right: 2%;
     margin-top: 0.9%;
     right: 0em;
+}
+*/
+#audioSpan{
+    width: 100%;
+    background: url('footer_lodyas/footer_lodyas.png');
+    float: left;
+    margin-bottom: 5%;
+    padding: 2% 3.5%;
+    box-shadow: 0px 10px 10px -10px #000;
 }
 #playButton {
     height: 35px;
@@ -382,11 +392,7 @@ and doesn't seem to effect anything when comment sliger-range out*/
     font-size: 15px;
 }
 .instr-drop-down {
-    width: 100px;
-    box-shadow: 0px 5px 5px;
-    border-radius: 10px;
-    border: 2px solid white;
-    font-size: 15px;
+    width: 200px;
 }
 .htContainer {
     display: inline-block;
@@ -498,7 +504,7 @@ th, td, .printTable{
 
 /************************************/
 
-/* START media query max-width: 1068px */
+/* START media query max-width: 1068px *
 @media screen and (max-width: 1068px) {
     #audioSpan{
         width: 100%;
@@ -510,7 +516,7 @@ th, td, .printTable{
         box-shadow: 0px 10px 10px -10px #000;
     }
     #audioSpan:before{
-        content: '\A'; /* acts like break tag */
+        content: '\A'; /* acts like break tag *
     }
 }
 /* END media query max-width: 1068px */
