@@ -21,7 +21,7 @@
   </head>
 <body>
   <header>
-    <h1 id="title" tabindex="0"><a href="index.php">Data Analyzer</a></h1>
+    <h1 id="title"><a href="index.php">Data Analyzer</a></h1>
     <div class="inputBtnSection no-print">
       <label class="fileUpload">
           <input id="files" type="file" accept=".csv" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
@@ -39,28 +39,29 @@
       <label for="lineDropdown" tabindex="0"> Row number </label>
       <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
        at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>
+      <label for="instrumentDropdown" tabindex="0"> Instrument </label>
+      <select id="instrumentDropdown" class='drop-down instr-drop-down' aria-label="Instrument" title="selected"></select>
       <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
-        <i id="icon" class="fa fa-play" style="padding-left: 30%;"></i></button>
+        <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
     </span>
   </header>
     <div id="start">
-      <h1 tabindex="0">Welcome to Data Analyzer</h1>
-      <p tabindex="0">
+      <h1>Welcome to Data Analyzer</h1>
+      <p>
         This web application was designed to help analyze data through graphs, calculated values, and sound.
         Here's a quick look at how to use the application:
       </p>
       <ul>
-        <li tabindex="0">Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li>
-        <li tabindex="0">Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The overlay on the graph can highlight certain parts of the data to be turned into sound.</li>
-        <li tabindex="0">Data Table: There are two options with the data table; load a pre-made CSV (Comma Separated Value) file, or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.
-        </li>
-        <li tabindex="0">Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
+        <li>Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li>
+        <li>Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The overlay on the graph can highlight certain parts of the data to be turned into sound.</li>
+        <li>Data Table: There are two options with the data table; load a pre-made CSV (Comma Separated Value) file, or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.</li>
+        <li>Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
       </ul>
-      <h3 id="startInst" tabindex="0" >To get started, select Load CSV or Create New Table at the top!</h3>
+      <h3 id="startInst">To get started, select Load CSV or Create New Table at the top!</h3>
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;">
       <div id="rTypeSelBody" style="display:none;">
-        <h3 tabindex="0">Data Analyzer Graph</h3>
+        <h3>Data Analyzer Graph</h3>
         <form id="rTypeSel" class="no-print">
           <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" aria-label="Change Graph Type" onclick="rType()">
           <label for="lineRadioButton">Line Graph</label>
@@ -75,13 +76,13 @@
         <rect id="background" x="0" y="0" width="800" height="400" />
         <rect id="selection" x="0" y="0" width="800" height="400" />
       </svg>
-      <canvas id="myChart" tabindex="0" title="Data Analyzer Graph"  width="800" height="400"></canvas>
+      <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
       <div id="dataPlot">
         <h3 id="plot-header" style="display:none;">Data Table</h3>
+        <div id="tableCount"></div>
         <div id="tblContainer" style="display:none;" title="Data Table">
           <div id="slickTable" style="width:100%;"></div>
         </div> <!-- end id="tblContainer" -->
-        <div id="tableCount"></div>
         <div id="remInstruction" class="no-print"></div>
       <div id="tableControls" style="display: none" class="no-print">
         <div id="rowLabel">
@@ -103,10 +104,8 @@
         include 'php/ajax.php';
     ?>
     <div id='summaryBox' style="display:none;">
-      <h3 id='summary-header' tabindex="0">Graph Data</h3>
-      <div id="summary-editor" class="color-editor-input">
-        <ol id="colors" ></ol>
-      </div>
+      <h3 id='summary-header'>Graph Data</h3>
+        <ol id="colors" class="color-editor-input"></ol>
     </div>
   </div><!-- end div id="content" -->
 <!-- div for LOAD CSV pop-up list -->

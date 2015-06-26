@@ -26,6 +26,10 @@ header {
     clear: both;
     vertical-align: middle;
 }
+
+#slickTable .slick-viewport {
+    overflow-y: scroll;
+}
 #title {
     display: inline;
     font-weight: bold;
@@ -191,6 +195,7 @@ and doesn't seem to effect anything when comment sliger-range out*/
 /** END changing Browse to Load CSV **/
 
 /*******************************/
+/*
 #audioSpan {
     float: right;
     position: absolute;
@@ -198,11 +203,19 @@ and doesn't seem to effect anything when comment sliger-range out*/
     margin-top: 0.9%;
     right: 0em;
 }
+*/
+#audioSpan{
+    width: 100%;
+    background: url('footer_lodyas/footer_lodyas.png');
+    float: left;
+    margin-bottom: 5%;
+    padding: 2% 3.5%;
+    box-shadow: 0px 10px 10px -10px #000;
+}
 #playButton {
-    height: 32px;
-    width: 32px;
+    height: 35px;
+    width: 35px;
     cursor: pointer;
-    padding-left: 0.10em;
     margin-left: 0.5em;
     background: #FFF;
     border-color: #FFF;
@@ -236,7 +249,7 @@ and doesn't seem to effect anything when comment sliger-range out*/
     height: auto;
     max-height: 300px;
     margin: auto;
-    margin-top: 2%;
+    margin-top: 3%;
     overflow: auto;
 }
 /*******************************/
@@ -265,9 +278,6 @@ and doesn't seem to effect anything when comment sliger-range out*/
     font-size: 20px;
     position: relative;/* part of making download button bottom of div*/
 }
-#plot-header {
-    padding: 5% 0;
-}
 #dataSummary {
     width: 100%;
     text-align:center;
@@ -286,10 +296,11 @@ and doesn't seem to effect anything when comment sliger-range out*/
     padding-left: 28px;
 }
 #tableCount {
-    padding: 5% 0 3% 0;
+    margin-top: 2%;
 }
 #remInstruction {
-    padding-bottom: 3%;
+    margin-top: 5%;
+    margin-bottom: 3%;
 }
 #tableControls {/* positioning buttons to bottom CENTER of parent container dataPlot */
     position: absolute;
@@ -339,7 +350,6 @@ and doesn't seem to effect anything when comment sliger-range out*/
 #summaryBox {
     width: 100%;
     height: auto;
-    max-height: 400px;
     font-weight: bold;
     font-size: 20px;
     text-align: center;
@@ -350,15 +360,16 @@ and doesn't seem to effect anything when comment sliger-range out*/
     border-radius: 5px;
     border: 3px solid #000;
     padding: 1% 0 4% 0;
-    overflow: auto;
 }
 #summary-header {
     width: 100%;
     border-radius: 5px;
 }
 #colors {
+    max-height: 300px;
     text-align: left;
     list-style: none;
+    overflow: auto;
 }
 #colors > li {
     margin: 4% 0;
@@ -379,6 +390,9 @@ and doesn't seem to effect anything when comment sliger-range out*/
     border-radius: 10px;
     border: 2px solid white;
     font-size: 15px;
+}
+.instr-drop-down {
+    width: 200px;
 }
 .htContainer {
     display: inline-block;
@@ -490,7 +504,7 @@ th, td, .printTable{
 
 /************************************/
 
-/* START media query max-width: 1068px */
+/* START media query max-width: 1068px *
 @media screen and (max-width: 1068px) {
     #audioSpan{
         width: 100%;
@@ -502,7 +516,7 @@ th, td, .printTable{
         box-shadow: 0px 10px 10px -10px #000;
     }
     #audioSpan:before{
-        content: '\A'; /* acts like break tag */
+        content: '\A'; /* acts like break tag *
     }
 }
 /* END media query max-width: 1068px */

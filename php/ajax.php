@@ -16,7 +16,7 @@ if(isset($_POST['action'])){
 */
 function writeFile($filename, $data){
 	//Open file and write to it. If the file opening failed, say so.
-	$f = fopen("$filename", 'w') or die("file open failed ");
+	$f = fopen("$filename", "w") or die("file open failed ");
 	fwrite($f, $data);
 	fclose($f);
 	//Clean current buffer

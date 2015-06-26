@@ -3661,7 +3661,6 @@
 				if(this.numeric){
 					console.log("if numeric is true - initialize");
 					var pts = [];
-			
 					for(var i = 0; i < dataset.data.length; i++){
 						pts.push([data.labels[i], dataset.data[i]]);
 					}
@@ -3737,7 +3736,6 @@
 		},
 		
 		update : function(){
-			console.log("update");
 			this.scale.update();
 			// Reset any highlight colours before updating.
 			helpers.each(this.activeElements, function(activeElement){
@@ -3985,7 +3983,7 @@
 			}
 			
 			//if there's literally no data
-			if(validRows.length == 0)
+			if(validRows.length == 0 || !this.datasets[validRows[0]].points[0])
 				return undefined;
 
 			// if first label isn't a number...
