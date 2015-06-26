@@ -94,7 +94,7 @@ var playStopAudioButton = function () {
     if(player.buffer === undefined){
       player.changeInstrument(document.getElementById("instrumentDropdown").value);
       //player.setCollection(collection.collection);
-      setTimeout(function() {}, 900);
+      setTimeout(function() {}, 2000);
     }
     //setTimeout(function() {}, 10000);
     player.playToggle(document.getElementById("lineDropdown").value - 1, overlay.slider[0], overlay.slider[1]);
