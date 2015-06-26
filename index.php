@@ -77,10 +77,10 @@
       <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
       <div id="dataPlot">
         <h3 id="plot-header" style="display:none;">Data Table</h3>
+        <div id="tableCount"></div>
         <div id="tblContainer" style="display:none;" title="Data Table">
           <div id="slickTable" style="width:100%;"></div>
         </div> <!-- end id="tblContainer" -->
-        <div id="tableCount"></div>
         <div id="remInstruction" class="no-print"></div>
       <div id="tableControls" style="display: none" class="no-print">
         <div id="rowLabel">

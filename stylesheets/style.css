@@ -239,7 +239,7 @@ and doesn't seem to effect anything when comment sliger-range out*/
     height: auto;
     max-height: 300px;
     margin: auto;
-    margin-top: 2%;
+    margin-top: 3%;
     overflow: auto;
 }
 /*******************************/
@@ -268,9 +268,6 @@ and doesn't seem to effect anything when comment sliger-range out*/
     font-size: 20px;
     position: relative;/* part of making download button bottom of div*/
 }
-#plot-header {
-    padding: 5% 0;
-}
 #dataSummary {
     width: 100%;
     text-align:center;
@@ -289,10 +286,11 @@ and doesn't seem to effect anything when comment sliger-range out*/
     padding-left: 28px;
 }
 #tableCount {
-    padding: 5% 0 3% 0;
+    margin-top: 2%;
 }
 #remInstruction {
-    padding-bottom: 3%;
+    margin-top: 5%;
+    margin-bottom: 3%;
 }
 #tableControls {/* positioning buttons to bottom CENTER of parent container dataPlot */
     position: absolute;
