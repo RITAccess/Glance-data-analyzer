@@ -34,16 +34,14 @@
         <span class="createBtn" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
       </label>
     </div>
+    <!--span id="rTypeSelBody" style="display:none;">
+      <select id="rTypeSel" class="no-print">
+        <option id="lineRadioButton" name="rGraphSel" value="Line" aria-label="Change Graph Type" onclick="rType()">Line Graph</label>
+        <option id="barRadioButton" name="rGraphSel" value="Bar" aria-label="Change Graph Type" onclick="rType()">Bar Graph</option>
+        <option id="scatterRadioButton" name="rGraphSel" value="Scatter" aria-label="Change Graph Type" onclick="rType()">Scatter Plot</option>
+      </select>
+    </span>< END id="rTypeSelBody" -->
     <output id="list"></output>
-    <span id="audioSpan" class="no-print" style="display: none">
-      <label for="lineDropdown" tabindex="0"> Row number </label>
-      <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
-       at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>
-      <label for="instrumentDropdown" tabindex="0"> Instrument </label>
-      <select id="instrumentDropdown" class='drop-down instr-drop-down' aria-label="Instrument" title="selected"></select>
-      <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
-        <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
-    </span>
   </header>
     <div id="start">
       <h1>Welcome to Data Analyzer</h1>
@@ -60,23 +58,40 @@
       <h3 id="startInst">To get started, select Load CSV or Create New Table at the top!</h3>
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
-      <div id="rTypeSelBody" style="display:none;">
+      <div id="dataGraph">
         <h3>Data Analyzer Graph</h3>
-        <form id="rTypeSel" class="no-print">
-          <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" aria-label="Change Graph Type" onclick="rType()">
-          <label for="lineRadioButton">Line Graph</label>
-          <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" aria-label="Change Graph Type" onclick="rType()">
-          <label for="barRadioButton">Bar Graph</label>
-          <input id="scatterRadioButton" type="radio" name="rGraphSel" aria-label="Change Graph Type" value="Scatter" onclick="rType()">
-          <label for="scatterRadioButton">Scatter Plot</label>
-        </form>
-      </div><!-- END id="rTypeSelBody" -->
-      <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" class="no-print"></div>
-      <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
-        <rect id="background" x="0" y="0" width="800" height="400" />
-        <rect id="selection" x="0" y="0" width="800" height="400" />
-      </svg>
-      <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
+        <!-- radio selection for chart type-->
+
+        <div id="rTypeSelBody" style="display:none;">
+          <form id="rTypeSel" class="no-print">
+            <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" aria-label="Change Graph Type" onclick="rType()">
+            <label for="lineRadioButton">Line Graph</label>
+            <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" aria-label="Change Graph Type" onclick="rType()">
+            <label for="barRadioButton">Bar Graph</label>
+            <input id="scatterRadioButton" type="radio" name="rGraphSel" aria-label="Change Graph Type" value="Scatter" onclick="rType()">
+            <label for="scatterRadioButton">Scatter Plot</label>
+          </form>
+        </div><!-- END id="rTypeSelBody" -->
+
+        <!-- -->
+        <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" class="no-print"></div>
+        <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
+          <rect id="background" x="0" y="0" width="800" height="400" />
+          <rect id="selection" x="0" y="0" width="800" height="400" />
+        </svg>
+        <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
+      </div><!-- END id="dataGraph" -->
+      <div id="audioSpanSec">
+        <span id="audioSpan" class="no-print" style="display: none">
+          <label for="lineDropdown" tabindex="0"> Row number </label>
+          <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
+           at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>
+          <label for="instrumentDropdown" tabindex="0"> Instrument </label>
+          <select id="instrumentDropdown" class='drop-down instr-drop-down' aria-label="Instrument" title="selected"></select>
+          <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
+            <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
+        </span>
+      </div><!-- END id="dataGraph" -->
       <div id="dataPlot">
         <h3 id="plot-header" style="display:none;">Data Table</h3>
         <div id="tableCount"></div>

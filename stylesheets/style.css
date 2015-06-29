@@ -43,6 +43,30 @@ header {
 }
 /*********************************/
 
+
+#rTypeSelBody{/* chart/graph type radio selection */
+    text-align: center;
+    margin: auto;
+    margin-bottom: 3%;
+}
+#rTypeSel input{
+    cursor: pointer;
+}
+#rTypeSel label {
+    margin-right: 5%;
+    cursor: pointer;
+}
+
+/*
+#audioSpan {
+    float: right;
+    position: absolute;
+    padding-right: 2%;
+    margin-top: 0.9%;
+    right: 0em;
+}
+*/
+
 /* START style for about section */
 #start {
     text-align: justify;
@@ -90,18 +114,6 @@ header {
 #graphImg{/*printer.js: image of graph in the print page */
     margin-bottom: 7%;
 }
-#rTypeSelBody{/* chart/graph type radio selection */
-    text-align: center;
-    margin: auto;
-    margin-bottom: 3%;
-}
-#rTypeSel input{
-    cursor: pointer;
-}
-#rTypeSel label {
-    margin-right: 5%;
-    cursor: pointer;
-}
 #selection {
     fill: lightblue;/*#ADD8E6*/
     fill-opacity: 0.3;
@@ -138,6 +150,9 @@ and doesn't seem to effect anything when comment sliger-range out*/
 /*******************************/
 #overlay {
     position:absolute;
+}
+#dataGraph h3{
+    text-align: center;
 }
 /*******************************/
 
@@ -195,56 +210,6 @@ and doesn't seem to effect anything when comment sliger-range out*/
 /** END changing Browse to Load CSV **/
 
 /*******************************/
-/*
-#audioSpan {
-    float: right;
-    position: absolute;
-    padding-right: 2%;
-    margin-top: 0.9%;
-    right: 0em;
-}
-*/
-#audioSpan{
-    width: 100%;
-    background: url('footer_lodyas/footer_lodyas.png');
-    float: left;
-    margin-bottom: 5%;
-    padding: 2% 3.5%;
-    box-shadow: 0px 10px 10px -10px #000;
-}
-#playButton {
-    height: 35px;
-    width: 35px;
-    cursor: pointer;
-    margin-left: 0.5em;
-    background: #FFF;
-    border-color: #FFF;
-    border-radius: 100%;
-    border-style: solid;
-    color: #000;
-    box-shadow: 0px 5px 10px black;
-}
-#playButton:hover, #playButton:focus {
-    background-color: #000;
-    color: #FFF;
-}
-#bpm {
-    width: 65px;
-    text-align: center;
-    font-size: 15px;
-}
-.drop-down {
-    width: 50px;
-    box-shadow: 0px 5px 5px;
-    border-radius: 10px;
-    border: 2px solid white;
-    font-size: 15px;
-}
-.instr-drop-down {/* drop down for instrument */
-    width: 200px;
-}
-/*******************************/
-/*******************************/
 #table {
     text-align: center;
 }
@@ -278,6 +243,45 @@ and doesn't seem to effect anything when comment sliger-range out*/
 }
 /* END: for print button page, table section */
 
+/*******************************/
+#audioSpanSec{
+    width: 100%;
+    text-align: center;
+    border: 3px solid #000;
+    border-radius: 5px;
+    margin: 5% 0;
+    padding: 3% 0;
+}
+#playButton {
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+    margin-left: 0.5em;
+    background: #FFF;
+    border-color: #FFF;
+    border-radius: 100%;
+    border-style: solid;
+    color: #000;
+    box-shadow: 0px 5px 10px black;
+}
+#playButton:hover, #playButton:focus {
+    background-color: #000;
+    color: #FFF;
+}
+#bpm {
+    width: 65px;
+    text-align: center;
+    font-size: 15px;
+}
+.drop-down {
+    width: 50px;
+    border-radius: 10px;
+    border: 0.05em solid black;
+    font-size: 15px;
+}
+.instr-drop-down {/* drop down for instrument */
+    width: 200px;
+}
 /*******************************/
 #dataPlot {
     width: 100%;
