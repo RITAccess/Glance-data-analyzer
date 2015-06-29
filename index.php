@@ -59,7 +59,7 @@
       </ul>
       <h3 id="startInst">To get started, select Load CSV or Create New Table at the top!</h3>
     </div> <!-- End of start div -->
-    <div id="content" style="position: absolute; top: -9999px; left: -9999px;">
+    <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
       <div id="rTypeSelBody" style="display:none;">
         <h3>Data Analyzer Graph</h3>
         <form id="rTypeSel" class="no-print">
