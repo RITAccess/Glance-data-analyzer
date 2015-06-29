@@ -1,6 +1,7 @@
 "use strict"; // strict mode syntax
 var grid = null;
-
+var oldGrid = null;
+var totalData = [];
 var ColumnWidth = 130; //** CHANGE THIS TO CHANGE COLUMN WIDTH! **
 
 // initial table properties, after getting the data from the file.
@@ -66,6 +67,9 @@ var loadSlickTable = function(fileData){
    	//Grid creation
     grid = new Slick.Grid(c1, data, columns, options);
 
+    // Copy of data in the grid as an array
+	updateGrid();
+	holdData(oldGrid);
   });
   return grid;
 }
@@ -98,22 +102,31 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			//Update audio with new value
 			player.changeLine(row-1,col - 1,newVal);
 			// change value in chart
-			if(type ==="bar")
-				chart.datasets[row-1].bars[col - 1].value = newVal;
-			else
-				chart.datasets[row-1].points[col - 1].value = newVal;
+			if(type ==="bar"){
+				if(chart.datasets[row-1].bars)
+					chart.datasets[row-1].bars[col - 1].value = newVal;
+				else
+					oldData[row-1].bars[col-1].value = newVal;
+			}
+			else{
+				if(chart.datasets[row-1].points)
+					chart.datasets[row-1].points[col - 1].value = newVal;
+				else
+					oldData[row-1].points[col-1].value = newVal;
+			}
 		}
 		// If not, revert to old value (from chart)
 		else {
 			var oldVal = chart.datasets[row-1].points[col - 1].value;
 			grid.getData()[row][col] = oldVal;
-			console.log(grid.getData()[row][col]);
 		}
 
 		//update chart and overlay
+		updateGrid();
+	    holdData(oldGrid);
 		chart.update();
 		summary.update();
-	});
+	}); 
 }
 
 //Hides slick grid header bars
@@ -139,33 +152,174 @@ function checkRemove(){
 	}
 	//Check for columns to remove
 	for(var i = 1; i < k; i++){
-		if(grid.getData()[0][i]===""){
-			if(confirm("Delete column " + i + "?")){	//Confirm with user
-				removeColumns(i,1);	//Remove is confirmed
-				if(grid.getCellNode(0,i)!= null)
-					grid.gotoCell(0,i);
+		if (k > 3) { // Check if there are enough columns to have one removed
+			if(grid.getData()[0][i]===""){
+				if(confirm("Delete column " + i + "?")){	//Confirm with user
+					removeColumns(i,1);	//Remove if confirmed
+					totalData.pop();
+					totalData.splice(totalData.length-2, 1);
+					if(grid.getCellNode(0,i)!= null)
+						grid.gotoCell(0,i);
+					else{
+						grid.gotoCell(0,i-1);
+					}
+				}
 				else{
-					grid.gotoCell(0,i-1);
+					grid.gotoCell(0, i);
+					grid.getData()[0][i] = oldGrid[0][i];	//Set back to default value if not
+					chart.scale.xLabels[i-1] = oldGrid[0][i];
 				}
 			}
-			else
-				grid.getData()[0][i] = i;	//Set back to default value if not
+		} 
+		// Reset column label if the graph isn't big enough
+		else if (grid.getData()[0][i] === "") {
+			alert("Not enough columns to remove!"); // Error message for when there aren't enough columns
+			grid.gotoCell(0, i);
+			grid.getData()[0][i] = oldGrid[0][i];
+			chart.scale.xLabels[i-1] = oldGrid[0][i];
 		}
 	}
+
 	//Check for rows to remove
-	for(var i = 0; i < grid.getData().length; i++){
-		if(grid.getData()[i][0]===""){
-			if(confirm("Delete row " + i + "?")){	//Confirm with user
-				removeRows(i,1);	//Remove if confirmed
-				if(grid.getCellNode(i,0)!= null)
-					grid.gotoCell(i,0);
+	for(var i = 0; i < grid.getData().length; i++){ 
+		if(grid.getData().length - 1 >= 2) { // Check if there are enough rows to have one removed
+			if(grid.getData()[i][0]===""){
+				if(confirm("Delete row " + i + "?")){	//Confirm with user
+					removeRows(i,1);	//Remove if confirmed
+					totalData.pop();
+					totalData.splice(totalData.length-2, 1);
+					if(grid.getCellNode(i,0)!= null)
+						grid.gotoCell(i,0);
+					else{
+						grid.gotoCell(i-1,0);
+					}
+				}
 				else{
-					grid.gotoCell(i-1,0);
+					grid.gotoCell(i, 0);
+					grid.getData()[i][0] = oldGrid[i][0];	//Set back to default value if not
 				}
 			}
-			else
-				grid.getData()[i][0] = i;	//Set back to default value if not
+		} 
+		// Reset row label if the graph isn' big enough
+		else if (grid.getData()[i][0] === "") {
+			alert("Not enough rows to remove!");
+			grid.gotoCell(i, 0);
+			grid.getData()[i][0] = oldGrid[i][0];
 		}
 	}
+
+    chart.update();
 	document.getElementById('tblContainer').style.width="100%";
 }
+
+// Update data grid array
+function updateGrid() {
+	oldGrid = [];
+	for(var i = 0; i < grid.getData().length; i++){
+		oldGrid[i] = [];
+		for(var key in grid.getData()[i]){
+			oldGrid[i].push(grid.getData()[i][key]);
+		}
+		oldGrid[i].pop();
+	}
+}
+
+// Holds old data going back five times plus the most recent data
+function holdData(newData) {
+	if (totalData.length <= 9) {
+		totalData.push(newData);
+	}
+	else {
+		totalData.splice(0, 1);
+		totalData.push(newData);
+	}
+}
+
+// Goes back one in the totaldata set
+function undo() {
+	// Checks if any changes have been recorded
+	if (totalData.length > 1) {
+		var prevData = totalData[totalData.length-2];
+		var dataBack = {
+			data: [],
+			errors: [],
+			meta: {}
+		};
+
+		// Add row back into the table
+		if (oldGrid.length < prevData.length) {
+			dataBack.data = prevData;
+			updateGrid();
+			loadData(dataBack);
+			totalData.pop();
+		}
+		// Subtract bottom row from table
+		else if (oldGrid.length > prevData.length) {
+			subtractRow();
+			updateGrid();
+			totalData.pop();
+		}
+		else {
+			// Resets any value changes back one set of data
+			for (var i = 0; i < prevData.length; i++) {
+				// Add column back into table
+				if (oldGrid[i].length < prevData[i].length) {
+					dataBack.data = prevData;
+					updateGrid();
+					loadData(dataBack);
+					totalData.pop();
+					break;
+				} 
+				else if (oldGrid[i].length > prevData[i].length) {
+					subtractColumn();
+					updateGrid();
+					totalData.pop();
+					break;
+				}
+				else {
+					for (var j = 0; j < prevData[i].length; j++) {
+						grid.getData()[i][j] = prevData[i][j];
+						updateGrid();
+						if (i === 0) {
+							chart.scale.xLabels[j-1] = grid.getData()[0][j];
+						} 
+						else if (i >= 1 && j >= 1) {
+							player.changeLine(i-1,j - 1, grid.getData()[i][j]);
+								if(type ==="bar")
+									chart.datasets[i - 1].bars[j - 1].value = grid.getData()[i][j];
+								else
+									chart.datasets[i - 1].points[j - 1].value = grid.getData()[i][j];
+							}
+						// Tabs through all the cells to visually reset data
+						grid.gotoCell(i, j);
+					}
+				}
+			}
+		}
+		// Gets rid of the data set reverted from 
+		totalData.pop();
+		// Places focus back into the table
+		grid.gotoCell(0, 0);
+	} 
+	// Lets the user know that they have undone as far as they can
+	else {
+		alert("No more undos!");
+	}
+
+	// Updates everything
+	updateGrid();
+	chart.update();
+	summary.update();
+	document.getElementById('tblContainer').style.width = "100%";
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -48,8 +48,8 @@ function loadFile(){
           results.data[i].splice(0, 1, "Row " + i, firstCol);
         }
         results.data[0][0] = " ";
-      } 
-      
+      }
+
      if((resData[resData.length-1].length == 1) && (resData[resData.length-1][0] == "")){
         results.data.pop();
       }
@@ -73,7 +73,7 @@ var createFile = function(rows, columns) {
     rows = 1;
   }
   if (columns <= 2) {
-    columns = 3;
+    columns = 2;
   }
 
   // Reset color list
@@ -88,7 +88,7 @@ var createFile = function(rows, columns) {
   var rowArray = new Array(parseInt(rows) + 1);
 
   for (var i = 0; i < rowArray.length; i++) {
-    rowArray[i] = new Array(parseInt(columns));
+    rowArray[i] = new Array(parseInt(columns)+1);
 
     for (var j = 0; j < rowArray[i].length; j++) {
       rowArray[i][j] = 0;
@@ -165,7 +165,13 @@ var changeType= function(){
     var tempInt =  (currTable.data.length-1);
     currTable.data[currTable.data.length-1][0] = "Row " + tempInt.toString();
   }
-
+  oldGrid = [];
+      for(var i = 0; i < grid.getData().length; i++){
+        oldGrid[i] = [];
+        for(var key in grid.getData()[i]){
+          oldGrid[i].push(grid.getData()[i][key]);
+        }
+      }
   loadData(currTable);
   document.getElementById('tblContainer').style.width="100%";
  }
@@ -198,6 +204,13 @@ var addColumn = function() {
     currTable.data[0][currTable.data[0].length - 1] = "Label " + (currTable.data[0].length - 1);
     loadData(currTable);
     document.getElementById('tblContainer').style.width="100%";
+    oldGrid = [];
+      for(var i = 0; i < grid.getData().length; i++){
+        oldGrid[i] = [];
+        for(var key in grid.getData()[i]){
+          oldGrid[i].push(grid.getData()[i][key]);
+        }
+      }
  }
 
  var subtractRow = function() {
@@ -319,28 +332,30 @@ function removeColumns(start,skip){
   for(var key in resData[0]){
     k++;
   }
-  if(k-skip <= 3){
-    alert("Not enough columns to remove!");
-    return;
-  }
  for(var i = 0; i< resData.length; i++){
     currTable.data[i] = [];
     for(var j = 0; j<k; j++){
       if(j>=start){
         if(j=== start){
-          j += skip; 
+          j += skip;
         }
         var key = (j-skip).toString();
         currTable.data[i].push(resData[i][j]);
       }
       else{
         var key = j.toString();
-        currTable.data[i].push(resData[i][j]); 
+        currTable.data[i].push(resData[i][j]);
       }
     }
   }
-  currTable.data[0].pop();  
-  
+  currTable.data[0].pop();
+
+  for(var i = start; i < currTable.data[0].length;i++) {
+    if (currTable.data[0][i].includes("Label ")) {
+      currTable.data[0][i] = "Label " + i;
+    }
+  }
+
   loadData(currTable);
   changeType();
   document.getElementById('tblContainer').style.width = "100%";
@@ -361,10 +376,6 @@ function removeRows(start,skip){
   var k = 0;
   for(var key in resData[0]){
     k++;
-  }
-  if(resData.length < 3){
-    alert("Not enough rows to remove!");
-    return;
   }
   currTable.data[0] = [];
   for(var key in resData[0]){
@@ -391,8 +402,14 @@ function removeRows(start,skip){
       }
       else{
         if(resData[i][j] != undefined)
-        currTable.data[i].push(resData[i][j]);} 
+        currTable.data[i].push(resData[i][j]);}
+      }
     }
+
+    for(var i = start; i < currTable.data.length; i++) {
+      if (currTable.data[i][0].includes("Row ")) {
+        currTable.data[i][0] = "Row " + i;
+      }
     }
   loadData(currTable);
   changeType();

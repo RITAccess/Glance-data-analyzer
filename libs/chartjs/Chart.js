@@ -2166,6 +2166,7 @@
 			});
 
 			this.eachBars(function(bar){
+				//console.log(bar);
 				bar.save();
 			});
 			this.render();
@@ -3746,7 +3747,8 @@
 			this.render();
 		},
 		update : function(){
-			console.log("update");
+
+		this.scale.update();
 			// Reset any highlight colours before updating.
 			helpers.each(this.activeElements, function(activeElement){
 				activeElement.restore(['fillColor', 'strokeColor']);
@@ -4022,7 +4024,7 @@
 			}
 			
 			//if there's literally no data
-			if(validRows.length == 0)
+			if(validRows.length == 0 || !this.datasets[validRows[0]].points[0])
 				return undefined;
 
 			// if first label isn't a number...
