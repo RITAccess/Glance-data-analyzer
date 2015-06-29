@@ -59,7 +59,7 @@
       </ul>
       <h3 id="startInst">To get started, select Load CSV or Create New Table at the top!</h3>
     </div> <!-- End of start div -->
-    <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
+    <div id="content" style="position: absolute; top: -9999px; left: -9999px;">
       <div id="rTypeSelBody" style="display:none;">
         <h3>Data Analyzer Graph</h3>
         <form id="rTypeSel" class="no-print">
@@ -88,15 +88,15 @@
         <div id="rowLabel">
           <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"><i class="fa fa-minus"></i></button></label>
           <p style="display: inline">Rows</p>
-          <label><button id="addNewRow" aria-label="Add New Row" onclick="addRow()"><i class="fa fa-plus"></i></button></label>
+          <label><button id="addNewRow" aria-label="Add Row" onclick="addRow()"><i class="fa fa-plus"></i></button></label>
         </div>
         <div id="columnLabel">
           <label><button id="subtractColumn" aria-label="Remove Column" onclick="subtractColumn()"><i class="fa fa-minus"></i></button></label>
           <p style="display: inline"> Columns</p>
-          <label><button id="addNewCol" aria-label="Add New Column" onclick="addColumn()"><i class="fa fa-plus"></i></button></label>
+          <label><button id="addNewCol" aria-label="Add Column" onclick="addColumn()"><i class="fa fa-plus"></i></button></label>
         </div>
         <button id="undoButton" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
-        <button id="undoButton" aria-label="Redo"><i class="fa fa-repeat fa-lg"></i></button>
+        <button id="undoButton" aria-label="Redo"><i class="fa fa-repeat fa-lg"></i></button><!-- This needs a onclick="redo()" currently no function -->
         <button id="downloadCSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
         <button id="printButton" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
       </div>
