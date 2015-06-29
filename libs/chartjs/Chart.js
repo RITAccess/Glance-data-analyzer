@@ -3670,8 +3670,6 @@
 							pts.push([this.datasets[0].points[i].label,dataset.data[i]]);
 						}
 					}
-					
-					//console.log(pts);
 			
 					//find the min and max x values
 					var min = pts[0][0];

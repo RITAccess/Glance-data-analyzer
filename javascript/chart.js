@@ -324,16 +324,17 @@ function convertPointsToScatter(){
 			chart.datasets[i].scatterpoints = [];
 			for(var j = 0; j <chart.datasets[i].points.length; j++){
 				var point = chart.datasets[i].points[j];
-				var scatterPoint = new chart.PointClass();
-				scatterPoint.datasetLabel = point.datasetLabel;
-				scatterPoint.fillColor = point.fillColor;
-				scatterPoint.highlightFill = point.highlightFill;
-				scatterPoint.highlightStroke = point.highlightStroke;
-				scatterPoint.label = point.label;
-				scatterPoint.strokeColor = point.strokeColor;
-				scatterPoint.value = point.value;
-				scatterPoint.x = chart.scale.calculateX(j);
-				scatterPoint.y = chart.scale.calculateY(point.value);
+				var scatterPoint = new chart.PointClass({
+				datasetLabel: point.datasetLabel,
+				fillColor: point.fillColor,
+				highlightFill: point.highlightFill,
+				highlightStroke: point.highlightStroke,
+				label: point.label,
+				strokeColor: point.strokeColor,
+				value: point.value,
+				x: chart.scale.calculateX(j),
+				y: chart.scale.calculateY(point.value)
+				});
 				chart.datasets[i].scatterpoints.push(scatterPoint);
 			}
 			chart.datasets[i].points = [];
