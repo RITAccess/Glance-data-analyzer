@@ -274,9 +274,9 @@ and doesn't seem to effect anything when comment sliger-range out*/
     text-align:center;
     font-weight: bold;
     border-radius: 5px;
-    margin: 5% 0 15% 0;
+    margin: 5% 0 8% 0;
     font-size: 20px;
-    position: relative;/* part of making download button bottom of div*/
+    /* position: relative; part of making download button bottom of div*/
 }
 #dataSummary {
     width: 100%;
@@ -303,9 +303,10 @@ and doesn't seem to effect anything when comment sliger-range out*/
     margin-bottom: 3%;
 }
 #tableControls {/* positioning buttons to bottom CENTER of parent container dataPlot */
-    position: absolute;
+    /*position: absolute;*/
     width: 100%;
     text-align: center;
+    padding-left: 1.5%;
 }
 #rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #dialogboxfoot button {
     display: inline;
