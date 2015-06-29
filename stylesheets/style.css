@@ -213,8 +213,8 @@ and doesn't seem to effect anything when comment sliger-range out*/
     box-shadow: 0px 10px 10px -10px #000;
 }
 #playButton {
-    height: 35px;
-    width: 35px;
+    height: 32px;
+    width: 32px;
     cursor: pointer;
     margin-left: 0.5em;
     background: #FFF;
