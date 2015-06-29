@@ -304,9 +304,8 @@ and doesn't seem to effect anything when comment sliger-range out*/
 }
 #tableControls {/* positioning buttons to bottom CENTER of parent container dataPlot */
     position: absolute;
-    width: 110%;
+    width: 100%;
     text-align: center;
-    padding-right: 5.5%;
 }
 #rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #dialogboxfoot button {
     display: inline;
