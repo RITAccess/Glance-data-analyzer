@@ -3745,7 +3745,6 @@
 			this.render();
 		},
 		update : function(){
-			this.scale.update();
 			// Reset any highlight colours before updating.
 			helpers.each(this.activeElements, function(activeElement){
 				activeElement.restore(['fillColor', 'strokeColor']);
@@ -3803,7 +3802,6 @@
 					}, this);
 					this.scale.update();
 				}
-				
 				this.render();
 		},
 		eachPoints : function(callback){
