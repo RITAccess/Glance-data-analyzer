@@ -96,9 +96,10 @@
           <label><button id="addNewCol" aria-label="Add Column" onclick="addColumn()"><i class="fa fa-plus"></i></button></label>
         </div>
         <button id="undoButton" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
-        <button id="undoButton" aria-label="Redo"><i class="fa fa-repeat fa-lg"></i></button><!-- This needs a onclick="redo()" currently no function -->
+        <button id="redoButton" aria-label="Redo"><i class="fa fa-repeat fa-lg"></i></button><!-- This needs a onclick="redo()" currently no function -->
         <button id="downloadCSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
         <button id="printButton" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
+        <!--<button id="resetButton" aria-label="Reset"><i class="fa fa-refresh fa-lg"></i></button> -->
       </div>
     </div><!-- END id="tableCount" -->
     <?php
