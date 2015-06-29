@@ -34,14 +34,14 @@
         <span class="createBtn" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
       </label>
     </div>
-    <span id="rTypeSelBody" style="display:none;">
+    <span id="typeSelBody" style="display:none;">
       Select a graph type:
-      <select id="rTypeSel" class="no-print">
-        <option id="lineRadioButton" name="rGraphSel" value="Line" onclick="rType()">Line Graph</label>
-        <option id="barRadioButton" name="rGraphSel" value="Bar" onclick="rType()">Bar Graph</option>
-        <option id="scatterRadioButton" name="rGraphSel" value="Scatter" onclick="rType()">Scatter Plot</option>
+      <select id="typeSel" class="no-print">
+        <option id="lineRadioButton" name="graphTypeSel" value="Line" onclick="typeOpSel()">Line Graph</label>
+        <option id="barRadioButton" name="graphTypeSel" value="Bar" onclick="typeOpSel()">Bar Graph</option>
+        <option id="scatterRadioButton" name="graphTypeSel" value="Scatter" onclick="typeOpSel()">Scatter Plot</option>
       </select>
-    </span><!-- END id="rTypeSelBody" -->
+    </span><!-- END id="typeSelBody" -->
     <output id="list"></output>
   </header>
     <div id="start">
@@ -62,20 +62,6 @@
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
       <div id="dataGraph">
         <h3>Data Analyzer Graph</h3>
-        <!-- radio selection for chart type
-
-        <div id="rTypeSelBody" style="display:none;">
-          <form id="rTypeSel" class="no-print">
-            <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" aria-label="Change Graph Type" onclick="rType()">
-            <label for="lineRadioButton">Line Graph</label>
-            <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" aria-label="Change Graph Type" onclick="rType()">
-            <label for="barRadioButton">Bar Graph</label>
-            <input id="scatterRadioButton" type="radio" name="rGraphSel" aria-label="Change Graph Type" value="Scatter" onclick="rType()">
-            <label for="scatterRadioButton">Scatter Plot</label>
-          </form>
-        </div>< END id="rTypeSelBody" >
-
-        -->
         <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" class="no-print"></div>
         <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
           <rect id="background" x="0" y="0" width="800" height="400" />
