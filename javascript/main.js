@@ -54,6 +54,9 @@ var loadData = function (data) {
     if(chart && type === "bar"){
       convertPointsToBars();
     }
+    else if(chart && type ==="scatter"){
+      convertPointsToScatter();
+    }
     if(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)
       player = new WaveForm("sine");
     else

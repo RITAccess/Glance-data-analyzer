@@ -112,7 +112,7 @@ var loadChart = function(data, type, collection){
 					chart.datasets[index].strokeColor = transparent;
 					chart.datasets[index].pointColor = transparent;
 					chart.datasets[index].pointHighlightStroke = transparent;
-					if(type==="line" || type === "scatter"){
+					if(type==="line"){
 						if(!oldData[index])
 							oldData[index] = {};
 	          			oldData[index].points = chart.datasets[index].points;
@@ -123,6 +123,12 @@ var loadChart = function(data, type, collection){
 							oldData[index] = {};
 	          			oldData[index].bars = chart.datasets[index].bars;
 	          			chart.datasets[index].bars = undefined;
+					}
+					else{
+						if(!oldData[index])
+							oldData[index] = {};
+	          			oldData[index].scatter = chart.datasets[index].points;
+	          			chart.datasets[index].points = undefined;
 					}
 					chart.update();
 					overlay.updateSize(chart);
@@ -141,13 +147,16 @@ var loadChart = function(data, type, collection){
 					chart.datasets[index].strokeColor = color;
 					chart.datasets[index].pointColor = color;
 					chart.datasets[index].pointHighlightStroke = color;
-					if(type === "line" || type === "scatter"){
+					if(type === "line"){
 	          			chart.datasets[index].points = oldData[index].points;
 	          			//oldData[index].points = undefined;
 					}
 					else if(type === "bar"){
 	          			chart.datasets[index].bars = oldData[index].bars;
 	          			//oldData[index].bars= undefined;
+					}
+					else{
+						chart.datasets[index].points = oldData[index].scatter;
 					}
 					chart.update();
 					overlay.updateSize(chart);
@@ -300,6 +309,54 @@ function convertPointsToBars(){
 					bar.x = chart.scale.calculateBarX(datasetLen,i,j);
 					bar.y = point.y;
 					oldData[i].bars.push(bar);
+				}
+			}
+		}
+	}
+}
+
+function convertPointsToScatter(){
+	var datasetLen = chart.datasets.length;
+	var chartBase = chart.scale.endPoint;
+
+	for(var i = 0; i < chart.datasets.length; i ++){
+		if(chart.datasets[i].points){
+			chart.datasets[i].scatterpoints = [];
+			for(var j = 0; j <chart.datasets[i].points.length; j++){
+				var point = chart.datasets[i].points[j];
+				var scatterPoint = new chart.PointClass();
+				scatterPoint.datasetLabel = point.datasetLabel;
+				scatterPoint.fillColor = point.fillColor;
+				scatterPoint.highlightFill = point.highlightFill;
+				scatterPoint.highlightStroke = point.highlightStroke;
+				scatterPoint.label = point.label;
+				scatterPoint.strokeColor = point.strokeColor;
+				scatterPoint.value = point.value;
+				scatterPoint.x = chart.scale.calculateX(j);
+				scatterPoint.y = chart.scale.calculateY(point.value);
+				chart.datasets[i].scatterpoints.push(scatterPoint);
+			}
+			chart.datasets[i].points = [];
+			for(var j = 0; j <chart.datasets[i].scatterpoints.length; j++){
+				chart.datasets[i].points.push(chart.datasets[i].scatterpoints[j]);
+			}
+		}
+		else{
+			if(oldData[i] && oldData[i].points){
+				oldData[i].scatter = [];
+				for(var j = 0; j <oldData[i].points.length; j++){
+					var point = oldData[i].points[j];
+					var scatterPoint = new chart.PointClass();
+					scatterPoint.datasetLabel = point.datasetLabel;
+					scatterPoint.fillColor = point.fillColor;
+					scatterPoint.highlightFill = point.highlightFill;
+					scatterPoint.highlightStroke = point.highlightStroke;
+					scatterPoint.label = point.label;
+					scatterPoint.strokeColor = point.strokeColor;
+					scatterPoint.value = point.value;
+					scatterPoint.x = chart.scale.calculateX(j);
+					scatterPoint.y = chart.scale.calculateY(point.value);
+					oldData[i].scatter.push(scatterPoint);
 				}
 			}
 		}

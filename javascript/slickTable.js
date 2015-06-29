@@ -101,10 +101,18 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			//Update audio with new value
 			player.changeLine(row-1,col - 1,newVal);
 			// change value in chart
-			if(type ==="bar")
-				chart.datasets[row-1].bars[col - 1].value = newVal;
-			else
-				chart.datasets[row-1].points[col - 1].value = newVal;
+			if(type ==="bar"){
+				if(chart.datasets[row-1].bars)
+					chart.datasets[row-1].bars[col - 1].value = newVal;
+				else
+					oldData[row-1].bars[col-1].value = newVal;
+			}
+			else{
+				if(chart.datasets[row-1].points)
+					chart.datasets[row-1].points[col - 1].value = newVal;
+				else
+					oldData[row-1].points[col-1].value = newVal;
+			}
 		}
 		// If not, revert to old value (from chart)
 		else {

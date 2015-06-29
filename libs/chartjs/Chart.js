@@ -3661,8 +3661,10 @@
 				if(this.numeric){
 					console.log("if numeric is true - initialize");
 					var pts = [];
-					for(var i = 0; i < dataset.data.length; i++){
-						pts.push([data.labels[i], dataset.data[i]]);
+					if(dataset.data){
+						for(var i = 0; i < dataset.data.length; i++){
+							pts.push([data.labels[i], dataset.data[i]]);
+						}
 					}
 					
 					console.log(pts);
