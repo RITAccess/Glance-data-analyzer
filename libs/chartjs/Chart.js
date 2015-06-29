@@ -3678,9 +3678,9 @@
 					var max = pts[0][0];
 					for(var i = 0; i < pts.length; i++){
 						if(pts[i][0] > max)
-							max = pts[i][0];
+							max = parseFloat(pts[i][0]);
 						if(pts[i][0] < min)
-							min = pts[i][0];
+							min = parseFloat(pts[i][0]);
 					}
 					
 					console.log("min: " + min + "max " + max);
@@ -3747,8 +3747,7 @@
 			this.render();
 		},
 		update : function(){
-
-		this.scale.update();
+			this.scale.update();
 			// Reset any highlight colours before updating.
 			helpers.each(this.activeElements, function(activeElement){
 				activeElement.restore(['fillColor', 'strokeColor']);
