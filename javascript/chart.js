@@ -508,7 +508,7 @@ function convertPointsToScatter(){
 				if(!chart.numeric)
 				var x = chart.scale.calculateX(j);
 				else
-				var x = chart.scale.calculateX(point.label);
+				var x = chart.scale.calculateX(point.label-1);
 				var y = point.y
 				var scatterPoint = new chart.PointClass({
 					datasetLabel: point.datasetLabel,
@@ -536,7 +536,7 @@ function convertPointsToScatter(){
 					if(!chart.numeric)
 					var x = chart.scale.calculateX(j);
 					else
-					var x = chart.scale.calculateX(point.label);
+					var x = chart.scale.calculateX(point.label-1);
 					var scatterPoint = new chart.PointClass({
 						datasetLabel: point.datasetLabel,
 						fillColor: point.fillColor,
@@ -558,7 +558,7 @@ function convertPointsToScatter(){
 					if(!chart.numeric)
 					var x = chart.scale.calculateX(j);
 					else
-					var x = chart.scale.calculateX(point.label);
+					var x = chart.scale.calculateX(parseFloat(point.label)-1);
 					var scatterPoint = new chart.PointClass({
 						datasetLabel: point.datasetLabel,
 						fillColor: point.fillColor,
