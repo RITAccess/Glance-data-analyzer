@@ -59,7 +59,7 @@
       </ul>
       <h3 id="startInst">To get started, select Load CSV or Create New Table at the top!</h3>
     </div> <!-- End of start div -->
-    <div id="content" style="position: absolute; top: -9999px; left: -9999px;">
+    <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
       <div id="rTypeSelBody" style="display:none;">
         <h3>Data Analyzer Graph</h3>
         <form id="rTypeSel" class="no-print">
@@ -85,19 +85,23 @@
         </div> <!-- end id="tblContainer" -->
         <div id="remInstruction" class="no-print"></div>
       <div id="tableControls" style="display: none" class="no-print">
-        <div id="rowLabel">
-          <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"> - </button></label>
-          <p style="display: inline">Rows</p>
-          <label><button id="addNewRow" aria-label="Add New Row" onclick="addRow()"> + </button></label>
-        </div>
-        <div id="columnLabel">
-          <label><button id="subtractColumn" aria-label="Remove Column" onclick="subtractColumn()"> - </button></label>
-          <p style="display: inline"> Columns</p>
-          <label><button id="addNewCol" aria-label="Add New Column" onclick="addColumn()"> + </button></label>
-        </div>
-        <button id="downloadCSV" onclick="download()">Download CSV</button>
-        <button id="undoButton" onclick="undo()">Undo</button>
-        <button id="printButton" onclick="printPage()">Print</button>
+        <div id="rowCol">
+          <div id="rowLabel">
+            <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"> - </button></label>
+            <p style="display: inline">Rows</p>
+            <label><button id="addNewRow" aria-label="Add New Row" onclick="addRow()"> + </button></label>
+          </div>
+          <div id="columnLabel">
+            <label><button id="subtractColumn" aria-label="Remove Column" onclick="subtractColumn()"> - </button></label>
+            <p style="display: inline"> Columns</p>
+            <label><button id="addNewCol" aria-label="Add New Column" onclick="addColumn()"> + </button></label>
+          </div>
+        </div><!-- END id="rowCol" -->
+        <div id="tableButtons">
+          <button id="downloadCSV" onclick="download()">Download CSV</button>
+          <button id="undoButton" onclick="undo()" aria-label="Undo"><i class="fa fa-undo"></i></button>
+          <button id="printButton" onclick="printPage()">Print</button>
+        </div><!-- END id="tableButtons" -->
       </div>
     </div><!-- END id="tableCount" -->
     <?php
