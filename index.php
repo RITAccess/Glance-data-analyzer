@@ -58,6 +58,7 @@
         <li>Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
       </ul>
       <h3 id="startInst">To get started, select Load CSV or Create New Table at the top!</h3>
+      <button id="startButton" onclick="location.href='index.php'" >ReturnTo Top</button>
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
       <div id="rTypeSelBody" style="display:none;">
