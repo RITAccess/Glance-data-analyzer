@@ -43,8 +43,23 @@ header {
 }
 /*********************************/
 
-
 #rTypeSelBody{/* chart/graph type radio selection */
+    float: right;
+    padding-right: 2%;
+    margin-top: 0.9%;
+    right: 0em;
+    border-radius: 10px;
+}
+#rTypeSelBody select {
+    cursor: pointer;
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 10px;
+    /* -webkit-appearance: none; */
+}
+
+/*
+#rTypeSelBody{/* chart/graph type radio selection *
     text-align: center;
     margin: auto;
     margin-bottom: 3%;
@@ -56,8 +71,6 @@ header {
     margin-right: 5%;
     cursor: pointer;
 }
-
-/*
 #audioSpan {
     float: right;
     position: absolute;
@@ -78,18 +91,6 @@ header {
     border-radius: 5px;
     border: 3px solid #000;
 }
-
-#toTopdiv {
-    text-align: justify;
-    width: 800px;
-    margin: auto;
-    margin-top: 5%;
-    margin-bottom: 8%;
-    padding: 1% 5% 3% 5%;
-    border-radius: 5px;
-    border: 3px solid #000;
-}
-
 #start h1 {
     text-align: center;
 }
@@ -102,21 +103,6 @@ header {
 }
 #startInst{ /* instruction to get started */
     text-align: center;
-}
-#startButton{
-    display: inline;
-    cursor: pointer;
-    background: #FFF;
-    font-size: 20px;
-    padding: 1.5%;
-    color: #000;
-    font-weight: bold;
-    box-shadow: 0px 5px 10px #000;
-    text-shadow: none;
-    border: 2px solid #FFF;
-    border-radius: 5px;
-    margin: 0 auto;
-    margin-left: 500px;    
 }
 /* END style for about section */
 
@@ -296,18 +282,17 @@ and doesn't seem to effect anything when comment sliger-range out*/
     color: #FFF;
 }
 #bpm {
+    cursor: inherit;
+    font-size: 15px;
     width: 65px;
     text-align: center;
-    font-size: 15px;
 }
 .drop-down {
-    width: 50px;
-    border-radius: 10px;
-    border: 0.05em solid black;
+    cursor: pointer;
     font-size: 15px;
-}
-.instr-drop-down {/* drop down for instrument */
-    width: 200px;
+    border-radius: 10px;
+    border: 0.05em solid #888;
+    /* -webkit-appearance: none; */
 }
 /*******************************/
 #dataPlot {
@@ -462,6 +447,7 @@ and doesn't seem to effect anything when comment sliger-range out*/
     color:#000;
 }
 #dialogbox > div > #dialogboxbody {
+    cursor: pointer;
     border-top: 2px solid #000;
     padding:20px;
     color:#000;
@@ -469,6 +455,16 @@ and doesn't seem to effect anything when comment sliger-range out*/
 #dialogbox > div > #dialogboxfoot {
     padding:10px;
     text-align:right;
+}
+#dialogboxbody select{
+    cursor: pointer;
+    /*
+    padding: 2%;
+    border-radius: 10px;
+    appearance: menulist;
+    -moz-appearance: menulist; /* Firefox *
+    -webkit-appearance: menulist; /* Safari and Chrome *
+    */
 }
 #dialogboxbody input {
     margin-top: 10px;
