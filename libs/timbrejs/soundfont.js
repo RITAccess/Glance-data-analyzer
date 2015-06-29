@@ -132,10 +132,17 @@
 	};
 
 	soundfont.preload = function (noteArray) {
+		if(noteArray=== undefined)
+			return;
+		if(player)
+			player.isLoading=true;
 		var i, noop = function () {};
 		for (i = 0; i < noteArray.length; i++) {
 			getSample(noteArray[i], noop);
 		}
+		setTimeout(function() {}, 10000);
+		if(player)
+			player.isLoading=false;
 	};
 
 	soundfont.play = function (note, playOnLoad, options) {

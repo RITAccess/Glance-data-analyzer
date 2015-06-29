@@ -36,6 +36,7 @@ var player;
 var overlay;
 var summary;
 var chart;
+var collection;
 var type = null;
 var lineColors = [];
 var slickTable;
@@ -53,17 +54,26 @@ var loadData = function (data) {
     if(chart && type === "bar"){
       convertPointsToBars();
     }
+    else if(chart && type ==="scatter"){
+      convertPointsToScatter();
+    }
     if(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)
       player = new WaveForm("sine");
     else
-      player = new Instrument(2);
+      player = new Instrument(1);
     overlay = new Overlay(data);
     overlay.updateSize(chart);
-    var collection = new ArrayCollection(data.data);
+    collection = new ArrayCollection(data.data);
     player.setCollection(collection.collection);
     summary = new DataSummary(collection);
     summary.dataSummary();
     linkSlickTable(chart, player, overlay, summary);
+    for(var i = 1; i < 128; i ++){
+      var newElem = document.createElement("option");
+      newElem.value = i;
+      newElem.innerHTML = instruments[i];
+      document.getElementById('instrumentDropdown').appendChild(newElem);
+    }
     document.getElementById("content").style.position = "inherit"; //overides corresponding style in index.html that hides the content tag
     document.getElementById("content").style.top = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
     document.getElementById("content").style.left = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
@@ -84,6 +94,12 @@ var playStopAudioButton = function () {
   if(overlay.slider[0] === 0 && overlay.slider[1] === 0){
    overlay.slider[1] = chart.datasets[0].length;
   }
+    if(player.buffer === undefined){
+      player.changeInstrument(document.getElementById("instrumentDropdown").value);
+      //player.setCollection(collection.collection);
+      setTimeout(function() {}, 2000);
+    }
+    //setTimeout(function() {}, 10000);
     player.playToggle(document.getElementById("lineDropdown").value - 1, overlay.slider[0], overlay.slider[1]);
 }
 

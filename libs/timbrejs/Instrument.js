@@ -8,6 +8,8 @@ function Instrument(number){
 	this.makeSoundFont(number);
 	this.infoCollection = new ArrayCollection([]);
 	this.playing = false;
+  this.isLoading = false;
+  this.pnotes = null;
 }
 
 //Create a T soundfont object based on number
@@ -17,8 +19,11 @@ Instrument.prototype.makeSoundFont = function(number){
 
 //Change instrument number of this instrument
 Instrument.prototype.changeInstrument = function(number){
-	this.number = number;
-	this.makeSoundFont(this.number);
+	if(this.number === number)
+    return;
+  this.number = number;
+	this.makeSoundFont(this.number-1);
+  this.setCollection(this.infoCollection.collection);
 }
 
 //Play a single note
@@ -41,8 +46,8 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
 			self.updateIcon();
       t.stop();
 		}
-		//console.log(self.infoCollection.collection[j].array[i]);
-		T.soundfont.play(15 + parseInt(self.infoCollection.collection[j].array[i]),false);
+    var key =  parseInt(self.infoCollection.collection[j].array[i]);
+		T.soundfont.play(self.pnotes[key],false);
 		i++;
 	}).on("ended",function(){
 		this.stop();
@@ -52,25 +57,16 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
 
 //Using an arrayCollection object you can add a group of lines to the audio object
 Instrument.prototype.setCollection = function(collection) {
- // console.log("coll");
   var dropdownString ="";
   this.infoCollection.setCollection(collection);
   for(var i = 0; i < collection.length; i++) {
     dropdownString += "<option value="+(i + 1)+">"+(i + 1)+"</option>"
   }
-  this.isLoading = true;
   /*[DO NOT MOVE]: This section preloads all of the notes in the current collection
   * in order to make playback even and uniform (if you're getting a sound that resembles
   * an individual sitting on a piano, then you probably moved this)
   */
-  for(var i = 0; i < collection.length; i++){
-    for(var j = 0; j < this.infoCollection.collection[i].array.length; j++){
-        T.soundfont.preload([15 + parseInt(this.infoCollection.collection[i].array[j])]);
-        //console.log(parseInt(this.infoCollection.collection[i].array[j]));
-    }
-  }
-  this.isLoading = false;
-  this.isDirty = true;
+  this.notes = this.buildNotes();
   document.getElementById("audioSpan").style.display = "";
   document.getElementById("lineDropdown").innerHTML = dropdownString;
 }
@@ -79,7 +75,6 @@ Instrument.prototype.setCollection = function(collection) {
 Instrument.prototype.changeLine = function(line, index, newValue) {
   if(line != -1) {
     this.infoCollection.changeLine(line,index,newValue);
-    //this.isDirty = true;
     T.soundfont.preload([newValue]);
   }
 }
@@ -87,17 +82,18 @@ Instrument.prototype.changeLine = function(line, index, newValue) {
 //Toggle playing either on or off
 Instrument.prototype.playToggle = function(line, startIndex, endIndex) {
   if(!this.playing) {
-    if(this.isLoading){
-      while(this.isLoading){
-        if(!this.isLoading)
-          break;
-      }
+      this.looping = true;
+      while(this.looping){
+        if(!this.isLoading){
+           var q = function(){
+              player.looping = false;
+           }
+          setTimeout(q(), 1000);
+        }
     }
-    //this.playLine(line, startIndex, endIndex);
-    //console.log(loader);
     var self = this;
-    self.playDataSet(line,startIndex,endIndex);
-  }
+    setTimeout(function() {self.playDataSet(line,startIndex,endIndex);}, 1000);
+    }
 }
 
 // Updates the play / stop icon.
@@ -122,4 +118,51 @@ Instrument.prototype.setBpm = function(bpm){
     }
   }
   this.bpm = bpm;
+}
+
+Instrument.prototype.buildNotes= function(){
+  var newNotes = {};
+  for(var i = 0; i < this.infoCollection.collection.length; i++){
+    for(var j = 0; j < this.infoCollection.collection[i].array.length; j++){
+        var key =(parseInt(this.infoCollection.collection[i].array[j]));
+        newNotes[key] = key+30;
+    }
+  }
+  var toSort = [];
+  for(var key in newNotes){
+    toSort.push(parseInt(newNotes[key]));
+  }
+  toSort.sort(function(a,b){
+    if(a<b)
+      return -1;
+    else if(a>b)
+      return 1;
+    else
+      return 0;
+  });
+  if(toSort[toSort.length-1]>100){
+    var mult = 100/toSort[toSort.length-1];
+    for(var i = 0; i<toSort.length; i++){
+      toSort[i] = parseInt(mult*toSort[i]);
+    }
+  }
+  T.soundfont.preload(toSort);
+  var i = 0;
+  this.pnotes = new Object();
+  for(var key in newNotes){
+    newNotes[key] = toSort[i];
+    i++;
+    var a = [];
+    a.push(newNotes[key]);
+    this.pnotes[key] = newNotes[key];
+  }
+}
+
+Instrument.prototype.getKeyByValue = function( value ) {
+    for( var prop in this.notes ) {
+        if( this.hasOwnProperty( prop ) ) {
+             if( this[prop] === value )
+                 return prop;
+        }
+    }
 }

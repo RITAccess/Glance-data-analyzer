@@ -36,9 +36,11 @@
     </div>
     <output id="list"></output>
     <span id="audioSpan" class="no-print" style="display: none">
-      <label for="lineDropdown"> Row number </label>
-      <select id="lineDropdown" class='drop-down' title="selected"></select>
-       at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1"/>
+      <label for="lineDropdown" tabindex="0"> Row number </label>
+      <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
+       at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>
+      <label for="instrumentDropdown" tabindex="0"> Instrument </label>
+      <select id="instrumentDropdown" class='drop-down instr-drop-down' aria-label="Instrument" title="selected"></select>
       <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
         <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
     </span>
@@ -57,15 +59,15 @@
       </ul>
       <h3 id="startInst">To get started, select Load CSV or Create New Table at the top!</h3>
     </div> <!-- End of start div -->
-    <div id="content" style="position: absolute; top: -9999px; left: -9999px;">
+    <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
       <div id="rTypeSelBody" style="display:none;">
         <h3>Data Analyzer Graph</h3>
         <form id="rTypeSel" class="no-print">
-          <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" aria-label="Change Graph Type to Line" onclick="rType()">
+          <input id="lineRadioButton" type="radio" name="rGraphSel" value="Line" aria-label="Change Graph Type" onclick="rType()">
           <label for="lineRadioButton">Line Graph</label>
-          <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" aria-label="Change Graph Type to Bar" onclick="rType()">
+          <input id="barRadioButton" type="radio" name="rGraphSel" value="Bar" aria-label="Change Graph Type" onclick="rType()">
           <label for="barRadioButton">Bar Graph</label>
-          <input id="scatterRadioButton" type="radio" name="rGraphSel" aria-label="Change Graph Type to Scatter" value="Scatter" onclick="rType()">
+          <input id="scatterRadioButton" type="radio" name="rGraphSel" aria-label="Change Graph Type" value="Scatter" onclick="rType()">
           <label for="scatterRadioButton">Scatter Plot</label>
         </form>
       </div><!-- END id="rTypeSelBody" -->
@@ -77,24 +79,29 @@
       <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
       <div id="dataPlot">
         <h3 id="plot-header" style="display:none;">Data Table</h3>
+        <div id="tableCount"></div>
         <div id="tblContainer" style="display:none;" title="Data Table">
           <div id="slickTable" style="width:100%;"></div>
         </div> <!-- end id="tblContainer" -->
-        <div id="tableCount"></div>
         <div id="remInstruction" class="no-print"></div>
       <div id="tableControls" style="display: none" class="no-print">
-        <div id="rowLabel">
-          <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"> - </button></label>
-          <p style="display: inline">Rows</p>
-          <label><button id="addNewRow" aria-label="Add New Row" onclick="addRow()"> + </button></label>
-        </div>
-        <div id="columnLabel">
-          <label><button id="subtractColumn" aria-label="Remove Column" onclick="subtractColumn()"> - </button></label>
-          <p style="display: inline"> Columns</p>
-          <label><button id="addNewCol" aria-label="Add New Column" onclick="addColumn()"> + </button></label>
-        </div>
-        <button id="downloadCSV" onclick="download()">Download CSV</button>
-        <button id="printButton" onclick="printPage()">Print</button>
+        <div id="rowCol">
+          <div id="rowLabel">
+            <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"> - </button></label>
+            <p style="display: inline">Rows</p>
+            <label><button id="addNewRow" aria-label="Add New Row" onclick="addRow()"> + </button></label>
+          </div>
+          <div id="columnLabel">
+            <label><button id="subtractColumn" aria-label="Remove Column" onclick="subtractColumn()"> - </button></label>
+            <p style="display: inline"> Columns</p>
+            <label><button id="addNewCol" aria-label="Add New Column" onclick="addColumn()"> + </button></label>
+          </div>
+        </div><!-- END id="rowCol" -->
+        <div id="tableButtons">
+          <button id="downloadCSV" onclick="download()">Download CSV</button>
+          <button id="undoButton" onclick="undo()" aria-label="Undo"><i class="fa fa-undo"></i></button>
+          <button id="printButton" onclick="printPage()">Print</button>
+        </div><!-- END id="tableButtons" -->
       </div>
     </div><!-- END id="tableCount" -->
     <?php
