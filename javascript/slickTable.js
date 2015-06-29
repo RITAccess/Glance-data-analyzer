@@ -79,7 +79,13 @@ var linkSlickTable = function(chart, player, overlay, summary){
 
 		// if a label
 		if (row == 0 || col == 0){
-			chart.scale.xLabels[col - 1] = newVal;
+			chart.scale.xLabels[col -1] = newVal;
+			if(type === "scatter"  && chart.numeric){
+				//need to change all labels in the dataset
+				for(var i = 0; i < chart.datasets.length; i++){
+					chart.datasets[i].points[col-1].label = newVal;
+				}
+			}
 			if (col === 0) {
 				grid.getData()[0][0] = " ";
 			}
