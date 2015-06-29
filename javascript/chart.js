@@ -80,7 +80,7 @@ var loadChart = function(data, type, collection){
 						else if(type==="bar"){
 							for(var i = 0; i<chart.datasets[index].bars.length;i++){
 								chart.datasets[index].bars[i].fillColor= "rgba("+ color +", 1)";
-								chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";	
+								chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";
 							}
 							if(oldData[index]){
 									if(oldData[index].points){
@@ -233,20 +233,20 @@ var loadChart = function(data, type, collection){
 					if(type==="line"){
 						if(!oldData[index])
 							oldData[index] = {};
-	          			oldData[index].points = chart.datasets[index].points;
-	          			chart.datasets[index].points = undefined;
+	          		oldData[index].points = chart.datasets[index].points;
+	          		chart.datasets[index].points = undefined;
 					}
 					else if(type === "bar"){
 						if(!oldData[index])
 							oldData[index] = {};
-	          			oldData[index].bars = chart.datasets[index].bars;
-	          			chart.datasets[index].bars = undefined;
+	          		oldData[index].bars = chart.datasets[index].bars;
+	          		chart.datasets[index].bars = undefined;
 					}
 					else{
 						if(!oldData[index])
 							oldData[index] = {};
-	          			oldData[index].scatter = chart.datasets[index].points;
-	          			chart.datasets[index].points = undefined;
+	          		oldData[index].scatter = chart.datasets[index].points;
+	          		chart.datasets[index].points = undefined;
 					}
 					chart.update();
 					overlay.updateSize(chart);
@@ -267,14 +267,14 @@ var loadChart = function(data, type, collection){
 					chart.datasets[index].pointHighlightStroke = color;
 					if(type === "line"){
 						if(oldData[index].points)
-	          			chart.datasets[index].points = oldData[index].points;
-	          			else
-	          			chart.datasets[index].points = oldData[index].scatter;
-	          			//oldData[index].points = undefined;
+	          	chart.datasets[index].points = oldData[index].points;
+	          	else
+	          		chart.datasets[index].points = oldData[index].scatter;
+	          		//oldData[index].points = undefined;
 					}
 					else if(type === "bar"){
-	          			chart.datasets[index].bars = oldData[index].bars;
-	          			//oldData[index].bars= undefined;
+	          chart.datasets[index].bars = oldData[index].bars;
+	        	//oldData[index].bars= undefined;
 					}
 					else{
 						chart.datasets[index].points = oldData[index].scatter;
@@ -282,7 +282,7 @@ var loadChart = function(data, type, collection){
 					chart.update();
 					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
-					}
+				}
 			}
 		};
 	}
@@ -515,7 +515,7 @@ function convertPointsToScatter(){
 						y: point.y
 					});
 					oldData[i].scatter.push(scatterPoint);
-				}	
+				}
 			}
 		}
 	}
