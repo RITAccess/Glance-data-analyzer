@@ -80,7 +80,7 @@ var loadChart = function(data, type, collection){
 						else if(type==="bar"){
 							for(var i = 0; i<chart.datasets[index].bars.length;i++){
 								chart.datasets[index].bars[i].fillColor= "rgba("+ color +", 1)";
-								chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";	
+								chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";
 							}
 							if(oldData[index]){
 									if(oldData[index].points){
@@ -140,8 +140,6 @@ var loadChart = function(data, type, collection){
 						if(type==="line" || type==="scatter"){
 							for(var i = 0; i<chart.datasets[index].points.length;i++){
 								chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
-								console.log(oldData);
-								console.log(oldData[index]);
 							}
 						if(oldData[index]){
 									if(oldData[index].points){
@@ -233,21 +231,20 @@ var loadChart = function(data, type, collection){
 					if(type==="line"){
 						if(!oldData[index])
 							oldData[index] = {};
-	          			oldData[index].points = chart.datasets[index].points;
-	          			chart.datasets[index].points = undefined;
+	          		oldData[index].points = chart.datasets[index].points;
+	          		chart.datasets[index].points = undefined;
 					}
 					else if(type === "bar"){
 						if(!oldData[index])
 							oldData[index] = {};
-	          			oldData[index].bars = chart.datasets[index].bars;
-	          			chart.datasets[index].bars = undefined;
+	          		oldData[index].bars = chart.datasets[index].bars;
+	          		chart.datasets[index].bars = undefined;
 					}
 					else{
 						if(!oldData[index])
 							oldData[index] = {};
-	          			oldData[index].scatter = chart.datasets[index].points;
-	          			console.log("I'll be back");
-	          			chart.datasets[index].points = undefined;
+	          		oldData[index].scatter = chart.datasets[index].points;
+	          		chart.datasets[index].points = undefined;
 					}
 					chart.update();
 					overlay.updateSize(chart);
@@ -268,24 +265,23 @@ var loadChart = function(data, type, collection){
 					chart.datasets[index].pointHighlightStroke = color;
 					if(type === "line"){
 						if(oldData[index].points)
-	          			chart.datasets[index].points = oldData[index].points;
-	          			else
-	          			chart.datasets[index].points = oldData[index].scatter;
-	          			//oldData[index].points = undefined;
+	          	chart.datasets[index].points = oldData[index].points;
+	          	else
+	          		chart.datasets[index].points = oldData[index].scatter;
+	          		//oldData[index].points = undefined;
 					}
 					else if(type === "bar"){
-	          			chart.datasets[index].bars = oldData[index].bars;
-	          			//oldData[index].bars= undefined;
+	          chart.datasets[index].bars = oldData[index].bars;
+	        	//oldData[index].bars= undefined;
 					}
 					else{
 						chart.datasets[index].points = oldData[index].scatter;
-						console.log("I'm back");
 					}
 					chart.update();
 					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
-					
-					}
+
+				}
 			}
 		};
 	}
@@ -320,7 +316,6 @@ function dataset(data, collection) {
 			line.fillColor = line.strokeColor;
 		}
     //Put line into data Array
-    	//console.log(line);
     	if(hidden[i-1]===false){
     		oldData[i-1].data = line;
     		line.data = undefined;
@@ -483,7 +478,6 @@ function convertPointsToScatter(){
 			chart.datasets[i].points = [];
 			for(var j = 0; j <chart.datasets[i].scatterpoints.length; j++){
 				chart.datasets[i].points[j] = chart.datasets[i].scatterpoints[j];
-				console.log(chart.datasets[i].scatterpoints[j].x);	
 			}
 		}
 		else{
@@ -503,7 +497,6 @@ function convertPointsToScatter(){
 						y: point.y
 					});
 					oldData[i].scatter.push(scatterPoint);
-					console.log(scatterPoint);
 				}
 			}
 			else{
@@ -522,8 +515,8 @@ function convertPointsToScatter(){
 						y: point.y
 					});
 					oldData[i].scatter.push(scatterPoint);
-					console.log(scatterPoint);
-				}	
+
+				}
 			}
 		}
 	}

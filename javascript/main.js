@@ -49,7 +49,7 @@ var loadData = function (data) {
     document.querySelector('#slickTable').innerHTML = '';
     slickTable = loadSlickTable(data.data);
     document.getElementById('tableCount').innerHTML = "[ Total Row: " + (data.data.length - 1) + " ] [ Total Column: " + (data.data[0].length - 1) + " ]";
-    document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen labels cell"
+    document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen label cells."
     chart = loadChart(data.data, type);
     if(chart && type === "bar"){
       convertPointsToBars();
