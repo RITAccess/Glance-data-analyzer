@@ -54,7 +54,7 @@ var loadData = function (data) {
     if(chart && type === "bar"){
       convertPointsToBars();
     }
-    else if(chart && type ==="scatter"){
+    else{
       convertPointsToScatter();
     }
     if(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)

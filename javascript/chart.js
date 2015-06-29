@@ -47,12 +47,70 @@ var loadChart = function(data, type, collection){
 							for(var i = 0; i<chart.datasets[index].points.length;i++){
 								chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
 							}
+							if(oldData[index]){
+									if(oldData[index].points){
+										//oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+										var len = oldData[index].points.length;
+									}
+									else if(oldData[index].bars){
+										// oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
+										// oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+										var len = oldData[index].bars.length;
+									}
+									else{
+										//oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+										var len = oldData[index].scater.length;
+									}
+									for(var i = 0; i < len; i ++){
+										if(oldData[index]){
+											if(oldData[index].points){
+												oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+											}
+											if(oldData[index].bars){
+												oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+											}
+											if(oldData[index].scatter){
+												oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+											}
+										}
+									}
+								}
 						}
 						else if(type==="bar"){
 							for(var i = 0; i<chart.datasets[index].bars.length;i++){
 								chart.datasets[index].bars[i].fillColor= "rgba("+ color +", 1)";
-								chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+								chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";	
 							}
+							if(oldData[index]){
+									if(oldData[index].points){
+										//oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+										var len = oldData[index].points.length;
+									}
+									else if(oldData[index].bars){
+										// oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
+										// oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+										var len = oldData[index].bars.length;
+									}
+									else{
+										//oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+										var len = oldData[index].scater.length;
+									}
+									for(var i = 0; i < len; i ++){
+										if(oldData[index]){
+											if(oldData[index].points){
+												oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+											}
+											if(oldData[index].bars){
+												oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+											}
+											if(oldData[index].scatter){
+												oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+											}
+										}
+									}
+								}
 						}
 						//Redraw graph
 						chart.update();
@@ -82,13 +140,73 @@ var loadChart = function(data, type, collection){
 						if(type==="line" || type==="scatter"){
 							for(var i = 0; i<chart.datasets[index].points.length;i++){
 								chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
+								console.log(oldData);
+								console.log(oldData[index]);
 							}
+						if(oldData[index]){
+									if(oldData[index].points){
+										//oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+										var len = oldData[index].points.length;
+									}
+									else if(oldData[index].bars){
+										// oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
+										// oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+										var len = oldData[index].bars.length;
+									}
+									else{
+										//oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+										var len = oldData[index].scater.length;
+									}
+									for(var i = 0; i < len; i ++){
+										if(oldData[index]){
+											if(oldData[index].points){
+												oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+											}
+											if(oldData[index].bars){
+												oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+											}
+											if(oldData[index].scatter){
+												oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+											}
+										}
+									}
+								}
 						}
 						else if(type==="bar"){
 							for(var i = 0; i<chart.datasets[index].bars.length;i++){
 								chart.datasets[index].bars[i].fillColor= "rgba("+ color +", 1)";
 								chart.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";
 							}
+							if(oldData[index]){
+									if(oldData[index].points){
+										//oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+										var len = oldData[index].points.length;
+									}
+									else if(oldData[index].bars){
+										// oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
+										// oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+										var len = oldData[index].bars.length;
+									}
+									else{
+										//oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+										var len = oldData[index].scater.length;
+									}
+									for(var i = 0; i < len; i ++){
+										if(oldData[index]){
+											if(oldData[index].points){
+												oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+											}
+											if(oldData[index].bars){
+												oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+											}
+											if(oldData[index].scatter){
+												oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+											}
+										}
+									}
+								}
 						}
 						//Redraw graph
 						chart.update();
@@ -148,7 +266,10 @@ var loadChart = function(data, type, collection){
 					chart.datasets[index].pointColor = color;
 					chart.datasets[index].pointHighlightStroke = color;
 					if(type === "line"){
+						if(oldData[index].points)
 	          			chart.datasets[index].points = oldData[index].points;
+	          			else
+	          			chart.datasets[index].points = oldData[index].scatter;
 	          			//oldData[index].points = undefined;
 					}
 					else if(type === "bar"){
@@ -336,10 +457,8 @@ function convertPointsToBars(){
 function convertPointsToScatter(){
 	var datasetLen = chart.datasets.length;
 	var chartBase = chart.scale.endPoint;
-	console.log("to Scatter");
 	for(var i = 0; i < chart.datasets.length; i ++){
 		if(chart.datasets[i].points && chart.datasets[i].points.length >0){
-			console.log("if");
 			chart.datasets[i].scatterpoints = [];
 			for(var j = 0; j <chart.datasets[i].points.length; j++){
 				var point = chart.datasets[i].points[j];
@@ -351,8 +470,8 @@ function convertPointsToScatter(){
 					label: point.label,
 					strokeColor: point.strokeColor,
 					value: point.value,
-					x: parseFloat(chart.scale.calculateX(j)+""),
-					y: parseFloat(chart.scale.calculateY(point.value)+"")
+					x: point.x,//parseFloat(chart.scale.calculateX(j)+""),
+					y: point.y//parseFloat(chart.scale.calculateY(point.value)+"")
 				});
 				chart.datasets[i].scatterpoints[j]= scatterPoint;
 			}
@@ -362,9 +481,7 @@ function convertPointsToScatter(){
 			}
 		}
 		else{
-			console.log("else");
 			if(oldData[i] && oldData[i].points){
-				console.log("P");
 				oldData[i].scatter = [];
 				for(var j = 0; j <oldData[i].points.length; j++){
 					var point = oldData[i].points[j];
@@ -383,7 +500,6 @@ function convertPointsToScatter(){
 				}
 			}
 			else{
-				console.log("B");
 				oldData[i].scatter = [];
 				for(var j = 0; j <oldData[i].bars.length; j++){
 					var point = oldData[i].bars[j];
