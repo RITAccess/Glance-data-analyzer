@@ -274,7 +274,7 @@ and doesn't seem to effect anything when comment sliger-range out*/
     text-align:center;
     font-weight: bold;
     border-radius: 5px;
-    margin: 5% 0 28% 0;
+    margin: 5% 0 15% 0;
     font-size: 20px;
     position: relative;/* part of making download button bottom of div*/
 }
@@ -307,14 +307,7 @@ and doesn't seem to effect anything when comment sliger-range out*/
     width: 100%;
     text-align: center;
 }
-#rowCol{/* buttons for adding and subtracting row and column */
-    padding: 2% 0;
-}
-#tableButtons{/* buttons realted and/or under the +/- row and column buttons */
-    margin-top: 1%;
-    padding: 0.5% 0;
-}
-#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #dialogboxfoot button {
+#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #dialogboxfoot button {
     display: inline;
     cursor: pointer;
     background: #FFF;

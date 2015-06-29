@@ -270,7 +270,6 @@ function deque(array) {
 function convertPointsToBars(){
 	var datasetLen = chart.datasets.length;
 	var chartBase = chart.scale.endPoint;
-
 	for(var i = 0; i < chart.datasets.length; i ++){
 		if(chart.datasets[i].points){
 			chart.datasets[i].bars = [];
@@ -311,6 +310,25 @@ function convertPointsToBars(){
 					oldData[i].bars.push(bar);
 				}
 			}
+			else if(oldData[i] && oldData[i].scatter){
+				oldData[i].bars = [];
+				for(var j = 0; j <oldData[i].scatter.length; j++){
+					var point = oldData[i].scatter[j];
+					var bar = new chart.BarClass();
+					bar.base = chart.scale.endPoint;
+					bar.datasetLabel = point.datasetLabel;
+					bar.fillColor = point.fillColor;
+					bar.highlightFill = point.fillColor;
+					bar.highlightStroke = point.fillColor;
+					bar.label = point.label;
+					bar.strokeColor = point.fillColor;
+					bar.value = point.value;
+					bar.width = chart.scale.calculateBarWidth(chart.datasets.length);
+					bar.x = chart.scale.calculateBarX(datasetLen,i,j);
+					bar.y = point.y;
+					oldData[i].bars.push(bar);
+				}
+			}
 		}
 	}
 }
@@ -318,9 +336,10 @@ function convertPointsToBars(){
 function convertPointsToScatter(){
 	var datasetLen = chart.datasets.length;
 	var chartBase = chart.scale.endPoint;
-
+	console.log("to Scatter");
 	for(var i = 0; i < chart.datasets.length; i ++){
-		if(chart.datasets[i].points){
+		if(chart.datasets[i].points && chart.datasets[i].points.length >0){
+			console.log("if");
 			chart.datasets[i].scatterpoints = [];
 			for(var j = 0; j <chart.datasets[i].points.length; j++){
 				var point = chart.datasets[i].points[j];
@@ -339,26 +358,48 @@ function convertPointsToScatter(){
 			}
 			chart.datasets[i].points = [];
 			for(var j = 0; j <chart.datasets[i].scatterpoints.length; j++){
-				chart.datasets[i].points.push(chart.datasets[i].scatterpoints[j]);
+				chart.datasets[i].points[j] = chart.datasets[i].scatterpoints[j];
 			}
 		}
 		else{
+			console.log("else");
 			if(oldData[i] && oldData[i].points){
+				console.log("P");
 				oldData[i].scatter = [];
 				for(var j = 0; j <oldData[i].points.length; j++){
 					var point = oldData[i].points[j];
-					var scatterPoint = new chart.PointClass();
-					scatterPoint.datasetLabel = point.datasetLabel;
-					scatterPoint.fillColor = point.fillColor;
-					scatterPoint.highlightFill = point.highlightFill;
-					scatterPoint.highlightStroke = point.highlightStroke;
-					scatterPoint.label = point.label;
-					scatterPoint.strokeColor = point.strokeColor;
-					scatterPoint.value = point.value;
-					scatterPoint.x = chart.scale.calculateX(j);
-					scatterPoint.y = chart.scale.calculateY(point.value);
+					var scatterPoint = new chart.PointClass({
+						datasetLabel: point.datasetLabel,
+						fillColor: point.fillColor,
+						highlightFill: point.highlightFill,
+						highlightStroke: point.highlightStroke,
+						label: point.label,
+						strokeColor: point.strokeColor,
+						value: point.value,
+						x: point.x,//parseFloat(chart.scale.calculateX(j)+""),
+						y: point.y//parseFloat(chart.scale.calculateY(point.value)+"")
+					});
 					oldData[i].scatter.push(scatterPoint);
 				}
+			}
+			else{
+				console.log("B");
+				oldData[i].scatter = [];
+				for(var j = 0; j <oldData[i].bars.length; j++){
+					var point = oldData[i].bars[j];
+					var scatterPoint = new chart.PointClass({
+						datasetLabel: point.datasetLabel,
+						fillColor: point.fillColor,
+						highlightFill: point.highlightFill,
+						highlightStroke: point.highlightStroke,
+						label: point.label,
+						strokeColor: point.strokeColor,
+						value: point.value,
+						x: parseFloat(chart.scale.calculateX(j)+""),
+						y: point.y
+					});
+					oldData[i].scatter.push(scatterPoint);
+				}	
 			}
 		}
 	}
