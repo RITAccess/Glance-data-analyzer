@@ -307,7 +307,7 @@ and doesn't seem to effect anything when comment sliger-range out*/
     width: 100%;
     text-align: center;
 }
-#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #dialogboxfoot button {
+#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #dialogboxfoot button {
     display: inline;
     cursor: pointer;
     background: #FFF;

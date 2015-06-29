@@ -470,10 +470,10 @@ function convertPointsToScatter(){
 					label: point.label,
 					strokeColor: point.strokeColor,
 					value: point.value,
-					x: point.x,//parseFloat(chart.scale.calculateX(j)+""),
-					y: point.y//parseFloat(chart.scale.calculateY(point.value)+"")
+					x: point.x,
+					y: point.y
 				});
-				chart.datasets[i].scatterpoints[j]= scatterPoint;
+				chart.datasets[i].scatterpoints.push(scatterPoint);
 			}
 			chart.datasets[i].points = [];
 			for(var j = 0; j <chart.datasets[i].scatterpoints.length; j++){
@@ -493,8 +493,8 @@ function convertPointsToScatter(){
 						label: point.label,
 						strokeColor: point.strokeColor,
 						value: point.value,
-						x: point.x,//parseFloat(chart.scale.calculateX(j)+""),
-						y: point.y//parseFloat(chart.scale.calculateY(point.value)+"")
+						x: point.x,
+						y: point.y
 					});
 					oldData[i].scatter.push(scatterPoint);
 				}

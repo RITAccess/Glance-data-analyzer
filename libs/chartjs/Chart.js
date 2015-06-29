@@ -3598,6 +3598,7 @@
 		name: "ScatterPlot",
 		defaults : defaultConfig,
 		numeric : true, //my own variable to support two different types of scatter.
+		setup : true,
 		initialize:  function(data){
 			console.log("initialize");
 			// set up numeric
@@ -3651,40 +3652,47 @@
 
 				this.datasets.push(datasetObject);
 				
-				// we want to sort the data
-				// then consolidate repeating x values
+				// we want to consolidate repeating x values
 				// labels need to be every number in the range
 				// create an array of x,y values from labels and dataset
 				// all this is only for numerical labels as input
-				
-				//TODO make it more versatile
 				if(this.numeric){
-					console.log("if numeric is true - initialize");
 					var pts = [];
-					if(dataset.data){
+					
+					if(this.setup){
 						for(var i = 0; i < dataset.data.length; i++){
 							pts.push([data.labels[i], dataset.data[i]]);
 						}
+						this.setup = false;
 					}
-					
-					console.log(pts);
+					else{
+						for(var i = 0; i < dataset.data.length; i++){
+							pts.push([this.datasets[0].points[i].label,dataset.data[i]]);
+						}
+					}
 			
-					pts.sort(function(a,b) {
-					return a[0]-b[0]
-					});
-					
-					//took a shortcut, will create a value for every int in range
-					//TODO don't take shortcuts
-					var numLabels = parseFloat(data.labels[data.labels.length-1]) + 1 - parseFloat(data.labels[0]);
-					var labels = [];
-					for(var i = 0; i < numLabels; i++){
-						var num = parseFloat(i) + parseFloat(data.labels[0]);
-						labels.push(num);
+					//find the min and max x values
+					var min = pts[0][0];
+					var max = pts[0][0];
+					for(var i = 0; i < pts.length; i++){
+						if(pts[i][0] > max)
+							max = parseFloat(pts[i][0]);
+						if(pts[i][0] < min)
+							min = parseFloat(pts[i][0]);
 					}
 					
+					console.log("min: " + min + "max " + max);
+					
+					var labels = [];
+					for(var i = min; i <= max; i++){
+						labels.push(parseFloat(i));
+					}
+					
+					console.log(labels);
+
 					data.labels = labels;
 					helpers.each(dataset.data, function(dataPoint,index){
-						datasetObject.points.push(new this.PointClass({
+							datasetObject.points.push(new this.PointClass({
 								value : parseFloat(pts[index][1]),
 								label : pts[index][0],
 								strokeColor : dataset.pointStrokeColor,
@@ -3694,7 +3702,7 @@
 						}));
 						
 					}, this);
-				this.buildScale(data.labels);
+					this.buildScale(data.labels);
 
 					this.eachPoints(function(point, index){
 						helpers.extend(point, {
@@ -3736,33 +3744,51 @@
 
 			this.render();
 		},
-		
 		update : function(){
 			this.scale.update();
 			// Reset any highlight colours before updating.
 			helpers.each(this.activeElements, function(activeElement){
 				activeElement.restore(['fillColor', 'strokeColor']);
 			});
+
 			
-			
-			if(this.numeric){
-			this.eachPoints(function(point, index){
-						helpers.extend(point, {
-							//need to make it zero-based
-							x: this.scale.calculateX(pts[index][0] - pts[0][0]),
-							y: this.scale.endPoint
-						});
-						point.save();
-					}, this);	
-			}
-			
-			else{
+				this.updateNumeric();
 				this.eachPoints(function(point){
 					point.save();
 				});
-			}
-			
-			this.render();
+				
+				//need to update the scale manually
+				if(this.numeric){
+					var min = this.scale.xLabels[0];
+					var max = this.scale.xLabels[0];
+					for(var i = 0; i < this.scale.xLabels.length; i++){
+						if(this.scale.xLabels[i] > max)
+							max = this.scale.xLabels[i];
+						if(this.scale.xLabels[i] < min)
+							min = this.scale.xLabels[i];
+					}
+					var labels = [];
+					for(var i = min; i <= max; i++){
+						labels.push(parseFloat(i)); 
+					}
+					this.buildScale(labels);
+					console.log(this.scale.xLabels);
+					
+				// need to manually update x and y values maybe?
+					this.eachPoints(function(point, index){
+						helpers.extend(point, {
+							x: this.scale.calculateX(parseFloat(point.label)-1),
+							y: this.scale.calculateY(point.value)
+						});
+						point.save();
+					}, this);
+				
+				
+				}
+				else
+					this.scale.update();
+				
+				this.render();
 		},
 		eachPoints : function(callback){
 			helpers.each(this.datasets,function(dataset){
@@ -3891,7 +3917,7 @@
 				width : this.chart.width
 			});
 			this.scale.update(newScaleProps);
-		},
+		},		
 		draw : function(ease){
 			var easingDecimal = ease || 1;
 			this.clear();
@@ -3934,6 +3960,16 @@
 					point.draw();
 				});
 			},this);
+		},		
+		updateNumeric : function(){	
+			for(var i = 0; i < this.datasets[0].points.length; i++){
+				if(isNaN(this.datasets[0].points[i].value)){
+					this.numeric = false;
+					return false; 
+				}
+			}
+			this.numeric = true;
+			return true;
 		},
 		
 		// made to draw a point for each column & connect
@@ -4037,12 +4073,21 @@
 			var yint = ymean - slope * xmean;
 			
 			// generate points on line for each x int value in range
-			// PRECONDITION: data MUST be sorted.
 			// y = mx + b
 			var values = [];
 			// if we had numerical x-values...
-			if(!isNaN(this.datasets[validRows[0]].points[0].label)){
-			for(var i = this.datasets[validRows[0]].points[0].label; i <= this.datasets[validRows[0]].points[this.datasets[0].points.length-1].label; i++){
+			if(this.numeric){
+				//find the min and max x values
+				var min = this.scale.xLabels[0];
+				var max = this.scale.xLabels[0];
+				for(var i = 0; i < this.scale.xLabels.length; i++){
+					if(this.scale.xLabels[i] > max)
+						max = this.scale.xLabels[i];
+					if(this.scale.xLabels[i] < min)
+						min = this.scale.xLabels[i];
+				}
+				
+				for(var i = min; i <= max; i++){
 					values.push([i,(slope * parseFloat(i) + yint)]);
 				}
 			}
