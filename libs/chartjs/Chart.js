@@ -3745,7 +3745,6 @@
 			this.render();
 		},
 		update : function(){
-			this.scale.update();
 			// Reset any highlight colours before updating.
 			helpers.each(this.activeElements, function(activeElement){
 				activeElement.restore(['fillColor', 'strokeColor']);
@@ -3787,7 +3786,6 @@
 				}
 				else
 					this.scale.update();
-				
 				this.render();
 		},
 		eachPoints : function(callback){
@@ -3963,7 +3961,7 @@
 		},		
 		updateNumeric : function(){	
 			for(var i = 0; i < this.datasets[0].points.length; i++){
-				if(isNaN(this.datasets[0].points[i].value)){
+				if(isNaN(this.datasets[0].points[i].label)){
 					this.numeric = false;
 					return false; 
 				}
