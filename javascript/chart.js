@@ -246,6 +246,7 @@ var loadChart = function(data, type, collection){
 						if(!oldData[index])
 							oldData[index] = {};
 	          			oldData[index].scatter = chart.datasets[index].points;
+	          			console.log("I'll be back");
 	          			chart.datasets[index].points = undefined;
 					}
 					chart.update();
@@ -278,10 +279,12 @@ var loadChart = function(data, type, collection){
 					}
 					else{
 						chart.datasets[index].points = oldData[index].scatter;
+						console.log("I'm back");
 					}
 					chart.update();
 					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
+					
 					}
 			}
 		};
@@ -462,6 +465,8 @@ function convertPointsToScatter(){
 			chart.datasets[i].scatterpoints = [];
 			for(var j = 0; j <chart.datasets[i].points.length; j++){
 				var point = chart.datasets[i].points[j];
+				var x = chart.scale.calculateX(j);
+				var y = point.y
 				var scatterPoint = new chart.PointClass({
 					datasetLabel: point.datasetLabel,
 					fillColor: point.fillColor,
@@ -470,14 +475,15 @@ function convertPointsToScatter(){
 					label: point.label,
 					strokeColor: point.strokeColor,
 					value: point.value,
-					x: point.x,
-					y: point.y
+					x: x,
+					y: y
 				});
 				chart.datasets[i].scatterpoints.push(scatterPoint);
 			}
 			chart.datasets[i].points = [];
 			for(var j = 0; j <chart.datasets[i].scatterpoints.length; j++){
 				chart.datasets[i].points[j] = chart.datasets[i].scatterpoints[j];
+				console.log(chart.datasets[i].scatterpoints[j].x);	
 			}
 		}
 		else{
@@ -493,10 +499,11 @@ function convertPointsToScatter(){
 						label: point.label,
 						strokeColor: point.strokeColor,
 						value: point.value,
-						x: point.x,
+						x: chart.scale.calculateX(j),
 						y: point.y
 					});
 					oldData[i].scatter.push(scatterPoint);
+					console.log(scatterPoint);
 				}
 			}
 			else{
@@ -511,10 +518,11 @@ function convertPointsToScatter(){
 						label: point.label,
 						strokeColor: point.strokeColor,
 						value: point.value,
-						x: parseFloat(chart.scale.calculateX(j)+""),
+						x: chart.scale.calculateX(j),
 						y: point.y
 					});
 					oldData[i].scatter.push(scatterPoint);
+					console.log(scatterPoint);
 				}	
 			}
 		}

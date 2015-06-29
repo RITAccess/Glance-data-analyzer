@@ -3772,7 +3772,7 @@
 						labels.push(parseFloat(i)); 
 					}
 					this.buildScale(labels);
-					console.log(this.scale.xLabels);
+					//console.log(this.scale.xLabels);
 					
 				// need to manually update x and y values maybe?
 					this.eachPoints(function(point, index){
@@ -3785,8 +3785,24 @@
 				
 				
 				}
-				else
+				else{
+					var labels = [];
+					if(chart.datasets[0].points){
+						for(var i = 0; i < chart.datasets[0].points.length; i++){
+							labels.push(chart.datasets[0].points[i].label);
+						}
+						this.buildScale[labels];
+					}
+					console.log(labels);
+					this.eachPoints(function(point, index){
+						helpers.extend(point, {
+							x: this.scale.calculateX(index),
+							y: this.scale.calculateY(point.value)
+						});
+						point.save();
+					}, this);
 					this.scale.update();
+				}
 				
 				this.render();
 		},
@@ -3961,10 +3977,13 @@
 				});
 			},this);
 		},		
-		updateNumeric : function(){	
+		updateNumeric : function(){
+			if(!this.datasets[0].points){
+				return false;
+			}
 			for(var i = 0; i < this.datasets[0].points.length; i++){
-				if(isNaN(this.datasets[0].points[i].value)){
-					this.numeric = false;
+				if(isNaN(this.datasets[0].points[i].label)){
+					this.numeric = false;	
 					return false; 
 				}
 			}
@@ -4019,7 +4038,6 @@
 				if(this.datasets[i].points != undefined)
 					validRows.push(i);
 			}
-			
 			//if there's literally no data
 			if(validRows.length == 0 || !this.datasets[validRows[0]].points[0])
 				return undefined;
