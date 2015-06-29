@@ -3,14 +3,21 @@ function printPage()
 {
    var html="<html>";
    html += "<head>";
-   html += document.getElementsByTagName('head')[0].innerHTML;
-   html += "</head>"
+   html += document.getElementsByTagName('title')[0].outerHTML;
+   html += document.getElementsByTagName('meta')[0].outerHTML;
+   var htmlString = ""
+   for(var i = 0; i < document.getElementsByTagName("link").length; i++){
+     htmlString = document.getElementsByTagName("link")[i].outerHTML;
+     html += htmlString;
+   }
+   html += "</head>";
    html += "<body>";
    html += "<header><h1 id='title' tabindex='0'>Data Analyzer</h1></header>";
    html += "<div id='content'>";
    html += "<div id='graphImg'><img tabindex='0' alt='Data Analyzer Graph' width='800px' src='" + chart.toBase64Image() + "'/></div>";
    html += "<div id='summaryBox' style='display: block;'>";
    html += document.getElementById('summaryBox').innerHTML;
+   console.log(document.getElementById('summaryBox').outerHTML);
    html += "</div><div id='printTable'><h3 id='printTableHeader'>Data Table</h3>";
    html += "<div id='printTableBody'>";
    var s = "<table class='printTable'>";
@@ -66,9 +73,14 @@ function printPage()
    html += "</div></div>";
    html += "</content>";
    html += "</body></html>";
-   printWin = window.open("','_blank','left=0,top=0,width=500,height=500,fullscreen=1,toolbar=0,scrollbars=0,status  =0");
+   printWin = window.open("about:blank");
    printWin.document.write(html);
    printWin.document.close();
+   printWin.document.getElementById("colors").style.maxHeight = "none";
+   var inputs = printWin.document.getElementsByTagName("input");
+   for(var i = 0; i < inputs.length; i++) {
+     inputs[i].style.display = "none";
+   }
    printWin.focus();
    printWin.print();
 }
