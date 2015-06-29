@@ -140,8 +140,6 @@ var loadChart = function(data, type, collection){
 						if(type==="line" || type==="scatter"){
 							for(var i = 0; i<chart.datasets[index].points.length;i++){
 								chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
-								console.log(oldData);
-								console.log(oldData[index]);
 							}
 						if(oldData[index]){
 									if(oldData[index].points){
@@ -282,6 +280,7 @@ var loadChart = function(data, type, collection){
 					chart.update();
 					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
+
 				}
 			}
 		};
@@ -317,7 +316,6 @@ function dataset(data, collection) {
 			line.fillColor = line.strokeColor;
 		}
     //Put line into data Array
-    	//console.log(line);
     	if(hidden[i-1]===false){
     		oldData[i-1].data = line;
     		line.data = undefined;
@@ -462,6 +460,8 @@ function convertPointsToScatter(){
 			chart.datasets[i].scatterpoints = [];
 			for(var j = 0; j <chart.datasets[i].points.length; j++){
 				var point = chart.datasets[i].points[j];
+				var x = chart.scale.calculateX(j);
+				var y = point.y
 				var scatterPoint = new chart.PointClass({
 					datasetLabel: point.datasetLabel,
 					fillColor: point.fillColor,
@@ -470,8 +470,8 @@ function convertPointsToScatter(){
 					label: point.label,
 					strokeColor: point.strokeColor,
 					value: point.value,
-					x: point.x,
-					y: point.y
+					x: x,
+					y: y
 				});
 				chart.datasets[i].scatterpoints.push(scatterPoint);
 			}
@@ -493,7 +493,7 @@ function convertPointsToScatter(){
 						label: point.label,
 						strokeColor: point.strokeColor,
 						value: point.value,
-						x: point.x,
+						x: chart.scale.calculateX(j),
 						y: point.y
 					});
 					oldData[i].scatter.push(scatterPoint);
@@ -511,10 +511,11 @@ function convertPointsToScatter(){
 						label: point.label,
 						strokeColor: point.strokeColor,
 						value: point.value,
-						x: parseFloat(chart.scale.calculateX(j)+""),
+						x: chart.scale.calculateX(j),
 						y: point.y
 					});
 					oldData[i].scatter.push(scatterPoint);
+
 				}
 			}
 		}
