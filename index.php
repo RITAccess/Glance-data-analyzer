@@ -87,12 +87,12 @@
       <div id="tableControls" style="display: none" class="no-print">
         <div id="rowLabel">
           <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"><i class="fa fa-minus"></i></button></label>
-          <p style="display: inline">Rows</p>
+          <p style="display: inline">Row</p>
           <label><button id="addNewRow" aria-label="Add Row" onclick="addRow()"><i class="fa fa-plus"></i></button></label>
         </div>
         <div id="columnLabel">
           <label><button id="subtractColumn" aria-label="Remove Column" onclick="subtractColumn()"><i class="fa fa-minus"></i></button></label>
-          <p style="display: inline"> Columns</p>
+          <p style="display: inline">Column</p>
           <label><button id="addNewCol" aria-label="Add Column" onclick="addColumn()"><i class="fa fa-plus"></i></button></label>
         </div>
         <button id="undoButton" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
