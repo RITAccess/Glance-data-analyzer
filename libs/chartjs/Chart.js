@@ -2166,7 +2166,6 @@
 			});
 
 			this.eachBars(function(bar){
-				//console.log(bar);
 				bar.save();
 			});
 			this.render();
@@ -3600,7 +3599,6 @@
 		numeric : true, //my own variable to support two different types of scatter.
 		setup : true,
 		initialize:  function(data){
-			console.log("initialize");
 			// set up numeric
 			for(var i = 0; i < data.labels.length; i++){
 				if(isNaN(data.labels[i])){
@@ -3681,14 +3679,10 @@
 							min = parseFloat(pts[i][0]);
 					}
 					
-					console.log("min: " + min + "max " + max);
-					
 					var labels = [];
 					for(var i = min; i <= max; i++){
 						labels.push(parseFloat(i));
 					}
-					
-					console.log(labels);
 
 					data.labels = labels;
 					helpers.each(dataset.data, function(dataPoint,index){
@@ -3745,7 +3739,6 @@
 			this.render();
 		},
 		update : function(){
-			console.log("update");
 			// Reset any highlight colours before updating.
 			helpers.each(this.activeElements, function(activeElement){
 				activeElement.restore(['fillColor', 'strokeColor']);
@@ -3753,9 +3746,6 @@
 				this.eachPoints(function(point){
 					point.save();
 				});
-				console.log(this.scale.xLabels);
-				console.log(this.datasets[0].points);
-				console.log(this.updateNumeric());
 				
 				//need to update the scale manually
 				if(this.numeric){
@@ -3768,12 +3758,10 @@
 							min = parseFloat(this.scale.xLabels[i]);
 					}
 					var labels = [];
-					console.log("min " + min + "max "  + max );
 					for(var i = min; i <= max; i++){
 						labels.push(parseFloat(i)); 
 					}
 					this.buildScale(labels);
-					console.log(this.scale.xLabels);
 					
 				   // need to manually update x and y values maybe?
 					this.eachPoints(function(point, index){
@@ -3794,7 +3782,6 @@
 						}
 						this.buildScale[labels];
 					}
-					console.log(labels);
 					this.eachPoints(function(point, index){
 						helpers.extend(point, {
 							x: this.scale.calculateX(index),
