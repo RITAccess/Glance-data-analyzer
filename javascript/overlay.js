@@ -1,8 +1,15 @@
 "use strict"; // strict mode syntax
 // initial object for the overlay
-var Overlay = function(data) {
-  this.loadControls(data.data[0].length);
-  this.slider = [0,0];
+var Overlay = function(data, graphType) {
+  this.chart;
+  if(graphType != "bar"){
+    this.loadControls(data.data[0].length);
+    this.slider = [0,0];
+  }
+  else{
+    this.loadControls(data.data[0].length+1);
+    this.slider = [0,0];
+  }
 }
 
 // makes svg elements and inserts them as siblings of the node (previousNode) provided.
@@ -52,6 +59,20 @@ Overlay.prototype.updateSize = function(chart){
     var width = Number(this.getBackground().getAttribute('width'));
     this.getSelection().setAttribute("x",leftPadding + (startData * ( width / arraySize)));
     this.getSelection().setAttribute("width",(endData - startData) * (width / arraySize));
+    var leftPadding = Number(this.getBackground().getAttribute('x'));
+    var width = Number(this.getBackground().getAttribute('width'));
+    console.log("left:",leftPadding,"width",width);
+    //this.getSelection().setAttribute("x",leftPadding);
+    //this.getSelection().setAttribute("width",width);
+  }
+  if(this.chart == undefined) {
+    console.log("Here")
+    var leftPadding = Number(this.getBackground().getAttribute('x'));
+    var width = Number(this.getBackground().getAttribute('width'));
+    console.log("left:",leftPadding,"width",width);
+    this.getSelection().setAttribute("x",leftPadding);
+    this.getSelection().setAttribute("width",width);
+    this.chart = chart;
   }
 }
 

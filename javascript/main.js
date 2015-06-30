@@ -61,7 +61,7 @@ var loadData = function (data) {
       player = new WaveForm("sine");
     else
       player = new Instrument(1);
-    overlay = new Overlay(data);
+    overlay = new Overlay(data, type);
     overlay.updateSize(chart);
     collection = new ArrayCollection(data.data);
     player.setCollection(collection.collection);
