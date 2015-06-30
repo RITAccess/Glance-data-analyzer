@@ -40,6 +40,7 @@ var collection;
 var type = null;
 var lineColors = [];
 var slickTable;
+var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor')>0;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function (data) {
@@ -53,9 +54,35 @@ var loadData = function (data) {
     chart = loadChart(data.data, type);
     if(chart && type === "bar"){
       convertPointsToBars();
+      if(!document.getElementById("barGraphAudioOptions")){
+        var newddm = document.createElement("select");
+        newddm.setAttribute("id","barGraphAudioOptions");
+        newddm.setAttribute("class","drop-down");
+        var option = document.createElement("option");
+        option.setAttribute("value","0");
+        option.innerHTML = "Normal";
+        newddm.appendChild(option);
+        option = document.createElement("option");
+        option.setAttribute("value","1");
+        option.innerHTML = "Play by column";
+        newddm.appendChild(option);
+        if(!isSafari){
+          option = document.createElement("option");
+          option.setAttribute("value","2");
+          option.innerHTML = "Play columns as chords";
+          newddm.appendChild(option);
+        }
+        document.getElementById("audioSpanSec").appendChild(newddm);
+      }
     }
     else{
+      if(document.getElementById('barGraphAudioOptions')){
+        var c = document.getElementById('barGraphAudioOptions');
+        var p =  c.parentNode;
+        p.removeChild(c);
+      }
       convertPointsToScatter();
+      
     }
     if(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)
       player = new WaveForm("sine");
@@ -100,7 +127,7 @@ var playStopAudioButton = function () {
       setTimeout(function() {}, 2000);
     }
     //setTimeout(function() {}, 10000);
-    player.playToggle(document.getElementById("lineDropdown").value - 1, overlay.slider[0], overlay.slider[1]);
+    player.playToggle(document.getElementById("lineDropdown").value - 1, overlay.slider[0], overlay.slider[1],document.getElementById("barGraphAudioOptions").selectedIndex);
 }
 
 // Opens the color editor

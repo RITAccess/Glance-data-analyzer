@@ -70,7 +70,6 @@ Instrument.prototype.playColumn = function(col){
     }
     var key =  parseInt(self.infoCollection.collection[j].array[i]);
     T.soundfont.play(self.pnotes[key],false);
-    console.log(key);
     j++;
   }).on("ended",function(){
     this.stop();
@@ -128,7 +127,7 @@ Instrument.prototype.changeLine = function(line, index, newValue) {
 }
 
 //Toggle playing either on or off
-Instrument.prototype.playToggle = function(line, startIndex, endIndex) {
+Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
   if(!this.playing) {
       this.looping = true;
       while(this.looping){
@@ -140,7 +139,13 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex) {
         }
     }
     var self = this;
-    setTimeout(function() {self.playDataSet(line,startIndex,endIndex);}, 1000);
+    if(!mode || mode === 0)
+      setTimeout(function() {self.playDataSet(line,startIndex,endIndex);}, 1000);
+    else if(mode === 1)
+      setTimeout(function() {self.playColumn(line);}, 1000);
+    }
+    else{
+      setTimeout(function() {self.playColumnsAsChords(line,startIndex,endIndex);}, 1000);  
     }
 }
 
