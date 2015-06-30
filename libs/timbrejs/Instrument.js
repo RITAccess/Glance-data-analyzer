@@ -55,6 +55,54 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
   self.playing = false;
 }
 
+//For Bar Graph, play a certain month
+Instrument.prototype.playColumn = function(col){
+  this.playing = true;
+  var i = col;
+  var j = 0;
+  var self = this;
+  timbre.bpm = this.bpm;
+  var t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+    if(j>=self.infoCollection.collection.length-1 || self.infoCollection.collection[j] === undefined){
+      self.playing = false;
+      self.updateIcon();
+      t.stop();
+    }
+    var key =  parseInt(self.infoCollection.collection[j].array[i]);
+    T.soundfont.play(self.pnotes[key],false);
+    console.log(key);
+    j++;
+  }).on("ended",function(){
+    this.stop();
+  }).start();
+  self.playing = false;
+
+}
+
+//For Bar Graph, play through, playing all columns as chords
+Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
+  this.playing = true;
+  var i = startIndex;
+  var j = line;
+  var self = this;
+  timbre.bpm = this.bpm;
+  var t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+    if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
+      self.playing = false;
+      self.updateIcon();
+      t.stop();
+    }
+    for(var k = 0; k < self.infoCollection.collection.length; k++){
+      var key =  parseInt(self.infoCollection.collection[k].array[i]);
+      T.soundfont.play(self.pnotes[key],false);
+    }
+    i++;
+  }).on("ended",function(){
+    this.stop();
+  }).start();
+  self.playing = false;
+}
+
 //Using an arrayCollection object you can add a group of lines to the audio object
 Instrument.prototype.setCollection = function(collection) {
   var dropdownString ="";
