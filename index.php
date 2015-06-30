@@ -115,6 +115,14 @@
     <div id='summaryBox' style="display:none;">
       <h3 id='summary-header'>Graph Data</h3>
         <ol id="colors" class="color-editor-input"></ol>
+      <div id="bgColorChange">
+        <h3>Change Background Color</h3>
+          <form>
+            Site: <input title="Change Site Background Color"><br>
+            Graph: <input title="Change Graph Background Color">
+          </form>
+      </div><!-- END id="bgColorChange" -->
+      </div><!-- END id="summaryBoxBody" -->
     </div>
   </div><!-- end div id="content" -->
 <!-- div for LOAD CSV pop-up list -->
