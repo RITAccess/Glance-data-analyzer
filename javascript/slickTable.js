@@ -126,6 +126,7 @@ var linkSlickTable = function(chart, player, overlay, summary){
 	    holdData(oldGrid);	
 		chart.update();
 		summary.update();
+		overlay.updateSize(chart);
 	}); 
 }
 

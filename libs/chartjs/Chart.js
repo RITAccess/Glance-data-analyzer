@@ -1479,7 +1479,6 @@
 		// Fitting loop to rotate x Labels and figure out what fits there, and also calculate how many Y steps to use
 		fit: function(){
 			// First we need the width of the yLabels, assuming the xLabels aren't rotated
-
 			// To do that we need the base line at the top and base of the chart, assuming there is no x label rotation
 			this.startPoint = (this.display) ? this.fontSize : 0;
 			this.endPoint = (this.display) ? this.height - (this.fontSize * 1.5) - 5 : this.height; // -5 to pad labels
@@ -3683,7 +3682,6 @@
 					for(var i = min; i <= max; i++){
 						labels.push(parseFloat(i));
 					}
-
 					data.labels = labels;
 					helpers.each(dataset.data, function(dataPoint,index){
 							datasetObject.points.push(new this.PointClass({
@@ -3746,39 +3744,42 @@
 				this.eachPoints(function(point){
 					point.save();
 				});
-				
+			this.updateNumeric();	
 				//need to update the scale manually
 				if(this.numeric){
-					var min = parseFloat(this.scale.xLabels[0]);
-					var max = parseFloat(this.scale.xLabels[0]);
-					for(var i = 0; i < this.scale.xLabels.length; i++){
-						if(parseFloat(this.scale.xLabels[i]) > max)
-							max = parseFloat(this.scale.xLabels[i]);
-						if(parseFloat(this.scale.xLabels[i]) < min)
-							min = parseFloat(this.scale.xLabels[i]);
-					}
-					var labels = [];
-					for(var i = min; i <= max; i++){
-						labels.push(parseFloat(i)); 
-					}
-					this.buildScale(labels);
+					if(this.datasets[0].points){
+						var min = parseFloat(this.datasets[0].points[0].label);
+						var max = parseFloat(this.datasets[0].points[0].label);
+
+						for(var i = 0; i < this.datasets[0].points.length; i++){
+							if(parseFloat(this.datasets[0].points[i].label) > max)
+								max = parseFloat(this.datasets[0].points[i].label);
+							if(parseFloat(this.datasets[0].points[i].label) < min)
+								min = parseFloat(this.datasets[0].points[i].label);
+						}
+						var labels = [];
+						for(var i = min; i <= max; i++){
+							labels.push(parseFloat(i)); 
+						}
+						this.buildScale(labels);
 					
-				   // need to manually update x and y values maybe?
-					this.eachPoints(function(point, index){
-						helpers.extend(point, {
-							x: this.scale.calculateX(parseFloat(point.label)-1),
-							y: this.scale.calculateY(point.value)
-						});
-						point.save();
-					}, this);
-				
+						// need to manually update x and y values maybe?
+						this.eachPoints(function(point, index){
+							helpers.extend(point, {
+								x: this.scale.calculateX(parseFloat(point.label)-1),
+								y: this.scale.calculateY(point.value)
+							});
+							point.save();
+						}, this);
+					}
+					this.scale.update();
 				
 				}
 				else{
 					var labels = [];
-					if(chart.datasets[0].points){
-						for(var i = 0; i < chart.datasets[0].points.length; i++){
-							labels.push(chart.datasets[0].points[i].label);
+					if(this.datasets[0].points){
+						for(var i = 0; i < this.datasets[0].points.length; i++){
+							labels.push(this.datasets[0].points[i].label);
 						}
 						this.buildScale[labels];
 					}
@@ -3791,6 +3792,7 @@
 					}, this);
 					this.scale.update();
 				}
+				this.scale.fit();
 				this.render();
 		},
 		eachPoints : function(callback){
