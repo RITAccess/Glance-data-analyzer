@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="libs/SlickGrid/examples/examples.css" type="text/css"/>
   <link rel="stylesheet" href="libs/jquery/jquery-ui.css"/>
   <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   </head>
 <body>
   <header>
