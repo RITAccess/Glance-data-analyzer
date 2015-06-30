@@ -146,8 +146,8 @@ var Alert2 = new CustomAlert2();
 var Alert3 = new CustomAlert3();
 
 //Radio Button Chart/Graph Type Selection
-var rType = function (rType) {
-    var selType = document.getElementById("rTypeSel");
+var typeOpSel = function (typeOpSel) {
+    var selType = document.getElementById("typeSel");
     if (selType.firstChild.nextSibling.checked) type = "line";
     else if (document.getElementById("barRadioButton").checked) {
         type = "bar";

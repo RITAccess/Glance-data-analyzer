@@ -43,30 +43,20 @@ header {
 }
 /*********************************/
 
-
-#rTypeSelBody{/* chart/graph type radio selection */
-    text-align: center;
-    margin: auto;
-    margin-bottom: 3%;
-}
-#rTypeSel input{
-    cursor: pointer;
-}
-#rTypeSel label {
-    margin-right: 5%;
-    cursor: pointer;
-}
-
-/*
-#audioSpan {
+#typeSelBody{/* chart/graph type selection */
     float: right;
-    position: absolute;
     padding-right: 2%;
     margin-top: 0.9%;
     right: 0em;
 }
-*/
+#typeSelBody select {
+    cursor: pointer;
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 10px;
+}
 
+/*********************************/
 /* START style for about section */
 #start {
     text-align: justify;
@@ -78,18 +68,6 @@ header {
     border-radius: 5px;
     border: 3px solid #000;
 }
-
-#toTopdiv {
-    text-align: justify;
-    width: 800px;
-    margin: auto;
-    margin-top: 5%;
-    margin-bottom: 8%;
-    padding: 1% 5% 3% 5%;
-    border-radius: 5px;
-    border: 3px solid #000;
-}
-
 #start h1 {
     text-align: center;
 }
@@ -104,19 +82,15 @@ header {
     text-align: center;
 }
 #startButton{
-    display: inline;
     cursor: pointer;
-    background: #FFF;
     font-size: 20px;
-    padding: 1.5%;
-    color: #000;
     font-weight: bold;
+    background-color: #FFF;
+    border: 2px solid #000;
+    border-radius: 10px;
+    margin: 2% 0 3% 0;
+    padding: 1%;
     box-shadow: 0px 5px 10px #000;
-    text-shadow: none;
-    border: 2px solid #FFF;
-    border-radius: 5px;
-    margin: 0 auto;
-    margin-left: 500px;    
 }
 /* END style for about section */
 
@@ -126,7 +100,7 @@ header {
     height: 47px;
     z-index: -1;
 }
-#newTable {/*style for actual Create New Table button*/
+#newTable {/* style for actual Create New Table button */
     width: 186px;
     height: 47px;
     z-index: -1;
@@ -138,11 +112,11 @@ header {
     margin-bottom: 8%;
     clear: both;
 }
-#graphImg{/*printer.js: image of graph in the print page */
+#graphImg{/* printer.js: image of graph in the print page */
     margin-bottom: 7%;
 }
 #selection {
-    fill: lightblue;/*#ADD8E6*/
+    fill: lightblue;/* #ADD8E6 */
     fill-opacity: 0.3;
 }
 svg * {
@@ -152,37 +126,14 @@ svg * {
 }
 /*******************************/
 
-/*
-.slider1 {
-    width: 800px;
-    margin: 0px;
-    margin-bottom: 7px;
-    float: left;
-}
-.slider2 {
-    width: 800px;
-    margin: 0px;
-    margin-bottom: 7px;
-    float: left;
-}
-*/
-/*
- #slider-range {
-    margin-left: 22px;
-    width: 755px;
-}
-*//*delete(?): slider-range styles conflicts with element.style,
-and doesn't seem to effect anything when comment sliger-range out*/
-
-/*******************************/
 #overlay {
     position:absolute;
 }
 #dataGraph h3{
     text-align: center;
 }
-/*******************************/
 
+/*******************************/
 /**  START changing Browse to Load CSV **/
  * {
     box-sizing:border-box;
@@ -259,10 +210,9 @@ and doesn't seem to effect anything when comment sliger-range out*/
 /* START: for print button page, table section */
 #printTable{
     margin-top: 8%;
-    /*page-break-before: always;*/
 }
 #printTableHeader{
-    text-align: center;/*margin-left: 5%;*/
+    text-align: center;
 }
 #printTableBody{
     margin-top: 2%;
@@ -289,27 +239,27 @@ and doesn't seem to effect anything when comment sliger-range out*/
     border-radius: 100%;
     border-style: solid;
     color: #000;
-    box-shadow: 0px 5px 10px black;
+    box-shadow: 0px 5px 10px #000;
 }
 #playButton:hover, #playButton:focus {
     background-color: #000;
     color: #FFF;
 }
 #bpm {
+    cursor: inherit;
+    font-size: 15px;
     width: 65px;
     text-align: center;
-    font-size: 15px;
 }
 .drop-down {
-    width: 50px;
-    border-radius: 10px;
-    border: 0.05em solid black;
+    cursor: pointer;
     font-size: 15px;
-}
-.instr-drop-down {/* drop down for instrument */
-    width: 200px;
+    border-radius: 10px;
+    border: 1px solid #888;
+    padding: 0.5%;
 }
 /*******************************/
+
 #dataPlot {
     width: 100%;
     text-align:center;
@@ -394,10 +344,6 @@ and doesn't seem to effect anything when comment sliger-range out*/
     font-weight: bold;
     font-size: 20px;
     text-align: center;
-    /* -webkit-transition: background 0.5s;
-    -moz-transition: background 0.5s;
-    -o-transition: background 0.5s;
-    transition: background 0.5s; */
     border-radius: 5px;
     border: 3px solid #000;
     padding: 1% 0 4% 0;
@@ -418,7 +364,7 @@ and doesn't seem to effect anything when comment sliger-range out*/
 .summary-editor-input input:focus {
     background: #dadada;
 }
-.colorblock {/*called in chart.js only*/
+.colorblock {/* called in chart.js only */
     border: 2px solid #000;
     box-shadow: 1px 1px 2px #000;
     padding-right: 3em;
@@ -462,6 +408,7 @@ and doesn't seem to effect anything when comment sliger-range out*/
     color:#000;
 }
 #dialogbox > div > #dialogboxbody {
+    cursor: pointer;
     border-top: 2px solid #000;
     padding:20px;
     color:#000;
@@ -469,6 +416,9 @@ and doesn't seem to effect anything when comment sliger-range out*/
 #dialogbox > div > #dialogboxfoot {
     padding:10px;
     text-align:right;
+}
+#dialogboxbody select{
+    cursor: pointer;
 }
 #dialogboxbody input {
     margin-top: 10px;
@@ -489,7 +439,7 @@ and doesn't seem to effect anything when comment sliger-range out*/
 table, th, td, .printTable{
     border: 1px solid #000;
     border-collapse: collapse;
-    text-align: center; /*center texts (especially) inside td*/
+    text-align: center; /* center texts (especially) inside td */
 }
 table, .printTable{
     font-size: 15px;
@@ -535,9 +485,9 @@ th, td, .printTable{
 
 /************************************/
 
-/* START media query max-width: 1068px *
+/* START media query max-width: 1068px */
 @media screen and (max-width: 1068px) {
-    #audioSpan{
+    #typeSelBody{
         width: 100%;
         background: url('footer_lodyas/footer_lodyas.png');
         position: initial;
@@ -545,9 +495,10 @@ th, td, .printTable{
         margin-bottom: 5%;
         padding: 2% 3.5%;
         box-shadow: 0px 10px 10px -10px #000;
+        border-radius: 0;
     }
-    #audioSpan:before{
-        content: '\A'; /* acts like break tag *
+    #typeSelBody:before{
+        content: '\A'; /* acts like break tag */
     }
 }
 /* END media query max-width: 1068px */
