@@ -72,7 +72,12 @@ var loadData = function (data) {
           option.innerHTML = "Play columns as chords";
           newddm.appendChild(option);
         }
+        var label = document.createElement("label");
+        label.innerHTML = "Play mode ";
+        label.setAttribute("id","playModeLabel");
+        document.getElementById("audioSpanSec").appendChild(label);
         document.getElementById("audioSpanSec").appendChild(newddm);
+        newddm.setAttribute("onchange", "makeColSelector()");
       }
     }
     else{
@@ -80,6 +85,15 @@ var loadData = function (data) {
         var c = document.getElementById('barGraphAudioOptions');
         var p =  c.parentNode;
         p.removeChild(c);
+        var c = document.getElementById('playModeLabel');
+        p.removeChild(c);
+        if(document.getElementById("colSelector")){
+          var c = document.getElementById('colSelector');
+          var p =  c.parentNode;
+          p.removeChild(c);
+          var c = document.getElementById("colNumLabel");
+          p.removeChild(c);
+        }
       }
       convertPointsToScatter();
       
@@ -148,4 +162,30 @@ var focusElement = function(elementClass) {
 var blurElement = function(elementClass) {
   document.getElementsByClassName(elementClass)[0].style.backgroundColor = "#FFF";
   document.getElementsByClassName(elementClass)[0].style.color = "#000";
+}
+
+var makeColSelector = function(){
+  if(document.getElementById("barGraphAudioOptions").selectedIndex === 1 && !document.getElementById("colSelector")){
+    var selector = document.createElement("select");
+    selector.setAttribute("id", "colSelector");
+    selector.setAttribute("class","drop-down");
+    for(var i = 0; i < chart.datasets[0].bars.length; i ++){
+      var option = document.createElement("option");
+      option.setAttribute("value", i);
+      option.innerHTML = chart.datasets[0].bars[i].label;
+      selector.appendChild(option);
+    }
+    var label = document.createElement("label");
+    label.setAttribute("id","colNumLabel");
+    label.innerHTML = "Column number ";
+    document.getElementById("audioSpanSec").appendChild(label);  
+    document.getElementById("audioSpanSec").appendChild(selector);
+  }
+  else if(document.getElementById("colSelector")){
+    var c = document.getElementById('colSelector');
+    var p =  c.parentNode;
+    p.removeChild(c);
+    var c = document.getElementById("colNumLabel");
+    p.removeChild(c);
+  }
 }
