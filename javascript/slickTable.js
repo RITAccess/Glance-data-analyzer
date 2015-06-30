@@ -121,7 +121,7 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		}
 
 		//update chart and overlay
-		console.log(oldGrid);
+//		console.log(oldGrid);
 		updateGrid();
 	    holdData(oldGrid);	
 		chart.update();

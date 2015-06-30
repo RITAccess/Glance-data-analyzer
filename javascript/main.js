@@ -184,7 +184,7 @@ var makeColSelector = function(){
     }
     var label = document.createElement("label");
     label.setAttribute("id","colNumLabel");
-    label.innerHTML = "Column number ";
+    label.innerHTML = " Column number ";
     document.getElementById("audioSpanSec").appendChild(label);  
     document.getElementById("audioSpanSec").appendChild(selector);
   }

@@ -86,7 +86,7 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
   var self = this;
   timbre.bpm = this.bpm;
   var t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
-    if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
+    if(i>endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
       self.playing = false;
       self.updateIcon();
       t.stop();
@@ -145,7 +145,7 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
     else if(mode === 1)
       setTimeout(function() {self.playColumn(line);}, 1000);
     else if(mode === 2){
-      console.log(line + " " + startIndex + " " + endIndex);
+      //console.log(line + " " + startIndex + " " + endIndex);
       setTimeout(function() {self.playColumnsAsChords(line,startIndex,endIndex);}, 1000);  
     }
     }
