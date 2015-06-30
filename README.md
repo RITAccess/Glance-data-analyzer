@@ -18,8 +18,8 @@ Used for making dynamic tab-accessible tables and updating the data in the chart
 ## jquery - https://jquery.com/
 Used for making the 2 thumbed slider at the top (jquery is not, and should not, be used for getting elements out of the document. Instead use document.getElementById, document.getElementsByClassName, or document.querySelector and document.querySelectorAll, etc...)
 
-## jsfx - https://github.com/egonelbre/jsfx
-Used for creating the sound in the application.
-
 ## require - http://requirejs.org/
 Used for grabbing external javascript files in the project.
+
+## timbre - http://mohayonao.github.io/timbre.js/
+Used to create waveforms and use midi instruments in the process of graph sonification.
