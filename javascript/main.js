@@ -123,6 +123,15 @@ var loadData = function (data) {
     document.getElementById('tableControls').style.display = 'block';
     document.getElementById('summaryBox').style.display = 'block';
     fixSlick();
+    if(type === "line"){
+      document.getElementById('typeSel').selectedIndex = 0;
+    }
+    else if(type === "bar"){
+      document.getElementById('typeSel').selectedIndex = 1;
+    }
+    else{
+      document.getElementById('typeSel').selectedIndex = 2;
+    }
 }
 
 
@@ -145,7 +154,14 @@ var playStopAudioButton = function () {
     else{
       var mode = document.getElementById("barGraphAudioOptions").selectedIndex;
     }
-    player.playToggle(document.getElementById("lineDropdown").value - 1, overlay.slider[0], overlay.slider[1],mode);
+    if(mode != 1){
+      var startval = document.getElementById("lineDropdown").value - 1;
+    }
+    else{
+      var startval = document.getElementById("colSelector").value;
+      //console.log(startval);
+    }
+    player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode);
 }
 
 // Opens the color editor
@@ -177,7 +193,7 @@ var makeColSelector = function(){
     }
     var label = document.createElement("label");
     label.setAttribute("id","colNumLabel");
-    label.innerHTML = "Column number ";
+    label.innerHTML = " Column number ";
     document.getElementById("audioSpanSec").appendChild(label);  
     document.getElementById("audioSpanSec").appendChild(selector);
   }
