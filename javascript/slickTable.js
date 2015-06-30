@@ -121,8 +121,9 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		}
 
 		//update chart and overlay
-
-	    holdData(oldGrid);
+		console.log(oldGrid);
+		updateGrid();
+	    holdData(oldGrid);	
 		chart.update();
 		summary.update();
 	}); 
@@ -167,7 +168,6 @@ function checkRemove(){
 					grid.gotoCell(0, i);
 					grid.getData()[0][i] = oldGrid[0][i];	//Set back to default value if not
 					chart.scale.xLabels[i-1] = oldGrid[0][i];
-					totalData.pop();
 				}
 			}
 		} 
@@ -177,7 +177,6 @@ function checkRemove(){
 			grid.gotoCell(0, i);
 			grid.getData()[0][i] = oldGrid[0][i];
 			chart.scale.xLabels[i-1] = oldGrid[0][i];
-			totalData.pop();
 		}
 	}
 
@@ -198,7 +197,6 @@ function checkRemove(){
 				else{
 					grid.gotoCell(i, 0);
 					grid.getData()[i][0] = oldGrid[i][0];	//Set back to default value if not
-					totalData.pop()
 				}
 			}
 		} 
@@ -207,11 +205,10 @@ function checkRemove(){
 			alert("Not enough rows to remove!");
 			grid.gotoCell(i, 0);
 			grid.getData()[i][0] = oldGrid[i][0];
-			totalData.pop();
 		}
 	}
 	
-	updateGrid();
+	holdData(oldGrid);
     chart.update();
 	document.getElementById('tblContainer').style.width="100%";
 }

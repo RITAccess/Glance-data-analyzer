@@ -43,7 +43,6 @@ DataSummary.prototype.dataSummary = function() {
     " Min: " + globalmin + " Average: " + this.calcCollectionAvg());
     lastEntry.appendChild(finalSummary);
     this.summaryDiv.appendChild(lastEntry);
-    overlay.updateSize(chart)
 }
 
 // Calculates the average for the entire set of data
