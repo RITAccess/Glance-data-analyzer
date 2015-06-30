@@ -145,7 +145,14 @@ var playStopAudioButton = function () {
     else{
       var mode = document.getElementById("barGraphAudioOptions").selectedIndex;
     }
-    player.playToggle(document.getElementById("lineDropdown").value - 1, overlay.slider[0], overlay.slider[1],mode);
+    if(mode != 1){
+      var startval = document.getElementById("lineDropdown").value - 1;
+    }
+    else{
+      var startval = document.getElementById("colSelector").value;
+      //console.log(startval);
+    }
+    player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode);
 }
 
 // Opens the color editor

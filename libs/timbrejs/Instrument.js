@@ -138,7 +138,7 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
           setTimeout(q(), 1000);
         }
     }
-    console.log(mode);
+    //console.log(mode);
     var self = this;
     if(!mode || mode === 0)
       setTimeout(function() {self.playDataSet(line,startIndex,endIndex);}, 1000);
