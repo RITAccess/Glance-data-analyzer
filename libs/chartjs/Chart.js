@@ -3745,35 +3745,37 @@
 			this.render();
 		},
 		update : function(){
+			console.log("update");
 			// Reset any highlight colours before updating.
 			helpers.each(this.activeElements, function(activeElement){
 				activeElement.restore(['fillColor', 'strokeColor']);
 			});
-
-			
-				this.updateNumeric();
 				this.eachPoints(function(point){
 					point.save();
 				});
+				console.log(this.scale.xLabels);
+				console.log(this.datasets[0].points);
+				console.log(this.updateNumeric());
 				
 				//need to update the scale manually
 				if(this.numeric){
-					var min = this.scale.xLabels[0];
-					var max = this.scale.xLabels[0];
+					var min = parseFloat(this.scale.xLabels[0]);
+					var max = parseFloat(this.scale.xLabels[0]);
 					for(var i = 0; i < this.scale.xLabels.length; i++){
-						if(this.scale.xLabels[i] > max)
-							max = this.scale.xLabels[i];
-						if(this.scale.xLabels[i] < min)
-							min = this.scale.xLabels[i];
+						if(parseFloat(this.scale.xLabels[i]) > max)
+							max = parseFloat(this.scale.xLabels[i]);
+						if(parseFloat(this.scale.xLabels[i]) < min)
+							min = parseFloat(this.scale.xLabels[i]);
 					}
 					var labels = [];
+					console.log("min " + min + "max "  + max );
 					for(var i = min; i <= max; i++){
 						labels.push(parseFloat(i)); 
 					}
 					this.buildScale(labels);
-					//console.log(this.scale.xLabels);
+					console.log(this.scale.xLabels);
 					
-				// need to manually update x and y values maybe?
+				   // need to manually update x and y values maybe?
 					this.eachPoints(function(point, index){
 						helpers.extend(point, {
 							x: this.scale.calculateX(parseFloat(point.label)-1),
@@ -3887,7 +3889,7 @@
 				this.datasets[datasetIndex].points.push(new this.PointClass({	
 					value : value,
 					label : parseFloat(label),
-					datasetLabel : this.datasets[datasetIndex].label,
+					datasetLabel : this.datasets[datasetIndex].label, //TODO - WRONG vvvv
 					x : this.scale.calculateX(parseFloat(label) - parseFloat(this.datasets[datasetIndex].label)),
 					y : this.scale.endPoint,
 					strokeColor : this.datasets[datasetIndex].pointStrokeColor,
