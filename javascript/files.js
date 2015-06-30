@@ -17,6 +17,7 @@ var newFile = function(newFile) {
 function loadFile(){
   var input = ev.target;
   var colorlist = document.getElementById("colors");
+  oldData = [];
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
