@@ -34,7 +34,7 @@
         <span class="createBtn" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
       </label>
     </div>
-    <span id="typeSelBody" style="display:none;">
+    <span id="typeSelBody" class="no-print" style="display:none;">
       Select a graph type:
       <select id="typeSel" class="no-print" onchange="typeOpSel()">
         <option id="lineRadioButton" name="graphTypeSel" value="Line" onclick="typeOpSel()">Line Graph</label>
@@ -45,19 +45,23 @@
     <output id="list"></output>
   </header>
     <div id="start">
-      <h1>Welcome to Data Analyzer</h1>
-      <p>
-        This web application was designed to help analyze data through graphs, calculated values, and sound.
-        Here's a quick look at how to use the application:
-      </p>
-      <ul>
-        <li>Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li>
-        <li>Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The overlay on the graph can highlight certain parts of the data to be turned into sound.</li>
-        <li>Data Table: There are two options with the data table; load a pre-made CSV (Comma Separated Value) file, or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.</li>
-        <li>Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
-      </ul>
-      <h3 id="startInst">To get started, select Load CSV or Create New Table at the top!</h3>
-      <button id="startButton" onclick="location.href='index.php'" >ReturnTo Top</button>
+      <div id="startBody">
+        <h1>Welcome to Data Analyzer</h1>
+        <p>
+          This web application was designed to help analyze data through graphs, calculated values, and sound.
+          Here's a quick look at how to use the application:
+        </p>
+        <ul>
+          <li>Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li>
+          <li>Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The overlay on the graph can highlight certain parts of the data to be turned into sound.</li>
+          <li>Data Table: There are two options with the data table; load a pre-made CSV (Comma Separated Value) file, or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.</li>
+          <li>Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
+        </ul>
+        <h3 id="startInst">To get started, select Load CSV or Create New Table at the top!</h3>
+      </div>
+      <div id="startFooter">
+        <button id="toTopButton" onclick="location.href='index.php'" >ReturnTo Top</button>
+      </div>
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
       <div id="dataGraph">
@@ -69,8 +73,8 @@
         </svg>
         <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
       </div><!-- END id="dataGraph" -->
-      <div id="audioSpanSec">
-        <span id="audioSpan" class="no-print" style="display: none">
+      <div id="audioSpanSec" class="no-print">
+        <span id="audioSpan" style="display: none">
           <label for="lineDropdown" tabindex="0"> Row number </label>
           <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
            at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>
