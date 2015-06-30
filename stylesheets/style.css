@@ -65,7 +65,7 @@ header {
 }
 #start {
     text-align: justify;
-    width: 800px;
+    width: 70%;
     margin: auto;
     margin-top: 5%;
     margin-bottom: 8%;
@@ -96,10 +96,10 @@ header {
     font-size: 20px;
     font-weight: bold;
     background-color: #FFF;
-    border: 2px solid #000;
+    border: 2px solid #FFF;
     border-radius: 10px;
     padding: 1%;
-    box-shadow: 0px 5px 10px #000;
+    box-shadow: 0px 5px 10px #444;
 }
 /* END style for about section */
 
@@ -248,7 +248,7 @@ svg * {
     border-radius: 100%;
     border-style: solid;
     color: #000;
-    box-shadow: 0px 5px 10px #000;
+    box-shadow: 0px 5px 10px #444;
 }
 #playButton:hover, #playButton:focus {
     background-color: #000;
@@ -319,7 +319,7 @@ svg * {
     padding: 1.5%;
     color: #000;
     font-weight: bold;
-    box-shadow: 0px 5px 10px #000;
+    box-shadow: 0px 5px 10px #444;
     text-shadow: none;
     border: 2px solid #FFF;
     border-radius: 5px;
@@ -335,8 +335,6 @@ svg * {
     background: #FFF;
     font-size: 20px;
     font-weight: bold;
-    box-shadow: none;
-    text-shadow: none;
     border: 2px solid #FFF;
     border-radius: 100%;
     vertical-align: middle;
@@ -385,7 +383,7 @@ svg * {
 #colors > li {
     margin: 4% 0;
 }
-.color-editor-input input:focus { /* background color for data color change text field */ 
+.color-editor-input input:focus { /* background color for data color change text field */
     background: #dadada;
 }
 .colorblock {/* called in chart.js only */
