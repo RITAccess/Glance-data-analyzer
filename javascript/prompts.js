@@ -60,6 +60,15 @@
         this.ok = function () {
             var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
             type = e.options[e.selectedIndex].value.toLowerCase();
+            if(type === "line"){
+              document.getElementById('typeOpSel').selectedIndex = 0;
+            }
+            else if(type === "bar"){
+              document.getElementById('typeOpSel').selectedIndex = 1;
+            }
+            else{
+              document.getElementById('typeOpSel').selectedIndex = 2;
+            }
             if(type != "line" && type != "bar" && type!= "scatter"){
               alert("No graph type has been selected! Please select a type of graph.");
               return;
@@ -110,23 +119,9 @@
         }
         this.ok = function () {
             var e = document.getElementById('removalSelector');
-            var action = e.options[e.selectedIndex].value.toLowerCase();
+            action = e.options[e.selectedIndex].value.toLowerCase();
             var start = document.getElementById("startingPoint").value;
             var skip = document.getElementById("remove").value;
-            if(action==="rows"){
-              removeRows(start,skip);
-            }
-            else if(action === "columns"){
-              removeColumns(start,skip);
-            }
-            else if(action === "both"){
-              removeRows(start,skip);
-              removeColumns(start,skip);
-            }
-            else{
-              alert("No removal type selected!");
-              return;
-            }
             document.getElementById('dialogbox').style.visibility = "hidden";
             document.getElementById('dialogoverlay').style.visibility = "hidden";
             document.getElementsByClassName('createBtn')[0].focus();
@@ -151,6 +146,15 @@ var typeOpSel = function (typeOpSel) {
     var t = selType.options[selType.selectedIndex].value;
     t = t.toLowerCase();
     type = t;
+    // if(type === "line"){
+    //   document.getElementById('typeOpSel').selectedIndex = 0;
+    // }
+    // else if(type === "bar"){
+    //   document.getElementById('typeOpSel').selectedIndex = 1;
+    // }
+    // else{
+    //   document.getElementById('typeOpSel').selectedIndex = 2;
+    // }
     document.getElementById("colors").innerHTML="";
     changeType();
 }

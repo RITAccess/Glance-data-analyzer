@@ -123,6 +123,15 @@ var loadData = function (data) {
     document.getElementById('tableControls').style.display = 'block';
     document.getElementById('summaryBox').style.display = 'block';
     fixSlick();
+    if(type === "line"){
+      document.getElementById('typeSel').selectedIndex = 0;
+    }
+    else if(type === "bar"){
+      document.getElementById('typeSel').selectedIndex = 1;
+    }
+    else{
+      document.getElementById('typeSel').selectedIndex = 2;
+    }
 }
 
 
