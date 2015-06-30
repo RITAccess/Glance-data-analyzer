@@ -260,6 +260,9 @@ svg * {
     width: 65px;
     text-align: center;
 }
+#bpm:focus {
+    background: #dadada;
+}
 .drop-down {
     cursor: pointer;
     font-size: 15px;
@@ -349,7 +352,6 @@ svg * {
 }
 #summaryBox {
     width: 100%;
-    height: auto;
     font-weight: bold;
     font-size: 20px;
     text-align: center;
@@ -361,6 +363,19 @@ svg * {
     width: 100%;
     border-radius: 5px;
 }
+#bgColorChange { /* background color change for entire site and graph */
+    width: 100%;
+    border-top: 3px solid #000;
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+#bgColorChange form {
+    text-align: left;
+    margin-left: 5%;
+}
+#bgColorChange input:focus {
+    background: #dadada;
+}
 #colors {
     max-height: 300px;
     text-align: left;
@@ -370,7 +385,7 @@ svg * {
 #colors > li {
     margin: 4% 0;
 }
-.summary-editor-input input:focus {
+.color-editor-input input:focus { /* background color for data color change text field */ 
     background: #dadada;
 }
 .colorblock {/* called in chart.js only */

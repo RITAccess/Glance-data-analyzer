@@ -86,7 +86,7 @@
       </div><!-- END id="dataGraph" -->
       <div id="dataPlot">
         <h3 id="plot-header" style="display:none;">Data Table</h3>
-        <div id="tableCount"></div>
+        <div id="tableCount"></div><!-- END id="tableCount" -->
         <div id="tblContainer" style="display:none;" title="Data Table">
           <div id="slickTable" style="width:100%;"></div>
         </div> <!-- end id="tblContainer" -->
@@ -107,14 +107,22 @@
         <button id="downloadCSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
         <button id="printButton" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
         <!--<button id="resetButton" aria-label="Reset"><i class="fa fa-refresh fa-lg"></i></button> -->
-      </div>
-    </div><!-- END id="tableCount" -->
+      </div><!-- END id="tableControls" -->
+    </div><!-- END id="dataPlot" -->
     <?php
         include 'php/ajax.php';
     ?>
     <div id='summaryBox' style="display:none;">
       <h3 id='summary-header'>Graph Data</h3>
         <ol id="colors" class="color-editor-input"></ol>
+      <div id="bgColorChange">
+        <h3>Change Background Color</h3>
+          <form>
+            Site: <input title="Change Site Background Color"><br>
+            Graph: <input title="Change Graph Background Color">
+          </form>
+      </div><!-- END id="bgColorChange" -->
+      </div><!-- END id="summaryBoxBody" -->
     </div>
   </div><!-- end div id="content" -->
 <!-- div for LOAD CSV pop-up list -->
