@@ -34,9 +34,9 @@
         <span class="createBtn" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
       </label>
     </div>
-    <span id="typeSelBody" style="display:none;">
+    <span id="typeSelBody" class="no-print" style="display:none;">
       Change graph type:
-      <select id="typeSel" class="no-print">
+      <select id="typeSel" class="no-print" onchange="typeOpSel()">
         <option id="lineRadioButton" name="graphTypeSel" value="Line" onclick="typeOpSel()">Line Graph</label>
         <option id="barRadioButton" name="graphTypeSel" value="Bar" onclick="typeOpSel()">Bar Graph</option>
         <option id="scatterRadioButton" name="graphTypeSel" value="Scatter" onclick="typeOpSel()">Scatter Plot</option>
@@ -73,8 +73,8 @@
         </svg>
         <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
       </div><!-- END id="dataGraph" -->
-      <div id="audioSpanSec">
-        <span id="audioSpan" class="no-print" style="display: none">
+      <div id="audioSpanSec" class="no-print">
+        <span id="audioSpan" style="display: none">
           <label for="lineDropdown" tabindex="0"> Row number </label>
           <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
            at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>

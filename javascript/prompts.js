@@ -148,12 +148,9 @@ var Alert3 = new CustomAlert3();
 //Radio Button Chart/Graph Type Selection
 var typeOpSel = function (typeOpSel) {
     var selType = document.getElementById("typeSel");
-    if (selType.firstChild.nextSibling.checked) type = "line";
-    else if (document.getElementById("barRadioButton").checked) {
-        type = "bar";
-    } else if (document.getElementById("scatterRadioButton").checked) {
-        type = "scatter";
-    }
-        document.getElementById("colors").innerHTML="";
-        changeType();
+    var t = selType.options[selType.selectedIndex].value;
+    t = t.toLowerCase();
+    type = t;
+    document.getElementById("colors").innerHTML="";
+    changeType();
 }

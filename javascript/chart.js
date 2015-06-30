@@ -57,7 +57,7 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scater.length;
 									}
-									console.log(len);
+									//console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
@@ -89,7 +89,7 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scater.length;
 									}
-									console.log(len);
+									//console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
@@ -120,7 +120,7 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scater.length;
 									}
-									console.log(len);
+									//console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
@@ -163,7 +163,7 @@ var loadChart = function(data, type, collection){
 							for(var i = 0; i<chart.datasets[index].points.length;i++){
 								chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
 							}
-							console.log(oldData[index]);
+							//console.log(oldData[index]);
 						if(oldData[index]){
 									if(oldData[index].points){
 										var len = oldData[index].points.length;
@@ -174,7 +174,7 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scatter.length;
 									}
-									console.log(len);
+							//		console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
@@ -206,7 +206,7 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scater.length;
 									}
-									console.log(len);
+									//console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
@@ -237,7 +237,7 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scater.length;
 									}
-									console.log(len);
+									//console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){

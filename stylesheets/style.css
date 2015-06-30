@@ -482,7 +482,7 @@ th, td, .printTable{
         margin: 5% 0;
         /*page-break-after: auto;*/
     }
-    #summaryBox{
+    #colors{
         max-height: none;
         overflow: hidden;
     }
