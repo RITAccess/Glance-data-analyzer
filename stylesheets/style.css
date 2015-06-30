@@ -59,6 +59,7 @@ header {
 /*********************************/
 /* START style for about section */
 #startBody{
+    width: auto;
     clear: both;
     margin-bottom: 8%;
 }

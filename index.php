@@ -35,7 +35,7 @@
       </label>
     </div>
     <span id="typeSelBody" style="display:none;">
-      Select a graph type:
+      Change graph type:
       <select id="typeSel" class="no-print">
         <option id="lineRadioButton" name="graphTypeSel" value="Line" onclick="typeOpSel()">Line Graph</label>
         <option id="barRadioButton" name="graphTypeSel" value="Bar" onclick="typeOpSel()">Bar Graph</option>
