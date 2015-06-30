@@ -61,15 +61,12 @@ Overlay.prototype.updateSize = function(chart){
     this.getSelection().setAttribute("width",(endData - startData) * (width / arraySize));
     var leftPadding = Number(this.getBackground().getAttribute('x'));
     var width = Number(this.getBackground().getAttribute('width'));
-    console.log("left:",leftPadding,"width",width);
     //this.getSelection().setAttribute("x",leftPadding);
     //this.getSelection().setAttribute("width",width);
   }
   if(this.chart == undefined) {
-    console.log("Here")
     var leftPadding = Number(this.getBackground().getAttribute('x'));
     var width = Number(this.getBackground().getAttribute('width'));
-    console.log("left:",leftPadding,"width",width);
     this.getSelection().setAttribute("x",leftPadding);
     this.getSelection().setAttribute("width",width);
     this.chart = chart;

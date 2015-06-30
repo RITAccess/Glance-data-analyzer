@@ -111,8 +111,9 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 			self.stop();
 			this.stop();
 		}
-		if(!self.playing){
+		if(!this.started){
 			self.start();
+			this.started = true;
 		}
 		self.changePitch(30 + parseInt(self.infoCollection.collection[j].array[i]));
 		if(i === 0){
@@ -124,6 +125,39 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	}).start();
 	this.playing = false;
 };
+
+//Play series of notes
+WaveForm.prototype.playSeriesColumns = function(line,startIndex,endIndex){
+	this.playing = true;
+	this.updateIcon();
+	var j = line;
+	var i = startIndex;
+	timbre.bpm = this.bpm;
+	var self = this;
+	var time = this.bpm/60 * this.infoCollection.collection.length-2 + "sec"
+	console.log(time);
+	this.t = T("interval", {interval:this.subdiv,timeout:time},function(){
+		if(j>self.infoCollection.collection.length-1) {
+			self.playing = false;
+			self.updateIcon();
+			self.stop();
+			this.stop();
+		}
+		if(!this.started){
+			self.start();
+			this.started= true;
+		}
+		if(self.infoCollection.collection[j]){
+			self.changePitch(30 + parseInt(self.infoCollection.collection[j].array[i]));
+			j++;
+		}
+	}).on("ended",function(){
+		this.stop();
+		self.playing = false;
+		self.stop();
+	}).start();
+};
+
 
 //Set Beats per minute of waveform when series is played
 WaveForm.prototype.setBpm = function(bpm){
@@ -158,9 +192,13 @@ WaveForm.prototype.changeLine = function(line, index, newValue) {
 }
 
 //Toggle playing either on or off
-WaveForm.prototype.playToggle = function(line, startIndex, endIndex) {
+WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode) {
   if(!this.playing) {
-    this.playSeries(line,startIndex,endIndex);
+  	if(!mode || mode === 0)
+    	this.playSeries(line,startIndex,endIndex);
+	else{
+		this.playSeriesColumns(line,startIndex,endIndex);
+	}
   }
   else {
     this.stop();

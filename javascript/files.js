@@ -1,6 +1,8 @@
 "use strict"; // strict mode syntax
 // Opens a file
 var ev;
+var totalData = [];
+
 var openFile = function(openfile) {
   ev = openfile;
   if(ev.target.files[0]!=null)
@@ -15,6 +17,7 @@ var newFile = function(newFile) {
 function loadFile(){
   var input = ev.target;
   var colorlist = document.getElementById("colors");
+  oldData = [];
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
@@ -53,6 +56,7 @@ function loadFile(){
      if((resData[resData.length-1].length == 1) && (resData[resData.length-1][0] == "")){
         results.data.pop();
       }
+     totalData = [];
 	 	 loadData(results);
   	 }
     });
@@ -69,12 +73,19 @@ var createListener = function() {
 
 // Creates empty table value
 var createFile = function(rows, columns) {
-  if (rows < 1) {
+  if (rows < 1 && columns < 2) {
     rows = 1;
-  }
-  if (columns <= 2) {
     columns = 2;
+    alert("Table size not valid. A table of 1 by 2 will be created.")
   }
+  else if (rows < 1) {
+    rows = 1;
+    alert("Number of rows not valid. A table with 1 row will be created.");
+  }
+  else if (columns < 2) {
+    columns = 2;
+    alert("Number of colums not valid. A table with 2 columns will be created.");
+  } 
 
   // Reset color list
   var colorlist = document.getElementById("colors");
@@ -88,7 +99,7 @@ var createFile = function(rows, columns) {
   var rowArray = new Array(parseInt(rows) + 1);
 
   for (var i = 0; i < rowArray.length; i++) {
-    rowArray[i] = new Array(parseInt(columns)+1);
+    rowArray[i] = new Array(parseInt(columns) + 1);
 
     for (var j = 0; j < rowArray[i].length; j++) {
       rowArray[i][j] = 0;
@@ -105,6 +116,7 @@ var createFile = function(rows, columns) {
   var newTable = {data: rowArray, errors: emptyArray, meta: emptyObject };
 
   // Load new table :)
+  totalData = [];
   loadData(newTable);
 }
 var changeType= function(){
@@ -234,6 +246,9 @@ var addColumn = function() {
       }
   if (currTable.data.length > 2) {
     currTable.data.pop();
+  } 
+  else {
+    alert("No more rows can be deleted");
   }
 
   loadData(currTable);
@@ -263,6 +278,10 @@ var addColumn = function() {
     for (var i = 0; i < currTable.data.length; i++) {
       if (currTable.data[i].length > 3) {
         currTable.data[i].pop();
+      }
+      else {
+        alert("No more columns can be deleted");
+        break;
       }
     }
     loadData(currTable);

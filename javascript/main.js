@@ -40,6 +40,7 @@ var collection;
 var type = null;
 var lineColors = [];
 var slickTable;
+var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor')>0;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function (data) {
@@ -49,13 +50,39 @@ var loadData = function (data) {
     document.querySelector('#slickTable').innerHTML = '';
     slickTable = loadSlickTable(data.data);
     document.getElementById('tableCount').innerHTML = "[ Total Row: " + (data.data.length - 1) + " ] [ Total Column: " + (data.data[0].length - 1) + " ]";
-    document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen labels cell"
+    document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen label cells."
     chart = loadChart(data.data, type);
     if(chart && type === "bar"){
       convertPointsToBars();
+      if(!document.getElementById("barGraphAudioOptions")){
+        var newddm = document.createElement("select");
+        newddm.setAttribute("id","barGraphAudioOptions");
+        newddm.setAttribute("class","drop-down");
+        var option = document.createElement("option");
+        option.setAttribute("value","0");
+        option.innerHTML = "Normal";
+        newddm.appendChild(option);
+        option = document.createElement("option");
+        option.setAttribute("value","1");
+        option.innerHTML = "Play by column";
+        newddm.appendChild(option);
+        if(!isSafari){
+          option = document.createElement("option");
+          option.setAttribute("value","2");
+          option.innerHTML = "Play columns as chords";
+          newddm.appendChild(option);
+        }
+        document.getElementById("audioSpanSec").appendChild(newddm);
+      }
     }
-    else if(chart && type ==="scatter"){
+    else{
+      if(document.getElementById('barGraphAudioOptions')){
+        var c = document.getElementById('barGraphAudioOptions');
+        var p =  c.parentNode;
+        p.removeChild(c);
+      }
       convertPointsToScatter();
+
     }
     if(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)
       player = new WaveForm("sine");
@@ -77,7 +104,7 @@ var loadData = function (data) {
     document.getElementById("content").style.position = "inherit"; //overides corresponding style in index.html that hides the content tag
     document.getElementById("content").style.top = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
     document.getElementById("content").style.left = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
-    document.getElementById('rTypeSelBody').style.display = 'block';
+    document.getElementById('typeSelBody').style.display = 'block';
     document.getElementById('plot-header').style.display = 'inline';
     document.getElementById('tableControls').style.display = 'block';
     document.getElementById('summaryBox').style.display = 'block';
@@ -96,11 +123,15 @@ var playStopAudioButton = function () {
   }
     if(player.buffer === undefined){
       player.changeInstrument(document.getElementById("instrumentDropdown").value);
-      //player.setCollection(collection.collection);
       setTimeout(function() {}, 2000);
     }
-    //setTimeout(function() {}, 10000);
-    player.playToggle(document.getElementById("lineDropdown").value - 1, overlay.slider[0], overlay.slider[1]);
+    if(document.getElementById("barGraphAudioOptions")=== null){
+      var mode = null;
+    }
+    else{
+      var mode = document.getElementById("barGraphAudioOptions").selectedIndex;
+    }
+    player.playToggle(document.getElementById("lineDropdown").value - 1, overlay.slider[0], overlay.slider[1],mode);
 }
 
 // Opens the color editor
