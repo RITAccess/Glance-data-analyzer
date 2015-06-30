@@ -82,13 +82,13 @@ var loadData = function (data) {
         p.removeChild(c);
       }
       convertPointsToScatter();
-      
+
     }
     if(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)
       player = new WaveForm("sine");
     else
       player = new Instrument(1);
-    overlay = new Overlay(data);
+    overlay = new Overlay(data, type);
     overlay.updateSize(chart);
     collection = new ArrayCollection(data.data);
     player.setCollection(collection.collection);
@@ -123,11 +123,15 @@ var playStopAudioButton = function () {
   }
     if(player.buffer === undefined){
       player.changeInstrument(document.getElementById("instrumentDropdown").value);
-      //player.setCollection(collection.collection);
       setTimeout(function() {}, 2000);
     }
-    //setTimeout(function() {}, 10000);
-    player.playToggle(document.getElementById("lineDropdown").value - 1, overlay.slider[0], overlay.slider[1],document.getElementById("barGraphAudioOptions").selectedIndex);
+    if(document.getElementById("barGraphAudioOptions")=== null){
+      var mode = null;
+    }
+    else{
+      var mode = document.getElementById("barGraphAudioOptions").selectedIndex;
+    }
+    player.playToggle(document.getElementById("lineDropdown").value - 1, overlay.slider[0], overlay.slider[1],mode);
 }
 
 // Opens the color editor

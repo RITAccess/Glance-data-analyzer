@@ -55,7 +55,7 @@ var loadChart = function(data, type, collection){
 										var len = oldData[index].bars.length;
 									}
 									else{
-										var len = oldData[index].scater.length;
+										var len = oldData[index].scatter.length;
 									}
 									//console.log(len);
 									for(var i = 0; i < len; i ++){
@@ -87,7 +87,7 @@ var loadChart = function(data, type, collection){
 										var len = oldData[index].bars.length;
 									}
 									else{
-										var len = oldData[index].scater.length;
+										var len = oldData[index].scatter.length;
 									}
 									//console.log(len);
 									for(var i = 0; i < len; i ++){
@@ -118,7 +118,7 @@ var loadChart = function(data, type, collection){
 										var len = oldData[index].bars.length;
 									}
 									else{
-										var len = oldData[index].scater.length;
+										var len = oldData[index].scatter.length;
 									}
 									//console.log(len);
 									for(var i = 0; i < len; i ++){
@@ -204,7 +204,7 @@ var loadChart = function(data, type, collection){
 										var len = oldData[index].bars.length;
 									}
 									else{
-										var len = oldData[index].scater.length;
+										var len = oldData[index].scatter.length;
 									}
 									//console.log(len);
 									for(var i = 0; i < len; i ++){
@@ -235,7 +235,7 @@ var loadChart = function(data, type, collection){
 										var len = oldData[index].bars.length;
 									}
 									else{
-										var len = oldData[index].scater.length;
+										var len = oldData[index].scatter.length;
 									}
 									//console.log(len);
 									for(var i = 0; i < len; i ++){

@@ -111,7 +111,7 @@ Instrument.prototype.setCollection = function(collection) {
   }
   /*[DO NOT MOVE]: This section preloads all of the notes in the current collection
   * in order to make playback even and uniform (if you're getting a sound that resembles
-  * an individual sitting on a piano, then you probably moved this)
+  * an individual sitting on a piano, then you probably mov0ed this)
   */
   this.notes = this.buildNotes();
   document.getElementById("audioSpan").style.display = "";
@@ -138,14 +138,16 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
           setTimeout(q(), 1000);
         }
     }
+    console.log(mode);
     var self = this;
     if(!mode || mode === 0)
       setTimeout(function() {self.playDataSet(line,startIndex,endIndex);}, 1000);
     else if(mode === 1)
       setTimeout(function() {self.playColumn(line);}, 1000);
-    }
-    else{
+    else if(mode === 2){
+      console.log(line + " " + startIndex + " " + endIndex);
       setTimeout(function() {self.playColumnsAsChords(line,startIndex,endIndex);}, 1000);  
+    }
     }
 }
 
