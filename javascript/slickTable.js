@@ -1,7 +1,6 @@
 "use strict"; // strict mode syntax
 var grid = null;
 var oldGrid = null;
-var totalData = [];
 var ColumnWidth = 130; //** CHANGE THIS TO CHANGE COLUMN WIDTH! **
 
 // initial table properties, after getting the data from the file.
@@ -116,7 +115,7 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		}
 
 		//update chart and overlay
-		updateGrid();
+
 	    holdData(oldGrid);
 		chart.update();
 		summary.update();
@@ -162,15 +161,17 @@ function checkRemove(){
 					grid.gotoCell(0, i);
 					grid.getData()[0][i] = oldGrid[0][i];	//Set back to default value if not
 					chart.scale.xLabels[i-1] = oldGrid[0][i];
+					totalData.pop();
 				}
 			}
 		} 
-		// Reset column label if the graph isn't big enough
+		// Reset column label if the graph isn't big 
 		else if (grid.getData()[0][i] === "") {
 			alert("Not enough columns to remove!"); // Error message for when there aren't enough columns
 			grid.gotoCell(0, i);
 			grid.getData()[0][i] = oldGrid[0][i];
 			chart.scale.xLabels[i-1] = oldGrid[0][i];
+			totalData.pop();
 		}
 	}
 
@@ -191,6 +192,7 @@ function checkRemove(){
 				else{
 					grid.gotoCell(i, 0);
 					grid.getData()[i][0] = oldGrid[i][0];	//Set back to default value if not
+					totalData.pop()
 				}
 			}
 		} 
@@ -199,9 +201,11 @@ function checkRemove(){
 			alert("Not enough rows to remove!");
 			grid.gotoCell(i, 0);
 			grid.getData()[i][0] = oldGrid[i][0];
+			totalData.pop();
 		}
 	}
-
+	
+	updateGrid();
     chart.update();
 	document.getElementById('tblContainer').style.width="100%";
 }
@@ -305,6 +309,21 @@ function undo() {
 	chart.update();
 	summary.update();
 	document.getElementById('tblContainer').style.width = "100%";
+} 
+
+function redo() {
+	// Find the data next in the list to the current data
+	var nextData = totalData[totalData.length-1];
+
+	// Add row back to table
+
+	// Add column back to table
+
+	// Subtract row from table
+
+	// Subtract column from table
+
+	// Check number values and reset
 }
 
 
