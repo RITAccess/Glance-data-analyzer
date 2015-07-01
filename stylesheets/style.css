@@ -303,7 +303,7 @@ svg * {
     padding-top: 10px;
 }
 */
-#summary-header{
+#summary-header{ /* for printer.js */
     text-align: center;
 }
 #tblSummary {
