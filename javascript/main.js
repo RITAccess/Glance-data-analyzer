@@ -130,7 +130,7 @@ var loadData = function (data) {
     document.getElementById("content").style.top = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
     document.getElementById("content").style.left = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
     document.getElementById('typeSelBody').style.display = 'block';
-    document.getElementById('plot-header').style.display = 'inline';
+    document.getElementById('plot-header').style.display = 'inherit';
     document.getElementById('tableControls').style.display = 'block';
     document.getElementById('summaryBox').style.display = 'block';
     fixSlick();
@@ -214,7 +214,7 @@ var makeColSelector = function(){
     var label = document.createElement("label");
     label.setAttribute("id","colNumLabel");
     label.innerHTML = " Column number ";
-    document.getElementById("audioSpanSec").appendChild(label);  
+    document.getElementById("audioSpanSec").appendChild(label);
     document.getElementById("audioSpanSec").appendChild(selector);
   }
   else if(document.getElementById("colSelector")){
