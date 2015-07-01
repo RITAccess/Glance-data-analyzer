@@ -232,14 +232,13 @@ svg * {
 
 /* START: for print button page, table section */
 #printTable{
-    margin-top: 8%;
+    border-top: 3px solid #000;
 }
 #printTableHeader{
     text-align: center;
 }
 #printTableBody{
     margin-top: 2%;
-    border-top: 3px solid #000;
 }
 /* END: for print button page, table section */
 
@@ -292,6 +291,7 @@ svg * {
     padding: 1% 0 4% 0;
     /* position: relative; part of making download button bottom of div*/
 }
+/* doesn't seem to be needed
 #dataSummary {
     width: 100%;
     text-align:center;
@@ -301,6 +301,10 @@ svg * {
     border: 3px solid #000;
     margin: 40px 0;
     padding-top: 10px;
+}
+*/
+#summary-header{
+    text-align: center;
 }
 #tblSummary {
     font-weight: normal;
