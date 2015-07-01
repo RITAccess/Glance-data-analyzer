@@ -109,11 +109,22 @@ var loadData = function (data) {
     summary = new DataSummary(collection);
     summary.dataSummary();
     linkSlickTable(chart, player, overlay, summary);
-    for(var i = 1; i < 128; i ++){
-      var newElem = document.createElement("option");
-      newElem.value = i;
-      newElem.innerHTML = instruments[i];
-      document.getElementById('instrumentDropdown').appendChild(newElem);
+    if(!isSafari){
+      for(var i = 1; i < 128; i ++){
+        var newElem = document.createElement("option");
+        newElem.value = i;
+        newElem.innerHTML = instruments[i];
+        document.getElementById('instrumentDropdown').appendChild(newElem);
+      }
+    }
+    else{
+      var waves = ["Sine Wave","Triangle Wave","Square Wave","Sawtooth Wave"];
+      for(var i = 0; i < waves.length; i ++){
+        var newElem = document.createElement("option");
+        newElem.value = waves[i];
+        newElem.innerHTML = waves[i];
+        document.getElementById('instrumentDropdown').appendChild(newElem);
+      }
     }
     document.getElementById("content").style.position = "inherit"; //overides corresponding style in index.html that hides the content tag
     document.getElementById("content").style.top = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
@@ -145,8 +156,17 @@ var playStopAudioButton = function () {
    overlay.slider[1] = chart.datasets[0].length;
   }
     if(player.buffer === undefined){
-      player.changeInstrument(document.getElementById("instrumentDropdown").value);
+      if(!isSafari)
+        player.changeInstrument(document.getElementById("instrumentDropdown").value);
       setTimeout(function() {}, 2000);
+    }
+    if(isSafari){
+      var wave = document.getElementById("instrumentDropdown").value;
+      wave = wave.substring(0,wave.indexOf(" ")).toLowerCase();
+      console.log(wave);
+      player.stop();
+      player = new WaveForm(wave);
+      player.setCollection(collection.collection);
     }
     if(document.getElementById("barGraphAudioOptions")=== null){
       var mode = null;

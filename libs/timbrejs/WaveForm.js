@@ -24,7 +24,7 @@ WaveForm.prototype.makeBuffer = function(){
 	this.buffer = new Float32Array(this.len);
 	if(this.type === "sine"){
 		for (var i = 0; i < this.len; i++) {
-	  		this.buffer[i] = Math.sin(Math.PI * 8/this.len * i);
+	  		this.buffer[i] = 2*Math.sin(Math.PI * 8/this.len * i);
 		}
 	}
 	else if(this.type === "square"){
