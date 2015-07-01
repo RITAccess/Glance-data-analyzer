@@ -17,15 +17,15 @@ var loadChart = function(data, type, collection){
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLineChart;
 	if(type === "scatter"){
-		myLineChart = new Chart(ctx).ScatterPlot(data);
+		myLineChart = new Chart(ctx).ScatterPlot(data,{scaleFontColor:"#000"});
 		myLineChart.animation = false;
 	}
 	else if(type === "bar"){
-		myLineChart = new Chart(ctx).Bar(data);
+		myLineChart = new Chart(ctx).Bar(data,{scaleFontColor:"#000"});
 		myLineChart.animationSteps = 0;
 	}
 	else{
-	  myLineChart = new Chart(ctx).Line(data);
+	  myLineChart = new Chart(ctx).Line(data,{scaleFontColor:"#000"});
 	  myLineChart.animation = false;
 	}
 	document.getElementById("myChart").setAttribute("title","image of graph"); // by setting the attribute we can make the chart accessible

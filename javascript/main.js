@@ -233,11 +233,13 @@ var changeSiteBg = function(){
   var newColor = document.getElementById("siteColorInput").value;
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementsByTagName("body")[0].style.background = newColor;
-    document.getElementsByTagName("body")[0].style.color = findContrastor(newColor);
+    if(document.getElementById("siteContrast").checked)
+      document.getElementsByTagName("body")[0].style.color = findContrastor(newColor);
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
     document.getElementsByTagName("body")[0].style.background = newColor;
-    document.getElementsByTagName("body")[0].style.color = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+    if(document.getElementById("siteContrast").checked)
+      document.getElementsByTagName("body")[0].style.color = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
   }
 }
 
@@ -245,9 +247,33 @@ var changeGraphBg = function(){
   var newColor = document.getElementById("graphColorInput").value;
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementById("graphCC").style.background = newColor;
+    if(document.getElementById("graphContrast").checked){
+      chart.options.scaleFontColor = findContrastor(newColor);
+      chart.buildScale(chart.scale.xLabels);
+      chart.update();
+    }
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
     document.getElementById("graphCC").style.background = newColor;
+    if(document.getElementById("graphContrast").checked){
+      chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+      chart.buildScale(chart.scale.xLabels);
+      chart.update();
+    }
+  }
+}
+
+var changeTextColor = function(){
+  var newColor = document.getElementById("textColorInput").value;
+  if(/^#[0-9A-F]{6}$/i.test(newColor)){
+    document.getElementsByTagName("body")[0].style.color = newColor;
+    if(document.getElementById("textContrast").checked)
+      document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
+  }
+  else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
+    document.getElementsByTagName("body")[0].style.color = newColor;
+    if(document.getElementById("textContrast").checked)
+      document.getElementsByTagName("body")[0].style.background = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
   }
 }
 
@@ -297,7 +323,9 @@ var findContrastor = function(hex){
       max = candidateContrast;
       maxCon = colors[key];
     }
+    if(candidateContrast >=7){
+      return colors[key];
+    }
   }
-  console.log(max);
   return maxCon;
 }
