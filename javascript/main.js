@@ -134,6 +134,8 @@ var loadData = function (data) {
     document.getElementById('plot-header').style.display = 'inherit';
     document.getElementById('tableControls').style.display = 'inherit';
     document.getElementById('summary-header').style.display = 'inherit';
+    //document.getElementById('bgCCHeader').style.display = 'inherit';
+    //document.getElementById('bgCCForm').style.display = 'inherit';
     document.getElementById('bgColorChange').style.display = 'inherit';
     fixSlick();
     if(type === "line"){
@@ -231,9 +233,13 @@ var changeSiteBg = function(){
   var newColor = document.getElementById("siteColorInput").value;
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementsByTagName("body")[0].style.background = newColor;
+    if(document.getElementById("siteContrast").checked)
+      document.getElementsByTagName("body")[0].style.color = findContrastor(newColor);
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
     document.getElementsByTagName("body")[0].style.background = newColor;
+    if(document.getElementById("siteContrast").checked)
+      document.getElementsByTagName("body")[0].style.color = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
   }
 }
 
@@ -241,8 +247,85 @@ var changeGraphBg = function(){
   var newColor = document.getElementById("graphColorInput").value;
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementById("graphCC").style.background = newColor;
+    if(document.getElementById("graphContrast").checked){
+      chart.options.scaleFontColor = findContrastor(newColor);
+      chart.buildScale(chart.scale.xLabels);
+      chart.update();
+    }
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
     document.getElementById("graphCC").style.background = newColor;
+    if(document.getElementById("graphContrast").checked){
+      chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+      chart.buildScale(chart.scale.xLabels);
+      chart.update();
+    }
   }
+}
+
+var changeTextColor = function(){
+  var newColor = document.getElementById("textColorInput").value;
+  if(/^#[0-9A-F]{6}$/i.test(newColor)){
+    document.getElementsByTagName("body")[0].style.color = newColor;
+    if(document.getElementById("textContrast").checked)
+      document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
+  }
+  else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
+    document.getElementsByTagName("body")[0].style.color = newColor;
+    if(document.getElementById("textContrast").checked)
+      document.getElementsByTagName("body")[0].style.background = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+  }
+}
+
+var calcContrast = function(hex,hex2){
+  var r = parseInt(hex.substring(1,3), 16);
+  var g = parseInt(hex.substring(3,5), 16);
+  var b = parseInt(hex.substring(5), 16);
+  var lum = calcLum(r,g,b);
+  var r2 = parseInt(hex2.substring(1,3), 16);
+  var g2 = parseInt(hex2.substring(3,5), 16);
+  var b2 = parseInt(hex2.substring(5), 16);
+  var lum2 = calcLum(r2,g2,b2);
+  if(lum > lum2){
+    var contrast = (lum + 0.05) / (lum2 + 0.05);
+  }
+  else{
+    var contrast = (lum2 + 0.05) / (lum + 0.05);
+  }
+  return contrast;
+}
+
+var calcLum = function(r,g,b){
+  r /= 255; //R_sRGB
+  g /= 255; //G_sRGB
+  b /= 255; //B_sRGB
+  var valArr = [r,g,b];
+  for(var i = 0; i < valArr.length; i++){
+    if(valArr[i]<=  0.03928){
+      valArr[i] /= 12.92; 
+    }
+    else{
+      var val = valArr[i]+0.055;
+      val /= 1.055
+      valArr[i] = Math.pow(val,2.4);
+    }
+  }
+  var l = 0.2126 * valArr[0] + 0.7152 * valArr[1] + 0.0722 * valArr[2];
+  return l;
+}
+
+var findContrastor = function(hex){
+  var max = -100;
+  var maxCon;
+  for(var key in colors){
+    var candidateContrast = calcContrast(hex,colors[key]);
+    if(candidateContrast>max){
+      max = candidateContrast;
+      maxCon = colors[key];
+    }
+    if(candidateContrast >=7){
+      return colors[key];
+    }
+  }
+  return maxCon;
 }
