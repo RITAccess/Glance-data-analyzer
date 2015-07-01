@@ -96,10 +96,13 @@ header {
     font-size: 20px;
     font-weight: bold;
     background-color: #FFF;
-    border: 2px solid #FFF;
-    border-radius: 10px;
-    padding: 1%;
+    border: 3px solid #FFF;
     box-shadow: 0px 5px 10px #444;
+    padding: 1.5%;
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0px 5px 10px #444;
+    border-radius: 5px;
 }
 /* END style for about section */
 
@@ -277,9 +280,15 @@ svg * {
     text-align:center;
     font-weight: bold;
     border-radius: 5px;
+    border: 3px solid #000;
     margin: 5% 0 8% 0;
     font-size: 20px;
+    padding: 1% 0 4% 0;
     /* position: relative; part of making download button bottom of div*/
+}
+#plot-header{
+  width: 100%;
+  border-radius: 5px;
 }
 #dataSummary {
     width: 100%;
@@ -339,7 +348,7 @@ svg * {
     border-radius: 100%;
     vertical-align: middle;
 }
-#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #undoButton:hover, #redoButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus {
+#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #undoButton:hover, #redoButton:hover, #toTopButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus, #toTopButton:focus {
     background-color: #000;
     color: #FFF;
 }
