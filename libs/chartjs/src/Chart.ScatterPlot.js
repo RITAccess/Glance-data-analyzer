@@ -1,67 +1,4 @@
-(function(){
-	"use strict";
-
-	var root = this,
-		Chart = root.Chart,
-		helpers = Chart.helpers;
-
-	var defaultConfig = {
-
-		//Boolean - Whether grid lines are shown across the chart
-		scaleShowGridLines : true,
-
-		//String - Colour of the grid lines
-		scaleGridLineColor : "rgba(0,0,0,.05)",
-
-		//Number - Width of the grid lines
-		scaleGridLineWidth : 1,
-
-		//Boolean - Whether to show horizontal lines (except X axis)
-		scaleShowHorizontalLines: true,
-
-		//Boolean - Whether to show vertical lines (except Y axis)
-		scaleShowVerticalLines: true,
-
-		//Boolean - Whether the line is curved between points
-		bezierCurve : false,
-
-		//Number - Tension of the bezier curve between points
-		bezierCurveTension : 0.4,
-
-		//Boolean - Whether to show a dot for each point
-		pointDot : true,
-
-		//Number - Radius of each point dot in pixels
-		pointDotRadius : 4,
-
-		//Number - Pixel width of point dot stroke
-		pointDotStrokeWidth : 1,
-
-		//Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-		pointHitDetectionRadius : 20,
-
-		//Boolean - Whether to show a stroke for datasets
-		datasetStroke : true,
-
-		//Number - Pixel width of dataset stroke
-		datasetStrokeWidth : 2,
-
-		//Boolean - Whether to fill the dataset with a colour
-		datasetFill : false,
-
-		//String - A legend template
-		legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>",
-
-		//Boolean - Whether to horizontally center the label and point dot inside the grid
-		offsetGridLines : false,
-		
-		//My own custom option. Default - red
-		//String - the color of the regression line
-		linRegLineColor : "rgba(255,0,0,1)"
-
-	};
-
-	Chart.Type.extend({
+Chart.Type.extend({
 		name: "ScatterPlot",
 		defaults : defaultConfig,
 		numeric : true, //my own variable to support two different types of scatter.
@@ -151,7 +88,6 @@
 					for(var i = min; i <= max; i++){
 						labels.push(parseFloat(i));
 					}
-
 					data.labels = labels;
 					helpers.each(dataset.data, function(dataPoint,index){
 							datasetObject.points.push(new this.PointClass({
@@ -214,39 +150,42 @@
 				this.eachPoints(function(point){
 					point.save();
 				});
-				
+			this.updateNumeric();	
 				//need to update the scale manually
 				if(this.numeric){
-					var min = parseFloat(this.scale.xLabels[0]);
-					var max = parseFloat(this.scale.xLabels[0]);
-					for(var i = 0; i < this.scale.xLabels.length; i++){
-						if(parseFloat(this.scale.xLabels[i]) > max)
-							max = parseFloat(this.scale.xLabels[i]);
-						if(parseFloat(this.scale.xLabels[i]) < min)
-							min = parseFloat(this.scale.xLabels[i]);
-					}
-					var labels = [];
-					for(var i = min; i <= max; i++){
-						labels.push(parseFloat(i)); 
-					}
-					this.buildScale(labels);
+					if(this.datasets[0].points){
+						var min = parseFloat(this.datasets[0].points[0].label);
+						var max = parseFloat(this.datasets[0].points[0].label);
+
+						for(var i = 0; i < this.datasets[0].points.length; i++){
+							if(parseFloat(this.datasets[0].points[i].label) > max)
+								max = parseFloat(this.datasets[0].points[i].label);
+							if(parseFloat(this.datasets[0].points[i].label) < min)
+								min = parseFloat(this.datasets[0].points[i].label);
+						}
+						var labels = [];
+						for(var i = min; i <= max; i++){
+							labels.push(parseFloat(i)); 
+						}
+						this.buildScale(labels);
 					
-				   // need to manually update x and y values maybe?
-					this.eachPoints(function(point, index){
-						helpers.extend(point, {
-							x: this.scale.calculateX(parseFloat(point.label)-1),
-							y: this.scale.calculateY(point.value)
-						});
-						point.save();
-					}, this);
-				
+						// need to manually update x and y values maybe?
+						this.eachPoints(function(point, index){
+							helpers.extend(point, {
+								x: this.scale.calculateX(parseFloat(point.label)-1),
+								y: this.scale.calculateY(point.value)
+							});
+							point.save();
+						}, this);
+					}
+					this.scale.update();
 				
 				}
 				else{
 					var labels = [];
-					if(chart.datasets[0].points){
-						for(var i = 0; i < chart.datasets[0].points.length; i++){
-							labels.push(chart.datasets[0].points[i].label);
+					if(this.datasets[0].points){
+						for(var i = 0; i < this.datasets[0].points.length; i++){
+							labels.push(this.datasets[0].points[i].label);
 						}
 						this.buildScale[labels];
 					}
@@ -259,6 +198,7 @@
 					}, this);
 					this.scale.update();
 				}
+				this.scale.fit();
 				this.render();
 		},
 		eachPoints : function(callback){
@@ -279,6 +219,22 @@
 		buildScale : function(labels){
 			var self = this;
 
+			/*while(labels.length > 19 && this.numeric){
+				// if there's too many labels,
+				// cut the amount in half
+				var newlabels = [];
+				for(var i = labels[0]; i <= labels[labels.length-1]; i+= 2){
+					newlabels.push(i);
+				}
+
+				console.log(newlabels);
+				labels = newlabels;
+			}
+			//make sure we get all data
+			if(labels[length-1] % 2 == ){
+				newlabels.push(labels[length-2] + (labels[length-2] - newlabels[newlabels.length-1]));
+			} */
+			
 			var dataTotal = function(){
 				var values = [];
 				self.eachPoints(function(point){
