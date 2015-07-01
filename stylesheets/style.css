@@ -319,8 +319,7 @@ svg * {
     margin-top: 2%;
 }
 #remInstruction {
-    margin-top: 5%;
-    margin-bottom: 3%;
+    margin: 5% 3% 3% 3%;
 }
 #tableControls {/* positioning buttons to bottom CENTER of parent container dataPlot */
     /*position: absolute;*/
