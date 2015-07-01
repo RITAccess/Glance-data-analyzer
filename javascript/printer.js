@@ -16,8 +16,8 @@ function printPage()
    html += "<div id='content'>";
    html += "<div id='graphImg'><img tabindex='0' alt='Data Analyzer Graph' width='800px' src='" + chart.toBase64Image() + "'/></div>";
    html += "<div id='summaryBox' style='display: block;'>";
-   html += document.getElementById('summaryBoxBody').innerHTML;
-   console.log(document.getElementById('summaryBoxBody').outerHTML);
+   html += document.getElementById('summaryBox').innerHTML;
+   console.log(document.getElementById('summaryBox').outerHTML);
    html += "</div><div id='printTable'><h3 id='printTableHeader'>Data Table</h3>";
    html += "<div id='printTableBody'>";
    var s = "<table class='printTable'>";

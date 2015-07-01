@@ -137,8 +137,7 @@ header {
     margin-bottom: 7%;
 }
 #selection {
-    fill: lightblue;/* #ADD8E6 */
-    fill-opacity: 0.3;
+    fill-opacity: 0.01;
 }
 svg * {
     stroke:#000;

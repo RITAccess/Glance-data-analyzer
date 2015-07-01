@@ -241,9 +241,9 @@ var changeSiteBg = function(){
 var changeGraphBg = function(){
   var newColor = document.getElementById("graphColorInput").value;
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
-    document.getElementById("dataGraph").style.background = newColor;
+    document.getElementById("graphCC").style.background = newColor;
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
-    document.getElementById("dataGraph").style.background = newColor;
+    document.getElementById("graphCC").style.background = newColor;
   }
 }

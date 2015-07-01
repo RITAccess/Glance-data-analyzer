@@ -71,7 +71,9 @@
           <rect id="background" x="0" y="0" width="800" height="400" />
           <rect id="selection" x="0" y="0" width="800" height="400" />
         </svg>
-        <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
+        <div id="graphCC">
+          <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
+        </div>
       </div><!-- END id="dataGraph" -->
       <div id='continuosBox'>
         <div id="audioSpanSec" class="no-print">
