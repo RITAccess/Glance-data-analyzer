@@ -96,10 +96,13 @@ header {
     font-size: 20px;
     font-weight: bold;
     background-color: #FFF;
-    border: 2px solid #FFF;
-    border-radius: 10px;
-    padding: 1%;
+    border: 3px solid #FFF;
     box-shadow: 0px 5px 10px #444;
+    padding: 1.5%;
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0px 5px 10px #444;
+    border-radius: 5px;
 }
 /* END style for about section */
 
@@ -121,12 +124,23 @@ header {
     margin-bottom: 8%;
     clear: both;
 }
+#continuosBox{
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 5px;
+    border: 3px solid #000;
+    margin: 5% 0;
+}
+#selection {
+    fill-opacity: 0.01;
+}
 #graphImg{/* printer.js: image of graph in the print page */
     margin-bottom: 7%;
 }
-#selection {
-    fill: lightblue;/* #ADD8E6 */
-    fill-opacity: 0.3;
+#graphCC{/* graph color change */
+    background: url('halftone/halftone.png');
 }
 svg * {
     stroke:#000;
@@ -218,14 +232,13 @@ svg * {
 
 /* START: for print button page, table section */
 #printTable{
-    margin-top: 8%;
+    border-top: 3px solid #000;
 }
 #printTableHeader{
     text-align: center;
 }
 #printTableBody{
     margin-top: 2%;
-    border-top: 3px solid #000;
 }
 /* END: for print button page, table section */
 
@@ -233,10 +246,8 @@ svg * {
 #audioSpanSec{
     width: 100%;
     text-align: center;
-    border: 3px solid #000;
-    border-radius: 5px;
-    margin: 5% 0;
-    padding: 3% 0;
+    border-bottom: 3px solid #000;
+    padding: 4% 0;
 }
 #playButton {
     height: 35px;
@@ -266,8 +277,8 @@ svg * {
 .drop-down {
     cursor: pointer;
     font-size: 15px;
-    border-radius: 10px;
     border: 1px solid #888;
+    border-radius: 10px;
     padding: 0.5%;
 }
 /*******************************/
@@ -276,11 +287,11 @@ svg * {
     width: 100%;
     text-align:center;
     font-weight: bold;
-    border-radius: 5px;
-    margin: 5% 0 8% 0;
     font-size: 20px;
+    padding: 1% 0 4% 0;
     /* position: relative; part of making download button bottom of div*/
 }
+/* doesn't seem to be needed
 #dataSummary {
     width: 100%;
     text-align:center;
@@ -290,6 +301,10 @@ svg * {
     border: 3px solid #000;
     margin: 40px 0;
     padding-top: 10px;
+}
+*/
+#summary-header{ /* for printer.js */
+    text-align: center;
 }
 #tblSummary {
     font-weight: normal;
@@ -339,7 +354,7 @@ svg * {
     border-radius: 100%;
     vertical-align: middle;
 }
-#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #undoButton:hover, #redoButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus {
+#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #undoButton:hover, #redoButton:hover, #toTopButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus, #toTopButton:focus {
     background-color: #000;
     color: #FFF;
 }
@@ -350,29 +365,9 @@ svg * {
 }
 #summaryBox {
     width: 100%;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: center;
-    border-radius: 5px;
-    border: 3px solid #000;
-    padding: 1% 0 4% 0;
-}
-#summary-header {
-    width: 100%;
-    border-radius: 5px;
-}
-#bgColorChange { /* background color change for entire site and graph */
-    width: 100%;
     border-top: 3px solid #000;
     margin-top: 5%;
-    margin-bottom: 2%;
-}
-#bgColorChange form {
-    text-align: left;
-    margin-left: 5%;
-}
-#bgColorChange input:focus {
-    background: #dadada;
+    padding-bottom: 4%;
 }
 #colors {
     max-height: 300px;
@@ -397,6 +392,23 @@ svg * {
     display: inline-block;
     vertical-align: middle;
 }
+#bgColorChange { /* background color change for entire site and graph */
+    width: 100%;
+    border-top: 3px solid #000;
+    padding-bottom: 5%;
+}
+#bgColorChange form {
+    text-align: left;
+    margin-left: 5%;
+}
+#bgColorChange input:focus {
+    background: #dadada;
+}
+/*
+#siteCCReset, #graphCCReset{/* color change reset *
+
+}
+*/
 /*******************************/
 
 /* style for pop-up chart list STARTS */
@@ -490,10 +502,6 @@ th, td, .printTable{
     #tblContainer{
         height: auto;
         overflow: hidden;
-    }
-    #dataPlot {
-        margin: 5% 0;
-        /*page-break-after: auto;*/
     }
     #colors{
         max-height: none;

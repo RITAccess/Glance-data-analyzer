@@ -109,19 +109,32 @@ var loadData = function (data) {
     summary = new DataSummary(collection);
     summary.dataSummary();
     linkSlickTable(chart, player, overlay, summary);
-    for(var i = 1; i < 128; i ++){
-      var newElem = document.createElement("option");
-      newElem.value = i;
-      newElem.innerHTML = instruments[i];
-      document.getElementById('instrumentDropdown').appendChild(newElem);
+    if(!isSafari){
+      for(var i = 1; i < 128; i ++){
+        var newElem = document.createElement("option");
+        newElem.value = i;
+        newElem.innerHTML = instruments[i];
+        document.getElementById('instrumentDropdown').appendChild(newElem);
+      }
     }
-    document.getElementById("content").style.position = "inherit"; //overides corresponding style in index.html that hides the content tag
-    document.getElementById("content").style.top = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
-    document.getElementById("content").style.left = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
+    else{
+      var waves = ["Sine Wave","Triangle Wave","Square Wave","Sawtooth Wave"];
+      for(var i = 0; i < waves.length; i ++){
+        var newElem = document.createElement("option");
+        newElem.value = waves[i];
+        newElem.innerHTML = waves[i];
+        document.getElementById('instrumentDropdown').appendChild(newElem);
+      }
+    }
+    document.getElementById("content").style.position = 'inherit'; //overides corresponding style in index.html that hides the content tag
+    document.getElementById("content").style.top = ''; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
+    document.getElementById("content").style.left = ''; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
     document.getElementById('typeSelBody').style.display = 'block';
-    document.getElementById('plot-header').style.display = 'inline';
-    document.getElementById('tableControls').style.display = 'block';
-    document.getElementById('summaryBox').style.display = 'block';
+    document.getElementById('graphHeader').style.display = 'inherit';
+    document.getElementById('plot-header').style.display = 'inherit';
+    document.getElementById('tableControls').style.display = 'inherit';
+    document.getElementById('summary-header').style.display = 'inherit';
+    document.getElementById('bgColorChange').style.display = 'inherit';
     fixSlick();
     if(type === "line"){
       document.getElementById('typeSel').selectedIndex = 0;
@@ -145,8 +158,16 @@ var playStopAudioButton = function () {
    overlay.slider[1] = chart.datasets[0].length;
   }
     if(player.buffer === undefined){
-      player.changeInstrument(document.getElementById("instrumentDropdown").value);
+      if(!isSafari)
+        player.changeInstrument(document.getElementById("instrumentDropdown").value);
       setTimeout(function() {}, 2000);
+    }
+    if(isSafari){
+      var wave = document.getElementById("instrumentDropdown").value;
+      wave = wave.substring(0,wave.indexOf(" ")).toLowerCase();
+      player.stop();
+      player = new WaveForm(wave);
+      player.setCollection(collection.collection);
     }
     if(document.getElementById("barGraphAudioOptions")=== null){
       var mode = null;
@@ -194,7 +215,7 @@ var makeColSelector = function(){
     var label = document.createElement("label");
     label.setAttribute("id","colNumLabel");
     label.innerHTML = " Column number ";
-    document.getElementById("audioSpanSec").appendChild(label);  
+    document.getElementById("audioSpanSec").appendChild(label);
     document.getElementById("audioSpanSec").appendChild(selector);
   }
   else if(document.getElementById("colSelector")){
@@ -203,5 +224,25 @@ var makeColSelector = function(){
     p.removeChild(c);
     var c = document.getElementById("colNumLabel");
     p.removeChild(c);
+  }
+}
+
+var changeSiteBg = function(){
+  var newColor = document.getElementById("siteColorInput").value;
+  if(/^#[0-9A-F]{6}$/i.test(newColor)){
+    document.getElementsByTagName("body")[0].style.background = newColor;
+  }
+  else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
+    document.getElementsByTagName("body")[0].style.background = newColor;
+  }
+}
+
+var changeGraphBg = function(){
+  var newColor = document.getElementById("graphColorInput").value;
+  if(/^#[0-9A-F]{6}$/i.test(newColor)){
+    document.getElementById("graphCC").style.background = newColor;
+  }
+  else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
+    document.getElementById("graphCC").style.background = newColor;
   }
 }
