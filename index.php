@@ -123,8 +123,11 @@
       <div id="bgColorChange" display:"none">
       <h3 id="bgCCHeader" style="display:none;">Change Background Color</h3>
         <form id="bgCCForm" style="display:none;">
-          Site: <input id="siteColorInput" onInput="changeSiteBg()" title="Change Site Background Color"><br>
+          Site: <input id="siteColorInput" onInput="changeSiteBg()" title="Change Site Background Color">
+          <button id="siteCCReset" aria-label="Reset Site Background"><i class="fa fa-refresh"></i></button>
+          <br>
           Graph: <input id="graphColorInput" onInput="changeGraphBg()" title="Change Graph Background Color">
+          <button id="graphCCReset" aria-label="Reset Graph Background"><i class="fa fa-refresh"></i></button>
         </form>
       </div><!-- END id="bgColorChange" -->
     </div><!-- END id="continuosBox" -->

@@ -365,18 +365,6 @@ svg * {
     margin-top: 5%;
     padding-bottom: 4%;
 }
-#bgColorChange { /* background color change for entire site and graph */
-    width: 100%;
-    border-top: 3px solid #000;
-    padding-bottom: 5%;
-}
-#bgColorChange form {
-    text-align: left;
-    margin-left: 5%;
-}
-#bgColorChange input:focus {
-    background: #dadada;
-}
 #colors {
     max-height: 300px;
     text-align: left;
@@ -400,6 +388,23 @@ svg * {
     display: inline-block;
     vertical-align: middle;
 }
+#bgColorChange { /* background color change for entire site and graph */
+    width: 100%;
+    border-top: 3px solid #000;
+    padding-bottom: 5%;
+}
+#bgColorChange form {
+    text-align: left;
+    margin-left: 5%;
+}
+#bgColorChange input:focus {
+    background: #dadada;
+}
+/*
+#siteCCReset, #graphCCReset{/* color change reset *
+
+}
+*/
 /*******************************/
 
 /* style for pop-up chart list STARTS */
