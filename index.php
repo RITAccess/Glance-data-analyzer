@@ -65,7 +65,7 @@
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
       <div id="dataGraph">
-        <h3>Data Analyzer Graph</h3>
+        <h3 id="graphHeader" style="display:none;">Data Analyzer Graph</h3>
         <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" class="no-print"></div>
         <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
           <rect id="background" x="0" y="0" width="800" height="400" />
@@ -86,7 +86,7 @@
           </span>
         </div><!-- END id="audioSpanSec" -->
         <div id="dataPlot">
-          <h3 id="plot-header">Data Table</h3>
+          <h3 id="plot-header" style="display:none;">Data Table</h3>
           <div id="tableCount"></div><!-- END id="tableCount" -->
           <div id="tblContainer" style="display:none;" title="Data Table">
             <div id="slickTable" style="width:100%;"></div>
@@ -114,15 +114,15 @@
           include 'php/ajax.php';
       ?>
       <div id="summaryBox">
-      <h3>Graph Data</h3>
+      <h3 id="summary-header" style="display:none;">Graph Data</h3>
         <ol id="colors" class="color-editor-input"></ol>
       </div><!-- END id="summaryBox" -->
-      <div id="bgColorChange">
-        <h3>Change Background Color</h3>
-          <form>
-            Site: <input title="Change Site Background Color"><br>
-            Graph: <input title="Change Graph Background Color">
-          </form>
+      <div id="bgColorChange" display:"none">
+      <h3 id="bgCCHeader" style="display:none;">Change Background Color</h3>
+        <form id="bgCCForm" style="display:none;">
+          Site: <input title="Change Site Background Color"><br>
+          Graph: <input title="Change Graph Background Color">
+        </form>
       </div><!-- END id="bgColorChange" -->
     </div><!-- END id="continuosBox" -->
   </div><!-- end div id="content" -->

@@ -126,13 +126,16 @@ var loadData = function (data) {
         document.getElementById('instrumentDropdown').appendChild(newElem);
       }
     }
-    document.getElementById("content").style.position = "inherit"; //overides corresponding style in index.html that hides the content tag
-    document.getElementById("content").style.top = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
-    document.getElementById("content").style.left = ""; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
+    document.getElementById("content").style.position = 'inherit'; //overides corresponding style in index.html that hides the content tag
+    document.getElementById("content").style.top = ''; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
+    document.getElementById("content").style.left = ''; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
     document.getElementById('typeSelBody').style.display = 'block';
+    document.getElementById('graphHeader').style.display = 'inherit';
     document.getElementById('plot-header').style.display = 'inherit';
-    document.getElementById('tableControls').style.display = 'block';
-    document.getElementById('bgColorChange').style.display = 'block';
+    document.getElementById('tableControls').style.display = 'inherit';
+    document.getElementById('summary-header').style.display = 'inherit';
+    document.getElementById('bgCCHeader').style.display = 'inherit';
+    document.getElementById('bgCCForm').style.display = 'inherit';
     fixSlick();
     if(type === "line"){
       document.getElementById('typeSel').selectedIndex = 0;
