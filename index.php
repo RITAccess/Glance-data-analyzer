@@ -85,7 +85,7 @@
         </span>
       </div><!-- END id="dataGraph" -->
       <div id="dataPlot">
-        <h3 id="plot-header" style="display:none;">Data Table</h3>
+        <h3 id="plot-header">Data Table</h3>
         <div id="tableCount"></div><!-- END id="tableCount" -->
         <div id="tblContainer" style="display:none;" title="Data Table">
           <div id="slickTable" style="width:100%;"></div>
