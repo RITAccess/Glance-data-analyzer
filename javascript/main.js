@@ -341,3 +341,15 @@ var findContrastor = function(hex){
   }
   return maxCon;
 }
+
+var resetText= function(){
+  document.getElementsByTagName("body")[0].style.color = "#000000";
+}
+
+var resetSiteBg = function(){
+  document.getElementsByTagName("body")[0].style.background = "url('stylesheets/halftone/halftone.png')";
+}
+
+var resetGraphBg = function(){
+  document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')"; 
+}
