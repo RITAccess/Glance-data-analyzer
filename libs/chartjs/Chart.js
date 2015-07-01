@@ -3813,6 +3813,22 @@
 		buildScale : function(labels){
 			var self = this;
 
+			/*while(labels.length > 19 && this.numeric){
+				// if there's too many labels,
+				// cut the amount in half
+				var newlabels = [];
+				for(var i = labels[0]; i <= labels[labels.length-1]; i+= 2){
+					newlabels.push(i);
+				}
+
+				console.log(newlabels);
+				labels = newlabels;
+			}
+			//make sure we get all data
+			if(labels[length-1] % 2 == ){
+				newlabels.push(labels[length-2] + (labels[length-2] - newlabels[newlabels.length-1]));
+			} */
+			
 			var dataTotal = function(){
 				var values = [];
 				self.eachPoints(function(point){
