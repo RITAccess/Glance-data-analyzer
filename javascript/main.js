@@ -134,8 +134,7 @@ var loadData = function (data) {
     document.getElementById('plot-header').style.display = 'inherit';
     document.getElementById('tableControls').style.display = 'inherit';
     document.getElementById('summary-header').style.display = 'inherit';
-    document.getElementById('bgCCHeader').style.display = 'inherit';
-    document.getElementById('bgCCForm').style.display = 'inherit';
+    document.getElementById('bgColorChange').style.display = 'inherit';
     fixSlick();
     if(type === "line"){
       document.getElementById('typeSel').selectedIndex = 0;

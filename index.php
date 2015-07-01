@@ -120,9 +120,9 @@
         <ol id="colors" class="color-editor-input"></ol>
 
       </div><!-- END id="summaryBox" -->
-      <div id="bgColorChange" display:"none">
-      <h3 id="bgCCHeader" style="display:none;">Change Background Color</h3>
-        <form id="bgCCForm" style="display:none;">
+      <div id="bgColorChange" style="display:none;" class="no-print">
+      <h3>Change Background Color</h3>
+        <form>
           Site: <input id="siteColorInput" onInput="changeSiteBg()" title="Change Site Background Color">
           <button id="siteCCReset" aria-label="Reset Site Background"><i class="fa fa-refresh"></i></button>
           <br>
