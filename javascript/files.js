@@ -145,13 +145,18 @@ var changeType= function(){
 
 // Place a new row on the end of the existing table
  var addRow = function() {
+    dataCount++;
 
-    // Reset color list
+  // If there is a change to the table, the next redos are no longer valid
+  totalData.splice(dataCount, totalData.length - dataCount - 1);
+
+  // Reset color list
   var colorlist = document.getElementById("colors");
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
 
+  // Create new table object
   var currTable = new Object();
   currTable.data = [];
   currTable.errors = [];
@@ -165,18 +170,23 @@ var changeType= function(){
     }
   }
 
+  // Create new blank row 
   var newRow = new Array(currTable.data[0].length);
   for (var i = 0; i < newRow.length; i++) {
     newRow[i] = 0;
   }
 
+  // Make sure first box of table is empty and pushes new row to table
   currTable.data[0][0] = " ";
   currTable.data.push(newRow);
 
-   for (var i = 1; i < currTable.data.length; i++) {
+  // Changes the first cell of each row into a labeled cell
+  for (var i = 1; i < currTable.data.length; i++) {
     var tempInt =  (currTable.data.length-1);
     currTable.data[currTable.data.length-1][0] = "Row " + tempInt.toString();
   }
+
+  // Creates a copy of the table
   oldGrid = [];
       for(var i = 0; i < grid.getData().length; i++){
         oldGrid[i] = [];
@@ -184,54 +194,76 @@ var changeType= function(){
           oldGrid[i].push(grid.getData()[i][key]);
         }
       }
+
+  // Loads new table 
   loadData(currTable);
   document.getElementById('tblContainer').style.width="100%";
  }
 
-// // Place a new column on the end of the existing table
+// Place a new column on the end of the existing table
 var addColumn = function() {
+  dataCount++;
+
+  // If there is a change to the table, the next redos are no longer valid
+  totalData.splice(dataCount, totalData.length - dataCount - 1);
+
   // Reset color list
   var colorlist = document.getElementById("colors");
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
 
+  // Creates new table object
   var currTable = new Object();
   currTable.data = [];
   currTable.errors = [];
 
   var resData = grid.getData();
-      for(var i = 0; i< resData.length; i++){
-        currTable.data[i]= [];
-        for(var key in resData[i]){
-          if(key != "id")
-          currTable.data[i].push(resData[i][key]);
-        }
+    for(var i = 0; i< resData.length; i++){
+      currTable.data[i]= [];
+      for(var key in resData[i]){
+        if(key != "id")
+        currTable.data[i].push(resData[i][key]);
       }
-
-    for (var i = 0; i < currTable.data.length; i++) {
-      currTable.data[i].push(0);
     }
 
-    currTable.data[0][currTable.data[0].length - 1] = "Label " + (currTable.data[0].length - 1);
-    loadData(currTable);
-    document.getElementById('tblContainer').style.width="100%";
-    oldGrid = [];
-      for(var i = 0; i < grid.getData().length; i++){
-        oldGrid[i] = [];
-        for(var key in grid.getData()[i]){
-          oldGrid[i].push(grid.getData()[i][key]);
-        }
-      }
+   // Creates a new column by adding one cell on the end of each row 
+  for (var i = 0; i < currTable.data.length; i++) {
+    currTable.data[i].push(0);
+  }
+
+  // Changes any cell at the top of the table into a labeled cell
+  currTable.data[0][currTable.data[0].length - 1] = "Label " + (currTable.data[0].length - 1);
+
+  // Creates a copy of the table
+  oldGrid = [];
+    for(var i = 0; i < grid.getData().length; i++){
+      oldGrid[i] = [];
+      for(var key in grid.getData()[i]){
+        oldGrid[i].push(grid.getData()[i][key]);
+    }
+  }
+
+  // Loads new table 
+  loadData(currTable);
+  document.getElementById('tblContainer').style.width="100%";
+ 
  }
 
- var subtractRow = function() {
+ // Removes a row from the bottom of the table
+var subtractRow = function() {
+  dataCount++;
+
+  // If there is a change to the table, the next redos are no longer valid
+  totalData.splice(dataCount, totalData.length - dataCount - 1);
+
   // Reset color list
   var colorlist = document.getElementById("colors");
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
 
+  // Creates new table object
   var currTable = new Object();
   currTable.data = [];
   currTable.errors = [];
@@ -244,6 +276,8 @@ var addColumn = function() {
           currTable.data[i].push(resData[i][key]);
         }
       }
+
+  // Checks if the table is big enough to have a row removed without breaking the table and graph
   if (currTable.data.length > 2) {
     currTable.data.pop();
   } 
@@ -251,17 +285,33 @@ var addColumn = function() {
     alert("No more rows can be deleted");
   }
 
+  // Creates a copy of the table
+  oldGrid = [];
+  for(var i = 0; i < grid.getData().length; i++){
+    oldGrid[i] = [];
+    for(var key in grid.getData()[i]){
+      oldGrid[i].push(grid.getData()[i][key]);
+    }
+  }
+
+  // Loads new table
   loadData(currTable);
   document.getElementById('tblContainer').style.width="100%";
  }
 
- var subtractColumn = function() {
+var subtractColumn = function() {
+  dataCount++;
+
+  // If there is a change to the table, the next redos are no longer valid
+  totalData.splice(dataCount, totalData.length - dataCount - 1);
+
   // Reset color list
   var colorlist = document.getElementById("colors");
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
 
+  // Creates new table object
   var currTable = new Object();
   currTable.data = [];
   currTable.errors = [];
@@ -275,17 +325,30 @@ var addColumn = function() {
         }
       }
 
-    for (var i = 0; i < currTable.data.length; i++) {
-      if (currTable.data[i].length > 3) {
-        currTable.data[i].pop();
-      }
-      else {
-        alert("No more columns can be deleted");
-        break;
-      }
+  // Subtracts a column by popping off the last cell of each row
+  for (var i = 0; i < currTable.data.length; i++) {
+    // Checks that there are enough columns to subtract from 
+    if (currTable.data[i].length > 3) {
+      currTable.data[i].pop();
     }
-    loadData(currTable);
-    document.getElementById('tblContainer').style.width="100%";
+    else {
+      alert("No more columns can be deleted");
+      break;
+    }
+  }
+
+  // Creates a copy of the table
+  oldGrid = [];
+  for(var i = 0; i < grid.getData().length; i++){
+    oldGrid[i] = [];
+    for(var key in grid.getData()[i]){
+      oldGrid[i].push(grid.getData()[i][key]);
+    }
+  }
+
+  // Loads new table
+  loadData(currTable);
+  document.getElementById('tblContainer').style.width="100%";
  }
 
 

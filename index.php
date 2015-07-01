@@ -35,7 +35,7 @@
       </label>
     </div>
     <span id="typeSelBody" class="no-print" style="display:none;">
-      Change graph type:
+      Select a graph type:
       <select id="typeSel" class="no-print" onchange="typeOpSel()">
         <option id="lineRadioButton" name="graphTypeSel" value="Line" onclick="typeOpSel()">Line Graph</label>
         <option id="barRadioButton" name="graphTypeSel" value="Bar" onclick="typeOpSel()">Bar Graph</option>
@@ -60,7 +60,7 @@
         <h3 id="startInst">To get started, select Load CSV or Create New Table at the top!</h3>
       </div>
       <div id="startFooter">
-        <button id="toTopButton" onclick="location.href='index.php'" >Return To Top</button>
+        <button id="toTopButton" onclick="location.href='index.php'" >ReturnTo Top</button>
       </div>
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
@@ -76,10 +76,10 @@
       <div id="audioSpanSec" class="no-print">
         <span id="audioSpan" style="display: none">
           <label for="lineDropdown" tabindex="0"> Row number </label>
-          <select id="lineDropdown" class='drop-down' title="selected"></select>
-           at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1"/>
+          <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
+           at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>
           <label for="instrumentDropdown" tabindex="0"> Instrument </label>
-          <select id="instrumentDropdown" class='drop-down' title="selected"></select>
+          <select id="instrumentDropdown" class='drop-down' aria-label="Instrument" title="selected"></select>
           <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
             <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
         </span>
@@ -103,7 +103,7 @@
           <label><button id="addNewCol" aria-label="Add Column" onclick="addColumn()"><i class="fa fa-plus"></i></button></label>
         </div>
         <button id="undoButton" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
-        <button id="redoButton" aria-label="Redo"><i class="fa fa-repeat fa-lg"></i></button><!-- This needs a onclick="redo()" currently no function -->
+        <button id="redoButton" aria-label="Redo" onclick="redo()"><i class="fa fa-repeat fa-lg"></i></button><!-- This needs a onclick="redo()" currently no function -->
         <button id="downloadCSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
         <button id="printButton" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
         <!--<button id="resetButton" aria-label="Reset"><i class="fa fa-refresh fa-lg"></i></button> -->
