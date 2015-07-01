@@ -125,11 +125,16 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		totalData.splice(dataCount, totalData.length - dataCount - 1);
 
 		//update chart and overlay
+<<<<<<< HEAD
+=======
+//		console.log(oldGrid);
+>>>>>>> 066e78679684fa720d9e68ddcdc7d9c74e85d01d
 		updateGrid();
 	    holdData(oldGrid);	
 	    dataCount++;
 		chart.update();
 		summary.update();
+		overlay.updateSize(chart);
 	}); 
 }
 

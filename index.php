@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="libs/SlickGrid/examples/examples.css" type="text/css"/>
   <link rel="stylesheet" href="libs/jquery/jquery-ui.css"/>
   <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   </head>
 <body>
   <header>
@@ -65,57 +65,82 @@
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
       <div id="dataGraph">
-        <h3>Data Analyzer Graph</h3>
+        <h3 id="graphHeader" style="display:none;">Data Analyzer Graph</h3>
         <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" class="no-print"></div>
         <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
           <rect id="background" x="0" y="0" width="800" height="400" />
           <rect id="selection" x="0" y="0" width="800" height="400" />
         </svg>
-        <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
-      </div><!-- END id="dataGraph" -->
-      <div id="audioSpanSec" class="no-print">
-        <span id="audioSpan" style="display: none">
-          <label for="lineDropdown" tabindex="0"> Row number </label>
-          <select id="lineDropdown" class='drop-down' aria-label="Row number" title="selected"></select>
-           at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1" aria-label="Set Speed"/>
-          <label for="instrumentDropdown" tabindex="0"> Instrument </label>
-          <select id="instrumentDropdown" class='drop-down' aria-label="Instrument" title="selected"></select>
-          <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
-            <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
-        </span>
-      </div><!-- END id="dataGraph" -->
-      <div id="dataPlot">
-        <h3 id="plot-header" style="display:none;">Data Table</h3>
-        <div id="tableCount"></div>
-        <div id="tblContainer" style="display:none;" title="Data Table">
-          <div id="slickTable" style="width:100%;"></div>
-        </div> <!-- end id="tblContainer" -->
-        <div id="remInstruction" class="no-print"></div>
-      <div id="tableControls" style="display: none" class="no-print">
-        <div id="rowLabel">
-          <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"><i class="fa fa-minus"></i></button></label>
-          <p style="display: inline">Row</p>
-          <label><button id="addNewRow" aria-label="Add Row" onclick="addRow()"><i class="fa fa-plus"></i></button></label>
+        <div id="graphCC">
+          <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
         </div>
-        <div id="columnLabel">
-          <label><button id="subtractColumn" aria-label="Remove Column" onclick="subtractColumn()"><i class="fa fa-minus"></i></button></label>
-          <p style="display: inline">Column</p>
-          <label><button id="addNewCol" aria-label="Add Column" onclick="addColumn()"><i class="fa fa-plus"></i></button></label>
-        </div>
-        <button id="undoButton" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
-        <button id="redoButton" aria-label="Redo" onclick="redo()"><i class="fa fa-repeat fa-lg"></i></button><!-- This needs a onclick="redo()" currently no function -->
-        <button id="downloadCSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
-        <button id="printButton" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
-        <!--<button id="resetButton" aria-label="Reset"><i class="fa fa-refresh fa-lg"></i></button> -->
-      </div>
-    </div><!-- END id="tableCount" -->
-    <?php
-        include 'php/ajax.php';
-    ?>
-    <div id='summaryBox' style="display:none;">
-      <h3 id='summary-header'>Graph Data</h3>
+      </div><!-- END id="dataGraph" -->
+      <div id='continuosBox'>
+        <div id="audioSpanSec" class="no-print">
+          <span id="audioSpan" style="display: none">
+            <label for="lineDropdown" tabindex="0"> Row number </label>
+            <select id="lineDropdown" class='drop-down' title="selected"></select>
+             at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1"/>
+            <label for="instrumentDropdown" tabindex="0"> Instrument </label>
+            <select id="instrumentDropdown" class='drop-down' title="selected"></select>
+            <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
+              <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
+          </span>
+        </div><!-- END id="audioSpanSec" -->
+        <div id="dataPlot">
+          <h3 id="plot-header" style="display:none;">Data Table</h3>
+          <div id="tableCount"></div><!-- END id="tableCount" -->
+          <div id="tblContainer" style="display:none;" title="Data Table">
+            <div id="slickTable" style="width:100%;"></div>
+          </div> <!-- end id="tblContainer" -->
+          <div id="remInstruction" class="no-print"></div>
+        <div id="tableControls" style="display: none" class="no-print">
+          <div id="rowLabel">
+            <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"><i class="fa fa-minus"></i></button></label>
+            <p style="display: inline">Row</p>
+            <label><button id="addNewRow" aria-label="Add Row" onclick="addRow()"><i class="fa fa-plus"></i></button></label>
+          </div>
+          <div id="columnLabel">
+            <label><button id="subtractColumn" aria-label="Remove Column" onclick="subtractColumn()"><i class="fa fa-minus"></i></button></label>
+            <p style="display: inline">Column</p>
+            <label><button id="addNewCol" aria-label="Add Column" onclick="addColumn()"><i class="fa fa-plus"></i></button></label>
+          </div>
+          <button id="undoButton" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
+          <button id="redoButton" aria-label="Redo" onclick="undo()"><i class="fa fa-repeat fa-lg"></i></button><!-- This needs a onclick="redo()" currently no function -->
+          <button id="downloadCSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
+          <button id="printButton" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
+          <!--<button id="resetButton" aria-label="Reset"><i class="fa fa-refresh fa-lg"></i></button> -->
+        </div><!-- END id="tableControls" -->
+      </div><!-- END id="dataPlot" -->
+      <?php
+          include 'php/ajax.php';
+      ?>
+      <div id="summaryBox">
+      <h3 id="summary-header" style="display:none;">Graph Data</h3>
         <ol id="colors" class="color-editor-input"></ol>
-    </div>
+      </div><!-- END id="summaryBox" -->
+      <div id="bgColorChange" style="display:none;" class="no-print">
+      <h3>Change Background Color</h3>
+        <form>
+          Choose a Theme:
+          <select class="themeOption">
+            <option>none selected</option>
+          </select>
+          <br>
+          Site Background: <input id="siteColorInput" onInput="changeSiteBg()" title="Change Site Background Color">
+          High Contrast: <input id="siteContrast" type="checkbox" checked="checked" title="Site Background Color Contrast Toggler" onclick="if(this.checked) changeSiteBg()">
+          <i id="siteCCReset" class="fa fa-refresh" aria-label="Reset Site Background" onclick="resetSiteBg()"></i>
+          <br>
+          Graph Background: <input id="graphColorInput" onInput="changeGraphBg()" title="Change Graph Background Color">
+          High Contrast: <input id="graphContrast" type="checkbox" checked="checked" title="Graph Background Color Contrast Toggler" onclick="if(this.checked) changeGraphBg()">
+          <i id="graphCCReset" class="fa fa-refresh" aria-label="Reset Graph Background" onclick="resetGraphBg()"></i>
+          <br>
+          Text Color: <input id="textColorInput" title="Change Text Color" onInput="changeTextColor()">
+          High Contrast: <input id="textContrast" type="checkbox" checked="checked" title="Text Color Contrast Toggler" onclick="if(this.checked) changeTextColor()">
+          <i id="textCCReset" class="fa fa-refresh" aria-label="Reset Text Color" onclick="resetText()"></i>
+        </form>
+      </div><!-- END id="bgColorChange" -->
+    </div><!-- END id="continuosBox" -->
   </div><!-- end div id="content" -->
 <!-- div for LOAD CSV pop-up list -->
   <div id="dialogoverlay"></div>

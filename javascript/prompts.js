@@ -113,20 +113,6 @@
             var action = e.options[e.selectedIndex].value.toLowerCase();
             var start = document.getElementById("startingPoint").value;
             var skip = document.getElementById("remove").value;
-            if(action==="rows"){
-              removeRows(start,skip);
-            }
-            else if(action === "columns"){
-              removeColumns(start,skip);
-            }
-            else if(action === "both"){
-              removeRows(start,skip);
-              removeColumns(start,skip);
-            }
-            else{
-              alert("No removal type selected!");
-              return;
-            }
             document.getElementById('dialogbox').style.visibility = "hidden";
             document.getElementById('dialogoverlay').style.visibility = "hidden";
             document.getElementsByClassName('createBtn')[0].focus();
