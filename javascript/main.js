@@ -163,7 +163,6 @@ var playStopAudioButton = function () {
     if(isSafari){
       var wave = document.getElementById("instrumentDropdown").value;
       wave = wave.substring(0,wave.indexOf(" ")).toLowerCase();
-      console.log(wave);
       player.stop();
       player = new WaveForm(wave);
       player.setCollection(collection.collection);
@@ -223,5 +222,25 @@ var makeColSelector = function(){
     p.removeChild(c);
     var c = document.getElementById("colNumLabel");
     p.removeChild(c);
+  }
+}
+
+var changeSiteBg = function(){
+  var newColor = document.getElementById("siteColorInput").value;
+  if(/^#[0-9A-F]{6}$/i.test(newColor)){
+    document.getElementsByTagName("body")[0].style.background = newColor;
+  }
+  else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
+    document.getElementsByTagName("body")[0].style.background = newColor;
+  }
+}
+
+var changeGraphBg = function(){
+  var newColor = document.getElementById("graphColorInput").value;
+  if(/^#[0-9A-F]{6}$/i.test(newColor)){
+    document.getElementById("dataGraph").style.background = newColor;
+  }
+  else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
+    document.getElementById("dataGraph").style.background = newColor;
   }
 }

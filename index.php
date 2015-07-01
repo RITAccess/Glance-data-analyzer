@@ -118,8 +118,8 @@
       <div id="bgColorChange">
         <h3>Change Background Color</h3>
           <form>
-            Site: <input title="Change Site Background Color"><br>
-            Graph: <input title="Change Graph Background Color">
+            Site: <input id="siteColorInput" title="Change Site Background Color"><br>
+            Graph: <input id="graphColorInput" title="Change Graph Background Color">
           </form>
       </div><!-- END id="bgColorChange" -->
       </div><!-- END id="summaryBoxBody" -->
