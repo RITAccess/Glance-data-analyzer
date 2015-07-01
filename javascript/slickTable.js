@@ -125,17 +125,14 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		totalData.splice(dataCount, totalData.length - dataCount - 1);
 
 		//update chart and overlay
-<<<<<<< HEAD
-=======
-//		console.log(oldGrid);
->>>>>>> 066e78679684fa720d9e68ddcdc7d9c74e85d01d
+		//console.log(oldGrid);
 		updateGrid();
-	    holdData(oldGrid);	
-	    dataCount++;
+	  holdData(oldGrid);
+	  dataCount++;
 		chart.update();
 		summary.update();
 		overlay.updateSize(chart);
-	}); 
+	});
 }
 
 //Hides slick grid header bars
@@ -181,8 +178,8 @@ function checkRemove(){
 					totalData.splice(totalData.length-1, 1);
 				}
 			}
-		} 
-		// Reset column label if the graph isn't big 
+		}
+		// Reset column label if the graph isn't big
 		else if (grid.getData()[0][i] === "") {
 			alert("Not enough columns to remove!"); // Error message for when there aren't enough columns
 			grid.gotoCell(0, i);
@@ -194,7 +191,7 @@ function checkRemove(){
 	}
 
 	//Check for rows to remove
-	for(var i = 0; i < grid.getData().length; i++){ 
+	for(var i = 0; i < grid.getData().length; i++){
 		if(grid.getData().length - 1 >= 2) { // Check if there are enough rows to have one removed
 			if(grid.getData()[i][0]===""){
 				if(confirm("Delete row " + i + "?")){	//Confirm with user
@@ -214,7 +211,7 @@ function checkRemove(){
 					totalData.splice(totalData.length-1, 1);
 				}
 			}
-		} 
+		}
 		// Reset row label if the graph isn' big enough
 		else if (grid.getData()[i][0] === "") {
 			alert("Not enough rows to remove!");
@@ -224,7 +221,7 @@ function checkRemove(){
 			totalData.splice(totalData.length-1, 1);
 		}
 	}
-	
+
 	holdData(oldGrid);
 	console.log(totalData);
     chart.update();
@@ -246,12 +243,12 @@ function updateGrid() {
 // Holds old data going back five times plus the most recent data
 function holdData(newData) {
 	if (totalData.length <= 14) {
-		totalData.push(newData); 
+		totalData.push(newData);
 	}
 	else {
 		totalData.splice(0, 1);
 		totalData.push(newData);
-	} 
+	}
 }
 
 // Goes back one in the totaldata set
@@ -288,14 +285,14 @@ function undo() {
 					console.log(prevData);
 					console.log(totalData[dataCount]);
 					break;
-				} 
+				}
 				// Resets any value changes back one set of data
 				else {
 					for (var j = 0; j < prevData[i].length; j++) {
 						grid.getData()[i][j] = prevData[i][j];
 						if (i === 0) {
 							chart.scale.xLabels[j-1] = grid.getData()[0][j];
-						} 
+						}
 						else if (i >= 1 && j >= 1) {
 							player.changeLine(i-1,j - 1, grid.getData()[i][j]);
 								if(type ==="bar")
@@ -313,7 +310,7 @@ function undo() {
 		// Places focus back into the table
 		grid.gotoCell(0, 0);
 		dataCount--;
-	} 
+	}
 	// Lets the user know that they have undone as far as they can
 	else {
 		alert("No more undos!");
@@ -324,7 +321,7 @@ function undo() {
 	chart.update();
 	summary.update();
 	document.getElementById('tblContainer').style.width = "100%";
-} 
+}
 
 function redo() {
 	// Find the data next in the list to the current data
@@ -368,7 +365,7 @@ function redo() {
 						}
 						else if(i >= 1 && j >= 1) {
 							player.changeLine(i-1, j-1, grid.getData()[i][j]);
-							if (type==="bar") 
+							if (type==="bar")
 								chart.datasets[i-1].bars[j-1].value = grid.getData()[i][j];
 							else
 								chart.datasets[i-1].points[j-1].value = grid.getData()[i][j];
@@ -385,7 +382,7 @@ function redo() {
 	// Let's user know that they have redo as far as possible
 	else {
 		alert("No more redos!");
-	} 
+	}
 
 	// Updates everything
 	updateGrid();
@@ -394,13 +391,3 @@ function redo() {
 	document.getElementById('tblContainer').style.width = "100%";
 
 }
-
-
-
-
-
-
-
-
-
-
