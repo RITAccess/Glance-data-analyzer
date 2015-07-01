@@ -133,13 +133,13 @@ header {
     text-align: center;
     border-radius: 5px;
     border: 3px solid #000;
-    margin: 5% 0;
+    margin-top: 5%;
 }
 #selection {
     fill-opacity: 0.01;
 }
 #graphImg{/* printer.js: image of graph in the print page */
-    margin-bottom: 7%;
+    margin-bottom: 8%;
 }
 #graphCC{/* graph color change */
     background: url('halftone/halftone.png');
@@ -290,7 +290,7 @@ svg * {
     text-align:center;
     font-weight: bold;
     font-size: 20px;
-    padding: 1% 0 4% 0;
+    padding-bottom: 8%;
     /* position: relative; part of making download button bottom of div*/
 }
 /* doesn't seem to be needed
@@ -367,8 +367,7 @@ svg * {
 #summaryBox {
     width: 100%;
     border-top: 3px solid #000;
-    margin-top: 5%;
-    padding-bottom: 4%;
+    padding-bottom: 8%;
 }
 #colors {
     max-height: 300px;
@@ -396,7 +395,7 @@ svg * {
 #bgColorChange { /* background color change for entire site and graph */
     width: 100%;
     border-top: 3px solid #000;
-    padding-bottom: 5%;
+    padding-bottom: 8%;
 }
 #bgColorChange form {
     text-align: left;
@@ -412,11 +411,15 @@ svg * {
 #bgColorChange input:focus {
     background: #dadada;
 }
-#siteCCReset, #graphCCReset #textCCReset {/* color change reset button style */
+#siteCCReset, #graphCCReset, #textCCReset { /* color change reset button style */
     cursor: pointer;
+    background-color: #FFF;
     border: 1px solid #000;
-    border-radius: 10px;
-    box-shadow: 0px 5px 10px #444;
+    border-radius: 5px;
+    padding: 4px
+}
+.extraSpacingCC{ /* extra spacing between rows of features for color/background change */
+    margin-bottom: 1.5%;
 }
 /*******************************/
 
