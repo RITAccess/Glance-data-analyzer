@@ -121,8 +121,8 @@
       <div id="bgColorChange" display:"none">
       <h3 id="bgCCHeader" style="display:none;">Change Background Color</h3>
         <form id="bgCCForm" style="display:none;">
-          Site: <input id="siteColorInput" title="Change Site Background Color"><br>
-          Graph: <input id="graphColorInput" title="Change Graph Background Color">
+          Site: <input id="siteColorInput" onInput="changeSiteBg" title="Change Site Background Color"><br>
+          Graph: <input id="graphColorInput" onInput="changeGraphBg" title="Change Graph Background Color">
         </form>
       </div><!-- END id="bgColorChange" -->
     </div><!-- END id="continuosBox" -->
