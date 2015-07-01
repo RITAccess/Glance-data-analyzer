@@ -1,6 +1,7 @@
 "use strict"; // strict mode syntax
 var grid = null;
 var oldGrid = null;
+var dataCount = 0;
 var ColumnWidth = 130; //** CHANGE THIS TO CHANGE COLUMN WIDTH! **
 
 // initial table properties, after getting the data from the file.
@@ -120,10 +121,17 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			grid.getData()[row][col] = oldVal;
 		}
 
+		// If there is a change to the table, the next redos are no longer valid
+		totalData.splice(dataCount, totalData.length - dataCount - 1);
+
 		//update chart and overlay
+<<<<<<< HEAD
+=======
 //		console.log(oldGrid);
+>>>>>>> 066e78679684fa720d9e68ddcdc7d9c74e85d01d
 		updateGrid();
 	    holdData(oldGrid);	
+	    dataCount++;
 		chart.update();
 		summary.update();
 		overlay.updateSize(chart);
@@ -167,8 +175,10 @@ function checkRemove(){
 				}
 				else{
 					grid.gotoCell(0, i);
-					grid.getData()[0][i] = oldGrid[0][i];	//Set back to default value if not
-					chart.scale.xLabels[i-1] = oldGrid[0][i];
+					grid.getData()[0][i] = totalData[totalData.length-2][0][i];	//Set back to default value if not
+					chart.scale.xLabels[i-1] = totalData[totalData.length-2][0][i];
+					totalData.pop();
+					totalData.splice(totalData.length-1, 1);
 				}
 			}
 		} 
@@ -176,8 +186,10 @@ function checkRemove(){
 		else if (grid.getData()[0][i] === "") {
 			alert("Not enough columns to remove!"); // Error message for when there aren't enough columns
 			grid.gotoCell(0, i);
-			grid.getData()[0][i] = oldGrid[0][i];
-			chart.scale.xLabels[i-1] = oldGrid[0][i];
+			grid.getData()[0][i] = totalData[totalData.length-2][0][i];
+			chart.scale.xLabels[i-1] = totalData[totalData.length-2][0][i];
+			totalData.pop();
+			totalData.splice(totalData.length-1, 1);
 		}
 	}
 
@@ -197,7 +209,9 @@ function checkRemove(){
 				}
 				else{
 					grid.gotoCell(i, 0);
-					grid.getData()[i][0] = oldGrid[i][0];	//Set back to default value if not
+					grid.getData()[i][0] = totalData[totalData.length-2][i][0];	//Set back to default value if not
+					totalData.pop();
+					totalData.splice(totalData.length-1, 1);
 				}
 			}
 		} 
@@ -205,11 +219,14 @@ function checkRemove(){
 		else if (grid.getData()[i][0] === "") {
 			alert("Not enough rows to remove!");
 			grid.gotoCell(i, 0);
-			grid.getData()[i][0] = oldGrid[i][0];
+			grid.getData()[i][0] = totalData[totalData.length-2][i][0];
+			totalData.pop();
+			totalData.splice(totalData.length-1, 1);
 		}
 	}
 	
 	holdData(oldGrid);
+	console.log(totalData);
     chart.update();
 	document.getElementById('tblContainer').style.width="100%";
 }
@@ -228,60 +245,54 @@ function updateGrid() {
 
 // Holds old data going back five times plus the most recent data
 function holdData(newData) {
-	if (totalData.length <= 9) {
-		totalData.push(newData);
+	if (totalData.length <= 14) {
+		totalData.push(newData); 
 	}
 	else {
 		totalData.splice(0, 1);
 		totalData.push(newData);
-	}
+	} 
 }
 
 // Goes back one in the totaldata set
 function undo() {
-	// Checks if any changes have been recorded
-	if (totalData.length > 1) {
-		var prevData = totalData[totalData.length-2];
+	if (dataCount > 14) {
+		dataCount = 14;
+	}
+	// Checks if there is a previous value
+	if (dataCount >= 1) {
+		var prevData = totalData[dataCount - 1];
 		var dataBack = {
 			data: [],
 			errors: [],
 			meta: {}
 		};
 
-		// Add row back into the table
-		if (oldGrid.length < prevData.length) {
+		// Reset for a change in number of rows
+		if (oldGrid.length != prevData.length) {
 			dataBack.data = prevData;
 			updateGrid();
 			loadData(dataBack);
-			totalData.pop();
-		}
-		// Subtract bottom row from table
-		else if (oldGrid.length > prevData.length) {
-			subtractRow();
-			updateGrid();
+			console.log(prevData);
+			console.log(totalData[dataCount]);
 			totalData.pop();
 		}
 		else {
-			// Resets any value changes back one set of data
 			for (var i = 0; i < prevData.length; i++) {
-				// Add column back into table
-				if (oldGrid[i].length < prevData[i].length) {
+				// Reset for a change in number of columns
+				if (oldGrid[i].length != prevData[i].length) {
 					dataBack.data = prevData;
 					updateGrid();
 					loadData(dataBack);
 					totalData.pop();
+					console.log(prevData);
+					console.log(totalData[dataCount]);
 					break;
 				} 
-				else if (oldGrid[i].length > prevData[i].length) {
-					subtractColumn();
-					updateGrid();
-					totalData.pop();
-					break;
-				}
+				// Resets any value changes back one set of data
 				else {
 					for (var j = 0; j < prevData[i].length; j++) {
 						grid.getData()[i][j] = prevData[i][j];
-						updateGrid();
 						if (i === 0) {
 							chart.scale.xLabels[j-1] = grid.getData()[0][j];
 						} 
@@ -294,14 +305,14 @@ function undo() {
 							}
 						// Tabs through all the cells to visually reset data
 						grid.gotoCell(i, j);
+						updateGrid();
 					}
 				}
 			}
 		}
-		// Gets rid of the data set reverted from 
-		totalData.pop();
 		// Places focus back into the table
 		grid.gotoCell(0, 0);
+		dataCount--;
 	} 
 	// Lets the user know that they have undone as far as they can
 	else {
@@ -317,19 +328,72 @@ function undo() {
 
 function redo() {
 	// Find the data next in the list to the current data
-	var nextData = totalData[totalData.length-1];
+	var nextData = totalData[dataCount + 1];
 
-	// Add row back to table
+	//Check if there is a value in the next index to revert to
+	if (dataCount + 1 <= totalData.length-1) {
+		var dataBack = {
+			data: [],
+			errors: [],
+			meta: {}
+		};
+		// Reset for a change in number of table rows
+		if (oldGrid.length != nextData.length) {
+			dataBack.data = nextData;
+			updateGrid();
+			loadData(dataBack);
+			console.log(nextData);
+			console.log(totalData[dataCount]);
+			totalData.pop();
+		}
+		else {
+			for (var i = 0; i < nextData.length; i++) {
+				// Reset for a change in number of table columns
+				if(oldGrid[i].length != nextData[i].length) {
+					dataBack.data = nextData;
+					updateGrid();
+					loadData(dataBack);
+					console.log(nextData);
+					console.log(totalData[dataCount]);
+					totalData.pop();
+					break;
+				}
+				// Reset a changed table value
+				else {
+					for (var j = 0; j < nextData[i].length; j++) {
+						grid.getData()[i][j] = nextData[i][j];
+						updateGrid();
+						if (i === 0) {
+							chart.scale.xLabels[j-1] = grid.getData()[0][j];
+						}
+						else if(i >= 1 && j >= 1) {
+							player.changeLine(i-1, j-1, grid.getData()[i][j]);
+							if (type==="bar") 
+								chart.datasets[i-1].bars[j-1].value = grid.getData()[i][j];
+							else
+								chart.datasets[i-1].points[j-1].value = grid.getData()[i][j];
+						}
+						grid.gotoCell(i, j);
+					}
+				}
+			}
+		}
 
-	// Add column back to table
+		dataCount++;
+		grid.gotoCell(0, 0);
+	}
+	// Let's user know that they have redo as far as possible
+	else {
+		alert("No more redos!");
+	} 
 
-	// Subtract row from table
+	// Updates everything
+	updateGrid();
+	chart.update();
+	summary.update();
+	document.getElementById('tblContainer').style.width = "100%";
 
-	// Subtract column from table
-
-	// Check number values and reset
 }
-
 
 
 
