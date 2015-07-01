@@ -132,7 +132,7 @@ var loadData = function (data) {
     document.getElementById('typeSelBody').style.display = 'block';
     document.getElementById('plot-header').style.display = 'inherit';
     document.getElementById('tableControls').style.display = 'block';
-    document.getElementById('summaryBox').style.display = 'block';
+    //document.getElementById('continuosBox').style.display = 'block';
     fixSlick();
     if(type === "line"){
       document.getElementById('typeSel').selectedIndex = 0;

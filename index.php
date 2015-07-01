@@ -73,48 +73,50 @@
         </svg>
         <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
       </div><!-- END id="dataGraph" -->
-      <div id="audioSpanSec" class="no-print">
-        <span id="audioSpan" style="display: none">
-          <label for="lineDropdown" tabindex="0"> Row number </label>
-          <select id="lineDropdown" class='drop-down' title="selected"></select>
-           at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1"/>
-          <label for="instrumentDropdown" tabindex="0"> Instrument </label>
-          <select id="instrumentDropdown" class='drop-down' title="selected"></select>
-          <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
-            <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
-        </span>
-      </div><!-- END id="dataGraph" -->
-      <div id="dataPlot">
-        <h3 id="plot-header">Data Table</h3>
-        <div id="tableCount"></div><!-- END id="tableCount" -->
-        <div id="tblContainer" style="display:none;" title="Data Table">
-          <div id="slickTable" style="width:100%;"></div>
-        </div> <!-- end id="tblContainer" -->
-        <div id="remInstruction" class="no-print"></div>
-      <div id="tableControls" style="display: none" class="no-print">
-        <div id="rowLabel">
-          <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"><i class="fa fa-minus"></i></button></label>
-          <p style="display: inline">Row</p>
-          <label><button id="addNewRow" aria-label="Add Row" onclick="addRow()"><i class="fa fa-plus"></i></button></label>
-        </div>
-        <div id="columnLabel">
-          <label><button id="subtractColumn" aria-label="Remove Column" onclick="subtractColumn()"><i class="fa fa-minus"></i></button></label>
-          <p style="display: inline">Column</p>
-          <label><button id="addNewCol" aria-label="Add Column" onclick="addColumn()"><i class="fa fa-plus"></i></button></label>
-        </div>
-        <button id="undoButton" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
-        <button id="redoButton" aria-label="Redo"><i class="fa fa-repeat fa-lg"></i></button><!-- This needs a onclick="redo()" currently no function -->
-        <button id="downloadCSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
-        <button id="printButton" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
-        <!--<button id="resetButton" aria-label="Reset"><i class="fa fa-refresh fa-lg"></i></button> -->
-      </div><!-- END id="tableControls" -->
-    </div><!-- END id="dataPlot" -->
-    <?php
-        include 'php/ajax.php';
-    ?>
-    <div id='summaryBox' style="display:none;">
-      <h3 id='summary-header'>Graph Data</h3>
+      <div id='continuosBox'>
+        <div id="audioSpanSec" class="no-print">
+          <span id="audioSpan" style="display: none">
+            <label for="lineDropdown" tabindex="0"> Row number </label>
+            <select id="lineDropdown" class='drop-down' title="selected"></select>
+             at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1"/>
+            <label for="instrumentDropdown" tabindex="0"> Instrument </label>
+            <select id="instrumentDropdown" class='drop-down' title="selected"></select>
+            <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
+              <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
+          </span>
+        </div><!-- END id="audioSpanSec" -->
+        <div id="dataPlot">
+          <h3 id="plot-header">Data Table</h3>
+          <div id="tableCount"></div><!-- END id="tableCount" -->
+          <div id="tblContainer" style="display:none;" title="Data Table">
+            <div id="slickTable" style="width:100%;"></div>
+          </div> <!-- end id="tblContainer" -->
+          <div id="remInstruction" class="no-print"></div>
+        <div id="tableControls" style="display: none" class="no-print">
+          <div id="rowLabel">
+            <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"><i class="fa fa-minus"></i></button></label>
+            <p style="display: inline">Row</p>
+            <label><button id="addNewRow" aria-label="Add Row" onclick="addRow()"><i class="fa fa-plus"></i></button></label>
+          </div>
+          <div id="columnLabel">
+            <label><button id="subtractColumn" aria-label="Remove Column" onclick="subtractColumn()"><i class="fa fa-minus"></i></button></label>
+            <p style="display: inline">Column</p>
+            <label><button id="addNewCol" aria-label="Add Column" onclick="addColumn()"><i class="fa fa-plus"></i></button></label>
+          </div>
+          <button id="undoButton" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
+          <button id="redoButton" aria-label="Redo"><i class="fa fa-repeat fa-lg"></i></button><!-- This needs a onclick="redo()" currently no function -->
+          <button id="downloadCSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
+          <button id="printButton" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
+          <!--<button id="resetButton" aria-label="Reset"><i class="fa fa-refresh fa-lg"></i></button> -->
+        </div><!-- END id="tableControls" -->
+      </div><!-- END id="dataPlot" -->
+      <?php
+          include 'php/ajax.php';
+      ?>
+      <div id="summaryBox">
+      <h3>Graph Data</h3>
         <ol id="colors" class="color-editor-input"></ol>
+      </div><!-- END id="summaryBox" -->
       <div id="bgColorChange">
         <h3>Change Background Color</h3>
           <form>
@@ -122,8 +124,7 @@
             Graph: <input title="Change Graph Background Color">
           </form>
       </div><!-- END id="bgColorChange" -->
-      </div><!-- END id="summaryBoxBody" -->
-    </div>
+    </div><!-- END id="continuosBox" -->
   </div><!-- end div id="content" -->
 <!-- div for LOAD CSV pop-up list -->
   <div id="dialogoverlay"></div>
