@@ -16,12 +16,18 @@ var loadChart = function(data, type, collection){
 
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLineChart;
-	if(type === "scatter")
+	if(type === "scatter"){
 		myLineChart = new Chart(ctx).ScatterPlot(data);
-	else if(type === "bar")
+		myLineChart.animation = false;
+	}
+	else if(type === "bar"){
 		myLineChart = new Chart(ctx).Bar(data);
-	else
+		myLineChart.animationSteps = 0;
+	}
+	else{
 	  myLineChart = new Chart(ctx).Line(data);
+	  myLineChart.animation = false;
+	}
 	document.getElementById("myChart").setAttribute("title","image of graph"); // by setting the attribute we can make the chart accessible
 	for(var i =0; i<data.datasets.length;i++){
 		//Setting input functions for each line in order to set new colors
@@ -163,7 +169,6 @@ var loadChart = function(data, type, collection){
 							for(var i = 0; i<chart.datasets[index].points.length;i++){
 								chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
 							}
-							//console.log(oldData[index]);
 						if(oldData[index]){
 									if(oldData[index].points){
 										var len = oldData[index].points.length;
@@ -174,7 +179,6 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scatter.length;
 									}
-							//		console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
