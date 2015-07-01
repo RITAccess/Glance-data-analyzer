@@ -233,13 +233,25 @@ var changeSiteBg = function(){
   var newColor = document.getElementById("siteColorInput").value;
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementsByTagName("body")[0].style.background = newColor;
-    if(document.getElementById("siteContrast").checked)
-      document.getElementsByTagName("body")[0].style.color = findContrastor(newColor);
+    if(document.getElementById("siteContrast").checked){
+      var contrastor = findContrastor(newColor);
+      document.getElementsByTagName("body")[0].style.color = contrastor;
+      document.getElementById("continuosBox").style.border = "3px solid " + contrastor;
+      document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + contrastor;
+      document.getElementById("summaryBox").style.borderTop="3px solid " +contrastor;
+      document.getElementById("bgColorChange").style.borderTop="3px solid " + contrastor;
+    }
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
     document.getElementsByTagName("body")[0].style.background = newColor;
-    if(document.getElementById("siteContrast").checked)
-      document.getElementsByTagName("body")[0].style.color = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+    if(document.getElementById("siteContrast").checked){
+      var contrastor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+      document.getElementsByTagName("body")[0].style.color = contrastor;
+      document.getElementById("continuosBox").style.border = "3px solid " + contrastor;
+      document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + contrastor;
+      document.getElementById("summaryBox").style.borderTop="3px solid " +contrastor;
+      document.getElementById("bgColorChange").style.borderTop="3px solid " + contrastor;
+    }
   }
 }
 
