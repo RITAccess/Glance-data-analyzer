@@ -412,11 +412,12 @@ svg * {
 #bgColorChange input:focus {
     background: #dadada;
 }
-/*
-#siteCCReset, #graphCCReset{/* color change reset *
-
+#siteCCReset, #graphCCReset #textCCReset {/* color change reset button style */
+    cursor: pointer;
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px #444;
 }
-*/
 /*******************************/
 
 /* style for pop-up chart list STARTS */
