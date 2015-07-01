@@ -35,7 +35,7 @@
       </label>
     </div>
     <span id="typeSelBody" class="no-print" style="display:none;">
-      Select a graph type:
+      Change graph type:
       <select id="typeSel" class="no-print" onchange="typeOpSel()">
         <option id="lineRadioButton" name="graphTypeSel" value="Line" onclick="typeOpSel()">Line Graph</label>
         <option id="barRadioButton" name="graphTypeSel" value="Bar" onclick="typeOpSel()">Bar Graph</option>
@@ -60,7 +60,7 @@
         <h3 id="startInst">To get started, select Load CSV or Create New Table at the top!</h3>
       </div>
       <div id="startFooter">
-        <button id="toTopButton" onclick="location.href='index.php'" >ReturnTo Top</button>
+        <button id="toTopButton" onclick="location.href='index.php'" >Return To Top</button>
       </div>
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
