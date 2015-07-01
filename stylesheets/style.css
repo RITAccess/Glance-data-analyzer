@@ -133,11 +133,14 @@ header {
     border: 3px solid #000;
     margin: 5% 0;
 }
+#selection {
+    fill-opacity: 0.01;
+}
 #graphImg{/* printer.js: image of graph in the print page */
     margin-bottom: 7%;
 }
-#selection {
-    fill-opacity: 0.01;
+#graphCC{/* graph color change */
+    background: url('halftone/halftone.png');
 }
 svg * {
     stroke:#000;
