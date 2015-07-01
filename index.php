@@ -118,16 +118,25 @@
       <div id="summaryBox">
       <h3 id="summary-header" style="display:none;">Graph Data</h3>
         <ol id="colors" class="color-editor-input"></ol>
-
       </div><!-- END id="summaryBox" -->
       <div id="bgColorChange" style="display:none;" class="no-print">
       <h3>Change Background Color</h3>
         <form>
-          Site: <input id="siteColorInput" onInput="changeSiteBg()" title="Change Site Background Color">
+          Choose a Theme:
+          <select class="themeOption">
+            <option>none selected</option>
+          </select>
+          <br>
+          Site Background: <input id="siteColorInput" onInput="changeSiteBg()" title="Change Site Background Color">
+          High Contrast: <input type="checkbox" checked="checked" title="Site Background Color Contrast Toggler">
           <button id="siteCCReset" aria-label="Reset Site Background"><i class="fa fa-refresh"></i></button>
           <br>
-          Graph: <input id="graphColorInput" onInput="changeGraphBg()" title="Change Graph Background Color">
+          Graph Background: <input id="graphColorInput" onInput="changeGraphBg()" title="Change Graph Background Color">
+          High Contrast: <input type="checkbox" checked="checked" title="Graph Background Color Contrast Toggler">
           <button id="graphCCReset" aria-label="Reset Graph Background"><i class="fa fa-refresh"></i></button>
+          <br>
+          Text Color: <input title="Change Text Color">
+          <button id="textCCReset" aria-label="Reset Text Color"><i class="fa fa-refresh"></i></button>
         </form>
       </div><!-- END id="bgColorChange" -->
     </div><!-- END id="continuosBox" -->

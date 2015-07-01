@@ -1,7 +1,9 @@
 body, html {
-    font-family: sans-serif, verdana;
     width: 100%;
-    background: url('halftone/halftone.png')
+    font-family: sans-serif, verdana;
+    font-size: 20px;
+    background: url('halftone/halftone.png');
+    color: #000;
 }
 html {
     display: table;
@@ -400,6 +402,13 @@ svg * {
 #bgColorChange form {
     text-align: left;
     margin-left: 5%;
+}
+.themeOption {
+    cursor: pointer;
+    font-size: 15px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    padding: 0.5%;
 }
 #bgColorChange input:focus {
     background: #dadada;
