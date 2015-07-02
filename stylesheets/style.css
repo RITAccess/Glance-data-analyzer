@@ -1,7 +1,6 @@
 body, html {
     width: 100%;
     font-family: sans-serif, verdana;
-    font-size: 20px;
     background: url('halftone/halftone.png');
     color: #000;
 }
@@ -54,7 +53,7 @@ header {
 }
 #typeSelBody select {
     cursor: pointer !important;
-    font-size: 15px;
+    font-size:20px;
     padding: 5px;
     border-radius: 10px;
 }
@@ -270,7 +269,7 @@ svg * {
 }
 #bpm {
     cursor: auto !important;
-    font-size: 15px;
+    font-size: 20px;
     width: 65px;
     text-align: center;
 }
@@ -279,7 +278,7 @@ svg * {
 }
 .drop-down {
     cursor: pointer !important;
-    font-size: 15px;
+    font-size: 20px;
     border: 1px solid #888;
     border-radius: 10px;
     padding: 0.5%;
@@ -412,27 +411,24 @@ svg * {
     color: #FFF;
     border: 1px solid #FFF;
 }
-#siteColorInput:focus, #graphColorInput:focus, #textColorInput:focus {
-    background: #dadada;
+#siteColorInput, #graphColorInput, #textColorInput {
+    width: 120px;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 4%;
 }
 #siteColorInput {
-    width: 120px;
-    text-align: center;
     margin-left: 5%;
-    margin-right: 4%;
 }
 
 #graphColorInput {
-    width: 120px;
-    text-align: center;
     margin-left: 2%;
-    margin-right: 4%;
 }
 #textColorInput {
-    width: 120px;
-    text-align: center;
     margin-left: 13%;
-    margin-right: 4%;
+}
+#siteColorInput:focus, #graphColorInput:focus, #textColorInput:focus {
+    background: #dadada;
 }
 #siteContrast, #graphContrast, #textContrast {
     margin-right: 4%;
@@ -501,7 +497,17 @@ input[type="text"] {
 .sChartType select, .sChartType input {/* chart type select tags */
     border: 2px solid #000;
     border-radius: 2px;
-    font-size: 15px;
+    font-size: 20px;
+}
+#rows, #columns {
+    width: 109px;
+    text-align: center;
+}
+#rows {
+    margin-left: 10.3%;
+}
+#columns {
+    margin-left: 3%;
 }
 /* END style for pop-up chart list */
 
@@ -514,7 +520,7 @@ table, th, td, .printTable{
     text-align: center; /* center texts (especially) inside td */
 }
 table, .printTable{
-    font-size: 15px;
+    font-size: 20px;
     margin: auto;
     margin-top: 5%;
     table-layout: fixed;
