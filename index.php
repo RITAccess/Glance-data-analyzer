@@ -122,41 +122,19 @@
       <div id="bgColorChange" style="display:none;" class="no-print">
       <h3>Change Background Color</h3><!-- "cc" and "CC" both stands for "color change"-->
         <div id="ccContent">
-          <div id="ccFeature">
             <form>
-              <div  class="extraSpacingCC">
-                Site Background: <input id="siteColorInput" onInput="changeSiteBg()" title="Change Site Background Color">
-              </div>
-              <div  class="extraSpacingCC">
-                Graph Background: <input id="graphColorInput" onInput="changeGraphBg()" title="Change Graph Background Color">
-              </div>
-              <div class="extraSpacingCC">
-                Text Color: <input id="textColorInput" title="Change Text Color" onInput="changeTextColor()">
-              </div>
+                Site Background: <input id="siteColorInput" type="text" onInput="changeSiteBg()" title="Change Site Background Color">
+                High Contrast: <input id="siteContrast" type="checkbox" checked="checked" title="Site Background Color Contrast Toggler" onclick="if(this.checked) changeSiteBg()">
+                <i id="siteCCReset" role="button" class="fa fa-refresh" aria-label="Reset Site Background" onclick="resetSiteBg()"></i>
+                <br>
+                Graph Background: <input id="graphColorInput" type=="text" onInput="changeGraphBg()" title="Change Graph Background Color">
+                High Contrast: <input id="graphContrast" type="checkbox" checked="checked" title="Graph Background Color Contrast Toggler" onclick="if(this.checked) changeGraphBg()">
+                <i id="graphCCReset" role="button" class="fa fa-refresh" aria-label="Reset Graph Background" onclick="resetGraphBg()"></i>
+                <br>
+                Text Color: <input id="textColorInput" type="text" title="Change Text Color" onInput="changeTextColor()">
+                High Contrast: <input id="textContrast" type="checkbox" checked="checked" title="Text Color Contrast Toggler" onclick="if(this.checked) changeTextColor()">
+                <i id="textCCReset" role="button" class="fa fa-refresh" aria-label="Reset Text Color" onclick="resetText()"></i>
             </form>
-          </div><!-- END id="ccFeature" -->
-          <div id="ccContrast">
-            <div class="extraSpacingCC">
-              High Contrast: <input id="siteContrast" type="checkbox" checked="checked" title="Site Background Color Contrast Toggler" onclick="if(this.checked) changeSiteBg()">
-            </div>
-            <div class="extraSpacingCC">
-              High Contrast: <input id="graphContrast" type="checkbox" checked="checked" title="Graph Background Color Contrast Toggler" onclick="if(this.checked) changeGraphBg()">
-            </div>
-            <div class="extraSpacingCC">
-              High Contrast: <input id="textContrast" type="checkbox" checked="checked" title="Text Color Contrast Toggler" onclick="if(this.checked) changeTextColor()">
-            </div>
-          </div><!-- END id="ccContrast" -->
-          <div id="ccResetButton">
-            <div class="extraSpacingCC">
-              <i id="siteCCReset" class="fa fa-refresh" aria-label="Reset Site Background" onclick="resetSiteBg()"></i>
-            </div>
-            <div class="extraSpacingCC">
-              <i id="graphCCReset" class="fa fa-refresh" aria-label="Reset Graph Background" onclick="resetGraphBg()"></i>
-            </div>
-            <div class="extraSpacingCC">
-              <i id="textCCReset" class="fa fa-refresh" aria-label="Reset Text Color" onclick="resetText()"></i>
-            </div>
-          </div><!-- END id="ccResetButton" -->
         </div><!-- END id="ccContent" -->
       </div><!-- END id="bgColorChange" -->
     </div><!-- END id="continuosBox" -->
