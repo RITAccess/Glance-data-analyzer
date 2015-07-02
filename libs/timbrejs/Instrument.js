@@ -104,7 +104,6 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
 
 //Using an arrayCollection object you can add a group of lines to the audio object
 Instrument.prototype.setCollection = function(collection) {
-  this.playLoadingSound();
   var dropdownString ="";
   this.infoCollection.setCollection(collection);
   for(var i = 0; i < collection.length; i++) {
