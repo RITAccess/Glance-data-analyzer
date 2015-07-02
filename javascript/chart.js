@@ -406,6 +406,7 @@ function dataset(data, collection) {
 			hidden.push(true);
 		}
 		inputBoxArray.push(textInput);
+		textInput.setAttribute("type", "text");
 		textInput.setAttribute("title", "Enter color");
 		toggleBox.setAttribute("type", "checkbox");
 		if(hidden[i-1]===true)
