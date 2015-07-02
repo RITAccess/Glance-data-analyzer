@@ -125,15 +125,15 @@
             <form>
                 Site Background: <input id="siteColorInput" type="text" onInput="changeSiteBg()" title="Change Site Background Color">
                 High Contrast: <input id="siteContrast" type="checkbox" checked="checked" title="Site Background Color Contrast Toggler" onclick="if(this.checked) changeSiteBg()">
-                <i id="siteCCReset" tabindex="0" type="checkbox" class="fa fa-refresh" aria-label="Reset Site Background" onclick="resetSiteBg()" onkeyup="siteKeyUp()"></i>
+                <input type="button" id="siteCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Site Background" onclick="resetSiteBg()" onkeyup="siteKeyUp()" value="">
                 <br>
                 Graph Background: <input id="graphColorInput" type="text" onInput="changeGraphBg()" title="Change Graph Background Color">
                 High Contrast: <input id="graphContrast" type="checkbox" checked="checked" title="Graph Background Color Contrast Toggler" onclick="if(this.checked) changeGraphBg()">
-                <i id="graphCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Graph Background" onclick="resetGraphBg()"></i>
+                <input type="button" id="graphCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Graph Background" onclick="resetGraphBg()" value="">
                 <br>
                 Text Color: <input id="textColorInput" type="text" title="Change Text Color" onInput="changeTextColor()">
                 High Contrast: <input id="textContrast" type="checkbox" checked="checked" title="Text Color Contrast Toggler" onclick="if(this.checked) changeTextColor()">
-                <i id="textCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Text Color" onclick="resetText()" onkeyup="textKeyUp()"></i>
+                <input type="button" id="textCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Text Color" onclick="resetText()" onkeyup="textKeyUp()" value="">
             </form>
         </div><!-- END id="ccContent" -->
       </div><!-- END id="bgColorChange" -->

@@ -414,7 +414,8 @@ svg * {
     background-color: #FFF;
     border: 1px solid #000;
     border-radius: 5px;
-    padding: 4px
+    padding: 4px;
+    color: #000;
 }
 #siteColorInput {
     width: 120px;
@@ -422,6 +423,7 @@ svg * {
     margin-left: 5%;
     margin-right: 4%; 
 }
+
 #graphColorInput {
     width: 120px;
     text-align: center;
