@@ -33,6 +33,7 @@ header {
     overflow-y: scroll;
 }
 #title {
+    cursor: pointer !important;
     display: inline;
     font-weight: bold;
     font-size: 2em;
