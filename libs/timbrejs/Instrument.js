@@ -114,6 +114,7 @@ Instrument.prototype.setCollection = function(collection) {
   * an individual sitting on a piano, then you probably mov0ed this)
   */
   $("*").css("cursor", "progress");
+  document.getElementById("playButton").setAttribute("aria-label","loading");
   this.notes = this.buildNotes();
   document.getElementById("audioSpan").style.display = "";
   document.getElementById("lineDropdown").innerHTML = dropdownString;
@@ -133,10 +134,10 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
       this.looping = true;
       while(this.looping){
         if(!this.isLoading){
-           var q = function(){
+           var setLooping = function(){
               player.looping = false;
            }
-          setTimeout(q(), 1000);
+          setTimeout(setLooping(), 1000);
         }
     }
     //console.log(mode);
