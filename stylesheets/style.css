@@ -395,7 +395,7 @@ svg * {
 #bgColorChange { /* background color change for entire site and graph */
     width: 100%;
     border-top: 3px solid #000;
-    padding-bottom: 8%;
+    padding-bottom: 7%;
 }
 #bgColorChange i { /* !important overrides the text to change color for color change reset button */
     color: #000 !important;
@@ -405,6 +405,9 @@ svg * {
     min-height: 140px;
     text-align: left;
     padding-left: 5%;
+}
+.ccFeature{
+    margin-bottom: 1%;
 }
 #siteCCReset, #graphCCReset, #textCCReset { /* color change reset button style */
     cursor: pointer;
