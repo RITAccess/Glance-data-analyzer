@@ -418,12 +418,21 @@ svg * {
 }
 #siteColorInput {
     width: 120px;
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 4%; 
 }
 #graphColorInput {
     width: 120px;
+    text-align: center;
+    margin-left: 2%;
+    margin-right: 4%;
 }
 #textColorInput {
     width: 120px;
+    text-align: center;
+    margin-left: 13%;
+    margin-right: 4%;
 }
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
