@@ -104,6 +104,7 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
 
 //Using an arrayCollection object you can add a group of lines to the audio object
 Instrument.prototype.setCollection = function(collection) {
+  this.playLoadingSound();
   var dropdownString ="";
   this.infoCollection.setCollection(collection);
   for(var i = 0; i < collection.length; i++) {
@@ -114,7 +115,6 @@ Instrument.prototype.setCollection = function(collection) {
   * an individual sitting on a piano, then you probably mov0ed this)
   */
   $("*").css("cursor", "progress");
-  document.getElementById("playButton").setAttribute("aria-label","loading");
   this.notes = this.buildNotes();
   document.getElementById("audioSpan").style.display = "";
   document.getElementById("lineDropdown").innerHTML = dropdownString;
@@ -223,4 +223,13 @@ Instrument.prototype.getKeyByValue = function( value ) {
                  return prop;
         }
     }
+}
+
+Instrument.prototype.playLoadingSound = function(){
+  var src = "audio/loading.wav";
+  T("audio").loadthis(src, function() {
+    this.play();
+  }).on("ended", function() {
+    this.pause();
+  });
 }
