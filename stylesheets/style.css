@@ -397,9 +397,38 @@ svg * {
     border-top: 3px solid #000;
     padding-bottom: 8%;
 }
-#bgColorChange form {
+#bgColorChange input:focus {
+    background: #dadada;
+}
+#bgColorChange i { /* !important overrides the text to change color for color change reset button */
+    color: #000 !important;
+}
+#ccContent {
+    width: 100%;
+    min-height: 140px;
+    padding-left: 5%;
+}
+#ccTheme {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1%;
+}
+#ccFeature{
+    width: 45%;
+    float: left;
+    text-align: left;
+}
+#ccContrast  {
+    width: 26%;
+    float: left;
     text-align: left;
     margin-left: 5%;
+}
+#ccResetButton {
+    width: 5%;
+    float: left;
+    text-align: left;
+    margin-right: 10%;
 }
 .themeOption {
     cursor: pointer;
@@ -408,9 +437,6 @@ svg * {
     border-radius: 10px;
     padding: 0.5%;
 }
-#bgColorChange input:focus {
-    background: #dadada;
-}
 #siteCCReset, #graphCCReset, #textCCReset { /* color change reset button style */
     cursor: pointer;
     background-color: #FFF;
@@ -418,9 +444,11 @@ svg * {
     border-radius: 5px;
     padding: 4px
 }
-.extraSpacingCC{ /* extra spacing between rows of features for color/background change */
-    margin-bottom: 1.5%;
+.extraSpacingCC { /* extra spacing between rows of features for color/background change
+    >>keep height in px for better spacing */
+    height: 35px;
 }
+/* END extra spacing between rows of features for color/background change */
 /*******************************/
 
 /* style for pop-up chart list STARTS */
