@@ -40,7 +40,7 @@ var collection;
 var type = null;
 var lineColors = [];
 var slickTable;
-var isSafari = true;//Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor')>0;
+var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor')>0;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function (data) {
