@@ -408,11 +408,6 @@ svg * {
     min-height: 140px;
     padding-left: 5%;
 }
-#ccTheme {
-    width: 100%;
-    text-align: left;
-    margin-bottom: 1%;
-}
 #ccFeature{
     width: 45%;
     float: left;

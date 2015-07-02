@@ -113,6 +113,7 @@ Instrument.prototype.setCollection = function(collection) {
   * in order to make playback even and uniform (if you're getting a sound that resembles
   * an individual sitting on a piano, then you probably mov0ed this)
   */
+  $("*").css("cursor", "progress");
   this.notes = this.buildNotes();
   document.getElementById("audioSpan").style.display = "";
   document.getElementById("lineDropdown").innerHTML = dropdownString;
@@ -201,6 +202,7 @@ Instrument.prototype.buildNotes= function(){
       toSort[i] = parseInt(mult*toSort[i]);
     }
   }
+  this.isLoading= true;
   T.soundfont.preload(toSort);
   var i = 0;
   this.pnotes = new Object();

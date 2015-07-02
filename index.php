@@ -122,9 +122,6 @@
       <div id="bgColorChange" style="display:none;" class="no-print">
       <h3>Change Background Color</h3><!-- "cc" and "CC" both stands for "color change"-->
         <div id="ccContent">
-          <div id="ccTheme">
-            Choose a Theme: <select class="themeOption"><option>none selected</option></select>
-          </div>
           <div id="ccFeature">
             <form>
               <div  class="extraSpacingCC">
