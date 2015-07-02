@@ -397,9 +397,6 @@ svg * {
     border-top: 3px solid #000;
     padding-bottom: 8%;
 }
-#bgColorChange input:focus {
-    background: #dadada;
-}
 #bgColorChange i { /* !important overrides the text to change color for color change reset button */
     color: #000 !important;
 }
@@ -417,11 +414,19 @@ svg * {
     padding: 4px;
     color: #000;
 }
+#siteCCReset:hover, #graphCCReset:hover, #textCCReset:hover {
+    background: #000;
+    color: #FFF;
+    border: 1px solid #FFF;
+}
+#siteColorInput:focus, #graphColorInput:focus, #textColorInput:focus {
+    background: #dadada;
+}
 #siteColorInput {
     width: 120px;
     text-align: center;
     margin-left: 5%;
-    margin-right: 4%; 
+    margin-right: 4%;
 }
 
 #graphColorInput {
@@ -434,6 +439,9 @@ svg * {
     width: 120px;
     text-align: center;
     margin-left: 13%;
+    margin-right: 4%;
+}
+#siteContrast, #graphContrast, #textContrast {
     margin-right: 4%;
 }
 /* END extra spacing between rows of features for color/background change */
