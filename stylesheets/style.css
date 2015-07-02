@@ -416,6 +416,16 @@ svg * {
     border-radius: 5px;
     padding: 4px
 }
+#siteColorInput {
+    width: 120px;
+    padding-left: 2%;
+}
+#graphColorInput {
+    width: 120px;
+}
+#textColorInput {
+    width: 120px;
+}
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
 

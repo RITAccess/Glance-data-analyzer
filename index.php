@@ -127,7 +127,7 @@
                 High Contrast: <input id="siteContrast" type="checkbox" checked="checked" title="Site Background Color Contrast Toggler" onclick="if(this.checked) changeSiteBg()">
                 <i id="siteCCReset" role="button" class="fa fa-refresh" aria-label="Reset Site Background" onclick="resetSiteBg()"></i>
                 <br>
-                Graph Background: <input id="graphColorInput" type=="text" onInput="changeGraphBg()" title="Change Graph Background Color">
+                Graph Background: <input id="graphColorInput" type="text" onInput="changeGraphBg()" title="Change Graph Background Color">
                 High Contrast: <input id="graphContrast" type="checkbox" checked="checked" title="Graph Background Color Contrast Toggler" onclick="if(this.checked) changeGraphBg()">
                 <i id="graphCCReset" role="button" class="fa fa-refresh" aria-label="Reset Graph Background" onclick="resetGraphBg()"></i>
                 <br>
