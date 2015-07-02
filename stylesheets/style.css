@@ -443,6 +443,9 @@ input[type="checkbox"] {
 input[type="text"] {
     cursor: auto !important;
 }
+.fa {
+    cursor: pointer !important;
+}
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
 
