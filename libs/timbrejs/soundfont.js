@@ -144,7 +144,6 @@
 			if(player){
 				player.isLoading=false;
 				$("*").css("cursor", "default");
-				document.getElementById("playButton").setAttribute("aria-label","done loading");
 			}
 		}, 3000);
 	};
