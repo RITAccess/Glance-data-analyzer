@@ -347,9 +347,36 @@ var resetText= function(){
 }
 
 var resetSiteBg = function(){
+  var black = "#000000";
   document.getElementsByTagName("body")[0].style.background = "url('stylesheets/halftone/halftone.png')";
+  document.getElementById("continuosBox").style.border = "3px solid " + black;
+  document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + black;
+  document.getElementById("summaryBox").style.borderTop="3px solid " +black;
+  document.getElementById("bgColorChange").style.borderTop="3px solid " + black;
+  //resetText();    
 }
 
 var resetGraphBg = function(){
   document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')"; 
+}
+
+var textKeyUp = function(event){
+   event = event || window.event;
+    if (event.keyCode === 32 || event.keyCode===13) {
+      resetText();
+    }
+}
+
+var graphKeyUp = function(event){
+   event = event || window.event;
+    if (event.keyCode === 32 || event.keyCode===13) {
+      resetGraphBg();
+    }  
+}
+
+var siteKeyUp = function(event){
+     event = event || window.event;
+    if (event.keyCode === 32 || event.keyCode===13) {
+      resetSiteBg();
+    }
 }
