@@ -105,7 +105,7 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	timbre.bpm = this.bpm;
 	var self = this;
 	this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
-		if(i>=endIndex) {
+		if(i>=endIndex || isNaN(self.pitch)) {
 			self.playing = false;
 			self.updateIcon();
 			self.stop();
@@ -124,6 +124,7 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 		this.stop();
 	}).start();
 	this.playing = false;
+	this.makeTObject();
 };
 
 //Play series of notes
@@ -178,7 +179,6 @@ WaveForm.prototype.setCollection = function(collection) {
   for(var i = 0; i < collection.length; i++) {
     dropdownString += "<option value="+(i + 1)+">"+(i + 1)+"</option>"
   }
-  this.isDirty = true;
   document.getElementById("audioSpan").style.display = "";
   document.getElementById("lineDropdown").innerHTML = dropdownString;
 }
@@ -187,13 +187,13 @@ WaveForm.prototype.setCollection = function(collection) {
 WaveForm.prototype.changeLine = function(line, index, newValue) {
   if(line != -1) {
     this.infoCollection.changeLine(line,index,newValue);
-    this.isDirty = true;
   }
 }
 
 //Toggle playing either on or off
-WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode) {
-  if(!this.playing) {
+WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing) {
+  //console.log(player.playing);
+  if(!playing) {
   	if(!mode || mode === 0)
     	this.playSeries(line,startIndex,endIndex);
 	else{
@@ -201,6 +201,7 @@ WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode) {
 	}
   }
   else {
+  	console.log("stop");
     this.stop();
   }
   this.updateIcon();

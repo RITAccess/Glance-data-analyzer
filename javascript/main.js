@@ -152,6 +152,7 @@ var loadData = function (data) {
 
 // The play button
 var playStopAudioButton = function () {
+  console.log(player.playing);
   //Change the speed of the audio based on speed input.
   var bpm = 80 + 20 * document.getElementById('bpm').value;
   player.setBpm(bpm);
@@ -167,6 +168,7 @@ var playStopAudioButton = function () {
     if(isSafari){
       var wave = document.getElementById("instrumentDropdown").value;
       wave = wave.substring(0,wave.indexOf(" ")).toLowerCase();
+      if(!isSafari)
       player.stop();
       player = new WaveForm(wave);
       player.setCollection(collection.collection);
@@ -184,7 +186,10 @@ var playStopAudioButton = function () {
       var startval = document.getElementById("colSelector").value;
       //console.log(startval);
     }
-    player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode);
+    if(!isSafari)
+      player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode);
+    else
+      player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode,player.playing);
 }
 
 // Opens the color editor
