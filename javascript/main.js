@@ -184,12 +184,11 @@ var playStopAudioButton = function () {
     }
     else{
       var startval = document.getElementById("colSelector").value;
-      //console.log(startval);
     }
-    if(!isSafari)
+    // if(!isSafari)
       player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode);
-    else
-      player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode,player.playing);
+    // else
+    //   player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode,player.playing);
 }
 
 // Opens the color editor

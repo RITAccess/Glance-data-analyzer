@@ -140,12 +140,11 @@
 		for (i = 0; i < noteArray.length; i++) {
 			getSample(noteArray[i], noop);
 		}
-		setTimeout(function() {
-			if(player){
-				player.isLoading=false;
-				$("*").css("cursor", "default");
-			}
-		}, 3000);
+		setTimeout(function() {}, 10000);
+		if(player){
+			player.isLoading=false;
+			$("*").css("cursor", "default");
+		}
 	};
 
 	soundfont.play = function (note, playOnLoad, options) {

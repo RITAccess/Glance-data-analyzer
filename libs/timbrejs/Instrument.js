@@ -1,57 +1,56 @@
-
 require(["libs/timbrejs/soundfont.js"]);
 //Make an instrument object with a given instrument number
 function Instrument(number){
-	this.number = number;
-	this.bpm = 120;	//Default tempo
+  this.number = number;
+  this.bpm = 120; //Default tempo
   this.subdiv = "L4";
-	this.makeSoundFont(number);
-	this.infoCollection = new ArrayCollection([]);
-	this.playing = false;
+  this.makeSoundFont(number);
+  this.infoCollection = new ArrayCollection([]);
+  this.playing = false;
   this.isLoading = false;
   this.pnotes = null;
 }
 
 //Create a T soundfont object based on number
 Instrument.prototype.makeSoundFont = function(number){
-	T.soundfont.setInstrument(number);
+  T.soundfont.setInstrument(number);
 }
 
 //Change instrument number of this instrument
 Instrument.prototype.changeInstrument = function(number){
-	if(this.number === number)
+  if(this.number === number)
     return;
   this.number = number;
-	this.makeSoundFont(this.number-1);
+  this.makeSoundFont(this.number-1);
   this.setCollection(this.infoCollection.collection);
 }
 
 //Play a single note
 Instrument.prototype.playSingleNote= function(number){
-	this.playing = true;
-	T.soundfont.play(number);
-	this.playing = false;
+  this.playing = true;
+  T.soundfont.play(number);
+  this.playing = false;
 }
 
 //Play an entire set of notes
 Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
-	this.playing = true;
-	var i = startIndex;
+  this.playing = true;
+  var i = startIndex;
   var j = line;
   var self = this;
-	timbre.bpm = this.bpm;
-	var t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
-		if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
-			self.playing = false;
-			self.updateIcon();
+  timbre.bpm = this.bpm;
+  var t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+    if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
+      self.playing = false;
+      self.updateIcon();
       t.stop();
-		}
+    }
     var key =  parseInt(self.infoCollection.collection[j].array[i]);
-		T.soundfont.play(self.pnotes[key],false);
-		i++;
-	}).on("ended",function(){
-		this.stop();
-	}).start();
+    T.soundfont.play(self.pnotes[key],false);
+    i++;
+  }).on("ended",function(){
+    this.stop();
+  }).start();
   self.playing = false;
 }
 
@@ -86,7 +85,7 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
   var self = this;
   timbre.bpm = this.bpm;
   var t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
-    if(i>endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
+    if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
       self.playing = false;
       self.updateIcon();
       t.stop();
@@ -111,7 +110,7 @@ Instrument.prototype.setCollection = function(collection) {
   }
   /*[DO NOT MOVE]: This section preloads all of the notes in the current collection
   * in order to make playback even and uniform (if you're getting a sound that resembles
-  * an individual sitting on a piano, then you probably mov0ed this)
+  * an individual sitting on a piano, then you probably moved this)
   */
   $("*").css("cursor", "progress");
   this.notes = this.buildNotes();
@@ -133,20 +132,18 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
       this.looping = true;
       while(this.looping){
         if(!this.isLoading){
-           var setLooping = function(){
+           var q = function(){
               player.looping = false;
            }
-          setTimeout(setLooping(), 1000);
+          setTimeout(q(), 1000);
         }
     }
-    //console.log(mode);
     var self = this;
     if(!mode || mode === 0)
       setTimeout(function() {self.playDataSet(line,startIndex,endIndex);}, 1000);
     else if(mode === 1)
       setTimeout(function() {self.playColumn(line);}, 1000);
     else if(mode === 2){
-      //console.log(line + " " + startIndex + " " + endIndex);
       setTimeout(function() {self.playColumnsAsChords(line,startIndex,endIndex);}, 1000);  
     }
     }
@@ -202,7 +199,6 @@ Instrument.prototype.buildNotes= function(){
       toSort[i] = parseInt(mult*toSort[i]);
     }
   }
-  this.isLoading= true;
   T.soundfont.preload(toSort);
   var i = 0;
   this.pnotes = new Object();
@@ -222,13 +218,4 @@ Instrument.prototype.getKeyByValue = function( value ) {
                  return prop;
         }
     }
-}
-
-Instrument.prototype.playLoadingSound = function(){
-  var src = "audio/loading.wav";
-  T("audio").loadthis(src, function() {
-    this.play();
-  }).on("ended", function() {
-    this.pause();
-  });
 }
