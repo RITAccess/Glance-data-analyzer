@@ -269,7 +269,7 @@ svg * {
     color: #FFF;
 }
 #bpm {
-    cursor: inherit;
+    cursor: inherit !important;
     font-size: 15px;
     width: 65px;
     text-align: center;
@@ -332,7 +332,7 @@ svg * {
     vertical-align: middle;
 }
 #rowLabel, #columnLabel {
-    cursor: default;
+    cursor: default !important;
 }
 #addNewRow, #addNewCol, #subtractRow, #subtractColumn {
     min-width: 35px;
@@ -436,6 +436,9 @@ svg * {
 }
 #siteContrast, #graphContrast, #textContrast {
     margin-right: 4%;
+}
+input[type="checkbox"] {
+    cursor: pointer !important;
 }
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
