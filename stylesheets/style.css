@@ -406,31 +406,8 @@ svg * {
 #ccContent {
     width: 100%;
     min-height: 140px;
+    text-align: left;
     padding-left: 5%;
-}
-#ccFeature{
-    width: 45%;
-    float: left;
-    text-align: left;
-}
-#ccContrast  {
-    width: 26%;
-    float: left;
-    text-align: left;
-    margin-left: 5%;
-}
-#ccResetButton {
-    width: 5%;
-    float: left;
-    text-align: left;
-    margin-right: 10%;
-}
-.themeOption {
-    cursor: pointer;
-    font-size: 15px;
-    border: 1px solid #888;
-    border-radius: 10px;
-    padding: 0.5%;
 }
 #siteCCReset, #graphCCReset, #textCCReset { /* color change reset button style */
     cursor: pointer;
@@ -438,10 +415,6 @@ svg * {
     border: 1px solid #000;
     border-radius: 5px;
     padding: 4px
-}
-.extraSpacingCC { /* extra spacing between rows of features for color/background change
-    >>keep height in px for better spacing */
-    height: 35px;
 }
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
