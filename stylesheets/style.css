@@ -269,7 +269,7 @@ svg * {
     color: #FFF;
 }
 #bpm {
-    cursor: inherit !important;
+    cursor: auto !important;
     font-size: 15px;
     width: 65px;
     text-align: center;
@@ -439,6 +439,9 @@ svg * {
 }
 input[type="checkbox"] {
     cursor: pointer !important;
+}
+input[type="text"] {
+    cursor: auto !important;
 }
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
