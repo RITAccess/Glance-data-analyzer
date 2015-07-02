@@ -33,7 +33,6 @@ header {
     overflow-y: scroll;
 }
 #title {
-    cursor: pointer !important;
     display: inline;
     font-weight: bold;
     font-size: 2em;
@@ -41,6 +40,7 @@ header {
     position: relative;
 }
 #title a{
+    cursor: pointer !important;
     text-decoration: none;
     color: inherit;
 }
@@ -53,7 +53,7 @@ header {
     right: 0em;
 }
 #typeSelBody select {
-    cursor: pointer;
+    cursor: pointer !important;
     font-size: 15px;
     padding: 5px;
     border-radius: 10px;
@@ -95,7 +95,7 @@ header {
 }
 #toTopButton{
     float: right;
-    cursor: pointer;
+    cursor: pointer !important;
     font-size: 20px;
     font-weight: bold;
     background-color: #FFF;
@@ -183,7 +183,7 @@ svg * {
     overflow: hidden;
 }
 .uploadBtn, .createBtn {
-    cursor: pointer;
+    cursor: pointer !important;
     font-size: 20px;
     font-weight: bold;
     background: #FFF;
@@ -207,7 +207,7 @@ svg * {
     margin: 0;
     padding: 0;
     font-size: 20px;
-    cursor: pointer;
+    cursor: pointer !important;
     opacity: 0;
     filter: alpha(opacity=0);
 }
@@ -255,7 +255,7 @@ svg * {
 #playButton {
     height: 35px;
     width: 35px;
-    cursor: pointer;
+    cursor: pointer !important;
     margin-left: 0.5em;
     background: #FFF;
     border-color: #FFF;
@@ -278,7 +278,7 @@ svg * {
     background: #dadada;
 }
 .drop-down {
-    cursor: pointer;
+    cursor: pointer !important;
     font-size: 15px;
     border: 1px solid #888;
     border-radius: 10px;
@@ -318,7 +318,7 @@ svg * {
 }
 #rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #dialogboxfoot button {
     display: inline;
-    cursor: pointer;
+    cursor: pointer !important;
     background: #FFF;
     font-size: 20px;
     padding: 1.5%;
@@ -336,7 +336,7 @@ svg * {
 }
 #addNewRow, #addNewCol, #subtractRow, #subtractColumn {
     min-width: 35px;
-    cursor: pointer;
+    cursor: pointer !important;
     background: #FFF;
     font-size: 20px;
     font-weight: bold;
@@ -400,7 +400,7 @@ svg * {
     margin-bottom: 1%;
 }
 #siteCCReset, #graphCCReset, #textCCReset { /* color change reset button style */
-    cursor: pointer;
+    cursor: pointer !important;
     background-color: #FFF;
     border: 1px solid #000;
     border-radius: 5px;
@@ -471,7 +471,7 @@ svg * {
     color:#000;
 }
 #dialogbox > div > #dialogboxbody {
-    cursor: pointer;
+    cursor: pointer !important;
     border-top: 2px solid #000;
     padding:20px;
     color:#000;
@@ -481,7 +481,7 @@ svg * {
     text-align:right;
 }
 #dialogboxbody select{
-    cursor: pointer;
+    cursor: pointer !important;
 }
 #dialogboxbody input {
     margin-top: 10px;
