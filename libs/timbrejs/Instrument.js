@@ -9,6 +9,8 @@ function Instrument(number){
   this.playing = false;
   this.isLoading = false;
   this.pnotes = null;
+  this.t = null;
+  this.paused = false;
 }
 
 //Create a T soundfont object based on number
@@ -35,23 +37,30 @@ Instrument.prototype.playSingleNote= function(number){
 //Play an entire set of notes
 Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
   this.playing = true;
+  this.paused = false;
   var i = startIndex;
   var j = line;
   var self = this;
   timbre.bpm = this.bpm;
-  var t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+  this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
     if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
       self.playing = false;
       self.updateIcon();
-      t.stop();
+      self.t.stop();
+
     }
     var key =  parseInt(self.infoCollection.collection[j].array[i]);
+    if(key === undefined){
+      self.playing = false;
+      self.paused = false;
+      self.t.stop();
+      return;
+    }
     T.soundfont.play(self.pnotes[key],false);
     i++;
   }).on("ended",function(){
     this.stop();
   }).start();
-  self.playing = false;
 }
 
 //For Bar Graph, play a certain month
@@ -61,7 +70,7 @@ Instrument.prototype.playColumn = function(col){
   var j = 0;
   var self = this;
   timbre.bpm = this.bpm;
-  var t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+  this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
     if(j>=self.infoCollection.collection.length-1 || self.infoCollection.collection[j] === undefined){
       self.playing = false;
       self.updateIcon();
@@ -73,8 +82,6 @@ Instrument.prototype.playColumn = function(col){
   }).on("ended",function(){
     this.stop();
   }).start();
-  self.playing = false;
-
 }
 
 //For Bar Graph, play through, playing all columns as chords
@@ -84,7 +91,7 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
   var j = line;
   var self = this;
   timbre.bpm = this.bpm;
-  var t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+  this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
     if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
       self.playing = false;
       self.updateIcon();
@@ -120,20 +127,31 @@ Instrument.prototype.setCollection = function(collection) {
 
 //A change was made to a line in the table
 Instrument.prototype.changeLine = function(line, index, newValue) {
-  if(line != -1) {
+  if(newValue != -1) {
     this.infoCollection.changeLine(line,index,newValue);
-    T.soundfont.preload([newValue]);
+    //T.soundfont.preload([newValue]);
+    this.buildNotes();
   }
 }
 
 //Toggle playing either on or off
 Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
+  console.log(this.paused);
   if(!this.playing) {
+    if(this.paused){
+      this.t.start();
+      this.paused = false;
+      this.playing = true;
+      return;
+    }
+
       this.looping = true;
       while(this.looping){
         if(!this.isLoading){
-           var q = function(){
-              player.looping = false;
+          var self = this;
+          var q = function(){
+              self.looping = false;
+              self.playing = true;
            }
           setTimeout(q(), 1000);
         }
@@ -145,6 +163,15 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
       setTimeout(function() {self.playColumn(line);}, 1000);
     else if(mode === 2){
       setTimeout(function() {self.playColumnsAsChords(line,startIndex,endIndex);}, 1000);  
+    }
+    }
+    else{
+      if(this.t){
+      this.t.stop();
+      //this.t = null;
+      this.playing = false;
+      if(!this.paused)
+      this.paused = true;
     }
     }
 }

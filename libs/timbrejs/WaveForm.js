@@ -1,4 +1,3 @@
-"use strict";
 //Create a Waveform Object
 function WaveForm(type){
 	this.type = type;
@@ -12,6 +11,7 @@ function WaveForm(type){
 	this.makeTObject();
 	this.infoCollection = new ArrayCollection([]);
 	this.playing = false;
+	this.paused = false;
 }
 
 //Make a timbre object of this waveform
@@ -106,7 +106,7 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	var self = this;
 	this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
 		if(i>=endIndex || isNaN(self.pitch)) {
-			self.playing = false;
+			//self.playing = false;
 			self.updateIcon();
 			self.stop();
 			this.stop();
@@ -123,8 +123,6 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	}).on("ended",function(){
 		this.stop();
 	}).start();
-	this.playing = false;
-	this.makeTObject();
 };
 
 //Play series of notes
@@ -136,10 +134,8 @@ WaveForm.prototype.playSeriesColumns = function(line,startIndex,endIndex){
 	timbre.bpm = this.bpm;
 	var self = this;
 	var time = this.bpm/60 * this.infoCollection.collection.length-2 + "sec"
-	console.log(time);
 	this.t = T("interval", {interval:this.subdiv,timeout:time},function(){
 		if(j>self.infoCollection.collection.length-1) {
-			self.playing = false;
 			self.updateIcon();
 			self.stop();
 			this.stop();
@@ -154,7 +150,6 @@ WaveForm.prototype.playSeriesColumns = function(line,startIndex,endIndex){
 		}
 	}).on("ended",function(){
 		this.stop();
-		self.playing = false;
 		self.stop();
 	}).start();
 };
@@ -192,8 +187,11 @@ WaveForm.prototype.changeLine = function(line, index, newValue) {
 
 //Toggle playing either on or off
 WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing) {
-  //console.log(player.playing);
   if(!playing) {
+  	if(this.paused){
+  		this.t.started = false;
+  		this.t.play();
+  	}
   	if(!mode || mode === 0)
     	this.playSeries(line,startIndex,endIndex);
 	else{
@@ -201,8 +199,8 @@ WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing
 	}
   }
   else {
-  	console.log("stop");
-    this.stop();
+    this.t.pause();
+    this.paused = true;
   }
   this.updateIcon();
 }

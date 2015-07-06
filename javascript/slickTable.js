@@ -80,7 +80,7 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		var row = args.row;
 		var col = args.cell;
 		var newVal = grid.getData()[row][col];
-
+		
 		// if a label
 		if (row == 0 || col == 0){
 			chart.scale.xLabels[col -1] = newVal;
@@ -95,10 +95,17 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			}
 			setTimeout(function(){ checkRemove(); }, 1);
 		}
-
+		
 		// not a label - check to see if it's a number.
-		else if ((!isNaN(newVal)) && (newVal != "")){
-			newVal = parseFloat(newVal);
+		else if (((!isNaN(newVal)) || newVal.charAt(0) == '=') && (newVal != "")){
+			
+			if(newVal.charAt(0) == '='){
+				var str = newVal.slice(1);
+				str = evaluate(str);
+				newVal = parseFloat(str);
+				grid.getData()[row][col] = newVal;
+			}
+			
 			//Update audio with new value
 			player.changeLine(row-1,col - 1,newVal);
 			// change value in chart
@@ -391,3 +398,42 @@ function redo() {
 	document.getElementById('tblContainer').style.width = "100%";
 
 }
+
+// regex evaluation for table
+// originally from m@ crumley, stackoverflow
+// edited to add in ^ operator & follow PEMDAS
+function evaluate(x) {
+    x = x.replace(/ /g, "") + ")";
+    function primary() {
+        if (x[0] == '(') {
+            x = x.substr(1);
+            return expression();
+        }
+
+        var n = /^[-+]?\d*\.?\d*/.exec(x)[0];
+        x = x.substr(n.length);
+        return +n;
+    }
+
+    function expression() {
+        var a = primary();
+        for (;;) {
+            var operator = x[0];
+            x = x.substr(1);
+
+            if (operator == ')') {
+                return a;
+            }
+
+            var b = primary();
+            a = (operator == '*') ? a * b :
+                (operator == '/') ? a / b :
+				(operator == '+') ? a + b :
+                (operator == '-') ? a - b :
+								Math.pow(a,b);
+        }
+    }
+
+    return expression();
+}
+
