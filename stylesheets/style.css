@@ -143,6 +143,7 @@ header {
 }
 #graphCC{/* graph color change */
     background: url('halftone/halftone.png');
+    border-radius: 5px;
 }
 svg * {
     stroke:#000;
@@ -369,7 +370,8 @@ svg * {
 }
 #colors p {
    background: url('halftone/halftone.png');
-   padding: 0.2% 1%;
+   border-radius: 5px;
+   padding: 1%;
 }
 .color-editor-input input:focus { /* background color for data color change text field */
     background: #dadada;
@@ -443,7 +445,7 @@ input[type="checkbox"] {
 input[type="text"] {
     cursor: auto !important;
 }
-.fa {
+.fa { /* cursor for font awesome icons */
     cursor: pointer !important;
 }
 /* END extra spacing between rows of features for color/background change */
