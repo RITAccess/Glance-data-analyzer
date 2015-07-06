@@ -102,7 +102,6 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			if(newVal.charAt(0) == '='){
 				var str = newVal.slice(1);
 				str = evaluate(str);
-				console.log(str);
 				newVal = parseFloat(str);
 				grid.getData()[row][col] = newVal;
 			}
