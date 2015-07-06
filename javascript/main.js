@@ -237,7 +237,7 @@ var changeSiteBg = function(){
   var newColor = document.getElementById("siteColorInput").value;
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementsByTagName("body")[0].style.background = newColor;
-    if(document.getElementById("siteContrast").checked){
+    if(document.getElementById("squaredTwo").checked){
       var contrastor = findContrastor(newColor);
       document.getElementsByTagName("body")[0].style.color = contrastor;
       document.getElementById("continuosBox").style.border = "3px solid " + contrastor;
@@ -248,7 +248,7 @@ var changeSiteBg = function(){
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
     document.getElementsByTagName("body")[0].style.background = newColor;
-    if(document.getElementById("siteContrast").checked){
+    if(document.getElementById("squaredTwo").checked){
       var contrastor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
       document.getElementsByTagName("body")[0].style.color = contrastor;
       document.getElementById("continuosBox").style.border = "3px solid " + contrastor;
@@ -318,7 +318,7 @@ var calcLum = function(r,g,b){
   var valArr = [r,g,b];
   for(var i = 0; i < valArr.length; i++){
     if(valArr[i]<=  0.03928){
-      valArr[i] /= 12.92; 
+      valArr[i] /= 12.92;
     }
     else{
       var val = valArr[i]+0.055;
@@ -357,11 +357,11 @@ var resetSiteBg = function(){
   document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + black;
   document.getElementById("summaryBox").style.borderTop="3px solid " +black;
   document.getElementById("bgColorChange").style.borderTop="3px solid " + black;
-  //resetText();    
+  //resetText();
 }
 
 var resetGraphBg = function(){
-  document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')"; 
+  document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')";
 }
 
 var textKeyUp = function(event){
@@ -375,7 +375,7 @@ var graphKeyUp = function(event){
    event = event || window.event;
     if (event.keyCode === 32 || event.keyCode===13) {
       resetGraphBg();
-    }  
+    }
 }
 
 var siteKeyUp = function(event){
