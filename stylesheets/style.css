@@ -370,6 +370,7 @@ svg * {
 }
 #colors p {
    background: url('halftone/halftone.png');
+   border-radius: 5px;
    padding: 1%;
 }
 .color-editor-input input:focus { /* background color for data color change text field */
