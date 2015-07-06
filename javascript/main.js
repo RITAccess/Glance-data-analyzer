@@ -109,6 +109,7 @@ var loadData = function (data) {
     summary = new DataSummary(collection);
     summary.dataSummary();
     linkSlickTable(chart, player, overlay, summary);
+    document.getElementById('instrumentDropdown').innerHTML = "";
     if(!isSafari){
       for(var i = 1; i < 128; i ++){
         var newElem = document.createElement("option");
