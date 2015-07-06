@@ -75,8 +75,8 @@ var loadData = function (data) {
         var label = document.createElement("label");
         label.innerHTML = "Play mode ";
         label.setAttribute("id","playModeLabel");
-        document.getElementById("audioSpanSec").appendChild(label);
-        document.getElementById("audioSpanSec").appendChild(newddm);
+        document.getElementById("audioSpanBar").appendChild(label);
+        document.getElementById("audioSpanBar").appendChild(newddm);
         newddm.setAttribute("onchange", "makeColSelector()");
       }
     }
@@ -152,7 +152,11 @@ var loadData = function (data) {
 
 // The play button
 var playStopAudioButton = function () {
-  console.log(player.playing);
+  var playing = player.playing;
+  if(isSafari && playing){
+    player.stop();
+    return;
+  }
   //Change the speed of the audio based on speed input.
   var bpm = 80 + 20 * document.getElementById('bpm').value;
   player.setBpm(bpm);
@@ -185,10 +189,10 @@ var playStopAudioButton = function () {
     else{
       var startval = document.getElementById("colSelector").value;
     }
-    // if(!isSafari)
+    if(!isSafari)
       player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode);
-    // else
-    //   player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode,player.playing);
+    else
+      player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode,playing);
 }
 
 // Opens the color editor
@@ -318,7 +322,7 @@ var calcLum = function(r,g,b){
   var valArr = [r,g,b];
   for(var i = 0; i < valArr.length; i++){
     if(valArr[i]<=  0.03928){
-      valArr[i] /= 12.92; 
+      valArr[i] /= 12.92;
     }
     else{
       var val = valArr[i]+0.055;
@@ -357,11 +361,14 @@ var resetSiteBg = function(){
   document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + black;
   document.getElementById("summaryBox").style.borderTop="3px solid " +black;
   document.getElementById("bgColorChange").style.borderTop="3px solid " + black;
-  //resetText();    
+  //resetText();
 }
 
 var resetGraphBg = function(){
-  document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')"; 
+  document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')";
+  chart.options.scaleFontColor = findContrastor("#000000");
+      chart.buildScale(chart.scale.xLabels);
+      chart.update(); 
 }
 
 var textKeyUp = function(event){
@@ -375,7 +382,7 @@ var graphKeyUp = function(event){
    event = event || window.event;
     if (event.keyCode === 32 || event.keyCode===13) {
       resetGraphBg();
-    }  
+    }
 }
 
 var siteKeyUp = function(event){
