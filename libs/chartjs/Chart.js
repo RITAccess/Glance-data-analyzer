@@ -3813,7 +3813,7 @@
 		buildScale : function(labels){
 			var self = this;
 
-			/*while(labels.length > 19 && this.numeric){
+			while(labels.length > 19 && this.numeric){
 				// if there's too many labels,
 				// cut the amount in half
 				var newlabels = [];
@@ -3825,9 +3825,9 @@
 				labels = newlabels;
 			}
 			//make sure we get all data
-			if(labels[length-1] % 2 == ){
-				newlabels.push(labels[length-2] + (labels[length-2] - newlabels[newlabels.length-1]));
-			} */
+			//if(labels[length-1] % 2 == )
+			//	newlabels.push(labels[length-2] + (labels[length-2] - newlabels[newlabels.length-1]));
+			//
 			
 			var dataTotal = function(){
 				var values = [];
@@ -3860,6 +3860,20 @@
 						this.integersOnly
 					);
 					helpers.extend(this, updatedRanges);
+				},
+				calculateX : function(index){
+					var isRotated = (this.xLabelRotation > 0),
+					// innerWidth = (this.offsetGridLines) ? this.width - offsetLeft - this.padding : 
+					// this.width - (offsetLeft + halfLabelWidth * 2) - this.padding,
+					innerWidth = this.width - (this.xScalePaddingLeft + this.xScalePaddingRight),
+					valueWidth = innerWidth/Math.max((this.valuesCount - ((this.offsetGridLines) ? 0 : 1)), 1),
+					valueOffset = + this.xScalePaddingLeft;//(valueWidth * index) + this.xScalePaddingLeft;
+
+					if (this.offsetGridLines){
+						valueOffset += (valueWidth/2);
+					}
+
+					return Math.round(valueOffset);					
 				},
 				xLabels : labels,
 				font : helpers.fontString(this.options.scaleFontSize, this.options.scaleFontStyle, this.options.scaleFontFamily),
