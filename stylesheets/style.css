@@ -423,7 +423,6 @@ svg * {
 #siteColorInput, #graphColorInput, #textColorInput {
     width: 120px;
     font-size: 20px;
-    text-align: center;
     margin-right: 4%;
 }
 #siteColorInput {
@@ -447,6 +446,7 @@ input[type="checkbox"] {
 }
 input[type="text"] {
     cursor: auto !important;
+    text-align: center;
 }
 .fa { /* cursor for font awesome icons */
     cursor: pointer !important;
