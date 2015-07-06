@@ -9,6 +9,7 @@ function Instrument(number){
   this.playing = false;
   this.isLoading = false;
   this.pnotes = null;
+  this.t = null;
 }
 
 //Create a T soundfont object based on number
@@ -39,11 +40,11 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
   var j = line;
   var self = this;
   timbre.bpm = this.bpm;
-  var t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+  this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
     if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
       self.playing = false;
       self.updateIcon();
-      t.stop();
+      self.t.stop();
     }
     var key =  parseInt(self.infoCollection.collection[j].array[i]);
     T.soundfont.play(self.pnotes[key],false);
@@ -51,7 +52,6 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
   }).on("ended",function(){
     this.stop();
   }).start();
-  self.playing = false;
 }
 
 //For Bar Graph, play a certain month
@@ -73,8 +73,7 @@ Instrument.prototype.playColumn = function(col){
   }).on("ended",function(){
     this.stop();
   }).start();
-  self.playing = false;
-
+  //self.playing = false;
 }
 
 //For Bar Graph, play through, playing all columns as chords
@@ -120,9 +119,10 @@ Instrument.prototype.setCollection = function(collection) {
 
 //A change was made to a line in the table
 Instrument.prototype.changeLine = function(line, index, newValue) {
-  if(line != -1) {
+  if(newValue != -1) {
     this.infoCollection.changeLine(line,index,newValue);
-    T.soundfont.preload([newValue]);
+    //T.soundfont.preload([newValue]);
+    this.buildNotes();
   }
 }
 
@@ -132,8 +132,10 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
       this.looping = true;
       while(this.looping){
         if(!this.isLoading){
-           var q = function(){
-              player.looping = false;
+          var self = this;
+          var q = function(){
+              self.looping = false;
+              self.playing = true;
            }
           setTimeout(q(), 1000);
         }
@@ -145,6 +147,13 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
       setTimeout(function() {self.playColumn(line);}, 1000);
     else if(mode === 2){
       setTimeout(function() {self.playColumnsAsChords(line,startIndex,endIndex);}, 1000);  
+    }
+    }
+    else{
+      if(this.t){
+      this.t.stop();
+      this.t = null;
+      this.playing = false;
     }
     }
 }
