@@ -75,8 +75,8 @@ var loadData = function (data) {
         var label = document.createElement("label");
         label.innerHTML = "Play mode ";
         label.setAttribute("id","playModeLabel");
-        document.getElementById("audioSpanSec").appendChild(label);
-        document.getElementById("audioSpanSec").appendChild(newddm);
+        document.getElementById("audioSpanBar").appendChild(label);
+        document.getElementById("audioSpanBar").appendChild(newddm);
         newddm.setAttribute("onchange", "makeColSelector()");
       }
     }
@@ -323,7 +323,7 @@ var calcLum = function(r,g,b){
   var valArr = [r,g,b];
   for(var i = 0; i < valArr.length; i++){
     if(valArr[i]<=  0.03928){
-      valArr[i] /= 12.92; 
+      valArr[i] /= 12.92;
     }
     else{
       var val = valArr[i]+0.055;
@@ -362,7 +362,7 @@ var resetSiteBg = function(){
   document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + black;
   document.getElementById("summaryBox").style.borderTop="3px solid " +black;
   document.getElementById("bgColorChange").style.borderTop="3px solid " + black;
-  //resetText();    
+  //resetText();
 }
 
 var resetGraphBg = function(){
@@ -383,7 +383,7 @@ var graphKeyUp = function(event){
    event = event || window.event;
     if (event.keyCode === 32 || event.keyCode===13) {
       resetGraphBg();
-    }  
+    }
 }
 
 var siteKeyUp = function(event){

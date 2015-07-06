@@ -400,7 +400,8 @@ function redo() {
 }
 
 // regex evaluation for table
-// from m@ crumley, stackoverflow
+// originally from m@ crumley, stackoverflow
+// edited to add in ^ operator & follow PEMDAS
 function evaluate(x) {
     x = x.replace(/ /g, "") + ")";
     function primary() {
@@ -425,10 +426,11 @@ function evaluate(x) {
             }
 
             var b = primary();
-            a = (operator == '+') ? a + b :
+            a = (operator == '*') ? a * b :
+                (operator == '/') ? a / b :
+				(operator == '+') ? a + b :
                 (operator == '-') ? a - b :
-                (operator == '*') ? a * b :
-                                    a / b;
+								Math.pow(a,b);
         }
     }
 
