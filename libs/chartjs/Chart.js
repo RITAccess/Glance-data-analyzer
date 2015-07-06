@@ -3813,7 +3813,7 @@
 		buildScale : function(labels){
 			var self = this;
 
-			while(labels.length > 19 && this.numeric){
+			/*while(labels.length > 19 && this.numeric){
 				// if there's too many labels,
 				// cut the amount in half
 				var newlabels = [];
@@ -3823,7 +3823,7 @@
 
 				console.log(newlabels);
 				labels = newlabels;
-			}
+			}*/
 			//make sure we get all data
 			//if(labels[length-1] % 2 == )
 			//	newlabels.push(labels[length-2] + (labels[length-2] - newlabels[newlabels.length-1]));
@@ -3860,7 +3860,7 @@
 						this.integersOnly
 					);
 					helpers.extend(this, updatedRanges);
-				},
+				}/*,
 				calculateX : function(index){
 					var isRotated = (this.xLabelRotation > 0),
 					// innerWidth = (this.offsetGridLines) ? this.width - offsetLeft - this.padding : 
@@ -3874,7 +3874,7 @@
 					}
 
 					return Math.round(valueOffset);					
-				},
+				}*/,
 				xLabels : labels,
 				font : helpers.fontString(this.options.scaleFontSize, this.options.scaleFontStyle, this.options.scaleFontFamily),
 				lineWidth : this.options.scaleLineWidth,
