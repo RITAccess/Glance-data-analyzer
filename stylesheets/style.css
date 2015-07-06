@@ -544,6 +544,9 @@ th, td, .printTable{
 
 /* START media query for printing */
  @media print {
+    body, html, header{
+        background: none;
+    }
     header {
         box-shadow: none;
         text-shadow: none;
