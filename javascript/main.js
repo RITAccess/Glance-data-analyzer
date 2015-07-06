@@ -152,7 +152,11 @@ var loadData = function (data) {
 
 // The play button
 var playStopAudioButton = function () {
-  console.log(player.playing);
+  var playing = player.playing;
+  if(isSafari && playing){
+    player.stop();
+    return;
+  }
   //Change the speed of the audio based on speed input.
   var bpm = 80 + 20 * document.getElementById('bpm').value;
   player.setBpm(bpm);
@@ -185,10 +189,10 @@ var playStopAudioButton = function () {
     else{
       var startval = document.getElementById("colSelector").value;
     }
-    // if(!isSafari)
+    if(!isSafari)
       player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode);
-    // else
-    //   player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode,player.playing);
+    else
+      player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode,playing);
 }
 
 // Opens the color editor
@@ -362,6 +366,9 @@ var resetSiteBg = function(){
 
 var resetGraphBg = function(){
   document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')";
+  chart.options.scaleFontColor = findContrastor("#000000");
+      chart.buildScale(chart.scale.xLabels);
+      chart.update(); 
 }
 
 var textKeyUp = function(event){
