@@ -367,12 +367,9 @@ var resetSiteBg = function(){
 
 var resetGraphBg = function(){
   document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')";
-<<<<<<< HEAD
-=======
   chart.options.scaleFontColor = findContrastor("#000000");
       chart.buildScale(chart.scale.xLabels);
-      chart.update(); 
->>>>>>> 377eafe566d584cf612ad79a337c76a18bc3d1dd
+      chart.update();
 }
 
 var textKeyUp = function(event){
