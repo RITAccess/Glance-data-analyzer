@@ -43,7 +43,7 @@ var loadChart = function(data, type, collection){
 					//Combine them to make a new color
 					var color = [r, g, b].join(", ");
 					lineColors[index] = "rgba("+ color +", 1)";
-					if(this.nextSibling.checked){
+					if(this.nextSibling.firstChild.checked){
 						//Set necessary color values based on graph type
 						if(type==="line" || type==="scatter")
 							chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
@@ -150,7 +150,7 @@ var loadChart = function(data, type, collection){
 						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; background:" + contrastColor);
 					}
 					else if(type === "bar"){
-						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline;");
+						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline;border: 2px solid " + contrastColor);	
 					}
 				}
 				//Check color list for name match
@@ -163,7 +163,7 @@ var loadChart = function(data, type, collection){
 					//Using red, green, and blue values, make a new color.
 					var color = [r, g, b].join(", ");
           			lineColors[index] = "rgba("+ color +", 1)";
-					if(this.nextSibling.checked){
+					if(this.nextSibling.firstChild.checked){
 						//Set necessary colors based on graph type
             			if(type==="line")
             			chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
@@ -267,8 +267,9 @@ var loadChart = function(data, type, collection){
 						var contrastColor = findContrastor(colors[newcolor]); 
 						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; background:" + contrastColor);
 					}
-					else if(type === "bar")
-						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline;");
+					else if(type === "bar"){
+						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; border: 2px solid " + contrastColor);
+					}
           }
 			};
 		//Setting behavior for all toggleboxes
@@ -400,8 +401,9 @@ function dataset(data, collection) {
 		var inputLabel = document.createElement('label');
 		var keyValue = document.createElement('p');
 		//var removeButton = document.createElement('button');
-    if(type === "line")
+    if(type === "line"){
 		var keyLabel = document.createTextNode(shapes[(i-1)%6]);
+	}
 	else if(type === "scatter"){
 		var keyLabel = document.createTextNode(shapes[0]);
 		}
@@ -414,12 +416,12 @@ function dataset(data, collection) {
 			hidden.push(true);
 		}
 		inputBoxArray.push(textInput);
-		toggleBox.setAttribute("id", "lineToggleBox");
+		toggleBox.setAttribute("id", "lineToggleBox" + i);
 		textInput.setAttribute("type", "text");
 		textInput.setAttribute("title", "Enter color");
 		inputDiv.setAttribute("class","squaredTwo");
 		inputDiv.style.marginTop = "3%";
-		inputLabel.setAttribute("for","lineToggleBox");
+		inputLabel.setAttribute("for","lineToggleBox" + i);
 		toggleBox.setAttribute("type", "checkbox");
 		textInput.setAttribute("style","width:120px; font-size:20px;margin:3% 2% 0% 2%;");
 		if(hidden[i-1]===true)
@@ -427,7 +429,40 @@ function dataset(data, collection) {
 		toggleBox.setAttribute("title", "Display Data Set " + i);
 		inputDiv.appendChild(toggleBox);
 		inputDiv.appendChild(inputLabel);
-		keyValue.setAttribute('style', 'color:' + newColor +'; display: inline;');
+		var conColor = lineColors[i-1];
+		conColor = conColor.substring(conColor.indexOf('(')+1);
+		var r = conColor.substring(0,conColor.indexOf(','));
+		conColor = conColor.substring(conColor.indexOf(' '));
+		var g = conColor.substring(0,conColor.indexOf(','));
+		conColor = conColor.substring(conColor.indexOf(' '));
+		var b = conColor.substring(0,conColor.indexOf(','));
+		r = parseInt(r).toString(16);
+		if(r.length<2){
+			r = "0" + r;
+		}
+		g = parseInt(g);
+		g = g.toString(16);
+		if(g.length<2){
+			g = "0" + g;
+		}
+		b = parseInt(b);
+		b = b.toString(16);
+		if(b.length<2){
+			b = "0" + b;
+		}
+		conColor = "#";
+		conColor += r;
+		conColor += g;
+		conColor += b;
+		console.log(conColor);
+		conColor = findContrastor(conColor);
+		keyValue.setAttribute("style", "color:" + newColor +"; display: inline;");
+		if(type != "bar"){
+			keyValue.style.background=conColor;
+		}
+		else{
+			keyValue.style.borderColor = conColor;
+		}
 		keyValue.appendChild(keyLabel);
 		entry.appendChild(keyValue);
 		entry.appendChild(textInput);

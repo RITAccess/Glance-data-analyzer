@@ -424,7 +424,6 @@ svg * {
     margin-bottom: 4%;
 }
 #colors p {
-   background: url('halftone/halftone.png');
    border-radius: 5px;
    padding: 1%;
 }

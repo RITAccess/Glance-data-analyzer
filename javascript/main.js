@@ -342,6 +342,8 @@ var calcLum = function(r,g,b){
 }
 
 var findContrastor = function(hex){
+  if(hex === "#ff0000")
+    return "#FFFFFF";
   var max = -100;
   var maxCon;
   for(var key in colors){
@@ -373,7 +375,7 @@ var resetSiteBg = function(){
 
 var resetGraphBg = function(){
   document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')";
-  chart.options.scaleFontColor = findContrastor("#000000");
+  chart.options.scaleFontColor = findContrastor("#FFFFFF");
       chart.buildScale(chart.scale.xLabels);
       chart.update();
 }
