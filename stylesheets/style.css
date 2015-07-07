@@ -57,7 +57,8 @@ header {
     padding: 5px;
     border-radius: 10px;
 }
-
+/*********************************/
+/* START style for checkboxes */
 .squaredTwo {
     display:inline-block;
     vertical-align:top;
@@ -70,7 +71,6 @@ header {
   	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#fff',GradientType=0 );
   	position: relative;
 }
-
 .squaredTwo label {
     cursor: pointer !important;
     margin-top: 0.2px;
@@ -84,7 +84,6 @@ header {
   	background: #fff;
   	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#fff',GradientType=0 );
 }
-
 .squaredTwo label:after {
   	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   	filter: alpha(opacity=0);
@@ -99,20 +98,18 @@ header {
   	border: 3px solid #000;
   	border-top: none;
   	border-right: none;
-
   	-webkit-transform: rotate(-45deg);
   	-moz-transform: rotate(-45deg);
   	-o-transform: rotate(-45deg);
   	-ms-transform: rotate(-45deg);
   	transform: rotate(-45deg);
 }
-
 .squaredTwo input[type=checkbox]:checked + label:after {
   	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   	filter: alpha(opacity=100);
   	opacity: 1;
 }
-
+/* END style for checkboxes */
 /*********************************/
 /* START style for about section */
 #startBody{
