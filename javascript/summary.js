@@ -30,6 +30,7 @@ DataSummary.prototype.dataSummary = function() {
         " Min: " + this.currCollection.collection[i].trend.min +
         " Average: " + this.currCollection.collection[i].trend.avg+"\n");
       var infoLabel = document.createElement('label');
+      infoLabel.setAttribute("style","margin-bottom:3%;");
       infoLabel.appendChild(info);
       line.insertBefore(infoLabel,line.firstChild);
       var br = document.createElement("br");
