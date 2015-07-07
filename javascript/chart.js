@@ -416,7 +416,6 @@ function dataset(data, collection) {
 		textInput.setAttribute("type", "text");
 		textInput.setAttribute("title", "Enter color");
 		toggleBox.setAttribute("type", "checkbox");
-		toggleBox.setAttribute("id", "squaredTwo")
 		if(hidden[i-1]===true)
 			toggleBox.setAttribute("checked", "checked");
 		toggleBox.setAttribute("title", "Display Data Set " + i);
