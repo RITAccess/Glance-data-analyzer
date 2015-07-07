@@ -61,8 +61,6 @@ Overlay.prototype.updateSize = function(chart){
     this.getSelection().setAttribute("width",(endData - startData) * (width / arraySize));
     var leftPadding = Number(this.getBackground().getAttribute('x'));
     var width = Number(this.getBackground().getAttribute('width'));
-    //this.getSelection().setAttribute("x",leftPadding);
-    //this.getSelection().setAttribute("width",width);
   }
   if(this.chart == undefined) {
     var leftPadding = Number(this.getBackground().getAttribute('x'));
