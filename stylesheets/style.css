@@ -54,7 +54,6 @@ header {
 #typeSelBody select {
     cursor: pointer !important;
     font-size:20px;
-    padding: 5px;
     border-radius: 10px;
 }
 /*********************************/
@@ -335,6 +334,9 @@ svg * {
     border: 1px solid #888;
     border-radius: 10px;
     padding: 0.5%;
+}
+#instrumentDropdown {
+    width: 238px;
 }
 /*******************************/
 
