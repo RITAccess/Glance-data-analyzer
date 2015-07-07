@@ -17,7 +17,6 @@ function printPage()
    html += "<h3 style='text-align:center;'>Data Analyzer Graph</h3><div id='graphImg'><img tabindex='0' alt='Data Analyzer Graph' width='800px' src='" + chart.toBase64Image() + "'/></div>";
    html += "<div id='summaryBox' style='display: block;'>";
    html += document.getElementById('summaryBox').innerHTML;
-   console.log(document.getElementById('summaryBox').outerHTML);
    html += "</div><div id='printTable'><h3 id='printTableHeader'>Data Table</h3>";
    html += "<div id='printTableBody'>";
    var s = "<table class='printTable'>";
@@ -82,6 +81,11 @@ function printPage()
    for(var i = 0; i < inputs.length; i++) {
      inputs[i].style.display = "none";
    }
+  var sumBox = printWin.document.getElementById("summaryBox");
+  var paragraphs = sumBox.getElementsByTagName("p");
+  for(var i = 0; i < paragraphs.length; i++) {
+    paragraphs[i].style.background = "rgba(0,0,0,0)";
+  }
    //var div = "squaredTwo";
    var divArr = printWin.document.getElementsByClassName("squaredTwo");
    for(var i = 0; i < divArr.length; i++){
@@ -95,5 +99,5 @@ function printPage()
       }
    }
    printWin.focus();
-   printWin.print();
+  setTimeout(function(){printWin.print();},100);
 }
