@@ -12,6 +12,7 @@ function WaveForm(type){
 	this.infoCollection = new ArrayCollection([]);
 	this.playing = false;
 	this.paused = false;
+	this.t = null;
 }
 
 //Make a timbre object of this waveform
@@ -104,20 +105,27 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	var i = startIndex;
 	timbre.bpm = this.bpm;
 	var self = this;
-	this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+	console.log("end: " + endIndex);
+	if(startIndex> endIndex){
+		startIndex = 0;
+		i = 0;
+	}
+	this.t = T("interval", {interval:this.subdiv,timeout:"99sec"},function(){
 		if(i>=endIndex || isNaN(self.pitch)) {
-			//self.playing = false;
+			overlay.slider[0] = 0;
 			self.updateIcon();
-			self.stop();
+			self.t_object.pause();
 			this.stop();
-		}
-		if(!this.started){
-			self.start();
-			this.started = true;
+			self.stop();
 		}
 		self.changePitch(30 + parseInt(self.infoCollection.collection[j].array[i]));
-		if(i === 0){
+		console.log(30 + parseInt(self.infoCollection.collection[j].array[i]));
+		if(!this.started){
 			self.start();
+		}
+		if(overlay){
+			overlay.slider[0] = i+1;
+			console.log(overlay.slider[0]);
 		}
 		i++;
 	}).on("ended",function(){
@@ -188,9 +196,14 @@ WaveForm.prototype.changeLine = function(line, index, newValue) {
 //Toggle playing either on or off
 WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing) {
   if(!playing) {
-  	if(this.paused){
-  		this.t.started = false;
-  		this.t.play();
+  	// if(this.paused){
+  	// 	this.t.started = false;
+  	// 	this.t.play();
+  	// 	this.t_object.play();
+  	// 	this.paused = false;
+  	// }
+  	if(!this.paused){
+  		overlay.slider[0] = 0;
   	}
   	if(!mode || mode === 0)
     	this.playSeries(line,startIndex,endIndex);
@@ -199,8 +212,11 @@ WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing
 	}
   }
   else {
-    this.t.pause();
+  	if(this.t)
+  	this.t.stop();
+    this.t_object.pause();
     this.paused = true;
+    this.playing = false;
   }
   this.updateIcon();
 }

@@ -43,7 +43,7 @@ var loadChart = function(data, type, collection){
 					//Combine them to make a new color
 					var color = [r, g, b].join(", ");
 					lineColors[index] = "rgba("+ color +", 1)";
-					if(this.nextSibling.checked){
+					if(this.nextSibling.firstChild.checked){
 						//Set necessary color values based on graph type
 						if(type==="line" || type==="scatter")
 							chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
@@ -144,10 +144,15 @@ var loadChart = function(data, type, collection){
 								}
 					}
 					//Set Graph data color indication color to match new color
-					if(type === "line" || type === "scatter")
-						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margine-right: 5px;");
-					else if(type === "bar")
-						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; margine-right: 5px;");
+					if(type === "line" || type === "scatter"){
+						var contrastColor = findContrastor(newcolor);
+						console.log(contrastColor);
+						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; background:" + contrastColor);
+					}
+					else if(type === "bar"){
+						var contrastColor = findContrastor(colors[newcolor]); 
+						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline;border: 2px solid " + contrastColor);	
+					}
 				}
 				//Check color list for name match
 				else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase().split(' ').join('')])){
@@ -159,7 +164,7 @@ var loadChart = function(data, type, collection){
 					//Using red, green, and blue values, make a new color.
 					var color = [r, g, b].join(", ");
           			lineColors[index] = "rgba("+ color +", 1)";
-					if(this.nextSibling.checked){
+					if(this.nextSibling.firstChild.checked){
 						//Set necessary colors based on graph type
             			if(type==="line")
             			chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
@@ -259,15 +264,19 @@ var loadChart = function(data, type, collection){
 								}
 					}
 					//Set graph data color indicator
-					if(type === "line" || type==="scatter")
-						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margine-right: 5px;");
-					else if(type === "bar")
-						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; margine-right: 5px;");
+					if(type === "line" || type==="scatter"){
+						var contrastColor = findContrastor(colors[newcolor.toLowerCase().split(' ').join('')]); 
+						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; background:" + contrastColor);
+					}
+					else if(type === "bar"){
+						var contrastColor = findContrastor(colors[newcolor.toLowerCase().split(' ').join('')]); 
+						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; border: 2px solid " + contrastColor);
+					}
           }
 			};
 		//Setting behavior for all toggleboxes
-		chartdata.inputboxes[i].nextSibling.onclick = function(){
-			var index = chartdata.inputboxes.indexOf(this.previousSibling);
+		chartdata.inputboxes[i].nextSibling.firstChild.onclick = function(){
+			var index = chartdata.inputboxes.indexOf(this.parentNode.previousSibling);
 			//If not hidden, hide
 			if(!this.checked){
 				if(hidden[index]!= false){
@@ -305,9 +314,9 @@ var loadChart = function(data, type, collection){
 				if(hidden[index]!= true){
 					hidden[index]= true;
 					if(type === "bar")
-						var color = this.previousSibling.previousSibling.firstChild.style.background;
+						var color = this.parentNode.previousSibling.previousSibling.firstChild.style.background;
 					else
-						var color = this.previousSibling.previousSibling.style.color;
+						var color = this.parentNode.previousSibling.previousSibling.style.color;
 					color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
 					chart.datasets[index].strokeColor = color;
 					chart.datasets[index].pointColor = color;
@@ -390,10 +399,13 @@ function dataset(data, collection) {
 		var entry = document.createElement('li');
 		var textInput = document.createElement('input');
 		var toggleBox = document.createElement('input');
+		var inputDiv = document.createElement('div');
+		var inputLabel = document.createElement('label');
 		var keyValue = document.createElement('p');
 		//var removeButton = document.createElement('button');
-    if(type === "line")
+    if(type === "line"){
 		var keyLabel = document.createTextNode(shapes[(i-1)%6]);
+	}
 	else if(type === "scatter"){
 		var keyLabel = document.createTextNode(shapes[0]);
 		}
@@ -406,19 +418,56 @@ function dataset(data, collection) {
 			hidden.push(true);
 		}
 		inputBoxArray.push(textInput);
-		textInput.style.fontSize = "20px";
+		toggleBox.setAttribute("id", "lineToggleBox" + i);
 		textInput.setAttribute("type", "text");
 		textInput.setAttribute("title", "Enter color");
+		inputDiv.setAttribute("class","squaredTwo");
+		inputDiv.style.marginTop = "3%";
+		inputLabel.setAttribute("for","lineToggleBox" + i);
 		toggleBox.setAttribute("type", "checkbox");
-		toggleBox.setAttribute("id", "squaredTwo")
+		textInput.setAttribute("style","width:120px; font-size:20px;margin:3% 2% 0% 2%;");
 		if(hidden[i-1]===true)
 			toggleBox.setAttribute("checked", "checked");
 		toggleBox.setAttribute("title", "Display Data Set " + i);
-		keyValue.setAttribute('style', 'color:' + newColor +'; display: inline; margin-right: 5px;');
+		inputDiv.appendChild(toggleBox);
+		inputDiv.appendChild(inputLabel);
+		var conColor = lineColors[i-1];
+		conColor = conColor.substring(conColor.indexOf('(')+1);
+		var r = conColor.substring(0,conColor.indexOf(','));
+		conColor = conColor.substring(conColor.indexOf(' '));
+		var g = conColor.substring(0,conColor.indexOf(','));
+		conColor = conColor.substring(conColor.indexOf(' '));
+		var b = conColor.substring(0,conColor.indexOf(','));
+		r = parseInt(r).toString(16);
+		if(r.length<2){
+			r = "0" + r;
+		}
+		g = parseInt(g);
+		g = g.toString(16);
+		if(g.length<2){
+			g = "0" + g;
+		}
+		b = parseInt(b);
+		b = b.toString(16);
+		if(b.length<2){
+			b = "0" + b;
+		}
+		conColor = "#";
+		conColor += r;
+		conColor += g;
+		conColor += b;
+		conColor = findContrastor(conColor);
+		keyValue.setAttribute("style", "color:" + newColor +"; display: inline;");
+		if(type != "bar"){
+			keyValue.style.background=conColor;
+		}
+		else{
+			keyValue.style.borderColor = conColor;
+		}
 		keyValue.appendChild(keyLabel);
 		entry.appendChild(keyValue);
 		entry.appendChild(textInput);
-		entry.appendChild(toggleBox);
+		entry.appendChild(inputDiv);
 		document.getElementById('colors').appendChild(entry);
 		red += colorIncrease + 15;
 		green += colorIncrease;

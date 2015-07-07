@@ -163,7 +163,12 @@ var playStopAudioButton = function () {
   player.setBpm(bpm);
   //DO NOT CHANGE/DELETE: Fixes audio issue involving slider
   if(overlay.slider[0] === 0 && overlay.slider[1] === 0){
-   overlay.slider[1] = chart.datasets[0].length;
+    if(type==="bar"){
+      overlay.slider[1] = chart.datasets[0].bars.length;
+    }
+    else{
+      overlay.slider[1] = chart.datasets[0].points.length;
+    }
   }
     if(player.buffer === undefined){
       if(!isSafari)
@@ -175,6 +180,7 @@ var playStopAudioButton = function () {
       wave = wave.substring(0,wave.indexOf(" ")).toLowerCase();
       if(!isSafari)
       player.stop();
+      if(player.type != wave)
       player = new WaveForm(wave);
       player.setCollection(collection.collection);
     }
@@ -242,7 +248,7 @@ var changeSiteBg = function(){
   var newColor = document.getElementById("siteColorInput").value;
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementsByTagName("body")[0].style.background = newColor;
-    if(document.getElementById("squaredTwo").checked){
+    if(document.getElementById("siteContrast").checked){
       var contrastor = findContrastor(newColor);
       document.getElementsByTagName("body")[0].style.color = contrastor;
       document.getElementById("continuosBox").style.border = "3px solid " + contrastor;
@@ -252,8 +258,8 @@ var changeSiteBg = function(){
     }
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
-    document.getElementsByTagName("body")[0].style.background = newColor;
-    if(document.getElementById("squaredTwo").checked){
+    document.getElementsByTagName("body")[0].style.background = colors[newColor.toLowerCase().split(' ').join('')];
+    if(document.getElementById("siteContrast").checked){
       var contrastor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
       document.getElementsByTagName("body")[0].style.color = contrastor;
       document.getElementById("continuosBox").style.border = "3px solid " + contrastor;
@@ -275,7 +281,7 @@ var changeGraphBg = function(){
     }
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
-    document.getElementById("graphCC").style.background = newColor;
+    document.getElementById("graphCC").style.background = colors[newColor.toLowerCase().split(' ').join('')];
     if(document.getElementById("graphContrast").checked){
       chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
       chart.buildScale(chart.scale.xLabels);
@@ -288,13 +294,22 @@ var changeTextColor = function(){
   var newColor = document.getElementById("textColorInput").value;
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementsByTagName("body")[0].style.color = newColor;
+    document.getElementById("continuosBox").style.border = "3px solid " + newColor;
+    document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + newColor;
+    document.getElementById("summaryBox").style.borderTop="3px solid " +newColor;
+    document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
     if(document.getElementById("textContrast").checked)
       document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
+    newColor = colors[newColor.toLowerCase().split(' ').join('')]
     document.getElementsByTagName("body")[0].style.color = newColor;
+    document.getElementById("continuosBox").style.border = "3px solid " + newColor;
+    document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + newColor;
+    document.getElementById("summaryBox").style.borderTop="3px solid " +newColor;
+    document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
     if(document.getElementById("textContrast").checked)
-      document.getElementsByTagName("body")[0].style.background = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+      document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
   }
 }
 
@@ -336,6 +351,8 @@ var calcLum = function(r,g,b){
 }
 
 var findContrastor = function(hex){
+  if(hex === "#ff0000")
+    return "#FFFFFF";
   var max = -100;
   var maxCon;
   for(var key in colors){
@@ -344,32 +361,39 @@ var findContrastor = function(hex){
       max = candidateContrast;
       maxCon = colors[key];
     }
-    if(candidateContrast >=7){
-      return colors[key];
-    }
   }
   return maxCon;
 }
 
 var resetText= function(){
   document.getElementsByTagName("body")[0].style.color = "#000000";
+  document.getElementById("textColorInput").value= "";
+  document.getElementById("continuosBox").style.border = "3px solid black";
+  document.getElementById("audioSpanSec").style.borderBottom = "3px solid black";
+  document.getElementById("summaryBox").style.borderTop="3px solid black";
+  document.getElementById("bgColorChange").style.borderTop="3px solid black";
 }
 
 var resetSiteBg = function(){
   var black = "#000000";
   document.getElementsByTagName("body")[0].style.background = "url('stylesheets/halftone/halftone.png')";
-  document.getElementById("continuosBox").style.border = "3px solid " + black;
-  document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + black;
-  document.getElementById("summaryBox").style.borderTop="3px solid " +black;
-  document.getElementById("bgColorChange").style.borderTop="3px solid " + black;
-  //resetText();
+  if(document.getElementById("siteContrast").checked)
+    resetText();
+  else{
+    document.getElementById("continuosBox").style.border = "3px solid black";
+    document.getElementById("audioSpanSec").style.borderBottom = "3px solid black";
+    document.getElementById("summaryBox").style.borderTop="3px solid black";
+    document.getElementById("bgColorChange").style.borderTop="3px solid black";
+  }
+  document.getElementById("siteColorInput").value = "";
 }
 
 var resetGraphBg = function(){
   document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')";
-  chart.options.scaleFontColor = findContrastor("#000000");
-      chart.buildScale(chart.scale.xLabels);
-      chart.update();
+  chart.options.scaleFontColor = findContrastor("#FFFFFF");
+  chart.buildScale(chart.scale.xLabels);
+  chart.update();
+  document.getElementById("graphColorInput").value="";      
 }
 
 var textKeyUp = function(event){
