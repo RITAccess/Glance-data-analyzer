@@ -154,10 +154,10 @@ var loadData = function (data) {
 // The play button
 var playStopAudioButton = function () {
   var playing = player.playing;
-  if(isSafari && playing){
-    player.stop();
-    return;
-  }
+  // if(isSafari && playing){
+  //   player.stop();
+  //   return;
+  // }
   //Change the speed of the audio based on speed input.
   var bpm = 80 + 20 * document.getElementById('bpm').value;
   player.setBpm(bpm);
@@ -175,6 +175,7 @@ var playStopAudioButton = function () {
       wave = wave.substring(0,wave.indexOf(" ")).toLowerCase();
       if(!isSafari)
       player.stop();
+      if(player.type != wave)
       player = new WaveForm(wave);
       player.setCollection(collection.collection);
     }

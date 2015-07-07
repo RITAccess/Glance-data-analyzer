@@ -12,6 +12,7 @@ function WaveForm(type){
 	this.infoCollection = new ArrayCollection([]);
 	this.playing = false;
 	this.paused = false;
+	this.t = null;
 }
 
 //Make a timbre object of this waveform
@@ -104,25 +105,29 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	var i = startIndex;
 	timbre.bpm = this.bpm;
 	var self = this;
-	this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+	var stop = this.bpm/60 *this.infoCollection.collection[j].array.length;
+	console.log(stop);
+	stop += "sec";
+	this.t = T("interval", {interval:this.subdiv,timeout:stop},function(){
 		if(i>=endIndex || isNaN(self.pitch)) {
-			//self.playing = false;
 			self.updateIcon();
-			self.stop();
+			self.t_object.pause();
 			this.stop();
 		}
-		if(!this.started){
-			self.start();
-			this.started = true;
+		if(!self.infoCollection.collection[j].array[i]){
+			self.t_object.pause();
+			this.stop();
 		}
 		self.changePitch(30 + parseInt(self.infoCollection.collection[j].array[i]));
-		if(i === 0){
+		if(i === 0||!this.started){
 			self.start();
 		}
 		i++;
 	}).on("ended",function(){
 		this.stop();
 	}).start();
+	console.log("made");
+	console.log(this.t);
 };
 
 //Play series of notes
@@ -189,8 +194,11 @@ WaveForm.prototype.changeLine = function(line, index, newValue) {
 WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing) {
   if(!playing) {
   	if(this.paused){
+  		console.log("unpaused");
   		this.t.started = false;
   		this.t.play();
+  		this.t_object.play();
+  		this.paused = false;
   	}
   	if(!mode || mode === 0)
     	this.playSeries(line,startIndex,endIndex);
@@ -199,8 +207,14 @@ WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing
 	}
   }
   else {
-    this.t.pause();
+  	console.log(this);
+  	console.log("t: " + this.t);
+  	if(this.t)
+  	this.t.stop();
+    this.t_object.pause();
     this.paused = true;
+    this.playing = false;
+    console.log("paused");
   }
   this.updateIcon();
 }
