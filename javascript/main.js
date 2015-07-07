@@ -353,7 +353,7 @@ var calcLum = function(r,g,b){
 var findContrastor = function(hex){
   if(hex === "#ff0000")
     return "#FFFFFF";
-  var max = -100;
+  var max = -1;
   var maxCon;
   for(var key in colors){
     var candidateContrast = calcContrast(hex,colors[key]);
