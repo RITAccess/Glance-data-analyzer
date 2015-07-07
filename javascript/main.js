@@ -370,23 +370,33 @@ var findContrastor = function(hex){
 
 var resetText= function(){
   document.getElementsByTagName("body")[0].style.color = "#000000";
+  document.getElementById("textColorInput").value= "";
+  document.getElementById("continuosBox").style.border = "3px solid black";
+  document.getElementById("audioSpanSec").style.borderBottom = "3px solid black";
+  document.getElementById("summaryBox").style.borderTop="3px solid black";
+  document.getElementById("bgColorChange").style.borderTop="3px solid black";
 }
 
 var resetSiteBg = function(){
   var black = "#000000";
   document.getElementsByTagName("body")[0].style.background = "url('stylesheets/halftone/halftone.png')";
-  document.getElementById("continuosBox").style.border = "3px solid " + black;
-  document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + black;
-  document.getElementById("summaryBox").style.borderTop="3px solid " +black;
-  document.getElementById("bgColorChange").style.borderTop="3px solid " + black;
-  //resetText();
+  if(document.getElementById("siteContrast").checked)
+    resetText();
+  else{
+    document.getElementById("continuosBox").style.border = "3px solid black";
+    document.getElementById("audioSpanSec").style.borderBottom = "3px solid black";
+    document.getElementById("summaryBox").style.borderTop="3px solid black";
+    document.getElementById("bgColorChange").style.borderTop="3px solid black";
+  }
+  document.getElementById("siteColorInput").value = "";
 }
 
 var resetGraphBg = function(){
   document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')";
   chart.options.scaleFontColor = findContrastor("#FFFFFF");
-      chart.buildScale(chart.scale.xLabels);
-      chart.update();
+  chart.buildScale(chart.scale.xLabels);
+  chart.update();
+  document.getElementById("graphColorInput").value="";      
 }
 
 var textKeyUp = function(event){

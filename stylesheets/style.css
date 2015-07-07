@@ -335,9 +335,7 @@ svg * {
     border-radius: 10px;
     padding: 0.5%;
 }
-#instrumentDropdown {
-    width: 238px;
-}
+
 /*******************************/
 
 #dataPlot {
