@@ -129,14 +129,14 @@
                 <label>Site Background: </label><input id="siteColorInput" type="text" onInput="changeSiteBg()" title="Change Site Background Color">
                 <label>High Contrast:
                   <div class="squaredTwo">
-                    <input id="squaredTwo" type="checkbox" name="check" value="None" checked="checked" title="Site Background Color Contrast Toggler" onclick="if(this.checked) changeSiteBg()">
+                    <input id="siteConstrast" type="checkbox" name="check" value="None" checked="checked" title="Site Background Color Contrast Toggler" onclick="if(this.checked) changeSiteBg()">
                     <label for="squaredTwo"></label>
                   </div></label>
                   <input type="button" id="siteCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Site Background" onclick="resetSiteBg()" onkeyup="siteKeyUp()" value="">
               </div>
 
               <div class="ccFeature">
-                <label>Graph Background: </label></label><input id="graphColorInput" type="text" onInput="changeGraphBg()" title="Change Graph Background Color">
+                <label>Graph Background: </label><input id="graphColorInput" type="text" onInput="changeGraphBg()" title="Change Graph Background Color">
                 <label>High Contrast:
                   <div class="squaredTwo">
                     <input id="squaredTwo" type="checkbox" name="check" checked="checked" title="Graph Background Color Contrast Toggler" onclick="if(this.checked) changeGraphBg()">
@@ -155,7 +155,7 @@
                 <input type="button" id="textCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Text Color" onclick="resetText()" onkeyup="textKeyUp()" value="">
               </div>
             </form>
-            
+
         </div><!-- END id="ccContent" -->
       </div><!-- END id="bgColorChange" -->
     </div><!-- END id="continuosBox" -->

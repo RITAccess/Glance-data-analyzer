@@ -423,7 +423,7 @@ svg * {
     margin: 0;
 }
 #colors > li {
-    margin: 0% 0% 4% 0% ;
+    margin-bottom: 4%;
 }
 #colors p {
    background: url('halftone/halftone.png');
