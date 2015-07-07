@@ -150,6 +150,7 @@ var loadChart = function(data, type, collection){
 						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; background:" + contrastColor);
 					}
 					else if(type === "bar"){
+						var contrastColor = findContrastor(colors[newcolor]); 
 						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline;border: 2px solid " + contrastColor);	
 					}
 				}
@@ -264,10 +265,11 @@ var loadChart = function(data, type, collection){
 					}
 					//Set graph data color indicator
 					if(type === "line" || type==="scatter"){
-						var contrastColor = findContrastor(colors[newcolor]); 
+						var contrastColor = findContrastor(colors[newcolor.toLowerCase().split(' ').join('')]); 
 						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; background:" + contrastColor);
 					}
 					else if(type === "bar"){
+						var contrastColor = findContrastor(colors[newcolor.toLowerCase().split(' ').join('')]); 
 						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; border: 2px solid " + contrastColor);
 					}
           }
