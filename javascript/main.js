@@ -258,7 +258,7 @@ var changeSiteBg = function(){
     }
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
-    document.getElementsByTagName("body")[0].style.background = newColor;
+    document.getElementsByTagName("body")[0].style.background = colors[newColor.toLowerCase().split(' ').join('')];
     if(document.getElementById("siteContrast").checked){
       var contrastor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
       document.getElementsByTagName("body")[0].style.color = contrastor;
@@ -281,7 +281,7 @@ var changeGraphBg = function(){
     }
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
-    document.getElementById("graphCC").style.background = newColor;
+    document.getElementById("graphCC").style.background = colors[newColor.toLowerCase().split(' ').join('')];
     if(document.getElementById("graphContrast").checked){
       chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
       chart.buildScale(chart.scale.xLabels);
@@ -298,7 +298,7 @@ var changeTextColor = function(){
       document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
-    document.getElementsByTagName("body")[0].style.color = newColor;
+    document.getElementsByTagName("body")[0].style.color = colors[newColor.toLowerCase().split(' ').join('')];
     if(document.getElementById("textContrast").checked)
       document.getElementsByTagName("body")[0].style.background = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
   }
