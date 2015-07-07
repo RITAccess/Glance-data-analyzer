@@ -105,29 +105,32 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	var i = startIndex;
 	timbre.bpm = this.bpm;
 	var self = this;
-	var stop = this.bpm/60 *this.infoCollection.collection[j].array.length;
-	console.log(stop);
-	stop += "sec";
-	this.t = T("interval", {interval:this.subdiv,timeout:stop},function(){
+	console.log("end: " + endIndex);
+	if(startIndex> endIndex){
+		startIndex = 0;
+		i = 0;
+	}
+	this.t = T("interval", {interval:this.subdiv,timeout:"99sec"},function(){
 		if(i>=endIndex || isNaN(self.pitch)) {
+			overlay.slider[0] = 0;
 			self.updateIcon();
 			self.t_object.pause();
 			this.stop();
-		}
-		if(!self.infoCollection.collection[j].array[i]){
-			self.t_object.pause();
-			this.stop();
+			self.stop();
 		}
 		self.changePitch(30 + parseInt(self.infoCollection.collection[j].array[i]));
-		if(i === 0||!this.started){
+		console.log(30 + parseInt(self.infoCollection.collection[j].array[i]));
+		if(!this.started){
 			self.start();
+		}
+		if(overlay){
+			overlay.slider[0] = i+1;
+			console.log(overlay.slider[0]);
 		}
 		i++;
 	}).on("ended",function(){
 		this.stop();
 	}).start();
-	console.log("made");
-	console.log(this.t);
 };
 
 //Play series of notes
@@ -193,12 +196,14 @@ WaveForm.prototype.changeLine = function(line, index, newValue) {
 //Toggle playing either on or off
 WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing) {
   if(!playing) {
-  	if(this.paused){
-  		console.log("unpaused");
-  		this.t.started = false;
-  		this.t.play();
-  		this.t_object.play();
-  		this.paused = false;
+  	// if(this.paused){
+  	// 	this.t.started = false;
+  	// 	this.t.play();
+  	// 	this.t_object.play();
+  	// 	this.paused = false;
+  	// }
+  	if(!this.paused){
+  		overlay.slider[0] = 0;
   	}
   	if(!mode || mode === 0)
     	this.playSeries(line,startIndex,endIndex);
@@ -207,14 +212,11 @@ WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing
 	}
   }
   else {
-  	console.log(this);
-  	console.log("t: " + this.t);
   	if(this.t)
   	this.t.stop();
     this.t_object.pause();
     this.paused = true;
     this.playing = false;
-    console.log("paused");
   }
   this.updateIcon();
 }

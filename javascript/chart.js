@@ -144,10 +144,14 @@ var loadChart = function(data, type, collection){
 								}
 					}
 					//Set Graph data color indication color to match new color
-					if(type === "line" || type === "scatter")
-						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margine-right: 5px;");
-					else if(type === "bar")
-						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; margine-right: 5px;");
+					if(type === "line" || type === "scatter"){
+						var contrastColor = findContrastor(newcolor);
+						console.log(contrastColor);
+						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margin-right: 5px; background:" + contrastColor);
+					}
+					else if(type === "bar"){
+						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; margin-right: 5px;");
+					}
 				}
 				//Check color list for name match
 				else if(/^#[0-9A-F]{6}$/i.test(colors[newcolor.toLowerCase().split(' ').join('')])){
@@ -259,10 +263,12 @@ var loadChart = function(data, type, collection){
 								}
 					}
 					//Set graph data color indicator
-					if(type === "line" || type==="scatter")
-						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margine-right: 5px;");
+					if(type === "line" || type==="scatter"){
+						var contrastColor = findContrastor(colors[newcolor]); 
+						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; margin-right: 5px; background:" + contrastColor);
+					}
 					else if(type === "bar")
-						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; margine-right: 5px;");
+						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; margin-right: 5px;");
           }
 			};
 		//Setting behavior for all toggleboxes

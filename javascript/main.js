@@ -154,16 +154,21 @@ var loadData = function (data) {
 // The play button
 var playStopAudioButton = function () {
   var playing = player.playing;
-  // if(isSafari && playing){
-  //   player.stop();
-  //   return;
-  // }
+  if(isSafari && playing){
+    player.stop();
+    return;
+  }
   //Change the speed of the audio based on speed input.
   var bpm = 80 + 20 * document.getElementById('bpm').value;
   player.setBpm(bpm);
   //DO NOT CHANGE/DELETE: Fixes audio issue involving slider
   if(overlay.slider[0] === 0 && overlay.slider[1] === 0){
-   overlay.slider[1] = chart.datasets[0].length;
+    if(type==="bar"){
+      overlay.slider[1] = chart.datasets[0].bars.length;
+    }
+    else{
+      overlay.slider[1] = chart.datasets[0].points.length;
+    }
   }
     if(player.buffer === undefined){
       if(!isSafari)
