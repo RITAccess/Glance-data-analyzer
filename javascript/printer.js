@@ -78,8 +78,21 @@ function printPage()
    printWin.document.close();
    printWin.document.getElementById("colors").style.maxHeight = "none";
    var inputs = printWin.document.getElementsByTagName("input");
+
    for(var i = 0; i < inputs.length; i++) {
      inputs[i].style.display = "none";
+   }
+   //var div = "squaredTwo";
+   var divArr = printWin.document.getElementsByClassName("squaredTwo");
+   for(var i = 0; i < divArr.length; i++){
+      divArr[i].style.display = "none";
+      console.log(i);
+   }
+   var brArray = printWin.document.getElementsByTagName("br");
+   for(var i = 0; i < brArray.length; i ++){
+      if(brArray[i].parentNode.nodeName === "LI"){
+         brArray[i].style.display="none";
+      }
    }
    printWin.focus();
    printWin.print();
