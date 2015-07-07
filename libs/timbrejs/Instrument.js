@@ -135,7 +135,6 @@ Instrument.prototype.changeLine = function(line, index, newValue) {
 
 //Toggle playing either on or off
 Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
-  console.log(this.paused);
   if(!this.playing) {
     if(this.paused){
       this.t.start();

@@ -77,6 +77,7 @@ function printPage()
    printWin.document.close();
    printWin.document.getElementById("colors").style.maxHeight = "none";
    var inputs = printWin.document.getElementsByTagName("input");
+
    for(var i = 0; i < inputs.length; i++) {
      inputs[i].style.display = "none";
    }
@@ -85,10 +86,18 @@ function printPage()
   for(var i = 0; i < paragraphs.length; i++) {
     paragraphs[i].style.background = "rgba(0,0,0,0)";
   }
-  var breaks = sumBox.getElementsByTagName("br");
-  for(var i = 0; i < breaks.length; i++) {
-    breaks[i].style.display = "none";
-  }
+   //var div = "squaredTwo";
+   var divArr = printWin.document.getElementsByClassName("squaredTwo");
+   for(var i = 0; i < divArr.length; i++){
+      divArr[i].style.display = "none";
+      console.log(i);
+   }
+   var brArray = printWin.document.getElementsByTagName("br");
+   for(var i = 0; i < brArray.length; i ++){
+      if(brArray[i].parentNode.nodeName === "LI"){
+         brArray[i].style.display="none";
+      }
+   }
    printWin.focus();
   setTimeout(function(){printWin.print();},100);
 }
