@@ -294,13 +294,22 @@ var changeTextColor = function(){
   var newColor = document.getElementById("textColorInput").value;
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementsByTagName("body")[0].style.color = newColor;
+    document.getElementById("continuosBox").style.border = "3px solid " + newColor;
+    document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + newColor;
+    document.getElementById("summaryBox").style.borderTop="3px solid " +newColor;
+    document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
     if(document.getElementById("textContrast").checked)
       document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
-    document.getElementsByTagName("body")[0].style.color = colors[newColor.toLowerCase().split(' ').join('')];
+    newColor = colors[newColor.toLowerCase().split(' ').join('')]
+    document.getElementsByTagName("body")[0].style.color = newColor;
+    document.getElementById("continuosBox").style.border = "3px solid " + newColor;
+    document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + newColor;
+    document.getElementById("summaryBox").style.borderTop="3px solid " +newColor;
+    document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
     if(document.getElementById("textContrast").checked)
-      document.getElementsByTagName("body")[0].style.background = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+      document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
   }
 }
 
