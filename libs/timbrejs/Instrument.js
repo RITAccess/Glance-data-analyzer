@@ -110,6 +110,7 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
 
 //Using an arrayCollection object you can add a group of lines to the audio object
 Instrument.prototype.setCollection = function(collection) {
+  $("*").css("cursor", "progress");
   var dropdownString ="";
   this.infoCollection.setCollection(collection);
   for(var i = 0; i < collection.length; i++) {
@@ -119,7 +120,6 @@ Instrument.prototype.setCollection = function(collection) {
   * in order to make playback even and uniform (if you're getting a sound that resembles
   * an individual sitting on a piano, then you probably moved this)
   */
-  $("*").css("cursor", "progress");
   this.notes = this.buildNotes();
   document.getElementById("audioSpan").style.display = "";
   document.getElementById("lineDropdown").innerHTML = dropdownString;
@@ -129,7 +129,6 @@ Instrument.prototype.setCollection = function(collection) {
 Instrument.prototype.changeLine = function(line, index, newValue) {
   if(newValue != -1) {
     this.infoCollection.changeLine(line,index,newValue);
-    //T.soundfont.preload([newValue]);
     this.buildNotes();
   }
 }

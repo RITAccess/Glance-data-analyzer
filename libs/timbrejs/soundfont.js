@@ -140,10 +140,8 @@
 		for (i = 0; i < noteArray.length; i++) {
 			getSample(noteArray[i], noop);
 		}
-		setTimeout(function() {}, 10000);
 		if(player){
 			player.isLoading=false;
-			$("*").css("cursor", "default");
 		}
 	};
 
@@ -162,10 +160,7 @@
 
 	// this can be overridden by end users
 	soundfont.onLoad = function (audio,note) {
-		//console.log(note);
-		//setTimeout(function() {}, 10);
-		//this.play(note);
-		//this.emptyCache();
+		$("*").css("cursor", "default");
 	};
 
 	if (timbre &&

@@ -456,7 +456,6 @@ function dataset(data, collection) {
 		conColor += r;
 		conColor += g;
 		conColor += b;
-		console.log(conColor);
 		conColor = findContrastor(conColor);
 		keyValue.setAttribute("style", "color:" + newColor +"; display: inline;");
 		if(type != "bar"){

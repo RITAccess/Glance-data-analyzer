@@ -361,9 +361,6 @@ var findContrastor = function(hex){
       max = candidateContrast;
       maxCon = colors[key];
     }
-    if(candidateContrast >=7){
-      return colors[key];
-    }
   }
   return maxCon;
 }
