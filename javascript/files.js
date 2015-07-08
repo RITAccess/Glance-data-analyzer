@@ -120,7 +120,16 @@ var createFile = function(rows, columns) {
   loadData(newTable);
 }
 var changeType= function(){
-  player.stop();
+  if(!isSafari){
+    if(player.t)
+    player.t.stop();
+  }
+  else{
+    if(player.t_object)
+    player.t_object.pause();
+    if(player.t)
+    player.t.stop();
+  }
   var results = new Object();
   results.data= [];
   results.errors=[];
