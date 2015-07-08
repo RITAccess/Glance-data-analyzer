@@ -13,19 +13,27 @@ var loadChart = function(data, type, collection){
 		datasetFill: false,
 		datasets: chartdata.data
 	};
-
+	var currBgColor = document.getElementById("graphCC").style.background;
+	console.log(currBgColor);
+	if(currBgColor === ""){
+		var sfc = "#000";
+	}
+	else{
+		var sfc = findContrastor(convertRGBtoHex(currBgColor.substring(0,currBgColor.indexOf(")"))));
+	}
+	console.log(sfc);
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLineChart;
 	if(type === "scatter"){
-		myLineChart = new Chart(ctx).ScatterPlot(data,{scaleFontColor:"#000"});
+		myLineChart = new Chart(ctx).ScatterPlot(data,{scaleFontColor:sfc});
 		myLineChart.animation = false;
 	}
 	else if(type === "bar"){
-		myLineChart = new Chart(ctx).Bar(data,{scaleFontColor:"#000"});
+		myLineChart = new Chart(ctx).Bar(data,{scaleFontColor:sfc});
 		myLineChart.animationSteps = 0;
 	}
 	else{
-	  myLineChart = new Chart(ctx).Line(data,{scaleFontColor:"#000"});
+	  myLineChart = new Chart(ctx).Line(data,{scaleFontColor:sfc});
 	  myLineChart.animation = false;
 	}
 	document.getElementById("myChart").setAttribute("title","image of graph"); // by setting the attribute we can make the chart accessible
@@ -632,4 +640,32 @@ function convertPointsToScatter(){
 			}
 		}
 	}
+}
+var convertRGBtoHex= function(conColor){
+		//var conColor = lineColors[i-1];
+		conColor = conColor.substring(conColor.indexOf('(')+1);
+		var r = conColor.substring(0,conColor.indexOf(','));
+		conColor = conColor.substring(conColor.indexOf(' '));
+		var g = conColor.substring(0,conColor.indexOf(','));
+		conColor = conColor.substring(conColor.indexOf(' '));
+		var b = conColor.substring(0,conColor.indexOf(','));
+		r = parseInt(r).toString(16);
+		if(r.length<2){
+			r = "0" + r;
+		}
+		g = parseInt(g);
+		g = g.toString(16);
+		if(g.length<2){
+			g = "0" + g;
+		}
+		b = parseInt(b);
+		b = b.toString(16);
+		if(b.length<2){
+			b = "0" + b;
+		}
+		conColor = "#";
+		conColor += r;
+		conColor += g;
+		conColor += b;
+		return conColor;
 }

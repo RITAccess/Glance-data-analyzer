@@ -351,7 +351,7 @@ var calcLum = function(r,g,b){
 }
 
 var findContrastor = function(hex){
-  if(hex === "#ff0000")
+  if(hex.toLowerCase() === "#ff0000")
     return "#FFFFFF";
   var max = -1;
   var maxCon;
