@@ -466,7 +466,7 @@ svg * {
     border-radius: 5px;
     padding: 4px;
     color: #000;
-    margin-left: 30px;
+    margin-left: 7%;
 }
 #siteCCReset:hover, #graphCCReset:hover, #textCCReset:hover {
     background: #000;
