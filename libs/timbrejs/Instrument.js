@@ -110,7 +110,6 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
 
 //Using an arrayCollection object you can add a group of lines to the audio object
 Instrument.prototype.setCollection = function(collection) {
-  $("*").css("cursor", "progress");
   var dropdownString ="";
   this.infoCollection.setCollection(collection);
   for(var i = 0; i < collection.length; i++) {
@@ -145,11 +144,13 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
 
       this.looping = true;
       while(this.looping){
+        $("*").css("cursor", "progress");
         if(!this.isLoading){
           var self = this;
           var q = function(){
               self.looping = false;
               self.playing = true;
+              $("*").css("cursor", "default");
            }
           setTimeout(q(), 1000);
         }

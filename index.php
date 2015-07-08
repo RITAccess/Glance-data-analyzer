@@ -86,8 +86,8 @@
             <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
               <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
           </div><!-- END id="audioSpan" -->
-          <span id="audioSpanBar"><!-- NOT an empty span: main.js "Play mode" and "Column number -->
-          </span><!-- END id="audioSpanBar" -->
+          <div id="audioSpanBar"><!-- NOT an empty span: main.js "Play mode" and "Column number" for bar graph -->
+          </div><!-- END id="audioSpanBar" -->
         </div><!-- END id="audioSpanSec" -->
         <div id="dataPlot">
           <h3 id="plot-header" style="display:none;">Data Table</h3>

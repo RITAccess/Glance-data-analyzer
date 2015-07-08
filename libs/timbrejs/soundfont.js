@@ -93,7 +93,7 @@
 					//play(audioCache.pop.)
 				});
 			} catch (e) {
-				audio.isLoading = false;
+				aio.isLoading = false;
 				audio.sample = null;
 				audio.callbacks.push(callback);
 				// execute global onError callback
@@ -141,6 +141,7 @@
 			getSample(noteArray[i], noop);
 		}
 		if(player){
+			//$("*").css("cursor", "default");
 			player.isLoading=false;
 		}
 	};
@@ -160,7 +161,7 @@
 
 	// this can be overridden by end users
 	soundfont.onLoad = function (audio,note) {
-		$("*").css("cursor", "default");
+		//$("*").css("cursor", "default");
 	};
 
 	if (timbre &&
