@@ -18,6 +18,7 @@ function loadFile(){
   var input = ev.target;
   var colorlist = document.getElementById("colors");
   oldData = [];
+  lineColors = [];
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
@@ -73,6 +74,7 @@ var createListener = function() {
 
 // Creates empty table value
 var createFile = function(rows, columns) {
+  lineColors = [];
   if (rows < 1 && columns < 2) {
     rows = 1;
     columns = 2;
