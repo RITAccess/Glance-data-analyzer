@@ -88,6 +88,7 @@
           </div><!-- END id="audioSpan" -->
           <div id="audioSpanBar"><!-- NOT an empty span: main.js "Play mode" and "Column number" for bar graph -->
           </div><!-- END id="audioSpanBar" -->
+        </div><!-- END id="audioSpanSec" -->
         <div id="dataPlot">
           <h3 id="plot-header" style="display:none;">Data Table</h3>
           <div id="tableCount"></div><!-- END id="tableCount" -->
