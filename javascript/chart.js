@@ -14,12 +14,9 @@ var loadChart = function(data, type, collection){
 		datasets: chartdata.data
 	};
 	var currBgColor = document.getElementById("graphCC").style.background;
-	if(currBgColor === ""){
-		var sfc = "#000";
-	}
-	else{
-		var sfc = findContrastor(convertRGBtoHex(currBgColor.substring(0,currBgColor.indexOf(")"))));
-	}
+	var sfc = findContrastor(convertRGBtoHex(currBgColor.substring(0,currBgColor.indexOf(")")+1)));
+	if(!sfc)
+		sfc="#000000";
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLineChart;
 	if(type === "scatter"){
@@ -618,6 +615,8 @@ var convertRGBtoHex= function(conColor){
 		conColor = conColor.substring(conColor.indexOf(','));
 		conColor = conColor.substring(conColor.indexOf(' '));
 		var b = conColor.substring(0,conColor.indexOf(','));
+		if(b==="")
+			b=conColor.substring(0,conColor.indexOf(')'));
 		r = parseInt(r);
 		if(r>255)
 			r=255;
