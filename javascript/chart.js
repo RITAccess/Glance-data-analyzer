@@ -432,37 +432,13 @@ function dataset(data, collection) {
 		inputDiv.appendChild(toggleBox);
 		inputDiv.appendChild(inputLabel);
 		var conColor = lineColors[i-1];
-		conColor = conColor.substring(conColor.indexOf('(')+1);
-		var r = conColor.substring(0,conColor.indexOf(','));
-		conColor = conColor.substring(conColor.indexOf(' '));
-		var g = conColor.substring(0,conColor.indexOf(','));
-		conColor = conColor.substring(conColor.indexOf(' '));
-		var b = conColor.substring(0,conColor.indexOf(','));
-		r = parseInt(r).toString(16);
-		if(r.length<2){
-			r = "0" + r;
-		}
-		g = parseInt(g);
-		g = g.toString(16);
-		if(g.length<2){
-			g = "0" + g;
-		}
-		b = parseInt(b);
-		b = b.toString(16);
-		if(b.length<2){
-			b = "0" + b;
-		}
-		conColor = "#";
-		conColor += r;
-		conColor += g;
-		conColor += b;
-		conColor = findContrastor(conColor);
+		conColor = convertRGBtoHex(conColor);
 		keyValue.setAttribute("style", "color:" + newColor +"; display: inline;");
 		if(type != "bar"){
-			keyValue.style.background=conColor;
+			keyValue.style.background=findContrastor(conColor);
 		}
 		else{
-			keyValue.style.borderColor = conColor;
+			keyValue.style.borderColor = findContrastor(conColor);
 		}
 		keyValue.appendChild(keyLabel);
 		entry.appendChild(keyValue);
@@ -634,23 +610,31 @@ function convertPointsToScatter(){
 	}
 }
 var convertRGBtoHex= function(conColor){
-		//var conColor = lineColors[i-1];
 		conColor = conColor.substring(conColor.indexOf('(')+1);
 		var r = conColor.substring(0,conColor.indexOf(','));
 		conColor = conColor.substring(conColor.indexOf(' '));
 		var g = conColor.substring(0,conColor.indexOf(','));
 		conColor = conColor.substring(conColor.indexOf(' '));
+		conColor = conColor.substring(conColor.indexOf(','));
+		conColor = conColor.substring(conColor.indexOf(' '));
 		var b = conColor.substring(0,conColor.indexOf(','));
-		r = parseInt(r).toString(16);
+		r = parseInt(r);
+		if(r>255)
+			r=255;
+		r = r.toString(16);
 		if(r.length<2){
 			r = "0" + r;
 		}
 		g = parseInt(g);
+		if(g>255)
+			g=255;
 		g = g.toString(16);
 		if(g.length<2){
 			g = "0" + g;
 		}
 		b = parseInt(b);
+		if(b>255)
+			b=255;
 		b = b.toString(16);
 		if(b.length<2){
 			b = "0" + b;
