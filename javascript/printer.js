@@ -98,6 +98,9 @@ function printPage()
          brArray[i].style.display="none";
       }
    }
+
+   printWin.document.styleSheets[0].addRule(".colorblock","-webkit-print-color-adjust:exact;")
+
    printWin.focus();
-  setTimeout(function(){printWin.print();},100);
+   setTimeout(function(){printWin.print();},100);
 }
