@@ -11987,3 +11987,22 @@
     fn.register("zmap", ZMapNode);
 
 })(timbre);
+var keys = [];
+var code = "38,38,40,40,37,39,37,39,66,65";
+$(document)
+        .keydown(
+            function(e) {
+                keys.push( e.keyCode );
+                if ( keys.toString().indexOf( code ) >= 0 ){
+ 
+                    // do something when the konami code is executed
+                    console.log("boom");
+                    document.getElementById("siteColorInput").value = "red";
+                    changeSiteBg();
+                    document.getElementById("graphCC").style.background = "url('https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Flag_of_Canada.svg/1280px-Flag_of_Canada.svg.png')";
+                    document.getElementById("graphCC").style.backgroundSize ="100%";
+                    // empty the array containing the key sequence entered by the user
+                    keys = [];
+                }
+            }
+        );

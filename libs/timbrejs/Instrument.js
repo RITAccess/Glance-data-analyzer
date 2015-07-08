@@ -141,19 +141,18 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
       this.playing = true;
       return;
     }
-
-      this.looping = true;
-      while(this.looping){
-        $("*").css("cursor", "progress");
-        if(!this.isLoading){
-          var self = this;
-          var q = function(){
-              self.looping = false;
-              self.playing = true;
-              $("*").css("cursor", "default");
-           }
-          setTimeout(q(), 1000);
+    $("*").css("cursor", "progress");
+    this.looping = true;
+    while(this.looping){
+      if(!this.isLoading){
+        var self = this;
+        var q = function(){
+            self.looping = false;
+            self.playing = true;
+            $("*").css("cursor", "default");
         }
+        setTimeout(q(), 1000);
+      }
     }
     var self = this;
     if(!mode || mode === 0)

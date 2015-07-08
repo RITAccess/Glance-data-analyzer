@@ -71,7 +71,6 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scatter.length;
 									}
-									//console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
@@ -103,7 +102,6 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scatter.length;
 									}
-									//console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
@@ -134,7 +132,6 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scatter.length;
 									}
-									//console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
@@ -331,14 +328,12 @@ var loadChart = function(data, type, collection){
 					chart.datasets[index].pointHighlightStroke = color;
 					if(type === "line"){
 						if(oldData[index].points)
-	          	chart.datasets[index].points = oldData[index].points;
-	          	else
-	          		chart.datasets[index].points = oldData[index].scatter;
-	          		//oldData[index].points = undefined;
+	    	      			chart.datasets[index].points = oldData[index].points;
+	        	  	else
+	          			chart.datasets[index].points = oldData[index].scatter;
 					}
 					else if(type === "bar"){
-	          chart.datasets[index].bars = oldData[index].bars;
-	        	//oldData[index].bars= undefined;
+			          chart.datasets[index].bars = oldData[index].bars;
 					}
 					else{
 						chart.datasets[index].points = oldData[index].scatter;

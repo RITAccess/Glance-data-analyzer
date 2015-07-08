@@ -105,12 +105,10 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	var i = startIndex;
 	timbre.bpm = this.bpm;
 	var self = this;
-	console.log("end: " + endIndex);
 	if(startIndex> endIndex){
 		startIndex = 0;
 		i = 0;
 	}
-	console.log(this.subdiv);
 	this.t = T("interval", {interval:this.subdiv,timeout:"99sec"},function(){
 		if(i>=endIndex || isNaN(self.pitch)) {
 			overlay.slider[0] = 0;
@@ -127,7 +125,6 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 		}
 		if(overlay){
 			overlay.slider[0] = i+1;
-			console.log(overlay.slider[0]);
 		}
 		i++;
 	}).on("ended",function(){
@@ -198,12 +195,6 @@ WaveForm.prototype.changeLine = function(line, index, newValue) {
 //Toggle playing either on or off
 WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing) {
   if(!playing) {
-  	// if(this.paused){
-  	// 	this.t.started = false;
-  	// 	this.t.play();
-  	// 	this.t_object.play();
-  	// 	this.paused = false;
-  	// }
   	if(!this.paused){
   		overlay.slider[0] = 0;
   	}
@@ -214,9 +205,7 @@ WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing
 	}
   }
   else {
-  	// if(this.t)
-  	// this.t.stop();
-    this.t_object.pause();
+  	this.t_object.pause();
     this.paused = true;
     this.playing = false;
   }
