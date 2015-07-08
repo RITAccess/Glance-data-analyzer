@@ -14,14 +14,12 @@ var loadChart = function(data, type, collection){
 		datasets: chartdata.data
 	};
 	var currBgColor = document.getElementById("graphCC").style.background;
-	console.log(currBgColor);
 	if(currBgColor === ""){
 		var sfc = "#000";
 	}
 	else{
 		var sfc = findContrastor(convertRGBtoHex(currBgColor.substring(0,currBgColor.indexOf(")"))));
 	}
-	console.log(sfc);
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLineChart;
 	if(type === "scatter"){
@@ -151,7 +149,6 @@ var loadChart = function(data, type, collection){
 					//Set Graph data color indication color to match new color
 					if(type === "line" || type === "scatter"){
 						var contrastColor = findContrastor(newcolor);
-						console.log(contrastColor);
 						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; background:" + contrastColor);
 					}
 					else if(type === "bar"){

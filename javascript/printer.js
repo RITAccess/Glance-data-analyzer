@@ -90,7 +90,6 @@ function printPage()
    var divArr = printWin.document.getElementsByClassName("squaredTwo");
    for(var i = 0; i < divArr.length; i++){
       divArr[i].style.display = "none";
-      console.log(i);
    }
    var brArray = printWin.document.getElementsByTagName("br");
    for(var i = 0; i < brArray.length; i ++){
