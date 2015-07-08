@@ -85,7 +85,7 @@ var createFile = function(rows, columns) {
   else if (columns < 2) {
     columns = 2;
     alert("Number of colums not valid. A table with 2 columns will be created.");
-  } 
+  }
 
   // Reset color list
   var colorlist = document.getElementById("colors");
@@ -180,7 +180,7 @@ var changeType= function(){
     }
   }
 
-  // Create new blank row 
+  // Create new blank row
   var newRow = new Array(currTable.data[0].length);
   for (var i = 0; i < newRow.length; i++) {
     newRow[i] = 0;
@@ -205,7 +205,7 @@ var changeType= function(){
         }
       }
 
-  // Loads new table 
+  // Loads new table
   loadData(currTable);
   document.getElementById('tblContainer').style.width="100%";
  }
@@ -237,7 +237,7 @@ var addColumn = function() {
       }
     }
 
-   // Creates a new column by adding one cell on the end of each row 
+   // Creates a new column by adding one cell on the end of each row
   for (var i = 0; i < currTable.data.length; i++) {
     currTable.data[i].push(0);
   }
@@ -254,10 +254,10 @@ var addColumn = function() {
     }
   }
 
-  // Loads new table 
+  // Loads new table
   loadData(currTable);
   document.getElementById('tblContainer').style.width="100%";
- 
+
  }
 
  // Removes a row from the bottom of the table
@@ -290,7 +290,7 @@ var subtractRow = function() {
   // Checks if the table is big enough to have a row removed without breaking the table and graph
   if (currTable.data.length > 2) {
     currTable.data.pop();
-  } 
+  }
   else {
     alert("No more rows can be deleted");
   }
@@ -337,7 +337,7 @@ var subtractColumn = function() {
 
   // Subtracts a column by popping off the last cell of each row
   for (var i = 0; i < currTable.data.length; i++) {
-    // Checks that there are enough columns to subtract from 
+    // Checks that there are enough columns to subtract from
     if (currTable.data[i].length > 3) {
       currTable.data[i].pop();
     }
