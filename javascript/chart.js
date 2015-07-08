@@ -155,8 +155,8 @@ var loadChart = function(data, type, collection){
 						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; background:" + contrastColor);
 					}
 					else if(type === "bar"){
-						var contrastColor = findContrastor(colors[newcolor]); 
-						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline;border: 2px solid " + contrastColor);	
+						var contrastColor = findContrastor(colors[newcolor]);
+						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline;border: 2px solid " + contrastColor);
 					}
 				}
 				//Check color list for name match
@@ -270,11 +270,11 @@ var loadChart = function(data, type, collection){
 					}
 					//Set graph data color indicator
 					if(type === "line" || type==="scatter"){
-						var contrastColor = findContrastor(colors[newcolor.toLowerCase().split(' ').join('')]); 
+						var contrastColor = findContrastor(colors[newcolor.toLowerCase().split(' ').join('')]);
 						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; background:" + contrastColor);
 					}
 					else if(type === "bar"){
-						var contrastColor = findContrastor(colors[newcolor.toLowerCase().split(' ').join('')]); 
+						var contrastColor = findContrastor(colors[newcolor.toLowerCase().split(' ').join('')]);
 						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; border: 2px solid " + contrastColor);
 					}
           }
@@ -414,7 +414,7 @@ function dataset(data, collection) {
 		}
     else if(type === "bar"){
 		keyLabel = document.createElement('span');
-		keyLabel.setAttribute("style", "background:"+newColor);
+		keyLabel.setAttribute("style", "background:" + newColor);
 		keyLabel.setAttribute("class", "colorblock");
 		}
 		if(hidden.length<= i-1){
