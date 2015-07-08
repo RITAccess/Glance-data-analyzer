@@ -400,22 +400,28 @@ var resetGraphBg = function(){
 }
 
 var textKeyUp = function(event){
-   event = event || window.event;
+  event = event || window.event;
+  if(event){
     if (event.keyCode === 32 || event.keyCode===13) {
       resetText();
     }
+  }
 }
 
 var graphKeyUp = function(event){
-   event = event || window.event;
+  event = event || window.event;
+  if(event){
     if (event.keyCode === 32 || event.keyCode===13) {
       resetGraphBg();
     }
+  }
 }
 
 var siteKeyUp = function(event){
-     event = event || window.event;
-    if (event.keyCode === 32 || event.keyCode===13) {
-      resetSiteBg();
+    event = event || window.event;
+    if(event){
+      if (event.keyCode === 32 || event.keyCode===13) {
+        resetSiteBg();
+      }
     }
 }
