@@ -120,26 +120,27 @@ var createFile = function(rows, columns) {
   loadData(newTable);
 }
 var changeType= function(){
-    var results = new Object();
-    results.data= [];
-    results.errors=[];
-    var m ={
-      aborted:false,
-      cursor:94,
-      delimiter: ",",
-      linebreak: "",
-      truncated: false
+  player.stop();
+  var results = new Object();
+  results.data= [];
+  results.errors=[];
+  var m ={
+    aborted:false,
+    cursor:94,
+    delimiter: ",",
+    linebreak: "",
+    truncated: false
+  }
+  results.meta = m;
+  var resData = grid.getData();
+  for(var i = 0; i< resData.length; i++){
+    results.data[i]= [];
+    for(var key in resData[i]){
+      if(key != "id")
+      results.data[i].push(resData[i][key]);
     }
-    results.meta = m;
-    var resData = grid.getData();
-    for(var i = 0; i< resData.length; i++){
-      results.data[i]= [];
-      for(var key in resData[i]){
-        if(key != "id")
-        results.data[i].push(resData[i][key]);
-      }
-    }
-    loadData(results);
+  }
+  loadData(results);
 }
 
 

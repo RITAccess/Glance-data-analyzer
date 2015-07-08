@@ -110,6 +110,7 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 		startIndex = 0;
 		i = 0;
 	}
+	console.log(this.subdiv);
 	this.t = T("interval", {interval:this.subdiv,timeout:"99sec"},function(){
 		if(i>=endIndex || isNaN(self.pitch)) {
 			overlay.slider[0] = 0;
@@ -117,11 +118,12 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 			self.t_object.pause();
 			this.stop();
 			self.stop();
+			player = new WaveForm(self.type);
 		}
 		self.changePitch(30 + parseInt(self.infoCollection.collection[j].array[i]));
-		console.log(30 + parseInt(self.infoCollection.collection[j].array[i]));
 		if(!this.started){
 			self.start();
+			this.started = true;
 		}
 		if(overlay){
 			overlay.slider[0] = i+1;
@@ -212,8 +214,8 @@ WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing
 	}
   }
   else {
-  	if(this.t)
-  	this.t.stop();
+  	// if(this.t)
+  	// this.t.stop();
     this.t_object.pause();
     this.paused = true;
     this.playing = false;

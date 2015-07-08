@@ -93,7 +93,7 @@
 					//play(audioCache.pop.)
 				});
 			} catch (e) {
-				audio.isLoading = false;
+				aio.isLoading = false;
 				audio.sample = null;
 				audio.callbacks.push(callback);
 				// execute global onError callback
