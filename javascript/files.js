@@ -121,10 +121,13 @@ var createFile = function(rows, columns) {
 }
 var changeType= function(){
   if(!isSafari){
+    if(player.t)
     player.t.stop();
   }
   else{
+    if(player.t_object)
     player.t_object.pause();
+    if(player.t)
     player.t.stop();
   }
   var results = new Object();
