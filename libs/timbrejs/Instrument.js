@@ -61,6 +61,7 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
   }).on("ended",function(){
     this.stop();
   }).start();
+  $("*").css("cursor", "default");
 }
 
 //For Bar Graph, play a certain month
@@ -82,6 +83,7 @@ Instrument.prototype.playColumn = function(col){
   }).on("ended",function(){
     this.stop();
   }).start();
+  $("*").css("cursor", "default");
 }
 
 //For Bar Graph, play through, playing all columns as chords
@@ -105,6 +107,7 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
   }).on("ended",function(){
     this.stop();
   }).start();
+  $("*").css("cursor", "default");
   self.playing = false;
 }
 
@@ -149,7 +152,6 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
         var q = function(){
             self.looping = false;
             self.playing = true;
-            $("*").css("cursor", "default");
         }
         setTimeout(q(), 1000);
       }
@@ -166,7 +168,6 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
     else{
       if(this.t){
       this.t.stop();
-      //this.t = null;
       this.playing = false;
       if(!this.paused)
       this.paused = true;
