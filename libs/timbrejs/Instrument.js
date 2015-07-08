@@ -111,6 +111,28 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
   self.playing = false;
 }
 
+Instrument.prototype.playRegressionLine = function(){
+  this.playing = true;
+  var i = 0;
+  var myNotes = chart.calcBestFit();
+  var self = this;
+  timbre.bpm = this.bpm;
+  this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+    var key =  parseInt(myNotes[i][1])+30;
+    T.soundfont.play(key);
+    i++;
+    if(i>myNotes.length || myNotes[i]===undefined){
+      self.playing = false;
+      self.updateIcon();
+      self.t.stop();
+      this.stop();
+    }
+  }).on("ended",function(){
+    this.stop();
+  }).start();
+  $("*").css("cursor", "default");  
+}
+
 //Using an arrayCollection object you can add a group of lines to the audio object
 Instrument.prototype.setCollection = function(collection) {
   var dropdownString ="";
@@ -159,8 +181,12 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
     var self = this;
     if(!mode || mode === 0)
       setTimeout(function() {self.playDataSet(line,startIndex,endIndex);}, 1000);
-    else if(mode === 1)
+    else if(mode === 1){
+      if(type === "bar")
       setTimeout(function() {self.playColumn(line);}, 1000);
+      else
+      setTimeout(function() {self.playRegressionLine();}, 1000);
+    }
     else if(mode === 2){
       setTimeout(function() {self.playColumnsAsChords(line,startIndex,endIndex);}, 1000);  
     }

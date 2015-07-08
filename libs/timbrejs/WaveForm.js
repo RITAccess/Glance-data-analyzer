@@ -161,6 +161,31 @@ WaveForm.prototype.playSeriesColumns = function(line,startIndex,endIndex){
 	}).start();
 };
 
+WaveForm.prototype.playRegressionLine = function(){
+  this.playing = true;
+  var i = 0;
+  var myNotes = chart.calcBestFit();
+  var self = this;
+  timbre.bpm = this.bpm;
+  this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+    if(!this.started){
+	self.start();
+	this.started= true;
+	}
+    var key =  parseInt(myNotes[i][1])+30;
+    console.log(key)
+    self.changePitch(key);
+    i++;
+    if(i>myNotes.length || myNotes[i]===undefined){
+      self.playing = false;
+      self.updateIcon();
+      self.stop();
+      this.stop();
+    }
+  }).on("ended",function(){
+    this.stop();
+  }).start();
+}
 
 //Set Beats per minute of waveform when series is played
 WaveForm.prototype.setBpm = function(bpm){
@@ -201,7 +226,10 @@ WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing
   	if(!mode || mode === 0)
     	this.playSeries(line,startIndex,endIndex);
 	else{
-		this.playSeriesColumns(line,startIndex,endIndex);
+		if(type === "bar")
+			this.playSeriesColumns(line,startIndex,endIndex);
+		else
+			this.playRegressionLine();
 	}
   }
   else {
