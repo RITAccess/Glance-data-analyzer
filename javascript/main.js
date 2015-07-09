@@ -14,14 +14,8 @@ require(["libs/jquery/jquery-1.11.2.js"],function(jquery) {
   });
 });
 
-
 require(["libs/PapaParse/papaparse.min.js"]);
 require(["libs/chartjs/Chart.js"]);
-
-require(["javascript/files.js"], function(print){
-  loadListener();
-  createListener();
-});
 
 require(["javascript/chart.js"]);
 require(["javascript/overlay.js"]);
@@ -33,6 +27,11 @@ require(["javascript/prompts.js"]);
 require(["javascript/printer.js"]);
 require(["javascript/reset.js"]);
 require(["javascript/contrast.js"]);
+
+require(["javascript/files.js"], function(print){
+  createListener();
+  loadListener();
+});
 
 var player;
 var overlay;
@@ -166,7 +165,7 @@ var loadData = function (data) {
         label.setAttribute("id","playModeLabel");
         document.getElementById("audioSpanBar").appendChild(label);
         document.getElementById("audioSpanBar").appendChild(newddm);
-        newddm.setAttribute("onchange", "makeColSelector()");   
+        newddm.setAttribute("onchange", "makeColSelector()");
       }
     }
     if(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)

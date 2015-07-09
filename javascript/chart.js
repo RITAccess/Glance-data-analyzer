@@ -407,9 +407,13 @@ function dataset(data, collection) {
 		var keyLabel = document.createTextNode(shapes[0]);
 		}
     else if(type === "bar"){
-		keyLabel = document.createElement('span');
-		keyLabel.setAttribute("style", "background:" + newColor);
+		keyLabel = document.createElement('canvas');
+		keyLabel.setAttribute("style","padding:0px; height:24px; width:65px;")
+		var ctx = keyLabel.getContext("2d");
+		ctx.fillStyle = newColor;
+		ctx.fillRect(0,0,9999,9999);
 		keyLabel.style.border = "2px solid " + findContrastor(convertRGBtoHex(newColor));
+		//keyLabel.setAttribute("style", "background:" + newColor);
 		keyLabel.setAttribute("class", "colorblock");
 		}
 		if(hidden.length<= i-1){
