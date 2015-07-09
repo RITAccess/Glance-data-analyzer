@@ -351,6 +351,7 @@ svg * {
 }
 #summary-header{ /* for printer.js */
     text-align: center;
+    margin-bottom: 0;
 }
 #tblSummary {
     font-weight: normal;
@@ -421,7 +422,7 @@ svg * {
     margin: 0;
 }
 #colors > li {
-    margin-bottom: 4%;
+    margin-top: 4%;
 }
 #colors p {
    border-radius: 5px;
