@@ -371,7 +371,7 @@ svg * {
     text-align: center;
     padding-left: 1.5%;
 }
-#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #dialogboxfoot button {
+#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button {
     display: inline;
     cursor: pointer !important;
     background: #FFF;
