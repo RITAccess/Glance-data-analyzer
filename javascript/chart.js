@@ -14,12 +14,9 @@ var loadChart = function(data, type, collection){
 		datasets: chartdata.data
 	};
 	var currBgColor = document.getElementById("graphCC").style.background;
-	if(currBgColor === ""){
-		var sfc = "#000";
-	}
-	else{
-		var sfc = findContrastor(convertRGBtoHex(currBgColor.substring(0,currBgColor.indexOf(")"))));
-	}
+	var sfc = findContrastor(convertRGBtoHex(currBgColor.substring(0,currBgColor.indexOf(")")+1)));
+	if(!sfc)
+		sfc="#000000";
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLineChart;
 	if(type === "scatter"){
@@ -69,7 +66,6 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scatter.length;
 									}
-									//console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
@@ -101,7 +97,6 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scatter.length;
 									}
-									//console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
@@ -132,7 +127,6 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scatter.length;
 									}
-									//console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
@@ -152,7 +146,6 @@ var loadChart = function(data, type, collection){
 					//Set Graph data color indication color to match new color
 					if(type === "line" || type === "scatter"){
 						var contrastColor = findContrastor(newcolor);
-						console.log(contrastColor);
 						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; background:" + contrastColor);
 					}
 					else if(type === "bar"){
@@ -329,14 +322,12 @@ var loadChart = function(data, type, collection){
 					chart.datasets[index].pointHighlightStroke = color;
 					if(type === "line"){
 						if(oldData[index].points)
-	          	chart.datasets[index].points = oldData[index].points;
-	          	else
-	          		chart.datasets[index].points = oldData[index].scatter;
-	          		//oldData[index].points = undefined;
+	    	      			chart.datasets[index].points = oldData[index].points;
+	        	  	else
+	          			chart.datasets[index].points = oldData[index].scatter;
 					}
 					else if(type === "bar"){
-	          chart.datasets[index].bars = oldData[index].bars;
-	        	//oldData[index].bars= undefined;
+			          chart.datasets[index].bars = oldData[index].bars;
 					}
 					else{
 						chart.datasets[index].points = oldData[index].scatter;
@@ -421,6 +412,7 @@ function dataset(data, collection) {
 		var ctx = keyLabel.getContext("2d");
 		ctx.fillStyle = newColor;
 		ctx.fillRect(0,0,9999,9999);
+		keyLabel.style.border = "2px solid " + findContrastor(convertRGBtoHex(newColor));
 		//keyLabel.setAttribute("style", "background:" + newColor);
 		keyLabel.setAttribute("class", "colorblock");
 		}
@@ -442,37 +434,13 @@ function dataset(data, collection) {
 		inputDiv.appendChild(toggleBox);
 		inputDiv.appendChild(inputLabel);
 		var conColor = lineColors[i-1];
-		conColor = conColor.substring(conColor.indexOf('(')+1);
-		var r = conColor.substring(0,conColor.indexOf(','));
-		conColor = conColor.substring(conColor.indexOf(' '));
-		var g = conColor.substring(0,conColor.indexOf(','));
-		conColor = conColor.substring(conColor.indexOf(' '));
-		var b = conColor.substring(0,conColor.indexOf(','));
-		r = parseInt(r).toString(16);
-		if(r.length<2){
-			r = "0" + r;
-		}
-		g = parseInt(g);
-		g = g.toString(16);
-		if(g.length<2){
-			g = "0" + g;
-		}
-		b = parseInt(b);
-		b = b.toString(16);
-		if(b.length<2){
-			b = "0" + b;
-		}
-		conColor = "#";
-		conColor += r;
-		conColor += g;
-		conColor += b;
-		conColor = findContrastor(conColor);
+		conColor = convertRGBtoHex(conColor);
 		keyValue.setAttribute("style", "color:" + newColor +"; display: inline;");
 		if(type != "bar"){
-			keyValue.style.background=conColor;
+			keyValue.style.background=findContrastor(conColor);
 		}
 		else{
-			keyValue.style.borderColor = conColor;
+			keyValue.style.borderColor = findContrastor(conColor);
 		}
 		keyValue.appendChild(keyLabel);
 		entry.appendChild(keyValue);
@@ -496,7 +464,7 @@ function deque(array) {
 	array.splice(0,1);
 	return ele;
 }
-
+//Convert points to bars for a bar graph
 function convertPointsToBars(){
 	var datasetLen = chart.datasets.length;
 	var chartBase = chart.scale.endPoint;
@@ -563,6 +531,7 @@ function convertPointsToBars(){
 	}
 }
 
+//Convert points to scatterplot points for scatterplot
 function convertPointsToScatter(){
 	var datasetLen = chart.datasets.length;
 	var chartBase = chart.scale.endPoint;
@@ -642,32 +611,4 @@ function convertPointsToScatter(){
 			}
 		}
 	}
-}
-var convertRGBtoHex= function(conColor){
-		//var conColor = lineColors[i-1];
-		conColor = conColor.substring(conColor.indexOf('(')+1);
-		var r = conColor.substring(0,conColor.indexOf(','));
-		conColor = conColor.substring(conColor.indexOf(' '));
-		var g = conColor.substring(0,conColor.indexOf(','));
-		conColor = conColor.substring(conColor.indexOf(' '));
-		var b = conColor.substring(0,conColor.indexOf(','));
-		r = parseInt(r).toString(16);
-		if(r.length<2){
-			r = "0" + r;
-		}
-		g = parseInt(g);
-		g = g.toString(16);
-		if(g.length<2){
-			g = "0" + g;
-		}
-		b = parseInt(b);
-		b = b.toString(16);
-		if(b.length<2){
-			b = "0" + b;
-		}
-		conColor = "#";
-		conColor += r;
-		conColor += g;
-		conColor += b;
-		return conColor;
 }

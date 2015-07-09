@@ -105,12 +105,10 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	var i = startIndex;
 	timbre.bpm = this.bpm;
 	var self = this;
-	console.log("end: " + endIndex);
 	if(startIndex> endIndex){
 		startIndex = 0;
 		i = 0;
 	}
-	console.log(this.subdiv);
 	this.t = T("interval", {interval:this.subdiv,timeout:"99sec"},function(){
 		if(i>=endIndex || isNaN(self.pitch)) {
 			overlay.slider[0] = 0;
@@ -127,7 +125,6 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 		}
 		if(overlay){
 			overlay.slider[0] = i+1;
-			console.log(overlay.slider[0]);
 		}
 		i++;
 	}).on("ended",function(){
@@ -164,6 +161,32 @@ WaveForm.prototype.playSeriesColumns = function(line,startIndex,endIndex){
 	}).start();
 };
 
+//Sonically represent the regression line using a waveform
+WaveForm.prototype.playRegressionLine = function(){
+  this.playing = true;
+  var i = 0;
+  var myNotes = chart.calcBestFit();
+  var self = this;
+  timbre.bpm = this.bpm;
+  this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+    if(!this.started){
+	self.start();
+	this.started= true;
+	}
+    var key =  parseInt(myNotes[i][1])+30;
+    console.log(key)
+    self.changePitch(key);
+    i++;
+    if(i>myNotes.length || myNotes[i]===undefined){
+      self.playing = false;
+      self.updateIcon();
+      self.stop();
+      this.stop();
+    }
+  }).on("ended",function(){
+    this.stop();
+  }).start();
+}
 
 //Set Beats per minute of waveform when series is played
 WaveForm.prototype.setBpm = function(bpm){
@@ -198,25 +221,20 @@ WaveForm.prototype.changeLine = function(line, index, newValue) {
 //Toggle playing either on or off
 WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing) {
   if(!playing) {
-  	// if(this.paused){
-  	// 	this.t.started = false;
-  	// 	this.t.play();
-  	// 	this.t_object.play();
-  	// 	this.paused = false;
-  	// }
   	if(!this.paused){
   		overlay.slider[0] = 0;
   	}
   	if(!mode || mode === 0)
     	this.playSeries(line,startIndex,endIndex);
 	else{
-		this.playSeriesColumns(line,startIndex,endIndex);
+		if(type === "bar")
+			this.playSeriesColumns(line,startIndex,endIndex);
+		else
+			this.playRegressionLine();
 	}
   }
   else {
-  	// if(this.t)
-  	// this.t.stop();
-    this.t_object.pause();
+  	this.t_object.pause();
     this.paused = true;
     this.playing = false;
   }

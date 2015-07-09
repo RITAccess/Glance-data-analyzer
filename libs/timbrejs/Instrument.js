@@ -61,6 +61,7 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
   }).on("ended",function(){
     this.stop();
   }).start();
+  $("*").css("cursor", "default");
 }
 
 //For Bar Graph, play a certain month
@@ -82,6 +83,7 @@ Instrument.prototype.playColumn = function(col){
   }).on("ended",function(){
     this.stop();
   }).start();
+  $("*").css("cursor", "default");
 }
 
 //For Bar Graph, play through, playing all columns as chords
@@ -105,7 +107,31 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
   }).on("ended",function(){
     this.stop();
   }).start();
+  $("*").css("cursor", "default");
   self.playing = false;
+}
+
+//Sonically represent the regression line using an instrument
+Instrument.prototype.playRegressionLine = function(){
+  this.playing = true;
+  var i = 0;
+  var myNotes = chart.calcBestFit();
+  var self = this;
+  timbre.bpm = this.bpm;
+  this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+    var key =  parseInt(myNotes[i][1])+30;
+    T.soundfont.play(key);
+    i++;
+    if(i>myNotes.length || myNotes[i]===undefined){
+      self.playing = false;
+      self.updateIcon();
+      self.t.stop();
+      this.stop();
+    }
+  }).on("ended",function(){
+    this.stop();
+  }).start();
+  $("*").css("cursor", "default");  
 }
 
 //Using an arrayCollection object you can add a group of lines to the audio object
@@ -141,25 +167,27 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
       this.playing = true;
       return;
     }
-
-      this.looping = true;
-      while(this.looping){
-        $("*").css("cursor", "progress");
-        if(!this.isLoading){
-          var self = this;
-          var q = function(){
-              self.looping = false;
-              self.playing = true;
-              $("*").css("cursor", "default");
-           }
-          setTimeout(q(), 1000);
+    $("*").css("cursor", "progress");
+    this.looping = true;
+    while(this.looping){
+      if(!this.isLoading){
+        var self = this;
+        var q = function(){
+            self.looping = false;
+            self.playing = true;
         }
+        setTimeout(q(), 1000);
+      }
     }
     var self = this;
     if(!mode || mode === 0)
       setTimeout(function() {self.playDataSet(line,startIndex,endIndex);}, 1000);
-    else if(mode === 1)
+    else if(mode === 1){
+      if(type === "bar")
       setTimeout(function() {self.playColumn(line);}, 1000);
+      else
+      setTimeout(function() {self.playRegressionLine();}, 1000);
+    }
     else if(mode === 2){
       setTimeout(function() {self.playColumnsAsChords(line,startIndex,endIndex);}, 1000);  
     }
@@ -167,7 +195,6 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
     else{
       if(this.t){
       this.t.stop();
-      //this.t = null;
       this.playing = false;
       if(!this.paused)
       this.paused = true;
@@ -198,7 +225,7 @@ Instrument.prototype.setBpm = function(bpm){
   }
   this.bpm = bpm;
 }
-
+//Preload all notes in the collection
 Instrument.prototype.buildNotes= function(){
   var newNotes = {};
   for(var i = 0; i < this.infoCollection.collection.length; i++){
@@ -237,6 +264,7 @@ Instrument.prototype.buildNotes= function(){
   }
 }
 
+//Get key in hash given a value
 Instrument.prototype.getKeyByValue = function( value ) {
     for( var prop in this.notes ) {
         if( this.hasOwnProperty( prop ) ) {

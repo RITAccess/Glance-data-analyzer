@@ -25,6 +25,8 @@ require(["javascript/global.js"]);
 require(["javascript/summary.js"]);
 require(["javascript/prompts.js"]);
 require(["javascript/printer.js"]);
+require(["javascript/reset.js"]);
+require(["javascript/contrast.js"]);
 
 require(["javascript/files.js"], function(print){
   createListener();
@@ -52,6 +54,20 @@ var loadData = function (data) {
     document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen label cells."
     chart = loadChart(data.data, type);
     if(chart && type === "bar"){
+      if(document.getElementById('barGraphAudioOptions')){
+        var c = document.getElementById('barGraphAudioOptions');
+        var p =  c.parentNode;
+        p.removeChild(c);
+        var c = document.getElementById('playModeLabel');
+        p.removeChild(c);
+        if(document.getElementById("colSelector")){
+          var c = document.getElementById('colSelector');
+          var p =  c.parentNode;
+          p.removeChild(c);
+          var c = document.getElementById("colNumLabel");
+          p.removeChild(c);
+          }
+        }
       convertPointsToBars();
       if(!document.getElementById("barGraphAudioOptions")){
         var newddm = document.createElement("select");
@@ -79,7 +95,7 @@ var loadData = function (data) {
         newddm.setAttribute("onchange", "makeColSelector()");
       }
     }
-    else{
+    else if(type === "line"){
       if(document.getElementById('barGraphAudioOptions')){
         var c = document.getElementById('barGraphAudioOptions');
         var p =  c.parentNode;
@@ -96,6 +112,61 @@ var loadData = function (data) {
       }
       convertPointsToScatter();
 
+    }
+    else{
+      convertPointsToScatter();
+      if(!document.getElementById("barGraphAudioOptions")){
+        var newddm = document.createElement("select");
+        newddm.setAttribute("id","barGraphAudioOptions");
+        newddm.setAttribute("class","drop-down");
+        var option = document.createElement("option");
+        option.setAttribute("value","0");
+        option.innerHTML = "Normal";
+        newddm.appendChild(option);
+        option = document.createElement("option");
+        option.setAttribute("value","1");
+        option.innerHTML = "Play Regression Line";
+        newddm.appendChild(option);
+        var label = document.createElement("label");
+        label.innerHTML = "Play mode ";
+        label.setAttribute("id","playModeLabel");
+        document.getElementById("audioSpanBar").appendChild(label);
+        document.getElementById("audioSpanBar").appendChild(newddm);
+        newddm.setAttribute("onchange", "makeColSelector()");
+      }
+      else{
+       if(document.getElementById('barGraphAudioOptions')){
+        var c = document.getElementById('barGraphAudioOptions');
+        var p =  c.parentNode;
+        p.removeChild(c);
+        var c = document.getElementById('playModeLabel');
+        p.removeChild(c);
+        if(document.getElementById("colSelector")){
+          var c = document.getElementById('colSelector');
+          var p =  c.parentNode;
+          p.removeChild(c);
+          var c = document.getElementById("colNumLabel");
+          p.removeChild(c);
+          }
+        }
+        var newddm = document.createElement("select");
+        newddm.setAttribute("id","barGraphAudioOptions");
+        newddm.setAttribute("class","drop-down");
+        var option = document.createElement("option");
+        option.setAttribute("value","0");
+        option.innerHTML = "Normal";
+        newddm.appendChild(option);
+        option = document.createElement("option");
+        option.setAttribute("value","1");
+        option.innerHTML = "Play Regression Line";
+        newddm.appendChild(option);
+        var label = document.createElement("label");
+        label.innerHTML = "Play mode ";
+        label.setAttribute("id","playModeLabel");
+        document.getElementById("audioSpanBar").appendChild(label);
+        document.getElementById("audioSpanBar").appendChild(newddm);
+        newddm.setAttribute("onchange", "makeColSelector()");
+      }
     }
     if(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)
       player = new WaveForm("sine");
@@ -193,6 +264,7 @@ var playStopAudioButton = function () {
       var startval = document.getElementById("lineDropdown").value - 1;
     }
     else{
+      if(document.getElementById("colSelector"))
       var startval = document.getElementById("colSelector").value;
     }
     if(!isSafari)
@@ -216,7 +288,7 @@ var blurElement = function(elementClass) {
   document.getElementsByClassName(elementClass)[0].style.backgroundColor = "#FFF";
   document.getElementsByClassName(elementClass)[0].style.color = "#000";
 }
-
+//Make column selector if play by columns play type in bar graph is chosen
 var makeColSelector = function(){
   if(document.getElementById("barGraphAudioOptions").selectedIndex === 1 && !document.getElementById("colSelector")){
     var selector = document.createElement("select");
@@ -241,180 +313,4 @@ var makeColSelector = function(){
     var c = document.getElementById("colNumLabel");
     p.removeChild(c);
   }
-}
-
-var changeSiteBg = function(){
-  var newColor = document.getElementById("siteColorInput").value;
-  if(/^#[0-9A-F]{6}$/i.test(newColor)){
-    document.getElementsByTagName("body")[0].style.background = newColor;
-    if(document.getElementById("siteContrast").checked){
-      var contrastor = findContrastor(newColor);
-      document.getElementsByTagName("body")[0].style.color = contrastor;
-      document.getElementById("continuosBox").style.border = "3px solid " + contrastor;
-      document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + contrastor;
-      document.getElementById("summaryBox").style.borderTop="3px solid " +contrastor;
-      document.getElementById("bgColorChange").style.borderTop="3px solid " + contrastor;
-    }
-  }
-  else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
-    document.getElementsByTagName("body")[0].style.background = colors[newColor.toLowerCase().split(' ').join('')];
-    if(document.getElementById("siteContrast").checked){
-      var contrastor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
-      document.getElementsByTagName("body")[0].style.color = contrastor;
-      document.getElementById("continuosBox").style.border = "3px solid " + contrastor;
-      document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + contrastor;
-      document.getElementById("summaryBox").style.borderTop="3px solid " +contrastor;
-      document.getElementById("bgColorChange").style.borderTop="3px solid " + contrastor;
-    }
-  }
-}
-
-var changeGraphBg = function(){
-  var newColor = document.getElementById("graphColorInput").value;
-  if(/^#[0-9A-F]{6}$/i.test(newColor)){
-    document.getElementById("graphCC").style.background = newColor;
-    if(document.getElementById("graphContrast").checked){
-      chart.options.scaleFontColor = findContrastor(newColor);
-      chart.buildScale(chart.scale.xLabels);
-      chart.update();
-    }
-  }
-  else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
-    document.getElementById("graphCC").style.background = colors[newColor.toLowerCase().split(' ').join('')];
-    if(document.getElementById("graphContrast").checked){
-      chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
-      chart.buildScale(chart.scale.xLabels);
-      chart.update();
-    }
-  }
-}
-
-var changeTextColor = function(){
-  var newColor = document.getElementById("textColorInput").value;
-  if(/^#[0-9A-F]{6}$/i.test(newColor)){
-    document.getElementsByTagName("body")[0].style.color = newColor;
-    document.getElementById("continuosBox").style.border = "3px solid " + newColor;
-    document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + newColor;
-    document.getElementById("summaryBox").style.borderTop="3px solid " +newColor;
-    document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
-    if(document.getElementById("textContrast").checked)
-      document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
-  }
-  else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
-    newColor = colors[newColor.toLowerCase().split(' ').join('')]
-    document.getElementsByTagName("body")[0].style.color = newColor;
-    document.getElementById("continuosBox").style.border = "3px solid " + newColor;
-    document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + newColor;
-    document.getElementById("summaryBox").style.borderTop="3px solid " +newColor;
-    document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
-    if(document.getElementById("textContrast").checked)
-      document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
-  }
-}
-
-var calcContrast = function(hex,hex2){
-  var r = parseInt(hex.substring(1,3), 16);
-  var g = parseInt(hex.substring(3,5), 16);
-  var b = parseInt(hex.substring(5), 16);
-  var lum = calcLum(r,g,b);
-  var r2 = parseInt(hex2.substring(1,3), 16);
-  var g2 = parseInt(hex2.substring(3,5), 16);
-  var b2 = parseInt(hex2.substring(5), 16);
-  var lum2 = calcLum(r2,g2,b2);
-  if(lum > lum2){
-    var contrast = (lum + 0.05) / (lum2 + 0.05);
-  }
-  else{
-    var contrast = (lum2 + 0.05) / (lum + 0.05);
-  }
-  return contrast;
-}
-
-var calcLum = function(r,g,b){
-  r /= 255; //R_sRGB
-  g /= 255; //G_sRGB
-  b /= 255; //B_sRGB
-  var valArr = [r,g,b];
-  for(var i = 0; i < valArr.length; i++){
-    if(valArr[i]<=  0.03928){
-      valArr[i] /= 12.92;
-    }
-    else{
-      var val = valArr[i]+0.055;
-      val /= 1.055
-      valArr[i] = Math.pow(val,2.4);
-    }
-  }
-  var l = 0.2126 * valArr[0] + 0.7152 * valArr[1] + 0.0722 * valArr[2];
-  return l;
-}
-
-var findContrastor = function(hex){
-  if(hex.toLowerCase() === "#ff0000")
-    return "#FFFFFF";
-  var max = -1;
-  var maxCon;
-  for(var key in colors){
-    var candidateContrast = calcContrast(hex,colors[key]);
-    if(candidateContrast>max){
-      max = candidateContrast;
-      maxCon = colors[key];
-    }
-    if(candidateContrast >= 7){
-      return colors[key];
-    }
-  }
-  return maxCon;
-}
-
-var resetText= function(){
-  document.getElementsByTagName("body")[0].style.color = "#000000";
-  document.getElementById("textColorInput").value= "";
-  document.getElementById("continuosBox").style.border = "3px solid black";
-  document.getElementById("audioSpanSec").style.borderBottom = "3px solid black";
-  document.getElementById("summaryBox").style.borderTop="3px solid black";
-  document.getElementById("bgColorChange").style.borderTop="3px solid black";
-}
-
-var resetSiteBg = function(){
-  var black = "#000000";
-  document.getElementsByTagName("body")[0].style.background = "url('stylesheets/halftone/halftone.png')";
-  if(document.getElementById("siteContrast").checked)
-    resetText();
-  else{
-    document.getElementById("continuosBox").style.border = "3px solid black";
-    document.getElementById("audioSpanSec").style.borderBottom = "3px solid black";
-    document.getElementById("summaryBox").style.borderTop="3px solid black";
-    document.getElementById("bgColorChange").style.borderTop="3px solid black";
-  }
-  document.getElementById("siteColorInput").value = "";
-}
-
-var resetGraphBg = function(){
-  document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')";
-  chart.options.scaleFontColor = findContrastor("#FFFFFF");
-  chart.buildScale(chart.scale.xLabels);
-  chart.update();
-  document.getElementById("graphColorInput").value="";
-}
-
-var textKeyUp = function(event){
-   event = event || window.event;
-    if (event.keyCode === 32 || event.keyCode===13) {
-      resetText();
-    }
-}
-
-var graphKeyUp = function(event){
-   event = event || window.event;
-    if (event.keyCode === 32 || event.keyCode===13) {
-      resetGraphBg();
-    }
-}
-
-var siteKeyUp = function(event){
-     event = event || window.event;
-    if (event.keyCode === 32 || event.keyCode===13) {
-      resetSiteBg();
-    }
 }
