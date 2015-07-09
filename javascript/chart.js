@@ -459,7 +459,7 @@ function deque(array) {
 	array.splice(0,1);
 	return ele;
 }
-
+//Convert points to bars for a bar graph
 function convertPointsToBars(){
 	var datasetLen = chart.datasets.length;
 	var chartBase = chart.scale.endPoint;
@@ -526,6 +526,7 @@ function convertPointsToBars(){
 	}
 }
 
+//Convert points to scatterplot points for scatterplot
 function convertPointsToScatter(){
 	var datasetLen = chart.datasets.length;
 	var chartBase = chart.scale.endPoint;

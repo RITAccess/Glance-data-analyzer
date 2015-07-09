@@ -161,6 +161,7 @@ WaveForm.prototype.playSeriesColumns = function(line,startIndex,endIndex){
 	}).start();
 };
 
+//Sonically represent the regression line using a waveform
 WaveForm.prototype.playRegressionLine = function(){
   this.playing = true;
   var i = 0;

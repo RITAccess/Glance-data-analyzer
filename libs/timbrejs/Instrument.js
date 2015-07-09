@@ -111,6 +111,7 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
   self.playing = false;
 }
 
+//Sonically represent the regression line using an instrument
 Instrument.prototype.playRegressionLine = function(){
   this.playing = true;
   var i = 0;
@@ -224,7 +225,7 @@ Instrument.prototype.setBpm = function(bpm){
   }
   this.bpm = bpm;
 }
-
+//Preload all notes in the collection
 Instrument.prototype.buildNotes= function(){
   var newNotes = {};
   for(var i = 0; i < this.infoCollection.collection.length; i++){
@@ -263,6 +264,7 @@ Instrument.prototype.buildNotes= function(){
   }
 }
 
+//Get key in hash given a value
 Instrument.prototype.getKeyByValue = function( value ) {
     for( var prop in this.notes ) {
         if( this.hasOwnProperty( prop ) ) {

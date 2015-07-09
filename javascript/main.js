@@ -289,7 +289,7 @@ var blurElement = function(elementClass) {
   document.getElementsByClassName(elementClass)[0].style.backgroundColor = "#FFF";
   document.getElementsByClassName(elementClass)[0].style.color = "#000";
 }
-
+//Make column selector if play by columns play type in bar graph is chosen
 var makeColSelector = function(){
   if(document.getElementById("barGraphAudioOptions").selectedIndex === 1 && !document.getElementById("colSelector")){
     var selector = document.createElement("select");
