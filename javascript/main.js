@@ -290,7 +290,7 @@ var blurElement = function(elementClass) {
 }
 //Make column selector if play by columns play type in bar graph is chosen
 var makeColSelector = function(){
-  if(document.getElementById("barGraphAudioOptions").selectedIndex === 1 && !document.getElementById("colSelector")){
+  if(document.getElementById("barGraphAudioOptions").selectedIndex === 1 && !document.getElementById("colSelector") && type==="bar"){
     var selector = document.createElement("select");
     selector.setAttribute("id", "colSelector");
     selector.setAttribute("class","drop-down");

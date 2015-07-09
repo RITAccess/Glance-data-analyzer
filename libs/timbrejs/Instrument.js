@@ -75,7 +75,8 @@ Instrument.prototype.playColumn = function(col){
     if(j>=self.infoCollection.collection.length-1 || self.infoCollection.collection[j] === undefined){
       self.playing = false;
       self.updateIcon();
-      t.stop();
+      this.stop();
+      self.t.stop();
     }
     var key =  parseInt(self.infoCollection.collection[j].array[i]);
     T.soundfont.play(self.pnotes[key],false);
@@ -97,7 +98,8 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
     if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
       self.playing = false;
       self.updateIcon();
-      t.stop();
+      this.stop();
+      self.t.stop();
     }
     for(var k = 0; k < self.infoCollection.collection.length; k++){
       var key =  parseInt(self.infoCollection.collection[k].array[i]);
