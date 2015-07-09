@@ -53,6 +53,20 @@ var loadData = function (data) {
     document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen label cells."
     chart = loadChart(data.data, type);
     if(chart && type === "bar"){
+      if(document.getElementById('barGraphAudioOptions')){
+        var c = document.getElementById('barGraphAudioOptions');
+        var p =  c.parentNode;
+        p.removeChild(c);
+        var c = document.getElementById('playModeLabel');
+        p.removeChild(c);
+        if(document.getElementById("colSelector")){
+          var c = document.getElementById('colSelector');
+          var p =  c.parentNode;
+          p.removeChild(c);
+          var c = document.getElementById("colNumLabel");
+          p.removeChild(c);
+          }
+        }
       convertPointsToBars();
       if(!document.getElementById("barGraphAudioOptions")){
         var newddm = document.createElement("select");
@@ -99,6 +113,7 @@ var loadData = function (data) {
 
     }
     else{
+      convertPointsToScatter();
       if(!document.getElementById("barGraphAudioOptions")){
         var newddm = document.createElement("select");
         newddm.setAttribute("id","barGraphAudioOptions");
@@ -108,7 +123,7 @@ var loadData = function (data) {
         option.innerHTML = "Normal";
         newddm.appendChild(option);
         option = document.createElement("option");
-        option.setAttribute("value","3");
+        option.setAttribute("value","1");
         option.innerHTML = "Play Regression Line";
         newddm.appendChild(option);
         var label = document.createElement("label");
@@ -116,10 +131,41 @@ var loadData = function (data) {
         label.setAttribute("id","playModeLabel");
         document.getElementById("audioSpanBar").appendChild(label);
         document.getElementById("audioSpanBar").appendChild(newddm);
-        //newddm.setAttribute("onchange", "makeColSelector()");
+        newddm.setAttribute("onchange", "makeColSelector()");
       }
-      convertPointsToScatter();
-
+      else{
+       if(document.getElementById('barGraphAudioOptions')){
+        var c = document.getElementById('barGraphAudioOptions');
+        var p =  c.parentNode;
+        p.removeChild(c);
+        var c = document.getElementById('playModeLabel');
+        p.removeChild(c);
+        if(document.getElementById("colSelector")){
+          var c = document.getElementById('colSelector');
+          var p =  c.parentNode;
+          p.removeChild(c);
+          var c = document.getElementById("colNumLabel");
+          p.removeChild(c);
+          }
+        }
+        var newddm = document.createElement("select");
+        newddm.setAttribute("id","barGraphAudioOptions");
+        newddm.setAttribute("class","drop-down");
+        var option = document.createElement("option");
+        option.setAttribute("value","0");
+        option.innerHTML = "Normal";
+        newddm.appendChild(option);
+        option = document.createElement("option");
+        option.setAttribute("value","1");
+        option.innerHTML = "Play Regression Line";
+        newddm.appendChild(option);
+        var label = document.createElement("label");
+        label.innerHTML = "Play mode ";
+        label.setAttribute("id","playModeLabel");
+        document.getElementById("audioSpanBar").appendChild(label);
+        document.getElementById("audioSpanBar").appendChild(newddm);
+        newddm.setAttribute("onchange", "makeColSelector()");   
+      }
     }
     if(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)
       player = new WaveForm("sine");
