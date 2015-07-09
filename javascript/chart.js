@@ -446,7 +446,6 @@ function dataset(data, collection) {
 		red += colorIncrease + 15;
 		green += colorIncrease;
 		blue += colorIncrease - 15;
-
 	}
 	var returndata = new Object();
 	returndata.data = dataArray;
