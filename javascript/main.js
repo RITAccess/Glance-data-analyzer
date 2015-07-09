@@ -14,14 +14,8 @@ require(["libs/jquery/jquery-1.11.2.js"],function(jquery) {
   });
 });
 
-
 require(["libs/PapaParse/papaparse.min.js"]);
 require(["libs/chartjs/Chart.js"]);
-
-require(["javascript/files.js"], function(print){
-  loadListener();
-  createListener();
-});
 
 require(["javascript/chart.js"]);
 require(["javascript/overlay.js"]);
@@ -31,6 +25,11 @@ require(["javascript/global.js"]);
 require(["javascript/summary.js"]);
 require(["javascript/prompts.js"]);
 require(["javascript/printer.js"]);
+
+require(["javascript/files.js"], function(print){
+  createListener();
+  loadListener();
+});
 
 var player;
 var overlay;
@@ -396,7 +395,7 @@ var resetGraphBg = function(){
   chart.options.scaleFontColor = findContrastor("#FFFFFF");
   chart.buildScale(chart.scale.xLabels);
   chart.update();
-  document.getElementById("graphColorInput").value="";      
+  document.getElementById("graphColorInput").value="";
 }
 
 var textKeyUp = function(event){

@@ -14,14 +14,12 @@ var loadChart = function(data, type, collection){
 		datasets: chartdata.data
 	};
 	var currBgColor = document.getElementById("graphCC").style.background;
-	console.log(currBgColor);
 	if(currBgColor === ""){
 		var sfc = "#000";
 	}
 	else{
 		var sfc = findContrastor(convertRGBtoHex(currBgColor.substring(0,currBgColor.indexOf(")"))));
 	}
-	console.log(sfc);
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLineChart;
 	if(type === "scatter"){
@@ -418,8 +416,12 @@ function dataset(data, collection) {
 		var keyLabel = document.createTextNode(shapes[0]);
 		}
     else if(type === "bar"){
-		keyLabel = document.createElement('span');
-		keyLabel.setAttribute("style", "background:" + newColor);
+		keyLabel = document.createElement('canvas');
+		keyLabel.setAttribute("style","padding:0px; height:24px; width:65px;")
+		var ctx = keyLabel.getContext("2d");
+		ctx.fillStyle = newColor;
+		ctx.fillRect(0,0,9999,9999);
+		//keyLabel.setAttribute("style", "background:" + newColor);
 		keyLabel.setAttribute("class", "colorblock");
 		}
 		if(hidden.length<= i-1){
