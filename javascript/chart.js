@@ -409,6 +409,7 @@ function dataset(data, collection) {
     else if(type === "bar"){
 		keyLabel = document.createElement('span');
 		keyLabel.setAttribute("style", "background:" + newColor);
+		keyLabel.style.border = "2px solid " + findContrastor(convertRGBtoHex(newColor));
 		keyLabel.setAttribute("class", "colorblock");
 		}
 		if(hidden.length<= i-1){
