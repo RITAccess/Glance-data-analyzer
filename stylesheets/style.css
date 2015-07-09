@@ -349,7 +349,7 @@ svg * {
     padding-bottom: 8%;
     /* position: relative; part of making download button bottom of div*/
 }
-#summary-header{ /* for printer.js */
+#summary-header{ /*  center align is for printer.js */
     text-align: center;
     margin-bottom: 0;
 }
