@@ -138,6 +138,7 @@
 			player.isLoading=true;
 		var i, noop = function () {};
 		for (i = 0; i < noteArray.length; i++) {
+			if(!isNaN(noteArray[i]))
 			getSample(noteArray[i], noop);
 		}
 		if(player){

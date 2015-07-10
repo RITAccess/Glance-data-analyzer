@@ -48,7 +48,20 @@ var loadSlickTable = function(fileData){
 				}
 			}
 	}
-
+	// if(data && data[0][0]!=" "){
+ //   		for(var key in data[0]){
+ //   			//data[0].insert(0," ");
+ //   			data[0][key +1] = data[0][key];
+ //   		}
+ //   		data[0][0] = " ";
+ //   		for(var i = 1; i<data.length; i++){
+ //   			for(var key in data[i]){
+ //   				//data[i].insert(0,"Row " + i);
+ //   				data[i][key +1] = data[i][key];
+ //   			}
+ //   			data[i][0] = "Row " + i;
+ //   		}
+ //   	}
 	//Dynamic Container Width
 	//NOTE: To change the Column Width of the table please change "ColumnWidth" at the top of the file!
 	var container = document.getElementById('tblContainer');
@@ -63,7 +76,6 @@ var loadSlickTable = function(fileData){
     	ContainerWidthNum = maxContainerWidthNum;
     var ContainerWidthString = ContainerWidthNum + "px";
    	container.setAttribute("style", "width:" + ContainerWidthString);
-
    	//Grid creation
     grid = new Slick.Grid(c1, data, columns, options);
 
@@ -132,10 +144,9 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		totalData.splice(dataCount, totalData.length - dataCount - 1);
 
 		//update chart and overlay
-		//console.log(oldGrid);
 		updateGrid();
-	  holdData(oldGrid);
-	  dataCount++;
+	    holdData(oldGrid);
+	    dataCount++;
 		chart.update();
 		summary.update();
 		overlay.updateSize(chart);
@@ -230,7 +241,6 @@ function checkRemove(){
 	}
 
 	holdData(oldGrid);
-	console.log(totalData);
     chart.update();
 	document.getElementById('tblContainer').style.width="100%";
 }
@@ -249,7 +259,6 @@ function updateGrid() {
 
 // Holds old data going back five times plus the most recent data
 function holdData(newData) {
-	console.log(newData);
 	if (totalData.length <= 14) {
 		totalData.push(newData);
 	}
@@ -261,18 +270,17 @@ function holdData(newData) {
 
 // Goes back one in the totaldata set
 function undo() {
-	// if (dataCount > 14) {
-	// 	dataCount = 14;
-	// }
-	// Checks if there is a previous value
+	if (dataCount > 14) {
+		dataCount = 14;
+	}
+	//Checks if there is a previous value
 	if (dataCount >= 1) {
-		var prevData = totalData[dataCount - 1];
+		var prevData = totalData[dataCount-1];
 		var dataBack = {
 			data: [],
 			errors: [],
 			meta: {}
 		};
-
 		// Reset for a change in number of rows
 		if (oldGrid.length != prevData.length) {
 			dataBack.data = prevData;
@@ -316,7 +324,6 @@ function undo() {
 	else {
 		alert("No more undos!");
 	}
-
 	// Updates everything
 	updateGrid();
 	chart.update();
@@ -377,7 +384,6 @@ function redo() {
 	else {
 		alert("No more redos!");
 	}
-
 	// Updates everything
 	updateGrid();
 	chart.update();

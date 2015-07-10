@@ -50,9 +50,16 @@ var loadData = function (data) {
     document.querySelector('#overlay').setAttribute('style', '');
     document.querySelector('#slickTable').innerHTML = '';
     slickTable = loadSlickTable(data.data);
+    var tempData = [];
+    for(var i = 0; i < data.data.length; i++){
+      tempData[i] = [];
+      for(var j = 0; j<data.data[i].length; j++){
+        tempData[i][j] = data.data[i][j];
+      }
+    }
     document.getElementById('tableCount').innerHTML = "[ Total Row: " + (data.data.length - 1) + " ] [ Total Column: " + (data.data[0].length - 1) + " ]";
-    document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen label cells."
-    chart = loadChart(data.data, type);
+    document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen label cells.";
+    chart = loadChart(tempData, type);
     if(chart && type === "bar"){
       if(document.getElementById('barGraphAudioOptions')){
         var c = document.getElementById('barGraphAudioOptions');
@@ -205,8 +212,6 @@ var loadData = function (data) {
     document.getElementById('plot-header').style.display = 'inherit';
     document.getElementById('tableControls').style.display = 'inherit';
     document.getElementById('summary-header').style.display = 'inherit';
-    //document.getElementById('bgCCHeader').style.display = 'inherit';
-    //document.getElementById('bgCCForm').style.display = 'inherit';
     document.getElementById('bgColorChange').style.display = 'inherit';
     fixSlick();
     if(type === "line"){
