@@ -143,14 +143,19 @@ var loadChart = function(data, type, collection){
 									}
 								}
 					}
-					//Set Graph data color indication color to match new color
-					if(type === "line" || type === "scatter"){
-						var contrastColor = findContrastor(newcolor);
+					//Set graph data color indicator
+					if(type === "line" || type==="scatter"){
+						var nColor = convertRGBtoHex(lineColors[index]);
+						var contrastColor = findContrastor(nColor);
 						this.parentNode.firstChild.nextSibling.nextSibling.setAttribute("style", "color:rgb(" + color + "); display: inline; background:" + contrastColor);
 					}
 					else if(type === "bar"){
-						var contrastColor = findContrastor(colors[newcolor]);
-						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline;border: 2px solid " + contrastColor);
+						var nColor = convertRGBtoHex(lineColors[index]);
+						var contrastColor = findContrastor(nColor);
+						var block = document.getElementsByClassName("colorblock")[index];
+						block.getContext("2d").fillStyle = nColor;
+						block.getContext("2d").fillRect(0,0,9999,9999);
+						block.style.border = "2px solid " + contrastColor;
 					}
 				}
 				//Check color list for name match
@@ -269,9 +274,13 @@ var loadChart = function(data, type, collection){
 					}
 					else if(type === "bar"){
 						var contrastColor = findContrastor(colors[newcolor.toLowerCase().split(' ').join('')]);
-						this.parentNode.firstChild.nextSibling.nextSibling.firstChild.setAttribute("style", "background:rgb(" + color + "); display: inline; border: 2px solid " + contrastColor);
+						var nColor = convertRGBtoHex(lineColors[index]);
+						var block = document.getElementsByClassName("colorblock")[index];
+						block.getContext("2d").fillStyle = nColor;
+						block.getContext("2d").fillRect(0,0,9999,9999);
+						block.style.border = "2px solid " + contrastColor;
 					}
-          }
+        }
 			};
 		//Setting behavior for all toggleboxes
 		chartdata.inputboxes[i].nextSibling.firstChild.onclick = function(){
@@ -356,25 +365,25 @@ function dataset(data, collection) {
 		data[i].splice(0, 1);
 		var line =
 		{
-		fillColor: "rgba(220, 220, 220, 0)",
-		strokeColor: "rgba("+ color +", 1)",
-		pointColor: "rgba("+ color +", 1)",
-		label: i,
+			fillColor: "rgba(220, 220, 220, 0)",
+			strokeColor: "rgba("+ color +", 1)",
+			pointColor: "rgba("+ color +", 1)",
+			label: i,
 
-      //pointStrokeColor: "#fff",
-		pointHighlightFill: "#fff",
-		pointHighlightStroke: "rgba("+ color +", 1)",
-		data: data[i]
+	      //pointStrokeColor: "#fff",
+			pointHighlightFill: "#fff",
+			pointHighlightStroke: "rgba("+ color +", 1)",
+			data: data[i]
 		}
     //Fill Bar Color
 		if(type === "bar"){
 			line.fillColor = line.strokeColor;
 		}
     //Put line into data Array
-    	if(hidden[i-1]===false){
-    		oldData[i-1].data = line;
-    		line.data = undefined;
-    	}
+  	if(hidden[i-1]===false){
+  		oldData[i-1].data = line;
+  		line.data = undefined;
+  	}
 		dataArray.push(line);
     //Chech if previous line color existed
     if(lineColors.length<i){
@@ -401,20 +410,20 @@ function dataset(data, collection) {
 		var keyValue = document.createElement('p');
 		//var removeButton = document.createElement('button');
     if(type === "line"){
-		var keyLabel = document.createTextNode(shapes[(i-1)%6]);
-	}
-	else if(type === "scatter"){
-		var keyLabel = document.createTextNode(shapes[0]);
+			var keyLabel = document.createTextNode(shapes[(i-1)%6]);
+		}
+		else if(type === "scatter"){
+			var keyLabel = document.createTextNode(shapes[0]);
 		}
     else if(type === "bar"){
-		keyLabel = document.createElement('canvas');
-		keyLabel.setAttribute("style","padding:0px; height:24px; width:65px;")
-		var ctx = keyLabel.getContext("2d");
-		ctx.fillStyle = newColor;
-		ctx.fillRect(0,0,9999,9999);
-		keyLabel.style.border = "2px solid " + findContrastor(convertRGBtoHex(newColor));
-		//keyLabel.setAttribute("style", "background:" + newColor);
-		keyLabel.setAttribute("class", "colorblock");
+			var keyLabel = document.createElement('canvas');
+			keyLabel.setAttribute("style","padding:0px; height:24px; width:65px;")
+			var ctx = keyLabel.getContext("2d");
+			ctx.fillStyle = newColor;
+			ctx.fillRect(0,0,9999,9999);
+			keyLabel.style.border = "2px solid " + findContrastor(convertRGBtoHex(newColor));
+			//keyLabel.setAttribute("style", "background:" + newColor);
+			keyLabel.setAttribute("class", "colorblock");
 		}
 		if(hidden.length<= i-1){
 			hidden.push(true);
@@ -450,7 +459,6 @@ function dataset(data, collection) {
 		red += colorIncrease + 15;
 		green += colorIncrease;
 		blue += colorIncrease - 15;
-
 	}
 	var returndata = new Object();
 	returndata.data = dataArray;

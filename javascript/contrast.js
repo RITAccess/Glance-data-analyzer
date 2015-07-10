@@ -37,7 +37,7 @@ var calcLum = function(r,g,b){
   return l;
 }
 
-//Find the greatest contrasting color in the global list of colors given a hex color 
+//Find the greatest contrasting color in the global list of colors given a hex color
 var findContrastor = function(hex){
   if(hex.toLowerCase() === "#ff0000")
     return "#FFFFFF";

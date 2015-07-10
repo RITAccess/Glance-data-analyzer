@@ -98,6 +98,24 @@ function printPage()
       }
    }
 
+   var colorBoxes = printWin.document.getElementsByClassName("colorblock")
+   var image = new Image();
+   var length = colorBoxes.length;
+   for(var i = 0; i < length; i++){
+     /*
+     image.src = colorBoxes[i].toDataURL("image/png");
+     var myImg = printWin.document.createElement("img");
+     myImg = image;
+     colorBoxes[i].parentNode.replaceChild(myImg, colorBoxes[i]);
+     */
+     var imgHTML = printWin.document.createElement("img");
+     imgHTML.setAttribute("src",colorBoxes[0].toDataURL());
+     imgHTML.setAttribute("alt","Color Box");
+     imgHTML.setAttribute("width",65);
+     imgHTML.setAttribute("height",24);
+     colorBoxes[0].parentNode.replaceChild(imgHTML, colorBoxes[0]);
+   }
+
    //printWin.document.styleSheets[0].insertRule('.colorblock {-webkit-print-color-adjust:exact;}',printWin.document.styleSheets[0].length);
 
    printWin.focus();
