@@ -444,11 +444,11 @@ function removeColumns(start,skip){
   }
   currTable.data[0].pop();
 
-  for(var i = start; i < currTable.data[0].length;i++) {
-    if (currTable.data[0][i].includes("Label ")) {
+   for(var i = start; i < currTable.data[0].length;i++) {
+    if (currTable.data[0][i].substring(0, 6) === ("Label ")) {
       currTable.data[0][i] = "Label " + i;
     }
-  }
+   }
 
   loadData(currTable);
   changeType();
@@ -501,7 +501,7 @@ function removeRows(start,skip){
     }
 
     for(var i = start; i < currTable.data.length; i++) {
-      if (currTable.data[i][0].includes("Row ")) {
+      if (currTable.data[i][0].substring(0, 4) === ("Row ")) {
         currTable.data[i][0] = "Row " + i;
       }
     }

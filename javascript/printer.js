@@ -98,7 +98,7 @@ function printPage()
       }
    }
 
-   printWin.document.styleSheets[0].addRule(".colorblock","-webkit-print-color-adjust:exact;")
+   //printWin.document.styleSheets[0].insertRule('.colorblock {-webkit-print-color-adjust:exact;}',printWin.document.styleSheets[0].length);
 
    printWin.focus();
    setTimeout(function(){printWin.print();},100);

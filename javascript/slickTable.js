@@ -254,6 +254,7 @@ function updateGrid() {
 
 // Holds old data going back five times plus the most recent data
 function holdData(newData) {
+	console.log(newData);
 	if (totalData.length <= 14) {
 		totalData.push(newData);
 	}
@@ -265,9 +266,9 @@ function holdData(newData) {
 
 // Goes back one in the totaldata set
 function undo() {
-	if (dataCount > 14) {
-		dataCount = 14;
-	}
+	// if (dataCount > 14) {
+	// 	dataCount = 14;
+	// }
 	// Checks if there is a previous value
 	if (dataCount >= 1) {
 		var prevData = totalData[dataCount - 1];
@@ -280,10 +281,7 @@ function undo() {
 		// Reset for a change in number of rows
 		if (oldGrid.length != prevData.length) {
 			dataBack.data = prevData;
-			updateGrid();
 			loadData(dataBack);
-			console.log(prevData);
-			console.log(totalData[dataCount]);
 			totalData.pop();
 		}
 		else {
@@ -291,11 +289,8 @@ function undo() {
 				// Reset for a change in number of columns
 				if (oldGrid[i].length != prevData[i].length) {
 					dataBack.data = prevData;
-					updateGrid();
 					loadData(dataBack);
 					totalData.pop();
-					console.log(prevData);
-					console.log(totalData[dataCount]);
 					break;
 				}
 				// Resets any value changes back one set of data
@@ -314,7 +309,6 @@ function undo() {
 							}
 						// Tabs through all the cells to visually reset data
 						grid.gotoCell(i, j);
-						updateGrid();
 					}
 				}
 			}
@@ -349,10 +343,7 @@ function redo() {
 		// Reset for a change in number of table rows
 		if (oldGrid.length != nextData.length) {
 			dataBack.data = nextData;
-			updateGrid();
 			loadData(dataBack);
-			console.log(nextData);
-			console.log(totalData[dataCount]);
 			totalData.pop();
 		}
 		else {
@@ -360,10 +351,7 @@ function redo() {
 				// Reset for a change in number of table columns
 				if(oldGrid[i].length != nextData[i].length) {
 					dataBack.data = nextData;
-					updateGrid();
 					loadData(dataBack);
-					console.log(nextData);
-					console.log(totalData[dataCount]);
 					totalData.pop();
 					break;
 				}
@@ -371,7 +359,6 @@ function redo() {
 				else {
 					for (var j = 0; j < nextData[i].length; j++) {
 						grid.getData()[i][j] = nextData[i][j];
-						updateGrid();
 						if (i === 0) {
 							chart.scale.xLabels[j-1] = grid.getData()[0][j];
 						}

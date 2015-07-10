@@ -349,8 +349,9 @@ svg * {
     padding-bottom: 8%;
     /* position: relative; part of making download button bottom of div*/
 }
-#summary-header{ /* for printer.js */
+#summary-header{ /*  center align is for printer.js */
     text-align: center;
+    margin-bottom: 0;
 }
 #tblSummary {
     font-weight: normal;
@@ -371,7 +372,7 @@ svg * {
     text-align: center;
     padding-left: 1.5%;
 }
-#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #dialogboxfoot button {
+#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button {
     display: inline;
     cursor: pointer !important;
     background: #FFF;
@@ -421,7 +422,7 @@ svg * {
     margin: 0;
 }
 #colors > li {
-    margin-bottom: 4%;
+    margin-top: 4%;
 }
 #colors p {
    border-radius: 5px;
