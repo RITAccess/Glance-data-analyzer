@@ -181,7 +181,7 @@ var loadData = function (data) {
       player = new Instrument(1);
     overlay = new Overlay(data, type);
     overlay.updateSize(chart);
-    collection = new ArrayCollection(data.data);
+    collection = new ArrayCollection(tempData);
     player.setCollection(collection.collection);
     summary = new DataSummary(collection);
     summary.dataSummary();
