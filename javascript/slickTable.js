@@ -101,9 +101,14 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			
 			if(newVal.charAt(0) == '='){
 				var str = newVal.slice(1);
-				str = evaluate(str);
-				newVal = parseFloat(str);
-				grid.getData()[row][col] = newVal;
+				newVal = evaluate(str);
+				if(!isNaN(newVal)){ //a legit result is returned....
+					grid.getData()[row][col] = newVal;
+				}
+				else{ //revert back to old value
+					newVal = chart.datasets[row-1].points[col - 1].value;
+					grid.getData()[row][col];
+				}
 			}
 			
 			//Update audio with new value
@@ -396,44 +401,59 @@ function redo() {
 	chart.update();
 	summary.update();
 	document.getElementById('tblContainer').style.width = "100%";
-
 }
 
 // regex evaluation for table
-// originally from m@ crumley, stackoverflow
-// edited to add in ^ operator & follow PEMDAS
+// @author erl7902
 function evaluate(x) {
-    x = x.replace(/ /g, "") + ")";
-    function primary() {
-        if (x[0] == '(') {
-            x = x.substr(1);
-            return expression();
-        }
-
-        var n = /^[-+]?\d*\.?\d*/.exec(x)[0];
-        x = x.substr(n.length);
-        return +n;
-    }
-
-    function expression() {
-        var a = primary();
-        for (;;) {
-            var operator = x[0];
-            x = x.substr(1);
-
-            if (operator == ')') {
-                return a;
-            }
-
-            var b = primary();
-            a = (operator == '*') ? a * b :
-                (operator == '/') ? a / b :
-				(operator == '+') ? a + b :
-                (operator == '-') ? a - b :
-								Math.pow(a,b);
-        }
-    }
-
-    return expression();
+	//rm spaces
+    x = x.replace(/ /g, "");
+	x = x.split(/([-+/*^()])/g);
+    x = x.filter(function(value){ return value !== ''; });
+	//console.log(x);
+    return (parseFloat(evall(x)[0]));
 }
 
+function evall(x) {
+	var start = x.indexOf('(');
+	var end = x.lastIndexOf(')');
+	if (start != -1 && end != -1){
+		var result = evall(x.slice(start+1,end));
+		x = x.slice(0,start).concat(result.concat(x.slice(end+1, x.length-1)));
+	}
+	
+	end = x.length-1;
+	while((/[\^\+\-\/\*]/.test(x))){
+		while(/\^/.test(x)){
+			var op = x.indexOf('^');
+			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([Math.pow((parseFloat(x[op-1]), parseFloat(x[op+1])))]).concat(x.slice(op+2,end));
+		//	console.log("exp");
+		//	console.log(x);
+		}
+		while(/\//.test(x)){
+			var op = x.indexOf('/');
+			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) / parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
+		//	console.log("/");
+		//	console.log(x);
+			}
+		while(/\*/.test(x)){
+			var op = x.indexOf('*');
+			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) * parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
+		//	console.log("*");
+		//	console.log(x);		
+		}
+		while(/\+/.test(x)){
+			var op = x.indexOf('+');
+			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) + parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
+		//	console.log("+");
+		//	console.log(x);		
+		}
+		while(/\-/.test(x)){
+			var op = x.indexOf('-');
+			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) - parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
+		//	console.log("-");
+		//	console.log(x);		
+		}
+	}
+  return x;
+}
