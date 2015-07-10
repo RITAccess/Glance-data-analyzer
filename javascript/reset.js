@@ -6,6 +6,9 @@ var resetText= function(){
   document.getElementById("audioSpanSec").style.borderBottom = "3px solid black";
   document.getElementById("summaryBox").style.borderTop="3px solid black";
   document.getElementById("bgColorChange").style.borderTop="3px solid black";
+  if(document.getElementById("textContrast").checked){
+    document.getElementsByTagName("body")[0].style.background = "url('stylesheets/halftone/halftone.png')";
+  }
 }
 
 //Reset site background. If high contrast is checked, reset text color as well.

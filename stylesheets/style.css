@@ -187,7 +187,8 @@ header {
     margin-top: 5%;
 }
 #selection {
-    fill-opacity: 0.01;
+    fill-opacity: 0.2;
+    fill: lightblue;
 }
 #graphImg{/* printer.js: image of graph in the print page */
     margin-bottom: 8%;
@@ -199,7 +200,7 @@ header {
 svg * {
     stroke:#000;
     stroke-width:1;
-    fill-opacity: 0.0;
+    fill-opacity: 0;
 }
 /*******************************/
 
@@ -349,8 +350,9 @@ svg * {
     padding-bottom: 8%;
     /* position: relative; part of making download button bottom of div*/
 }
-#summary-header{ /* for printer.js */
+#summary-header{ /*  center align is for printer.js */
     text-align: center;
+    margin-bottom: 0;
 }
 #tblSummary {
     font-weight: normal;
@@ -371,7 +373,7 @@ svg * {
     text-align: center;
     padding-left: 1.5%;
 }
-#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #dialogboxfoot button {
+#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button {
     display: inline;
     cursor: pointer !important;
     background: #FFF;
@@ -386,6 +388,11 @@ svg * {
     margin-right: 2.5%;
     vertical-align: middle;
 }
+@-moz-document url-prefix() { /* mozilla firefox css property  */
+    #rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button {
+        padding: 1%;
+    }
+}
 #rowLabel, #columnLabel {
     cursor: default !important;
 }
@@ -399,7 +406,7 @@ svg * {
     border-radius: 100%;
     vertical-align: middle;
 }
-#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #undoButton:hover, #redoButton:hover, #toTopButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus, #toTopButton:focus {
+#resetButton:hover, #addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #undoButton:hover, #redoButton:hover, #toTopButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus, #toTopButton:focus {
     background-color: #000;
     color: #FFF;
 }
@@ -421,7 +428,7 @@ svg * {
     margin: 0;
 }
 #colors > li {
-    margin-bottom: 4%;
+    margin-top: 4%;
 }
 #colors p {
    border-radius: 5px;

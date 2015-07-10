@@ -214,6 +214,7 @@ WaveForm.prototype.setCollection = function(collection) {
 //A change was made to a line in the table
 WaveForm.prototype.changeLine = function(line, index, newValue) {
   if(line != -1) {
+  	if(!isNaN(newValue))
     this.infoCollection.changeLine(line,index,newValue);
   }
 }

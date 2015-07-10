@@ -24,14 +24,14 @@
     <h1 id="title"><a href="index.php">Data Analyzer</a></h1>
     <div class="inputBtnSection no-print">
       <label class="fileUpload">
-          <input id="files" type="file" accept=".csv" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
-          <span class="uploadBtn" onmouseover="focusElement('uploadBtn')" onmouseleave="blurElement('uploadBtn')">Load CSV</span>
+          <input id="files" tab-index="0" aria-label="Load CSV" type="file" accept=".csv" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
+          <span class="uploadBtn" aria-hidden="true" onmouseover="focusElement('uploadBtn')" onmouseleave="blurElement('uploadBtn')">Load CSV</span>
       </label>
     </div>
     <div class="newBtnSection no-print">
       <label class="createNew">
-        <input id="newTable" type="button" class="emptyTable" onfocus="focusElement('createBtn')" onblur="blurElement('createBtn')"/>
-        <span class="createBtn" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
+        <input id="newTable" tab-index="0" aria-label="Create New Table" type="button" class="emptyTable" onfocus="focusElement('createBtn')" onblur="blurElement('createBtn')"/>
+        <span class="createBtn" aria-hidden="true" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
       </label>
     </div>
     <span id="typeSelBody" class="no-print" style="display:none;">
@@ -108,10 +108,10 @@
             <label><button id="addNewCol" aria-label="Add Column" onclick="addColumn()"><i class="fa fa-plus"></i></button></label>
           </div>
           <button id="undoButton" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
-          <button id="redoButton" aria-label="Redo" onclick="redo()"><i class="fa fa-repeat fa-lg"></i></button><!-- This needs a onclick="redo()" currently no function -->
+          <button id="redoButton" aria-label="Redo" onclick="redo()"><i class="fa fa-repeat fa-lg"></i></button>
+          <button id="resetButton" aria-label="Reset Table" onclick="tableReset()"><i class="fa fa-refresh fa-lg"></i></button><!-- This needs a onclick="resetTable()" currently no function -->
           <button id="downloadCSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
           <button id="printButton" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
-          <!--<button id="resetButton" aria-label="Reset"><i class="fa fa-refresh fa-lg"></i></button> -->
         </div><!-- END id="tableControls" -->
       </div><!-- END id="dataPlot" -->
       <?php
