@@ -400,7 +400,7 @@ svg * {
     border-radius: 100%;
     vertical-align: middle;
 }
-#addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #undoButton:hover, #redoButton:hover, #toTopButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus, #toTopButton:focus {
+#resetButton:hover, #addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #undoButton:hover, #redoButton:hover, #toTopButton:hover, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus, #toTopButton:focus {
     background-color: #000;
     color: #FFF;
 }
