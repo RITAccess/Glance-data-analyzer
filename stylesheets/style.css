@@ -387,6 +387,11 @@ svg * {
     margin-right: 2.5%;
     vertical-align: middle;
 }
+@-moz-document url-prefix() { /* mozilla firefox css property  */
+    #rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button {
+        padding: 1%;
+    }
+}
 #rowLabel, #columnLabel {
     cursor: default !important;
 }
