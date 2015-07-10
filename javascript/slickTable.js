@@ -450,3 +450,23 @@ function evall(x) {
 	}
   return x;
 }
+
+function tableReset() {
+	if (dataCount != 0) {
+		var reset = confirm("You cannot undo a reset!");
+		if (reset === true) {
+			var dataBack = {
+				data: [],
+				errors: [],
+				meta: {}
+			};
+			dataBack.data = firstData;
+			loadData(dataBack);
+			dataCount = 0; 
+			totalData.splice(dataCount, totalData.length - dataCount - 1);
+		}
+	} 
+	else {
+		alert("You cannot reset!");
+	}
+}
