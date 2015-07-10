@@ -261,9 +261,9 @@ function holdData(newData) {
 
 // Goes back one in the totaldata set
 function undo() {
-	if (dataCount > 14) {
-		dataCount = 14;
-	}
+	// if (dataCount > 14) {
+	// 	dataCount = 14;
+	// }
 	// Checks if there is a previous value
 	if (dataCount >= 1) {
 		var prevData = totalData[dataCount - 1];
