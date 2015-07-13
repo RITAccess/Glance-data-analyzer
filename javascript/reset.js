@@ -36,7 +36,7 @@ var resetGraphBg = function(){
   document.getElementById("graphColorInput").value="";
   if(!checkWarningLabels()){
     alert("Some dataset colors may be difficult to see due to low color contrast");
-  }   
+  }
 }
 
 //Check for reset text button event
@@ -180,8 +180,9 @@ var checkWarningLabels = function(){
         newElem.setAttribute("id","warning" + i);
         newElem.setAttribute("class","fa fa-exclamation-triangle");
         newElem.style = "position: relative; left: -6.2%; color: red;";
-        newElem.setAttribute("aria-label", "Caution line color may not be visible on graph");
+        newElem.setAttribute("aria-label", "Caution: Line color may not be visible on graph.");
         newElem.setAttribute("tab-index", "0");
+        newElem.setAttribute("title","Caution: Line color may not be visible on graph.");
         input.parentNode.insertBefore(newElem,input.nextSibling);
       }
     }
