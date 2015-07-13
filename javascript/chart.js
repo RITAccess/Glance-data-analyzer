@@ -348,8 +348,15 @@ var loadChart = function(data, type, collection){
         }
 			};
 		//Setting behavior for all toggleboxes
-		chartdata.inputboxes[i].nextSibling.firstChild.onclick = function(){
+		var checkbox = chartdata.inputboxes[i].nextSibling.firstChild;
+		if(checkbox.tagName === "I"){
+			checkbox = chartdata.inputboxes[i].nextSibling.nextSibling.firstChild;
+		}
+		checkbox.onclick = function(){
 			var index = chartdata.inputboxes.indexOf(this.parentNode.previousSibling);
+			if(index === -1){
+				index = chartdata.inputboxes.indexOf(this.parentNode.previousSibling.previousSibling);
+			}
 			//If not hidden, hide
 			if(!this.checked){
 				if(hidden[index]!= false){
@@ -386,10 +393,18 @@ var loadChart = function(data, type, collection){
 			else{
 				if(hidden[index]!= true){
 					hidden[index]= true;
-					if(type === "bar")
+					if(type === "bar"){
 						var color = this.parentNode.previousSibling.previousSibling.firstChild.style.background;
-					else
+						if(color === ""){
+							color = this.parentNode.previousSibling.previousSibling.previousSibling.firstChild.style.background;
+						}
+					}
+					else{
 						var color = this.parentNode.previousSibling.previousSibling.style.color;
+						if(color === ""){
+							color = this.parentNode.previousSibling.previousSibling.previousSibling.style.color;
+						}
+					}
 					color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
 					chart.datasets[index].strokeColor = color;
 					chart.datasets[index].pointColor = color;
