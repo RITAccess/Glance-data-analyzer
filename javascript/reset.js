@@ -171,7 +171,7 @@ var checkWarningLabels = function(){
       noWarnings = false;
       if(warning){
         warning.setAttribute("style","position: relative; left: -6.2%; color: red;");
-        elem.nextSibling.style.left = "-20px";    
+        warning.nextSibling.style.left = "-20px";    
       }
       else{
         for(var j = 0; j<i; j ++){
