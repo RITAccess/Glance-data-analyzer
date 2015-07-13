@@ -394,9 +394,10 @@ var loadChart = function(data, type, collection){
 				if(hidden[index]!= true){
 					hidden[index]= true;
 					if(type === "bar"){
-						var color = this.parentNode.previousSibling.previousSibling.firstChild.style.background;
-						if(color === ""){
-							color = this.parentNode.previousSibling.previousSibling.previousSibling.firstChild.style.background;
+						if(this.parentNode.previousSibling.previousSibling.firstChild)
+						var color = this.parentNode.previousSibling.previousSibling.firstChild.getContext("2d").strokeStyle;
+						else{
+							color = this.parentNode.previousSibling.previousSibling.previousSibling.firstChild.getContext("2d").strokeStyle;
 						}
 					}
 					else{
@@ -700,6 +701,3 @@ function convertPointsToScatter(){
 		}
 	}
 }
-/*
-position: relative; left: -6.2%; color: red;
-*/
