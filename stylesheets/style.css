@@ -509,7 +509,6 @@ svg * {
 }
 input[type="text"] {
     cursor: auto !important;
-    /* text-align: center; */
     padding-left: 1%;
 }
 .fa { /* cursor for font awesome icons */
@@ -517,7 +516,6 @@ input[type="text"] {
 }
 .fa-exclamation-triangle {
     cursor: default !important;
-    margin-right: 2%;
 }
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
