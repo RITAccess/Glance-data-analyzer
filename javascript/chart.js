@@ -50,15 +50,15 @@ var loadChart = function(data, type, collection){
 					var graphBg = document.getElementById("graphCC").style.background;
 					graphBg = convertRGBtoHex(graphBg.substring(0,graphBg.indexOf(")")+1));
 					if(isNaN(calcContrast(graphBg,newcolor))){
-						// if(calcContrast(newcolor,"#F4F2E9")<=2){
-						// 	continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
-						// }
+						if(calcContrast(newcolor,"#F4F2E9")<=2){
+							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+						}
 						continuePrompt = calcContrast(newcolor,"#F4F2E9")<=1.5;
 					}
 					else{
-						// if(calcContrast(graphBg,newcolor)<=2){
-						// 	continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
-						// }
+						if(calcContrast(graphBg,newcolor)<=2){
+							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+						}
 						continuePrompt = calcContrast(graphBg,newcolor)<=1.5;
 					}
 					if(continuePrompt){
@@ -204,16 +204,15 @@ var loadChart = function(data, type, collection){
 					var graphBg = document.getElementById("graphCC").style.background;
 					graphBg = convertRGBtoHex(graphBg.substring(0,graphBg.indexOf(")")+1));
 					if(isNaN(calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')]))){
-						// if(calcContrast(colors[newcolor.toLowerCase().split(' ').join('')],"#F4F2E9")<=2){
-						// 	continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
-						// }
-						//console.log()
+						if(calcContrast(colors[newcolor.toLowerCase().split(' ').join('')],"#F4F2E9")<=2){
+							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+						}
 						continuePrompt = calcContrast(colors[newcolor.toLowerCase().split(' ').join('')],"#F4F2E9")<=1.5;
 					}
 					else{
-						// if(calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')])<=2){
-						// 	continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
-						// }
+						if(calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')])<=2){
+							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+						}
 						continuePrompt = calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')])<=1.5;
 					}
 					if(continuePrompt){
