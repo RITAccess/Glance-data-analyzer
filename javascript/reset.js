@@ -96,7 +96,19 @@ var changeSiteBg = function(){
 //Change graph background based on input value
 var changeGraphBg = function(){
   var newColor = document.getElementById("graphColorInput").value;
+  var contrast = true;
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
+    for(var i = 0; i <chart.datasets.length; i++){
+      var c = convertRGBtoHex(chart.datasets[i].strokeColor);
+      if(calcContrast(newColor,c)<=2){
+        contrast = false;
+      }
+    }
+    if(!contrast){
+      if(!confirm("Current background value may conflict with line colors and cause the graph to lack visibility, continue?")){
+        return;
+      }
+    }
     document.getElementById("graphCC").style.background = newColor;
     if(document.getElementById("graphContrast").checked){
       chart.options.scaleFontColor = findContrastor(newColor);
@@ -105,6 +117,17 @@ var changeGraphBg = function(){
     }
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
+    for(var i = 0; i <chart.datasets.length; i++){
+      var c = convertRGBtoHex(chart.datasets[i].strokeColor);
+      if(calcContrast(colors[newColor.toLowerCase().split(' ').join('')],c)<=2){
+        contrast = false;
+      }
+    }
+    if(!contrast){
+      if(!confirm("Current background value may conflict with line colors and cause the graph to lack visibility, continue?")){
+        return;
+      }
+    }
     document.getElementById("graphCC").style.background = colors[newColor.toLowerCase().split(' ').join('')];
     if(document.getElementById("graphContrast").checked){
       chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
