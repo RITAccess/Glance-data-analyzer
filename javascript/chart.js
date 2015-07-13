@@ -70,7 +70,6 @@ var loadChart = function(data, type, collection){
 							newElem.style = "position: relative; left: -6.2%; color: red;";
 							newElem.setAttribute("aria-label", "Caution line color may not be visible on graph");
 							newElem.setAttribute("tab-index", "0");
-							newElem.setAttribute("style", "margin-right:2%");
 							this.parentNode.insertBefore(newElem,this.nextSibling);
 						}
 						else
@@ -227,7 +226,6 @@ var loadChart = function(data, type, collection){
 							newElem.style = "position: relative; left: -6.2%; color: red;";
 							newElem.setAttribute("aria-label", "Caution line color may not be visible on graph");
 							newElem.setAttribute("tab-index", "0");
-							newElem.setAttribute("style",  "margin-right:2%");
 							this.parentNode.insertBefore(newElem,this.nextSibling);
 						}
 						else
