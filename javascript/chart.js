@@ -67,19 +67,19 @@ var loadChart = function(data, type, collection){
 							var newElem = document.createElement('i');
 							newElem.setAttribute("id","warning" + index);
 							newElem.setAttribute("class","fa fa-exclamation-triangle");
-							newElem.style = "position: relative; left: -6.2%; color: red;";
+							newElem.setAttribute("style" ,"position: relative; left: -6.2%; color: red;");
 							newElem.setAttribute("aria-label", "Caution: Line color may not be visible on graph.");
 							newElem.setAttribute("tab-index", "0");
 							newElem.setAttribute("title","Caution: Line color may not be visible on graph.");
 							this.parentNode.insertBefore(newElem,this.nextSibling);
 						}
 						else
-							elem.style = "position: relative; left: -6.2%; color: red;";
+							elem.setAttribute("style" , "position: relative; left: -6.2%; color: red;");
 					}
 					else{
 						var elem = document.getElementById("warning"+index);
 						if(elem)
-						elem.style = "display:none";
+						elem.setAttribute("style", "display:none");
 					}
 					if((this.nextSibling.firstChild!= null && this.nextSibling.firstChild.checked) ||this.nextSibling.nextSibling.firstChild.checked){
 						//Set necessary color values based on graph type
@@ -224,19 +224,19 @@ var loadChart = function(data, type, collection){
 							var newElem = document.createElement('i');
 							newElem.setAttribute("id","warning" + index);
 							newElem.setAttribute("class","fa fa-exclamation-triangle");
-							newElem.style = "position: relative; left: -6.2%; color: red;";
+							newElem.setAttribute("style","position: relative; left: -6.2%; color: red;");
 							newElem.setAttribute("aria-label", "Caution: Line color may not be visible on graph.");
 							newElem.setAttribute("tab-index", "0");
 							newElem.setAttribute("title","Caution: Line color may not be visible on graph.");
 							this.parentNode.insertBefore(newElem,this.nextSibling);
 						}
 						else
-							elem.style = "position: relative; left: -6.2%; color: red;";
+							elem.setAttribute("style","position: relative; left: -6.2%; color: red;");
 					}
 					else{
 						var elem = document.getElementById("warning"+index);
 						if(elem)
-						elem.style = "display:none";
+						elem.setAttribute("style", "display:none");
 					}
 					if((this.nextSibling.firstChild!= null && this.nextSibling.firstChild.checked) ||this.nextSibling.nextSibling.firstChild.checked){
 						//Set necessary colors based on graph type
