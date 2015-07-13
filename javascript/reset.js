@@ -34,7 +34,9 @@ var resetGraphBg = function(){
   chart.buildScale(chart.scale.xLabels);
   chart.update();
   document.getElementById("graphColorInput").value="";
-  checkWarningLabels();     
+  if(!checkWarningLabels()){
+    alert("Some dataset colors may be difficult to see due to low color contrast");
+  }   
 }
 
 //Check for reset text button event
@@ -105,7 +107,9 @@ var changeGraphBg = function(){
       chart.buildScale(chart.scale.xLabels);
       chart.update();
     }
-    checkWarningLabels();
+    if(!checkWarningLabels()){
+      alert("Some dataset colors may be difficult to see due to low color contrast");
+    }
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
     document.getElementById("graphCC").style.background = colors[newColor.toLowerCase().split(' ').join('')];
@@ -114,7 +118,9 @@ var changeGraphBg = function(){
       chart.buildScale(chart.scale.xLabels);
       chart.update();
     }
-    checkWarningLabels();
+    if(!checkWarningLabels()){
+      alert("Some dataset colors may be difficult to see due to low color contrast");
+    }
   }
 }
 
@@ -178,7 +184,5 @@ var checkWarningLabels = function(){
       }
     }
   }
-  if(!noWarnings){
-    alert("Some dataset colors may be difficult to see due to low color contrast");
-  }
+  return noWarnings;
 }
