@@ -518,9 +518,6 @@ input[type="text"] {
 .fa-exclamation-triangle {
     cursor: default !important;
 }
-.fa-warning::before, .fa-exclamation-triangle::before {
-    margin-right: 15px;
-}
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
 
