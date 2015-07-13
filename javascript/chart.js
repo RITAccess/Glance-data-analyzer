@@ -72,14 +72,20 @@ var loadChart = function(data, type, collection){
 							newElem.setAttribute("tab-index", "0");
 							newElem.setAttribute("title","Caution: Line color may not be visible on graph.");
 							this.parentNode.insertBefore(newElem,this.nextSibling);
+							var input = document.getElementById("warning"+index).nextSibling;
+							input.style.left = "-20px";
 						}
-						else
+						else{
 							elem.setAttribute("style" , "position: relative; left: -6.2%; color: red;");
+							elem.nextSibling.style.left = "-20px";
+						}
 					}
 					else{
 						var elem = document.getElementById("warning"+index);
-						if(elem)
-						elem.setAttribute("style", "display:none");
+						if(elem){
+							elem.setAttribute("style", "display:none");
+							elem.nextSibling.style.left = "0px";
+						}
 					}
 					if((this.nextSibling.firstChild!= null && this.nextSibling.firstChild.checked) ||this.nextSibling.nextSibling.firstChild.checked){
 						//Set necessary color values based on graph type
@@ -229,14 +235,20 @@ var loadChart = function(data, type, collection){
 							newElem.setAttribute("tab-index", "0");
 							newElem.setAttribute("title","Caution: Line color may not be visible on graph.");
 							this.parentNode.insertBefore(newElem,this.nextSibling);
+							var input = document.getElementById("warning"+index).nextSibling;
+							input.style.left = "-20px";	
 						}
-						else
+						else{
 							elem.setAttribute("style","position: relative; left: -6.2%; color: red;");
+							elem.nextSibling.style.left = "-20px";
+						}
 					}
 					else{
 						var elem = document.getElementById("warning"+index);
-						if(elem)
-						elem.setAttribute("style", "display:none");
+						if(elem){
+							elem.setAttribute("style", "display:none");
+							elem.nextSibling.style.left = "0px";
+						}
 					}
 					if((this.nextSibling.firstChild!= null && this.nextSibling.firstChild.checked) ||this.nextSibling.nextSibling.firstChild.checked){
 						//Set necessary colors based on graph type
