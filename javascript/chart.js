@@ -50,15 +50,15 @@ var loadChart = function(data, type, collection){
 					var graphBg = document.getElementById("graphCC").style.background;
 					graphBg = convertRGBtoHex(graphBg.substring(0,graphBg.indexOf(")")+1));
 					if(isNaN(calcContrast(graphBg,newcolor))){
-						// if(calcContrast(newcolor,"#F4F2E9")<=2){
-						// 	continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
-						// }
+						if(calcContrast(newcolor,"#F4F2E9")<=2){
+							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+						}
 						continuePrompt = calcContrast(newcolor,"#F4F2E9")<=1.5;
 					}
 					else{
-						// if(calcContrast(graphBg,newcolor)<=2){
-						// 	continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
-						// }
+						if(calcContrast(graphBg,newcolor)<=2){
+							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+						}
 						continuePrompt = calcContrast(graphBg,newcolor)<=1.5;
 					}
 					if(continuePrompt){
@@ -207,16 +207,15 @@ var loadChart = function(data, type, collection){
 					var graphBg = document.getElementById("graphCC").style.background;
 					graphBg = convertRGBtoHex(graphBg.substring(0,graphBg.indexOf(")")+1));
 					if(isNaN(calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')]))){
-						// if(calcContrast(colors[newcolor.toLowerCase().split(' ').join('')],"#F4F2E9")<=2){
-						// 	continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
-						// }
-						//console.log()
+						if(calcContrast(colors[newcolor.toLowerCase().split(' ').join('')],"#F4F2E9")<=2){
+							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+						}
 						continuePrompt = calcContrast(colors[newcolor.toLowerCase().split(' ').join('')],"#F4F2E9")<=1.5;
 					}
 					else{
-						// if(calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')])<=2){
-						// 	continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
-						// }
+						if(calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')])<=2){
+							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+						}
 						continuePrompt = calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')])<=1.5;
 					}
 					if(continuePrompt){
@@ -400,9 +399,10 @@ var loadChart = function(data, type, collection){
 				if(hidden[index]!= true){
 					hidden[index]= true;
 					if(type === "bar"){
-						var color = this.parentNode.previousSibling.previousSibling.firstChild.style.background;
-						if(color === ""){
-							color = this.parentNode.previousSibling.previousSibling.previousSibling.firstChild.style.background;
+						if(this.parentNode.previousSibling.previousSibling.firstChild)
+						var color = this.parentNode.previousSibling.previousSibling.firstChild.getContext("2d").strokeStyle;
+						else{
+							color = this.parentNode.previousSibling.previousSibling.previousSibling.firstChild.getContext("2d").strokeStyle;
 						}
 					}
 					else{
@@ -706,6 +706,3 @@ function convertPointsToScatter(){
 		}
 	}
 }
-/*
-position: relative; left: -6.2%; color: red;
-*/

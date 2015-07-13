@@ -34,7 +34,9 @@ var resetGraphBg = function(){
   chart.buildScale(chart.scale.xLabels);
   chart.update();
   document.getElementById("graphColorInput").value="";
-  checkWarningLabels();     
+  if(!checkWarningLabels()){
+    alert("Some dataset colors may be difficult to see due to low color contrast");
+  }   
 }
 
 //Check for reset text button event
@@ -105,6 +107,9 @@ var changeGraphBg = function(){
       chart.buildScale(chart.scale.xLabels);
       chart.update();
     }
+    if(!checkWarningLabels()){
+      alert("Some dataset colors may be difficult to see due to low color contrast");
+    }
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
     document.getElementById("graphCC").style.background = colors[newColor.toLowerCase().split(' ').join('')];
@@ -113,8 +118,10 @@ var changeGraphBg = function(){
       chart.buildScale(chart.scale.xLabels);
       chart.update();
     }
+    if(!checkWarningLabels()){
+      alert("Some dataset colors may be difficult to see due to low color contrast");
+    }
   }
-  checkWarningLabels();
 }
 
 //Change text color based on input value
@@ -145,10 +152,10 @@ var changeTextColor = function(){
 var checkWarningLabels = function(){
   var graphBg = document.getElementById("graphCC").style.background;
   graphBg = convertRGBtoHex(graphBg.substring(0,graphBg.indexOf(")")+1));
-  //console.log(graphBg);
   if(isNaN(calcContrast(graphBg,"#000000"))){
     graphBg = "#F4F2E9";
   }
+  var noWarnings = true;
   for(var i = 0; i < chart.datasets.length; i++){
     var a = document.getElementById("colors").firstChild;
     var warning = document.getElementById("warning"+i);
@@ -160,6 +167,7 @@ var checkWarningLabels = function(){
       }
     }
     else{
+      noWarnings = false;
       if(warning){
         warning.style = "position: relative; left: -6.2%; color: red;";
       }
@@ -179,4 +187,5 @@ var checkWarningLabels = function(){
       }
     }
   }
+  return noWarnings;
 }
