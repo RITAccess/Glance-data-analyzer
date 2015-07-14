@@ -326,11 +326,12 @@ svg * {
 #bpm {
     cursor: auto !important;
     font-size: 20px;
+    background: #EEE;
     width: 50px;
     text-align: center;
 }
 #bpm:focus {
-    background: #dadada;
+    background: #FFF;
 }
 .drop-down {
     cursor: pointer !important;
@@ -434,8 +435,13 @@ svg * {
    border-radius: 5px;
    padding: 1%;
 }
+.color-editor-input input { /* background color for data color change text field */
+    background: #E5E5E5;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+}
 .color-editor-input input:focus { /* background color for data color change text field */
-    background: #dadada;
+    background: #FFF;
 }
 .colorblock {/* called in chart.js only */
     border: 2px solid #000;
@@ -483,7 +489,10 @@ svg * {
 #siteColorInput, #graphColorInput, #textColorInput {
     width: 120px;
     font-size: 20px;
+    background: #E5E5E5;
     margin-right: 4%;
+    border: 1px solid #CCC;
+    border-radius: 3px;
 }
 #siteColorInput {
     margin-left: 5%;
@@ -496,14 +505,17 @@ svg * {
     margin-left: 13%;
 }
 #siteColorInput:focus, #graphColorInput:focus, #textColorInput:focus {
-    background: #dadada;
+    background: #FFF;
 }
 input[type="text"] {
     cursor: auto !important;
-    text-align: center;
+    padding-left: 1%;
 }
 .fa { /* cursor for font awesome icons */
     cursor: pointer !important;
+}
+.fa-exclamation-triangle {
+    cursor: default !important;
 }
 /* END extra spacing between rows of features for color/background change */
 /*******************************/

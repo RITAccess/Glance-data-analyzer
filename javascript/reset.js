@@ -33,7 +33,10 @@ var resetGraphBg = function(){
   chart.options.scaleFontColor = findContrastor("#FFFFFF");
   chart.buildScale(chart.scale.xLabels);
   chart.update();
-  document.getElementById("graphColorInput").value="";      
+  document.getElementById("graphColorInput").value="";
+  if(!checkWarningLabels()){
+    alert("Some dataset colors may be difficult to see due to low color contrast");
+  }
 }
 
 //Check for reset text button event
@@ -96,12 +99,16 @@ var changeSiteBg = function(){
 //Change graph background based on input value
 var changeGraphBg = function(){
   var newColor = document.getElementById("graphColorInput").value;
+  var contrast = true;
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementById("graphCC").style.background = newColor;
     if(document.getElementById("graphContrast").checked){
       chart.options.scaleFontColor = findContrastor(newColor);
       chart.buildScale(chart.scale.xLabels);
       chart.update();
+    }
+    if(!checkWarningLabels()){
+      alert("Some dataset colors may be difficult to see due to low color contrast");
     }
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
@@ -110,6 +117,9 @@ var changeGraphBg = function(){
       chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
       chart.buildScale(chart.scale.xLabels);
       chart.update();
+    }
+    if(!checkWarningLabels()){
+      alert("Some dataset colors may be difficult to see due to low color contrast");
     }
   }
 }
@@ -136,4 +146,49 @@ var changeTextColor = function(){
     if(document.getElementById("textContrast").checked)
       document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
   }
+}
+
+//Check and update warning labels on colors
+var checkWarningLabels = function(){
+  var graphBg = document.getElementById("graphCC").style.background;
+  graphBg = convertRGBtoHex(graphBg.substring(0,graphBg.indexOf(")")+1));
+  if(isNaN(calcContrast(graphBg,"#000000"))){
+    graphBg = "#F4F2E9";
+  }
+  var noWarnings = true;
+  for(var i = 0; i < chart.datasets.length; i++){
+    var a = document.getElementById("colors").firstChild;
+    var warning = document.getElementById("warning"+i);
+    var color = chart.datasets[i].strokeColor;
+    color = convertRGBtoHex(color);
+    if(calcContrast(graphBg,color)>1.5){
+      if(warning){
+        warning.setAttribute("style" , "display:none;");
+        warning.nextSibling.style.left = "0px";    
+      }
+    }
+    else{
+      noWarnings = false;
+      if(warning){
+        warning.setAttribute("style","position: relative; left: -6.2%; color: red;");
+        warning.nextSibling.style.left = "-20px";    
+      }
+      else{
+        for(var j = 0; j<i; j ++){
+          a = a.nextSibling;
+        }
+        var input = a.firstChild.nextSibling.nextSibling.nextSibling;
+        var newElem = document.createElement('i');
+        newElem.setAttribute("id","warning" + i);
+        newElem.setAttribute("class","fa fa-exclamation-triangle");
+        newElem.setAttribute("style","position: relative; left: -6.2%; color: red;");
+        newElem.setAttribute("aria-label", "Caution: Line color may not be visible on graph.");
+        newElem.setAttribute("tab-index", "0");
+        newElem.setAttribute("title","Caution: Line color may not be visible on graph.");
+        input.parentNode.insertBefore(newElem,input.nextSibling);
+        newElem.nextSibling.style.left = "-20px";  
+      }
+    }
+  }
+  return noWarnings;
 }

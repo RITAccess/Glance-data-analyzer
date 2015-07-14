@@ -46,7 +46,48 @@ var loadChart = function(data, type, collection){
 					//Combine them to make a new color
 					var color = [r, g, b].join(", ");
 					lineColors[index] = "rgba("+ color +", 1)";
-					if(this.nextSibling.firstChild.checked){
+					var continuePrompt = true;
+					var graphBg = document.getElementById("graphCC").style.background;
+					graphBg = convertRGBtoHex(graphBg.substring(0,graphBg.indexOf(")")+1));
+					if(isNaN(calcContrast(graphBg,newcolor))){
+						if(calcContrast(newcolor,"#F4F2E9")<=2){
+							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+						}
+						continuePrompt = calcContrast(newcolor,"#F4F2E9")<=1.5;
+					}
+					else{
+						if(calcContrast(graphBg,newcolor)<=2){
+							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+						}
+						continuePrompt = calcContrast(graphBg,newcolor)<=1.5;
+					}
+					if(continuePrompt){
+						var elem = document.getElementById("warning"+index);
+						if(!elem){
+							var newElem = document.createElement('i');
+							newElem.setAttribute("id","warning" + index);
+							newElem.setAttribute("class","fa fa-exclamation-triangle");
+							newElem.setAttribute("style" ,"position: relative; left: -6.2%; color: red;");
+							newElem.setAttribute("aria-label", "Caution: Line color may not be visible on graph.");
+							newElem.setAttribute("tab-index", "0");
+							newElem.setAttribute("title","Caution: Line color may not be visible on graph.");
+							this.parentNode.insertBefore(newElem,this.nextSibling);
+							var input = document.getElementById("warning"+index).nextSibling;
+							input.style.left = "-20px";
+						}
+						else{
+							elem.setAttribute("style" , "position: relative; left: -6.2%; color: red;");
+							elem.nextSibling.style.left = "-20px";
+						}
+					}
+					else{
+						var elem = document.getElementById("warning"+index);
+						if(elem){
+							elem.setAttribute("style", "display:none");
+							elem.nextSibling.style.left = "0px";
+						}
+					}
+					if((this.nextSibling.firstChild!= null && this.nextSibling.firstChild.checked) ||this.nextSibling.nextSibling.firstChild.checked){
 						//Set necessary color values based on graph type
 						if(type==="line" || type==="scatter")
 							chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
@@ -168,7 +209,48 @@ var loadChart = function(data, type, collection){
 					//Using red, green, and blue values, make a new color.
 					var color = [r, g, b].join(", ");
           			lineColors[index] = "rgba("+ color +", 1)";
-					if(this.nextSibling.firstChild.checked){
+          			var continuePrompt = true;
+					var graphBg = document.getElementById("graphCC").style.background;
+					graphBg = convertRGBtoHex(graphBg.substring(0,graphBg.indexOf(")")+1));
+					if(isNaN(calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')]))){
+						if(calcContrast(colors[newcolor.toLowerCase().split(' ').join('')],"#F4F2E9")<=2){
+							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+						}
+						continuePrompt = calcContrast(colors[newcolor.toLowerCase().split(' ').join('')],"#F4F2E9")<=1.5;
+					}
+					else{
+						if(calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')])<=2){
+							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+						}
+						continuePrompt = calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')])<=1.5;
+					}
+					if(continuePrompt){
+						var elem = document.getElementById("warning"+index);
+						if(!elem){
+							var newElem = document.createElement('i');
+							newElem.setAttribute("id","warning" + index);
+							newElem.setAttribute("class","fa fa-exclamation-triangle");
+							newElem.setAttribute("style","position: relative; left: -6.2%; color: red;");
+							newElem.setAttribute("aria-label", "Caution: Line color may not be visible on graph.");
+							newElem.setAttribute("tab-index", "0");
+							newElem.setAttribute("title","Caution: Line color may not be visible on graph.");
+							this.parentNode.insertBefore(newElem,this.nextSibling);
+							var input = document.getElementById("warning"+index).nextSibling;
+							input.style.left = "-20px";	
+						}
+						else{
+							elem.setAttribute("style","position: relative; left: -6.2%; color: red;");
+							elem.nextSibling.style.left = "-20px";
+						}
+					}
+					else{
+						var elem = document.getElementById("warning"+index);
+						if(elem){
+							elem.setAttribute("style", "display:none");
+							elem.nextSibling.style.left = "0px";
+						}
+					}
+					if((this.nextSibling.firstChild!= null && this.nextSibling.firstChild.checked) ||this.nextSibling.nextSibling.firstChild.checked){
 						//Set necessary colors based on graph type
             			if(type==="line")
             			chart.datasets[index].strokeColor = "rgba("+ color +", 1)";
@@ -283,8 +365,15 @@ var loadChart = function(data, type, collection){
         }
 			};
 		//Setting behavior for all toggleboxes
-		chartdata.inputboxes[i].nextSibling.firstChild.onclick = function(){
+		var checkbox = chartdata.inputboxes[i].nextSibling.firstChild;
+		if(checkbox.tagName === "I"){
+			checkbox = chartdata.inputboxes[i].nextSibling.nextSibling.firstChild;
+		}
+		checkbox.onclick = function(){
 			var index = chartdata.inputboxes.indexOf(this.parentNode.previousSibling);
+			if(index === -1){
+				index = chartdata.inputboxes.indexOf(this.parentNode.previousSibling.previousSibling);
+			}
 			//If not hidden, hide
 			if(!this.checked){
 				if(hidden[index]!= false){
@@ -321,10 +410,19 @@ var loadChart = function(data, type, collection){
 			else{
 				if(hidden[index]!= true){
 					hidden[index]= true;
-					if(type === "bar")
-						var color = this.parentNode.previousSibling.previousSibling.firstChild.style.background;
-					else
+					if(type === "bar"){
+						if(this.parentNode.previousSibling.previousSibling.firstChild)
+						var color = this.parentNode.previousSibling.previousSibling.firstChild.getContext("2d").strokeStyle;
+						else{
+							color = this.parentNode.previousSibling.previousSibling.previousSibling.firstChild.getContext("2d").strokeStyle;
+						}
+					}
+					else{
 						var color = this.parentNode.previousSibling.previousSibling.style.color;
+						if(color === ""){
+							color = this.parentNode.previousSibling.previousSibling.previousSibling.style.color;
+						}
+					}
 					color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
 					chart.datasets[index].strokeColor = color;
 					chart.datasets[index].pointColor = color;

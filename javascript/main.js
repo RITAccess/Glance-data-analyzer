@@ -224,6 +224,7 @@ var loadData = function (data) {
     else{
       document.getElementById('typeSel').selectedIndex = 2;
     }
+    checkWarningLabels();
 }
 
 // The play button

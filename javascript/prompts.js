@@ -35,7 +35,7 @@
         this.cancel= function(){
           document.getElementById('dialogbox').style.visibility = "hidden";
           document.getElementById('dialogoverlay').style.visibility = "hidden";
-          document.getElementsByClassName('createBtn')[0].focus();
+          document.getElementById('title').focus();
         }
     }
     //Second Alert Box
@@ -81,7 +81,7 @@
         this.cancel= function(){
           document.getElementById('dialogbox').style.visibility = "hidden";
           document.getElementById('dialogoverlay').style.visibility = "hidden";
-          document.getElementsByClassName('createBtn')[0].focus();
+          document.getElementById('title').focus();
         }
     }
 var Alert = new CustomAlert();
