@@ -205,14 +205,14 @@ var checkWarningLabels = function(){
     if(calcContrast(graphBg,color)>1.5){
       if(warning){
         warning.setAttribute("style" , "display:none;");
-        warning.nextSibling.style.left = "0px";    
+        warning.nextSibling.style.left = "0px";
       }
     }
     else{
       noWarnings = false;
       if(warning){
         warning.setAttribute("style","position: relative; left: -6.2%; color: red;");
-        warning.nextSibling.style.left = "-20px";    
+        warning.nextSibling.style.left = "-20px";
       }
       else{
         for(var j = 0; j<i; j ++){
@@ -223,11 +223,11 @@ var checkWarningLabels = function(){
         newElem.setAttribute("id","warning" + i);
         newElem.setAttribute("class","fa fa-exclamation-triangle");
         newElem.setAttribute("style","position: relative; left: -6.2%; color: red;");
-        newElem.setAttribute("aria-label", "Caution: Line color may not be visible on graph.");
+        newElem.setAttribute("aria-label", "Caution: Current line color may not be visible on graph.");
         newElem.setAttribute("tab-index", "0");
-        newElem.setAttribute("title","Caution: Line color may not be visible on graph.");
+        newElem.setAttribute("title","Caution: Current line color may not be visible on graph.");
         input.parentNode.insertBefore(newElem,input.nextSibling);
-        newElem.nextSibling.style.left = "-20px";  
+        newElem.nextSibling.style.left = "-20px";
       }
     }
   }

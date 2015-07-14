@@ -72,12 +72,23 @@ function loadFile(){
 }
 
 // provides the openFile function call to the DOM
-var loadListener = function(){
-  document.getElementById('files').addEventListener('change', openFile, false);
-}
+var loadListeners = function(){
+  var fileEl = document.getElementById('overlayBtn');
+  var newTblEl = document.getElementById('newTable');
 
-var createListener = function() {
-  document.getElementById('newTable').addEventListener('click', newFile, false);
+  if(fileEl){
+    document.getElementById('files').addEventListener('change', openFile, false);
+  }
+  else{
+    setTimeout(function(){document.getElementById('files').addEventListener('change', openFile, false);},1000);
+  }
+
+  if(newTblEl){
+    document.getElementById('newTable').addEventListener('click', newFile, false);
+  }
+  else{
+    setTimeout(function(){document.getElementById('newTable').addEventListener('click', newFile, false);},1000);
+  }
 }
 
 // Creates empty table value

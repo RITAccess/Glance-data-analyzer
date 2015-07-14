@@ -79,7 +79,7 @@
         <div id="audioSpanSec" class="no-print">
           <div id="audioSpan" style="display: none">
             <label for="lineDropdown" tabindex="0"> Row number </label>
-            <select id="lineDropdown" class='drop-down' title="selected"></select>
+            <select id="lineDropdown" class='drop-down' title="selected" onchange="player.paused = false;"></select>
              at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1"/>
             <label for="instrumentDropdown" tabindex="0"> Instrument </label>
             <select id="instrumentDropdown" class='drop-down' title="selected"></select>
@@ -109,7 +109,7 @@
           </div>
           <button id="undoButton" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
           <button id="redoButton" aria-label="Redo" onclick="redo()"><i class="fa fa-repeat fa-lg"></i></button>
-          <button id="resetButton" aria-label="Reset Table" onclick="tableReset()"><i class="fa fa-refresh fa-lg"></i></button><!-- This needs a onclick="resetTable()" currently no function -->
+          <button id="resetButton" aria-label="Reset Table" onclick="tableReset()" title="Reset Table"><i class="fa fa-refresh fa-lg"></i></button><!-- This needs a onclick="resetTable()" currently no function -->
           <button id="downloadCSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
           <button id="printButton" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
         </div><!-- END id="tableControls" -->
@@ -132,7 +132,7 @@
                     <input id="siteContrast" type="checkbox" tabindex="0" checked="checked" title="Site Background Color Contrast Toggler" onclick="if(this.checked) changeSiteBg()">
                     <label for="siteContrast"></label>
                   </div>
-                  <input type="button" id="siteCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Site Background" onclick="resetSiteBg()" onkeyup="siteKeyUp()" value="">
+                  <input type="button" id="siteCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Site Background to Original" title="Reset Site Background to Original" onclick="resetSiteBg()" onkeyup="siteKeyUp()" value="">
               </div>
               <div class="ccFeature">
                 <label>Graph Background: </label><input id="graphColorInput" type="text" onInput="changeGraphBg()" title="Change Graph Background Color">
@@ -141,7 +141,7 @@
                     <input id="graphContrast" tabindex="0" type="checkbox" checked="checked" title="Graph Background Color Contrast Toggler" onclick="if(this.checked) changeGraphBg()">
                     <label for="graphContrast"></label>
                   </div>
-                  <input type="button" id="graphCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Graph Background" onclick="resetGraphBg()" value="">
+                  <input type="button" id="graphCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Graph Background to Original" title="Reset Graph Background to Original" onclick="resetGraphBg()" value="">
               </div>
               <div class="ccFeature">
                 <label>Text Color: </label><input id="textColorInput" type="text" title="Change Text Color" onInput="changeTextColor()">
@@ -150,7 +150,7 @@
                     <input id="textContrast" type="checkbox" tabindex="0" checked="checked" title="Text Color Contrast Toggler" onclick="if(this.checked) changeTextColor()">
                     <label for="textContrast"></label>
                   </div>
-                <input type="button" id="textCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Text Color" onclick="resetText()" onkeyup="textKeyUp()" value="">
+                <input type="button" id="textCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Text Color to Original" title="Reset Text Color to Original" onclick="resetText()" onkeyup="textKeyUp()" value="">
               </div>
             </form>
         </div><!-- END id="ccContent" -->

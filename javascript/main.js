@@ -29,8 +29,9 @@ require(["javascript/reset.js"]);
 require(["javascript/contrast.js"]);
 
 require(["javascript/files.js"], function(print){
-  createListener();
-  loadListener();
+  loadListeners();
+  //createListener();
+  //loadListener();
 });
 
 var player;
@@ -230,13 +231,21 @@ var loadData = function (data) {
     oldBGColor = document.getElementsByTagName('body')[0].style.background;
 }
 
-
 // The play button
 var playStopAudioButton = function () {
   var playing = player.playing;
   if(isSafari && playing){
     player.stop();
     return;
+  }
+  if(document.getElementById("barGraphAudioOptions")=== null){
+    var mode = null;
+  }
+  else{
+    var mode = document.getElementById("barGraphAudioOptions").selectedIndex;
+  }
+  if(mode != 1){
+    var startval = document.getElementById("lineDropdown").selectedIndex;
   }
   //Change the speed of the audio based on speed input.
   var bpm = 80 + 20 * document.getElementById('bpm').value;
@@ -263,15 +272,6 @@ var playStopAudioButton = function () {
       if(player.type != wave)
       player = new WaveForm(wave);
       player.setCollection(collection.collection);
-    }
-    if(document.getElementById("barGraphAudioOptions")=== null){
-      var mode = null;
-    }
-    else{
-      var mode = document.getElementById("barGraphAudioOptions").selectedIndex;
-    }
-    if(mode != 1){
-      var startval = document.getElementById("lineDropdown").value - 1;
     }
     else{
       if(document.getElementById("colSelector"))
