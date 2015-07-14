@@ -234,6 +234,15 @@ var playStopAudioButton = function () {
     player.stop();
     return;
   }
+  if(document.getElementById("barGraphAudioOptions")=== null){
+    var mode = null;
+  }
+  else{
+    var mode = document.getElementById("barGraphAudioOptions").selectedIndex;
+  }
+  if(mode != 1){
+    var startval = document.getElementById("lineDropdown").selectedIndex;
+  }
   //Change the speed of the audio based on speed input.
   var bpm = 80 + 20 * document.getElementById('bpm').value;
   player.setBpm(bpm);
@@ -259,15 +268,6 @@ var playStopAudioButton = function () {
       if(player.type != wave)
       player = new WaveForm(wave);
       player.setCollection(collection.collection);
-    }
-    if(document.getElementById("barGraphAudioOptions")=== null){
-      var mode = null;
-    }
-    else{
-      var mode = document.getElementById("barGraphAudioOptions").selectedIndex;
-    }
-    if(mode != 1){
-      var startval = document.getElementById("lineDropdown").value - 1;
     }
     else{
       if(document.getElementById("colSelector"))
