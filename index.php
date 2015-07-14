@@ -79,7 +79,7 @@
         <div id="audioSpanSec" class="no-print">
           <div id="audioSpan" style="display: none">
             <label for="lineDropdown" tabindex="0"> Row number </label>
-            <select id="lineDropdown" class='drop-down' title="selected"></select>
+            <select id="lineDropdown" class='drop-down' title="selected" onchange="player.paused = false;"></select>
              at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1"/>
             <label for="instrumentDropdown" tabindex="0"> Instrument </label>
             <select id="instrumentDropdown" class='drop-down' title="selected"></select>
