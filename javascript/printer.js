@@ -116,6 +116,10 @@ function printPage()
      colorBoxes[0].parentNode.replaceChild(imgHTML, colorBoxes[0]);
    }
 
+   var redTriangles = printWin.document.getElementsByClassName("fa fa-exclamation-triangle");
+   for(var i = 0; i <redTriangles.length; i ++){
+    redTriangles[i].parentNode.remove(redTriangles[i]);
+   }
    //printWin.document.styleSheets[0].insertRule('.colorblock {-webkit-print-color-adjust:exact;}',printWin.document.styleSheets[0].length);
 
    printWin.focus();
