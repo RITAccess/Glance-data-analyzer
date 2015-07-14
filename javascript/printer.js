@@ -108,8 +108,8 @@ function printPage()
      myImg = image;
      colorBoxes[i].parentNode.replaceChild(myImg, colorBoxes[i]);
      */
-     var imgHTML = printWin.document.createElement("img");
-     imgHTML.setAttribute("src",colorBoxes[0].toDataURL());
+     var imgHTML = printWin.document.write('<img src="' + colorBoxes[0].toDataURL("image/png")+'"/>');
+     imgHTML.setAttribute("src",colorBoxes[0].toDataURL("image/png"));
      imgHTML.setAttribute("alt","Color Box");
      imgHTML.setAttribute("width",65);
      imgHTML.setAttribute("height",24);
