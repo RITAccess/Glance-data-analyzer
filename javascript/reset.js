@@ -1,3 +1,8 @@
+
+  var oldColor;
+  var oldGraphColor;
+  var oldBGColor;
+
 //Reset text color and border outline color
 var resetText= function(){
   document.getElementsByTagName("body")[0].style.color = "#000000";
@@ -81,7 +86,16 @@ var changeSiteBg = function(){
       document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + contrastor;
       document.getElementById("summaryBox").style.borderTop="3px solid " +contrastor;
       document.getElementById("bgColorChange").style.borderTop="3px solid " + contrastor;
+    } 
+    else {
+      document.getElementsByTagName("body")[0].style.color = oldColor;
+      document.getElementById("continuosBox").style.border = "3px solid " + oldColor;
+      document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + oldColor;
+      document.getElementById("summaryBox").style.borderTop="3px solid " + oldColor;
+      document.getElementById("bgColorChange").style.borderTop="3px solid " + oldColor;
     }
+
+    oldBGColor = newColor;
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
     document.getElementsByTagName("body")[0].style.background = colors[newColor.toLowerCase().split(' ').join('')];
@@ -93,6 +107,15 @@ var changeSiteBg = function(){
       document.getElementById("summaryBox").style.borderTop="3px solid " +contrastor;
       document.getElementById("bgColorChange").style.borderTop="3px solid " + contrastor;
     }
+    else {
+      document.getElementsByTagName("body")[0].style.color = oldColor;
+      document.getElementById("continuosBox").style.border = "3px solid " + oldColor;
+      document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + oldColor;
+      document.getElementById("summaryBox").style.borderTop="3px solid " + oldColor;
+      document.getElementById("bgColorChange").style.borderTop="3px solid " + oldColor;
+    }
+
+    oldBGColor = newColor;
   }
 }
 
@@ -106,6 +129,11 @@ var changeGraphBg = function(){
       chart.options.scaleFontColor = findContrastor(newColor);
       chart.buildScale(chart.scale.xLabels);
       chart.update();
+    } 
+    else {
+      chart.options.scaleFontColor = oldColor;
+      chart.buildScale(chart.scale.xLabels);
+      chart.update();
     }
     if(!checkWarningLabels()){
       alert("Some dataset colors may be difficult to see due to low color contrast");
@@ -115,6 +143,11 @@ var changeGraphBg = function(){
     document.getElementById("graphCC").style.background = colors[newColor.toLowerCase().split(' ').join('')];
     if(document.getElementById("graphContrast").checked){
       chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+      chart.buildScale(chart.scale.xLabels);
+      chart.update();
+    }
+    else {
+      chart.options.scaleFontColor = oldColor;
       chart.buildScale(chart.scale.xLabels);
       chart.update();
     }
@@ -135,6 +168,10 @@ var changeTextColor = function(){
     document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
     if(document.getElementById("textContrast").checked)
       document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
+    else
+      document.getElementsByTagName('body')[0].style.background = oldBGColor;
+
+    oldColor = newColor;
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
     newColor = colors[newColor.toLowerCase().split(' ').join('')]
@@ -145,6 +182,10 @@ var changeTextColor = function(){
     document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
     if(document.getElementById("textContrast").checked)
       document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
+    else
+      document.getElementsByTagName('body')[0].style.background = oldBGColor;
+
+    oldColor = newColor;
   }
 }
 

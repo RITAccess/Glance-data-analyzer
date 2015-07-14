@@ -109,7 +109,7 @@
           </div>
           <button id="undoButton" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
           <button id="redoButton" aria-label="Redo" onclick="redo()"><i class="fa fa-repeat fa-lg"></i></button>
-          <button id="resetButton" aria-label="Reset Table" onclick="tableReset()" title="Reset Table"><i class="fa fa-refresh fa-lg"></i></button><!-- This needs a onclick="resetTable()" currently no function -->
+          <button id="resetButton" aria-label="Reset Table" onclick="tableReset()" title="Reset Table"><i class="fa fa-refresh fa-lg"></i></button>
           <button id="downloadCSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
           <button id="printButton" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
         </div><!-- END id="tableControls" -->
@@ -129,7 +129,7 @@
                 <label>Site Background: </label><input id="siteColorInput" type="text" onInput="changeSiteBg()" title="Change Site Background Color">
                 <label>High Contrast:</label>
                   <div class="squaredTwo">
-                    <input id="siteContrast" type="checkbox" tabindex="0" checked="checked" title="Site Background Color Contrast Toggler" onclick="if(this.checked) changeSiteBg()">
+                    <input id="siteContrast" type="checkbox" tabindex="0" checked="checked" title="Site Background Color Contrast Toggler" onclick="changeSiteBg()">
                     <label for="siteContrast"></label>
                   </div>
                   <input type="button" id="siteCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Site Background to Original" title="Reset Site Background to Original" onclick="resetSiteBg()" onkeyup="siteKeyUp()" value="">
@@ -138,7 +138,7 @@
                 <label>Graph Background: </label><input id="graphColorInput" type="text" onInput="changeGraphBg()" title="Change Graph Background Color">
                 <label tabindex="0" >High Contrast:</label>
                   <div class="squaredTwo">
-                    <input id="graphContrast" tabindex="0" type="checkbox" checked="checked" title="Graph Background Color Contrast Toggler" onclick="if(this.checked) changeGraphBg()">
+                    <input id="graphContrast" tabindex="0" type="checkbox" checked="checked" title="Graph Background Color Contrast Toggler" onclick="changeGraphBg()">
                     <label for="graphContrast"></label>
                   </div>
                   <input type="button" id="graphCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Graph Background to Original" title="Reset Graph Background to Original" onclick="resetGraphBg()" value="">
@@ -147,7 +147,7 @@
                 <label>Text Color: </label><input id="textColorInput" type="text" title="Change Text Color" onInput="changeTextColor()">
                 <label>High Contrast:</label>
                   <div class="squaredTwo">
-                    <input id="textContrast" type="checkbox" tabindex="0" checked="checked" title="Text Color Contrast Toggler" onclick="if(this.checked) changeTextColor()">
+                    <input id="textContrast" type="checkbox" tabindex="0" checked="checked" title="Text Color Contrast Toggler" onclick="changeTextColor()">
                     <label for="textContrast"></label>
                   </div>
                 <input type="button" id="textCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Text Color to Original" title="Reset Text Color to Original" onclick="resetText()" onkeyup="textKeyUp()" value="">
