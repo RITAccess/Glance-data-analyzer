@@ -393,11 +393,21 @@ function redo() {
 // regex evaluation for table
 // @author erl7902
 function evaluate(x) {
-	//rm spaces
+	// rm spaces
     x = x.replace(/ /g, "");
 	x = x.split(/([-+/*^()])/g);
     x = x.filter(function(value){ return value !== ''; });
-	//console.log(x);
+	// search for negative signs vs minus
+	// no cleaner way of doing it 
+	for(var i = 0; i < x.length; i++){
+		if(x[i] === '-'){
+			if((isNaN(x[i-1]) && x[i-1] != ')') && !isNaN(x[i+1])){
+				//prep the number 
+				var num = (parseFloat(x[i+1]) * -1);
+				x = x.slice(0,i).concat([num].concat(x.slice(i+2, x.length)));
+			}
+		}
+	}
     return (parseFloat(evall(x)[0]));
 }
 
@@ -406,40 +416,40 @@ function evall(x) {
 	var end = x.lastIndexOf(')');
 	if (start != -1 && end != -1){
 		var result = evall(x.slice(start+1,end));
-		x = x.slice(0,start).concat(result.concat(x.slice(end+1, x.length-1)));
+		x = x.slice(0,start).concat(result.concat(x.slice(end+1, x.length)));
 	}
 	
-	end = x.length-1;
-	while((/[\^\+\-\/\*]/.test(x))){
+	end = x.length;
+	while((/[\^\+\-\/\*]/.test(x)) && x.length > 1){
 		while(/\^/.test(x)){
 			var op = x.indexOf('^');
-			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([Math.pow((parseFloat(x[op-1]), parseFloat(x[op+1])))]).concat(x.slice(op+2,end));
-		//	console.log("exp");
-		//	console.log(x);
+			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([Math.pow(x[op-1],x[op+1])]).concat(x.slice(op+2,end));
+			//console.log("exp");
+			//console.log(x);
 		}
 		while(/\//.test(x)){
 			var op = x.indexOf('/');
 			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) / parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
-		//	console.log("/");
-		//	console.log(x);
+			//console.log("/");
+			//console.log(x);
 			}
 		while(/\*/.test(x)){
 			var op = x.indexOf('*');
 			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) * parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
-		//	console.log("*");
-		//	console.log(x);		
+			//console.log("*");
+			//console.log(x);		
 		}
 		while(/\+/.test(x)){
 			var op = x.indexOf('+');
 			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) + parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
-		//	console.log("+");
-		//	console.log(x);		
+			//console.log("+");
+			//console.log(x);		
 		}
-		while(/\-/.test(x)){
+		while(/\-/.test(x)  && /\-(?!\d+)/.test(x)){
 			var op = x.indexOf('-');
 			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) - parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
-		//	console.log("-");
-		//	console.log(x);		
+			//console.log("-");
+			//console.log(x);		
 		}
 	}
   return x;
