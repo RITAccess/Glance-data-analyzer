@@ -3672,10 +3672,12 @@
 					var min = pts[0][0];
 					var max = pts[0][0];
 					for(var i = 0; i < pts.length; i++){
-						if(pts[i][0] > max)
+						if(parseFloat(pts[i][0]) > max){
 							max = parseFloat(pts[i][0]);
-						if(pts[i][0] < min)
+						}
+						if(parseFloat(pts[i][0]) < min){
 							min = parseFloat(pts[i][0]);
+						}
 					}
 					
 					var labels = [];
@@ -3695,11 +3697,10 @@
 						
 					}, this);
 					this.buildScale(data.labels);
-
-					this.eachPoints(function(point, index){
+					this.eachPoints(function(point,index){
 						helpers.extend(point, {
 							//need to make it zero-based
-							x: this.scale.calculateX(pts[index][0] - pts[0][0]),
+							x: this.scale.calculateX(pts[index][0] - this.scale.xLabels[0]),
 							y: this.scale.endPoint
 						});
 						point.save();
@@ -3812,22 +3813,6 @@
 		},
 		buildScale : function(labels){
 			var self = this;
-
-			/*while(labels.length > 19 && this.numeric){
-				// if there's too many labels,
-				// cut the amount in half
-				var newlabels = [];
-				for(var i = labels[0]; i <= labels[labels.length-1]; i+= 2){
-					newlabels.push(i);
-				}
-
-				console.log(newlabels);
-				labels = newlabels;
-			}*/
-			//make sure we get all data
-			//if(labels[length-1] % 2 == )
-			//	newlabels.push(labels[length-2] + (labels[length-2] - newlabels[newlabels.length-1]));
-			//
 			
 			var dataTotal = function(){
 				var values = [];
@@ -3978,15 +3963,27 @@
 
 				//Transition each point first so that the line and point drawing isn't out of sync
 				//We can use this extra loop to calculate the control points of this dataset also in this loop
-
+				if(this.numeric){
 				helpers.each(dataset.points, function(point, index){
 					if (point.hasValue()){
 						point.transition({
 							y : this.scale.calculateY(point.value),
-							x : point.x //this.scale.calculateX(index)
+							x : this.scale.calculateX(point.label - this.scale.xLabels[0])
 						}, easingDecimal);
 					}
 				},this);
+				}
+				else{
+								helpers.each(dataset.points, function(point, index){
+					if (point.hasValue()){
+						point.transition({
+							y : this.scale.calculateY(point.value),
+							x : this.scale.calculateX(index)
+						}, easingDecimal);
+					}
+				},this);
+				
+				}
 
 				//Now draw the points over the line
 				//A little inefficient double looping, but better than the line
@@ -4022,9 +4019,17 @@
 			 * x : this.scale.calculateX(index)
 			 */
 			 // we need to scale the x and y values for the canvas
-			for(var i = 0; i < points.length; i++){
-				points[i][0] = this.scale.calculateX(points[i][0]-1);
+			 if(this.numeric){
+				 for(var i = 0; i < points.length; i++){
+				points[i][0] = this.scale.calculateX(points[i][0] - this.scale.xLabels[0]);
 				points[i][1] = this.scale.calculateY(points[i][1]);
+				 }
+			 }
+			else{
+				for(var i = 0; i < points.length; i++){
+					points[i][0] = this.scale.calculateX(points[i][0]-1);
+					points[i][1] = this.scale.calculateY(points[i][1]);
+				}
 			}
 			ctx.lineWidth = this.options.datasetStrokeWidth;
 			ctx.strokeStyle = this.options.linRegLineColor;
