@@ -41,6 +41,12 @@ function loadFile(){
 
         if (results.data[i].join().split(" ").join("") === "") {
           results.data.splice(i, 1);
+        } 
+
+        for (var j = 1; j < results.data[i].length; j++) {
+          if (isNaN(results.data[i][j]) && i >= 1 || results.data[i][j].split(" ").join("") === "") {
+            results.data[i][j] = 0;
+          }
         }
        }
 

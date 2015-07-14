@@ -224,6 +224,10 @@ var loadData = function (data) {
       document.getElementById('typeSel').selectedIndex = 2;
     }
     checkWarningLabels();
+
+    oldColor = document.getElementsByTagName("body")[0].style.color;
+    oldGraphColor = chart.options.scaleFontColor;
+    oldBGColor = document.getElementsByTagName('body')[0].style.background;
 }
 
 
