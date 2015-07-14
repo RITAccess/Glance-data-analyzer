@@ -29,8 +29,9 @@ require(["javascript/reset.js"]);
 require(["javascript/contrast.js"]);
 
 require(["javascript/files.js"], function(print){
-  createListener();
-  loadListener();
+  loadListeners();
+  //createListener();
+  //loadListener();
 });
 
 var player;
@@ -225,7 +226,6 @@ var loadData = function (data) {
     }
     checkWarningLabels();
 }
-
 
 // The play button
 var playStopAudioButton = function () {
