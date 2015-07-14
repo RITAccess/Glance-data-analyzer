@@ -155,8 +155,10 @@ Instrument.prototype.setCollection = function(collection) {
 //A change was made to a line in the table
 Instrument.prototype.changeLine = function(line, index, newValue) {
   if(newValue != -1) {
-    this.infoCollection.changeLine(line,index,newValue);
-    this.buildNotes();
+    if(!isNaN(newValue)){
+      this.infoCollection.changeLine(line,index,newValue);
+      this.buildNotes();
+    }
   }
 }
 

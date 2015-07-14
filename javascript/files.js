@@ -2,6 +2,7 @@
 // Opens a file
 var ev;
 var totalData = [];
+var firstData = [];
 
 var openFile = function(openfile) {
   ev = openfile;
@@ -58,6 +59,7 @@ function loadFile(){
         results.data.pop();
       }
      totalData = [];
+     firstData = results.data;
 	 	 loadData(results);
   	 }
     });
@@ -116,7 +118,7 @@ var createFile = function(rows, columns) {
 
   // Create object
   var newTable = {data: rowArray, errors: emptyArray, meta: emptyObject };
-
+  firstData = rowArray;
   // Load new table :)
   totalData = [];
   loadData(newTable);

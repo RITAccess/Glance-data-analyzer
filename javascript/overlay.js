@@ -3,11 +3,11 @@
 var Overlay = function(data, graphType) {
   this.chart;
   if(graphType != "bar"){
-    this.loadControls(data.data[0].length);
+    this.loadControls(data.data[0].length - 1);
     this.slider = [0,0];
   }
   else{
-    this.loadControls(data.data[0].length+1);
+    this.loadControls(data.data[0].length);
     this.slider = [0,0];
   }
 }
