@@ -1,4 +1,3 @@
-
   var oldColor;
   var oldGraphColor;
   var oldBGColor;
@@ -31,6 +30,7 @@ var resetSiteBg = function(){
     document.getElementById("bgColorChange").style.borderTop="3px solid black";
   }
   document.getElementById("siteColorInput").value = "";
+  document.getElementsByTagName("h1")[0].setAttribute("style", "-webkit-text-stroke-width: 1px; -webkit-text-stroke-color:" + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background)));
 }
 
 //Resets graph background color as well as graph label text color
@@ -95,7 +95,6 @@ var changeSiteBg = function(){
       document.getElementById("summaryBox").style.borderTop="3px solid " + oldColor;
       document.getElementById("bgColorChange").style.borderTop="3px solid " + oldColor;
     }
-
     oldBGColor = newColor;
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
@@ -118,6 +117,7 @@ var changeSiteBg = function(){
 
     oldBGColor = newColor;
   }
+  document.getElementsByTagName("h1")[0].setAttribute("style", "-webkit-text-stroke-width: 1px; -webkit-text-stroke-color:" + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background)));
 }
 
 //Change graph background based on input value
