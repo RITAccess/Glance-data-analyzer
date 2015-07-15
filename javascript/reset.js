@@ -13,6 +13,7 @@ var resetText= function(){
   document.getElementById("bgColorChange").style.borderTop="3px solid black";
   if(document.getElementById("textContrast").checked){
     document.getElementsByTagName("body")[0].style.background = "url('stylesheets/halftone/halftone.png')";
+    document.getElementById("siteColorInput").value = "";
   }
 }
 
