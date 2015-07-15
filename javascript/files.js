@@ -473,7 +473,6 @@ function removeColumns(start,skip){
   changeType();
   document.getElementById('tblContainer').style.width = "100%";
 }
-
 //Delete a certain number (skip) of rows in the graph starting at a certain point (start)
 function removeRows(start,skip){
   if(start === 0 || skip ===0){
