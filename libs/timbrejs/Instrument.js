@@ -133,7 +133,7 @@ Instrument.prototype.playRegressionLine = function(){
   }).on("ended",function(){
     this.stop();
   }).start();
-  $("*").css("cursor", "default");  
+  $("*").css("cursor", "default");
 }
 
 //Using an arrayCollection object you can add a group of lines to the audio object
@@ -149,7 +149,7 @@ Instrument.prototype.setCollection = function(collection) {
   */
   this.notes = this.buildNotes();
   document.getElementById("audioSpan").style.display = "";
-  if(document.getElementById("lineDropdown").innerHTML.length != dropdownString.length)
+  if(document.getElementById("lineDropdown").innerHTML.length < dropdownString.length)
   document.getElementById("lineDropdown").innerHTML = dropdownString;
 }
 
@@ -194,7 +194,7 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
       setTimeout(function() {self.playRegressionLine();}, 1000);
     }
     else if(mode === 2){
-      setTimeout(function() {self.playColumnsAsChords(line,startIndex,endIndex);}, 1000);  
+      setTimeout(function() {self.playColumnsAsChords(line,startIndex,endIndex);}, 1000);
     }
     }
     else{
