@@ -132,7 +132,6 @@ var changeGraphBg = function(){
       chart.update();
     } 
     else {
-      chart.options.scaleFontColor = oldColor;
       chart.buildScale(chart.scale.xLabels);
       chart.update();
     }
@@ -148,7 +147,6 @@ var changeGraphBg = function(){
       chart.update();
     }
     else {
-      chart.options.scaleFontColor = oldColor;
       chart.buildScale(chart.scale.xLabels);
       chart.update();
     }
