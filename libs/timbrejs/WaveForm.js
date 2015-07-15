@@ -208,7 +208,7 @@ WaveForm.prototype.setCollection = function(collection) {
     dropdownString += "<option value="+(i + 1)+">"+(i + 1)+"</option>"
   }
   document.getElementById("audioSpan").style.display = "";
-  if(document.getElementById("lineDropdown").innerHTML.length != dropdownString.length)
+  if(document.getElementById("lineDropdown").innerHTML.length < dropdownString.length)
   document.getElementById("lineDropdown").innerHTML = dropdownString;
 }
 
