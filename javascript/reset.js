@@ -165,10 +165,14 @@ var changeTextColor = function(){
     document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + newColor;
     document.getElementById("summaryBox").style.borderTop="3px solid " +newColor;
     document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
-    if(document.getElementById("textContrast").checked)
+    if(document.getElementById("textContrast").checked){
       document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
-    else
+      document.getElementsByTagName("h1")[0].setAttribute("style", "-webkit-text-stroke-width: 1px; -webkit-text-stroke-color:" + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background)));
+    }
+    else{
       document.getElementsByTagName('body')[0].style.background = oldBGColor;
+      document.getElementsByTagName("h1")[0].setAttribute("style", "-webkit-text-stroke-width: 1px; -webkit-text-stroke-color:" + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background)));
+    }
 
     oldColor = newColor;
   }
@@ -179,10 +183,14 @@ var changeTextColor = function(){
     document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + newColor;
     document.getElementById("summaryBox").style.borderTop="3px solid " +newColor;
     document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
-    if(document.getElementById("textContrast").checked)
+    if(document.getElementById("textContrast").checked){
       document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
-    else
+      document.getElementsByTagName("h1")[0].setAttribute("style", "-webkit-text-stroke-width: 1px; -webkit-text-stroke-color:" + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background)));
+    }
+    else{
       document.getElementsByTagName('body')[0].style.background = oldBGColor;
+      document.getElementsByTagName("h1")[0].setAttribute("style", "-webkit-text-stroke-width: 1px; -webkit-text-stroke-color:" + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background)));
+    }
 
     oldColor = newColor;
   }
