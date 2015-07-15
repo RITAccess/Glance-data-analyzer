@@ -149,6 +149,7 @@ Instrument.prototype.setCollection = function(collection) {
   */
   this.notes = this.buildNotes();
   document.getElementById("audioSpan").style.display = "";
+  if(document.getElementById("lineDropdown").innerHTML.length != dropdownString.length)
   document.getElementById("lineDropdown").innerHTML = dropdownString;
 }
 
