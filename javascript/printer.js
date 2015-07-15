@@ -101,24 +101,6 @@ function printPage()
          brArray[i].style.display="none";
       }
    }
-
-   // var colorBoxes = printWin.document.getElementsByClassName("colorblock")
-   // var image = new Image();
-   // var length = colorBoxes.length;
-   // for(var i = 0; i < length; i++){
-     
-   //   image.src = colorBoxes[i].toDataURL("image/png");
-   //   var myImg = printWin.document.createElement("img");
-   //   myImg = image;
-   //   colorBoxes[i].parentNode.replaceChild(myImg, colorBoxes[i]);
-     
-   //   var imgHTML = printWin.document.write('<img src="' + colorBoxes[0].toDataURL("image/png")+'"/>');
-   //   imgHTML.setAttribute("src",colorBoxes[0].toDataURL("image/png"));
-   //   imgHTML.setAttribute("alt","Color Box");
-   //   imgHTML.setAttribute("width",65);
-   //   imgHTML.setAttribute("height",24);
-   //   colorBoxes[0].parentNode.replaceChild(imgHTML, colorBoxes[0]);
-   // }
    var ps = printWin.document.getElementsByTagName('p');
    for(var i = 0; i <ps.length; i++){
     ps[i].style.background = findContrastor(convertRGBtoHex(ps[i].style.color));
@@ -145,6 +127,7 @@ function printPage()
    }
    printWin.document.getElementById("printTable").style.borderTop = "3px solid " + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background));
    printWin.document.getElementById("summaryBox").style.borderTop = "3px solid " + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background));
+   printWin.document.getElementsByTagName("h1")[0].setAttribute("style", "-webkit-text-stroke-width: 1px; -webkit-text-stroke-color:" + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background)));
    printWin.focus();
    setTimeout(function(){printWin.print();},100);
 }
