@@ -618,6 +618,9 @@ th, td, .printTable{
         text-shadow: none;
         color: #000;
     }
+    #title{
+        text-shadow: -1px 0 #FFF, 0 1px #FFF, 1px 0 #FFF, 0 -1px #FFF;
+    }
     #content {
         margin: 0px;
     }
