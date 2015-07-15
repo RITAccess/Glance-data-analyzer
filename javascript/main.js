@@ -225,6 +225,17 @@ var loadData = function (data) {
       document.getElementById('typeSel').selectedIndex = 2;
     }
     checkWarningLabels();
+    checkColorBoxes();
+}
+
+//checks and clears color boxes when firefox caches
+var checkColorBoxes = function(){
+  var siteEl = document.getElementById("siteColorInput");
+  var graphEl = document.getElementById("graphColorInput");
+  var textEl = document.getElementById("textColorInput");
+  siteEl.value = "";
+  graphEl.value = "";
+  textEl.value = "";
 }
 
 // The play button
