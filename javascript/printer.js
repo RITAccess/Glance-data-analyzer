@@ -10,11 +10,15 @@ function printPage()
      htmlString = document.getElementsByTagName("link")[i].outerHTML;
      html += htmlString;
    }
+   var bg = document.getElementById("graphCC").style.background;
+   if(bg===""){
+    bg = "url('stylesheets/halftone/halftone.png')";
+   }
    html += "</head>";
    html += "<body>";
    html += "<header><h1 id='title' tabindex='0'>Data Analyzer</h1></header>";
    html += "<div id='content'>";
-   html += "<h3 style='text-align:center;'>Data Analyzer Graph</h3><div id='graphImg'><img tabindex='0' alt='Data Analyzer Graph' width='800px' src='" + chart.toBase64Image() + "'/></div>";
+   html += "<h3 style='text-align:center;'>Data Analyzer Graph</h3><div id='graphImg' style=\"background:" +bg + "\"><img tabindex='0' alt='Data Analyzer Graph' width='800px' src='" + chart.toBase64Image() + "'/></div>";
    html += "<div id='summaryBox' style='display: block;'>";
    html += document.getElementById('summaryBox').innerHTML;
    html += "</div><div id='printTable'><h3 id='printTableHeader'>Data Table</h3>";
@@ -23,17 +27,17 @@ function printPage()
    if(type === "bar"){
       var counter = 0;
       for(var j = 0; j<(chart.datasets[0].bars.length/10); j++){
-         s+="<tr>";
+         s+="<tr class='border'>";
          for(var i = 0; (i<chart.datasets[0].bars.length && counter<10 && chart.datasets[0].bars[(10*j)+i]!= undefined); i++){
-            s+="<th>" + chart.datasets[0].bars[(10*j)+i].label + "</th>";
+            s+="<th class='border'>" + chart.datasets[0].bars[(10*j)+i].label + "</th>";
             counter++;
          }
          s+="</tr>";
          counter = 0;
          for (var i = 0; i < chart.datasets.length; i++) {
-            s+="<tr>";
+            s+="<tr class='border'>";
             for(var k = 0; (k<chart.datasets[i].bars.length && counter<10 && chart.datasets[i].bars[(10*j)+k]!= undefined); k++) {
-               s+= "<td>" + chart.datasets[i].bars[(10*j) + k].value + "</td>";
+               s+= "<td class='border'>" + chart.datasets[i].bars[(10*j) + k].value + "</td>";
                counter++;
             }
             counter = 0;
@@ -47,17 +51,17 @@ function printPage()
    else{
       var counter = 0;
       for(var j = 0; j<(chart.datasets[0].points.length/10); j++){
-         s+="<tr>";
+         s+="<tr class='border'>";
          for(var i = 0; (i<chart.datasets[0].points.length && counter<10 && chart.datasets[0].points[(10*j)+i]!= undefined); i++){
-            s+="<th>" + chart.datasets[0].points[(10*j)+i].label + "</th>";
+            s+="<th class='border'>" + chart.datasets[0].points[(10*j)+i].label + "</th>";
             counter++;
          }
          s+="</tr>";
          counter = 0;
          for (var i = 0; i < chart.datasets.length; i++) {
-            s+="<tr>";
+            s+="<tr class='border'>";
             for(var k = 0; (k<chart.datasets[i].points.length && counter<10 && chart.datasets[i].points[(10*j)+k]!= undefined); k++) {
-               s+= "<td>" + chart.datasets[i].points[(10*j) + k].value + "</td>";
+               s+= "<td class='border'>" + chart.datasets[i].points[(10*j) + k].value + "</td>";
                counter++;
             }
             counter = 0;
@@ -120,8 +124,21 @@ function printPage()
    for(var i = 0; i <redTriangles.length; i ++){
     redTriangles[i].parentNode.remove(redTriangles[i]);
    }
-   //printWin.document.styleSheets[0].insertRule('.colorblock {-webkit-print-color-adjust:exact;}',printWin.document.styleSheets[0].length);
-
+   printWin.document.getElementsByTagName('body')[0].style.background = document.getElementsByTagName("body")[0].style.background;
+   printWin.document.getElementsByTagName("body")[0].style.color = document.getElementsByTagName("body")[0].style.color ;
+   printWin.document.getElementsByClassName("printTable")[0].style.border = "1px solid " + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background));
+   var ths = printWin.document.getElementsByTagName("th");
+   var trs = printWin.document.getElementsByTagName("tr");
+   var tds = printWin.document.getElementsByTagName("td");
+   for(var i =0; i <ths.length; i++){
+    ths[i].style.border = "1px solid " + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background));
+   }
+   for(var i =0; i <trs.length; i++){
+    trs[i].style.border = "1px solid " + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background));
+   }
+   for(var i =0; i <tds.length; i++){
+    tds[i].style.border = "1px solid " + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background));
+   }
    printWin.focus();
    setTimeout(function(){printWin.print();},100);
 }
