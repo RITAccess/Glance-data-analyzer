@@ -233,3 +233,8 @@ var checkWarningLabels = function(){
   }
   return noWarnings;
 }
+var uncheckBoxes = function(){
+  document.getElementById("siteContrast").checked = false;
+  document.getElementById("graphContrast").checked = false;
+  document.getElementById("textContrast").checked = false;
+}

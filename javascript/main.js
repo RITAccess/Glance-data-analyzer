@@ -42,6 +42,7 @@ var collection;
 var type = null;
 var lineColors = [];
 var slickTable;
+var uncheckCalled = false;
 var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor')>0;
 // initial data load
 // (this is called after fileOpen from files.js)
@@ -230,6 +231,10 @@ var loadData = function (data) {
     oldColor = document.getElementsByTagName("body")[0].style.color;
     oldGraphColor = chart.options.scaleFontColor;
     oldBGColor = document.getElementsByTagName('body')[0].style.background;
+    if(!uncheckCalled){
+      uncheckBoxes();
+      uncheckCalled= true;
+    }
 }
 
 //checks and clears color boxes when firefox caches
