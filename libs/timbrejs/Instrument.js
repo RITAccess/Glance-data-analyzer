@@ -43,6 +43,7 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
   var self = this;
   timbre.bpm = this.bpm;
   this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
+    this.line = line;
     if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
       self.playing = false;
       self.updateIcon();
@@ -199,11 +200,15 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
     }
     else{
       if(this.t){
-      this.t.stop();
-      this.playing = false;
-      if(!this.paused)
-      this.paused = true;
-    }
+        this.t.stop();
+        this.playing = false;
+        if(!this.paused)
+          this.paused = true;
+        if(this.t.line != line){
+          this.t = null;
+          this.paused = false;
+        }
+      }
     }
 }
 

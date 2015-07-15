@@ -53,13 +53,13 @@ var loadChart = function(data, type, collection){
 						if(calcContrast(newcolor,"#F4F2E9")<=2){
 							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
 						}
-						continuePrompt = calcContrast(newcolor,"#F4F2E9")<=1.5;
+						continuePrompt = calcContrast(newcolor,"#F4F2E9")<=1.25;
 					}
 					else{
 						if(calcContrast(graphBg,newcolor)<=2){
 							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
 						}
-						continuePrompt = calcContrast(graphBg,newcolor)<=1.5;
+						continuePrompt = calcContrast(graphBg,newcolor)<=1.25;
 					}
 					if(continuePrompt){
 						var elem = document.getElementById("warning"+index);
@@ -213,16 +213,16 @@ var loadChart = function(data, type, collection){
 					var graphBg = document.getElementById("graphCC").style.background;
 					graphBg = convertRGBtoHex(graphBg.substring(0,graphBg.indexOf(")")+1));
 					if(isNaN(calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')]))){
-						if(calcContrast(colors[newcolor.toLowerCase().split(' ').join('')],"#F4F2E9")<=2){
+						if(calcContrast(colors[newcolor.toLowerCase().split(' ').join('')],"#F4F2E9")<=1.25){
 							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
 						}
-						continuePrompt = calcContrast(colors[newcolor.toLowerCase().split(' ').join('')],"#F4F2E9")<=1.5;
+						continuePrompt = calcContrast(colors[newcolor.toLowerCase().split(' ').join('')],"#F4F2E9")<=1.25;
 					}
 					else{
-						if(calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')])<=2){
+						if(calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')])<=1.25){
 							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
 						}
-						continuePrompt = calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')])<=1.5;
+						continuePrompt = calcContrast(graphBg,colors[newcolor.toLowerCase().split(' ').join('')])<=1.25;
 					}
 					if(continuePrompt){
 						var elem = document.getElementById("warning"+index);
