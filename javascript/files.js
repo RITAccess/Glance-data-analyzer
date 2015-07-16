@@ -16,6 +16,17 @@ var newFile = function(newFile) {
 }
 
 function loadFile(){
+  if(player && player.playing){
+    if(isSafari){
+      player.stop();
+    }
+    else{
+      if(player.t){
+        player.t.stop();
+        player.t = null;
+      }
+    }
+  }
   var input = ev.target;
   var colorlist = document.getElementById("colors");
   oldData = [];
