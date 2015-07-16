@@ -16,14 +16,13 @@ var newFile = function(newFile) {
 }
 
 function loadFile(){
-  if(player && player.playing){
+  if(player && player.playing && !uncheckCalled){
     if(isSafari){
       player.stop();
     }
     else{
       if(player.t){
         player.t.stop();
-        player.t = null;
       }
     }
   }

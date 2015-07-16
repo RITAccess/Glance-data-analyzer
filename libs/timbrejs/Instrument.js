@@ -204,7 +204,7 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
         this.playing = false;
         if(!this.paused)
           this.paused = true;
-        if(this.t.line != line){
+        if(this.t.line && (this.t.line != line)){
           this.t = null;
           this.paused = false;
         }
