@@ -571,7 +571,7 @@ input[type="text"] {
 }
 .sChartType select, .sChartType input {/* chart type select tags */
     border: 2px solid #000;
-    border-radius: 2px;
+    border-radius: 3px;
     font-size: 20px;
 }
 #rows, #columns {
