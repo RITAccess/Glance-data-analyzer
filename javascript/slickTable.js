@@ -92,9 +92,12 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		var row = args.row;
 		var col = args.cell;
 		var newVal = grid.getData()[row][col];
-		
+
 		// if a label
 		if (row == 0 || col == 0){
+			if(newVal.length > 22){
+				newVal = newVal.substring(0,19)+"...";
+			}
 			chart.scale.xLabels[col -1] = newVal;
 			if(type === "scatter" ){
 				//need to change all labels in the dataset
@@ -107,10 +110,10 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			}
 			setTimeout(function(){ checkRemove(); }, 1);
 		}
-		
+
 		// not a label - check to see if it's a number.
 		else if (((!isNaN(newVal)) || newVal.charAt(0) == '=') && (newVal != "")){
-			
+
 			if(newVal.charAt(0) == '='){
 				var str = newVal.slice(1);
 				newVal = evaluate(str);
@@ -122,7 +125,7 @@ var linkSlickTable = function(chart, player, overlay, summary){
 					grid.getData()[row][col];
 				}
 			}
-			
+
 			//Update audio with new value
 			player.changeLine(row-1,col - 1,newVal);
 			// change value in chart
@@ -214,7 +217,7 @@ function checkRemove(){
 	}
 
 	//Check for rows to remove
-	for(var i = 0; i < grid.getData().length; i++){
+	for(var i = 1; i < grid.getData().length; i++){
 		if(grid.getData().length - 1 >= 2) { // Check if there are enough rows to have one removed
 			if(grid.getData()[i][0]===""){
 				if(confirm("Delete row " + i + "?")){	//Confirm with user
@@ -404,11 +407,11 @@ function evaluate(x) {
 	x = x.split(/([-+/*^()])/g);
     x = x.filter(function(value){ return value !== ''; });
 	// search for negative signs vs minus
-	// no cleaner way of doing it 
+	// no cleaner way of doing it
 	for(var i = 0; i < x.length; i++){
 		if(x[i] === '-'){
 			if((isNaN(x[i-1]) && x[i-1] != ')') && !isNaN(x[i+1])){
-				//prep the number 
+				//prep the number
 				var num = (parseFloat(x[i+1]) * -1);
 				x = x.slice(0,i).concat([num].concat(x.slice(i+2, x.length)));
 			}
@@ -424,7 +427,7 @@ function evall(x) {
 		var result = evall(x.slice(start+1,end));
 		x = x.slice(0,start).concat(result.concat(x.slice(end+1, x.length)));
 	}
-	
+
 	end = x.length;
 	while((/[\^\+\-\/\*]/.test(x)) && x.length > 1){
 		while(/\^/.test(x)){
@@ -443,19 +446,19 @@ function evall(x) {
 			var op = x.indexOf('*');
 			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) * parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
 			//console.log("*");
-			//console.log(x);		
+			//console.log(x);
 		}
 		while(/\+/.test(x)){
 			var op = x.indexOf('+');
 			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) + parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
 			//console.log("+");
-			//console.log(x);		
+			//console.log(x);
 		}
 		while(/\-/.test(x)  && /\-(?!\d+)/.test(x)){
 			var op = x.indexOf('-');
 			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) - parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
 			//console.log("-");
-			//console.log(x);		
+			//console.log(x);
 		}
 	}
   return x;
@@ -472,10 +475,10 @@ function tableReset() {
 			};
 			dataBack.data = firstData;
 			loadData(dataBack);
-			dataCount = 0; 
+			dataCount = 0;
 			totalData.splice(dataCount, totalData.length - dataCount - 1);
 		}
-	} 
+	}
 	else {
 		alert("You cannot reset!");
 	}
