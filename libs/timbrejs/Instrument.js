@@ -43,7 +43,7 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
   var self = this;
   timbre.bpm = this.bpm;
   this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
-    this.line = line;
+    self.line = line;
     if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
       self.playing = false;
       self.updateIcon();
@@ -167,6 +167,9 @@ Instrument.prototype.changeLine = function(line, index, newValue) {
 //Toggle playing either on or off
 Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
   if(!this.playing) {
+    if(this.t && this.line != line){
+      this.t.stop();
+    }
     if(this.paused){
       this.t.start();
       this.paused = false;
@@ -204,7 +207,8 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
         this.playing = false;
         if(!this.paused)
           this.paused = true;
-        if(this.t.line && (this.t.line != line)){
+        console.log(this.t.line + " " + line);
+        if(this.line != undefined && (this.line != line)){
           this.t = null;
           this.paused = false;
         }
