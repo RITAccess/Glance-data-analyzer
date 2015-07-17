@@ -38,14 +38,14 @@ header {
     margin-left: 3.5%;
     position: relative;
 }
-#title a{
+#title a {
     cursor: pointer !important;
     text-decoration: none;
     color: inherit;
 }
 /*********************************/
 
-#typeSelBody{/* chart/graph type selection */
+#typeSelBody {/* chart/graph type selection */
     float: right;
     padding-right: 2%;
     margin-top: 0.9%;
@@ -111,7 +111,7 @@ header {
 /* END style for checkboxes */
 /*********************************/
 /* START style for about section */
-#startBody{
+#startBody {
     width: 100%;
     clear: both;
     margin-bottom: 8%;
@@ -136,14 +136,14 @@ header {
     margin: 1% 0;
     padding: 1% 0;
 }
-#startInst{ /* instruction to get started */
+#startInst { /* instruction to get started */
     text-align: center;
 }
-#startFooter{
+#startFooter {
     width: 100%;
     height: 50px;
 }
-#toTopButton{
+#toTopButton {
     float: right;
     cursor: pointer !important;
     font-size: 20px;
@@ -177,7 +177,7 @@ header {
     margin-bottom: 8%;
     clear: both;
 }
-#continuosBox{
+#continuosBox {
     width: 100%;
     font-weight: bold;
     font-size: 20px;
@@ -190,10 +190,10 @@ header {
     fill-opacity: 0.2;
     fill: lightblue;
 }
-#graphImg{/* printer.js: image of graph in the print page */
+#graphImg {/* printer.js: image of graph in the print page */
     margin-bottom: 8%;
 }
-#graphCC{/* graph color change */
+#graphCC {/* graph color change */
     background: url('halftone/halftone.png');
     border-radius: 5px;
 }
@@ -248,7 +248,7 @@ svg * {
     box-shadow: 0px 5px 10px #000;
     text-shadow: none;
 }
-.uploadBtn:hover, .createBtn:hover{
+.uploadBtn:hover, .createBtn:hover {
     background-color: #000;
     color: #FFF;
 }
@@ -286,19 +286,19 @@ svg * {
 /*******************************/
 
 /* START: for print button page, table section */
-#printTable{
+#printTable {
     border-top: 3px solid #000;
 }
-#printTableHeader{
+#printTableHeader {
     text-align: center;
 }
-#printTableBody{
+#printTableBody {
     margin-top: 2%;
 }
 /* END: for print button page, table section */
 
 /*******************************/
-#audioSpanSec{
+#audioSpanSec {
     width: 100%;
     text-align: left;
     border-bottom: 3px solid #000;
@@ -350,7 +350,7 @@ svg * {
     padding-bottom: 8%;
     /* position: relative; part of making download button bottom of div*/
 }
-#summary-header{ /*  center align is for printer.js */
+#summary-header { /*  center align is for printer.js */
     text-align: center;
     margin-bottom: 0;
 }
@@ -406,7 +406,7 @@ svg * {
     border-radius: 100%;
     vertical-align: middle;
 }
-#resetButton:hover, #addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #downloadCSV:hover, #printButton:hover, #undoButton:hover, #redoButton:hover, #toTopButton:hover, #resetButton:focus, #redoButton:focus, #undoButton:focus, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #downloadCSV:focus, #printButton:focus, #toTopButton:focus {
+#toTopButton:hover, #addNewRow:hover, #addNewCol:hover, #subtractRow:hover, #subtractColumn:hover, #undoButton:hover, #redoButton:hover, #resetButton:hover, #downloadCSV:hover, #printButton:hover, #toTopButton:focus, #addNewRow:focus, #addNewCol:focus, #subtractRow:focus, #subtractColumn:focus, #undoButton:focus, #redoButton:focus, #resetButton:focus, #downloadCSV:focus, #printButton:focus {
     background-color: #000;
     color: #FFF;
 }
@@ -467,7 +467,7 @@ svg * {
     text-align: left;
     padding-left: 5%;
 }
-.ccFeature{
+.ccFeature {
     margin-bottom: 1%;
 }
 #siteCCReset, #graphCCReset, #textCCReset { /* color change reset button style */
@@ -588,18 +588,18 @@ input[type="text"] {
 /************************************/
 
 /* START Table Style for print */
-table, th, td, .printTable{
+table, th, td, .printTable {
     border: 1px solid #000;
     border-collapse: collapse;
     text-align: center; /* center texts (especially) inside td */
 }
-table, .printTable{
+table, .printTable {
     font-size: 20px;
     margin: auto;
     margin-top: 5%;
     table-layout: fixed;
 }
-th, td, .printTable{
+th, td, .printTable {
     padding: 10px;
     word-wrap:break-word;
 }
@@ -609,7 +609,7 @@ th, td, .printTable{
 
 /* START media query for printing */
  @media print {
-    body, html, header{
+    body, html, header {
         background: none;
     }
     header {
@@ -623,11 +623,11 @@ th, td, .printTable{
     #content {
         margin: 0px;
     }
-    #tblContainer{
+    #tblContainer {
         height: auto;
         overflow: hidden;
     }
-    #colors{
+    #colors {
         max-height: none;
         overflow: hidden;
     }
@@ -641,7 +641,7 @@ th, td, .printTable{
 
 /* START media query max-width: 1068px */
 @media screen and (max-width: 1068px) {
-    #typeSelBody{
+    #typeSelBody {
         width: 100%;
         background: url('footer_lodyas/footer_lodyas.png');
         position: initial;
@@ -651,7 +651,7 @@ th, td, .printTable{
         box-shadow: 0px 10px 10px -10px #000;
         border-radius: 0;
     }
-    #typeSelBody:before{
+    #typeSelBody:before {
         content: '\A'; /* acts like break tag */
     }
 }
