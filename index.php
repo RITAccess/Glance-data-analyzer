@@ -83,11 +83,14 @@
              at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1"/>
             <label for="instrumentDropdown" tabindex="0"> Instrument </label>
             <select id="instrumentDropdown" class='drop-down' title="selected"></select>
-            <button id="playButton" onclick="playStopAudioButton()" aria-label="Play Pause Toggle">
-              <i id="icon" class="fa fa-eject fa-2x fa-rotate-90" ></i></button>
           </div><!-- END id="audioSpan" -->
           <div id="audioSpanBar"><!-- NOT an empty span: main.js "Play mode" and "Column number" for bar graph -->
           </div><!-- END id="audioSpanBar" -->
+          <div id="audioSpanButtons"><!-- Play, Pause, Stop buttons for audio -->
+            <button id="playButton" onclick="player.play()" aria-label="Play Toggle"><i id="playToggle" class="fa fa-play" ></i></button>
+            <button id="pauseButton" onclick="player.pause()" aria-label="Pause Toggle"><i id="pauseToggle" class="fa fa-pause" ></i></button>
+            <button id="stopButton" onclick="player.stop()" aria-label="Stop Toggle"><i id="stopToggle" class="fa fa-stop" ></i></button>
+          </div><!-- END id="audionSpanButtons" -->
         </div><!-- END id="audioSpanSec" -->
         <div id="dataPlot">
           <h3 id="plot-header" style="display:none;">Data Table</h3>
