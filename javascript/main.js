@@ -329,8 +329,8 @@ var makeColSelector = function(){
     var label = document.createElement("label");
     label.setAttribute("id","colNumLabel");
     label.innerHTML = " Column number ";
-    document.getElementById("audioSpanSec").appendChild(label);
-    document.getElementById("audioSpanSec").appendChild(selector);
+    document.getElementById("audioSpanBar").appendChild(label);
+    document.getElementById("audioSpanBar").appendChild(selector);
   }
   else if(document.getElementById("colSelector")){
     var c = document.getElementById('colSelector');
