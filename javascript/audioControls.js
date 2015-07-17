@@ -66,7 +66,7 @@ var pause = function(){
 
 //Stop audio if not already
 var stop = function(){
-  if(isSafari){
+  if(isSafari && player.playing){
     overlay.slider[0] = 0;
     player.paused = false;
     playStopAudioButton();
@@ -80,4 +80,6 @@ var stop = function(){
 var changeAudioLine = function(){
   player.paused = false;
   player.stop();
+  if(isSafari)
+    overlay.slider[0] = 0;
 }
