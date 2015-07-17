@@ -78,8 +78,7 @@ WaveForm.prototype.setPitch = function(pitch){
 //Start playing WaveForm
 WaveForm.prototype.start = function(){
 	this.t_object.play();
-	this.playing = true;
-	this.updateIcon();
+	this.playing = true;	
 };
 
 //Stop playing WaveForm
@@ -88,7 +87,6 @@ WaveForm.prototype.stop = function(){
 	if(this.t)
 	this.t.stop();
 	this.playing = false;
-	this.updateIcon();
 };
 
 //Change Waveform Pitch
@@ -100,7 +98,6 @@ WaveForm.prototype.changePitch = function(pitch){
 //Play series of notes
 WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	this.playing = true;
-	this.updateIcon();
 	var j = line;
 	var i = startIndex;
 	timbre.bpm = this.bpm;
@@ -112,7 +109,6 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	this.t = T("interval", {interval:this.subdiv,timeout:"99sec"},function(){
 		if(i>=endIndex || isNaN(self.pitch)) {
 			overlay.slider[0] = 0;
-			self.updateIcon();
 			self.t_object.pause();
 			this.stop();
 			self.stop();
@@ -135,7 +131,7 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 //Play series of notes
 WaveForm.prototype.playSeriesColumns = function(line,startIndex,endIndex){
 	this.playing = true;
-	this.updateIcon();
+	
 	var j = line;
 	var i = startIndex;
 	timbre.bpm = this.bpm;
@@ -143,7 +139,6 @@ WaveForm.prototype.playSeriesColumns = function(line,startIndex,endIndex){
 	var time = this.bpm/60 * this.infoCollection.collection.length-2 + "sec"
 	this.t = T("interval", {interval:this.subdiv,timeout:time},function(){
 		if(j>self.infoCollection.collection.length-1) {
-			self.updateIcon();
 			self.stop();
 			this.stop();
 		}
@@ -179,7 +174,7 @@ WaveForm.prototype.playRegressionLine = function(){
     i++;
     if(i>myNotes.length || myNotes[i]===undefined){
       self.playing = false;
-      self.updateIcon();
+      
       self.stop();
       this.stop();
     }
@@ -240,18 +235,5 @@ WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing
     this.paused = true;
     this.playing = false;
   }
-  this.updateIcon();
-}
-
-// Updates the play / stop icon.
-WaveForm.prototype.updateIcon = function() {
-  var iList = document.getElementById("icon").classList;
-  if(this.playing) {
-    iList.remove("fa-play");
-    iList.add("fa-stop");
-  }
-  else {
-    iList.remove("fa-stop");
-    iList.add("fa-play");
-  }
+  
 }

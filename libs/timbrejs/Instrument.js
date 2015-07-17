@@ -46,7 +46,6 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
     self.line = line;
     if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
       self.playing = false;
-      self.updateIcon();
       self.t.stop();
 
     }
@@ -75,7 +74,6 @@ Instrument.prototype.playColumn = function(col){
   this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
     if(j>=self.infoCollection.collection.length-1 || self.infoCollection.collection[j] === undefined){
       self.playing = false;
-      self.updateIcon();
       this.stop();
       self.t.stop();
     }
@@ -98,7 +96,6 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
   this.t = T("interval", {interval:this.subdiv,timeout:"55sec"},function(){
     if(i>=endIndex || self.infoCollection.collection[j].array[i+1] === undefined){
       self.playing = false;
-      self.updateIcon();
       this.stop();
       self.t.stop();
     }
@@ -127,7 +124,6 @@ Instrument.prototype.playRegressionLine = function(){
     i++;
     if(i>myNotes.length || myNotes[i]===undefined){
       self.playing = false;
-      self.updateIcon();
       self.t.stop();
       this.stop();
     }
@@ -207,7 +203,6 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
         this.playing = false;
         if(!this.paused)
           this.paused = true;
-        console.log(this.t.line + " " + line);
         if(this.line != undefined && (this.line != line)){
           this.t = null;
           this.paused = false;
@@ -216,19 +211,7 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
     }
 }
 
-// Updates the play / stop icon.
-Instrument.prototype.updateIcon = function() {
-  var iList = document.getElementById("icon").classList;
-  if(this.playing) {
-    iList.remove("fa-play");
-    iList.add("fa-stop");
-  }
-  else {
-    iList.remove("fa-stop");
-    iList.add("fa-play");
-  }
-}
-
+//Set play speed
 Instrument.prototype.setBpm = function(bpm){
   this.subdiv = "L4";
   if(bpm > 280){
@@ -286,4 +269,10 @@ Instrument.prototype.getKeyByValue = function( value ) {
                  return prop;
         }
     }
+}
+
+Instrument.prototype.stop = function(){
+  this.t.stop();
+  this.playing = false;
+  this.paused = false;
 }
