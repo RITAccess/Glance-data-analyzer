@@ -87,9 +87,9 @@
           <div id="audioSpanBar"><!-- NOT an empty span: main.js "Play mode" and "Column number" for bar graph -->
           </div><!-- END id="audioSpanBar" -->
           <div id="audioSpanButtons"><!-- Play, Pause, Stop buttons for audio -->
-            <button id="playButton" onclick="play()" aria-label="Play Toggle"><i id="playToggle" class="fa fa-play" ></i></button>
-            <button id="pauseButton" onclick="pause()" aria-label="Pause Toggle"><i id="pauseToggle" class="fa fa-pause" ></i></button>
-            <button id="stopButton" onclick="stop()" aria-label="Stop Toggle"><i id="stopToggle" class="fa fa-stop" ></i></button>
+            <button id="playButton" onclick="play()" aria-label="Play Toggle"><i id="playToggle" class="fa fa-play fa-lg" ></i></button>
+            <button id="pauseButton" onclick="pause()" aria-label="Pause Toggle"><i id="pauseToggle" class="fa fa-pause fa-lg" ></i></button>
+            <button id="stopButton" onclick="stop()" aria-label="Stop Toggle"><i id="stopToggle" class="fa fa-stop fa-lg" ></i></button>
           </div><!-- END id="audionSpanButtons" -->
         </div><!-- END id="audioSpanSec" -->
         <div id="dataPlot">

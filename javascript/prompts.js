@@ -54,7 +54,7 @@
             document.getElementById('dialogboxbody').innerHTML = dialog + "<select id='graphSelector' aria-label='Choose a type of graph'><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select><br><label>Choose number of rows: </label><input id='rows' aria-label='Choose number of rows' type='text' value='0'/><br><label>Choose number of columns: </label><input id='columns' type='text' aria-label='Choose number of columns' value='0'/>";
             document.getElementById('dialogboxfoot').innerHTML = "<button onclick='Alert2.cancel()'>Cancel</button><button onclick=Alert2.reset()>Reset</button><button onclick='Alert2.ok()'>Submit</button>";
             document.getElementById('dialogbox').style.visibility = "visible";
-            document.getElementById('dialogoverlay').style.visibility = "visible";
+            document.getElementById('dialogoverlay').style.visibility = "visible"
             document.getElementById('graphSelector').focus();
         }
         this.ok = function () {
