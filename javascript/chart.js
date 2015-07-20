@@ -529,7 +529,7 @@ function dataset(data, collection) {
 		inputBoxArray.push(textInput);
 		toggleBox.setAttribute("id", "lineToggleBox" + i);
 		textInput.setAttribute("type", "text");
-		textInput.setAttribute("title", "Enter color");
+		textInput.setAttribute("aria-label", "Enter color");
 		inputDiv.setAttribute("class","squaredTwo");
 		inputDiv.style.marginTop = "3%";
 		inputLabel.setAttribute("for","lineToggleBox" + i);
