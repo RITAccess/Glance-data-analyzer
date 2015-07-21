@@ -279,7 +279,7 @@ var makeColSelector = function(){
     }
     var label = document.createElement("label");
     label.setAttribute("id","colNumLabel");
-    label.innerHTML = " Column number ";
+    label.innerHTML = " Column ";
     document.getElementById("audioSpanBar").appendChild(label);
     document.getElementById("audioSpanBar").appendChild(selector);
   }
