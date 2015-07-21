@@ -25,18 +25,18 @@
     <div class="inputBtnSection no-print">
       <label class="fileUpload">
           <input id="files" tab-index="0" aria-label="Load CSV" type="file" accept=".csv" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
-          <span class="uploadBtn" aria-hidden="true" onmouseover="focusElement('uploadBtn')" onmouseleave="blurElement('uploadBtn')">Load CSV</span>
+          <span class="uploadBtn" title="Load CSV" aria-hidden="true" onmouseover="focusElement('uploadBtn')" onmouseleave="blurElement('uploadBtn')">Load CSV</span>
       </label>
     </div>
     <div class="newBtnSection no-print">
       <label class="createNew">
         <input id="newTable" tab-index="0" aria-label="Create New Table" type="button" class="emptyTable" onfocus="focusElement('createBtn')" onblur="blurElement('createBtn')"/>
-        <span class="createBtn" aria-hidden="true" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
+        <span class="createBtn" title="Create New Table" aria-hidden="true" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
       </label>
     </div>
     <span id="typeSelBody" class="no-print" style="display:none;">
       Change graph type:
-      <select id="typeSel" class="no-print" onchange="typeOpSel()">
+      <select id="typeSel" class="no-print" title="Change Graph Type" onchange="typeOpSel()">
         <option id="lineRadioButton" name="graphTypeSel" value="Line" onclick="typeOpSel()">Line Graph</label>
         <option id="barRadioButton" name="graphTypeSel" value="Bar" onclick="typeOpSel()">Bar Graph</option>
         <option id="scatterRadioButton" name="graphTypeSel" value="Scatter" onclick="typeOpSel()">Scatter Plot</option>
@@ -60,7 +60,7 @@
         <h3 id="startInst">To get started, select Load CSV or Create New Table at the top!</h3>
       </div>
       <div id="startFooter">
-        <button id="toTopButton" onclick="location.href='index.php'" >Return To Top</button>
+        <button id="toTopButton" title="Return to Top" onclick="location.href='index.php'" >Return to Top</button>
       </div>
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
@@ -68,8 +68,8 @@
         <h3 id="graphHeader" style="display:none;">Data Analyzer Graph</h3>
         <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" class="no-print"></div>
         <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
-          <rect id="background" x="0" y="0" width="800" height="400" />
-          <rect id="selection" x="0" y="0" width="800" height="400" />
+          <rect id="background" title="Data Analyzer Graph" x="0" y="0" width="800" height="400" />
+          <rect id="selection" title="Slider" x="0" y="0" width="800" height="400" />
         </svg>
         <div id="graphCC">
           <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
@@ -79,17 +79,17 @@
         <div id="audioSpanSec" class="no-print">
           <div id="audioSpan" style="display: none">
             <label for="lineDropdown" tabindex="0"> Row number </label>
-            <select id="lineDropdown" class='drop-down' title="selected" onchange="changeAudioLine()"></select>
-             at speed <input id="bpm" class='drop-down' name="Speed Multiplier" type="number" min="0" value="1"/>
+            <select id="lineDropdown" class='drop-down' title="Select Row Number" aira-lable="selected" onchange="changeAudioLine()"></select>
+             at speed <input id="bpm" class='drop-down' name="Speed Multiplier" title="Select Speed" type="number" min="0" value="1"/>
             <label for="instrumentDropdown" tabindex="0"> Instrument </label>
-            <select id="instrumentDropdown" class='drop-down' title="selected"></select>
+            <select id="instrumentDropdown" class='drop-down' title="Select Instrument"></select>
           </div><!-- END id="audioSpan" -->
           <div id="audioSpanBar"><!-- NOT an empty span: main.js "Play mode" and "Column number" for bar graph -->
           </div><!-- END id="audioSpanBar" -->
           <div id="audioSpanButtons"><!-- Play, Pause, Stop buttons for audio -->
-            <button id="playButton" onclick="play()" aria-label="Play Toggle"><i id="playToggle" class="fa fa-play fa-lg" ></i></button>
-            <button id="pauseButton" onclick="pause()" aria-label="Pause Toggle"><i id="pauseToggle" class="fa fa-pause fa-lg" ></i></button>
-            <button id="stopButton" onclick="stop()" aria-label="Stop Toggle"><i id="stopToggle" class="fa fa-stop fa-lg" ></i></button>
+            <button id="playButton" onclick="play()" title="Play Audio" aria-label="Play Audio"><i id="playToggle" class="fa fa-play fa-lg" ></i></button>
+            <button id="pauseButton" onclick="pause()" title="Pause Audio" aria-label="Pause Audio"><i id="pauseToggle" class="fa fa-pause fa-lg" ></i></button>
+            <button id="stopButton" onclick="stop()" title="Stop Audio" aria-label="Stop Audio"><i id="stopToggle" class="fa fa-stop fa-lg" ></i></button>
           </div><!-- END id="audionSpanButtons" -->
         </div><!-- END id="audioSpanSec" -->
         <div id="dataPlot">
@@ -101,20 +101,20 @@
           <div id="remInstruction" class="no-print"></div>
         <div id="tableControls" style="display: none" class="no-print">
           <div id="rowLabel">
-            <label><button id="subtractRow" aria-label="Remove Row" onclick="subtractRow()"><i class="fa fa-minus"></i></button></label>
+            <label><button id="subtractRow" title="Remove Row" aria-label="Remove Row" onclick="subtractRow()"><i class="fa fa-minus"></i></button></label>
             <p style="display: inline">Row</p>
-            <label><button id="addNewRow" aria-label="Add Row" onclick="addRow()"><i class="fa fa-plus"></i></button></label>
+            <label><button id="addNewRow" title="Add Row" aria-label="Add Row" onclick="addRow()"><i class="fa fa-plus"></i></button></label>
           </div>
           <div id="columnLabel">
-            <label><button id="subtractColumn" aria-label="Remove Column" onclick="subtractColumn()"><i class="fa fa-minus"></i></button></label>
+            <label><button id="subtractColumn" title="Remove Column" aria-label="Remove Column" onclick="subtractColumn()"><i class="fa fa-minus"></i></button></label>
             <p style="display: inline">Column</p>
-            <label><button id="addNewCol" aria-label="Add Column" onclick="addColumn()"><i class="fa fa-plus"></i></button></label>
+            <label><button id="addNewCol" title="Add Column" aria-label="Add Column" onclick="addColumn()"><i class="fa fa-plus"></i></button></label>
           </div>
-          <button id="undoButton" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
-          <button id="redoButton" aria-label="Redo" onclick="redo()"><i class="fa fa-repeat fa-lg"></i></button>
-          <button id="resetButton" aria-label="Reset Table" onclick="tableReset()" title="Reset Table"><i class="fa fa-refresh fa-lg"></i></button>
-          <button id="downloadCSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
-          <button id="printButton" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
+          <button id="undoButton" title="Undo" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
+          <button id="redoButton" title="Redo" aria-label="Redo" onclick="redo()"><i class="fa fa-repeat fa-lg"></i></button>
+          <button id="resetButton" title="Reset Table" aria-label="Reset Table" onclick="tableReset()" title="Reset Table"><i class="fa fa-refresh fa-lg"></i></button>
+          <button id="downloadCSV" title="Download CSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
+          <button id="printButton" title="Print" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
         </div><!-- END id="tableControls" -->
       </div><!-- END id="dataPlot" -->
       <?php
@@ -132,8 +132,8 @@
                 <label>Site Background: </label><input id="siteColorInput" type="text" onInput="changeSiteBg()" title="Change Site Background Color">
                 <label>High Contrast:</label>
                   <div class="squaredTwo">
-                    <input id="siteContrast" type="checkbox" tabindex="0" checked="checked" title="Site Background Color Contrast Toggler" onclick="changeSiteBg()">
-                    <label for="siteContrast"></label>
+                    <input id="siteContrast" type="checkbox" tabindex="0" checked="checked" aria-label="Enable/Disable Site Background Color Contrast" onclick="changeSiteBg()">
+                    <label for="siteContrast" title="Enable/Diable Site Background Color Contrast"></label>
                   </div>
                   <input type="button" id="siteCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Site Background to Original" title="Reset Site Background to Original" onclick="resetSiteBg()" onkeyup="siteKeyUp()" value="">
               </div>
@@ -141,8 +141,8 @@
                 <label>Graph Background: </label><input id="graphColorInput" type="text" onInput="changeGraphBg()" title="Change Graph Background Color">
                 <label tabindex="0" >High Contrast:</label>
                   <div class="squaredTwo">
-                    <input id="graphContrast" tabindex="0" type="checkbox" checked="checked" title="Graph Background Color Contrast Toggler" onclick="changeGraphBg()">
-                    <label for="graphContrast"></label>
+                    <input id="graphContrast" tabindex="0" type="checkbox" checked="checked" aria-label="Enable/Disable  Graph Background Color Contrast" onclick="changeGraphBg()">
+                    <label for="graphContrast" title="Enable/Disable Graph Background Color Contrast"></label>
                   </div>
                   <input type="button" id="graphCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Graph Background to Original" title="Reset Graph Background to Original" onclick="resetGraphBg()" value="">
               </div>
@@ -150,8 +150,8 @@
                 <label>Text Color: </label><input id="textColorInput" type="text" title="Change Text Color" onInput="changeTextColor()">
                 <label>High Contrast:</label>
                   <div class="squaredTwo">
-                    <input id="textContrast" type="checkbox" tabindex="0" checked="checked" title="Text Color Contrast Toggler" onclick="changeTextColor()">
-                    <label for="textContrast"></label>
+                    <input id="textContrast" type="checkbox" tabindex="0" checked="checked" aria-label="Enable/Disable Text Color Contrast" onclick="changeTextColor()">
+                    <label for="textContrast" title="Enable/Disable Text Color Contrast"></label>
                   </div>
                 <input type="button" id="textCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Text Color to Original" title="Reset Text Color to Original" onclick="resetText()" onkeyup="textKeyUp()" value="">
               </div>
