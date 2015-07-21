@@ -105,6 +105,10 @@ var linkSlickTable = function(chart, player, overlay, summary){
 					chart.datasets[i].points[col-1].label = newVal;
 				}
 			}
+			if(row === 0 && document.getElementById("colSelector")){
+				var childrenArray = $('#colSelector').children().toArray();
+				childrenArray[col-1].innerHTML = newVal;
+			}
 			if (col === 0) {
 				grid.getData()[0][0] = " ";
 			}
