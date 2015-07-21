@@ -17,7 +17,7 @@ if(isset($_POST['action'])){
 	header("Content-disposition: attachment; filename=\"" . basename("data-analyzer.csv") . "\""); 
 	echo readfile($file_url);
 	unlink($file_url);
-	unlink('.$phpFile.');
+	unlink(__FILE__);
 	?>';
 	chmod($filename, 0777);
 	writeFile($phpFile,$myPhp);
