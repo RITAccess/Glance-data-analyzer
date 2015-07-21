@@ -529,7 +529,8 @@ function dataset(data, collection) {
 		inputBoxArray.push(textInput);
 		toggleBox.setAttribute("id", "lineToggleBox" + i);
 		textInput.setAttribute("type", "text");
-		textInput.setAttribute("aria-label", "Enter color");
+		textInput.setAttribute("title", "Enter Color");
+		textInput.setAttribute("aria-label", "Enter Color");
 		inputDiv.setAttribute("class","squaredTwo");
 		inputDiv.style.marginTop = "3%";
 		inputLabel.setAttribute("for","lineToggleBox" + i);
@@ -538,6 +539,7 @@ function dataset(data, collection) {
 		if(hidden[i-1]===true)
 			toggleBox.setAttribute("checked", "checked");
 		toggleBox.setAttribute("title", "Display Data Set " + i);
+		inputLabel.setAttribute("title", "Display Data Set " + i);
 		inputDiv.appendChild(toggleBox);
 		inputDiv.appendChild(inputLabel);
 		var conColor = lineColors[i-1];
