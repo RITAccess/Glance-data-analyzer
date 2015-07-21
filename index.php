@@ -21,7 +21,7 @@
   </head>
 <body>
   <header>
-    <h1 id="title"><a href="index.php">Data Analyzer</a></h1>
+    <h1 id="title"><a href="index.php" title="Data Analyzer Home" aria-label="Data Analyzer Home">Data Analyzer</a></h1>
     <div class="inputBtnSection no-print">
       <label class="fileUpload">
           <input id="files" tab-index="0" aria-label="Load CSV" type="file" accept=".csv" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
