@@ -4,11 +4,25 @@
 */ 
 if(isset($_POST['action'])){
 	//Make new csv file
-	$filename = "data-analyzer.csv";
+	$num = rand(0,6000);
+	$filename = "data-analyzer" . $num . ".csv";
 	//Write posted data to csv
 	writeFile($filename, $_POST['action']);
 	//Return name of file to open
-	echo $filename;
+	$phpFile = "fileDownload".$num.".php";	
+	$myPhp = '<?php 
+	$file_url = "'.$filename.'";
+	header(\'Content-Type: application/octet-stream\');
+	header("Content-Transfer-Encoding: Binary"); 
+	header("Content-disposition: attachment; filename=\"" . basename("data-analyzer.csv") . "\""); 
+	echo readfile($file_url);
+	unlink($file_url);
+	unlink('.$phpFile.');
+	?>';
+	chmod($filename, 0777);
+	writeFile($phpFile,$myPhp);
+	chmod($phpFile, 0777);
+	echo $phpFile;
     exit;
 }
 /*

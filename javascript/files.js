@@ -435,8 +435,10 @@ var ajaxurl = 'php/ajax.php',
 data = {'action':s};
 //Post request to generate csv file
 $.post(ajaxurl,data,function (response){
+console.log("hello");
 //Open new window which will commence download of generated file
-window.open('php/fileDownload.php');
+console.log(response);
+window.open('php/'+response);
 });
 return s;
 }

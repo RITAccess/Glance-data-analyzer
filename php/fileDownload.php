@@ -7,4 +7,6 @@ header("Content-Transfer-Encoding: Binary");
 header("Content-disposition: attachment; filename=\"" . basename($file_url) . "\""); 
 //Download the file
 readfile($file_url);
+//Delete the file
+unlink($file_url);
 ?>
