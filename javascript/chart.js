@@ -437,11 +437,9 @@ var loadChart = function(data, type, collection){
 			          chart.datasets[index].bars = oldData[index].bars;
 					}
 					else{
-						console.log(1);
 						chart.datasets[index].points = oldData[index].scatter;
 						for(var i = 0; i < chart.datasets.length; i++){
 							for(var j = 0; j<chart.datasets[i].points.length; j++){
-								console.log(chart.datasets[i].points[j].value);
 								chart.datasets[i].points[j].y = chart.scale.calculateY(chart.datasets[i].points[j].value);
 							}
 						}
