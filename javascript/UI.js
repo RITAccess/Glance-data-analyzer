@@ -1,7 +1,8 @@
 var updateRowDropDown = function(){
 	var dropdownString = "";
 	for(var i = 0; i < chart.datasets.length; i++) {
-		dropdownString += "<option value="+(i + 1)+">"+(i + 1)+"</option>"
+		var rowName = grid.getData()[i+1][0]
+		dropdownString += "<option value="+(rowName)+">"+(rowName)+"</option>"
 	}
 	//if(document.getElementById("lineDropdown").innerHTML.length != dropdownString.length)
 	  document.getElementById("lineDropdown").innerHTML = dropdownString;

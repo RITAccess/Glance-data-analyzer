@@ -186,6 +186,9 @@ header {
     border: 3px solid #000;
     margin-top: 5%;
 }
+#lineDropdown, #instrumentDropdown {
+    max-width: 27%;
+}
 #selection {
     fill-opacity: 0.2;
     fill: lightblue;
