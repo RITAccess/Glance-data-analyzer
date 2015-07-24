@@ -27,7 +27,6 @@ header {
     clear: both;
     vertical-align: middle;
 }
-
 #slickTable .slick-viewport {
     overflow-y: scroll;
 }
@@ -44,7 +43,6 @@ header {
     color: inherit;
 }
 /*********************************/
-
 #typeSelBody {/* chart/graph type selection */
     float: right;
     padding-right: 2%;
@@ -158,7 +156,6 @@ header {
     border-radius: 5px;
 }
 /* END style for about section */
-
 /*********************************/
 #files {/*style for acutal Load CSV button*/
     width: 118px;
@@ -206,14 +203,12 @@ svg * {
     fill-opacity: 0;
 }
 /*******************************/
-
 #overlay {
     position:absolute;
 }
 #dataGraph h3{
     text-align: center;
 }
-
 /*******************************/
 /**  START changing Browse to Load CSV **/
  * {
@@ -267,7 +262,6 @@ svg * {
     filter: alpha(opacity=0);
 }
 /** END changing Browse to Load CSV **/
-
 /*******************************/
 #table {
     text-align: center;
@@ -287,7 +281,6 @@ svg * {
     overflow: auto;
 }
 /*******************************/
-
 /* START: for print button page, table section */
 #printTable {
     border-top: 3px solid #000;
@@ -299,7 +292,6 @@ svg * {
     margin-top: 2%;
 }
 /* END: for print button page, table section */
-
 /*******************************/
 #audioSpanSec {
     width: 100%;
@@ -342,9 +334,7 @@ svg * {
     border: 1px solid #888;
     border-radius: 5px;
 }
-
 /*******************************/
-
 #dataPlot {
     width: 100%;
     text-align:center;
@@ -376,6 +366,7 @@ svg * {
     text-align: center;
     padding-left: 1.5%;
 }
+/*******************************/
 #rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button {
     cursor: pointer !important;
     display: inline;
@@ -396,6 +387,7 @@ svg * {
         padding: 1%;
     }
 }
+/*******************************/
 #rowLabel, #columnLabel {
     cursor: default !important;
 }
@@ -521,7 +513,6 @@ input[type="text"] {
 }
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
-
 /* style for pop-up chart list STARTS */
  #dialogoverlay {
     display: none;
@@ -587,9 +578,7 @@ input[type="text"] {
     margin-left: 3%;
 }
 /* END style for pop-up chart list */
-
 /************************************/
-
 /* START Table Style for print */
 table, th, td, .printTable {
     border: 1px solid #000;
@@ -607,9 +596,7 @@ th, td, .printTable {
     word-wrap:break-word;
 }
 /* END Table Style for print */
-
 /************************************/
-
 /* START media query for printing */
  @media print {
     body, html, header {
@@ -639,9 +626,7 @@ th, td, .printTable {
     }
 }
 /* END media print */
-
 /************************************/
-
 /* START media query max-width: 1068px */
 @media screen and (max-width: 1068px) {
     #typeSelBody {
@@ -659,5 +644,4 @@ th, td, .printTable {
     }
 }
 /* END media query max-width: 1068px */
-
 /*******************************/
