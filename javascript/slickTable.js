@@ -112,6 +112,7 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			if (col === 0) {
 				grid.getData()[0][0] = " ";
 			}
+			updateRowDropDown();
 			setTimeout(function(){ checkRemove(); }, 1);
 		}
 
