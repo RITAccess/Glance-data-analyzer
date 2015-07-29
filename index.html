@@ -34,6 +34,7 @@
         <span class="createBtn" title="Create New Table" aria-hidden="true" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
       </label>
     </div>
+    <button id="helpButton" aria-label="Help" onclick="Alert3.render()"><i class="fa fa-question fa-3x"></i></button>
     <span id="typeSelBody" class="no-print" style="display:none;">
       Change graph type:
       <select id="typeSel" class="no-print" title="Change Graph Type" onchange="typeOpSel()">
@@ -76,22 +77,6 @@
         </div>
       </div><!-- END id="dataGraph" -->
       <div id='continuosBox'>
-        <div id="audioSpanSec" class="no-print">
-          <div id="audioSpan" style="display: none">
-            <label for="lineDropdown" tabindex="0"> Row </label>
-            <select id="lineDropdown" class='drop-down' title="Select Row" aira-lable="selected" onchange="changeAudioLine()"></select>
-             at speed <input id="bpm" class='drop-down' name="Speed Multiplier" title="Select Speed" type="number" min="0" value="1"/>
-            <label for="instrumentDropdown" tabindex="0"> Instrument </label>
-            <select id="instrumentDropdown" class='drop-down' title="Select Instrument"></select>
-          </div><!-- END id="audioSpan" -->
-          <div id="audioSpanBar"><!-- NOT an empty span: main.js "Play mode" and "Column number" for bar graph -->
-          </div><!-- END id="audioSpanBar" -->
-          <div id="audioSpanButtons"><!-- Play, Pause, Stop buttons for audio -->
-            <button id="playButton" onclick="play()" title="Play Audio" aria-label="Play Audio"><i id="playToggle" class="fa fa-play fa-lg" ></i></button>
-            <button id="pauseButton" onclick="pause()" title="Pause Audio" aria-label="Pause Audio"><i id="pauseToggle" class="fa fa-pause fa-lg" ></i></button>
-            <button id="stopButton" onclick="stop()" title="Stop Audio" aria-label="Stop Audio"><i id="stopToggle" class="fa fa-stop fa-lg" ></i></button>
-          </div><!-- END id="audionSpanButtons" -->
-        </div><!-- END id="audioSpanSec" -->
         <div id="dataPlot">
           <h3 id="plot-header" style="display:none;">Data Table</h3>
           <div id="tableCount"></div><!-- END id="tableCount" -->
@@ -117,6 +102,22 @@
           <button id="printButton" title="Print" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
         </div><!-- END id="tableControls" -->
       </div><!-- END id="dataPlot" -->
+        <div id="audioSpanSec" class="no-print">
+          <div id="audioSpan" style="display: none">
+            <label for="lineDropdown" tabindex="0"> Row </label>
+            <select id="lineDropdown" class='drop-down' title="Select Row" aira-lable="selected" onchange="changeAudioLine()"></select>
+             at speed <input id="bpm" class='drop-down' name="Speed Multiplier" title="Select Speed" type="number" min="0" value="1"/>
+            <label for="instrumentDropdown" tabindex="0"> Instrument </label>
+            <select id="instrumentDropdown" class='drop-down' title="Select Instrument"></select>
+          </div><!-- END id="audioSpan" -->
+          <div id="audioSpanBar"><!-- NOT an empty span: main.js "Play mode" and "Column number" for bar graph -->
+          </div><!-- END id="audioSpanBar" -->
+          <div id="audioSpanButtons"><!-- Play, Pause, Stop buttons for audio -->
+            <button id="playButton" onclick="play()" title="Play Audio" aria-label="Play Audio"><i id="playToggle" class="fa fa-play fa-lg" ></i></button>
+            <button id="pauseButton" onclick="pause()" title="Pause Audio" aria-label="Pause Audio"><i id="pauseToggle" class="fa fa-pause fa-lg" ></i></button>
+            <button id="stopButton" onclick="stop()" title="Stop Audio" aria-label="Stop Audio"><i id="stopToggle" class="fa fa-stop fa-lg" ></i></button>
+          </div><!-- END id="audionSpanButtons" -->
+        </div><!-- END id="audioSpanSec" -->
       <?php
           include 'php/ajax.php';
       ?>

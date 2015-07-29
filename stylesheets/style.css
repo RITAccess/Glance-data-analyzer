@@ -296,12 +296,24 @@ svg * {
 #audioSpanSec {
     width: 100%;
     text-align: left;
-    border-bottom: 3px solid #000;
+    border-top: 3px solid #000;
     padding: 4% 5%;
 }
 #audioSpanBar {
     margin-top: 2%;
     margin-bottom: 4%;
+}
+#helpButton {
+    cursor: pointer !important;
+    height: 40px;
+    width: 40px;
+    background: #FFF;
+    color: #000;
+    border: 2px solid #FFF;
+    margin-right: 1%;
+    border-radius: 100%;
+    box-shadow: 0px 5px 10px #444;
+    float: right;
 }
 #playButton, #pauseButton, #stopButton {
     cursor: pointer !important;
@@ -314,7 +326,7 @@ svg * {
     border-radius: 5px;
     box-shadow: 0px 5px 10px #444;
 }
-#playButton:hover, #playButton:focus, #pauseButton:hover, #pauseButton:focus, #stopButton:hover, #stopButton:focus {
+#helpButton:hover, #helpButton:focus, #playButton:hover, #playButton:focus, #pauseButton:hover, #pauseButton:focus, #stopButton:hover, #stopButton:focus {
     background-color: #000;
     color: #FFF;
 }
