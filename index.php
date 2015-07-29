@@ -64,6 +64,23 @@
       </div>
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
+      <div id="audioSpanSec" class="no-print">
+        <h3 id="audioHeader" style="display:none;">Audio Control</h3>
+        <div id="audioSpan" style="display: none">
+          <label for="lineDropdown" tabindex="0"> Row </label>
+          <select id="lineDropdown" class='drop-down' title="Select Row" aira-lable="selected" onchange="changeAudioLine()"></select>
+           at speed <input id="bpm" class='drop-down' name="Speed Multiplier" title="Select Speed" type="number" min="0" value="1"/>
+          <label for="instrumentDropdown" tabindex="0"> Instrument </label>
+          <select id="instrumentDropdown" class='drop-down' title="Select Instrument"></select>
+        </div><!-- END id="audioSpan" -->
+        <div id="audioSpanBar"><!-- NOT an empty span: main.js "Play mode" and "Column number" for bar graph -->
+        </div><!-- END id="audioSpanBar" -->
+        <div id="audioSpanButtons"><!-- Play, Pause, Stop buttons for audio -->
+          <button id="playButton" onclick="play()" title="Play Audio" aria-label="Play Audio"><i id="playToggle" class="fa fa-play fa-lg" ></i></button>
+          <button id="pauseButton" onclick="pause()" title="Pause Audio" aria-label="Pause Audio"><i id="pauseToggle" class="fa fa-pause fa-lg" ></i></button>
+          <button id="stopButton" onclick="stop()" title="Stop Audio" aria-label="Stop Audio"><i id="stopToggle" class="fa fa-stop fa-lg" ></i></button>
+        </div><!-- END id="audionSpanButtons" -->
+      </div><!-- END id="audioSpanSec" -->
       <div id="dataGraph">
         <h3 id="graphHeader" style="display:none;">Data Analyzer Graph</h3>
         <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" class="no-print"></div>
@@ -76,22 +93,6 @@
         </div>
       </div><!-- END id="dataGraph" -->
       <div id='continuosBox'>
-        <div id="audioSpanSec" class="no-print">
-          <div id="audioSpan" style="display: none">
-            <label for="lineDropdown" tabindex="0"> Row </label>
-            <select id="lineDropdown" class='drop-down' title="Select Row" aira-lable="selected" onchange="changeAudioLine()"></select>
-             at speed <input id="bpm" class='drop-down' name="Speed Multiplier" title="Select Speed" type="number" min="0" value="1"/>
-            <label for="instrumentDropdown" tabindex="0"> Instrument </label>
-            <select id="instrumentDropdown" class='drop-down' title="Select Instrument"></select>
-          </div><!-- END id="audioSpan" -->
-          <div id="audioSpanBar"><!-- NOT an empty span: main.js "Play mode" and "Column number" for bar graph -->
-          </div><!-- END id="audioSpanBar" -->
-          <div id="audioSpanButtons"><!-- Play, Pause, Stop buttons for audio -->
-            <button id="playButton" onclick="play()" title="Play Audio" aria-label="Play Audio"><i id="playToggle" class="fa fa-play fa-lg" ></i></button>
-            <button id="pauseButton" onclick="pause()" title="Pause Audio" aria-label="Pause Audio"><i id="pauseToggle" class="fa fa-pause fa-lg" ></i></button>
-            <button id="stopButton" onclick="stop()" title="Stop Audio" aria-label="Stop Audio"><i id="stopToggle" class="fa fa-stop fa-lg" ></i></button>
-          </div><!-- END id="audionSpanButtons" -->
-        </div><!-- END id="audioSpanSec" -->
         <div id="dataPlot">
           <h3 id="plot-header" style="display:none;">Data Table</h3>
           <div id="tableCount"></div><!-- END id="tableCount" -->
@@ -129,7 +130,7 @@
         <div id="ccContent">
             <form>
               <div class="ccFeature">
-                <label>Site Background: </label><input id="siteColorInput" type="text" onInput="changeSiteBg()" title="Change Site Background Color">
+                <label>Site Background:</label><input id="siteColorInput" type="text" onInput="changeSiteBg()" title="Change Site Background Color">
                 <label>High Contrast:</label>
                   <div class="squaredTwo">
                     <input id="siteContrast" type="checkbox" tabindex="0" checked="checked" aria-label="Enable/Disable Site Background Color Contrast" onclick="changeSiteBg()">
@@ -138,7 +139,7 @@
                   <input type="button" id="siteCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Site Background to Original" title="Reset Site Background to Original" onclick="resetSiteBg()" onkeyup="siteKeyUp()" value="">
               </div>
               <div class="ccFeature">
-                <label>Graph Background: </label><input id="graphColorInput" type="text" onInput="changeGraphBg()" title="Change Graph Background Color">
+                <label>Graph Background:</label><input id="graphColorInput" type="text" onInput="changeGraphBg()" title="Change Graph Background Color">
                 <label tabindex="0" >High Contrast:</label>
                   <div class="squaredTwo">
                     <input id="graphContrast" tabindex="0" type="checkbox" checked="checked" aria-label="Enable/Disable  Graph Background Color Contrast" onclick="changeGraphBg()">
@@ -147,7 +148,7 @@
                   <input type="button" id="graphCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Graph Background to Original" title="Reset Graph Background to Original" onclick="resetGraphBg()" value="">
               </div>
               <div class="ccFeature">
-                <label>Text Color: </label><input id="textColorInput" type="text" title="Change Text Color" onInput="changeTextColor()">
+                <label>Text Color:</label><input id="textColorInput" type="text" title="Change Text Color" onInput="changeTextColor()">
                 <label>High Contrast:</label>
                   <div class="squaredTwo">
                     <input id="textContrast" type="checkbox" tabindex="0" checked="checked" aria-label="Enable/Disable Text Color Contrast" onclick="changeTextColor()">
