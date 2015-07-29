@@ -127,10 +127,10 @@ header {
 #start h1 {
     text-align: center;
 }
-#start ul {
+#start ul, #helpBoxBody ul {
     list-style-type: decimal;
 }
-#start li {
+#start li, #helpBoxBody li {
     margin: 1% 0;
     padding: 1% 0;
 }
@@ -561,15 +561,23 @@ input[type="text"] {
 }
 #dialogbox > div > #dialogboxbody, #helpBox > div > #helpBoxBody {
     border-top: 2px solid #000;
-    padding:20px;
+    padding: 20px;
     color:#000;
+}
+#helpBox > div > #helpBoxBody {
+    text-align: justify;
+    padding-left: 30px;
+    padding-right: 35px;
 }
 #helpBoxBody h3 {
    text-align: center;
 }
 #dialogbox > div > #dialogboxfoot, #helpBox > div #helpBoxFoot {
-    padding:10px;
-    text-align:right;
+    padding: 10px;
+    text-align: right;
+}
+#helpBox > div #helpBoxFoot {
+    padding: 20px;
 }
 #dialogboxbody select{
     cursor: pointer !important;
