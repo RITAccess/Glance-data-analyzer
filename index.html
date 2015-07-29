@@ -34,7 +34,7 @@
         <span class="createBtn" title="Create New Table" aria-hidden="true" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
       </label>
     </div>
-    <button id="helpButton" aria-label="Help" onclick="Alert3.render()"><i class="fa fa-question fa-3x"></i></button>
+    <button id="helpButton" aria-label="Help" title="Help" onclick="Alert3.render()"><i class="fa fa-question fa-3x"></i></button>
     <span id="typeSelBody" class="no-print" style="display:none;">
       Change graph type:
       <select id="typeSel" class="no-print" title="Change Graph Type" onchange="typeOpSel()">
@@ -180,5 +180,15 @@
       <div id="newFileDialogFoot"></div>
     </div>
 <!-- END div for CREATE NEW TABLE pop-up list -->
+<!-- div for Help pop-up list -->
+  <div id="helpOverlay"></div>
+    <div id="helpBox">
+        <div>
+            <div id="helpBoxHead"></div>
+            <div id="helpBoxBody"></div>
+            <div id="helpBoxFoot"></div>
+        </div>
+    </div>
+<!-- END div for Help pop-up list -->
 </body>
 </html>

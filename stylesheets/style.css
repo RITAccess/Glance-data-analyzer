@@ -383,7 +383,7 @@ svg * {
     padding-left: 1.5%;
 }
 /*******************************/
-#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button {
+#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button, #helpBoxFoot button {
     cursor: pointer !important;
     display: inline;
     background: #FFF;
@@ -399,7 +399,7 @@ svg * {
     vertical-align: middle;
 }
 @-moz-document url-prefix() { /* mozilla firefox css property  */
-    #rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button {
+    #rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button, #helpBoxFoot button {
         padding: 1%;
     }
 }
@@ -421,7 +421,7 @@ svg * {
     background-color: #000;
     color: #FFF;
 }
-#dialogboxfoot button:hover, #dialogboxfoot button:focus {
+#dialogboxfoot button:hover, #dialogboxfoot button:focus, #helpBoxFoot button:hover {
     background-color: #000;
     color: #FFF;
     border-color: #FFF;
@@ -530,7 +530,7 @@ input[type="text"] {
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
 /* style for pop-up chart list STARTS */
- #dialogoverlay {
+ #dialogoverlay, #helpBoxOverlay{
     display: none;
     opacity: 0.8;
     position: fixed;
@@ -540,7 +540,7 @@ input[type="text"] {
     width: 100%;
     z-index: 10;
 }
-#dialogbox {
+#dialogbox, #helpBox {
     display: none;
     position: fixed;
     background-color: #000;
@@ -548,24 +548,26 @@ input[type="text"] {
     width:550px;
     z-index: 10;
 }
-#dialogbox > div {
+#dialogbox > div, #helpBox > div{
     background-color: #FFF;
     border: 2px solid #FFF;
     border-radius:5px;
     margin:8px;
 }
-#dialogbox > div > #dialogboxhead {
+#dialogbox > div > #dialogboxhead, #helpBox > div > #helpBoxHead {
     font-size:19px;
     padding:10px;
     color:#000;
 }
-#dialogbox > div > #dialogboxbody {
-    cursor: pointer !important;
+#dialogbox > div > #dialogboxbody, #helpBox > div > #helpBoxBody {
     border-top: 2px solid #000;
     padding:20px;
     color:#000;
 }
-#dialogbox > div > #dialogboxfoot {
+#helpBoxBody h3 {
+   text-align: center;
+}
+#dialogbox > div > #dialogboxfoot, #helpBox > div #helpBoxFoot {
     padding:10px;
     text-align:right;
 }
@@ -575,7 +577,7 @@ input[type="text"] {
 #dialogboxbody input {
     margin-top: 10px;
 }
-#dialogboxfoot button {/* also inherits from the other button styles */
+#dialogboxfoot button, #helpBoxFoot button {/* also inherits from the other button styles */
     padding:5px;
 }
 .sChartType select, .sChartType input {/* chart type select tags */
@@ -642,6 +644,18 @@ th, td, .printTable {
     }
 }
 /* END media print */
+/************************************/
+/* START media query less than 1280 */
+@media screen and (max-width: 1280px), screen and (max-height: 800px) {
+  #helpBox {
+    min-height: 400px;
+  }
+  #helpBoxBody {
+    max-height: 350px;
+    overflow-y: scroll;
+  }
+}
+/* END media query less than 1280 */
 /************************************/
 /* START media query max-width: 1068px */
 @media screen and (max-width: 1068px) {

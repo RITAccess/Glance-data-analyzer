@@ -84,35 +84,36 @@
           document.getElementById('title').focus();
         }
     }
-    function CustomAlert3() {
+    function helpAlert() {
       this.render = function (dialog) {
         var winW = window.innerWidth;
         var winH = window.innerHeight;
-        var dialogoverlay = document.getElementById('dialogoverlay');
-        var dialogbox = document.getElementById('dialogbox');
-        dialogoverlay.style.display = "block";
-        dialogoverlay.style.height = winH + "px";
-        dialogbox.style.left = (winW / 2) - (550 * .5) + "px";
-        dialogbox.style.top = "100px";
-        dialogbox.style.display = "block";
-        document.getElementById('dialogbox').setAttribute("tabindex", "0");
-        document.getElementById('dialogboxhead').innerHTML = "<h3 tabindex='0'>Data Analyzer Help</h3";
-        document.getElementById('dialogboxbody').innerHTML = "<ul><li>NEEDS WORK. NOT SURE WHAT TO PUT: The audio controls allow you to choose which set of data to play and at what speed.</li><li>Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The overlay on the graph can highlight certain parts of the data to be turned into sound.</li><li>Data Table: There are two options with the data table; load a pre-made CSV (Comma Separated Value) file, or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.</li><li>Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li></ul>";
-        document.getElementById('dialogboxfoot').innerHTML = "<button title='Close' onclick='Alert2.cancel()'>Close</button>"
-        document.getElementById('dialogbox').style.visibility = "visible";
-        document.getElementById('dialogoverlay').style.visibility = "visible";
-        document.getElementById('dialogbox').focus();
+        var helpOverlay = document.getElementById('helpOverlay');
+        var helpBox = document.getElementById('helpBox');
+        helpOverlay.style.display = "block";
+        helpOverlay.style.height = winH + "px";
+        helpBox.style.left = (winW / 2.78) - (550 * .5) + "px";
+        helpBox.style.top = "100px";
+        helpBox.style.display = "block";
+        helpBox.style.width = "70%";
+        document.getElementById('helpBox').setAttribute("tabindex", "0");
+        document.getElementById('helpBoxHead').innerHTML = "<h1 tabindex='0'>Data Analyzer Help</h1>";
+        document.getElementById('helpBoxBody').innerHTML = "<p>This web application was designed to help analyze data through graphs, calculated values, and sound.Here's a quick look at how to use the application:</p><ul><li>Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li><li>Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The overlay on the graph can highlight certain parts of the data to be turned into sound.</li><li>Data Table: There are two options with the data table; load a pre-made CSV (Comma Separated Value) file, or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.</li><li>Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li></ul><h3>To get started, select Load CSV or Create New Table at the top!</h3>";
+        document.getElementById('helpBoxFoot').innerHTML = "<button title='Close' onclick='Alert3.cancel()'>Close</button>"
+        document.getElementById('helpBox').style.visibility = "visible";
+        document.getElementById('helpOverlay').style.visibility = "visible";
+        document.getElementById('helpBox').focus();
       }
       this.cancel= function(){
-        document.getElementById('dialogbox').style.visibility = "hidden";
-        document.getElementById('dialogoverlay').style.visibility = "hidden";
+        document.getElementById('helpBox').style.visibility = "hidden";
+        document.getElementById('helpOverlay').style.visibility = "hidden";
         document.getElementById('title').focus();
       }
     }
 
 var Alert = new CustomAlert();
 var Alert2 = new CustomAlert2();
-var Alert3 = new CustomAlert3();
+var Alert3 = new helpAlert();
 //Radio Button Chart/Graph Type Selection
 var typeOpSel = function (typeOpSel) {
     var selType = document.getElementById("typeSel");
