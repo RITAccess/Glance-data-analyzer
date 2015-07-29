@@ -65,6 +65,7 @@
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
       <div id="audioSpanSec" class="no-print">
+        <h3 id="audioHeader" style="display:none;">Audio Control</h3>
         <div id="audioSpan" style="display: none">
           <label for="lineDropdown" tabindex="0"> Row </label>
           <select id="lineDropdown" class='drop-down' title="Select Row" aira-lable="selected" onchange="changeAudioLine()"></select>
