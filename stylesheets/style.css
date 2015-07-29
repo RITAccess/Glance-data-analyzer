@@ -296,7 +296,8 @@ svg * {
 #audioSpanSec {
     width: 100%;
     text-align: left;
-    border-bottom: 3px solid #000;
+    border: 3px solid #000;
+    border-radius: 5px;
     padding: 4% 5%;
 }
 #audioSpanBar {
