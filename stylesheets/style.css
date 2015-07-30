@@ -262,26 +262,24 @@ svg * {
     filter: alpha(opacity=0);
 }
 /** END changing Browse to Load CSV **/
-
+/*******************************/
 .pageJump {
-  display: none;
-  text-decoration: none;
-  border: 3px solid #FFF;
-  border-radius: 5px;
-  text-shadow: none;
-  padding: 10px;
-  box-shadow: 0px 5px 10px #000;
-  color:rgb(255,255,255);
-  background: rgb(0,0,0);
-  margin-left: 10px;
-  position: absolute;
-  z-index: -1;
+    display: none;
+    text-decoration: none;
+    border: 3px solid #FFF;
+    border-radius: 5px;
+    text-shadow: none;
+    padding: 10px;
+    box-shadow: 0px 5px 10px #000;
+    color:rgb(255,255,255);
+    background: rgb(0,0,0);
+    margin-left: 10px;
+    position: absolute;
+    z-index: -1;
 }
-
 .pageJump:focus {
-  z-index: 1;
+    z-index: 1;
 }
-
 /*******************************/
 #table {
     text-align: center;
@@ -376,9 +374,9 @@ svg * {
     font-weight: bold;
     font-size: 20px;
     padding-bottom: 8%;
-    /* position: relative; part of making download button bottom of div*/
+    /*position: relative; part of making download button bottom of div*/
 }
-#summary-header { /*  center align is for printer.js */
+#summary-header { /* center align is for printer.js */
     text-align: center;
     margin-bottom: 0;
 }
@@ -417,8 +415,8 @@ svg * {
     padding: 1.5%;
     vertical-align: middle;
 }
-@-moz-document url-prefix() { /* mozilla firefox css property  */
-    #rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button, #helpBoxFoot button {
+@-moz-document url-prefix() { /* mozilla firefox css property */
+    #rowLabel, #columnLabel, #undoButton, #redoButton, #resetButton, #downloadCSV, #printButton {
         padding: 1%;
     }
 }
@@ -651,7 +649,7 @@ th, td, .printTable {
         box-shadow: none;
         text-shadow: none;
     }
-    #title{
+    #title {
         color: #000;
         text-shadow: -1px 0 #FFF, 0 1px #FFF, 1px 0 #FFF, 0 -1px #FFF;
     }
@@ -675,11 +673,11 @@ th, td, .printTable {
 /* START media query less than 1280 */
 @media screen and (max-width: 1280px), screen and (max-height: 800px) {
     #helpBox {
-      min-height: 400px;
+        min-height: 400px;
     }
     #helpBoxBody {
-      max-height: 350px;
-      overflow-y: scroll;
+        max-height: 350px;
+        overflow-y: scroll;
     }
 }
 /* END media query less than 1280 */
