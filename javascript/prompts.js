@@ -6,7 +6,7 @@
           var dialogoverlay = document.getElementById('dialogoverlay');
           var dialogbox = document.getElementById('dialogbox');
           dialogoverlay.style.display = "block";
-          dialogoverlay.style.height = winH + "px";
+          dialogoverlay.style.height = "100%";
           dialogbox.style.marginLeft = "15%";
           dialogbox.style.top = "12%";
           dialogbox.style.width = "70%";
@@ -47,7 +47,7 @@
             var dialogoverlay = document.getElementById('dialogoverlay');
             var dialogbox = document.getElementById('dialogbox');
             dialogoverlay.style.display = "block";
-            dialogoverlay.style.height = winH + "px";
+            dialogoverlay.style.height = "100%";
             dialogbox.style.marginLeft = "15%";
             dialogbox.style.top = "12%";
             dialogbox.style.width = "70%";
@@ -93,7 +93,7 @@
         var helpOverlay = document.getElementById('helpOverlay');
         var helpBox = document.getElementById('helpBox');
         helpOverlay.style.display = "block";
-        helpOverlay.style.height = winH + "px";
+        helpOverlay.style.height = "100%";
         helpBox.style.left = "15%";
         helpBox.style.top = "12%";
         helpBox.style.width = "70%";
