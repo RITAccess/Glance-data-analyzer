@@ -547,7 +547,7 @@ input[type="text"] {
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
 /* style for pop-up chart list STARTS */
- #dialogoverlay, #helpBoxOverlay{
+ #dialogoverlay, #helpOverlay {
     display: none;
     opacity: 0.9;
     position: fixed;
