@@ -173,11 +173,11 @@
     </div>
 <!-- END div for LOAD CSV pop-up list -->
 <!-- div for CREATE NEW TABLE pop-up list -->
-  <div id="newFileloadCsvOverlay"></div>
-    <div id="newFileloadCsvBox">
-      <div id="newFileDialogHead"></div>
-      <div id="newFileDialogBody" class="sChartType"></div>
-      <div id="newFileDialogFoot"></div>
+  <div id="createTableOverlay"></div>
+    <div id="createTableBox">
+      <div id="createTableHead"></div>
+      <div id="createTableBody" class="sChartType"></div>
+      <div id="createTableFoot"></div>
     </div>
 <!-- END div for CREATE NEW TABLE pop-up list -->
 <!-- div for Help pop-up list -->
