@@ -1,93 +1,93 @@
-   //File Alert Box
-    function CustomAlert() {
-        this.render = function (dialog) {
-          var winW = window.innerWidth;
-          var winH = window.innerHeight;
-          var dialogoverlay = document.getElementById('dialogoverlay');
-          var dialogbox = document.getElementById('dialogbox');
-          dialogoverlay.style.display = "block";
-          dialogoverlay.style.height = "100%";
-          dialogbox.style.display = "block";
-          dialogbox.style.width = "40%";
-          dialogbox.style.top = "15%";
-          dialogbox.style.marginLeft = "30%";
-          document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-          document.getElementById('dialogboxbody').innerHTML = dialog + "<select id='graphSelector' title='Choose a Type of Graph' aria-label='Choose a Type of Graph'><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select>";
-          document.getElementById('dialogboxfoot').innerHTML = "<button title='Cancel' onclick='Alert2.cancel()'>Cancel</button><button title='Submit' onclick='Alert.ok()'>Submit</button>"
-          document.getElementById('dialogbox').style.visibility = "visible";
-          document.getElementById('dialogoverlay').style.visibility = "visible";
-          document.getElementById('graphSelector').focus();
-        }
-        this.ok = function () {
-          var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
-          type = e.options[e.selectedIndex].value.toLowerCase();
-          if(type != "line" && type != "bar" && type!= "scatter"){
-              alert("No graph type has been selected! Please select a type of graph.");
-              return;
-            }
-          loadFile();
-          if (type === "line") document.getElementById("lineRadioButton").checked = true;
-          else if (type === "bar") document.getElementById("barRadioButton").checked = true;
-          else if (type === "scatter") document.getElementById("scatterRadioButton").checked = true;
-          document.getElementById('dialogbox').style.visibility = "hidden";
-          document.getElementById('dialogoverlay').style.visibility = "hidden";
-          document.getElementsByClassName('uploadBtn')[0].focus();
-        }
-        this.cancel= function(){
-          document.getElementById('dialogbox').style.visibility = "hidden";
-          document.getElementById('dialogoverlay').style.visibility = "hidden";
-          document.getElementById('title').focus();
-        }
+//File Alert Box
+function loadCsvAlert() {
+    this.render = function (dialog) {
+        var winW = window.innerWidth;
+        var winH = window.innerHeight;
+        var loadCsvOverlay = document.getElementById('loadCsvOverlay');
+        var loadCsvBox = document.getElementById('loadCsvBox');
+        loadCsvOverlay.style.display = "block";
+        loadCsvOverlay.style.height = "100%";
+        loadCsvBox.style.display = "block";
+        loadCsvBox.style.width = "40%";
+        loadCsvBox.style.top = "15%";
+        loadCsvBox.style.marginLeft = "30%";
+        document.getElementById('loadCsvHead').innerHTML = "Data Analyzer";
+        document.getElementById('loadCsvBody').innerHTML = dialog + "<select id='graphSelector' title='Choose a Type of Graph' aria-label='Choose a Type of Graph'><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select>";
+        document.getElementById('loadCsvFoot').innerHTML = "<button title='Cancel' onclick='Alert.cancel()'>Cancel</button><button title='Submit' onclick='Alert.ok()'>Submit</button>"
+        document.getElementById('loadCsvBox').style.visibility = "visible";
+        document.getElementById('loadCsvOverlay').style.visibility = "visible";
+        document.getElementById('graphSelector').focus();
     }
-    //Second Alert Box
-    function CustomAlert2() {
-        this.render = function (dialog) {
-            var winW = window.innerWidth;
-            var winH = window.innerHeight;
-            var dialogoverlay = document.getElementById('dialogoverlay');
-            var dialogbox = document.getElementById('dialogbox');
-            dialogoverlay.style.display = "block";
-            dialogoverlay.style.height = "100%";
-            dialogbox.style.display = "block";
-            dialogbox.style.width = "50%";
-            dialogbox.style.top = "15%";
-            dialogbox.style.marginLeft = "25%";
-            document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
-            document.getElementById('dialogboxbody').innerHTML = dialog + "<select id='graphSelector' title='Choose a Type of Graph' aria-label='Choose a Type of Graph'><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select><br><label>Choose number of rows: </label><input id='rows' title='Choose Number of Rows' aria-label='Choose Number of Rows' type='text' value='0'/><br><label>Choose number of columns: </label><input id='columns' type='text' title='Choose Number of Columns' aria-label='Choose Number of Columns' value='0'/>";
-            document.getElementById('dialogboxfoot').innerHTML = "<button title='Cancel' onclick='Alert2.cancel()'>Cancel</button><button title='Reset' onclick=Alert2.reset()>Reset</button><button title='Reset' onclick='Alert2.ok()'>Submit</button>";
-            document.getElementById('dialogbox').style.visibility = "visible";
-            document.getElementById('dialogoverlay').style.visibility = "visible"
-            document.getElementById('graphSelector').focus();
+    this.ok = function () {
+        var e = document.getElementById('loadCsvBody').firstChild.nextSibling;
+        type = e.options[e.selectedIndex].value.toLowerCase();
+        if(type != "line" && type != "bar" && type!= "scatter"){
+            alert("No graph type has been selected! Please select a type of graph.");
+            return;
         }
-        this.ok = function () {
-            var e = document.getElementById('dialogboxbody').firstChild.nextSibling;
-            type = e.options[e.selectedIndex].value.toLowerCase();
-            if(document.getElementById('rows').value * document.getElementById('columns').value >= 1000 ||document.getElementById('columns').value >= 1000 ||document.getElementById('rows').value >= 1000){
-              if(!confirm("Large data set may cause browser instability, continue anyways?")){
+        loadFile();
+        if (type === "line") document.getElementById("lineRadioButton").checked = true;
+        else if (type === "bar") document.getElementById("barRadioButton").checked = true;
+        else if (type === "scatter") document.getElementById("scatterRadioButton").checked = true;
+        document.getElementById('loadCsvBox').style.visibility = "hidden";
+        document.getElementById('loadCsvOverlay').style.visibility = "hidden";
+        document.getElementsByClassName('uploadBtn')[0].focus();
+    }
+    this.cancel= function(){
+        document.getElementById('loadCsvBox').style.visibility = "hidden";
+        document.getElementById('loadCsvOverlay').style.visibility = "hidden";
+        document.getElementById('title').focus();
+    }
+}
+//Second Alert Box
+function createTableAlert() {
+    this.render = function (dialog) {
+        var winW = window.innerWidth;
+        var winH = window.innerHeight;
+        var createTableOverlay = document.getElementById('createTableOverlay');
+        var createTableBox = document.getElementById('createTableBox');
+        createTableOverlay.style.display = "block";
+        createTableOverlay.style.height = "100%";
+        createTableBox.style.display = "block";
+        createTableBox.style.width = "50%";
+        createTableBox.style.top = "15%";
+        createTableBox.style.marginLeft = "25%";
+        document.getElementById('createTableHead').innerHTML = "Data Analyzer";
+        document.getElementById('createTableBody').innerHTML = dialog + "<select id='graphSelector' title='Choose a Type of Graph' aria-label='Choose a Type of Graph'><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select><br><label>Choose number of rows: </label><input id='rows' title='Choose Number of Rows' aria-label='Choose Number of Rows' type='text' value='0'/><br><label>Choose number of columns: </label><input id='columns' type='text' title='Choose Number of Columns' aria-label='Choose Number of Columns' value='0'/>";
+        document.getElementById('createTableFoot').innerHTML = "<button title='Cancel' onclick='Alert2.cancel()'>Cancel</button><button title='Reset' onclick=Alert2.reset()>Reset</button><button title='Reset' onclick='Alert2.ok()'>Submit</button>";
+        document.getElementById('createTableBox').style.visibility = "visible";
+        document.getElementById('createTableOverlay').style.visibility = "visible"
+        document.getElementById('graphSelector').focus();
+    }
+    this.ok = function () {
+        var e = document.getElementById('createTableBody').firstChild.nextSibling;
+        type = e.options[e.selectedIndex].value.toLowerCase();
+        if(document.getElementById('rows').value * document.getElementById('columns').value >= 1000 ||document.getElementById('columns').value >= 1000 ||document.getElementById('rows').value >= 1000){
+            if(!confirm("Large data set may cause browser instability, continue anyways?")){
                 this.reset;
                 return;
-              }
             }
-            createFile(document.getElementById('rows').value, document.getElementById('columns').value);
-            if (type === "line") document.getElementById("lineRadioButton").checked = true;
-            else if (type === "bar") document.getElementById("barRadioButton").checked = true;
-            else if (type === "scatter") document.getElementById("scatterRadioButton").checked = true;
-            document.getElementById('dialogbox').style.visibility = "hidden";
-            document.getElementById('dialogoverlay').style.visibility = "hidden";
-            document.getElementsByClassName('createBtn')[0].focus();
         }
-        this.reset = function () {
-            document.getElementById("rows").value=0;
-            document.getElementById("columns").value=0;
-        }
-        this.cancel= function(){
-          document.getElementById('dialogbox').style.visibility = "hidden";
-          document.getElementById('dialogoverlay').style.visibility = "hidden";
-          document.getElementById('title').focus();
-        }
+        createFile(document.getElementById('rows').value, document.getElementById('columns').value);
+        if (type === "line") document.getElementById("lineRadioButton").checked = true;
+        else if (type === "bar") document.getElementById("barRadioButton").checked = true;
+        else if (type === "scatter") document.getElementById("scatterRadioButton").checked = true;
+        document.getElementById('createTableBox').style.visibility = "hidden";
+        document.getElementById('createTableOverlay').style.visibility = "hidden";
+        document.getElementsByClassName('createBtn')[0].focus();
     }
-    function helpAlert() {
-      this.render = function (dialog) {
+    this.reset = function () {
+        document.getElementById("rows").value=0;
+        document.getElementById("columns").value=0;
+    }
+    this.cancel= function(){
+        document.getElementById('createTableBox').style.visibility = "hidden";
+        document.getElementById('createTableOverlay').style.visibility = "hidden";
+        document.getElementById('title').focus();
+    }
+}
+function helpAlert() {
+    this.render = function (dialog) {
         var winW = window.innerWidth;
         var winH = window.innerHeight;
         var helpOverlay = document.getElementById('helpOverlay');
@@ -105,16 +105,15 @@
         document.getElementById('helpBox').style.visibility = "visible";
         document.getElementById('helpOverlay').style.visibility = "visible";
         document.getElementById('helpBox').focus();
-      }
-      this.cancel= function(){
+    }
+    this.cancel= function(){
         document.getElementById('helpBox').style.visibility = "hidden";
         document.getElementById('helpOverlay').style.visibility = "hidden";
         document.getElementById('title').focus();
-      }
     }
-
-var Alert = new CustomAlert();
-var Alert2 = new CustomAlert2();
+}
+var Alert = new loadCsvAlert();
+var Alert2 = new createTableAlert();
 var Alert3 = new helpAlert();
 //Radio Button Chart/Graph Type Selection
 var typeOpSel = function (typeOpSel) {

@@ -163,18 +163,18 @@
     </div><!-- END id="continuosBox" -->
   </div><!-- end div id="content" -->
 <!-- div for LOAD CSV pop-up list -->
-  <div id="dialogoverlay"></div>
-    <div id="dialogbox">
+  <div id="loadCsvOverlay"></div>
+    <div id="loadCsvBox">
         <div>
-            <div id="dialogboxhead"></div>
-            <div id="dialogboxbody" class="sChartType"></div>
-            <div id="dialogboxfoot"></div>
+            <div id="loadCsvHead"></div>
+            <div id="loadCsvBody" class="sChartType"></div>
+            <div id="loadCsvFoot"></div>
         </div>
     </div>
 <!-- END div for LOAD CSV pop-up list -->
 <!-- div for CREATE NEW TABLE pop-up list -->
-  <div id="newFileDialogOverlay"></div>
-    <div id="newFileDialogBox">
+  <div id="newFileloadCsvOverlay"></div>
+    <div id="newFileloadCsvBox">
       <div id="newFileDialogHead"></div>
       <div id="newFileDialogBody" class="sChartType"></div>
       <div id="newFileDialogFoot"></div>
