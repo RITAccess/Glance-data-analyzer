@@ -27,7 +27,6 @@ header {
     clear: both;
     vertical-align: middle;
 }
-
 #slickTable .slick-viewport {
     overflow-y: scroll;
 }
@@ -44,7 +43,6 @@ header {
     color: inherit;
 }
 /*********************************/
-
 #typeSelBody {/* chart/graph type selection */
     float: right;
     padding-right: 2%;
@@ -129,10 +127,10 @@ header {
 #start h1 {
     text-align: center;
 }
-#start ul {
+#start ul, #helpBoxBody ul {
     list-style-type: decimal;
 }
-#start li {
+#start li, #helpBoxBody li {
     margin: 1% 0;
     padding: 1% 0;
 }
@@ -158,7 +156,6 @@ header {
     border-radius: 5px;
 }
 /* END style for about section */
-
 /*********************************/
 #files {/*style for acutal Load CSV button*/
     width: 118px;
@@ -186,6 +183,9 @@ header {
     border: 3px solid #000;
     margin-top: 5%;
 }
+#lineDropdown, #instrumentDropdown {
+    max-width: 27%;
+}
 #selection {
     fill-opacity: 0.2;
     fill: lightblue;
@@ -203,14 +203,12 @@ svg * {
     fill-opacity: 0;
 }
 /*******************************/
-
 #overlay {
     position:absolute;
 }
 #dataGraph h3{
     text-align: center;
 }
-
 /*******************************/
 /**  START changing Browse to Load CSV **/
  * {
@@ -303,7 +301,6 @@ svg * {
     overflow: auto;
 }
 /*******************************/
-
 /* START: for print button page, table section */
 #printTable {
     border-top: 3px solid #000;
@@ -315,17 +312,32 @@ svg * {
     margin-top: 2%;
 }
 /* END: for print button page, table section */
-
 /*******************************/
 #audioSpanSec {
     width: 100%;
     text-align: left;
-    border-bottom: 3px solid #000;
-    padding: 4% 5%;
+    border: 3px solid #000;
+    border-radius: 5px;
+    padding: 0% 5% 4% 5%;
+}
+#audioSpanSec h3 {
+    text-align: center;
 }
 #audioSpanBar {
     margin-top: 2%;
     margin-bottom: 4%;
+}
+#helpButton {
+    cursor: pointer !important;
+    height: 40px;
+    width: 40px;
+    background: #FFF;
+    color: #000;
+    border: 2px solid #FFF;
+    margin-right: 1%;
+    border-radius: 100%;
+    box-shadow: 0px 5px 10px #444;
+    float: right;
 }
 #playButton, #pauseButton, #stopButton {
     cursor: pointer !important;
@@ -338,7 +350,7 @@ svg * {
     border-radius: 5px;
     box-shadow: 0px 5px 10px #444;
 }
-#playButton:hover, #playButton:focus, #pauseButton:hover, #pauseButton:focus, #stopButton:hover, #stopButton:focus {
+#helpButton:hover, #helpButton:focus, #playButton:hover, #playButton:focus, #pauseButton:hover, #pauseButton:focus, #stopButton:hover, #stopButton:focus {
     background-color: #000;
     color: #FFF;
 }
@@ -358,9 +370,7 @@ svg * {
     border: 1px solid #888;
     border-radius: 5px;
 }
-
 /*******************************/
-
 #dataPlot {
     width: 100%;
     text-align:center;
@@ -392,7 +402,8 @@ svg * {
     text-align: center;
     padding-left: 1.5%;
 }
-#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button {
+/*******************************/
+#rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button, #helpBoxFoot button {
     cursor: pointer !important;
     display: inline;
     background: #FFF;
@@ -408,10 +419,11 @@ svg * {
     vertical-align: middle;
 }
 @-moz-document url-prefix() { /* mozilla firefox css property  */
-    #rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button {
+    #rowLabel, #columnLabel, #downloadCSV, #printButton, #undoButton, #redoButton, #resetButton, #dialogboxfoot button, #helpBoxFoot button {
         padding: 1%;
     }
 }
+/*******************************/
 #rowLabel, #columnLabel {
     cursor: default !important;
 }
@@ -429,7 +441,7 @@ svg * {
     background-color: #000;
     color: #FFF;
 }
-#dialogboxfoot button:hover, #dialogboxfoot button:focus {
+#dialogboxfoot button:hover, #dialogboxfoot button:focus, #helpBoxFoot button:hover {
     background-color: #000;
     color: #FFF;
     border-color: #FFF;
@@ -537,9 +549,8 @@ input[type="text"] {
 }
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
-
 /* style for pop-up chart list STARTS */
- #dialogoverlay {
+ #dialogoverlay, #helpBoxOverlay{
     display: none;
     opacity: 0.8;
     position: fixed;
@@ -549,7 +560,7 @@ input[type="text"] {
     width: 100%;
     z-index: 10;
 }
-#dialogbox {
+#dialogbox, #helpBox {
     display: none;
     position: fixed;
     background-color: #000;
@@ -557,26 +568,36 @@ input[type="text"] {
     width:550px;
     z-index: 10;
 }
-#dialogbox > div {
+#dialogbox > div, #helpBox > div{
     background-color: #FFF;
     border: 2px solid #FFF;
     border-radius:5px;
     margin:8px;
 }
-#dialogbox > div > #dialogboxhead {
+#dialogbox > div > #dialogboxhead, #helpBox > div > #helpBoxHead {
     font-size:19px;
     padding:10px;
     color:#000;
 }
-#dialogbox > div > #dialogboxbody {
-    cursor: pointer !important;
+#dialogbox > div > #dialogboxbody, #helpBox > div > #helpBoxBody {
     border-top: 2px solid #000;
-    padding:20px;
+    padding: 20px;
     color:#000;
 }
-#dialogbox > div > #dialogboxfoot {
-    padding:10px;
-    text-align:right;
+#helpBox > div > #helpBoxBody {
+    text-align: justify;
+    padding-left: 30px;
+    padding-right: 35px;
+}
+#helpBoxBody h3 {
+   text-align: center;
+}
+#dialogbox > div > #dialogboxfoot, #helpBox > div #helpBoxFoot {
+    padding: 10px;
+    text-align: right;
+}
+#helpBox > div #helpBoxFoot {
+    padding: 20px;
 }
 #dialogboxbody select{
     cursor: pointer !important;
@@ -584,7 +605,7 @@ input[type="text"] {
 #dialogboxbody input {
     margin-top: 10px;
 }
-#dialogboxfoot button {/* also inherits from the other button styles */
+#dialogboxfoot button, #helpBoxFoot button {/* also inherits from the other button styles */
     padding:5px;
 }
 .sChartType select, .sChartType input {/* chart type select tags */
@@ -603,9 +624,7 @@ input[type="text"] {
     margin-left: 3%;
 }
 /* END style for pop-up chart list */
-
 /************************************/
-
 /* START Table Style for print */
 table, th, td, .printTable {
     border: 1px solid #000;
@@ -623,9 +642,7 @@ th, td, .printTable {
     word-wrap:break-word;
 }
 /* END Table Style for print */
-
 /************************************/
-
 /* START media query for printing */
  @media print {
     body, html, header {
@@ -655,9 +672,19 @@ th, td, .printTable {
     }
 }
 /* END media print */
-
 /************************************/
-
+/* START media query less than 1280 */
+@media screen and (max-width: 1280px), screen and (max-height: 800px) {
+  #helpBox {
+    min-height: 400px;
+  }
+  #helpBoxBody {
+    max-height: 350px;
+    overflow-y: scroll;
+  }
+}
+/* END media query less than 1280 */
+/************************************/
 /* START media query max-width: 1068px */
 @media screen and (max-width: 1068px) {
     #typeSelBody {
@@ -675,5 +702,4 @@ th, td, .printTable {
     }
 }
 /* END media query max-width: 1068px */
-
 /*******************************/

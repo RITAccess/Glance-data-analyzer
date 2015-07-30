@@ -212,6 +212,7 @@ var loadData = function (data) {
     document.getElementById("content").style.top = ''; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
     document.getElementById("content").style.left = ''; // meant to leave it blank: to overide corresponding style in index.html that hides the content tag
     document.getElementById('typeSelBody').style.display = 'block';
+    document.getElementById('audioHeader').style.display = 'inherit';
     document.getElementById('graphHeader').style.display = 'inherit';
     document.getElementById('plot-header').style.display = 'inherit';
     document.getElementById('tableControls').style.display = 'inherit';

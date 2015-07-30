@@ -438,11 +438,16 @@ var loadChart = function(data, type, collection){
 					}
 					else{
 						chart.datasets[index].points = oldData[index].scatter;
+						for(var i = 0; i < chart.datasets.length; i++){
+							for(var j = 0; j<chart.datasets[i].points.length; j++){
+								chart.datasets[i].points[j].y = chart.scale.calculateY(chart.datasets[i].points[j].value);
+							}
+						}
 					}
 					chart.update();
 					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
-
+					chart.update();
 				}
 			}
 		};

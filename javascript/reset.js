@@ -1,7 +1,7 @@
   var oldColor;
   var oldGraphColor;
   var oldBGColor;
-
+  var oldGraphText;
 //Reset text color and border outline color
 var resetText= function(){
   document.getElementsByTagName("body")[0].style.color = "#000000";
@@ -127,14 +127,27 @@ var changeGraphBg = function(){
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementById("graphCC").style.background = newColor;
     if(document.getElementById("graphContrast").checked){
+      oldGraphText = chart.options.scaleFontColor; 
       chart.options.scaleFontColor = findContrastor(newColor);
       chart.buildScale(chart.scale.xLabels);
       chart.update();
+      if(type === "scatter"){
+        chart.options.linRegLineColor = findContrastor(newColor);
+      }
     } 
     else {
+      if(oldGraphText){
+        var temp = chart.options.scaleFontColor;
+        chart.options.scaleFontColor = oldGraphText;
+        oldGraphText = temp;
+      }
+      if(type === "scatter"){
+         chart.options.linRegLineColor = "#FF0000";
+      }
       chart.buildScale(chart.scale.xLabels);
       chart.update();
     }
+
     if(!checkWarningLabels()){
       alert("Some dataset colors may be difficult to see due to low color contrast");
     }
@@ -142,11 +155,23 @@ var changeGraphBg = function(){
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
     document.getElementById("graphCC").style.background = colors[newColor.toLowerCase().split(' ').join('')];
     if(document.getElementById("graphContrast").checked){
+      oldGraphText = chart.options.scaleFontColor; 
       chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
       chart.buildScale(chart.scale.xLabels);
       chart.update();
+      if(type === "scatter"){
+        chart.options.linRegLineColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+      }
     }
     else {
+      if(oldGraphText){
+        var temp = chart.options.scaleFontColor;
+        chart.options.scaleFontColor = oldGraphText;
+        oldGraphText = temp;
+      }
+      if(type === "scatter"){
+         chart.options.linRegLineColor = "#FF0000";
+      }
       chart.buildScale(chart.scale.xLabels);
       chart.update();
     }
