@@ -70,7 +70,7 @@
       </div>
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
-      <div id="audioSpanSec" class="no-print">
+      <div id="audioSpanSec" class="no-print" tabindex="-1">
         <h3 id="audioHeader" style="display:none;">Audio Control</h3>
         <div id="audioSpan" style="display: none">
           <label for="lineDropdown" tabindex="0"> Row </label>
@@ -99,27 +99,7 @@
         </div>
       </div><!-- END id="dataGraph" -->
       <div id='continuosBox'>
-<<<<<<< HEAD
-        <div id="audioSpanSec" class="no-print" tabindex="-1">
-          <div id="audioSpan" style="display: none">
-            <label for="lineDropdown" tabindex="0"> Row number </label>
-            <select id="lineDropdown" class='drop-down' title="Select Row" aira-lable="selected" onchange="changeAudioLine()"></select>
-             at speed <input id="bpm" class='drop-down' name="Speed Multiplier" title="Select Speed" type="number" min="0" value="1"/>
-            <label for="instrumentDropdown" tabindex="0"> Instrument </label>
-            <select id="instrumentDropdown" class='drop-down' title="Select Instrument"></select>
-          </div><!-- END id="audioSpan" -->
-          <div id="audioSpanBar"><!-- NOT an empty span: main.js "Play mode" and "Column number" for bar graph -->
-          </div><!-- END id="audioSpanBar" -->
-          <div id="audioSpanButtons"><!-- Play, Pause, Stop buttons for audio -->
-            <button id="playButton" onclick="play()" title="Play Audio" aria-label="Play Audio"><i id="playToggle" class="fa fa-play fa-lg" ></i></button>
-            <button id="pauseButton" onclick="pause()" title="Pause Audio" aria-label="Pause Audio"><i id="pauseToggle" class="fa fa-pause fa-lg" ></i></button>
-            <button id="stopButton" onclick="stop()" title="Stop Audio" aria-label="Stop Audio"><i id="stopToggle" class="fa fa-stop fa-lg" ></i></button>
-          </div><!-- END id="audionSpanButtons" -->
-        </div><!-- END id="audioSpanSec" -->
         <div id="dataPlot" tabindex="-1">
-=======
-        <div id="dataPlot">
->>>>>>> 3dcad10bb6a387beda34f28c90c63c487a2de397
           <h3 id="plot-header" style="display:none;">Data Table</h3>
           <div id="tableCount"></div><!-- END id="tableCount" -->
           <div id="tblContainer" style="display:none;" title="Data Table">
