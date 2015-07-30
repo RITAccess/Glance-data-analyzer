@@ -217,6 +217,10 @@ var loadData = function (data) {
     document.getElementById('tableControls').style.display = 'inherit';
     document.getElementById('summary-header').style.display = 'inherit';
     document.getElementById('bgColorChange').style.display = 'inherit';
+    var jumpElements = document.getElementsByClassName("pageJump");
+    for(var i = 0; i < jumpElements.length; i++){
+      jumpElements[i].style.display = "inline";     
+    }
     fixSlick();
     if(type === "line"){
       document.getElementById('typeSel').selectedIndex = 0;
