@@ -7,11 +7,10 @@
           var dialogbox = document.getElementById('dialogbox');
           dialogoverlay.style.display = "block";
           dialogoverlay.style.height = "100%";
-          dialogbox.style.marginLeft = "15%";
-          dialogbox.style.top = "12%";
-          dialogbox.style.width = "70%";
-          dialogbox.style.minWidth = "550px";
           dialogbox.style.display = "block";
+          dialogbox.style.width = "40%";
+          dialogbox.style.top = "15%";
+          dialogbox.style.marginLeft = "30%";
           document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
           document.getElementById('dialogboxbody').innerHTML = dialog + "<select id='graphSelector' title='Choose a Type of Graph' aria-label='Choose a Type of Graph'><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select>";
           document.getElementById('dialogboxfoot').innerHTML = "<button title='Cancel' onclick='Alert2.cancel()'>Cancel</button><button title='Submit' onclick='Alert.ok()'>Submit</button>"
@@ -49,11 +48,10 @@
             var dialogbox = document.getElementById('dialogbox');
             dialogoverlay.style.display = "block";
             dialogoverlay.style.height = "100%";
-            dialogbox.style.marginLeft = "15%";
-            dialogbox.style.top = "12%";
-            dialogbox.style.width = "70%";
-            dialogbox.style.minWidth = "550px";
             dialogbox.style.display = "block";
+            dialogbox.style.width = "50%";
+            dialogbox.style.top = "15%";
+            dialogbox.style.marginLeft = "25%";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
             document.getElementById('dialogboxbody').innerHTML = dialog + "<select id='graphSelector' title='Choose a Type of Graph' aria-label='Choose a Type of Graph'><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select><br><label>Choose number of rows: </label><input id='rows' title='Choose Number of Rows' aria-label='Choose Number of Rows' type='text' value='0'/><br><label>Choose number of columns: </label><input id='columns' type='text' title='Choose Number of Columns' aria-label='Choose Number of Columns' value='0'/>";
             document.getElementById('dialogboxfoot').innerHTML = "<button title='Cancel' onclick='Alert2.cancel()'>Cancel</button><button title='Reset' onclick=Alert2.reset()>Reset</button><button title='Reset' onclick='Alert2.ok()'>Submit</button>";
@@ -96,10 +94,10 @@
         var helpBox = document.getElementById('helpBox');
         helpOverlay.style.display = "block";
         helpOverlay.style.height = "100%";
-        helpBox.style.left = "15%";
-        helpBox.style.top = "12%";
-        helpBox.style.width = "70%";
         helpBox.style.display = "block";
+        helpBox.style.width = "70%";
+        helpBox.style.top = "15%";
+        helpBox.style.left = "15%";
         document.getElementById('helpBox').setAttribute("tabindex", "0");
         document.getElementById('helpBoxHead').innerHTML = "<h1 tabindex='0'>Data Analyzer Help</h1>";
         document.getElementById('helpBoxBody').innerHTML = "<p>This web application was designed to help analyze data through graphs, calculated values, and sound.Here's a quick look at how to use the application:</p><ul><li>Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li><li>Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The overlay on the graph can highlight certain parts of the data to be turned into sound.</li><li>Data Table: There are two options with the data table; load a pre-made CSV (Comma Separated Value) file, or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.</li><li>Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li></ul><h3>To get started, select Load CSV or Create New Table at the top!</h3>";
