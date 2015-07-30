@@ -581,6 +581,9 @@ input[type="text"] {
     padding: 20px;
     color:#000;
 }
+#dialogboxbody label, #helpBoxHead h1, #helpBoxBody p, #helpBoxBody li, #helpBoxBody h3 {
+    cursor: text !important;
+}
 #helpBox > div > #helpBoxBody {
     text-align: justify;
     padding-left: 30px;
