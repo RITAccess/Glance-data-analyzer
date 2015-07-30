@@ -684,8 +684,8 @@ th, td, .printTable {
 }
 /* END media query less than 1280 */
 /************************************/
-/* START media query max-width: 1068px */
-@media screen and (max-width: 1068px) {
+/* START media query max-width: 1108px */
+@media screen and (max-width: 1108px) {
     #typeSelBody {
         width: 100%;
         background: url('footer_lodyas/footer_lodyas.png');
@@ -700,5 +700,5 @@ th, td, .printTable {
         content: '\A'; /* acts like break tag */
     }
 }
-/* END media query max-width: 1068px */
+/* END media query max-width: 1108px */
 /*******************************/
