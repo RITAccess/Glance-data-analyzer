@@ -561,8 +561,10 @@ input[type="text"] {
     position: fixed;
     background-color: #000;
     border-radius:5px;
-    width:550px;
     z-index: 10;
+}
+#dialogbox {
+    min-width:550px !important;
 }
 #dialogbox > div, #helpBox > div{
     background-color: #FFF;
@@ -672,7 +674,7 @@ th, td, .printTable {
 }
 /* END media print */
 /************************************/
-/* START media query less than 1280 */
+/* START media query for Help pop up*/
 @media screen and (max-width: 1280px), screen and (max-height: 800px) {
     #helpBox {
         min-height: 400px;
@@ -682,7 +684,16 @@ th, td, .printTable {
         overflow-y: scroll;
     }
 }
-/* END media query less than 1280 */
+@media screen and (max-height: 700px) {
+    #helpBox {
+        min-height: 150px;
+    }
+    #helpBoxBody {
+        max-height: 200px;
+        overflow-y: scroll;
+    }
+}
+/* END media query for Help pop up */
 /************************************/
 /* START media query max-width: 1139px */
 @media screen and (max-width: 1139px) {
