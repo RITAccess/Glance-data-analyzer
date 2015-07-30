@@ -10,6 +10,7 @@
           dialogbox.style.marginLeft = "15%";
           dialogbox.style.top = "12%";
           dialogbox.style.width = "70%";
+          dialogbox.style.minWidth = "550px";
           dialogbox.style.display = "block";
           document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
           document.getElementById('dialogboxbody').innerHTML = dialog + "<select id='graphSelector' title='Choose a Type of Graph' aria-label='Choose a Type of Graph'><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select>";
@@ -51,6 +52,7 @@
             dialogbox.style.marginLeft = "15%";
             dialogbox.style.top = "12%";
             dialogbox.style.width = "70%";
+            dialogbox.style.minWidth = "550px";
             dialogbox.style.display = "block";
             document.getElementById('dialogboxhead').innerHTML = "Data Analyzer";
             document.getElementById('dialogboxbody').innerHTML = dialog + "<select id='graphSelector' title='Choose a Type of Graph' aria-label='Choose a Type of Graph'><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select><br><label>Choose number of rows: </label><input id='rows' title='Choose Number of Rows' aria-label='Choose Number of Rows' type='text' value='0'/><br><label>Choose number of columns: </label><input id='columns' type='text' title='Choose Number of Columns' aria-label='Choose Number of Columns' value='0'/>";
