@@ -563,9 +563,11 @@ input[type="text"] {
     border-radius:5px;
     z-index: 10;
 }
+/* If needs fixed pop up size (mainly Load CSV and Create New Table): Need to modify this somehow to get a fixed pop up width while centers pop up with broswer size change
 #dialogbox {
     min-width:550px !important;
 }
+*/
 #dialogbox > div, #helpBox > div{
     background-color: #FFF;
     border: 2px solid #FFF;
