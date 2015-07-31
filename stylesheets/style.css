@@ -678,10 +678,10 @@ th, td, .printTable {
 /* START media query for Load CSV pop up*/
 @media screen and (max-width: 1099px) {
     #loadCsvBox {
-        width: 434px !important;
+        width: 440px !important;
     }
 }
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 609px) {
     #loadCsvBox {
         margin-left: 5% !important;
     }
@@ -694,7 +694,7 @@ th, td, .printTable {
         width: 455px !important;
     }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 624px) {
     #createTableBox {
         margin-left: 5% !important;
     }
