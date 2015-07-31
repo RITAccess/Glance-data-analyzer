@@ -675,6 +675,32 @@ th, td, .printTable {
 }
 /* END media print */
 /************************************/
+/* START media query for Load CSV pop up*/
+@media screen and (max-width: 1099px) {
+    #loadCsvBox {
+        width: 434px !important;
+    }
+}
+@media screen and (max-width: 640px) {
+    #loadCsvBox {
+        margin-left: 5% !important;
+    }
+}
+/* END media query for Load CSV pop up */
+/************************************/
+/* START media query for Create New Table pop up*/
+@media screen and (max-width: 923px) {
+    #createTableBox {
+        width: 455px !important;
+    }
+}
+@media screen and (max-width: 600px) {
+    #createTableBox {
+        margin-left: 5% !important;
+    }
+}
+/* END media query for Create New Table pop up */
+/************************************/
 /* START media query for Help pop up*/
 @media screen and (max-width: 1280px), screen and (max-height: 800px) {
     #helpBox {
