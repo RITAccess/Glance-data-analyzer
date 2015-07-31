@@ -118,7 +118,6 @@ var linkSlickTable = function(chart, player, overlay, summary){
 
 		// not a label - check to see if it's a number.
 		else if (((!isNaN(newVal)) || newVal.charAt(0) == '=') && (newVal != "")){
-
 			if(newVal.charAt(0) == '='){
 				var str = newVal.slice(1);
 				newVal = evaluate(str);
@@ -149,8 +148,15 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		}
 		// If not, revert to old value (from chart)
 		else {
-			var oldVal = chart.datasets[row-1].points[col - 1].value;
-			grid.getData()[row][col] = oldVal;
+			if(type === "bar"){
+				var oldVal = chart.datasets[row-1].bars[col - 1].value;
+				grid.getData()[row][col] = oldVal;
+			}
+			else{
+				var oldVal = chart.datasets[row-1].points[col - 1].value;
+				grid.getData()[row][col] = oldVal;
+			}
+			console.log(chart);
 		}
 
 		// If there is a change to the table, the next redos are no longer valid
