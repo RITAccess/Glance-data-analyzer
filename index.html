@@ -175,10 +175,12 @@
 <!-- div for CREATE NEW TABLE pop-up list -->
   <div id="createTableOverlay"></div>
     <div id="createTableBox">
+      <div>
       <div id="createTableHead"></div>
       <div id="createTableBody" class="sChartType"></div>
       <div id="createTableFoot"></div>
     </div>
+  </div>
 <!-- END div for CREATE NEW TABLE pop-up list -->
 <!-- div for Help pop-up list -->
   <div id="helpOverlay"></div>
