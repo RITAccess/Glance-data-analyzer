@@ -681,7 +681,7 @@ th, td, .printTable {
         width: 440px !important;
     }
 }
-@media screen and (max-width: 609px) {
+@media screen and (max-width: 640px) {
     #loadCsvBox {
         margin-left: 5% !important;
     }
