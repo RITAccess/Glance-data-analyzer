@@ -34,6 +34,11 @@
         <span class="createBtn" title="Create New Table" aria-hidden="true" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
       </label>
     </div>
+    <span id="jumpSpan">
+      <a class="pageJump" href="#audioSpanSec" aria-label="Jump to Audio">Jump to Audio</a>
+      <a class="pageJump" href="#dataPlot" aria-label="Jump to Table">Jump to Table</a>
+      <a class="pageJump" href="#summaryBox" aria-label="Jump to Graph Data">Jump to Data</a>
+    <span>
     <button id="helpButton" aria-label="Help" title="Help" onclick="Alert3.render()"><i class="fa fa-question fa-3x"></i></button>
     <span id="typeSelBody" class="no-print" style="display:none;">
       Change graph type:
