@@ -122,9 +122,9 @@
         <div id="audioSpanBar"><!-- NOT an empty span: main.js "Play mode" and "Column number" for bar graph -->
         </div><!-- END id="audioSpanBar" -->
         <div id="audioSpanButtons"><!-- Play, Pause, Stop buttons for audio -->
-          <button id="playButton" onclick="play()" title="Play Audio" aria-label="Play Audio"><i id="playToggle" class="fa fa-play fa-lg" ></i></button>
-          <button id="pauseButton" onclick="pause()" title="Pause Audio" aria-label="Pause Audio"><i id="pauseToggle" class="fa fa-pause fa-lg" ></i></button>
-          <button id="stopButton" onclick="stop()" title="Stop Audio" aria-label="Stop Audio"><i id="stopToggle" class="fa fa-stop fa-lg" ></i></button>
+          <button id="playButton" aria-hidden="true" onclick="play()" title="Play Audio" aria-label="Play Audio"><i id="playToggle" class="fa fa-play fa-lg" ></i></button>
+          <button id="pauseButton" aria-hidden="true" onclick="pause()" title="Pause Audio" aria-label="Pause Audio"><i id="pauseToggle" class="fa fa-pause fa-lg" ></i></button>
+          <button id="stopButton" aria-hidden="true" onclick="stop()" title="Stop Audio" aria-label="Stop Audio"><i id="stopToggle" class="fa fa-stop fa-lg" ></i></button>
         </div><!-- END id="audionSpanButtons" -->
       </div><!-- END id="audioSpanSec" -->
       <div id="summaryBox" tabindex="-1">

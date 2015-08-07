@@ -32,6 +32,9 @@ function loadCsvAlert() {
         document.getElementById('loadCsvBox').style.visibility = "hidden";
         document.getElementById('loadCsvOverlay').style.visibility = "hidden";
         document.getElementsByClassName('uploadBtn')[0].focus();
+        document.getElementById('playButton').setAttribute("aria-hidden", "false");
+        document.getElementById('pauseButton').setAttribute("aria-hidden", "false");
+        document.getElementById('stopButton').setAttribute("aria-hidden", "false");
     }
     this.cancel= function(){
         document.getElementById('loadCsvBox').style.visibility = "hidden";
@@ -74,6 +77,9 @@ function createTableAlert() {
         else if (type === "scatter") document.getElementById("scatterRadioButton").checked = true;
         document.getElementById('createTableBox').style.visibility = "hidden";
         document.getElementById('createTableOverlay').style.visibility = "hidden";
+        document.getElementById('playButton').setAttribute("aria-hidden", "false");
+        document.getElementById('pauseButton').setAttribute("aria-hidden", "false");
+        document.getElementById('stopButton').setAttribute("aria-hidden", "false");
         document.getElementsByClassName('createBtn')[0].focus();
     }
     this.reset = function () {
