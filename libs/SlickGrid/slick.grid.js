@@ -1454,7 +1454,7 @@ if (typeof Slick === "undefined") {
       var m = columns[cell];
       var cellCss = "slick-cell l" + cell + " r" + Math.min(columns.length - 1, cell + colspan - 1) +
           (m.cssClass ? " " + m.cssClass : "");
-      var aLabel= "Row " + row + " Column " + Math.min(columns.length - 1, cell + colspan - 1);
+      //var aLabel= "Row " + row + " Column " + Math.min(columns.length - 1, cell + colspan - 1);
       if (row === activeRow && cell === activeCell) {
         cellCss += (" active");
       }
@@ -1465,7 +1465,8 @@ if (typeof Slick === "undefined") {
           cellCss += (" " + cellCssClasses[key][row][m.id]);
         }
       }
-        stringArray.push("<div aria-label='" + aLabel + "' " + "class='" + cellCss + "'>");
+      stringArray.push("<div class='" + cellCss + "'>");
+        //stringArray.push("<div aria-label='" + aLabel + "' " + "class='" + cellCss + "'>");
 
       // if there is a corresponding row (if not, this is the Add New row or this data hasn't been loaded yet)
       if (item) {
