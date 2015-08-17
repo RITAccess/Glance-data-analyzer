@@ -11,7 +11,7 @@ function loadCsvAlert() {
         loadCsvBox.style.width = "40%";
         loadCsvBox.style.top = "15%";
         loadCsvBox.style.marginLeft = "30%";
-        document.getElementById('loadCsvHead').innerHTML = "Data Analyzer";
+        document.getElementById('loadCsvHead').innerHTML = "Glance";
         document.getElementById('loadCsvBody').innerHTML = dialog + "<select id='graphSelector' title='Choose a Type of Graph' aria-label='Choose a Type of Graph'><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select>";
         document.getElementById('loadCsvFoot').innerHTML = "<button title='Cancel' onclick='Alert.cancel()'>Cancel</button><button title='Submit' onclick='Alert.ok()'>Submit</button>"
         document.getElementById('loadCsvBox').style.visibility = "visible";
@@ -55,7 +55,7 @@ function createTableAlert() {
         createTableBox.style.width = "50%";
         createTableBox.style.top = "15%";
         createTableBox.style.marginLeft = "25%";
-        document.getElementById('createTableHead').innerHTML = "Data Analyzer";
+        document.getElementById('createTableHead').innerHTML = "Glance";
         document.getElementById('createTableBody').innerHTML = dialog + "<select id='graphSelector' title='Choose a Type of Graph' aria-label='Choose a Type of Graph'><option value='Line'>Line Graph</option><option value='Bar'>Bar Graph</option><option value='scatter'>Scatter Plot</option></select><br><label>Choose number of rows: </label><input id='rows' title='Choose Number of Rows' aria-label='Choose Number of Rows' type='text' value='0'/><br><label>Choose number of columns: </label><input id='columns' type='text' title='Choose Number of Columns' aria-label='Choose Number of Columns' value='0'/>";
         document.getElementById('createTableFoot').innerHTML = "<button title='Cancel' onclick='Alert2.cancel()'>Cancel</button><button title='Reset' onclick=Alert2.reset()>Reset</button><button title='Reset' onclick='Alert2.ok()'>Submit</button>";
         document.getElementById('createTableBox').style.visibility = "visible";
@@ -105,7 +105,7 @@ function helpAlert() {
         helpBox.style.top = "15%";
         helpBox.style.left = "15%";
         document.getElementById('helpBox').setAttribute("tabindex", "0");
-        document.getElementById('helpBoxHead').innerHTML = "<h1 tabindex='0'>Data Analyzer Help</h1>";
+        document.getElementById('helpBoxHead').innerHTML = "<h1 tabindex='0'>Glance Help</h1>";
         document.getElementById('helpBoxBody').innerHTML = "<p>This web application was designed to help analyze data through graphs, calculated values, and sound.Here's a quick look at how to use the application:</p><ul><li>Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li><li>Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The overlay on the graph can highlight certain parts of the data to be turned into sound.</li><li>Data Table: There are two options with the data table; load a pre-made CSV (Comma Separated Value) file, or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.</li><li>Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li></ul><h3>To get started, select Load CSV or Create New Table at the top!</h3>";
         document.getElementById('helpBoxFoot').innerHTML = "<button title='Close' onclick='Alert3.cancel()'>Close</button>"
         document.getElementById('helpBox').style.visibility = "visible";

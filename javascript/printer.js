@@ -16,9 +16,9 @@ function printPage()
    }
    html += "</head>";
    html += "<body>";
-   html += "<header><h1 id='title' tabindex='0'>Data Analyzer</h1></header>";
+   html += "<header><h1 id='title' tabindex='0'>Glance</h1></header>";
    html += "<div id='content'>";
-   html += "<h3 style='text-align:center;'>Data Analyzer Graph</h3><div id='graphImg' style=\"background:" +bg + "\"><img tabindex='0' alt='Image of Data Analyzer Graph' title='Image of Data Analyzer Graph' width='800px' src='" + chart.toBase64Image() + "'/></div>";
+   html += "<h3 style='text-align:center;'>Glance Graph</h3><div id='graphImg' style=\"background:" +bg + "\"><img tabindex='0' alt='Image of Glance Graph' title='Image of Glance Graph' width='800px' src='" + chart.toBase64Image() + "'/></div>";
    html += "<div id='summaryBox' style='display: block;'>";
    html += document.getElementById('summaryBox').innerHTML;
    html += "</div><div id='printTable'><h3 id='printTableHeader'>Data Table</h3>";
