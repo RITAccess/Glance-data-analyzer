@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Data Analyzer</title>
+  <title>Glance</title>
   <meta charset="UTF-8">
   <!-- load main.js after require.js -->
   <script data-main="javascript/main" src="libs/require/Require.js"></script>
@@ -21,7 +21,7 @@
   </head>
 <body>
   <header>
-    <h1 id="title"><a href="index.php" title="Data Analyzer Home" aria-label="Data Analyzer Home">Data Analyzer</a></h1>
+    <h1 id="title"><a href="index.php" title="Glance Home" aria-label="Glance Home">Glance</a></h1>
     <div class="inputBtnSection no-print">
       <label class="fileUpload">
           <input id="files" tab-index="0" aria-label="Load CSV" type="file" accept=".csv" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
@@ -52,7 +52,7 @@
   </header>
     <div id="start">
       <div id="startBody">
-        <h1>Welcome to Data Analyzer</h1>
+        <h1>Welcome to Glance</h1>
         <p>
           This web application was designed to help analyze data through graphs, calculated values, and sound.
           Here's a quick look at how to use the application:
@@ -71,14 +71,14 @@
     </div> <!-- End of start div -->
     <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
       <div id="dataGraph">
-        <h3 id="graphHeader" style="display:none;">Data Analyzer Graph</h3>
+        <h3 id="graphHeader" style="display:none;">Glance Graph</h3>
         <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" class="no-print"></div>
         <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
-          <rect id="background" title="Data Analyzer Graph" x="0" y="0" width="800" height="400" />
+          <rect id="background" title="Glance Graph" x="0" y="0" width="800" height="400" />
           <rect id="selection" title="Slider" x="0" y="0" width="800" height="400" />
         </svg>
         <div id="graphCC">
-          <canvas id="myChart" title="Data Analyzer Graph"  width="800" height="400" style="display:none;"></canvas>
+          <canvas id="myChart" title="Glance Graph"  width="800" height="400" style="display:none;"></canvas>
         </div>
       </div><!-- END id="dataGraph" -->
       <div id='continuosBox'>
