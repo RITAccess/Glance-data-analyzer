@@ -1,3 +1,4 @@
+var pausing = false;
 // The play button
 var playStopAudioButton = function () {
   var playing = player.playing;
@@ -48,6 +49,7 @@ var playStopAudioButton = function () {
       player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode);
     else
       player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode,playing);
+    console.log(player.paused);
 }
 
 //Play audio if not already
@@ -59,17 +61,21 @@ var play = function(){
 
 //Pause audio if not already
 var pause = function(){
+  pausing = true;
   if(player.playing){
     playStopAudioButton();
+    player.paused = true;
   }
+  pausing = false;
 }
 
 //Stop audio if not already
 var stop = function(){
-  if(isSafari && player.playing){
+  if(isSafari ) {
     overlay.slider[0] = 0;
     player.paused = false;
-    playStopAudioButton();
+    if(player.playing)
+      player.stop();
   }
   else if(player.playing || player.paused){
     player.stop();

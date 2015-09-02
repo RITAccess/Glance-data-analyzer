@@ -224,6 +224,7 @@ WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing
   	if(!mode || mode === 0)
     	this.playSeries(line,startIndex,endIndex);
 	else{
+		this.paused = false;
 		if(type === "bar")
 			this.playSeriesColumns(line,startIndex,endIndex);
 		else
