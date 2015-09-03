@@ -224,11 +224,12 @@ Instrument.prototype.setBpm = function(bpm){
 }
 //Preload all notes in the collection
 Instrument.prototype.buildNotes= function(){
+  var range = this.getMaxMin();
   var newNotes = {};
   for(var i = 0; i < this.infoCollection.collection.length; i++){
     for(var j = 0; j < this.infoCollection.collection[i].array.length; j++){
         var key =(parseInt(this.infoCollection.collection[i].array[j]));
-        newNotes[key] = key+30;
+        newNotes[key] = key+range[0];
     }
   }
   var toSort = [];
@@ -243,8 +244,8 @@ Instrument.prototype.buildNotes= function(){
     else
       return 0;
   });
-  if(toSort[toSort.length-1]>100){
-    var mult = 100/toSort[toSort.length-1];
+  if(toSort[toSort.length-1]>range[1]){
+    var mult = range[1]/toSort[toSort.length-1];
     for(var i = 0; i<toSort.length; i++){
       toSort[i] = parseInt(mult*toSort[i]);
     }
@@ -275,4 +276,11 @@ Instrument.prototype.stop = function(){
   this.t.stop();
   this.playing = false;
   this.paused = false;
+}
+
+Instrument.prototype.getMaxMin = function(){
+  if(ranges[this.number])
+    return ranges[this.number];
+  else
+    return [30,100];  
 }
