@@ -89,11 +89,10 @@ var changeSiteBg = function(){
       document.getElementById("bgColorChange").style.borderTop="3px solid " + contrastor;
     }
     else {
-      document.getElementsByTagName("body")[0].style.color = oldColor;
-      document.getElementById("continuosBox").style.border = "3px solid " + oldColor;
-      document.getElementById("audioSpanSec").style.borderTop = "3px solid " + oldColor;
-      document.getElementById("summaryBox").style.borderTop="3px solid " + oldColor;
-      document.getElementById("bgColorChange").style.borderTop="3px solid " + oldColor;
+      // document.getElementById("continuosBox").style.border = "3px solid " + oldColor;
+      // document.getElementById("audioSpanSec").style.borderTop = "3px solid " + oldColor;
+      // document.getElementById("summaryBox").style.borderTop="3px solid " + oldColor;
+      // document.getElementById("bgColorChange").style.borderTop="3px solid " + oldColor;
     }
     oldBGColor = newColor;
   }
@@ -108,11 +107,10 @@ var changeSiteBg = function(){
       document.getElementById("bgColorChange").style.borderTop="3px solid " + contrastor;
     }
     else {
-      document.getElementsByTagName("body")[0].style.color = oldColor;
-      document.getElementById("continuosBox").style.border = "3px solid " + oldColor;
-      document.getElementById("audioSpanSec").style.borderTop = "3px solid " + oldColor;
-      document.getElementById("summaryBox").style.borderTop="3px solid " + oldColor;
-      document.getElementById("bgColorChange").style.borderTop="3px solid " + oldColor;
+      // document.getElementById("continuosBox").style.border = "3px solid " + oldColor;
+      // document.getElementById("audioSpanSec").style.borderTop = "3px solid " + oldColor;
+      // document.getElementById("summaryBox").style.borderTop="3px solid " + oldColor;
+      // document.getElementById("bgColorChange").style.borderTop="3px solid " + oldColor;
     }
 
     oldBGColor = newColor;
@@ -195,7 +193,6 @@ var changeTextColor = function(){
       document.getElementsByTagName("h1")[0].setAttribute("style", "-webkit-text-stroke-width: 1px; -webkit-text-stroke-color:" + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background)));
     }
     else{
-      document.getElementsByTagName('body')[0].style.background = oldBGColor;
       document.getElementsByTagName("h1")[0].setAttribute("style", "-webkit-text-stroke-width: 1px; -webkit-text-stroke-color:" + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background)));
     }
 
@@ -213,7 +210,6 @@ var changeTextColor = function(){
       document.getElementsByTagName("h1")[0].setAttribute("style", "-webkit-text-stroke-width: 1px; -webkit-text-stroke-color:" + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background)));
     }
     else{
-      document.getElementsByTagName('body')[0].style.background = oldBGColor;
       document.getElementsByTagName("h1")[0].setAttribute("style", "-webkit-text-stroke-width: 1px; -webkit-text-stroke-color:" + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background)));
     }
 
