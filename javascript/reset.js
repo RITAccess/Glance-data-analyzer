@@ -7,7 +7,7 @@ var resetText= function(){
   document.getElementsByTagName("body")[0].style.color = "#000000";
   document.getElementById("textColorInput").value= "";
   document.getElementById("continuosBox").style.border = "3px solid black";
-  document.getElementById("audioSpanSec").style.borderBottom = "3px solid black";
+  document.getElementById("audioSpanSec").style.borderTop = "3px solid black";
   document.getElementById("summaryBox").style.borderTop="3px solid black";
   document.getElementById("bgColorChange").style.borderTop="3px solid black";
   if(document.getElementById("textContrast").checked){
@@ -25,7 +25,7 @@ var resetSiteBg = function(){
     resetText();
   else{
     document.getElementById("continuosBox").style.border = "3px solid black";
-    document.getElementById("audioSpanSec").style.borderBottom = "3px solid black";
+    document.getElementById("audioSpanSec").style.borderTop = "3px solid black";
     document.getElementById("summaryBox").style.borderTop="3px solid black";
     document.getElementById("bgColorChange").style.borderTop="3px solid black";
   }
@@ -84,14 +84,14 @@ var changeSiteBg = function(){
       var contrastor = findContrastor(newColor);
       document.getElementsByTagName("body")[0].style.color = contrastor;
       document.getElementById("continuosBox").style.border = "3px solid " + contrastor;
-      document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + contrastor;
+      document.getElementById("audioSpanSec").style.borderTop = "3px solid " + contrastor;
       document.getElementById("summaryBox").style.borderTop="3px solid " +contrastor;
       document.getElementById("bgColorChange").style.borderTop="3px solid " + contrastor;
-    } 
+    }
     else {
       document.getElementsByTagName("body")[0].style.color = oldColor;
       document.getElementById("continuosBox").style.border = "3px solid " + oldColor;
-      document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + oldColor;
+      document.getElementById("audioSpanSec").style.borderTop = "3px solid " + oldColor;
       document.getElementById("summaryBox").style.borderTop="3px solid " + oldColor;
       document.getElementById("bgColorChange").style.borderTop="3px solid " + oldColor;
     }
@@ -103,14 +103,14 @@ var changeSiteBg = function(){
       var contrastor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
       document.getElementsByTagName("body")[0].style.color = contrastor;
       document.getElementById("continuosBox").style.border = "3px solid " + contrastor;
-      document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + contrastor;
+      document.getElementById("audioSpanSec").style.borderTop = "3px solid " + contrastor;
       document.getElementById("summaryBox").style.borderTop="3px solid " +contrastor;
       document.getElementById("bgColorChange").style.borderTop="3px solid " + contrastor;
     }
     else {
       document.getElementsByTagName("body")[0].style.color = oldColor;
       document.getElementById("continuosBox").style.border = "3px solid " + oldColor;
-      document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + oldColor;
+      document.getElementById("audioSpanSec").style.borderTop = "3px solid " + oldColor;
       document.getElementById("summaryBox").style.borderTop="3px solid " + oldColor;
       document.getElementById("bgColorChange").style.borderTop="3px solid " + oldColor;
     }
@@ -127,14 +127,14 @@ var changeGraphBg = function(){
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementById("graphCC").style.background = newColor;
     if(document.getElementById("graphContrast").checked){
-      oldGraphText = chart.options.scaleFontColor; 
+      oldGraphText = chart.options.scaleFontColor;
       chart.options.scaleFontColor = findContrastor(newColor);
       chart.buildScale(chart.scale.xLabels);
       chart.update();
       if(type === "scatter"){
         chart.options.linRegLineColor = findContrastor(newColor);
       }
-    } 
+    }
     else {
       if(oldGraphText){
         var temp = chart.options.scaleFontColor;
@@ -155,7 +155,7 @@ var changeGraphBg = function(){
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
     document.getElementById("graphCC").style.background = colors[newColor.toLowerCase().split(' ').join('')];
     if(document.getElementById("graphContrast").checked){
-      oldGraphText = chart.options.scaleFontColor; 
+      oldGraphText = chart.options.scaleFontColor;
       chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
       chart.buildScale(chart.scale.xLabels);
       chart.update();
@@ -187,7 +187,7 @@ var changeTextColor = function(){
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementsByTagName("body")[0].style.color = newColor;
     document.getElementById("continuosBox").style.border = "3px solid " + newColor;
-    document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + newColor;
+    document.getElementById("audioSpanSec").style.borderTop = "3px solid " + newColor;
     document.getElementById("summaryBox").style.borderTop="3px solid " +newColor;
     document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
     if(document.getElementById("textContrast").checked){
@@ -205,7 +205,7 @@ var changeTextColor = function(){
     newColor = colors[newColor.toLowerCase().split(' ').join('')]
     document.getElementsByTagName("body")[0].style.color = newColor;
     document.getElementById("continuosBox").style.border = "3px solid " + newColor;
-    document.getElementById("audioSpanSec").style.borderBottom = "3px solid " + newColor;
+    document.getElementById("audioSpanSec").style.borderTop = "3px solid " + newColor;
     document.getElementById("summaryBox").style.borderTop="3px solid " +newColor;
     document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
     if(document.getElementById("textContrast").checked){
