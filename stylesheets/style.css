@@ -192,6 +192,7 @@ header {
 }
 #graphImg {/* printer.js: image of graph in the print page */
     margin-bottom: 8%;
+    border-radius: 5px;
 }
 #graphCC {/* graph color change */
     background: url('halftone/halftone.png');
