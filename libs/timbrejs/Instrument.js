@@ -1,5 +1,8 @@
 require(["libs/timbrejs/soundfont.js"]);
-//Make an instrument object with a given instrument number
+/*Make an instrument object with a given instrument number
+  number: an integer (0-127) to represent the midi instrument that
+  this Instrument will be instantiated as. Can be changed later.
+*/
 function Instrument(number){
   this.number = number;
   this.bpm = 120; //Default tempo
@@ -18,7 +21,8 @@ Instrument.prototype.makeSoundFont = function(number){
   T.soundfont.setInstrument(number);
 }
 
-//Change instrument number of this instrument
+//Change this instrument to a different instrument
+//Number must be in the range of 0-127
 Instrument.prototype.changeInstrument = function(number){
   if(this.number === number)
     return;
@@ -27,14 +31,21 @@ Instrument.prototype.changeInstrument = function(number){
   this.setCollection(this.infoCollection.collection);
 }
 
-//Play a single note
+/*Play a single note
+  Number: the note to play in the range of 0-127
+*/
 Instrument.prototype.playSingleNote= function(number){
   this.playing = true;
   T.soundfont.play(number);
   this.playing = false;
 }
 
-//Play an entire set of notes
+/*Play an entire set of notes, should never be called directly, but instead
+  through playToggle
+  line: line of data that is being played (if data set has several line)
+  startIndex: where in the specified dataset line to start playing
+  endIndex: where in the specified dataset line to stop playing
+*/
 Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
   this.playing = true;
   this.paused = false;
@@ -64,7 +75,10 @@ Instrument.prototype.playDataSet = function(line,startIndex,endIndex){
   $("*").css("cursor", "default");
 }
 
-//For Bar Graph, play a certain month
+/*For Bar Graph, play a certain column
+  Should never be called directly, but instead called by playToggle
+  col: the column of the data to play
+*/
 Instrument.prototype.playColumn = function(col){
   this.playing = true;
   var i = col;
@@ -86,7 +100,12 @@ Instrument.prototype.playColumn = function(col){
   $("*").css("cursor", "default");
 }
 
-//For Bar Graph, play through, playing all columns as chords
+/*For Bar Graph, play through, playing all columns as chords
+  Should never be called directly, but instead called by playToggle
+  line: line of data that is being played (if data set has several line)
+  startIndex: where in the specified dataset line to start playing
+  endIndex: where in the specified dataset line to stop playing
+*/
 Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
   this.playing = true;
   var i = startIndex;
@@ -112,6 +131,7 @@ Instrument.prototype.playColumnsAsChords = function(line,startIndex,endIndex){
 }
 
 //Sonically represent the regression line using an instrument
+//Should never be called directly, but instead called by playToggle
 Instrument.prototype.playRegressionLine = function(){
   this.playing = true;
   var i = 0;
@@ -133,7 +153,12 @@ Instrument.prototype.playRegressionLine = function(){
   $("*").css("cursor", "default");
 }
 
-//Using an arrayCollection object you can add a group of lines to the audio object
+/*This method sets the backing data structure of the Instrument
+  containing the note numbers to play. Once the data is copied,
+  it is automatically normalized to match the range of the current
+  midi instrument
+  collection: ArrayCollection passed in, to be parsed. Containing note data
+*/
 Instrument.prototype.setCollection = function(collection) {
   var dropdownString ="";
   this.infoCollection.setCollection(collection);
@@ -150,7 +175,11 @@ Instrument.prototype.setCollection = function(collection) {
   document.getElementById("lineDropdown").innerHTML = dropdownString;
 }
 
-//A change was made to a line in the table
+/*Update a value in the data set when it changes
+  line: which line the change occurred in
+  index: which item in the specified line was changed
+  newValue: the new value of the changed item
+*/
 Instrument.prototype.changeLine = function(line, index, newValue) {
   if(newValue != -1) {
     if(!isNaN(newValue)){
@@ -160,7 +189,11 @@ Instrument.prototype.changeLine = function(line, index, newValue) {
   }
 }
 
-//Toggle playing either on or off
+/*Toggle playing either on or off
+  line: line of data that is being played (if data set has several line) (to be passed into playing functions)
+  startIndex: where in the specified dataset line to start playing (to be passed into playing functions)
+  endIndex: where in the specified dataset line to stop playing (to be passed into playing functions)
+*/
 Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
   if(!this.playing) {
     if(this.t && this.line != line){
@@ -211,7 +244,8 @@ Instrument.prototype.playToggle = function(line, startIndex, endIndex, mode) {
     }
 }
 
-//Set play speed
+//Set play speed in beats per minute.
+//bpm: integer representing the speed in beats per minute
 Instrument.prototype.setBpm = function(bpm){
   this.subdiv = "L4";
   if(bpm > 280){
@@ -222,7 +256,10 @@ Instrument.prototype.setBpm = function(bpm){
   }
   this.bpm = bpm;
 }
-//Preload all notes in the collection
+/*Preload all notes in the collection and then
+  normalizes the range of the notes to fit that of 
+  the current midi instrument
+*/
 Instrument.prototype.buildNotes= function(){
   var range = this.getMaxMin();
   var newNotes = {};
@@ -271,13 +308,14 @@ Instrument.prototype.getKeyByValue = function( value ) {
         }
     }
 }
-
+//Stop playing
 Instrument.prototype.stop = function(){
   this.t.stop();
   this.playing = false;
   this.paused = false;
 }
 
+//Get the range of the current instrument
 Instrument.prototype.getMaxMin = function(){
   if(ranges[this.number])
     return ranges[this.number];

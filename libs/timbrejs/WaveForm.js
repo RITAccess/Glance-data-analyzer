@@ -1,4 +1,7 @@
-//Create a Waveform Object
+/*Create a Waveform Object of a specific type
+	type: a string, either "sine", "square", "triangle",
+	or "sawtooth". If it doesn't match, sawtooth is assumed
+*/
 function WaveForm(type){
 	this.type = type;
 	this.len = 44100;
@@ -15,12 +18,18 @@ function WaveForm(type){
 	this.t = null;
 }
 
-//Make a timbre object of this waveform
+/*Make a timbre object of this waveform
+  Should not be called directly, only 
+  during instantiation of a Waveform
+*/
 WaveForm.prototype.makeTObject = function() {
 	this.t_object = T("buffer", {buffer:this.buffer, pitch:this.pitch, loop:true});
 };
 
-//Make the Wave Buffer based of waveform type
+/*  Make the buffer of the waveform
+	should not be called directly, only
+	during instantiation of the waveform
+*/
 WaveForm.prototype.makeBuffer = function(){
 	this.buffer = new Float32Array(this.len);
 	if(this.type === "sine"){
@@ -95,7 +104,13 @@ WaveForm.prototype.changePitch = function(pitch){
 	this.t_object.pitch = pitch;
 };
 
-//Play series of notes
+/*Play series of notes
+  This function should not be called directly, but instead
+  by playToggle
+  line: line of data to play on
+  startIndex: index of that line to start on
+  endIndex: index of that line to end on
+*/
 WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	this.playing = true;
 	var j = line;
@@ -128,7 +143,13 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	}).start();
 };
 
-//Play series of notes
+/* Play the columns of a bar chart
+   This function should only be called by playToggle, and should
+   not be called directly
+   line: line of data to play on
+   startIndex: index of that line to start on
+   endIndex: index of that line to end on
+*/
 WaveForm.prototype.playSeriesColumns = function(line,startIndex,endIndex){
 	this.playing = true;
 	
@@ -195,7 +216,9 @@ WaveForm.prototype.setBpm = function(bpm){
   this.bpm = bpm;
 }
 
-//Using an arrayCollection object you can add a group of lines to the audio object
+/* Preload the data into the waveform
+   collection: arrayCollection containing the data
+*/
 WaveForm.prototype.setCollection = function(collection) {
   var dropdownString ="";
   this.infoCollection.setCollection(collection);
@@ -207,7 +230,11 @@ WaveForm.prototype.setCollection = function(collection) {
   document.getElementById("lineDropdown").innerHTML = dropdownString;
 }
 
-//A change was made to a line in the table
+/*Update a value in the data set when it changes
+  line: which line the change occurred in
+  index: which item in the specified line was changed
+  newValue: the new value of the changed item
+*/
 WaveForm.prototype.changeLine = function(line, index, newValue) {
   if(line != -1) {
   	if(!isNaN(newValue))
@@ -215,7 +242,11 @@ WaveForm.prototype.changeLine = function(line, index, newValue) {
   }
 }
 
-//Toggle playing either on or off
+/*Toggle playing either on or off
+  line: line of data that is being played (if data set has several line) (to be passed into playing functions)
+  startIndex: where in the specified dataset line to start playing (to be passed into playing functions)
+  endIndex: where in the specified dataset line to stop playing (to be passed into playing functions)
+*/
 WaveForm.prototype.playToggle = function(line, startIndex, endIndex,mode,playing) {
   if(!playing) {
   	if(!this.paused){
