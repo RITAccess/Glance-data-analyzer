@@ -282,9 +282,9 @@ Instrument.prototype.buildNotes= function(){
       return 0;
   });
   if(toSort[toSort.length-1]>range[1]){
-    var mult = range[1]/toSort[toSort.length-1];
+    var mult = (range[1]-range[0])/toSort[toSort.length-1];
     for(var i = 0; i<toSort.length; i++){
-      toSort[i] = parseInt(mult*toSort[i]);
+      toSort[i] = range[0] + parseInt(mult*toSort[i]);
     }
   }
   T.soundfont.preload(toSort);
