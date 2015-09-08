@@ -121,12 +121,12 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			if(newVal.charAt(0) == '='){
 				var str = newVal.slice(1);
 				newVal = evaluate(str);
-				if(!isNaN(newVal)){ //a legit result is returned....
+				if(!isNaN(newVal) && isFinite(newVal)){ //a legit result is returned....
 					grid.getData()[row][col] = newVal;
 				}
 				else{ //revert back to old value
 					newVal = chart.datasets[row-1].points[col - 1].value;
-					grid.getData()[row][col];
+					grid.getData()[row][col] = newVal;
 				}
 			}
 
