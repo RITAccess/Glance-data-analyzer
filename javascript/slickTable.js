@@ -444,32 +444,35 @@ function evall(x) {
 		while(/\^/.test(x)){
 			var op = x.indexOf('^');
 			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([Math.pow(x[op-1],x[op+1])]).concat(x.slice(op+2,end));
-			//console.log("exp");
-			//console.log(x);
+			// console.log("exp");
+			// console.log(x);
 		}
 		while(/\//.test(x)){
 			var op = x.indexOf('/');
 			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) / parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
-			//console.log("/");
-			//console.log(x);
+			// console.log("/");
+			// console.log(x);
+			if(x.indexOf(NaN)){
+				return x;
+			}
 			}
 		while(/\*/.test(x)){
 			var op = x.indexOf('*');
 			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) * parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
-			//console.log("*");
-			//console.log(x);
+			// console.log("*");
+			// console.log(x);
 		}
 		while(/\+/.test(x)){
 			var op = x.indexOf('+');
 			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) + parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
-			//console.log("+");
-			//console.log(x);
+			// console.log("+");
+			// console.log(x);
 		}
 		while(/\-/.test(x)  && /\-(?!\d+)/.test(x)){
 			var op = x.indexOf('-');
 			x = x.slice(0,(op-1 > 0 ? op-1 : 0)).concat([(parseFloat(x[op-1]) - parseFloat(x[op+1]))].concat(x.slice(op+2,end)));
-			//console.log("-");
-			//console.log(x);
+			// console.log("-");
+			// console.log(x);
 		}
 	}
   return x;
