@@ -126,9 +126,6 @@ var changeGraphBg = function(){
     document.getElementById("graphCC").style.background = newColor;
     if(document.getElementById("graphContrast").checked){
       oldGraphText = chart.options.scaleFontColor;
-      chart.options.scaleFontColor = findContrastor(newColor);
-      chart.buildScale(chart.scale.xLabels);
-      chart.update();
       if(type === "scatter"){
         chart.options.linRegLineColor = findContrastor(newColor);
       }
@@ -145,7 +142,9 @@ var changeGraphBg = function(){
       chart.buildScale(chart.scale.xLabels);
       chart.update();
     }
-
+    chart.options.scaleFontColor = findContrastor(newColor);
+    chart.buildScale(chart.scale.xLabels);
+    chart.update();  
     if(!checkWarningLabels()){
       alert("Some dataset colors may be difficult to see due to low color contrast");
     }
@@ -154,9 +153,6 @@ var changeGraphBg = function(){
     document.getElementById("graphCC").style.background = colors[newColor.toLowerCase().split(' ').join('')];
     if(document.getElementById("graphContrast").checked){
       oldGraphText = chart.options.scaleFontColor;
-      chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
-      chart.buildScale(chart.scale.xLabels);
-      chart.update();
       if(type === "scatter"){
         chart.options.linRegLineColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
       }
@@ -173,6 +169,9 @@ var changeGraphBg = function(){
       chart.buildScale(chart.scale.xLabels);
       chart.update();
     }
+    chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+    chart.buildScale(chart.scale.xLabels);
+    chart.update();
     if(!checkWarningLabels()){
       alert("Some dataset colors may be difficult to see due to low color contrast");
     }
