@@ -21,7 +21,7 @@
   </head>
 <body>
   <header>
-    <h1 id="title"><a href="index.php" title="Glance Home" aria-label="Glance Home">Glance</a></h1>
+    <h1 id="title"><a href="index.html" title="Glance Home" aria-label="Glance Home">Glance</a></h1>
     <div class="inputBtnSection no-print">
       <label class="fileUpload">
           <input id="files" tab-index="0" aria-label="Load CSV" type="file" accept=".csv" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
@@ -148,8 +148,8 @@
                 <label>Graph Background:</label><input id="graphColorInput" type="text" onInput="changeGraphBg()" title="Change Graph Background Color">
                 <label tabindex="0" >High Contrast:</label>
                   <div class="squaredTwo">
-                    <input id="graphContrast" tabindex="0" type="checkbox" checked="checked" aria-label="Enable/Disable  Graph Background Color Contrast" onclick="changeGraphBg()">
-                    <label for="graphContrast" title="Enable/Disable Graph Background Color Contrast"></label>
+                    <input id="graphContrast" tabindex="0" type="checkbox" disabled="disabled" checked="checked" aria-label="Enable/Disable Graph Background Color Contrast - Checkbox Disabled" onclick="changeGraphBg()">
+                    <label for="graphContrast" title="Enable/Disable Graph Background Color Contrast - Checkbox Disabled"></label>
                   </div>
                   <input type="button" id="graphCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Graph Background to Original" title="Reset Graph Background to Original" onclick="resetGraphBg()" value="">
               </div>
