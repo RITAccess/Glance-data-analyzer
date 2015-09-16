@@ -124,51 +124,51 @@ var changeGraphBg = function(){
   var contrast = true;
   if(/^#[0-9A-F]{6}$/i.test(newColor)){
     document.getElementById("graphCC").style.background = newColor;
-    if(document.getElementById("graphContrast").checked){
-      oldGraphText = chart.options.scaleFontColor;
-      if(type === "scatter"){
-        chart.options.linRegLineColor = findContrastor(newColor);
-      }
-    }
-    else {
-      if(oldGraphText){
-        var temp = chart.options.scaleFontColor;
-        chart.options.scaleFontColor = oldGraphText;
-        oldGraphText = temp;
-      }
-      if(type === "scatter"){
-         chart.options.linRegLineColor = "#FF0000";
-      }
-      chart.buildScale(chart.scale.xLabels);
-      chart.update();
-    }
+    // if(document.getElementById("graphContrast").checked){
+    //   oldGraphText = chart.options.scaleFontColor;
+    //   if(type === "scatter"){
+    //     chart.options.linRegLineColor = findContrastor(newColor);
+    //   }
+    // }
+    // else {
+    //   if(oldGraphText){
+    //     var temp = chart.options.scaleFontColor;
+    //     chart.options.scaleFontColor = oldGraphText;
+    //     oldGraphText = temp;
+    //   }
+    //   if(type === "scatter"){
+    //      chart.options.linRegLineColor = "#FF0000";
+    //   }
+    //   chart.buildScale(chart.scale.xLabels);
+    //   chart.update();
+    // }
     chart.options.scaleFontColor = findContrastor(newColor);
     chart.buildScale(chart.scale.xLabels);
-    chart.update();  
+    chart.update();
     if(!checkWarningLabels()){
       alert("Some dataset colors may be difficult to see due to low color contrast");
     }
   }
   else if(/^#[0-9A-F]{6}$/i.test(colors[newColor.toLowerCase().split(' ').join('')])){
     document.getElementById("graphCC").style.background = colors[newColor.toLowerCase().split(' ').join('')];
-    if(document.getElementById("graphContrast").checked){
-      oldGraphText = chart.options.scaleFontColor;
-      if(type === "scatter"){
-        chart.options.linRegLineColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
-      }
-    }
-    else {
-      if(oldGraphText){
-        var temp = chart.options.scaleFontColor;
-        chart.options.scaleFontColor = oldGraphText;
-        oldGraphText = temp;
-      }
-      if(type === "scatter"){
-         chart.options.linRegLineColor = "#FF0000";
-      }
-      chart.buildScale(chart.scale.xLabels);
-      chart.update();
-    }
+    // if(document.getElementById("graphContrast").checked){
+    //   oldGraphText = chart.options.scaleFontColor;
+    //   if(type === "scatter"){
+    //     chart.options.linRegLineColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+    //   }
+    // }
+    // else {
+    //   if(oldGraphText){
+    //     var temp = chart.options.scaleFontColor;
+    //     chart.options.scaleFontColor = oldGraphText;
+    //     oldGraphText = temp;
+    //   }
+    //   if(type === "scatter"){
+    //      chart.options.linRegLineColor = "#FF0000";
+    //   }
+    //   chart.buildScale(chart.scale.xLabels);
+    //   chart.update();
+    // }
     chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
     chart.buildScale(chart.scale.xLabels);
     chart.update();
@@ -262,6 +262,6 @@ var checkWarningLabels = function(){
 }
 var uncheckBoxes = function(){
   document.getElementById("siteContrast").checked = false;
-  document.getElementById("graphContrast").checked = false;
+  // document.getElementById("graphContrast").checked = false;
   document.getElementById("textContrast").checked = false;
 }
