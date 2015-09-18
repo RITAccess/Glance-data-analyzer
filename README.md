@@ -3,7 +3,7 @@ Accessible data analyzer tool that can be used in a browser
 takes in CSV files and exports displays them with accessible notes and tags.
 
 ## GitHub Pages
-The most recent build of the data-analyzer can be used at http://ritaccess.github.io/data-analyzer/
+The most recent build of the data-analyzer can be used at http://ritaccess.github.io/Glance-data-analyzer.
 
 # libraries
 ## PapaParse - http://papaparse.com/
