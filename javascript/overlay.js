@@ -39,15 +39,15 @@ Overlay.prototype.getSelectedPoints = function(arraySize){
 Overlay.prototype.updateSize = function(chart){
   var resizeElements = [this.getSelection(), this.getBackground()];
   for (var ele in resizeElements){
-    resizeElements[ele].setAttribute('x', chart.scale.xScalePaddingLeft);
-    resizeElements[ele].setAttribute('width', chart.scale.width - chart.scale.xScalePaddingLeft - chart.scale.xScalePaddingRight);
-    resizeElements[ele].setAttribute('y', chart.scale.startPoint);
-    resizeElements[ele].setAttribute('height', chart.scale.endPoint - chart.scale.startPoint);
+    resizeElements[ele].setAttribute('x', chart.scales['x-axis-0'].left);
+    resizeElements[ele].setAttribute('width', chart.scales['x-axis-0'].width - chart.scales['x-axis-0'].left - chart.scales['x-axis-0'].right);
+    resizeElements[ele].setAttribute('y', chart.scales.startPoint);
+    resizeElements[ele].setAttribute('height', chart.scales.endPoint - chart.scales.startPoint);
   }
   // resize slider
   document.getElementById('slider-range').setAttribute(
-    'style', 'margin-left: ' + chart.scale.xScalePaddingLeft + 'px; width: ' +
-    (chart.scale.width - chart.scale.xScalePaddingLeft - chart.scale.xScalePaddingRight) + 'px');
+    'style', 'margin-left: ' + chart.scales.xScalePaddingLeft + 'px; width: ' +
+    (chart.scales.width - chart.scales.xScalePaddingLeft - chart.scales.xScalePaddingRight) + 'px');
   if (document.getElementById("slider-range")) {
     var startData = document.getElementById("slider-range").getAttribute("data-start");
     var arraySize = document.getElementById("slider-range").getAttribute("data-size");

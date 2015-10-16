@@ -28,7 +28,22 @@ var loadChart = function(data, type, collection){
 		myLineChart.animationSteps = 0;
 	}
 	else{
-	  myLineChart = new Chart(ctx).Line(data,{scaleFontColor:sfc});
+	  myLineChart = new Chart(ctx, 
+	  	{type:"line", 
+	  	data:data,
+	  	options: {
+        scales: {
+            yAxes: [{
+                override: {
+                    stepWidth: (100-0)/10,
+                    start: 0,
+                    steps: 10,
+                    end:100,
+                }
+            }]
+        }
+    }
+	  	});
 	  myLineChart.animation = false;
 	}
 	document.getElementById("myChart").setAttribute("title","image of graph"); // by setting the attribute we can make the chart accessible
@@ -646,82 +661,82 @@ function convertPointsToBars(){
 
 //Convert points to scatterplot points for scatterplot
 function convertPointsToScatter(){
-	var datasetLen = chart.data.datasets.length;
-	var chartBase = chart.scale.endPoint;
-	for(var i = 0; i < chart.data.datasets.length; i ++){
-		if(chart.data.datasets[i].points && chart.data.datasets[i].points.length >0){
-			chart.data.datasets[i].scatterpoints = [];
-			for(var j = 0; j <chart.data.datasets[i].points.length; j++){
-				var point = chart.data.datasets[i].points[j];
-				if(!chart.numeric)
-				var x = chart.scale.calculateX(j);
-				else
-				var x = chart.scale.calculateX(point.label-1);
-				var y = point.y
-				var scatterPoint = new chart.PointClass({
-					datasetLabel: point.datasetLabel,
-					fillColor: point.fillColor,
-					highlightFill: point.highlightFill,
-					highlightStroke: point.highlightStroke,
-					label: point.label,
-					strokeColor: point.strokeColor,
-					value: point.value,
-					x: x,
-					y: y
-				});
-				chart.data.datasets[i].scatterpoints.push(scatterPoint);
-			}
-			chart.data.datasets[i].points = [];
-			for(var j = 0; j <chart.data.datasets[i].scatterpoints.length; j++){
-				chart.data.datasets[i].points[j] = chart.data.datasets[i].scatterpoints[j];
-			}
-		}
-		else{
-			if(oldData[i] && oldData[i].points){
-				oldData[i].scatter = [];
-				for(var j = 0; j <oldData[i].points.length; j++){
-					var point = oldData[i].points[j];
-					if(!chart.numeric)
-					var x = chart.scale.calculateX(j);
-					else
-					var x = chart.scale.calculateX(point.label-1);
-					var scatterPoint = new chart.PointClass({
-						datasetLabel: point.datasetLabel,
-						fillColor: point.fillColor,
-						highlightFill: point.highlightFill,
-						highlightStroke: point.highlightStroke,
-						label: point.label,
-						strokeColor: point.strokeColor,
-						value: point.value,
-						x: x,
-						y: point.y
-					});
-					oldData[i].scatter.push(scatterPoint);
-				}
-			}
-			else{
-				oldData[i].scatter = [];
-				for(var j = 0; j <oldData[i].bars.length; j++){
-					var point = oldData[i].bars[j];
-					if(!chart.numeric)
-					var x = chart.scale.calculateX(j);
-					else
-					var x = chart.scale.calculateX(parseFloat(point.label)-1);
-					var scatterPoint = new chart.PointClass({
-						datasetLabel: point.datasetLabel,
-						fillColor: point.fillColor,
-						highlightFill: point.highlightFill,
-						highlightStroke: point.highlightStroke,
-						label: point.label,
-						strokeColor: point.strokeColor,
-						value: point.value,
-						x: x,
-						y: point.y
-					});
-					oldData[i].scatter.push(scatterPoint);
+	// var datasetLen = chart.data.datasets.length;
+	// var chartBase = chart.scale.endPoint;
+	// for(var i = 0; i < chart.data.datasets.length; i ++){
+	// 	if(chart.data.datasets[i].points && chart.data.datasets[i].points.length >0){
+	// 		chart.data.datasets[i].scatterpoints = [];
+	// 		for(var j = 0; j <chart.data.datasets[i].points.length; j++){
+	// 			var point = chart.data.datasets[i].points[j];
+	// 			if(!chart.numeric)
+	// 			var x = chart.scale.calculateX(j);
+	// 			else
+	// 			var x = chart.scale.calculateX(point.label-1);
+	// 			var y = point.y
+	// 			var scatterPoint = new chart.PointClass({
+	// 				datasetLabel: point.datasetLabel,
+	// 				fillColor: point.fillColor,
+	// 				highlightFill: point.highlightFill,
+	// 				highlightStroke: point.highlightStroke,
+	// 				label: point.label,
+	// 				strokeColor: point.strokeColor,
+	// 				value: point.value,
+	// 				x: x,
+	// 				y: y
+	// 			});
+	// 			chart.data.datasets[i].scatterpoints.push(scatterPoint);
+	// 		}
+	// 		chart.data.datasets[i].points = [];
+	// 		for(var j = 0; j <chart.data.datasets[i].scatterpoints.length; j++){
+	// 			chart.data.datasets[i].points[j] = chart.data.datasets[i].scatterpoints[j];
+	// 		}
+	// 	}
+	// 	else{
+	// 		if(oldData[i] && oldData[i].points){
+	// 			oldData[i].scatter = [];
+	// 			for(var j = 0; j <oldData[i].points.length; j++){
+	// 				var point = oldData[i].points[j];
+	// 				if(!chart.numeric)
+	// 				var x = chart.scale.calculateX(j);
+	// 				else
+	// 				var x = chart.scale.calculateX(point.label-1);
+	// 				var scatterPoint = new chart.PointClass({
+	// 					datasetLabel: point.datasetLabel,
+	// 					fillColor: point.fillColor,
+	// 					highlightFill: point.highlightFill,
+	// 					highlightStroke: point.highlightStroke,
+	// 					label: point.label,
+	// 					strokeColor: point.strokeColor,
+	// 					value: point.value,
+	// 					x: x,
+	// 					y: point.y
+	// 				});
+	// 				oldData[i].scatter.push(scatterPoint);
+	// 			}
+	// 		}
+	// 		else{
+	// 			oldData[i].scatter = [];
+	// 			for(var j = 0; j <oldData[i].bars.length; j++){
+	// 				var point = oldData[i].bars[j];
+	// 				if(!chart.numeric)
+	// 				var x = chart.scale.calculateX(j);
+	// 				else
+	// 				var x = chart.scale.calculateX(parseFloat(point.label)-1);
+	// 				var scatterPoint = new chart.PointClass({
+	// 					datasetLabel: point.datasetLabel,
+	// 					fillColor: point.fillColor,
+	// 					highlightFill: point.highlightFill,
+	// 					highlightStroke: point.highlightStroke,
+	// 					label: point.label,
+	// 					strokeColor: point.strokeColor,
+	// 					value: point.value,
+	// 					x: x,
+	// 					y: point.y
+	// 				});
+	// 				oldData[i].scatter.push(scatterPoint);
 
-				}
-			}
-		}
-	}
+	// 			}
+	// 		}
+	// 	}
+//	}
 }
