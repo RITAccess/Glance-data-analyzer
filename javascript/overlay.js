@@ -40,14 +40,14 @@ Overlay.prototype.updateSize = function(chart){
   var resizeElements = [this.getSelection(), this.getBackground()];
   for (var ele in resizeElements){
     resizeElements[ele].setAttribute('x', chart.scales['x-axis-0'].left);
-    resizeElements[ele].setAttribute('width', chart.scales['x-axis-0'].width - chart.scales['x-axis-0'].left - chart.scales['x-axis-0'].right);
-    resizeElements[ele].setAttribute('y', chart.scales.startPoint);
-    resizeElements[ele].setAttribute('height', chart.scales.endPoint - chart.scales.startPoint);
+    resizeElements[ele].setAttribute('width', chart.scales['x-axis-0'].width - chart.scales['x-axis-0'].paddingLeft - chart.scales['x-axis-0'].paddingRight);
+    resizeElements[ele].setAttribute('y', 0);
+    resizeElements[ele].setAttribute('height', chart.scales['y-axis-0'].bottom);
   }
   // resize slider
   document.getElementById('slider-range').setAttribute(
-    'style', 'margin-left: ' + chart.scales.xScalePaddingLeft + 'px; width: ' +
-    (chart.scales.width - chart.scales.xScalePaddingLeft - chart.scales.xScalePaddingRight) + 'px');
+    'style', 'margin-left: ' + chart.scales['x-axis-0'].left + 'px; width: ' +
+    (chart.scales['x-axis-0'].width - chart.scales['x-axis-0'].paddingRight) + 'px');
   if (document.getElementById("slider-range")) {
     var startData = document.getElementById("slider-range").getAttribute("data-start");
     var arraySize = document.getElementById("slider-range").getAttribute("data-size");
@@ -55,7 +55,7 @@ Overlay.prototype.updateSize = function(chart){
     if(endData == -1) {
       endData = arraySize;
     }
-    var leftPadding = Number(this.getBackground().getAttribute('x'));
+    var leftPadding = 0;//Number(this.getBackground().getAttribute('x'));
     var width = Number(this.getBackground().getAttribute('width'));
     this.getSelection().setAttribute("x",leftPadding + (startData * ( width / arraySize)));
     this.getSelection().setAttribute("width",(endData - startData) * (width / arraySize));

@@ -105,12 +105,12 @@ var loadChart = function(data, type, collection){
 					if((this.nextSibling.firstChild!= null && this.nextSibling.firstChild.checked) ||this.nextSibling.nextSibling.firstChild.checked){
 						//Set necessary color values based on graph type
 						if(type==="line" || type==="scatter")
-							chart.data.datasets[index].strokeColor = "rgba("+ color +", 1)";
+							chart.data.datasets[index].borderColor = "rgba("+ color +", 1)";
 							chart.data.datasets[index].pointColor = "rgba("+ color +", 1)";
 							chart.data.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
 						if(type==="line"|| type==="scatter"){
 							for(var i = 0; i<chart.data.datasets[index].points.length;i++){
-								chart.data.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
+								chart.data.datasets[index].points[i].backgroundColor= "rgba("+ color +", 1)";
 							}
 							if(oldData[index]){
 									if(oldData[index].points){
@@ -125,14 +125,14 @@ var loadChart = function(data, type, collection){
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
-												oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].points[i].backgroundColor= "rgba("+ color +", 1)";
 											}
 											if(oldData[index].bars){
-												oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
-												oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].borderColor= "rgba("+ color +", 1)";
 											}
 											if(oldData[index].scatter){
-												oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].scatter[i].backgroundColor= "rgba("+ color +", 1)";
 											}
 										}
 									}
@@ -140,8 +140,8 @@ var loadChart = function(data, type, collection){
 						}
 						else if(type==="bar"){
 							for(var i = 0; i<chart.data.datasets[index].bars.length;i++){
-								chart.data.datasets[index].bars[i].fillColor= "rgba("+ color +", 1)";
-								chart.data.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+								chart.data.datasets[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
+								chart.data.datasets[index].bars[i].borderColor= "rgba("+ color +", 1)";
 							}
 							if(oldData[index]){
 									if(oldData[index].points){
@@ -156,14 +156,14 @@ var loadChart = function(data, type, collection){
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
-												oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].points[i].backgroundColor= "rgba("+ color +", 1)";
 											}
 											if(oldData[index].bars){
-												oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
-												oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].borderColor= "rgba("+ color +", 1)";
 											}
 											if(oldData[index].scatter){
-												oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].scatter[i].backgroundColor= "rgba("+ color +", 1)";
 											}
 										}
 									}
@@ -186,14 +186,14 @@ var loadChart = function(data, type, collection){
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
-												oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].points[i].backgroundColor= "rgba("+ color +", 1)";
 											}
 											if(oldData[index].bars){
-												oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
-												oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].borderColor= "rgba("+ color +", 1)";
 											}
 											if(oldData[index].scatter){
-												oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].scatter[i].backgroundColor= "rgba("+ color +", 1)";
 											}
 										}
 									}
@@ -268,12 +268,12 @@ var loadChart = function(data, type, collection){
 					if((this.nextSibling.firstChild!= null && this.nextSibling.firstChild.checked) ||this.nextSibling.nextSibling.firstChild.checked){
 						//Set necessary colors based on graph type
             			if(type==="line")
-            			chart.data.datasets[index].strokeColor = "rgba("+ color +", 1)";
+            			chart.data.datasets[index].borderColor = "rgba("+ color +", 1)";
 						chart.data.datasets[index].pointColor = "rgba("+ color +", 1)";
 						chart.data.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
 						if(type==="line" || type==="scatter"){
 							for(var i = 0; i<chart.data.datasets[index].points.length;i++){
-								chart.data.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
+								chart.data.datasets[index].points[i].backgroundColor= "rgba("+ color +", 1)";
 							}
 						if(oldData[index]){
 									if(oldData[index].points){
@@ -288,14 +288,14 @@ var loadChart = function(data, type, collection){
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
-												oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].points[i].backgroundColor= "rgba("+ color +", 1)";
 											}
 											if(oldData[index].bars){
-												oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
-												oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].borderColor= "rgba("+ color +", 1)";
 											}
 											if(oldData[index].scatter){
-												oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].scatter[i].backgroundColor= "rgba("+ color +", 1)";
 											}
 										}
 									}
@@ -303,8 +303,8 @@ var loadChart = function(data, type, collection){
 						}
 						else if(type==="bar"){
 							for(var i = 0; i<chart.data.datasets[index].bars.length;i++){
-								chart.data.datasets[index].bars[i].fillColor= "rgba("+ color +", 1)";
-								chart.data.datasets[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+								chart.data.datasets[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
+								chart.data.datasets[index].bars[i].borderColor= "rgba("+ color +", 1)";
 							}
 							if(oldData[index]){
 									if(oldData[index].points){
@@ -320,14 +320,14 @@ var loadChart = function(data, type, collection){
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
-												oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].points[i].backgroundColor= "rgba("+ color +", 1)";
 											}
 											if(oldData[index].bars){
-												oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
-												oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].borderColor= "rgba("+ color +", 1)";
 											}
 											if(oldData[index].scatter){
-												oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].scatter[i].backgroundColor= "rgba("+ color +", 1)";
 											}
 										}
 									}
@@ -351,14 +351,14 @@ var loadChart = function(data, type, collection){
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
-												oldData[index].points[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].points[i].backgroundColor= "rgba("+ color +", 1)";
 											}
 											if(oldData[index].bars){
-												oldData[index].bars[i].fillColor= "rgba("+ color +", 1)";
-												oldData[index].bars[i].strokeColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
+												oldData[index].bars[i].borderColor= "rgba("+ color +", 1)";
 											}
 											if(oldData[index].scatter){
-												oldData[index].scatter[i].fillColor= "rgba("+ color +", 1)";
+												oldData[index].scatter[i].backgroundColor= "rgba("+ color +", 1)";
 											}
 										}
 									}
@@ -395,7 +395,7 @@ var loadChart = function(data, type, collection){
 					hidden[index] = false;
 					var transparent = [0,0,0].join(", ");
 					transparent = "rgba(" + transparent +", 0)";
-					chart.data.datasets[index].strokeColor = transparent;
+					chart.data.datasets[index].borderColor = transparent;
 					chart.data.datasets[index].pointColor = transparent;
 					chart.data.datasets[index].pointHighlightStroke = transparent;
 					if(type==="line"){
@@ -439,7 +439,7 @@ var loadChart = function(data, type, collection){
 						}
 					}
 					color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
-					chart.data.datasets[index].strokeColor = color;
+					chart.data.datasets[index].borderColor = color;
 					chart.data.datasets[index].pointColor = color;
 					chart.data.datasets[index].pointHighlightStroke = color;
 					if(type === "line"){
@@ -483,19 +483,19 @@ function dataset(data, collection) {
 		data[i].splice(0, 1);
 		var line =
 		{
-			fillColor: "rgba(220, 220, 220, 0)",
-			strokeColor: "rgba("+ color +", 1)",
+			backgroundColor: "rgba(220, 220, 220, 0)",
+			borderColor: "rgba("+ color +", 1)",
 			pointColor: "rgba("+ color +", 1)",
 			label: i,
 
-	      //pointStrokeColor: "#fff",
+	      //pointborderColor: "#fff",
 			pointHighlightFill: "#fff",
 			pointHighlightStroke: "rgba("+ color +", 1)",
 			data: data[i]
 		}
     //Fill Bar Color
 		if(type === "bar"){
-			line.fillColor = line.strokeColor;
+			line.backgroundColor = line.borderColor;
 		}
     //Put line into data Array
   	if(hidden[i-1]===false){
@@ -506,16 +506,16 @@ function dataset(data, collection) {
     //Chech if previous line color existed
     if(lineColors.length<i){
       //If not, add it
-      lineColors.push(line.strokeColor);
+      lineColors.push(line.borderColor);
     }
     else{
       //If so, inherit previous color
-      line.strokeColor = lineColors[i-1];
+      line.borderColor = lineColors[i-1];
       line.pointColor= lineColors[i-1];
       line.pointHighlightStroke = lineColors[i-1];
       if(type === "bar"){
         //Bar will inherit fill color as well
-        line.fillColor = lineColors[i-1];
+        line.backgroundColor = lineColors[i-1];
       }
     }
 		// log color into color editor
@@ -604,11 +604,11 @@ function convertPointsToBars(){
 				var bar = new chart.BarClass();
 				bar.base = chart.scale.endPoint;
 				bar.datasetLabel = point.datasetLabel;
-				bar.fillColor = point.fillColor;
-				bar.highlightFill = point.fillColor;
-				bar.highlightStroke = point.fillColor;
+				bar.backgroundColor = point.backgroundColor;
+				bar.highlightFill = point.backgroundColor;
+				bar.highlightStroke = point.backgroundColor;
 				bar.label = point.label;
-				bar.strokeColor = point.fillColor;
+				bar.borderColor = point.backgroundColor;
 				bar.value = point.value;
 				bar.width = chart.scale.calculateBarWidth(chart.data.datasets.length);
 				bar.x = chart.scale.calculateBarX(datasetLen,i,j);
@@ -624,11 +624,11 @@ function convertPointsToBars(){
 					var bar = new chart.BarClass();
 					bar.base = chart.scale.endPoint;
 					bar.datasetLabel = point.datasetLabel;
-					bar.fillColor = point.fillColor;
-					bar.highlightFill = point.fillColor;
-					bar.highlightStroke = point.fillColor;
+					bar.backgroundColor = point.backgroundColor;
+					bar.highlightFill = point.backgroundColor;
+					bar.highlightStroke = point.backgroundColor;
 					bar.label = point.label;
-					bar.strokeColor = point.fillColor;
+					bar.borderColor = point.backgroundColor;
 					bar.value = point.value;
 					bar.width = chart.scale.calculateBarWidth(chart.data.datasets.length);
 					bar.x = chart.scale.calculateBarX(datasetLen,i,j);
@@ -643,11 +643,11 @@ function convertPointsToBars(){
 					var bar = new chart.BarClass();
 					bar.base = chart.scale.endPoint;
 					bar.datasetLabel = point.datasetLabel;
-					bar.fillColor = point.fillColor;
-					bar.highlightFill = point.fillColor;
-					bar.highlightStroke = point.fillColor;
+					bar.backgroundColor = point.backgroundColor;
+					bar.highlightFill = point.backgroundColor;
+					bar.highlightStroke = point.backgroundColor;
 					bar.label = point.label;
-					bar.strokeColor = point.fillColor;
+					bar.borderColor = point.backgroundColor;
 					bar.value = point.value;
 					bar.width = chart.scale.calculateBarWidth(chart.data.datasets.length);
 					bar.x = chart.scale.calculateBarX(datasetLen,i,j);
@@ -675,11 +675,11 @@ function convertPointsToScatter(){
 	// 			var y = point.y
 	// 			var scatterPoint = new chart.PointClass({
 	// 				datasetLabel: point.datasetLabel,
-	// 				fillColor: point.fillColor,
+	// 				backgroundColor: point.backgroundColor,
 	// 				highlightFill: point.highlightFill,
 	// 				highlightStroke: point.highlightStroke,
 	// 				label: point.label,
-	// 				strokeColor: point.strokeColor,
+	// 				borderColor: point.borderColor,
 	// 				value: point.value,
 	// 				x: x,
 	// 				y: y
@@ -702,11 +702,11 @@ function convertPointsToScatter(){
 	// 				var x = chart.scale.calculateX(point.label-1);
 	// 				var scatterPoint = new chart.PointClass({
 	// 					datasetLabel: point.datasetLabel,
-	// 					fillColor: point.fillColor,
+	// 					backgroundColor: point.backgroundColor,
 	// 					highlightFill: point.highlightFill,
 	// 					highlightStroke: point.highlightStroke,
 	// 					label: point.label,
-	// 					strokeColor: point.strokeColor,
+	// 					borderColor: point.borderColor,
 	// 					value: point.value,
 	// 					x: x,
 	// 					y: point.y
@@ -724,11 +724,11 @@ function convertPointsToScatter(){
 	// 				var x = chart.scale.calculateX(parseFloat(point.label)-1);
 	// 				var scatterPoint = new chart.PointClass({
 	// 					datasetLabel: point.datasetLabel,
-	// 					fillColor: point.fillColor,
+	// 					backgroundColor: point.backgroundColor,
 	// 					highlightFill: point.highlightFill,
 	// 					highlightStroke: point.highlightStroke,
 	// 					label: point.label,
-	// 					strokeColor: point.strokeColor,
+	// 					borderColor: point.borderColor,
 	// 					value: point.value,
 	// 					x: x,
 	// 					y: point.y
