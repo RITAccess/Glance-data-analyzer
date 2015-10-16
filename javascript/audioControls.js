@@ -21,10 +21,10 @@ var playStopAudioButton = function () {
   //DO NOT CHANGE/DELETE: Fixes audio issue involving slider
   if(overlay.slider[0] === 0 && overlay.slider[1] === 0){
     if(type==="bar"){
-      overlay.slider[1] = chart.datasets[0].bars.length;
+      overlay.slider[1] = chart.data.datasets[0].bars.length;
     }
     else{
-      overlay.slider[1] = chart.datasets[0].points.length;
+      overlay.slider[1] = chart.data.datasets[0].points.length;
     }
   }
     if(player.buffer === undefined){

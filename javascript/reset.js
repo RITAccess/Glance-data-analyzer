@@ -224,10 +224,10 @@ var checkWarningLabels = function(){
     graphBg = "#F4F2E9";
   }
   var noWarnings = true;
-  for(var i = 0; i < chart.datasets.length; i++){
+  for(var i = 0; i < chart.data.datasets.length; i++){
     var a = document.getElementById("colors").firstChild;
     var warning = document.getElementById("warning"+i);
-    var color = chart.datasets[i].strokeColor;
+    var color = chart.data.datasets[i].strokeColor;
     color = convertRGBtoHex(color);
     if(calcContrast(graphBg,color)>1.5){
       if(warning){

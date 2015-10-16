@@ -1,6 +1,6 @@
 var updateRowDropDown = function(){
 	var dropdownString = "";
-	for(var i = 0; i < chart.datasets.length; i++) {
+	for(var i = 0; i < chart.data.datasets.length; i++) {
 		var rowName = grid.getData()[i+1][0];
 		if(rowName.indexOf("Row") > -1){
 			dropdownString += "<option value="+(i+1)+">"+(i+1)+"</option>"
@@ -45,10 +45,10 @@ var makeColSelector = function(){
     var selector = document.createElement("select");
     selector.setAttribute("id", "colSelector");
     selector.setAttribute("class","drop-down");
-    for(var i = 0; i < chart.datasets[0].bars.length; i ++){
+    for(var i = 0; i < chart.data.datasets[0].bars.length; i ++){
       var option = document.createElement("option");
       option.setAttribute("value", i);
-      option.innerHTML = chart.datasets[0].bars[i].label;
+      option.innerHTML = chart.data.datasets[0].bars[i].label;
       selector.appendChild(option);
     }
     var label = document.createElement("label");

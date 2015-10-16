@@ -25,172 +25,160 @@ require(['path/to/Chartjs'], function(Chart){
 });
 ```
 
-You can also grab Chart.js using bower:
+You can also grab Chart.js using bower, npm, or CDN:
 
 ```bash
-bower install chartjs --save
+bower install Chart.js --save
 ```
+```bash
+npm install Chart.js --save
+```
+
+https://cdnjs.com/libraries/chart.js
 
 ###Creating a chart
 
-To create a chart, we need to instantiate the `Chart` class. To do this, we need to pass in the 2d context of where we want to draw the chart. Here's an example.
+To create a chart, we need to instantiate the `Chart` class. To do this, we need to pass in the node, jQuery instance, or 2d context of the canvas of where we want to draw the chart. Here's an example.
 
 ```html
 <canvas id="myChart" width="400" height="400"></canvas>
 ```
 
 ```javascript
-// Get the context of the canvas element we want to select
+// Any of the following formats may be used
+var ctx = document.getElementById("myChart");
 var ctx = document.getElementById("myChart").getContext("2d");
-var myNewChart = new Chart(ctx).PolarArea(data);
+var ctx = $("myChart");
 ```
 
-We can also get the context of our canvas with jQuery. To do this, we need to get the DOM node out of the jQuery collection, and call the `getContext("2d")` method on that.
+Once you have the element or context, you're ready to instantiate a pre-defined chart-type or create your own!
 
+The following example instantiates a the pre-defined Polar Area chart type with a config object of data and options.
 ```javascript
-// Get context with jQuery - using jQuery's .get() method.
-var ctx = $("#myChart").get(0).getContext("2d");
-// This will get the first returned node in the jQuery collection.
-var myNewChart = new Chart(ctx);
+var myNewChart = Chart.PolarArea(ctx, {
+    data: data,
+    options: options
+});
 ```
 
-After we've instantiated the Chart class on the canvas we want to draw on, Chart.js will handle the scaling for retina displays.
-
-With the Chart class set up, we can go on to create one of the charts Chart.js has available. In the example below, we would be drawing a Polar area chart.
-
+To create a scatter chart, which is a special configuration of a line chart, we use the following.
 ```javascript
-new Chart(ctx).PolarArea(data, options);
+var myScatterChart = Chart.Scatter(ctx, {
+    data: data,
+    options: options
+});
 ```
 
-We call a method of the name of the chart we want to create. We pass in the data for that chart type, and the options for that chart as parameters. Chart.js will merge the global defaults with chart type specific defaults, then merge any options passed in as a second argument after data.
+Alternatively, we can use the more advanced API to create simple or advanced chart types. In the example below, we are creating a line chart.
+```javascript
+var myChart = new Chart(ctx, {
+    type: 'line', // built in types are 'line', 'bar', 'radar', 'polarArea', 'doughnut', 'scatter'
+    data: data,
+    options: options
+});
+```
 
 ###Global chart configuration
 
 This concept was introduced in Chart.js 1.0 to keep configuration DRY, and allow for changing options globally across chart types, avoiding the need to specify options for each instance, or the default for a particular chart type.
 
+Chart.js merges configurations and options in a few places with the global defaults using chart type defaults and scales defaults. This way you can be as specific as you want in your individual chart configs, or change the defaults for Chart.js as a whole.
+
 ```javascript
 Chart.defaults.global = {
-	// Boolean - Whether to animate the chart
-	animation: true,
+    responsive: true,
+    responsiveAnimationDuration: 0,
+    maintainAspectRatio: true,
+    events: ["mousemove", "mouseout", "click", "touchstart", "touchmove", "touchend"],
+    hover: {
+        onHover: null,
+        mode: 'single',
+        animationDuration: 400,
+    },
+    onClick: null,
+    defaultColor: 'rgba(0,0,0,0.1)',
 
-	// Number - Number of animation steps
-	animationSteps: 60,
+    // Element defaults defined in element extensions
+    elements: {},
 
-	// String - Animation easing effect
-	animationEasing: "easeOutQuart",
+    // Legend template string
+    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i = 0; i < data.datasets.length; i++){%><li><span style=\"background-color:<%=data.datasets[i].backgroundColor%>\"><%if(data.datasets[i].label){%><%=data.datasets[i].label%><%}%></span></li><%}%></ul>",
 
-	// Boolean - If we should show the scale at all
-	showScale: true,
+    animation: {
+        duration: 1000,
+        easing: "easeOutQuart",
+        onProgress: function() {},
+        onComplete: function() {},
+    },
 
-	// Boolean - If we want to override with a hard coded scale
-	scaleOverride: false,
+    tooltips:{
+        enabled: true,
+        custom: null,
+        backgroundColor: "rgba(0,0,0,0.8)",
+        fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+        fontSize: 10,
+        fontStyle: "normal",
+        fontColor: "#fff",
+        titleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+        titleFontSize: 12,
+        titleFontStyle: "bold",
+        titleFontColor: "#fff",
+        yPadding: 6,
+        xPadding: 6,
+        caretSize: 8,
+        cornerRadius: 6,
+        xOffset: 10,
+        template: [
+            '<% if(label){ %>',
+            '<%=label %>: ',
+            '<% } %>',
+            '<%=value %>',
+        ].join(''),
+        multiTemplate: [
+            '<%if (datasetLabel){ %>',
+            '<%=datasetLabel %>: ',
+            '<% } %>',
+            '<%=value %>'
+        ].join(''),
+        multiKeyBackground: '#fff',
+    },
 
-	// ** Required if scaleOverride is true **
-	// Number - The number of steps in a hard coded scale
-	scaleSteps: null,
-	// Number - The value jump in the hard coded scale
-	scaleStepWidth: null,
-	// Number - The scale starting value
-	scaleStartValue: null,
+    elements: {
+        arc: {   
+            backgroundColor: Chart.defaults.global.defaultColor,
+            borderColor: "#fff",
+            borderWidth: 2
+        },
+        line: {
+            tension: 0.4,
+            backgroundColor: Chart.defaults.global.defaultColor,
+            borderWidth: 3,
+            borderColor: Chart.defaults.global.defaultColor,
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            fill: true, // do we fill in the area between the line and its base axis
+            skipNull: true,
+            drawNull: false,
+        },
+        point: {
+            radius: 3,
+            backgroundColor: Chart.defaults.global.defaultColor,
+            borderWidth: 1,
+            borderColor: Chart.defaults.global.defaultColor,
+            // Hover
+            hitRadius: 1,
+            hoverRadius: 4,
+            hoverBorderWidth: 1,
+        },
+        rectangle: {
+            backgroundColor: Chart.defaults.global.defaultColor,
+            borderWidth: 0,
+            borderColor: Chart.defaults.global.defaultColor,
+        }
 
-	// String - Colour of the scale line
-	scaleLineColor: "rgba(0,0,0,.1)",
-
-	// Number - Pixel width of the scale line
-	scaleLineWidth: 1,
-
-	// Boolean - Whether to show labels on the scale
-	scaleShowLabels: true,
-
-	// Interpolated JS string - can access value
-	scaleLabel: "<%=value%>",
-
-	// Boolean - Whether the scale should stick to integers, not floats even if drawing space is there
-	scaleIntegersOnly: true,
-
-	// Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-	scaleBeginAtZero: false,
-
-	// String - Scale label font declaration for the scale label
-	scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-
-	// Number - Scale label font size in pixels
-	scaleFontSize: 12,
-
-	// String - Scale label font weight style
-	scaleFontStyle: "normal",
-
-	// String - Scale label font colour
-	scaleFontColor: "#666",
-
-	// Boolean - whether or not the chart should be responsive and resize when the browser does.
-	responsive: false,
-
-	// Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-	maintainAspectRatio: true,
-
-	// Boolean - Determines whether to draw tooltips on the canvas or not
-	showTooltips: true,
-
-	// Function - Determines whether to execute the customTooltips function instead of drawing the built in tooltips (See [Advanced - External Tooltips](#advanced-usage-custom-tooltips))
-	customTooltips: false,
-
-	// Array - Array of string names to attach tooltip events
-	tooltipEvents: ["mousemove", "touchstart", "touchmove"],
-
-	// String - Tooltip background colour
-	tooltipFillColor: "rgba(0,0,0,0.8)",
-
-	// String - Tooltip label font declaration for the scale label
-	tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-
-	// Number - Tooltip label font size in pixels
-	tooltipFontSize: 14,
-
-	// String - Tooltip font weight style
-	tooltipFontStyle: "normal",
-
-	// String - Tooltip label font colour
-	tooltipFontColor: "#fff",
-
-	// String - Tooltip title font declaration for the scale label
-	tooltipTitleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-
-	// Number - Tooltip title font size in pixels
-	tooltipTitleFontSize: 14,
-
-	// String - Tooltip title font weight style
-	tooltipTitleFontStyle: "bold",
-
-	// String - Tooltip title font colour
-	tooltipTitleFontColor: "#fff",
-
-	// Number - pixel width of padding around tooltip text
-	tooltipYPadding: 6,
-
-	// Number - pixel width of padding around tooltip text
-	tooltipXPadding: 6,
-
-	// Number - Size of the caret on the tooltip
-	tooltipCaretSize: 8,
-
-	// Number - Pixel radius of the tooltip border
-	tooltipCornerRadius: 6,
-
-	// Number - Pixel offset from point x to tooltip edge
-	tooltipXOffset: 10,
-	{% raw %}
-	// String - Template string for single tooltips
-	tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
-	{% endraw %}
-	// String - Template string for multiple tooltips
-	multiTooltipTemplate: "<%= value %>",
-
-	// Function - Will fire on animation progression.
-	onAnimationProgress: function(){},
-
-	// Function - Will fire on animation completion.
-	onAnimationComplete: function(){}
+    }
 }
 ```
 
