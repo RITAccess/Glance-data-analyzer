@@ -31,7 +31,8 @@ var loadChart = function(data, type, collection){
 		
 	}
 	if(type === "scatter"){
-		myLineChart = new Chart(ctx).ScatterPlot(data,{scaleFontColor:sfc});
+		myLineChart = new Chart.Scatter(ctx,
+		{data:data} );
 		myLineChart.animation = false;
 	}
 	else if(type === "bar"){
