@@ -19,6 +19,17 @@ var loadChart = function(data, type, collection){
 		sfc="#000000";
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLineChart;
+	var max = -999999;
+	var min = 0;
+	for(var i =0; i < data.datasets.length; i++){
+		if(Math.max(...data.datasets[i].data)>max){
+			max = Math.max(...data.datasets[i].data);
+		}
+		if(Math.min(...data.datasets[i].data)<min){
+			min = Math.min(...data.datasets[i].data);
+		}
+		
+	}
 	if(type === "scatter"){
 		myLineChart = new Chart(ctx).ScatterPlot(data,{scaleFontColor:sfc});
 		myLineChart.animation = false;
@@ -31,10 +42,10 @@ var loadChart = function(data, type, collection){
         scales: {
             yAxes: [{
                 override: {
-                    stepWidth: (100-0)/10,
-                    start: 0,
+                    stepWidth: (max-min)/10,
+                    start: min,
                     steps: 10,
-                    end:100,
+                    end: max,
                 }
             }]
         }
@@ -50,10 +61,10 @@ var loadChart = function(data, type, collection){
         scales: {
             yAxes: [{
                 override: {
-                    stepWidth: (100-0)/10,
-                    start: 0,
+                    stepWidth: (max-min)/10,
+                    start: min,
                     steps: 10,
-                    end:100,
+                    end: max,
                 }
             }]
         }
@@ -119,12 +130,13 @@ var loadChart = function(data, type, collection){
 					}
 					if((this.nextSibling.firstChild!= null && this.nextSibling.firstChild.checked) ||this.nextSibling.nextSibling.firstChild.checked){
 						//Set necessary color values based on graph type
-						if(type==="line" || type==="scatter")
+						if(type==="line" || type==="scatter"){
 							chart.data.datasets[index].borderColor = "rgba("+ color +", 1)";
+							chart.data.datasets[index].pointBorderColor = "rgba("+ color +", 1)";
+							chart.data.datasets[index].pointBackgroundColor = "rgba("+ color +", 1)";						
+						}
 						else
 							chart.data.datasets[index].backgroundColor = "rgba("+ color +", 1)";	
-						chart.data.datasets[index].pointBorderColor = "rgba("+ color +", 1)";
-						chart.data.datasets[index].pointBackgroundColor = "rgba("+ color +", 1)";						
 						//Redraw graph
 						chart.update();
 					}
@@ -196,15 +208,15 @@ var loadChart = function(data, type, collection){
 					}
 					if((this.nextSibling.firstChild!= null && this.nextSibling.firstChild.checked) ||this.nextSibling.nextSibling.firstChild.checked){
 						//Set necessary colors based on graph type
-            			if(type==="line")
-            			chart.data.datasets[index].borderColor = "rgba("+ color +", 1)";
+            			if(type==="line"){
+            				chart.data.datasets[index].borderColor = "rgba("+ color +", 1)";
+            				chart.data.datasets[index].pointBorderColor = "rgba("+ color +", 1)";
+							chart.data.datasets[index].pointBackgroundColor = "rgba("+ color +", 1)";						
+            			}
 						else{
 							chart.data.datasets[index].backgroundColor = "rgba("+ color +", 1)";
 						}
-						chart.data.datasets[index].pointColor = "rgba("+ color +", 1)";
-						chart.data.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
 						//Redraw graph
-						chart.update();
 						chart.update();
 					}
 					
