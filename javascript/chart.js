@@ -121,12 +121,11 @@ var loadChart = function(data, type, collection){
 						//Set necessary color values based on graph type
 						if(type==="line" || type==="scatter")
 							chart.data.datasets[index].borderColor = "rgba("+ color +", 1)";
-							chart.data.datasets[index].pointBorderColor = "rgba("+ color +", 1)";
-							chart.data.datasets[index].pointBackgroundColor = "rgba("+ color +", 1)";
-						
-						
+						else
+							chart.data.datasets[index].backgroundColor = "rgba("+ color +", 1)";	
+						chart.data.datasets[index].pointBorderColor = "rgba("+ color +", 1)";
+						chart.data.datasets[index].pointBackgroundColor = "rgba("+ color +", 1)";						
 						//Redraw graph
-						chart.update();
 						chart.update();
 					}
 					//Set graph data color indicator
@@ -199,6 +198,9 @@ var loadChart = function(data, type, collection){
 						//Set necessary colors based on graph type
             			if(type==="line")
             			chart.data.datasets[index].borderColor = "rgba("+ color +", 1)";
+						else{
+							chart.data.datasets[index].backgroundColor = "rgba("+ color +", 1)";
+						}
 						chart.data.datasets[index].pointColor = "rgba("+ color +", 1)";
 						chart.data.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
 						//Redraw graph
@@ -305,7 +307,6 @@ var loadChart = function(data, type, collection){
 					chart.update();
 					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
-					chart.update();
 					chart.update();
 				}
 			}
