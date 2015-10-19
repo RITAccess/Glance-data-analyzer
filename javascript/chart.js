@@ -24,7 +24,22 @@ var loadChart = function(data, type, collection){
 		myLineChart.animation = false;
 	}
 	else if(type === "bar"){
-		myLineChart = new Chart(ctx).Bar(data,{scaleFontColor:sfc});
+		myLineChart = new Chart(ctx, 
+	  	{type:"bar", 
+	  	data:data,
+	  	options: {
+        scales: {
+            yAxes: [{
+                override: {
+                    stepWidth: (100-0)/10,
+                    start: 0,
+                    steps: 10,
+                    end:100,
+                }
+            }]
+        }
+    }
+	  	});
 		myLineChart.animationSteps = 0;
 	}
 	else{
@@ -106,98 +121,13 @@ var loadChart = function(data, type, collection){
 						//Set necessary color values based on graph type
 						if(type==="line" || type==="scatter")
 							chart.data.datasets[index].borderColor = "rgba("+ color +", 1)";
-							chart.data.datasets[index].pointColor = "rgba("+ color +", 1)";
-							chart.data.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
-						if(type==="line"|| type==="scatter"){
-							for(var i = 0; i<chart.data.datasets[index].points.length;i++){
-								chart.data.datasets[index].points[i].backgroundColor= "rgba("+ color +", 1)";
-							}
-							if(oldData[index]){
-									if(oldData[index].points){
-										var len = oldData[index].points.length;
-									}
-									else if(oldData[index].bars){
-										var len = oldData[index].bars.length;
-									}
-									else{
-										var len = oldData[index].scatter.length;
-									}
-									for(var i = 0; i < len; i ++){
-										if(oldData[index]){
-											if(oldData[index].points){
-												oldData[index].points[i].backgroundColor= "rgba("+ color +", 1)";
-											}
-											if(oldData[index].bars){
-												oldData[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
-												oldData[index].bars[i].borderColor= "rgba("+ color +", 1)";
-											}
-											if(oldData[index].scatter){
-												oldData[index].scatter[i].backgroundColor= "rgba("+ color +", 1)";
-											}
-										}
-									}
-								}
-						}
-						else if(type==="bar"){
-							for(var i = 0; i<chart.data.datasets[index].bars.length;i++){
-								chart.data.datasets[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
-								chart.data.datasets[index].bars[i].borderColor= "rgba("+ color +", 1)";
-							}
-							if(oldData[index]){
-									if(oldData[index].points){
-										var len = oldData[index].points.length;
-									}
-									else if(oldData[index].bars){
-										var len = oldData[index].bars.length;
-									}
-									else{
-										var len = oldData[index].scatter.length;
-									}
-									for(var i = 0; i < len; i ++){
-										if(oldData[index]){
-											if(oldData[index].points){
-												oldData[index].points[i].backgroundColor= "rgba("+ color +", 1)";
-											}
-											if(oldData[index].bars){
-												oldData[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
-												oldData[index].bars[i].borderColor= "rgba("+ color +", 1)";
-											}
-											if(oldData[index].scatter){
-												oldData[index].scatter[i].backgroundColor= "rgba("+ color +", 1)";
-											}
-										}
-									}
-								}
-						}
+							chart.data.datasets[index].pointBorderColor = "rgba("+ color +", 1)";
+							chart.data.datasets[index].pointBackgroundColor = "rgba("+ color +", 1)";
+						
+						
 						//Redraw graph
 						chart.update();
-					}
-					else{
-						if(oldData[index]){
-									if(oldData[index].points){
-										var len = oldData[index].points.length;
-									}
-									else if(oldData[index].bars){
-										var len = oldData[index].bars.length;
-									}
-									else{
-										var len = oldData[index].scatter.length;
-									}
-									for(var i = 0; i < len; i ++){
-										if(oldData[index]){
-											if(oldData[index].points){
-												oldData[index].points[i].backgroundColor= "rgba("+ color +", 1)";
-											}
-											if(oldData[index].bars){
-												oldData[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
-												oldData[index].bars[i].borderColor= "rgba("+ color +", 1)";
-											}
-											if(oldData[index].scatter){
-												oldData[index].scatter[i].backgroundColor= "rgba("+ color +", 1)";
-											}
-										}
-									}
-								}
+						chart.update();
 					}
 					//Set graph data color indicator
 					if(type === "line" || type==="scatter"){
@@ -271,99 +201,11 @@ var loadChart = function(data, type, collection){
             			chart.data.datasets[index].borderColor = "rgba("+ color +", 1)";
 						chart.data.datasets[index].pointColor = "rgba("+ color +", 1)";
 						chart.data.datasets[index].pointHighlightStroke = "rgba("+ color +", 1)";
-						if(type==="line" || type==="scatter"){
-							for(var i = 0; i<chart.data.datasets[index].points.length;i++){
-								chart.data.datasets[index].points[i].backgroundColor= "rgba("+ color +", 1)";
-							}
-						if(oldData[index]){
-									if(oldData[index].points){
-										var len = oldData[index].points.length;
-									}
-									else if(oldData[index].bars){
-										var len = oldData[index].bars.length;
-									}
-									else{
-										var len = oldData[index].scatter.length;
-									}
-									for(var i = 0; i < len; i ++){
-										if(oldData[index]){
-											if(oldData[index].points){
-												oldData[index].points[i].backgroundColor= "rgba("+ color +", 1)";
-											}
-											if(oldData[index].bars){
-												oldData[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
-												oldData[index].bars[i].borderColor= "rgba("+ color +", 1)";
-											}
-											if(oldData[index].scatter){
-												oldData[index].scatter[i].backgroundColor= "rgba("+ color +", 1)";
-											}
-										}
-									}
-								}
-						}
-						else if(type==="bar"){
-							for(var i = 0; i<chart.data.datasets[index].bars.length;i++){
-								chart.data.datasets[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
-								chart.data.datasets[index].bars[i].borderColor= "rgba("+ color +", 1)";
-							}
-							if(oldData[index]){
-									if(oldData[index].points){
-										var len = oldData[index].points.length;
-									}
-									else if(oldData[index].bars){
-										var len = oldData[index].bars.length;
-									}
-									else{
-										var len = oldData[index].scatter.length;
-									}
-									//console.log(len);
-									for(var i = 0; i < len; i ++){
-										if(oldData[index]){
-											if(oldData[index].points){
-												oldData[index].points[i].backgroundColor= "rgba("+ color +", 1)";
-											}
-											if(oldData[index].bars){
-												oldData[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
-												oldData[index].bars[i].borderColor= "rgba("+ color +", 1)";
-											}
-											if(oldData[index].scatter){
-												oldData[index].scatter[i].backgroundColor= "rgba("+ color +", 1)";
-											}
-										}
-									}
-								}
-						}
 						//Redraw graph
 						chart.update();
+						chart.update();
 					}
-					else{
-						if(oldData[index]){
-									if(oldData[index].points){
-										var len = oldData[index].points.length;
-									}
-									else if(oldData[index].bars){
-										var len = oldData[index].bars.length;
-									}
-									else{
-										var len = oldData[index].scatter.length;
-									}
-									//console.log(len);
-									for(var i = 0; i < len; i ++){
-										if(oldData[index]){
-											if(oldData[index].points){
-												oldData[index].points[i].backgroundColor= "rgba("+ color +", 1)";
-											}
-											if(oldData[index].bars){
-												oldData[index].bars[i].backgroundColor= "rgba("+ color +", 1)";
-												oldData[index].bars[i].borderColor= "rgba("+ color +", 1)";
-											}
-											if(oldData[index].scatter){
-												oldData[index].scatter[i].backgroundColor= "rgba("+ color +", 1)";
-											}
-										}
-									}
-								}
-					}
+					
 					//Set graph data color indicator
 					if(type === "line" || type==="scatter"){
 						var contrastColor = findContrastor(colors[newcolor.toLowerCase().split(' ').join('')]);
@@ -419,6 +261,7 @@ var loadChart = function(data, type, collection){
 					chart.update();
 					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
+					chart.update();
 				}
 			}
 			//If hidden, bring the line back
@@ -463,6 +306,7 @@ var loadChart = function(data, type, collection){
 					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
 					chart.update();
+					chart.update();
 				}
 			}
 		};
@@ -481,11 +325,13 @@ function dataset(data, collection) {
 	for (var i = 1; i < data.length; i++) {
 		var color = [red, green, blue].join(", ");
 		data[i].splice(0, 1);
+		var bgcolor = type=="bar"? (color+", 1"):"220,220,220,0";
 		var line =
 		{
-			backgroundColor: "rgba(220, 220, 220, 0)",
+			backgroundColor: "rgba("+ bgcolor + ")",
 			borderColor: "rgba("+ color +", 1)",
-			pointColor: "rgba("+ color +", 1)",
+			pointBorderColor: "rgba("+ color +", 1)",
+			pointBackgroundColor: "rgba("+ color +", 1)",
 			label: i,
 
 	      //pointborderColor: "#fff",
@@ -594,69 +440,69 @@ function deque(array) {
 }
 //Convert points to bars for a bar graph
 function convertPointsToBars(){
-	var datasetLen = chart.data.datasets.length;
-	var chartBase = chart.scale.endPoint;
-	for(var i = 0; i < chart.data.datasets.length; i ++){
-		if(chart.data.datasets[i].points){
-			chart.data.datasets[i].bars = [];
-			for(var j = 0; j <chart.data.datasets[i].points.length; j++){
-				var point = chart.data.datasets[i].points[j];
-				var bar = new chart.BarClass();
-				bar.base = chart.scale.endPoint;
-				bar.datasetLabel = point.datasetLabel;
-				bar.backgroundColor = point.backgroundColor;
-				bar.highlightFill = point.backgroundColor;
-				bar.highlightStroke = point.backgroundColor;
-				bar.label = point.label;
-				bar.borderColor = point.backgroundColor;
-				bar.value = point.value;
-				bar.width = chart.scale.calculateBarWidth(chart.data.datasets.length);
-				bar.x = chart.scale.calculateBarX(datasetLen,i,j);
-				bar.y = point.y;
-				chart.data.datasets[i].bars.push(bar);
-			}
-		}
-		else{
-			if(oldData[i] && oldData[i].points){
-				oldData[i].bars = [];
-				for(var j = 0; j <oldData[i].points.length; j++){
-					var point = oldData[i].points[j];
-					var bar = new chart.BarClass();
-					bar.base = chart.scale.endPoint;
-					bar.datasetLabel = point.datasetLabel;
-					bar.backgroundColor = point.backgroundColor;
-					bar.highlightFill = point.backgroundColor;
-					bar.highlightStroke = point.backgroundColor;
-					bar.label = point.label;
-					bar.borderColor = point.backgroundColor;
-					bar.value = point.value;
-					bar.width = chart.scale.calculateBarWidth(chart.data.datasets.length);
-					bar.x = chart.scale.calculateBarX(datasetLen,i,j);
-					bar.y = point.y;
-					oldData[i].bars.push(bar);
-				}
-			}
-			else if(oldData[i] && oldData[i].scatter){
-				oldData[i].bars = [];
-				for(var j = 0; j <oldData[i].scatter.length; j++){
-					var point = oldData[i].scatter[j];
-					var bar = new chart.BarClass();
-					bar.base = chart.scale.endPoint;
-					bar.datasetLabel = point.datasetLabel;
-					bar.backgroundColor = point.backgroundColor;
-					bar.highlightFill = point.backgroundColor;
-					bar.highlightStroke = point.backgroundColor;
-					bar.label = point.label;
-					bar.borderColor = point.backgroundColor;
-					bar.value = point.value;
-					bar.width = chart.scale.calculateBarWidth(chart.data.datasets.length);
-					bar.x = chart.scale.calculateBarX(datasetLen,i,j);
-					bar.y = point.y;
-					oldData[i].bars.push(bar);
-				}
-			}
-		}
-	}
+	// var datasetLen = chart.data.datasets.length;
+	// var chartBase = chart.scale.endPoint;
+	// for(var i = 0; i < chart.data.datasets.length; i ++){
+	// 	if(chart.data.datasets[i].points){
+	// 		chart.data.datasets[i].bars = [];
+	// 		for(var j = 0; j <chart.data.datasets[i].points.length; j++){
+	// 			var point = chart.data.datasets[i].points[j];
+	// 			var bar = new chart.BarClass();
+	// 			bar.base = chart.scale.endPoint;
+	// 			bar.datasetLabel = point.datasetLabel;
+	// 			bar.backgroundColor = point.backgroundColor;
+	// 			bar.highlightFill = point.backgroundColor;
+	// 			bar.highlightStroke = point.backgroundColor;
+	// 			bar.label = point.label;
+	// 			bar.borderColor = point.backgroundColor;
+	// 			bar.value = point.value;
+	// 			bar.width = chart.scale.calculateBarWidth(chart.data.datasets.length);
+	// 			bar.x = chart.scale.calculateBarX(datasetLen,i,j);
+	// 			bar.y = point.y;
+	// 			chart.data.datasets[i].bars.push(bar);
+	// 		}
+	// 	}
+	// 	else{
+	// 		if(oldData[i] && oldData[i].points){
+	// 			oldData[i].bars = [];
+	// 			for(var j = 0; j <oldData[i].points.length; j++){
+	// 				var point = oldData[i].points[j];
+	// 				var bar = new chart.BarClass();
+	// 				bar.base = chart.scale.endPoint;
+	// 				bar.datasetLabel = point.datasetLabel;
+	// 				bar.backgroundColor = point.backgroundColor;
+	// 				bar.highlightFill = point.backgroundColor;
+	// 				bar.highlightStroke = point.backgroundColor;
+	// 				bar.label = point.label;
+	// 				bar.borderColor = point.backgroundColor;
+	// 				bar.value = point.value;
+	// 				bar.width = chart.scale.calculateBarWidth(chart.data.datasets.length);
+	// 				bar.x = chart.scale.calculateBarX(datasetLen,i,j);
+	// 				bar.y = point.y;
+	// 				oldData[i].bars.push(bar);
+	// 			}
+	// 		}
+	// 		else if(oldData[i] && oldData[i].scatter){
+	// 			oldData[i].bars = [];
+	// 			for(var j = 0; j <oldData[i].scatter.length; j++){
+	// 				var point = oldData[i].scatter[j];
+	// 				var bar = new chart.BarClass();
+	// 				bar.base = chart.scale.endPoint;
+	// 				bar.datasetLabel = point.datasetLabel;
+	// 				bar.backgroundColor = point.backgroundColor;
+	// 				bar.highlightFill = point.backgroundColor;
+	// 				bar.highlightStroke = point.backgroundColor;
+	// 				bar.label = point.label;
+	// 				bar.borderColor = point.backgroundColor;
+	// 				bar.value = point.value;
+	// 				bar.width = chart.scale.calculateBarWidth(chart.data.datasets.length);
+	// 				bar.x = chart.scale.calculateBarX(datasetLen,i,j);
+	// 				bar.y = point.y;
+	// 				oldData[i].bars.push(bar);
+	// 			}
+	// 		}
+	// 	}
+	// }
 }
 
 //Convert points to scatterplot points for scatterplot
