@@ -65,3 +65,123 @@ var makeColSelector = function(){
     p.removeChild(c);
   }
 }
+
+var initUI = function(data){
+  document.getElementById('tableCount').innerHTML = "[ Total Row: " + (data.data.length - 1) + " ] [ Total Column: " + (data.data[0].length - 1) + " ]";
+    document.getElementById('remInstruction').innerHTML = "*To remove specific row or column: delete the contents in the chosen label cells.";
+    if(chart && type === "bar"){
+      if(document.getElementById('barGraphAudioOptions')){
+        var c = document.getElementById('barGraphAudioOptions');
+        var p =  c.parentNode;
+        p.removeChild(c);
+        var c = document.getElementById('playModeLabel');
+        p.removeChild(c);
+        if(document.getElementById("colSelector")){
+          var c = document.getElementById('colSelector');
+          var p =  c.parentNode;
+          p.removeChild(c);
+          var c = document.getElementById("colNumLabel");
+          p.removeChild(c);
+          }
+        }
+      convertPointsToBars();
+      if(!document.getElementById("barGraphAudioOptions")){
+        var newddm = document.createElement("select");
+        newddm.setAttribute("id","barGraphAudioOptions");
+        newddm.setAttribute("class","drop-down");
+        var option = document.createElement("option");
+        option.setAttribute("value","0");
+        option.innerHTML = "Normal";
+        newddm.appendChild(option);
+        option = document.createElement("option");
+        option.setAttribute("value","1");
+        option.innerHTML = "Play by column";
+        newddm.appendChild(option);
+        if(!isSafari){
+          option = document.createElement("option");
+          option.setAttribute("value","2");
+          option.innerHTML = "Play columns as chords";
+          newddm.appendChild(option);
+        }
+        var label = document.createElement("label");
+        label.innerHTML = "Play mode ";
+        label.setAttribute("id","playModeLabel");
+        document.getElementById("audioSpanBar").appendChild(label);
+        document.getElementById("audioSpanBar").appendChild(newddm);
+        newddm.setAttribute("onchange", "makeColSelector()");
+      }
+    }
+    else if(type === "line"){
+      if(document.getElementById('barGraphAudioOptions')){
+        var c = document.getElementById('barGraphAudioOptions');
+        var p =  c.parentNode;
+        p.removeChild(c);
+        var c = document.getElementById('playModeLabel');
+        p.removeChild(c);
+        if(document.getElementById("colSelector")){
+          var c = document.getElementById('colSelector');
+          var p =  c.parentNode;
+          p.removeChild(c);
+          var c = document.getElementById("colNumLabel");
+          p.removeChild(c);
+        }
+      }
+      convertPointsToScatter();
+
+    }
+    else{
+      convertPointsToScatter();
+      if(!document.getElementById("barGraphAudioOptions")){
+        var newddm = document.createElement("select");
+        newddm.setAttribute("id","barGraphAudioOptions");
+        newddm.setAttribute("class","drop-down");
+        var option = document.createElement("option");
+        option.setAttribute("value","0");
+        option.innerHTML = "Normal";
+        newddm.appendChild(option);
+        option = document.createElement("option");
+        option.setAttribute("value","1");
+        option.innerHTML = "Play Regression Line";
+        newddm.appendChild(option);
+        var label = document.createElement("label");
+        label.innerHTML = "Play mode ";
+        label.setAttribute("id","playModeLabel");
+        document.getElementById("audioSpanBar").appendChild(label);
+        document.getElementById("audioSpanBar").appendChild(newddm);
+        newddm.setAttribute("onchange", "makeColSelector()");
+      }
+      else{
+       if(document.getElementById('barGraphAudioOptions')){
+        var c = document.getElementById('barGraphAudioOptions');
+        var p =  c.parentNode;
+        p.removeChild(c);
+        var c = document.getElementById('playModeLabel');
+        p.removeChild(c);
+        if(document.getElementById("colSelector")){
+          var c = document.getElementById('colSelector');
+          var p =  c.parentNode;
+          p.removeChild(c);
+          var c = document.getElementById("colNumLabel");
+          p.removeChild(c);
+          }
+        }
+        var newddm = document.createElement("select");
+        newddm.setAttribute("id","barGraphAudioOptions");
+        newddm.setAttribute("class","drop-down");
+        var option = document.createElement("option");
+        option.setAttribute("value","0");
+        option.innerHTML = "Normal";
+        newddm.appendChild(option);
+        option = document.createElement("option");
+        option.setAttribute("value","1");
+        option.innerHTML = "Play Regression Line";
+        newddm.appendChild(option);
+        var label = document.createElement("label");
+        label.innerHTML = "Play mode ";
+        label.setAttribute("id","playModeLabel");
+        document.getElementById("audioSpanBar").appendChild(label);
+        document.getElementById("audioSpanBar").appendChild(newddm);
+        newddm.setAttribute("onchange", "makeColSelector()");
+      }
+    }
+}
