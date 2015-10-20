@@ -26,18 +26,18 @@ function printPage()
    var s = "<table class='printTable'>";
    if(type === "bar"){
       var counter = 0;
-      for(var j = 0; j<(chart.data.datasets[0].bars.length/10); j++){
+      for(var j = 0; j<(chart.data.datasets[0].data.length/10); j++){
          s+="<tr class='border'>";
-         for(var i = 0; (i<chart.data.datasets[0].bars.length && counter<10 && chart.data.datasets[0].bars[(10*j)+i]!= undefined); i++){
-            s+="<th class='border'>" + chart.data.datasets[0].bars[(10*j)+i].label + "</th>";
+         for(var i = 0; (i<chart.data.datasets[0].data.length && counter<10 && chart.data.datasets[0].data[(10*j)+i]!= undefined); i++){
+            s+="<th class='border'>" + chart.data.labels[(10*j)+i] + "</th>";
             counter++;
          }
          s+="</tr>";
          counter = 0;
          for (var i = 0; i < chart.data.datasets.length; i++) {
             s+="<tr class='border'>";
-            for(var k = 0; (k<chart.data.datasets[i].bars.length && counter<10 && chart.data.datasets[i].bars[(10*j)+k]!= undefined); k++) {
-               s+= "<td class='border'>" + chart.data.datasets[i].bars[(10*j) + k].value + "</td>";
+            for(var k = 0; (k<chart.data.datasets[i].data.length && counter<10 && chart.data.datasets[i].data[(10*j)+k]!= undefined); k++) {
+               s+= "<td class='border'>" + chart.data.datasets[i].data[(10*j) + k] + "</td>";
                counter++;
             }
             counter = 0;
@@ -50,18 +50,18 @@ function printPage()
    }
    else{
       var counter = 0;
-      for(var j = 0; j<(chart.data.datasets[0].points.length/10); j++){
+      for(var j = 0; j<(chart.data.datasets[0].data.length/10); j++){
          s+="<tr class='border'>";
-         for(var i = 0; (i<chart.data.datasets[0].points.length && counter<10 && chart.data.datasets[0].points[(10*j)+i]!= undefined); i++){
-            s+="<th class='border'>" + chart.data.datasets[0].points[(10*j)+i].label + "</th>";
+         for(var i = 0; (i<chart.data.datasets[0].data.length && counter<10 && chart.data.datasets[0].data[(10*j)+i]!= undefined); i++){
+            s+="<th class='border'>" + chart.data.labels[(10*j)+i] + "</th>";
             counter++;
          }
          s+="</tr>";
          counter = 0;
          for (var i = 0; i < chart.data.datasets.length; i++) {
             s+="<tr class='border'>";
-            for(var k = 0; (k<chart.data.datasets[i].points.length && counter<10 && chart.data.datasets[i].points[(10*j)+k]!= undefined); k++) {
-               s+= "<td class='border'>" + chart.data.datasets[i].points[(10*j) + k].value + "</td>";
+            for(var k = 0; (k<chart.data.datasets[i].data.length && counter<10 && chart.data.datasets[i].data[(10*j)+k]!= undefined); k++) {
+               s+= "<td class='border'>" + chart.data.datasets[i].data[(10*j) + k] + "</td>";
                counter++;
             }
             counter = 0;
