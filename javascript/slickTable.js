@@ -166,7 +166,11 @@ var linkSlickTable = function(chart, player, overlay, summary){
 	    holdData(oldGrid);
 	    dataCount++;
 		chart.update();
+		overlay.updateSize(chart);
 		summary.update();
+		overlay.updateSize(chart);
+		overlay.updateSize(chart);
+		overlay.updateSize(chart);
 		overlay.updateSize(chart);
 	});
 }

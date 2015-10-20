@@ -37,6 +37,7 @@ Overlay.prototype.getSelectedPoints = function(arraySize){
 
 // updates the size of the overlay object
 Overlay.prototype.updateSize = function(chart){
+  this.chart=undefined;
   var resizeElements = [this.getSelection(), this.getBackground()];
   for (var ele in resizeElements){
     resizeElements[ele].setAttribute('x', chart.scales['x-axis-0'].left);
