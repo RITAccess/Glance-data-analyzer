@@ -98,7 +98,7 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			if(newVal.length > 22){
 				newVal = newVal.substring(0,19)+"...";
 			}
-			chart.scale.xLabels[col -1] = newVal;
+			chart.data.labels[col -1] = newVal;
 			if(type === "scatter" ){
 				//need to change all labels in the dataset
 				for(var i = 0; i < chart.data.datasets.length; i++){
