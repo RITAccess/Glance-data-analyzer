@@ -125,7 +125,7 @@ var linkSlickTable = function(chart, player, overlay, summary){
 					grid.getData()[row][col] = newVal;
 				}
 				else{ //revert back to old value
-					newVal = chart.data.datasets[row-1].points[col - 1].value;
+					newVal = chart.data.datasets[row-1].data[col - 1];
 					grid.getData()[row][col] = newVal;
 				}
 			}
@@ -134,29 +134,28 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			player.changeLine(row-1,col - 1,newVal);
 			// change value in chart
 			if(type ==="bar"){
-				if(chart.data.datasets[row-1].bars)
-					chart.data.datasets[row-1].bars[col - 1].value = newVal;
+				if(chart.data.datasets[row-1].data)
+					chart.data.datasets[row-1].data[col - 1] = newVal;
 				else
-					oldData[row-1].bars[col-1].value = newVal;
+					oldData[row-1].data[col-1] = newVal;
 			}
 			else{
-				if(chart.data.datasets[row-1].points)
-					chart.data.datasets[row-1].points[col - 1].value = newVal;
+				if(chart.data.datasets[row-1].data)
+					chart.data.datasets[row-1].data[col - 1] = newVal;
 				else
-					oldData[row-1].points[col-1].value = newVal;
+					oldData[row-1].data[col-1] = newVal;
 			}
 		}
 		// If not, revert to old value (from chart)
 		else {
 			if(type === "bar"){
-				var oldVal = chart.data.datasets[row-1].bars[col - 1].value;
+				var oldVal = chart.data.datasets[row-1].data[col - 1];
 				grid.getData()[row][col] = oldVal;
 			}
 			else{
-				var oldVal = chart.data.datasets[row-1].points[col - 1].value;
+				var oldVal = chart.data.datasets[row-1].data[col - 1];
 				grid.getData()[row][col] = oldVal;
 			}
-			console.log(chart);
 		}
 
 		// If there is a change to the table, the next redos are no longer valid
@@ -325,9 +324,9 @@ function undo() {
 						else if (i >= 1 && j >= 1) {
 							player.changeLine(i-1,j - 1, grid.getData()[i][j]);
 								if(type ==="bar")
-									chart.data.datasets[i - 1].bars[j - 1].value = grid.getData()[i][j];
+									chart.data.datasets[i - 1].data[j - 1] = grid.getData()[i][j];
 								else
-									chart.data.datasets[i - 1].points[j - 1].value = grid.getData()[i][j];
+									chart.data.datasets[i - 1].data[j - 1] = grid.getData()[i][j];
 							}
 						// Tabs through all the cells to visually reset data
 						grid.gotoCell(i, j);
@@ -386,9 +385,9 @@ function redo() {
 						else if(i >= 1 && j >= 1) {
 							player.changeLine(i-1, j-1, grid.getData()[i][j]);
 							if (type==="bar")
-								chart.data.datasets[i-1].bars[j-1].value = grid.getData()[i][j];
+								chart.data.datasets[i-1].data[j-1] = grid.getData()[i][j];
 							else
-								chart.data.datasets[i-1].points[j-1].value = grid.getData()[i][j];
+								chart.data.datasets[i-1].data[j-1] = grid.getData()[i][j];
 						}
 						grid.gotoCell(i, j);
 					}
