@@ -36,8 +36,9 @@ var resetSiteBg = function(){
 //Resets graph background color as well as graph label text color
 var resetGraphBg = function(){
   document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')";
-  chart.options.scaleFontColor = findContrastor("#FFFFFF");
-  chart.buildScale(chart.scale.xLabels);
+  chart.scales['x-axis-0'].labels.fontColor = findContrastor("#FFFFFF");
+  chart.scales['y-axis-0'].labels.fontColor = findContrastor("#FFFFFF");
+  //chart.buildScale(chart.scale.xLabels);
   chart.update();
   document.getElementById("graphColorInput").value="";
   if(!checkWarningLabels()){
@@ -142,8 +143,9 @@ var changeGraphBg = function(){
     //   chart.buildScale(chart.scale.xLabels);
     //   chart.update();
     // }
-    chart.options.scaleFontColor = findContrastor(newColor);
-    chart.buildScale(chart.scale.xLabels);
+    chart.scales['x-axis-0'].options.labels.fontColor = findContrastor(newColor);
+    chart.scales['y-axis-0'].options.labels.fontColor = findContrastor(newColor);
+    //chart.buildScale(chart.scale.xLabels);
     chart.update();
     if(!checkWarningLabels()){
       alert("Some dataset colors may be difficult to see due to low color contrast");
@@ -169,8 +171,9 @@ var changeGraphBg = function(){
     //   chart.buildScale(chart.scale.xLabels);
     //   chart.update();
     // }
-    chart.options.scaleFontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
-    chart.buildScale(chart.scale.xLabels);
+    chart.scales['x-axis-0'].options.labels.fontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+    chart.scales['y-axis-0'].options.labels.fontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+    //chart.buildScale(chart.scale.xLabels);
     chart.update();
     if(!checkWarningLabels()){
       alert("Some dataset colors may be difficult to see due to low color contrast");
@@ -227,7 +230,7 @@ var checkWarningLabels = function(){
   for(var i = 0; i < chart.data.datasets.length; i++){
     var a = document.getElementById("colors").firstChild;
     var warning = document.getElementById("warning"+i);
-    var color = chart.data.datasets[i].strokeColor;
+    var color = chart.data.datasets[i].borderColor;
     color = convertRGBtoHex(color);
     if(calcContrast(graphBg,color)>1.5){
       if(warning){

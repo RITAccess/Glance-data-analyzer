@@ -58,6 +58,10 @@ var findContrastor = function(hex){
 
 //Convert an RGB/RGBA string to a hex number. Also supports values over 255
 var convertRGBtoHex= function(conColor){
+    if(conColor === undefined){
+      var e  = new Error();
+      console.log(e.stack);
+    }
     conColor = conColor.substring(conColor.indexOf('(')+1);
     var r = conColor.substring(0,conColor.indexOf(','));
     conColor = conColor.substring(conColor.indexOf(' '));

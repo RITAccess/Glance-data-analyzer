@@ -399,32 +399,32 @@ var s;
 //retrieve chart data and put into a csv file
 if(type === "line" || type === "scatter"){
 for (var i = 0; i < chart.data.datasets.length; i++) {
-        for (var j = 0; j < chart.data.datasets[i].points.length; j++) {
+        for (var j = 0; j < chart.data.datasets[i].data.length; j++) {
             if (i === 0 && j === 0) {
-                for (var k = 0; k < chart.data.datasets[i].points.length; k++) {
-                    s += chart.data.datasets[i].points[k].label;
-                    if (k + 1 < chart.data.datasets[i].points.length) s += ",";
+                for (var k = 0; k < chart.data.datasets[i].data.length; k++) {
+                    s += chart.data.datasets[i].data[k].label;
+                    if (k + 1 < chart.data.datasets[i].data.length) s += ",";
                 }
                 s += "\n";
             }
-            s += chart.data.datasets[i].points[j].value;
-            if (j + 1 < chart.data.datasets[i].points.length) s += ",";
+            s += chart.data.datasets[i].data[j].value;
+            if (j + 1 < chart.data.datasets[i].data.length) s += ",";
         }
         s += "\n";
     }
 }
 else if (type === "bar") {
     for (var i = 0; i < chart.data.datasets.length; i++) {
-        for (var j = 0; j < chart.data.datasets[i].bars.length; j++) {
+        for (var j = 0; j < chart.data.datasets[i].data.length; j++) {
             if (i === 0 && j === 0) {
-                for (var k = 0; k < chart.data.datasets[i].bars.length; k++) {
-                    s += chart.data.datasets[i].bars[k].label;
-                    if (k + 1 < chart.data.datasets[i].bars.length) s += ",";
+                for (var k = 0; k < chart.data.datasets[i].data.length; k++) {
+                    s += chart.data.datasets[i].data[k].label;
+                    if (k + 1 < chart.data.datasets[i].data.length) s += ",";
                 }
                 s += "\n";
             }
-            s += chart.data.datasets[i].bars[j].value;
-            if (j + 1 < chart.data.datasets[i].bars.length) s += ",";
+            s += chart.data.datasets[i].data[j].value;
+            if (j + 1 < chart.data.datasets[i].data.length) s += ",";
         }
         s += "\n";
     }
