@@ -145,6 +145,7 @@ var changeGraphBg = function(){
     // }
     chart.scales['x-axis-0'].options.labels.fontColor = findContrastor(newColor);
     chart.scales['y-axis-0'].options.labels.fontColor = findContrastor(newColor);
+    oldGraphText = chart.scales['y-axis-0'].options.labels.fontColor
     //chart.buildScale(chart.scale.xLabels);
     chart.update();
     if(!checkWarningLabels()){
@@ -173,6 +174,7 @@ var changeGraphBg = function(){
     // }
     chart.scales['x-axis-0'].options.labels.fontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
     chart.scales['y-axis-0'].options.labels.fontColor = findContrastor(colors[newColor.toLowerCase().split(' ').join('')]);
+    oldGraphText = chart.scales['y-axis-0'].options.labels.fontColor
     //chart.buildScale(chart.scale.xLabels);
     chart.update();
     if(!checkWarningLabels()){

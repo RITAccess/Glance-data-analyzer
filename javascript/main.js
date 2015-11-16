@@ -62,6 +62,10 @@ var loadData = function (data) {
       }
     }
     chart = loadChart(tempData, type);
+    if(oldGraphText){
+    chart.scales['x-axis-0'].options.labels.fontColor = oldGraphText;
+      chart.scales['y-axis-0'].options.labels.fontColor = oldGraphText;
+    }
     initUI(data);
     if(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)
       player = new WaveForm("sine");
