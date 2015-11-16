@@ -19,7 +19,7 @@ var loadChart = function(data, type, collection){
 		sfc="#000000";
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLineChart;
-	var max = -999999;
+	var max = 1;
 	var min = 0;
 	for(var i =0; i < data.datasets.length; i++){
 		if(Math.max(...data.datasets[i].data)>max){
@@ -346,8 +346,7 @@ function dataset(data, collection) {
 			borderColor: "rgba("+ color +", 1)",
 			pointBorderColor: "rgba("+ color +", 1)",
 			pointBackgroundColor: "rgba("+ color +", 1)",
-			label: i,
-
+			label: i, 
 	      //pointborderColor: "#fff",
 			pointHighlightFill: "#fff",
 			pointHighlightStroke: "rgba("+ color +", 1)",
@@ -355,7 +354,7 @@ function dataset(data, collection) {
 		}
     //Fill Bar Color
 		if(type === "bar"){
-			line.backgroundColor = line.borderColor;
+			//line.backgroundColor = line.borderColor;
 		}
     //Put line into data Array
   	if(hidden[i-1]===false){
@@ -371,8 +370,8 @@ function dataset(data, collection) {
     else{
       //If so, inherit previous color
       line.borderColor = lineColors[i-1];
-      line.pointColor= lineColors[i-1];
-      line.pointHighlightStroke = lineColors[i-1];
+      line.pointBorderColor= lineColors[i-1];
+      line.pointBackgroundColor = lineColors[i-1];
       if(type === "bar"){
         //Bar will inherit fill color as well
         line.backgroundColor = lineColors[i-1];
