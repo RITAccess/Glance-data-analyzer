@@ -88,11 +88,12 @@ var loadSlickTable = function(fileData){
 
 var linkSlickTable = function(chart, player, overlay, summary){
 	grid.onCellChange.subscribe(function (e, args) {
+		
 		//args = Object {row: (row #) , cell: (column #), item: Object, grid: SlickGrid}
 		var row = args.row;
 		var col = args.cell;
 		var newVal = grid.getData()[row][col];
-
+		if(oldGrid[row][col] != newVal){
 		// if a label
 		if (row == 0 || col == 0){
 			if(newVal.length > 22){
@@ -135,16 +136,17 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			// change value in chart
 			if(type ==="bar"){
 				if(chart.data.datasets[row-1].data)
-					chart.data.datasets[row-1].data[col - 1] = newVal;
+					chart.data.datasets[row-1].data[col - 1] = parseInt(newVal);
 				else
-					oldData[row-1].data[col-1] = newVal;
+					oldData[row-1].data[col-1] = parseInt(newVal);
 			}
 			else{
 				if(chart.data.datasets[row-1].data)
-					chart.data.datasets[row-1].data[col - 1] = newVal;
+					chart.data.datasets[row-1].data[col - 1] = parseInt(newVal);
 				else
-					oldData[row-1].data[col-1] = newVal;
+					oldData[row-1].data[col-1] = parseInt(newVal);
 			}
+			
 		}
 		// If not, revert to old value (from chart)
 		else {
@@ -163,7 +165,7 @@ var linkSlickTable = function(chart, player, overlay, summary){
 
 		//update chart and overlay
 		updateGrid();
-	    holdData(oldGrid);
+		holdData(oldGrid);
 	    dataCount++;
 		chart.update();
 		overlay.updateSize(chart);
@@ -172,7 +174,9 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		overlay.updateSize(chart);
 		overlay.updateSize(chart);
 		overlay.updateSize(chart);
+	}
 	});
+	
 }
 
 //Hides slick grid header bars

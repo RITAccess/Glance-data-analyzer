@@ -3932,7 +3932,7 @@
 
 				var values = positiveValues.concat(negativeValues);
 				this.min = helpers.min(values);
-				this.max = helpers.max(values);
+				this.max = Math.max(...values);
 
 			} else {
 				helpers.each(this.data.datasets, function(dataset) {

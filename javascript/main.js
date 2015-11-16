@@ -58,9 +58,13 @@ var loadData = function (data) {
     for(var i = 0; i < data.data.length; i++){
       tempData[i] = [];
       for(var j = 0; j<data.data[i].length; j++){
-        tempData[i][j] = data.data[i][j];
+        if(i>0)
+          tempData[i][j] = parseInt(data.data[i][j]);
+        else
+          tempData[i][j] = data.data[i][j];
       }
     }
+    console.log(tempData);
     chart = loadChart(tempData, type);
     if(oldGraphText){
     chart.scales['x-axis-0'].options.labels.fontColor = oldGraphText;

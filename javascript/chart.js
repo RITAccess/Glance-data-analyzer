@@ -39,18 +39,18 @@ var loadChart = function(data, type, collection){
 		myLineChart = new Chart(ctx, 
 	  	{type:"bar", 
 	  	data:data,
-	  	options: {
-        scales: {
-            yAxes: [{
-                override: {
-                    stepWidth: (max-min)/10,
-                    start: min,
-                    steps: 10,
-                    end: max,
-                }
-            }]
-        }
-    }
+	  	// options: {
+    //     scales: {
+    //         yAxes: [{
+    //             override: {
+    //                 stepWidth: (max-min)/10,
+    //                 start: min,
+    //                 steps: 10,
+    //                 end: max,
+    //             }
+    //         }]
+    //     }
+    // }
 	  	});
 		myLineChart.animationSteps = 0;
 	}
@@ -58,18 +58,18 @@ var loadChart = function(data, type, collection){
 	  myLineChart = new Chart(ctx, 
 	  	{type:"line", 
 	  	data:data,
-	  	options: {
-        scales: {
-            yAxes: [{
-                override: {
-                    stepWidth: (max-min)/10,
-                    start: min,
-                    steps: 10,
-                    end: max,
-                }
-            }]
-        }
-    }
+	  	// options: {
+    //     scales: {
+    //         yAxes: [{
+    //             override: {
+    //                 stepWidth: (max-min)/10,
+    //                 start: min,
+    //                 steps: 10,
+    //                 end: max,
+    //             }
+    //         }]
+    //     }
+    // }
 	  	});
 	  myLineChart.animation = false;
 	}
@@ -442,10 +442,7 @@ function dataset(data, collection) {
 	var returndata = new Object();
 	returndata.data = dataArray;
 	returndata.inputboxes = inputBoxArray;
-	if(oldGraphText){
-		chart.scales['x-axis-0'].options.labels.fontColor = oldGraphText;
-	    chart.scales['y-axis-0'].options.labels.fontColor = oldGraphText;
-	}
+	
 	return returndata;
 }
 
