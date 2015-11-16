@@ -136,15 +136,15 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			// change value in chart
 			if(type ==="bar"){
 				if(chart.data.datasets[row-1].data)
-					chart.data.datasets[row-1].data[col - 1] = parseInt(newVal);
+					chart.data.datasets[row-1].data[col - 1] = parseFloat(newVal);
 				else
-					oldData[row-1].data[col-1] = parseInt(newVal);
+					oldData[row-1].data[col-1] = parseFloat(newVal);
 			}
 			else{
 				if(chart.data.datasets[row-1].data)
-					chart.data.datasets[row-1].data[col - 1] = parseInt(newVal);
+					chart.data.datasets[row-1].data[col - 1] = parseFloat(newVal);
 				else
-					oldData[row-1].data[col-1] = parseInt(newVal);
+					oldData[row-1].data[col-1] = parseFloat(newVal);
 			}
 			
 		}
