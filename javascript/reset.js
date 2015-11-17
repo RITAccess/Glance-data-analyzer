@@ -36,8 +36,8 @@ var resetSiteBg = function(){
 //Resets graph background color as well as graph label text color
 var resetGraphBg = function(){
   document.getElementById("graphCC").style.background = "url('stylesheets/halftone/halftone.png')";
-  chart.scales['x-axis-0'].labels.fontColor = findContrastor("#FFFFFF");
-  chart.scales['y-axis-0'].labels.fontColor = findContrastor("#FFFFFF");
+  chart.scales['x-axis-0'].options.labels.fontColor = "#000000";
+  chart.scales['y-axis-0'].options.labels.fontColor = "#000000";
   //chart.buildScale(chart.scale.xLabels);
   chart.update();
   document.getElementById("graphColorInput").value="";
