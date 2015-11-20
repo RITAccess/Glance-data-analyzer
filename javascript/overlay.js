@@ -38,17 +38,25 @@ Overlay.prototype.getSelectedPoints = function(arraySize){
 // updates the size of the overlay object
 Overlay.prototype.updateSize = function(chart){
   this.chart=undefined;
+  if(chart.scales['x-axis-0']){
+    var myXAxis = chart.scales['x-axis-0'];
+    var myYAxis = chart.scales['y-axis-0']; 
+  }
+  else{
+    var myXAxis = chart.scales['x-axis-1'];
+    var myYAxis = chart.scales['y-axis-1']; 
+  }
   var resizeElements = [this.getSelection(), this.getBackground()];
   for (var ele in resizeElements){
-    resizeElements[ele].setAttribute('x', chart.scales['x-axis-0'].left);
-    resizeElements[ele].setAttribute('width', chart.scales['x-axis-0'].width - chart.scales['x-axis-0'].paddingLeft - chart.scales['x-axis-0'].paddingRight);
+    resizeElements[ele].setAttribute('x', myXAxis.left);
+    resizeElements[ele].setAttribute('width', myXAxis.width - myXAxis.paddingLeft - myXAxis.paddingRight);
     resizeElements[ele].setAttribute('y', 0);
-    resizeElements[ele].setAttribute('height', chart.scales['y-axis-0'].bottom);
+    resizeElements[ele].setAttribute('height', myYAxis.bottom);
   }
   // resize slider
   document.getElementById('slider-range').setAttribute(
-    'style', 'margin-left: ' + chart.scales['x-axis-0'].left + 'px; width: ' +
-    (chart.scales['x-axis-0'].width - chart.scales['x-axis-0'].paddingRight) + 'px');
+    'style', 'margin-left: ' + myXAxis.left + 'px; width: ' +
+    (myXAxis.width - myXAxis.paddingRight) + 'px');
   if (document.getElementById("slider-range")) {
     var startData = document.getElementById("slider-range").getAttribute("data-start");
     var arraySize = document.getElementById("slider-range").getAttribute("data-size");

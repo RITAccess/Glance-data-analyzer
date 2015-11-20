@@ -19,17 +19,6 @@ var loadChart = function(data, type, collection){
 		sfc="#000000";
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLineChart;
-	var max = 1;
-	var min = 0;
-	for(var i =0; i < data.datasets.length; i++){
-		if(Math.max(...data.datasets[i].data)>max){
-			max = Math.max(...data.datasets[i].data);
-		}
-		if(Math.min(...data.datasets[i].data)<min){
-			min = Math.min(...data.datasets[i].data);
-		}
-		
-	}
 	if(type === "scatter"){
 		myLineChart = new Chart.Scatter(ctx,
 		{data:data} );
@@ -39,18 +28,6 @@ var loadChart = function(data, type, collection){
 		myLineChart = new Chart(ctx, 
 	  	{type:"bar", 
 	  	data:data,
-	  	// options: {
-    //     scales: {
-    //         yAxes: [{
-    //             override: {
-    //                 stepWidth: (max-min)/10,
-    //                 start: min,
-    //                 steps: 10,
-    //                 end: max,
-    //             }
-    //         }]
-    //     }
-    // }
 	  	});
 		myLineChart.animationSteps = 0;
 	}
@@ -58,18 +35,6 @@ var loadChart = function(data, type, collection){
 	  myLineChart = new Chart(ctx, 
 	  	{type:"line", 
 	  	data:data,
-	  	// options: {
-    //     scales: {
-    //         yAxes: [{
-    //             override: {
-    //                 stepWidth: (max-min)/10,
-    //                 start: min,
-    //                 steps: 10,
-    //                 end: max,
-    //             }
-    //         }]
-    //     }
-    // }
 	  	});
 	  myLineChart.animation = false;
 	}
@@ -248,32 +213,21 @@ var loadChart = function(data, type, collection){
 			}
 			//If not hidden, hide
 			if(!this.checked){
+				console.log("HIDE");
 				if(hidden[index]!= false){
 					hidden[index] = false;
 					var transparent = [0,0,0].join(", ");
 					transparent = "rgba(" + transparent +", 0)";
 					chart.data.datasets[index].borderColor = transparent;
-					chart.data.datasets[index].pointColor = transparent;
-					chart.data.datasets[index].pointHighlightStroke = transparent;
-					if(type==="line"){
-						if(!oldData[index])
-							oldData[index] = {};
-	          		oldData[index].points = chart.data.datasets[index].points;
-	          		chart.data.datasets[index].points = undefined;
-					}
-					else if(type === "bar"){
-						if(!oldData[index])
-							oldData[index] = {};
-	          		oldData[index].bars = chart.data.datasets[index].bars;
-	          		chart.data.datasets[index].bars = undefined;
-					}
-					else{
-						if(!oldData[index])
-							oldData[index] = {};
-	          		oldData[index].scatter = chart.data.datasets[index].points;
-	          		chart.data.datasets[index].points = undefined;
-					}
-					chart.update();
+					chart.data.datasets[index].pointBorderColor = transparent;
+					chart.data.datasets[index].pointBackgroundColor = transparent;
+					chart.data.datasets[index].backgroundColor = transparent;
+					if(!oldData[index])
+						oldData[index] = {};
+					oldData[index] = chart.data.datasets[index].data;
+					chart.data.datasets[index].data = [];
+					
+					// chart.update();
 					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
 					chart.update();
@@ -281,6 +235,7 @@ var loadChart = function(data, type, collection){
 			}
 			//If hidden, bring the line back
 			else{
+				console.log("BRING BACK");
 				if(hidden[index]!= true){
 					hidden[index]= true;
 					if(type === "bar"){
@@ -296,27 +251,13 @@ var loadChart = function(data, type, collection){
 							color = this.parentNode.previousSibling.previousSibling.previousSibling.style.color;
 						}
 					}
-					color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
+					//color = color.substring(0,3) + "a(" + color.substring(4,(color.indexOf(")"))) + ", 1)";
 					chart.data.datasets[index].borderColor = color;
-					chart.data.datasets[index].pointColor = color;
-					chart.data.datasets[index].pointHighlightStroke = color;
-					if(type === "line"){
-						if(oldData[index].points)
-	    	      			chart.data.datasets[index].points = oldData[index].points;
-	        	  	else
-	          			chart.data.datasets[index].points = oldData[index].scatter;
-					}
-					else if(type === "bar"){
-			          chart.data.datasets[index].bars = oldData[index].bars;
-					}
-					else{
-						chart.data.datasets[index].points = oldData[index].scatter;
-						for(var i = 0; i < chart.data.datasets.length; i++){
-							for(var j = 0; j<chart.data.datasets[i].points.length; j++){
-								chart.data.datasets[i].points[j].y = chart.scale.calculateY(chart.data.datasets[i].points[j].value);
-							}
-						}
-					}
+					if(type==="bar")
+						chart.data.datasets[index].backgroundColor = color;
+					chart.data.datasets[index].pointBorderColor = color;
+					chart.data.datasets[index].pointBackgroundColor = color;
+					chart.data.datasets[index].data = oldData[index]
 					chart.update();
 					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
@@ -357,8 +298,11 @@ function dataset(data, collection) {
 			//line.backgroundColor = line.borderColor;
 		}
     //Put line into data Array
-  	if(hidden[i-1]===false){
-  		oldData[i-1].data = line;
+  	if(hidden[i-1] === false){
+  		if(!oldData[i-1]){
+  			oldData[i-1] = [];
+  		}
+  		oldData[i-1] = line.data;
   		line.data = undefined;
   	}
 		dataArray.push(line);
