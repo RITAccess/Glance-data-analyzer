@@ -213,7 +213,6 @@ var loadChart = function(data, type, collection){
 			}
 			//If not hidden, hide
 			if(!this.checked){
-				console.log("HIDE");
 				if(hidden[index]!= false){
 					hidden[index] = false;
 					var transparent = [0,0,0].join(", ");
@@ -235,7 +234,6 @@ var loadChart = function(data, type, collection){
 			}
 			//If hidden, bring the line back
 			else{
-				console.log("BRING BACK");
 				if(hidden[index]!= true){
 					hidden[index]= true;
 					if(type === "bar"){
@@ -298,13 +296,13 @@ function dataset(data, collection) {
 			//line.backgroundColor = line.borderColor;
 		}
     //Put line into data Array
-  	if(hidden[i-1] === false){
-  		if(!oldData[i-1]){
-  			oldData[i-1] = [];
-  		}
-  		oldData[i-1] = line.data;
-  		line.data = undefined;
-  	}
+  	// if(hidden[i-1] === false){
+  	// 	if(!oldData[i-1]){
+  	// 		oldData[i-1] = [];
+  	// 	}
+  	// 	oldData[i-1] = line.data;
+  	// 	line.data = undefined;
+  	// }
 		dataArray.push(line);
     //Chech if previous line color existed
     if(lineColors.length<i){
@@ -359,7 +357,7 @@ function dataset(data, collection) {
 		inputLabel.setAttribute("for","lineToggleBox" + i);
 		toggleBox.setAttribute("type", "checkbox");
 		textInput.setAttribute("style","width:120px; font-size:20px;margin:3% 2% 0% 2%;");
-		if(hidden[i-1]===true)
+		// if(hidden[i-1]===true)
 			toggleBox.setAttribute("checked", "checked");
 		toggleBox.setAttribute("title", "Display Data Set " + i);
 		inputLabel.setAttribute("title", "Display Data Set " + i);
