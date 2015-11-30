@@ -327,7 +327,7 @@ function undo() {
 					for (var j = 0; j < prevData[i].length; j++) {
 						grid.getData()[i][j] = prevData[i][j];
 						if (i === 0) {
-							chart.scale.xLabels[j-1] = grid.getData()[0][j];
+							chart.data.labels[j-1] = grid.getData()[0][j];
 						}
 						else if (i >= 1 && j >= 1) {
 							player.changeLine(i-1,j - 1, grid.getData()[i][j]);
@@ -388,7 +388,7 @@ function redo() {
 					for (var j = 0; j < nextData[i].length; j++) {
 						grid.getData()[i][j] = nextData[i][j];
 						if (i === 0) {
-							chart.scale.xLabels[j-1] = grid.getData()[0][j];
+							chart.data.labels[j-1] = grid.getData()[0][j];
 						}
 						else if(i >= 1 && j >= 1) {
 							player.changeLine(i-1, j-1, grid.getData()[i][j]);
