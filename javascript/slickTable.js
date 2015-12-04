@@ -134,11 +134,11 @@ var linkSlickTable = function(chart, player, overlay, summary){
 			//Update audio with new value
 			player.changeLine(row-1,col - 1,newVal);
 			// change value in chart
-			if(type ==="bar"){
+			if(type ==="scatter"){
 				if(chart.data.datasets[row-1].data)
-					chart.data.datasets[row-1].data[col - 1] = parseFloat(newVal);
+					chart.data.datasets[row-1].data[col - 1].y = parseFloat(newVal);
 				else
-					oldData[row-1].data[col-1] = parseFloat(newVal);
+					oldData[row-1].data[col-1].y = parseFloat(newVal);
 			}
 			else{
 				if(chart.data.datasets[row-1].data)
@@ -150,9 +150,9 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		}
 		// If not, revert to old value (from chart)
 		else {
-			if(type === "bar"){
+			if(type === "scatter"){
 				var oldVal = chart.data.datasets[row-1].data[col - 1];
-				grid.getData()[row][col] = oldVal;
+				grid.getData()[row][col] = oldVal.y;
 			}
 			else{
 				var oldVal = chart.data.datasets[row-1].data[col - 1];
@@ -331,8 +331,8 @@ function undo() {
 						}
 						else if (i >= 1 && j >= 1) {
 							player.changeLine(i-1,j - 1, grid.getData()[i][j]);
-								if(type ==="bar")
-									chart.data.datasets[i - 1].data[j - 1] = grid.getData()[i][j];
+								if(type ==="scatter")
+									chart.data.datasets[i - 1].data[j - 1].y = grid.getData()[i][j];
 								else
 									chart.data.datasets[i - 1].data[j - 1] = grid.getData()[i][j];
 							}
@@ -392,8 +392,8 @@ function redo() {
 						}
 						else if(i >= 1 && j >= 1) {
 							player.changeLine(i-1, j-1, grid.getData()[i][j]);
-							if (type==="bar")
-								chart.data.datasets[i-1].data[j-1] = grid.getData()[i][j];
+							if (type==="scatter")
+								chart.data.datasets[i-1].data[j-1].y = grid.getData()[i][j];
 							else
 								chart.data.datasets[i-1].data[j-1] = grid.getData()[i][j];
 						}
