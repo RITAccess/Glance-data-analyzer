@@ -20,8 +20,70 @@ var loadChart = function(data, type, collection){
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLineChart;
 	if(type === "scatter"){
+		      //   var scatterChartData = {
+        //     datasets: [{
+        //         label: "My First dataset",
+        //         data: [{
+        //             x: 1,
+        //             y: 1,
+        //         }, {
+        //             x: 2,
+        //             y: 2,
+        //         }, {
+        //             x: 3,
+        //             y: 3,
+        //         }, {
+        //             x: 4,
+        //             y: 4,
+        //         }, {
+        //             x: 5,
+        //             y: 5,
+        //         }, {
+        //             x: 6,
+        //             y: 6,
+        //         }, {
+        //             x: 7,
+        //             y: 7,
+        //         }]
+        //     }, {
+        //         label: "My Second dataset",
+        //         data: [{
+        //             x: 1,
+        //             y: 2,
+        //         }, {
+        //             x: 2,
+        //             y: 3,
+        //         }, {
+        //             x: 3,
+        //             y: 4,
+        //         }, {
+        //             x: 4,
+        //             y: 5,
+        //         }, {
+        //             x: 5,
+        //             y: 6,
+        //         }, {
+        //             x: 6,
+        //             y: 7,
+        //         }, {
+        //             x: 7,
+        //             y: 8,
+        //         }]
+        //     }]
+        // };
+        // console.log(scatterChartData);
+        // //$.each(scatterChartData.datasets, function(i, dataset) {
+        for(var i = 0; i < data.datasets.length; i++){
+            data.datasets[i].borderColor = 'rgba(0,0,0,0)';
+            data.datasets[i].backgroundColor = 'rgba(0,0,0,0)';
+            // data.datasets[i].pointBorderColor = '#000000';
+            // data.datasets[i].pointBackgroundColor = '#000000';
+            data.datasets[i].pointBorderWidth = 1;
+        }
+        // //});
 		myLineChart = new Chart.Scatter(ctx,
 		{data:data} );
+		
 		myLineChart.animation = false;
 	}
 	else if(type === "bar"){
@@ -295,16 +357,18 @@ function dataset(data, collection) {
 		if(type === "bar"){
 			//line.backgroundColor = line.borderColor;
 		}
-    //Put line into data Array
-  	// if(hidden[i-1] === false){
-  	// 	if(!oldData[i-1]){
-  	// 		oldData[i-1] = [];
-  	// 	}
-  	// 	oldData[i-1] = line.data;
-  	// 	line.data = undefined;
-  	// }
-		dataArray.push(line);
-    //Chech if previous line color existed
+	if(type==="scatter"){
+		var myScatterData = new Array(line.data.length);
+		for(var q = 0; q < line.data.length; q++){
+			var scatterdata = new Object();
+			scatterdata.x = q;
+			scatterdata.y = line.data[q];
+			myScatterData[q] = scatterdata;
+		} 
+		line.data = myScatterData;
+	}	
+    dataArray.push(line);
+	//Chech if previous line color existed
     if(lineColors.length<i){
       //If not, add it
       lineColors.push(line.borderColor);
@@ -364,6 +428,10 @@ function dataset(data, collection) {
 		inputDiv.appendChild(toggleBox);
 		inputDiv.appendChild(inputLabel);
 		var conColor = lineColors[i-1];
+		if(! conColor){
+			conColor = line.borderColor;
+		}
+		// console.log(conColor);
 		conColor = convertRGBtoHex(conColor);
 		keyValue.setAttribute("style", "color:" + newColor +"; display: inline;");
 		if(type != "bar"){

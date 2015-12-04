@@ -49,7 +49,11 @@ Overlay.prototype.updateSize = function(chart){
   var resizeElements = [this.getSelection(), this.getBackground()];
   for (var ele in resizeElements){
     resizeElements[ele].setAttribute('x', myXAxis.left);
-    resizeElements[ele].setAttribute('width', myXAxis.width - myXAxis.paddingLeft - myXAxis.paddingRight);
+    var w = (myXAxis.width - myXAxis.paddingLeft - myXAxis.paddingRight) +" ";
+    if(type==="scatter"){
+      w = myXAxis.width;
+    }
+    resizeElements[ele].setAttribute('width', w);
     resizeElements[ele].setAttribute('y', 0);
     resizeElements[ele].setAttribute('height', myYAxis.bottom);
   }
