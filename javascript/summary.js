@@ -26,9 +26,20 @@ DataSummary.prototype.dataSummary = function() {
 	  if (this.currCollection.collection[i].trend.min < globalmin){
 		globalmin = this.currCollection.collection[i].trend.min;
 	  }
+      var median = 0;
+      var arr = this.currCollection.collection[i].array;
+      arr.sort(function(a,b){return a-b});
+      if(arr.len%2 ==0){
+            median = (arr[(arr.length/2)-1] + arr[(arr.length/2)])/2;
+      }
+      else{
+            median = arr[arr.length/2];
+      }
       var info = document.createTextNode(grid.getData()[i+1][0] + ": Max: " + this.currCollection.collection[i].trend.max +
         " Min: " + this.currCollection.collection[i].trend.min +
-        " Average: " + this.currCollection.collection[i].trend.avg+"\n");
+        " Average: " + this.currCollection.collection[i].trend.avg+
+	" Median: " + median +"\n");
+
       var infoLabel = document.createElement('label');
       infoLabel.setAttribute("style","margin-bottom:3%;");
       infoLabel.appendChild(info);
@@ -38,10 +49,22 @@ DataSummary.prototype.dataSummary = function() {
       //info.setAttribute("tabIndex", "0");
   }
   var lastEntry = document.createElement("li");
-
+  var med = 0;
+  var medArr = [];
+  for(var k = 0; k<collection.collection.length; k++){
+	medArr = medArr.concat(collection.collection[k].array);
+  }
+  medArr.sort(function(a,b){return a-b});
+  if(medArr.len%2 ==0){
+            med = (medArr[(medArr.length/2)-1] + medArr[(medArr.length/2)])/2;
+      }
+      else{
+            med = medArr[medArr.length/2];
+      }
+  console.log(medArr);
   // Writes the max, min, and average of the total table data
   var finalSummary =document.createTextNode( "Total Table Summary: Max: " + globalmax +
-    " Min: " + globalmin + " Average: " + this.calcCollectionAvg());
+    " Min: " + globalmin + " Average: " + this.calcCollectionAvg() + " Median: " + med);
     lastEntry.appendChild(finalSummary);
     this.summaryDiv.appendChild(lastEntry);
 }
