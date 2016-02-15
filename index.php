@@ -139,16 +139,16 @@
                 <label>Site Background:</label><input id="siteColorInput" type="text" onInput="changeSiteBg()" title="Change Site Background Color">
                 <label>High Contrast:</label>
                   <div class="squaredTwo">
-                    <input id="siteContrast" type="checkbox" tabindex="0" checked="checked" aria-label="Enable/Disable Site Background Color Contrast" onclick="changeSiteBg()">
+                    <input id="siteContrast" type="checkbox" checked="checked" aria-label="Enable/Disable Site Background Color Contrast" onclick="changeSiteBg()">
                     <label for="siteContrast" title="Enable/Diable Site Background Color Contrast"></label>
                   </div>
                   <input type="button" id="siteCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Site Background to Original" title="Reset Site Background to Original" onclick="resetSiteBg()" onkeyup="siteKeyUp()" value="">
               </div>
               <div class="ccFeature">
                 <label>Graph Background:</label><input id="graphColorInput" type="text" onInput="changeGraphBg()" title="Change Graph Background Color">
-                <label tabindex="0" >High Contrast:</label>
-                  <div class="squaredTwo">
-                    <input id="graphContrast" tabindex="0" type="checkbox" disabled="disabled" checked="checked" aria-label="Enable/Disable Graph Background Color Contrast - Checkbox Disabled" onclick="changeGraphBg()">
+                <label>High Contrast:</label>
+                  <div class="squaredTwo" tabindex="0">
+                    <input id="graphContrast" type="checkbox" disabled="disabled" checked="checked" aria-label="Enable/Disable Graph Background Color Contrast - Checkbox Disabled" onclick="changeGraphBg()">
                     <label for="graphContrast" title="Enable/Disable Graph Background Color Contrast - Checkbox Disabled"></label>
                   </div>
                   <input type="button" id="graphCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Graph Background to Original" title="Reset Graph Background to Original" onclick="resetGraphBg()" value="">
@@ -157,7 +157,7 @@
                 <label>Text Color:</label><input id="textColorInput" type="text" title="Change Text Color" onInput="changeTextColor()">
                 <label>High Contrast:</label>
                   <div class="squaredTwo">
-                    <input id="textContrast" type="checkbox" tabindex="0" checked="checked" aria-label="Enable/Disable Text Color Contrast" onclick="changeTextColor()">
+                    <input id="textContrast" type="checkbox" checked="checked" aria-label="Enable/Disable Text Color Contrast" onclick="changeTextColor()">
                     <label for="textContrast" title="Enable/Disable Text Color Contrast"></label>
                   </div>
                 <input type="button" id="textCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Text Color to Original" title="Reset Text Color to Original" onclick="resetText()" onkeyup="textKeyUp()" value="">

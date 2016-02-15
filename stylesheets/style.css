@@ -81,6 +81,9 @@ header {
   	background: #fff;
   	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#fff',GradientType=0 );
 }
+#graphConCursor { /* since graph constract checkbox is diabled, it would make more sense to not have a pointer cursor */
+  cursor: default !important;
+}
 .squaredTwo label:after {
   	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   	filter: alpha(opacity=0);
