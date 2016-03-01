@@ -28,12 +28,13 @@ DataSummary.prototype.dataSummary = function() {
 	  }
       var median = 0;
       var arr = this.currCollection.collection[i].array;
-      arr.sort(function(a,b){return a-b});
-      if(arr.len%2 ==0){
-            median = (arr[(arr.length/2)-1] + arr[(arr.length/2)])/2;
+      arr.sort(function(a,b){return parseInt(a)-parseInt(b)});
+      if(arr.length%2 ==0){
+	    
+            median = (arr[parseInt(arr.length/2)-1] + arr[parseInt(arr.length/2)])/2;
       }
       else{
-            median = arr[arr.length/2];
+            median = arr[parseInt(arr.length/2)];
       }
       var info = document.createTextNode(grid.getData()[i+1][0] + ": Max: " + this.currCollection.collection[i].trend.max +
         " Min: " + this.currCollection.collection[i].trend.min +
@@ -56,12 +57,11 @@ DataSummary.prototype.dataSummary = function() {
   }
   medArr.sort(function(a,b){return a-b});
   if(medArr.len%2 ==0){
-            med = (medArr[(medArr.length/2)-1] + medArr[(medArr.length/2)])/2;
+            med = (medArr[parseInt(medArr.length/2)-1] + medArr[parseInt(medArr.length/2)])/2;
       }
       else{
-            med = medArr[medArr.length/2];
+            med = medArr[parseInt(medArr.length/2)];
       }
-  console.log(medArr);
   // Writes the max, min, and average of the total table data
   var finalSummary =document.createTextNode( "Total Table Summary: Max: " + globalmax +
     " Min: " + globalmin + " Average: " + this.calcCollectionAvg() + " Median: " + med);
