@@ -156,7 +156,6 @@ var linkSlickTable = function(chart, player, overlay, summary){
 				var oldVal = chart.datasets[row-1].points[col - 1].value;
 				grid.getData()[row][col] = oldVal;
 			}
-			console.log(chart);
 		}
 
 		// If there is a change to the table, the next redos are no longer valid
