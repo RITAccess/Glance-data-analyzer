@@ -301,7 +301,6 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scatter.length;
 									}
-									//console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){
@@ -332,7 +331,6 @@ var loadChart = function(data, type, collection){
 									else{
 										var len = oldData[index].scatter.length;
 									}
-									//console.log(len);
 									for(var i = 0; i < len; i ++){
 										if(oldData[index]){
 											if(oldData[index].points){

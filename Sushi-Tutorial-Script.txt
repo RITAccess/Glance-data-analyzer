@@ -1,0 +1,13 @@
+To get started, the first two buttons you will notice are the Load CSV button and the Create Table button. In Glance, you can either use a pre-existing data file, or you can create your own table right in the application. For this exercise, load the sushi1.csv file. 
+
+Tabbing past the 'New Table' button, you'll discover the jump buttons. These are useful buttons that let you jump to different parts of the program, such as the audio toolbar, the data table, and the graph. After these buttons you'll reach a dropdown for what kind of graph the data will be displayed in; the options are Line Graph, Bar Graph, and Scatter Plot.  
+
+Tabbing again past the option will land you on the sliders for the table. These buttons help you narrow down which parts of the data you would like to hear with the audio controls. Tabbing again will select the graph as a whole. 
+
+After the graph we reach the table. The table is completely editable - any row or column in it (besides the left corner) can be changed. You may access different cells of the table by using the up and down arrows to go up and down to the different data sets, and tab and shift tab to move left or right within the current data set. For data sets using numbers, you can also use the equation feature to quickly calculate numbers and add them in to the table. If you select a sell and use the equals sign, anything you put after that will be considered a mathematical formula. Entering an invalid statement will just change the cell back to the value it had before. To leave the table, hit escape and then alt-tab twice. 
+
+Beneath the table is the quick editor buttons. From here you can add and remove columns, undo and redo a change you made in the table, as well as reset all changes made. There's also a download and a print button if you want to save the changes. 
+
+Next is the audio controls: from here, you can change the row or data set you would like to hear, the speed (useful range is 1 - 15), the instrument, and you can play, pause, or stop the audio. 
+
+Beneath the audio controls is the Graph Data section, where you can see general information about the data in the table - the mean (average) and median, as well as the maximum and minimum values across each individual data set as well as the entire table. There is also a section for each data set or row in your table, and you can edit the color of the line in the graph as well as toggle whether the row will be displayed on the graph. 

@@ -27,7 +27,10 @@ DataSummary.prototype.dataSummary = function() {
 		globalmin = this.currCollection.collection[i].trend.min;
 	  }
       var median = 0;
-      var arr = this.currCollection.collection[i].array;
+      var arr =[]
+      for(var iter = 0; iter <this.currCollection.collection[i].array.length; iter++){
+        arr.push(parseInt(this.currCollection.collection[i].array[iter]));
+      }
       arr.sort(function(a,b){return parseInt(a)-parseInt(b)});
       if(arr.length%2 ==0){
 	    
@@ -52,19 +55,23 @@ DataSummary.prototype.dataSummary = function() {
   var lastEntry = document.createElement("li");
   var med = 0;
   var medArr = [];
-  for(var k = 0; k<collection.collection.length; k++){
-	medArr = medArr.concat(collection.collection[k].array);
+  for(var k = 0; k<this.currCollection.collection.length; k++){
+	   for(var l = 0; l<this.currCollection.collection[k].array.length; l++){
+        medArr.push(parseInt(this.currCollection.collection[k].array[l]));
+     }
   }
   medArr.sort(function(a,b){return a-b});
-  if(medArr.len%2 ==0){
-            med = (medArr[parseInt(medArr.length/2)-1] + medArr[parseInt(medArr.length/2)])/2;
+  if(medArr.length%2 ==0){
+            var high = medArr[parseInt(medArr.length/2)-1];
+            var low = medArr[parseInt(medArr.length/2)];
+            median = (high + low)/2;
       }
       else{
-            med = medArr[parseInt(medArr.length/2)];
-      }
+            median = medArr[parseInt(medArr.length/2)];
+  }   
   // Writes the max, min, and average of the total table data
   var finalSummary =document.createTextNode( "Total Table Summary: Max: " + globalmax +
-    " Min: " + globalmin + " Average: " + this.calcCollectionAvg() + " Median: " + med);
+    " Min: " + globalmin + " Average: " + this.calcCollectionAvg() + " Median: " + median);
     lastEntry.appendChild(finalSummary);
     this.summaryDiv.appendChild(lastEntry);
 }

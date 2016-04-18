@@ -269,6 +269,7 @@ Instrument.prototype.buildNotes= function(){
         newNotes[key] = key+range[0];
     }
   }
+  
   var toSort = [];
   for(var key in newNotes){
     toSort.push(parseInt(newNotes[key]));

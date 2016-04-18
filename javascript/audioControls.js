@@ -49,7 +49,6 @@ var playStopAudioButton = function () {
       player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode);
     else
       player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode,playing);
-    console.log(player.paused);
 }
 
 //Play audio if not already
