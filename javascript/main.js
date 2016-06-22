@@ -45,7 +45,11 @@ var type = null;
 var lineColors = [];
 var slickTable;
 var uncheckCalled = false;
-var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor')>0;
+/* changed this temporarily because MIDI Server is not working anymore
+	-Joshua Miller 7/22/16
+ */
+//var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor')>0;
+var isSafari = true;
 // initial data load
 // (this is called after fileOpen from files.js)
 var loadData = function (data) {
