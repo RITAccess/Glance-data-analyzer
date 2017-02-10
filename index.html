@@ -81,6 +81,12 @@
           <canvas id="myChart" title="Glance Graph"  width="800" height="400" style="display:none;"></canvas>
         </div>
       </div><!-- END id="dataGraph" -->
+        <div id='continuosBox1'>
+      <div id="summaryBox" tabindex="-1">
+        <h3 id="summary-header" style="display:none;">Graph Data</h3>
+        <ol id="colors" class="color-editor-input"></ol>
+      </div><!-- END id="summaryBox" -->
+        </div><!-- END id="continuosBox1" -->
       <div id='continuosBox'>
         <div id="dataPlot" tabindex="-1">
           <h3 id="plot-header" style="display:none;">Data Table</h3>
@@ -127,10 +133,6 @@
           <button id="stopButton" aria-hidden="true" onclick="stop()" title="Stop Audio" aria-label="Stop Audio"><i id="stopToggle" class="fa fa-stop fa-lg" ></i></button>
         </div><!-- END id="audionSpanButtons" -->
       </div><!-- END id="audioSpanSec" -->
-      <div id="summaryBox" tabindex="-1">
-      <h3 id="summary-header" style="display:none;">Graph Data</h3>
-        <ol id="colors" class="color-editor-input"></ol>
-      </div><!-- END id="summaryBox" -->
       <div id="bgColorChange" style="display:none;" class="no-print">
       <h3>Change Background Color</h3><!-- "cc" and "CC" both stands for "color change"-->
         <div id="ccContent">
