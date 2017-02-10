@@ -6,7 +6,7 @@ takes in CSV files and exports displays them with accessible notes and tags.
 View our demo video at: https://youtu.be/0SkomvXaqb0
 
 ## GitHub Pages
-The most recent build of the data-analyzer can be used at https://github.com/RITAccess/Glance-data-analyzer/tree/brashad_edits.
+The most recent build of the data-analyzer can be used at https://ritacces.github.io/Glance-data-analyzer/tree/brashad_edits.
 
 # libraries
 ## PapaParse - http://papaparse.com/
