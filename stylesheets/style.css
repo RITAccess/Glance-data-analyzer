@@ -177,7 +177,8 @@ header {
     margin-bottom: 8%;
     clear: both;
 }
-#continuosBox {
+
+#continuousBox {
     width: 100%;
     font-weight: bold;
     font-size: 20px;

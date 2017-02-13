@@ -25,3 +25,6 @@ Used for grabbing external javascript files in the project.
 
 ## timbre - http://mohayonao.github.io/timbre.js/
 Used to create waveforms and use midi instruments in the process of graph sonification.
+
+## jscolor - http://jscolor.com/
+Used to allow users to pick from an array of colors to suite their needs.
