@@ -41,14 +41,16 @@
     <span>
     <button id="helpButton" aria-label="Help" title="Help" onclick="Alert3.render()"><i class="fa fa-question fa-3x"></i></button>
     <span id="typeSelBody" class="no-print" style="display:none;">
-      Change graph type:
+       Change graph type:
       <select id="typeSel" class="no-print" title="Change Graph Type" onchange="typeOpSel()">
-        <option id="lineRadioButton" name="graphTypeSel" value="Line" onclick="typeOpSel()">Line Graph</label>
+        <option id="lineRadioButton" name="graphTypeSel" value="Line" onclick="typeOpSel()"><label>Line Graph </label>
         <option id="barRadioButton" name="graphTypeSel" value="Bar" onclick="typeOpSel()">Bar Graph</option>
         <option id="scatterRadioButton" name="graphTypeSel" value="Scatter" onclick="typeOpSel()">Scatter Plot</option>
       </select>
     </span><!-- END id="typeSelBody" -->
     <output id="list"></output>
+    </span>
+    </span>
   </header>
     <div id="start">
       <div id="startBody">
@@ -136,16 +138,22 @@
         <div id="ccContent">
             <form>
               <div class="ccFeature">
-                <label>Site Background:</label><input id="siteColorInput" type="text" onInput="changeSiteBg()" title="Change Site Background Color">
+                  <script src="libs/jscolor/jscolor.js"></script>
+                  <label>Site Background:</label><input class="jscolor" id="siteColorInput" type="text"
+                                                        onInput="changeSiteBg()" onchange="changeSiteBg()"
+                                                        title="Change Site Background Color">
                 <label>High Contrast:</label>
                   <div class="squaredTwo">
                     <input id="siteContrast" type="checkbox" checked="checked" aria-label="Enable/Disable Site Background Color Contrast" onclick="changeSiteBg()">
-                    <label for="siteContrast" title="Enable/Diable Site Background Color Contrast"></label>
+                      <label for="siteContrast" title="Enable/Disable Site Background Color Contrast"></label>
                   </div>
                   <input type="button" id="siteCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Site Background to Original" title="Reset Site Background to Original" onclick="resetSiteBg()" onkeyup="siteKeyUp()" value="">
               </div>
               <div class="ccFeature">
-                <label>Graph Background:</label><input id="graphColorInput" type="text" onInput="changeGraphBg()" title="Change Graph Background Color">
+                  <script src="libs/jscolor/jscolor.js"></script>
+                  <label>Graph Background:</label><input class="jscolor" id="graphColorInput" type="text"
+                                                         onInput="changeGraphBg()" onchange="changeGraphBg()"
+                                                         title="Change Graph Background Color">
                 <label>High Contrast:</label>
                   <div class="squaredTwo" tabindex="0">
                     <input id="graphContrast" type="checkbox" disabled="disabled" checked="checked" aria-label="Enable/Disable Graph Background Color Contrast - Checkbox Disabled" onclick="changeGraphBg()">
@@ -154,7 +162,10 @@
                   <input type="button" id="graphCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Graph Background to Original" title="Reset Graph Background to Original" onclick="resetGraphBg()" value="">
               </div>
               <div class="ccFeature">
-                <label>Text Color:</label><input id="textColorInput" type="text" title="Change Text Color" onInput="changeTextColor()">
+                  <script src="libs/jscolor/jscolor.js"></script>
+                  <label>Text Color:</label><input class="jscolor" id="textColorInput" type="text"
+                                                   title="Change Text Color" onInput="changeTextColor()"
+                                                   onchange="changeTextColor()">
                 <label>High Contrast:</label>
                   <div class="squaredTwo">
                     <input id="textContrast" type="checkbox" checked="checked" aria-label="Enable/Disable Text Color Contrast" onclick="changeTextColor()">
