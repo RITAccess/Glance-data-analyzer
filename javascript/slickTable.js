@@ -346,6 +346,7 @@ function undo() {
 	updateGrid();
 	chart.update();
 	summary.update();
+	summary1.update();
 	document.getElementById('tblContainer').style.width = "100%";
 }
 
@@ -406,6 +407,7 @@ function redo() {
 	updateGrid();
 	chart.update();
 	summary.update();
+    summary1.update();
 	document.getElementById('tblContainer').style.width = "100%";
 }
 

@@ -28,11 +28,15 @@ function loadFile(){
   }
   var input = ev.target;
   var colorlist = document.getElementById("colors");
+    var colorlist1 = document.getElementById("colors1");
   oldData = [];
   lineColors = [];
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
+    while(colorlist1.firstChild){
+        colorlist1.removeChild(colorlist1.firstChild);
+    }
   // use PapaParse for handing the csv file
     var results = Papa.parse(input.files[0], {
     	complete: function(results) {
@@ -124,6 +128,11 @@ var createFile = function(rows, columns) {
     colorlist.removeChild(colorlist.firstChild);
   }
 
+    var colorlist1 = document.getElementById("colors1");
+    while(colorlist1.firstChild){
+        colorlist1.removeChild(colorlist1.firstChild);
+    }
+
   // Used to create appropriately formated object to be passed in
   var emptyArray = [];
   var emptyObject = { };
@@ -196,6 +205,10 @@ var changeType= function(){
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
+     var colorlist1 = document.getElementById("colors1");
+     while(colorlist1.firstChild){
+         colorlist1.removeChild(colorlist1.firstChild);
+     }
 
   // Create new table object
   var currTable = new Object();
@@ -253,6 +266,10 @@ var addColumn = function() {
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
+    var colorlist1 = document.getElementById("colors1");
+    while(colorlist1.firstChild){
+        colorlist1.removeChild(colorlist1.firstChild);
+    }
 
   // Creates new table object
   var currTable = new Object();
@@ -303,6 +320,11 @@ var subtractRow = function() {
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
+
+    var colorlist1 = document.getElementById("colors1");
+    while(colorlist1.firstChild){
+        colorlist1.removeChild(colorlist1.firstChild);
+    }
 
   // Creates new table object
   var currTable = new Object();
