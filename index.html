@@ -12,6 +12,7 @@
     <script src="libs/timbrejs/soundfont.js"></script>
     <script src="libs/timbrejs/Instrument.js"></script>
     <script src="libs/timbrejs/WaveForm.js"></script>
+    <script src="libs/jscolor/jscolor.js"></script>
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="libs/SlickGrid/slick.grid.css" type="text/css"/>
     <link rel="stylesheet" href="libs/SlickGrid/css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>
@@ -167,17 +168,15 @@
         </div><!-- END id="audioSpanSec" -->
         <div id="summaryBox" tabindex="-1">
             <h3 id="summary-header" style="display:none;">Graph Data</h3>
-            <ol id="colors" class="color-editor-input"></ol>
+
+            <ol id="colors" class="color-editor-input" class="jscolor"></ol>
         </div><!-- END id="summaryBox" -->
         <div id="bgColorChange" style="display:none;" class="no-print">
             <h3>Change Background Color</h3><!-- "cc" and "CC" both stands for "color change"-->
             <div id="ccContent">
                 <form>
                     <div class="ccFeature">
-                        <script src="libs/jscolor/jscolor.js"></script>
-                        <label>Site Background:</label><input class="jscolor" id="siteColorInput" type="text"
-                                                              onInput="changeSiteBg()" onchange="changeSiteBg()"
-                                                              title="Change Site Background Color">
+
                         <label>High Contrast:</label>
                         <div class="squaredTwo">
                             <input id="siteContrast" type="checkbox" checked="checked"
@@ -189,7 +188,6 @@
                                onclick="resetSiteBg()" onkeyup="siteKeyUp()" value="">
                     </div>
                     <div class="ccFeature">
-                        <script src="libs/jscolor/jscolor.js"></script>
                         <label>Graph Background:</label><input class="jscolor" id="graphColorInput" type="text"
                                                                onInput="changeGraphBg()" onchange="changeGraphBg()"
                                                                title="Change Graph Background Color">
@@ -206,7 +204,6 @@
                                title="Reset Graph Background to Original" onclick="resetGraphBg()" value="">
                     </div>
                     <div class="ccFeature">
-                        <script src="libs/jscolor/jscolor.js"></script>
                         <label>Text Color:</label><input class="jscolor" id="textColorInput" type="text"
                                                          title="Change Text Color" onInput="changeTextColor()"
                                                          onchange="changeTextColor()">
@@ -223,7 +220,7 @@
                 </form>
             </div><!-- END id="ccContent" -->
         </div><!-- END id="bgColorChange" -->
-    </div><!-- END id="continuosBox" -->
+    </div><!-- END id="continuousBox" -->
 </div><!-- end div id="content" -->
 <!-- div for LOAD CSV pop-up list -->
 <div id="loadCsvOverlay"></div>

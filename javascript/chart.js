@@ -32,9 +32,12 @@ var loadChart = function(data, type, collection){
 	  myLineChart.animation = false;
 	}
 	document.getElementById("myChart").setAttribute("title","image of graph"); // by setting the attribute we can make the chart accessible
+    $(document).ready(function () {
+        jscolor.installByClassName("jscolor");
+    });
 	for(var i =0; i<data.datasets.length;i++){
 		//Setting input functions for each line in order to set new colors
-		chartdata.inputboxes[i].oninput = function(){
+        chartdata.inputboxes[i].onchange = function () {
 			var index = chartdata.inputboxes.indexOf(this);
 			var newcolor = this.value;
 				//Regex check for correctly formatted RGB color value
@@ -51,13 +54,13 @@ var loadChart = function(data, type, collection){
 					graphBg = convertRGBtoHex(graphBg.substring(0,graphBg.indexOf(")")+1));
 					if(isNaN(calcContrast(graphBg,newcolor))){
 						if(calcContrast(newcolor,"#F4F2E9")<=2){
-							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+                            continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyway?");
 						}
 						continuePrompt = calcContrast(newcolor,"#F4F2E9")<=1.25;
 					}
 					else{
 						if(calcContrast(graphBg,newcolor)<=2){
-							continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyways?");
+                            continuePrompt = confirm("Low color contrast may cause poor line visibility, continue anyway?");
 						}
 						continuePrompt = calcContrast(graphBg,newcolor)<=1.25;
 					}
@@ -504,6 +507,7 @@ function dataset(data, collection) {
 		// log color into color editor
     var newColor = lineColors[i-1];
 		var entry = document.createElement('li');
+        var script = document.createElement('script');
 		var textInput = document.createElement('input');
 		var toggleBox = document.createElement('input');
 		var inputDiv = document.createElement('div');
@@ -530,7 +534,9 @@ function dataset(data, collection) {
 			hidden.push(true);
 		}
 		inputBoxArray.push(textInput);
+        script.setAttribute("src", "libs/jscolor/jscolor.js");
 		toggleBox.setAttribute("id", "lineToggleBox" + i);
+        textInput.setAttribute("class", "jscolor");
 		textInput.setAttribute("type", "text");
 		textInput.setAttribute("title", "Enter Color");
 		textInput.setAttribute("aria-label", "Enter Color");
