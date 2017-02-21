@@ -524,7 +524,7 @@ function dataset(data, collection) {
 			ctx.fillStyle = newColor;
 			ctx.fillRect(0,0,9999,9999);
 			keyLabel.style.border = "2px solid " + findContrastor(convertRGBtoHex(newColor));
-			//keyLabel.setAttribute("style", "background:" + newColor); // this makes the blocks huge
+			//keyLabel.setAttribute("style", "background:" + newColor);
 			keyLabel.setAttribute("class", "colorblock");
 		}
 		if(hidden.length<= i-1){
