@@ -21,127 +21,106 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
-<header>
+  <header>
     <h1 id="title"><a href="index.html" title="Glance Home" aria-label="Glance Home">Glance</a></h1>
     <div class="inputBtnSection no-print">
-        <label class="fileUpload">
-            <input id="files" tab-index="0" aria-label="Load CSV" type="file" accept=".csv" class="upload"
-                   onfocus="focusElement('uploadBtn')" onblur="blurElement('uploadBtn')"/>
-            <span class="uploadBtn" title="Load CSV" aria-hidden="true" onmouseover="focusElement('uploadBtn')"
-                  onmouseleave="blurElement('uploadBtn')">Load CSV</span>
-        </label>
+      <label class="fileUpload">
+          <input id="files" tab-index="0" aria-label="Load CSV" type="file" accept=".csv" class="upload" onfocus="focusElement('uploadBtn')" onblur = "blurElement('uploadBtn')"/>
+          <span class="uploadBtn" title="Load CSV" aria-hidden="true" onmouseover="focusElement('uploadBtn')" onmouseleave="blurElement('uploadBtn')">Load CSV</span>
+      </label>
     </div>
     <div class="newBtnSection no-print">
-        <label class="createNew">
-            <input id="newTable" tab-index="0" aria-label="Create New Table" type="button" class="emptyTable"
-                   onfocus="focusElement('createBtn')" onblur="blurElement('createBtn')"/>
-            <span class="createBtn" title="Create New Table" aria-hidden="true" onmouseover="focusElement('createBtn')"
-                  onmouseleave="blurElement('createBtn')">Create New Table</span>
-        </label>
+      <label class="createNew">
+        <input id="newTable" tab-index="0" aria-label="Create New Table" type="button" class="emptyTable" onfocus="focusElement('createBtn')" onblur="blurElement('createBtn')"/>
+        <span class="createBtn" title="Create New Table" aria-hidden="true" onmouseover="focusElement('createBtn')" onmouseleave="blurElement('createBtn')">Create New Table</span>
+      </label>
     </div>
     <span id="jumpSpan">
       <a class="pageJump" href="#dataPlot" aria-label="Jump to Table">Jump to Table</a>
       <a class="pageJump" href="#audioSpanSec" aria-label="Jump to Audio">Jump to Audio</a>
       <a class="pageJump" href="#summaryBox" aria-label="Jump to Graph Data">Jump to Data</a>
     <span>
-    <button id="helpButton" aria-label="Help" title="Help" onclick="Alert3.render()"><i
-            class="fa fa-question fa-3x"></i></button>
+    <button id="helpButton" aria-label="Help" title="Help" onclick="Alert3.render()"><i class="fa fa-question fa-3x"></i></button>
     <span id="typeSelBody" class="no-print" style="display:none;">
-       Change graph type:
+      Change graph type:
       <select id="typeSel" class="no-print" title="Change Graph Type" onchange="typeOpSel()">
-        <option id="lineRadioButton" name="graphTypeSel" value="Line" onclick="typeOpSel()"><label>Line Graph </label>
+        <option id="lineRadioButton" name="graphTypeSel" value="Line" onclick="typeOpSel()">Line Graph</label>
         <option id="barRadioButton" name="graphTypeSel" value="Bar" onclick="typeOpSel()">Bar Graph</option>
         <option id="scatterRadioButton" name="graphTypeSel" value="Scatter" onclick="typeOpSel()">Scatter Plot</option>
       </select>
     </span><!-- END id="typeSelBody" -->
     <output id="list"></output>
-    </span>
-    </span>
-</header>
-<div id="start">
-    <div id="startBody">
+  </header>
+    <div id="start">
+      <div id="startBody">
         <h1>Welcome to Glance</h1>
         <p>
-            This web application was designed to help analyze data through graphs, calculated values, and sound.
-            Here's a quick look at how to use the application:
+          This web application was designed to help analyze data through graphs, calculated values, and sound.
+          Here's a quick look at how to use the application:
         </p>
         <ul>
-            <li>Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li>
-            <li>Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The
-                overlay on the graph can highlight certain parts of the data to be turned into sound.
-            </li>
-            <li>Data Table: There are two options with the data table; load a pre-made CSV (Comma Separated Value) file,
-                or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can
-                be saved and downloaded.
-            </li>
-            <li>Graph Data: In this section, you can customize data set colors, as well as toggle their visibility.
-                Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as
-                the overall total.
-            </li>
+          <li>Audio Controls: The audio controls allow you to choose which set of data to play and at what speed.</li>
+          <li>Graph: You can choose from three separate options when making a graph: Line, Bar, and Scatter Plot. The overlay on the graph can highlight certain parts of the data to be turned into sound.</li>
+          <li>Data Table: There are two options with the data table; load a pre-made CSV (Comma Separated Value) file, or choose to create an empty one. Rows and columns can be added or subtracted from the table, which can be saved and downloaded.</li>
+          <li>Graph Data: In this section, you can customize data set colors, as well as toggle their visibility. Graph data displays minimums, maximums, and averages for each individual row of the data set, as well as the overall total.</li>
         </ul>
         <h3 id="startInst">To get started, select Load CSV or Create New Table at the top!</h3>
-    </div>
-    <div id="startFooter">
-        <button id="toTopButton" title="Return to Top" onclick="location.href='index.html'">Return to Top</button>
-    </div>
-</div> <!-- End of start div -->
-<div id="content" style="position: absolute; top: -9999px; left: -9999px;">
-    <!-- css style is for hiding the content section when page first load -->
-    <div id="dataGraph">
+      </div>
+      <div id="startFooter">
+        <button id="toTopButton" title="Return to Top" onclick="location.href='index.html'" >Return to Top</button>
+      </div>
+    </div> <!-- End of start div -->
+    <div id="content" style="position: absolute; top: -9999px; left: -9999px;"><!-- css style is for hiding the content section when page first load -->
+      <div id="dataGraph">
         <h3 id="graphHeader" style="display:none;">Glance Graph</h3>
         <div id="slider-range" data-start="0" data-end="-1" data-size="0" title="Chart Slider" class="no-print"></div>
         <svg id="overlay" width="800" height="400" style='display:none;' class="no-print">
-            <rect id="background" title="Glance Graph" x="0" y="0" width="800" height="400"/>
-            <rect id="selection" title="Slider" x="0" y="0" width="800" height="400"/>
+          <rect id="background" title="Glance Graph" x="0" y="0" width="800" height="400" />
+          <rect id="selection" title="Slider" x="0" y="0" width="800" height="400" />
         </svg>
         <div id="graphCC">
-            <canvas id="myChart" title="Glance Graph" width="800" height="400" style="display:none;"></canvas>
+          <canvas id="myChart" title="Glance Graph"  width="800" height="400" style="display:none;"></canvas>
         </div>
+      </div><!-- END id="dataGraph" -->
+        <div id='continuosBox1'>
+      <div id="summaryBox" tabindex="-1">
+        <h3 id="summary-header" style="display:none;">Graph Data</h3>
+         <ol id="colors" class="color-editor-input"></ol>
+      </div><!-- END id="summaryBox" -->
+        </div><!-- END id="continuosBox1" -->
+      <div id='continuosBox'>
     </div><!-- END id="dataGraph" -->
     <div id='continuousBox'>
         <div id="dataPlot" tabindex="-1">
-            <h3 id="plot-header" style="display:none;">Data Table</h3>
-            <div id="tableCount"></div><!-- END id="tableCount" -->
-            <div id="tblContainer" style="display:none;" title="Data Table">
-                <div id="slickTable" style="width:100%;"></div>
-            </div> <!-- end id="tblContainer" -->
-            <div id="remInstruction" class="no-print"></div>
-            <div id="tableControls" style="display: none" class="no-print">
-                <div id="rowLabel">
-                    <label>
-                        <button id="subtractRow" title="Remove Row" aria-label="Remove Row" onclick="subtractRow()"><i
-                                class="fa fa-minus"></i></button>
-                    </label>
-                    <p style="display: inline">Row</p>
-                    <label>
-                        <button id="addNewRow" title="Add Row" aria-label="Add Row" onclick="addRow()"><i
-                                class="fa fa-plus"></i></button>
-                    </label>
-                </div>
-                <div id="columnLabel">
-                    <label>
-                        <button id="subtractColumn" title="Remove Column" aria-label="Remove Column"
-                                onclick="subtractColumn()"><i class="fa fa-minus"></i></button>
-                    </label>
-                    <p style="display: inline">Column</p>
-                    <label>
-                        <button id="addNewCol" title="Add Column" aria-label="Add Column" onclick="addColumn()"><i
-                                class="fa fa-plus"></i></button>
-                    </label>
-                </div>
-                <button id="undoButton" title="Undo" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i>
-                </button>
-                <button id="redoButton" title="Redo" aria-label="Redo" onclick="redo()"><i
-                        class="fa fa-repeat fa-lg"></i></button>
-                <button id="resetButton" title="Reset Table" aria-label="Reset Table" onclick="tableReset()"
-                        title="Reset Table"><i class="fa fa-refresh fa-lg"></i></button>
-                <button id="downloadCSV" title="Download CSV" aria-label="Download CSV" onclick="download()"><i
-                        class="fa fa-download fa-lg"></i></button>
-                <button id="printButton" title="Print" aria-label="Print" onclick="printPage()"><i
-                        class="fa fa-print fa-lg"></i></button>
-            </div><!-- END id="tableControls" -->
-        </div><!-- END id="dataPlot" -->
-        <?php
+          <h3 id="plot-header" style="display:none;">Data Table</h3>
+          <div id="tableCount"></div><!-- END id="tableCount" -->
+          <div id="tblContainer" style="display:none;" title="Data Table">
+            <div id="slickTable" style="width:100%;"></div>
+          </div> <!-- end id="tblContainer" -->
+          <div id="remInstruction" class="no-print"></div>
+        <div id="tableControls" style="display: none" class="no-print">
+          <div id="rowLabel">
+            <label><button id="subtractRow" title="Remove Row" aria-label="Remove Row" onclick="subtractRow()"><i class="fa fa-minus"></i></button></label>
+            <p style="display: inline">Row</p>
+            <label><button id="addNewRow" title="Add Row" aria-label="Add Row" onclick="addRow()"><i class="fa fa-plus"></i></button></label>
+          </div>
+          <div id="columnLabel">
+            <label><button id="subtractColumn" title="Remove Column" aria-label="Remove Column" onclick="subtractColumn()"><i class="fa fa-minus"></i></button></label>
+            <p style="display: inline">Column</p>
+            <label><button id="addNewCol" title="Add Column" aria-label="Add Column" onclick="addColumn()"><i class="fa fa-plus"></i></button></label>
+          </div>
+          <button id="undoButton" title="Undo" aria-label="Undo" onclick="undo()"><i class="fa fa-undo fa-lg"></i></button>
+          <button id="redoButton" title="Redo" aria-label="Redo" onclick="redo()"><i class="fa fa-repeat fa-lg"></i></button>
+          <button id="resetButton" title="Reset Table" aria-label="Reset Table" onclick="tableReset()" title="Reset Table"><i class="fa fa-refresh fa-lg"></i></button>
+          <button id="downloadCSV" title="Download CSV" aria-label="Download CSV" onclick="download()"><i class="fa fa-download fa-lg"></i></button>
+          <button id="printButton" title="Print" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
+        </div><!-- END id="tableControls" -->
+      </div><!-- END id="dataPlot" -->
+          <div id="summaryBox1" tabindex="-1">
+              <h3 id="summary-header1" style="display:none;">Graph Rows</h3>
+              <ol id="colors1" class="color-editor-input"></ol>
+          </div><!-- END id="summaryBox1" -->
+      <?php
           include 'php/ajax.php';
       ?>
         <div id="audioSpanSec" class="no-print" tabindex="-1">
