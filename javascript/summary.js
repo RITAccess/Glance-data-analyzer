@@ -105,7 +105,7 @@ DataSummary.prototype.update = function() {
         line = line.nextSibling;
       }
       line.removeChild(line.firstChild);
-      //line.removeChild(line.firstChild);
+      line.removeChild(line.firstChild);
     }
     this.dataSummary();
 }
