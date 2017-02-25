@@ -43,7 +43,7 @@
     <span id="typeSelBody" class="no-print" style="display:none;">
       Change graph type:
       <select id="typeSel" class="no-print" title="Change Graph Type" onchange="typeOpSel()">
-        <option id="lineRadioButton" name="graphTypeSel" value="Line" onclick="typeOpSel()">Line Graph</label>
+        <option id="lineRadioButton" name="graphTypeSel" value="Line" onclick="typeOpSel()">Line Graph</option>
         <option id="barRadioButton" name="graphTypeSel" value="Bar" onclick="typeOpSel()">Bar Graph</option>
         <option id="scatterRadioButton" name="graphTypeSel" value="Scatter" onclick="typeOpSel()">Scatter Plot</option>
       </select>
@@ -81,7 +81,7 @@
           <canvas id="myChart" title="Glance Graph"  width="800" height="400" style="display:none;"></canvas>
         </div>
       </div><!-- END id="dataGraph" -->
-      <div id='continuosBox'>
+        <div id='continuousBox'>
         <div id="dataPlot" tabindex="-1">
           <h3 id="plot-header" style="display:none;">Data Table</h3>
           <div id="tableCount"></div><!-- END id="tableCount" -->

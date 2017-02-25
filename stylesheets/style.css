@@ -178,6 +178,15 @@ header {
     clear: both;
 }
 #continuosBox {
+     width: 100%;
+     font-weight: bold;
+     font-size: 20px;
+     text-align: center;
+     border-radius: 5px;
+     border: 3px solid #000;
+     margin-top: 5%;
+}
+#continuosBox1 {
     width: 100%;
     font-weight: bold;
     font-size: 20px;
@@ -383,6 +392,10 @@ svg * {
     text-align: center;
     margin-bottom: 0;
 }
+#summary-header1 { /* center align is for printer.js */
+    text-align: center;
+    margin-bottom: 0;
+}
 #tblSummary {
     font-weight: normal;
     text-align: left;
@@ -451,6 +464,11 @@ svg * {
     border-top: 3px solid #000;
     padding-bottom: 6%;
 }
+#summaryBox1 {
+    width: 100%;
+    border-top: 3px solid #000;
+    padding-bottom: 6%;
+}
 #colors {
     max-height: 300px;
     text-align: left;
@@ -464,6 +482,22 @@ svg * {
 #colors p {
    border-radius: 5px;
    padding: 1%;
+}
+
+
+#colors1 {
+    max-height: 300px;
+    text-align: left;
+    list-style: none;
+    overflow: auto;
+    margin: 0;
+}
+#colors1 > li {
+    margin-top: 4%;
+}
+#colors1 p {
+    border-radius: 5px;
+    padding: 1%;
 }
 .color-editor-input input { /* background color for data color change text field */
     background: #E5E5E5;

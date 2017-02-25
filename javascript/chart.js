@@ -32,9 +32,12 @@ var loadChart = function(data, type, collection){
 	  myLineChart.animation = false;
 	}
 	document.getElementById("myChart").setAttribute("title","image of graph"); // by setting the attribute we can make the chart accessible
+    $(document).ready(function () {
+        jscolor.installByClassName("jscolor");
+    });
 	for(var i =0; i<data.datasets.length;i++){
 		//Setting input functions for each line in order to set new colors
-		chartdata.inputboxes[i].oninput = function(){
+        chartdata.inputboxes[i].onchange = function () {
 			var index = chartdata.inputboxes.indexOf(this);
 			var newcolor = this.value;
 				//Regex check for correctly formatted RGB color value
@@ -504,6 +507,8 @@ function dataset(data, collection) {
 		// log color into color editor
     var newColor = lineColors[i-1];
 		var entry = document.createElement('li');
+		var entry1 = document.createElement('li');
+        var script = document.createElement('script');
 		var textInput = document.createElement('input');
 		var toggleBox = document.createElement('input');
 		var inputDiv = document.createElement('div');
@@ -518,7 +523,7 @@ function dataset(data, collection) {
 		}
     else if(type === "bar"){
 			var keyLabel = document.createElement('canvas');
-			keyLabel.setAttribute("style","padding:0px; height:24px; width:65px;")
+			keyLabel.setAttribute("style","padding:0px; height:24px; width:65px;");
 			var ctx = keyLabel.getContext("2d");
 			ctx.fillStyle = newColor;
 			ctx.fillRect(0,0,9999,9999);
@@ -528,9 +533,11 @@ function dataset(data, collection) {
 		}
 		if(hidden.length<= i-1){
 			hidden.push(true);
-		}
+		} // this has to do with the check boxes for Graph rows
 		inputBoxArray.push(textInput);
+        script.setAttribute("src", "libs/jscolor/jscolor.js");
 		toggleBox.setAttribute("id", "lineToggleBox" + i);
+        textInput.setAttribute("class", "jscolor");
 		textInput.setAttribute("type", "text");
 		textInput.setAttribute("title", "Enter Color");
 		textInput.setAttribute("aria-label", "Enter Color");
@@ -538,7 +545,7 @@ function dataset(data, collection) {
 		inputDiv.style.marginTop = "3%";
 		inputLabel.setAttribute("for","lineToggleBox" + i);
 		toggleBox.setAttribute("type", "checkbox");
-		textInput.setAttribute("style","width:120px; font-size:20px;margin:3% 2% 0% 2%;");
+		textInput.setAttribute("style","width:120px; font-size:20px;margin:3% 2% 0% 5%;");
 		if(hidden[i-1]===true)
 			toggleBox.setAttribute("checked", "checked");
 		toggleBox.setAttribute("title", "Display Data Set " + i);
@@ -554,11 +561,19 @@ function dataset(data, collection) {
 		else{
 			keyValue.style.borderColor = findContrastor(conColor);
 		}
+		// Edit moved check boxes to new location
 		keyValue.appendChild(keyLabel);
-		entry.appendChild(keyValue);
-		entry.appendChild(textInput);
-		entry.appendChild(inputDiv);
-		document.getElementById('colors').appendChild(entry);
+		//entry.appendChild(keyValue);
+		//entry.appendChild(inputDiv);
+        entry1.appendChild(inputDiv); // this is where the checked boxes are linked
+        entry1.appendChild(textInput);// this will input txt first
+		entry1.appendChild(keyValue); // this will place the color boxs for lines in table
+
+		document.getElementById('colors').appendChild(entry);// this doesnt pass anything that i can see but
+															// but if removed it renders the page blank more
+															// on this later
+        document.getElementById('colors1').appendChild(entry1);// this links data to graph rows table
+
 		red += colorIncrease + 15;
 		green += colorIncrease;
 		blue += colorIncrease - 15;

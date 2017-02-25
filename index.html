@@ -12,6 +12,7 @@
   <script src="libs/timbrejs/soundfont.js"></script>
   <script src="libs/timbrejs/Instrument.js"></script>
   <script src="libs/timbrejs/WaveForm.js"></script>
+  <script src="libs/jscolor/jscolor.js"></script>
   <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="libs/SlickGrid/slick.grid.css" type="text/css"/>
   <link rel="stylesheet" href="libs/SlickGrid/css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>
@@ -81,6 +82,12 @@
           <canvas id="myChart" title="Glance Graph"  width="800" height="400" style="display:none;"></canvas>
         </div>
       </div><!-- END id="dataGraph" -->
+        <div id='continuosBox1'>
+      <div id="summaryBox" tabindex="-1">
+        <h3 id="summary-header" style="display:none;">Graph Data</h3>
+         <ol id="colors" class="color-editor-input"></ol>
+      </div><!-- END id="summaryBox" -->
+        </div><!-- END id="continuosBox1" -->
       <div id='continuosBox'>
         <div id="dataPlot" tabindex="-1">
           <h3 id="plot-header" style="display:none;">Data Table</h3>
@@ -107,6 +114,10 @@
           <button id="printButton" title="Print" aria-label="Print" onclick="printPage()"><i class="fa fa-print fa-lg"></i></button>
         </div><!-- END id="tableControls" -->
       </div><!-- END id="dataPlot" -->
+          <div id="summaryBox1" tabindex="-1">
+              <h3 id="summary-header1" style="display:none;">Graph Rows</h3>
+              <ol id="colors1" class="color-editor-input"></ol>
+          </div><!-- END id="summaryBox1" -->
       <?php
           include 'php/ajax.php';
       ?>
@@ -127,16 +138,12 @@
           <button id="stopButton" aria-hidden="true" onclick="stop()" title="Stop Audio" aria-label="Stop Audio"><i id="stopToggle" class="fa fa-stop fa-lg" ></i></button>
         </div><!-- END id="audionSpanButtons" -->
       </div><!-- END id="audioSpanSec" -->
-      <div id="summaryBox" tabindex="-1">
-      <h3 id="summary-header" style="display:none;">Graph Data</h3>
-        <ol id="colors" class="color-editor-input"></ol>
-      </div><!-- END id="summaryBox" -->
       <div id="bgColorChange" style="display:none;" class="no-print">
       <h3>Change Background Color</h3><!-- "cc" and "CC" both stands for "color change"-->
         <div id="ccContent">
             <form>
               <div class="ccFeature">
-                <label>Site Background:</label><input id="siteColorInput" type="text" onInput="changeSiteBg()" title="Change Site Background Color">
+                <label>Site Background:</label><input class="jscolor" id="siteColorInput" type="text" onInput="changeSiteBg()" onchange="changeSiteBg()" title="Change Site Background Color">
                 <label>High Contrast:</label>
                   <div class="squaredTwo">
                     <input id="siteContrast" type="checkbox" checked="checked" aria-label="Enable/Disable Site Background Color Contrast" onclick="changeSiteBg()">
@@ -145,7 +152,7 @@
                   <input type="button" id="siteCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Site Background to Original" title="Reset Site Background to Original" onclick="resetSiteBg()" onkeyup="siteKeyUp()" value="">
               </div>
               <div class="ccFeature">
-                <label>Graph Background:</label><input id="graphColorInput" type="text" onInput="changeGraphBg()" title="Change Graph Background Color">
+                <label>Graph Background:</label><input class="jscolor" id="graphColorInput" type="text" onInput="changeGraphBg()" onchange="changeGraphBg()" title="Change Graph Background Color">
                 <label>High Contrast:</label>
                   <div class="squaredTwo" tabindex="0">
                     <input id="graphContrast" type="checkbox" disabled="disabled" checked="checked" aria-label="Enable/Disable Graph Background Color Contrast - Checkbox Disabled" onclick="changeGraphBg()">
@@ -154,7 +161,7 @@
                   <input type="button" id="graphCCReset" tabindex="0" role="button" class="fa fa-refresh" aria-label="Reset Graph Background to Original" title="Reset Graph Background to Original" onclick="resetGraphBg()" value="">
               </div>
               <div class="ccFeature">
-                <label>Text Color:</label><input id="textColorInput" type="text" title="Change Text Color" onInput="changeTextColor()">
+                <label>Text Color:</label><input class="jscolor" id="textColorInput" type="text" title="Change Text Color" onInput="changeTextColor()" onchange="changeTextColor()">
                 <label>High Contrast:</label>
                   <div class="squaredTwo">
                     <input id="textContrast" type="checkbox" checked="checked" aria-label="Enable/Disable Text Color Contrast" onclick="changeTextColor()">

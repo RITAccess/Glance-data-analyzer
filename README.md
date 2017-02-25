@@ -1,3 +1,4 @@
+# Brashads Edits
 # Glance (data-analyzer)
 Accessible data analyzer tool that can be used in a browser
 takes in CSV files and exports displays them with accessible notes and tags.
@@ -5,8 +6,7 @@ takes in CSV files and exports displays them with accessible notes and tags.
 View our demo video at: https://youtu.be/0SkomvXaqb0
 
 ## GitHub Pages
-The most recent build of the data-analyzer can be used at http://ritaccess.github.io/Glance-data-analyzer.
-
+The most recent build of the data-analyzer can be used at https://rawgit.com/RITAccess/Glance-data-analyzer/brashad_edits/index.html.
 # libraries
 ## PapaParse - http://papaparse.com/
 Parses out the data from csv files
@@ -25,3 +25,6 @@ Used for grabbing external javascript files in the project.
 
 ## timbre - http://mohayonao.github.io/timbre.js/
 Used to create waveforms and use midi instruments in the process of graph sonification.
+
+## jscolor - http://jscolor.com/
+Used to allow users to pick from an array of colors to suite their needs.
