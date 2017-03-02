@@ -4049,7 +4049,15 @@
 			ctx.fill();
 			ctx.stroke();
 		},
-		
+
+        getMaxValue: function () {
+            return maxvalue;
+
+        },
+
+        getMinValue: function () {
+            return minvalue;
+        },
 		// best fit (simple linear right now)
 		calcBestFit : function() {
 			var xValues = [];
@@ -4142,5 +4150,8 @@
 			}
 			return values;
 		}
+
 	});
+
+
 }).call(this);

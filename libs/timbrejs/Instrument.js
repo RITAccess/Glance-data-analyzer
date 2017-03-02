@@ -266,7 +266,7 @@ Instrument.prototype.buildNotes= function(){
   for(var i = 0; i < this.infoCollection.collection.length; i++){
     for(var j = 0; j < this.infoCollection.collection[i].array.length; j++){
         var key =(parseInt(this.infoCollection.collection[i].array[j]));
-        newNotes[key] = key+range[0];
+        newNotes[key] = key + (range[0]);
     }
   }
   

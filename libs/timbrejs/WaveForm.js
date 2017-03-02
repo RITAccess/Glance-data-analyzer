@@ -110,6 +110,18 @@ WaveForm.prototype.changePitch = function(pitch){
   startIndex: index of that line to start on
   endIndex: index of that line to end on
 */
+/* Changes the values to fall between a range of two numbers increasing in weight as the number increases.
+
+ */
+function normalize(enteredValue, minEntry, maxEntry, normalizedMin, normalizedMax) {
+
+    var mx = (Math.log((enteredValue - minEntry)) / (Math.log(maxEntry - minEntry)));
+    var preshiftNormalized = mx * (normalizedMax - normalizedMin);
+    var shiftedNormalized = preshiftNormalized + normalizedMin;
+
+    return shiftedNormalized;
+
+}
 WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 	this.playing = true;
 	var j = line;
@@ -128,7 +140,7 @@ WaveForm.prototype.playSeries = function(line,startIndex,endIndex){
 			self.stop();
 			player = new WaveForm(self.type);
 		}
-		self.changePitch(30 + parseInt(self.infoCollection.collection[j].array[i]));
+        self.changePitch(Math.abs(normalize(parseInt(self.infoCollection.collection[j].array[i]), 1, 100000, 200, 4000)));
 		if(!this.started){
 			self.start();
 			this.started = true;
