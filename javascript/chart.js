@@ -570,7 +570,7 @@ function dataset(data, collection) {
 		entry1.appendChild(keyValue); // this will place the color boxs for lines in table
 
 		document.getElementById('colors').appendChild(entry);// this doesnt pass anything that i can see but
-															// but if removed it renders the page blank more
+									           				// but if removed it renders the page blank more
 															// on this later
         document.getElementById('colors1').appendChild(entry1);// this links data to graph rows table
 
