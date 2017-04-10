@@ -27,9 +27,7 @@ function loadFile(){
     }
   }
   var input = ev.target;
-  var colorlist = document.getElementById("colors1");
-  //var colorlist1 = document.getElementById("colors1");
-    var colorlist1 = colorlist;
+  var colorlist = document.getElementById("colors1");// this call will feed in to the updates for graph row.
   oldData = [];
   lineColors = [];
   while(colorlist.firstChild){
