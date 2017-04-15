@@ -263,6 +263,24 @@ svg * {
     background-color: #000;
     color: #FFF;
 }
+.uploadBtn, .instBtn {
+    cursor: pointer !important;
+    font-size: 20px;
+    font-weight: bold;
+    background: #FFF;
+    color: #000;
+    display:inline-block;
+    vertical-align:top;
+    border: 3px solid #FFF;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 5px 10px #000;
+    text-shadow: none;
+}
+.uploadBtn:hover, .instBtn:hover {
+    background-color: #000;
+    color: #FFF;
+}
 .fileUpload input.upload, .createNew input.emptyTable {
     position: absolute;
     top: 0;
@@ -346,6 +364,17 @@ svg * {
     border: 2px solid #FFF;
     margin-left: 2%;
     border-radius: 100%;
+    box-shadow: 0px 5px 10px #444;
+}
+#instBtn {
+    cursor: pointer !important;
+    height: 50px;
+    width: 100px;
+    background: #FFF;
+    color: #000;
+    border: 2px solid #FFF;
+    margin-left: .5em;
+    border-radius: 10px;
     box-shadow: 0px 5px 10px #444;
 }
 #playButton, #pauseButton, #stopButton {
