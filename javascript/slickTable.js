@@ -493,6 +493,7 @@ function tableReset() {
 			dataCount = 0;
 			totalData.splice(dataCount, totalData.length - dataCount - 1);
 		}
+
 	}
 	else {
 		alert("You cannot reset!");

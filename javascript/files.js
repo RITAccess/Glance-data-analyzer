@@ -209,6 +209,7 @@ var changeType = function(){ // will change type of graph
   var currTable = new Object();
   currTable.data = [];
   currTable.errors = [];
+
   var resData = grid.getData();
 
   for(var i = 0; i< resData.length; i++){
