@@ -188,7 +188,8 @@ WaveForm.prototype.playRegressionLine = function(){
 	self.start();
 	this.started= true;
 	}
-    var key =  parseInt(myNotes[i][1])+30;
+	// Clays New Algorithm.
+	var key =  parseInt(((myNotes[i][1])/(100000)) +30);
     console.log(key)
     self.changePitch(key);
     i++;

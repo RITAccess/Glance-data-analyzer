@@ -366,6 +366,21 @@ svg * {
     border-radius: 100%;
     box-shadow: 0px 5px 10px #444;
 }
+a.button {
+    cursor: pointer !important;
+    font-size: 20px;
+    font-weight: bold;
+    background: #FFF;
+    color: #000;
+    display:inline-block;
+    vertical-align:top;
+    border: 3px solid #FFF;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 5px 10px #000;
+    text-shadow: none;
+}
+
 #instBtn {
     cursor: pointer !important;
     height: 50px;
