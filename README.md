@@ -6,7 +6,8 @@ takes in CSV files and exports displays them with accessible notes and tags.
 View our demo video at: https://youtu.be/0SkomvXaqb0
 
 ## GitHub Pages
-The most recent build of the data-analyzer can be used at https://rawgit.com/RITAccess/Glance-data-analyzer/brashad_edits/index.html
+The most recent build of the data-analyzer can be used at https://rawgit.com/RITAccess/Glance-data-analyzer/brashad_edits/index.html 
+Please note that this link does not always port the HTML correctly but core functionalilty should be stable. 
 # libraries
 ## PapaParse - http://papaparse.com/
 Parses out the data from csv files
