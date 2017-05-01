@@ -63,6 +63,10 @@ function createTableAlert() {
         document.getElementById('graphSelector').focus();
     }
     this.ok = function () {
+        var colorlist = document.getElementById("colors1");
+        while(colorlist.firstChild){
+            colorlist.removeChild(colorlist.firstChild);
+        }
         var e = document.getElementById('createTableBody').firstChild.nextSibling;
         type = e.options[e.selectedIndex].value.toLowerCase();
         if(document.getElementById('rows').value * document.getElementById('columns').value >= 1000 ||document.getElementById('columns').value >= 1000 ||document.getElementById('rows').value >= 1000){
@@ -81,6 +85,7 @@ function createTableAlert() {
         document.getElementById('pauseButton').setAttribute("aria-hidden", "false");
         document.getElementById('stopButton').setAttribute("aria-hidden", "false");
         document.getElementsByClassName('createBtn')[0].focus();
+
     }
     this.reset = function () {
         document.getElementById("rows").value=0;
