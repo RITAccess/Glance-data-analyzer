@@ -283,7 +283,7 @@ a.button {
     background-color: #000;
     color: #FFF;
 }
-.uploadBtn, .instBtn {
+.uploadBtn, .instButton {
     cursor: pointer !important;
     font-size: 20px;
     font-weight: bold;
@@ -297,7 +297,7 @@ a.button {
     box-shadow: 0px 5px 10px #000;
     text-shadow: none;
 }
-.uploadBtn:hover, .instBtn:hover {
+.uploadBtn:hover, .instButton:hover {
     background-color: #000;
     color: #FFF;
 }
@@ -388,7 +388,7 @@ a.button {
 }
 
 
-#instBtn {
+#instButton {
     cursor: pointer !important;
     height: 50px;
     width: 100px;
@@ -410,7 +410,7 @@ a.button {
     border-radius: 5px;
     box-shadow: 0px 5px 10px #444;
 }
-#helpButton:hover, #helpButton:focus, #playButton:hover, #playButton:focus, #pauseButton:hover, #pauseButton:focus, #stopButton:hover, #stopButton:focus {
+#helpButton:hover, #helpButton:focus, #playButton:hover, #playButton:focus, #pauseButton:hover, #pauseButton:focus, #stopButton:hover, #stopButton:focus,#instButton:hover, #instButton:focus {
     background-color: #000;
     color: #FFF;
 }
@@ -635,7 +635,7 @@ input[type="text"] {
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
 /* style for pop-up chart list STARTS */
- #loadCsvOverlay, #createTableOverlay, #helpOverlay {
+ #loadCsvOverlay, #createTableOverlay, #helpOverlay, #instOverlay {
     display: none;
     opacity: 0.9;
     position: fixed;
@@ -645,7 +645,7 @@ input[type="text"] {
     width: 100%;
     z-index: 10;
 }
-#loadCsvBox, #createTableBox, #helpBox {
+#loadCsvBox, #createTableBox, #helpBox, #instBox {
     display: none;
     position: fixed;
     background-color: #000;
@@ -657,22 +657,22 @@ input[type="text"] {
     min-width:550px !important;
 }
 */
-#loadCsvBox > div, #createTableBox > div, #helpBox > div {
+#loadCsvBox > div, #createTableBox > div, #helpBox > div, #instBox > div {
     background-color: #FFF;
     border-radius:5px;
     margin:8px;
 }
-#loadCsvBox > div > #loadCsvHead, #createTableBox > div > #createTableHead, #helpBox > div > #helpBoxHead {
+#loadCsvBox > div > #loadCsvHead, #createTableBox > div > #createTableHead, #helpBox > div > #helpBoxHead, #instBox > div > #instBoxHead {
     font-size:19px;
     padding:10px;
     color:#000;
 }
-#loadCsvBox > div > #loadCsvBody, #createTableBox > div > #createTableBody, #helpBox > div > #helpBoxBody {
+#loadCsvBox > div > #loadCsvBody, #createTableBox > div > #createTableBody, #helpBox > div > #helpBoxBody, #instBox > div > #instBoxBody {
     border-top: 2px solid #000;
     padding: 20px;
     color:#000;
 }
-#loadCsvBody label, #createTableBody label, #helpBoxHead h1, #helpBoxBody p, #helpBoxBody li, #helpBoxBody h3 {
+#loadCsvBody label, #createTableBody label, #helpBoxHead h1, #helpBoxBody p, #helpBoxBody li, #helpBoxBody h3, #instBoxHead h1, #instBoxBody p, #instBoxBody li, #instBoxBody h3 {
     cursor: text !important;
 }
 #helpBox > div > #helpBoxBody {
@@ -683,11 +683,22 @@ input[type="text"] {
 #helpBoxBody h3 {
    text-align: center;
 }
-#loadCsvBox > div > #loadCsvFoot, #createTableBox > div > #createTableFoot, #helpBox > div #helpBoxFoot {
+#instBox > div > #instBoxBody {
+    text-align: justify;
+    padding-left: 30px;
+    padding-right: 35px;
+}
+#instBoxBody h3 {
+    text-align: center;
+}
+#loadCsvBox > div > #loadCsvFoot, #createTableBox > div > #createTableFoot, #helpBox > div #helpBoxFoot, #instBox > div #instBoxFoot {
     padding: 10px;
     text-align: right;
 }
 #helpBox > div #helpBoxFoot {
+    padding: 20px;
+}
+#instBox > div #instBoxFoot {
     padding: 20px;
 }
 #loadCsvBody select, #createTableBody select{
@@ -696,7 +707,7 @@ input[type="text"] {
 #loadCsvBody input, #createTableBody input {
     margin-top: 10px;
 }
-#loadCsvFoot button, #createTableFoot button, #helpBoxFoot button {/* also inherits from the other button styles */
+#loadCsvFoot button, #createTableFoot button, #helpBoxFoot button, #instBoxFoot button {/* also inherits from the other button styles */
     padding:5px;
 }
 .sChartType select, .sChartType input {/* chart type select tags */
@@ -825,6 +836,27 @@ th, td, .printTable {
     }
     #typeSelBody:before {
         content: '\A'; /* acts like break tag */
+    }
+}
+/* END media query max-width: 1139px */
+/*******************************/
+/* START media query for Help pop up*/
+@media screen and (max-width: 1280px), screen and (max-height: 800px) {
+    #instBox {
+        min-height: 400px;
+    }
+    #instBoxBody {
+        max-height: 350px;
+        overflow-y: scroll;
+    }
+}
+@media screen and (max-height: 700px) {
+    #instBox {
+        min-height: 150px;
+    }
+    #instBoxBody {
+        max-height: 200px;
+        overflow-y: scroll;
     }
 }
 /* END media query max-width: 1139px */

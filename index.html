@@ -41,8 +41,11 @@
       <a class="pageJump" href="#audioSpanSec" aria-label="Jump to Audio">Jump to Audio</a>
       <a class="pageJump" href="#summaryBox" aria-label="Jump to Graph Data">Jump to Data</a>
     <span>
+      <button id="instButton" class="instButton" aria-label="Instructions" title="Instructions" onclick="Alert4.render()">Instructions</button>
+
     <button id="helpButton" aria-label="Help" title="Help" onclick="Alert3.render()"><i class="fa fa-question fa-3x"></i></button>
-      <a  href="https://github.com/RITAccess/Glance-data-analyzer/wiki/I.-Navigation" class="button" onmouseover="focusElement('button')" onmouseleave="blurElement('button')">Go to Wiki</a>
+      <a class="button" href="https://github.com/RITAccess/Glance-data-analyzer/wiki/I.-Navigation" rel="noopener noreferrer" target="_blank" aria-hidden="true"
+         onfocus="focusElement('button')" onblur="blurElement('button')" onmouseover="focusElement('button')" onmouseleave="blurElement('button')">Go to Wiki</a>
     <span id="typeSelBody" class="no-print" style="display:none;">
       Change graph type:
       <select id="typeSel" class="no-print" title="Change Graph Type" onchange="typeOpSel()">
