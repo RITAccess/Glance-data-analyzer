@@ -137,7 +137,7 @@ function instAlert() {
         instBox.style.top = "15%";
         instBox.style.left = "15%";
         document.getElementById('instBox').setAttribute("tabindex", "0");
-        document.getElementById('instBoxHead').innerHTML = "<h1 tabindex='0'>Glance Help</h1>";
+        document.getElementById('instBoxHead').innerHTML = "<h1 tabindex='0'>Instructions</h1>";
         document.getElementById('instBoxBody').innerHTML = "<p>test instructions call</p><ul><li>new line test</li><li>new line test</li><li>new line test</li><li>new line test</li></ul><h3>bottom heading i think</h3>";
         document.getElementById('instBoxFoot').innerHTML = "<button title='Close' onclick='Alert4.cancel()'>Close</button>"
         document.getElementById('instBox').style.visibility = "visible";
