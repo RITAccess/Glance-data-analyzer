@@ -142,7 +142,7 @@ function instAlert() {
             "<p>2. To navigate back, use “tab” + “shift” + “alt (option)”<p></p>" +
             "</li><li>Navigating on Safari/Chrome, with screen reader:<p>1. Use “ctrl (control)”+ “alt (option)” + arrow keys to navigate through the page<p><p>2. Use “tab” + “alt (option)” to exit the table<p>" +
             "</p></li><li>Navigate FireFox, with screen reader:<p>1. Use “ctrl (control)” + “alt (option)” + arrow keys to navigate the page<p><p>2. To exit the table navigate to the rows last column and press “alt (option)” + “ctrl (control)” + arrow keys<p>" +
-            "</p></li></ul><h3>Click Next page for more assistance</h3>";
+            "</p></li></ul><h3>Click Next Page for more assistance</h3>";
         document.getElementById('instBoxFoot').innerHTML = "<button title='Next Page' onclick='Alert4.next()'>Next Page</button><button title='Close' onclick='Alert4.cancel()'>Close</button>"
         document.getElementById('instBox').style.visibility = "visible";
         document.getElementById('instOverlay').style.visibility = "visible";
@@ -167,7 +167,7 @@ function instAlert() {
             "<p>3. Choose a graph type from the drop-down menu (bar graph, line graph, or scatter plot)<p><p>4. In the first text input box, enter the number of rows you would like your graph to have (valid tables require at least one row, if a lower number is chosen the number of rows will automatically be set to one)<p>" +
             "<p>5. In the next input box, enter the number of columns you would like your graph to have (valid tables need at least two columns, if a lower number is chosen the number of columns will automatically be set to two)<p>" +
             "<p>6. At this point, if you decide you don't want your current parameters for the graph and want to start again from scratch, click the “Reset” button<p><p>7. Once you are satisfied with your conditions, click the “Submit” button<p>" +
-            "<p>8. You will now have a graph of your specified size with all data points set to a default of zero <p></p></li></ul><h3>Click Next page for more assistance</h3>";
+            "<p>8. You will now have a graph of your specified size with all data points set to a default of zero <p></p></li></ul><h3>Click Next Page for more assistance</h3>";
         document.getElementById('instBoxFoot').innerHTML = "<button title='Next Page' onclick='Alert4.next1()'>Next Page</button><button title='Close' onclick='Alert4.cancel()'>Close</button>"
         document.getElementById('instBox').style.visibility = "visible";
         document.getElementById('instOverlay').style.visibility = "visible";
@@ -196,7 +196,7 @@ function instAlert() {
             "<p>3. The screen reader will read the minus or plus as “Add Row” “Remove Row” “Add Column” “ Remove Column” respectively<p></p></li>" +
             "<li> Undo/Redo/Reset the table:<p>1. To undo a change, press the “Undo” button, located to the right of the “Add/Remove Column” button<p><p>2. To the right of the “Undo” button is the “Redo” button. Click this to redo a change made in the table<p>" +
             "<p>3. To the right of the “Redo” button is the “Reset” button. This resets the table to its original state. This cannot be undone<p></p></li>" +
-            "<li> Change Graph Type:<p>1. Navigate to the page header<p><p>2. Move to the “Change Graph Type” drop down menu<p><p>3. Select a graph type and press enter<p><p>4. Your graph will now be redrawn as the new type<p></p></li></ul><h3>Click Next page for more assistance</h3>";
+            "<li> Change Graph Type:<p>1. Navigate to the page header<p><p>2. Move to the “Change Graph Type” drop down menu<p><p>3. Select a graph type and press enter<p><p>4. Your graph will now be redrawn as the new type<p></p></li></ul><h3>Click Next Page for more assistance</h3>";
         document.getElementById('instBoxFoot').innerHTML = "<button title='Next Page' onclick='Alert4.next2()'>Next Page</button><button title='Close' onclick='Alert4.cancel()'>Close</button>"
         document.getElementById('instBox').style.visibility = "visible";
         document.getElementById('instOverlay').style.visibility = "visible";
@@ -217,7 +217,7 @@ function instAlert() {
         document.getElementById('instBoxHead').innerHTML = "<h1 tabindex='0'>Instructions</h1>";
         document.getElementById('instBoxBody').innerHTML = "<p>IV. Saving Data</p><ul><li>Saving table data to file:<p> 1. Navigate to the “Download CSV” button: Screen readers will read “Download CSV”<p><p>2. Click this to download a CSV file representing the current table<p>" +
             "</li><li>Printing contents of data table and graph:<p>1. Navigate to the “Print” button: Screen readers will read “Print”<p><p>2. Click this to print the page in a printer friendly format<p>" +
-            "</p></li></ul><h3>Click Next page for more assistance</h3>";
+            "</p></li></ul><h3>Click Next Page for more assistance</h3>";
         document.getElementById('instBoxFoot').innerHTML = "<button title='Next Page' onclick='Alert4.next3()'>Next Page</button><button title='Close' onclick='Alert4.cancel()'>Close</button>"
         document.getElementById('instBox').style.visibility = "visible";
         document.getElementById('instOverlay').style.visibility = "visible";
@@ -245,7 +245,7 @@ function instAlert() {
             "</p></li><li>Pause playback:<p>1. To pause audio while it is playing, click the “Pause” button screen reader will read “Pause Toggle”<p><p>2. After audio is paused, resume it with the “Play” button<p>" +
             "</p></li>" +
             "<li>Stop playback:<p>1. To stop audio playback, click the “Stop” button screen reader will read “Stop Toggle”<p>" +
-            "<p>2. After the “Stop” button is clicked, audio will play from the beginning<p></p></li></ul><h3>Click Next page for more assistance</h3>";
+            "<p>2. After the “Stop” button is clicked, audio will play from the beginning<p></p></li></ul><h3>Click Next Page for more assistance</h3>";
         document.getElementById('instBoxFoot').innerHTML = "<button title='Next Page' onclick='Alert4.next4()'>Next Page</button><button title='Close' onclick='Alert4.cancel()'>Close</button>"
         document.getElementById('instBox').style.visibility = "visible";
         document.getElementById('instOverlay').style.visibility = "visible";
@@ -271,7 +271,7 @@ function instAlert() {
             "<li>Bar graph - Play columns as chords:<p>1. Select “Play Columns as Chords” as the play mode for bar graph<p><p>2. Click the “Play” button<p>" +
             "<p>3. This will play each column as a chord of all of the rows in that column<p></p></li>" +
             "<li>Scatter plot - Play regression line:<p>1. Select “Play Regression Line” as the play mode for scatter plot<p><p>2. Click the “Play” button<p>" +
-            "<p>3. This will play an audio representation of the regression line for your scatter plot<p></p></li></ul><h3>Click Next page for more assistance</h3>";
+            "<p>3. This will play an audio representation of the regression line for your scatter plot<p></p></li></ul><h3>Click Next Page for more assistance</h3>";
         document.getElementById('instBoxFoot').innerHTML = "<button title='Next Page' onclick='Alert4.next5()'>Next Page</button><button title='Close' onclick='Alert4.cancel()'>Close</button>"
         document.getElementById('instBox').style.visibility = "visible";
         document.getElementById('instOverlay').style.visibility = "visible";
@@ -299,7 +299,7 @@ function instAlert() {
             "<li>Change the color of the site background, text, and graph background:<p>1. Navigate to the “Change Background Color” section of the page<p>" +
             "<p>2. To change the site background, type in a valid color into the site background input field labeled “Change Site Background Color”<p>" +
             "<p>3. Do the same with graph background and text color with their respective input fields<p><p>4. In order to ensure high contrast, there are high contrast checkboxes following each of these input boxes. Click them to force high contrast<p>" +
-            "<p>5. Lastly, there are refresh buttons for site background, graph background, and text color. Use these to refresh the background/text color to the default value<p></p></li></ul><h3>Click Next page for more assistance</h3>";
+            "<p>5. Lastly, there are refresh buttons for site background, graph background, and text color. Use these to refresh the background/text color to the default value<p></p></li></ul><h3>Click Next Page to return to beginning</h3>";
         document.getElementById('instBoxFoot').innerHTML = "<button title='Next Page' onclick='Alert4.next()'>Next Page</button><button title='Close' onclick='Alert4.cancel()'>Close</button>"
         document.getElementById('instBox').style.visibility = "visible";
         document.getElementById('instOverlay').style.visibility = "visible";
