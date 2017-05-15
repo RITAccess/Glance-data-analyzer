@@ -39,7 +39,6 @@ require(["javascript/files.js"], function(print){
 var player;
 var overlay;
 var summary;
-var summary1;
 var chart;
 var collection;
 var type = null;
@@ -222,7 +221,6 @@ var loadData = function (data) {
     document.getElementById('plot-header').style.display = 'inherit';
     document.getElementById('tableControls').style.display = 'inherit';
     document.getElementById('summary-header').style.display = 'inherit';
-    document.getElementById('summary-header1').style.display = 'inherit';
     document.getElementById('bgColorChange').style.display = 'inherit';
     var jumpElements = document.getElementsByClassName("pageJump");
     for(var i = 0; i < jumpElements.length; i++){

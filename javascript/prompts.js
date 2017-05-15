@@ -63,10 +63,6 @@ function createTableAlert() {
         document.getElementById('graphSelector').focus();
     }
     this.ok = function () {
-        var colorlist = document.getElementById("colors1");
-        while(colorlist.firstChild){
-            colorlist.removeChild(colorlist.firstChild);
-        }
         var e = document.getElementById('createTableBody').firstChild.nextSibling;
         type = e.options[e.selectedIndex].value.toLowerCase();
         if(document.getElementById('rows').value * document.getElementById('columns').value >= 1000 ||document.getElementById('columns').value >= 1000 ||document.getElementById('rows').value >= 1000){
@@ -85,7 +81,6 @@ function createTableAlert() {
         document.getElementById('pauseButton').setAttribute("aria-hidden", "false");
         document.getElementById('stopButton').setAttribute("aria-hidden", "false");
         document.getElementsByClassName('createBtn')[0].focus();
-
     }
     this.reset = function () {
         document.getElementById("rows").value=0;
@@ -123,37 +118,9 @@ function helpAlert() {
         document.getElementById('title').focus();
     }
 }
-
-function instAlert() {
-    this.render = function (dialog) {
-        var winW = window.innerWidth;
-        var winH = window.innerHeight;
-        var instOverlay = document.getElementById('instOverlay');
-        var instBox = document.getElementById('instBox');
-        instOverlay.style.display = "block";
-        instOverlay.style.height = "100%";
-        instBox.style.display = "block";
-        instBox.style.width = "70%";
-        instBox.style.top = "15%";
-        instBox.style.left = "15%";
-        document.getElementById('instBox').setAttribute("tabindex", "0");
-        document.getElementById('instBoxHead').innerHTML = "<h1 tabindex='0'>Instructions</h1>";
-        document.getElementById('instBoxBody').innerHTML = "<p>test instructions call</p><ul><li>new line test</li><li>new line test</li><li>new line test</li><li>new line test</li></ul><h3>bottom heading i think</h3>";
-        document.getElementById('instBoxFoot').innerHTML = "<button title='Close' onclick='Alert4.cancel()'>Close</button>"
-        document.getElementById('instBox').style.visibility = "visible";
-        document.getElementById('instOverlay').style.visibility = "visible";
-        document.getElementById('instBox').focus();
-    }
-    this.cancel= function(){
-        document.getElementById('instBox').style.visibility = "hidden";
-        document.getElementById('instOverlay').style.visibility = "hidden";
-        document.getElementById('title').focus();
-    }
-}
 var Alert = new loadCsvAlert();
 var Alert2 = new createTableAlert();
 var Alert3 = new helpAlert();
-var Alert4 = new instAlert();
 //Radio Button Chart/Graph Type Selection
 var typeOpSel = function (typeOpSel) {
     var selType = document.getElementById("typeSel");

@@ -13,7 +13,7 @@ var openFile = function(openfile) {
 var newFile = function(newFile) {
   ev = newFile;
   Alert2.render("Choose a type of graph: ")
-};
+}
 
 function loadFile(){
   if(player && player.playing && !uncheckCalled){
@@ -27,7 +27,7 @@ function loadFile(){
     }
   }
   var input = ev.target;
-  var colorlist = document.getElementById("colors1");// this call will feed in to the updates for graph row.
+  var colorlist = document.getElementById("colors");
   oldData = [];
   lineColors = [];
   while(colorlist.firstChild){
@@ -76,7 +76,7 @@ function loadFile(){
       }
      totalData = [];
      firstData = results.data;
-     loadData(results);
+	 	 loadData(results);
   	 }
     });
 }
@@ -99,7 +99,7 @@ var loadListeners = function(){
   else{
     setTimeout(function(){document.getElementById('newTable').addEventListener('click', newFile, false);},1000);
   }
-};
+}
 
 // Creates empty table value
 var createFile = function(rows, columns) {
@@ -123,7 +123,6 @@ var createFile = function(rows, columns) {
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
-
 
   // Used to create appropriately formated object to be passed in
   var emptyArray = [];
@@ -150,8 +149,8 @@ var createFile = function(rows, columns) {
   // Load new table :)
   totalData = [];
   loadData(newTable);
-};
-var changeType = function(){ // will change type of graph
+}
+var changeType= function(){
   if(!isSafari){
     if(player.t)
     player.t.stop();
@@ -173,13 +172,6 @@ var changeType = function(){ // will change type of graph
     truncated: false
   }
   results.meta = m;
-
-    // Reset color list in Graph row chart for all edits.
-    var colorlist = document.getElementById("colors1");
-    while(colorlist.firstChild){
-        colorlist.removeChild(colorlist.firstChild);
-    }
-
   var resData = grid.getData();
   for(var i = 0; i< resData.length; i++){
     results.data[i]= [];
@@ -189,7 +181,7 @@ var changeType = function(){ // will change type of graph
     }
   }
   loadData(results);
-};
+}
 
 
 // Place a new row on the end of the existing table
@@ -200,7 +192,7 @@ var changeType = function(){ // will change type of graph
   totalData.splice(dataCount, totalData.length - dataCount - 1);
 
   // Reset color list
-  var colorlist = document.getElementById("colors1");
+  var colorlist = document.getElementById("colors");
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
@@ -209,7 +201,6 @@ var changeType = function(){ // will change type of graph
   var currTable = new Object();
   currTable.data = [];
   currTable.errors = [];
-
   var resData = grid.getData();
 
   for(var i = 0; i< resData.length; i++){
@@ -248,7 +239,7 @@ var changeType = function(){ // will change type of graph
   // Loads new table
   loadData(currTable);
   document.getElementById('tblContainer').style.width="100%";
- };
+ }
 
 // Place a new column on the end of the existing table
 var addColumn = function() {
@@ -258,7 +249,7 @@ var addColumn = function() {
   totalData.splice(dataCount, totalData.length - dataCount - 1);
 
   // Reset color list
-  var colorlist = document.getElementById("colors1");
+  var colorlist = document.getElementById("colors");
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
@@ -297,7 +288,8 @@ var addColumn = function() {
   // Loads new table
   loadData(currTable);
   document.getElementById('tblContainer').style.width="100%";
- };
+
+ }
 
  // Removes a row from the bottom of the table
 var subtractRow = function() {
@@ -307,11 +299,10 @@ var subtractRow = function() {
   totalData.splice(dataCount, totalData.length - dataCount - 1);
 
   // Reset color list
-  var colorlist = document.getElementById("colors1");
+  var colorlist = document.getElementById("colors");
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
-
 
   // Creates new table object
   var currTable = new Object();
@@ -356,10 +347,11 @@ var subtractColumn = function() {
   totalData.splice(dataCount, totalData.length - dataCount - 1);
 
   // Reset color list
-  var colorlist = document.getElementById("colors1");
+  var colorlist = document.getElementById("colors");
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
+
   // Creates new table object
   var currTable = new Object();
   currTable.data = [];
