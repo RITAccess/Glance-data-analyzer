@@ -49,14 +49,14 @@ var playStopAudioButton = function () {
       player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode);
     else
       player.playToggle(startval, overlay.slider[0], overlay.slider[1],mode,playing);
-};
+}
 
 //Play audio if not already
 var play = function(){
   if(!player.playing){
     playStopAudioButton();
   }
-};
+}
 
 //Pause audio if not already
 var pause = function(){
@@ -66,7 +66,7 @@ var pause = function(){
     player.paused = true;
   }
   pausing = false;
-};
+}
 
 //Stop audio if not already
 var stop = function(){
@@ -79,7 +79,7 @@ var stop = function(){
   else if(player.playing || player.paused){
     player.stop();
   }
-};
+}
 
 //Stop audio on line change
 var changeAudioLine = function(){
@@ -87,4 +87,4 @@ var changeAudioLine = function(){
   player.stop();
   if(isSafari)
     overlay.slider[0] = 0;
-};
+}

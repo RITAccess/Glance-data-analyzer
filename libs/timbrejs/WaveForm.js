@@ -44,38 +44,39 @@ WaveForm.prototype.makeBuffer = function(){
 	  		this.buffer[i]= sign;
 		}
 	}
-    else if (this.type === "triangle") {
-        var totalSamples = 0;
-        for (var i = 0; i < this.len && totalSamples < this.len; i++) {
-            var samples = this.len / 8;
-            var step = 3 / samples;
-            var tempSample = -1;
-            var samplesWritten = 0;
-            while (samplesWritten < samples) {
-                if (samplesWritten < samples / 2)
-                    tempSample += step;
-                else
-                    tempSample -= step;
-                this.buffer[totalSamples] = tempSample;
-                samplesWritten++;
-                totalSamples++;
-            }
-        }
-    } else {
-        var totalSamples = 0;
-        for (var i = 0; i < this.len && totalSamples < this.len; i++) {
-            var samples = this.len / 8;
-            var step = 2 / samples;
-            var tempSample = -1;
-            var samplesWritten = 0;
-            while (samplesWritten < samples) {
-                tempSample += step;
-                this.buffer[totalSamples] = tempSample;
-                samplesWritten++;
-                totalSamples++;
-            }
-        }
-    }
+	else if(this.type === "triangle"){
+		var totalSamples = 0;
+		for(var i = 0; i< this.len && totalSamples<this.len; i++){
+			var samples = this.len/8;
+			var step = 3/samples;
+			var tempSample = -1;
+			var samplesWritten = 0;
+			while(samplesWritten<samples){
+				if(samplesWritten<samples/2)
+					tempSample+= step;
+				else
+				tempSample-= step;
+				this.buffer[totalSamples] = tempSample;
+				samplesWritten ++;
+				totalSamples ++;
+			}
+		}
+	}
+	else {
+		var totalSamples = 0;
+		for(var i = 0; i< this.len && totalSamples<this.len; i++){
+			var samples = this.len/8;
+			var step = 2/samples;
+			var tempSample = -1;
+			var samplesWritten = 0;
+			while(samplesWritten<samples){
+				tempSample+= step;
+				this.buffer[totalSamples] = tempSample;
+				samplesWritten ++;
+				totalSamples ++;
+			}
+		}
+	}
 };
 
 //Set Pitch of the WaveForm
@@ -188,8 +189,7 @@ WaveForm.prototype.playRegressionLine = function(){
 	self.start();
 	this.started= true;
 	}
-	// Clays New Algorithm.
-	var key =  parseInt(((myNotes[i][1])/(100000)) +30);
+    var key =  parseInt(myNotes[i][1])+30;
     console.log(key)
     self.changePitch(key);
     i++;
