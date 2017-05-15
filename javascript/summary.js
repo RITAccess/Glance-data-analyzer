@@ -27,7 +27,7 @@ DataSummary.prototype.dataSummary = function() {
 		globalmin = this.currCollection.collection[i].trend.min;
 	  }
       var median = 0;
-      var arr =[]
+      var arr =[];
       for(var iter = 0; iter <this.currCollection.collection[i].array.length; iter++){
         arr.push(parseInt(this.currCollection.collection[i].array[iter]));
       }

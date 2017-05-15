@@ -178,6 +178,15 @@ header {
     clear: both;
 }
 #continuosBox {
+     width: 100%;
+     font-weight: bold;
+     font-size: 20px;
+     text-align: center;
+     border-radius: 5px;
+     border: 3px solid #000;
+     margin-top: 5%;
+}
+#continuosBox1 {
     width: 100%;
     font-weight: bold;
     font-size: 20px;
@@ -232,11 +241,12 @@ svg * {
     margin: 0;
     font-size:14px;
 }
-.fileUpload, .createNew {
+.fileUpload, .createNew{
     position: relative;
     overflow: hidden;
 }
-.uploadBtn, .createBtn {
+
+.uploadBtn, .createBtn, .instButton {
     cursor: pointer !important;
     font-size: 20px;
     font-weight: bold;
@@ -254,7 +264,46 @@ svg * {
     background-color: #000;
     color: #FFF;
 }
-.fileUpload input.upload, .createNew input.emptyTable {
+a.button {
+    cursor: pointer !important;
+    font-size: 20px;
+    font-weight: bold;
+    background: #FFF;
+    color: #000;
+    display:inline-block;
+    vertical-align:top;
+    border: 3px solid #FFF;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 700px;
+    box-shadow: 0px 5px 10px #000;
+    text-shadow: none;
+    text-decoration: none;
+}
+.a:hover {
+    background-color: #000;
+    color: #FFF;
+}
+
+.uploadBtn {
+    cursor: pointer !important;
+    font-size: 20px;
+    font-weight: bold;
+    background: #FFF;
+    color: #000;
+    display:inline-block;
+    vertical-align:top;
+    border: 3px solid #FFF;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 5px 10px #000;
+    text-shadow: none;
+}
+.uploadBtn:hover, .instButton:hover {
+    background-color: #000;
+    color: #FFF;
+}
+.fileUpload input.upload, .createNew input.emptyTable, .wiki input.instruct{
     position: absolute;
     top: 0;
     right: 0;
@@ -339,6 +388,11 @@ svg * {
     border-radius: 100%;
     box-shadow: 0px 5px 10px #444;
 }
+
+
+#instButton {
+    margin-left: 2%;
+}
 #playButton, #pauseButton, #stopButton {
     cursor: pointer !important;
     height: 35px;
@@ -350,7 +404,7 @@ svg * {
     border-radius: 5px;
     box-shadow: 0px 5px 10px #444;
 }
-#helpButton:hover, #helpButton:focus, #playButton:hover, #playButton:focus, #pauseButton:hover, #pauseButton:focus, #stopButton:hover, #stopButton:focus {
+#helpButton:hover, #helpButton:focus, #playButton:hover, #playButton:focus, #pauseButton:hover, #pauseButton:focus, #stopButton:hover, #stopButton:focus,#instButton:hover, #instButton:focus {
     background-color: #000;
     color: #FFF;
 }
@@ -361,7 +415,7 @@ svg * {
     width: 50px;
     text-align: center;
 }
-#bpm:focus {
+#bpm:focus,.a:focus {
     background: #FFF;
 }
 .drop-down {
@@ -380,6 +434,10 @@ svg * {
     /*position: relative; part of making download button bottom of div*/
 }
 #summary-header { /* center align is for printer.js */
+    text-align: center;
+    margin-bottom: 0;
+}
+#summary-header1 { /* center align is for printer.js */
     text-align: center;
     margin-bottom: 0;
 }
@@ -451,6 +509,11 @@ svg * {
     border-top: 3px solid #000;
     padding-bottom: 6%;
 }
+#summaryBox1 {
+    width: 100%;
+    border-top: 3px solid #000;
+    padding-bottom: 6%;
+}
 #colors {
     max-height: 300px;
     text-align: left;
@@ -464,6 +527,22 @@ svg * {
 #colors p {
    border-radius: 5px;
    padding: 1%;
+}
+
+
+#colors1 {
+    max-height: 300px;
+    text-align: left;
+    list-style: none;
+    overflow: auto;
+    margin: 0;
+}
+#colors1 > li {
+    margin-top: 4%;
+}
+#colors1 p {
+    border-radius: 5px;
+    padding: 1%;
 }
 .color-editor-input input { /* background color for data color change text field */
     background: #E5E5E5;
@@ -550,7 +629,7 @@ input[type="text"] {
 /* END extra spacing between rows of features for color/background change */
 /*******************************/
 /* style for pop-up chart list STARTS */
- #loadCsvOverlay, #createTableOverlay, #helpOverlay {
+ #loadCsvOverlay, #createTableOverlay, #helpOverlay, #instOverlay {
     display: none;
     opacity: 0.9;
     position: fixed;
@@ -560,7 +639,7 @@ input[type="text"] {
     width: 100%;
     z-index: 10;
 }
-#loadCsvBox, #createTableBox, #helpBox {
+#loadCsvBox, #createTableBox, #helpBox, #instBox {
     display: none;
     position: fixed;
     background-color: #000;
@@ -572,22 +651,22 @@ input[type="text"] {
     min-width:550px !important;
 }
 */
-#loadCsvBox > div, #createTableBox > div, #helpBox > div {
+#loadCsvBox > div, #createTableBox > div, #helpBox > div, #instBox > div {
     background-color: #FFF;
     border-radius:5px;
     margin:8px;
 }
-#loadCsvBox > div > #loadCsvHead, #createTableBox > div > #createTableHead, #helpBox > div > #helpBoxHead {
+#loadCsvBox > div > #loadCsvHead, #createTableBox > div > #createTableHead, #helpBox > div > #helpBoxHead, #instBox > div > #instBoxHead {
     font-size:19px;
     padding:10px;
     color:#000;
 }
-#loadCsvBox > div > #loadCsvBody, #createTableBox > div > #createTableBody, #helpBox > div > #helpBoxBody {
+#loadCsvBox > div > #loadCsvBody, #createTableBox > div > #createTableBody, #helpBox > div > #helpBoxBody, #instBox > div > #instBoxBody {
     border-top: 2px solid #000;
     padding: 20px;
     color:#000;
 }
-#loadCsvBody label, #createTableBody label, #helpBoxHead h1, #helpBoxBody p, #helpBoxBody li, #helpBoxBody h3 {
+#loadCsvBody label, #createTableBody label, #helpBoxHead h1, #helpBoxBody p, #helpBoxBody li, #helpBoxBody h3, #instBoxHead h1, #instBoxBody p, #instBoxBody li, #instBoxBody h3 {
     cursor: text !important;
 }
 #helpBox > div > #helpBoxBody {
@@ -598,11 +677,22 @@ input[type="text"] {
 #helpBoxBody h3 {
    text-align: center;
 }
-#loadCsvBox > div > #loadCsvFoot, #createTableBox > div > #createTableFoot, #helpBox > div #helpBoxFoot {
+#instBox > div > #instBoxBody {
+    text-align: justify;
+    padding-left: 30px;
+    padding-right: 35px;
+}
+#instBoxBody h3 {
+    text-align: center;
+}
+#loadCsvBox > div > #loadCsvFoot, #createTableBox > div > #createTableFoot, #helpBox > div #helpBoxFoot, #instBox > div #instBoxFoot {
     padding: 10px;
     text-align: right;
 }
 #helpBox > div #helpBoxFoot {
+    padding: 20px;
+}
+#instBox > div #instBoxFoot {
     padding: 20px;
 }
 #loadCsvBody select, #createTableBody select{
@@ -611,7 +701,7 @@ input[type="text"] {
 #loadCsvBody input, #createTableBody input {
     margin-top: 10px;
 }
-#loadCsvFoot button, #createTableFoot button, #helpBoxFoot button {/* also inherits from the other button styles */
+#loadCsvFoot button, #createTableFoot button, #helpBoxFoot button, #instBoxFoot button {/* also inherits from the other button styles */
     padding:5px;
 }
 .sChartType select, .sChartType input {/* chart type select tags */
@@ -740,6 +830,27 @@ th, td, .printTable {
     }
     #typeSelBody:before {
         content: '\A'; /* acts like break tag */
+    }
+}
+/* END media query max-width: 1139px */
+/*******************************/
+/* START media query for Help pop up*/
+@media screen and (max-width: 1280px), screen and (max-height: 800px) {
+    #instBox {
+        min-height: 400px;
+    }
+    #instBoxBody {
+        max-height: 350px;
+        overflow-y: scroll;
+    }
+}
+@media screen and (max-height: 700px) {
+    #instBox {
+        min-height: 150px;
+    }
+    #instBoxBody {
+        max-height: 200px;
+        overflow-y: scroll;
     }
 }
 /* END media query max-width: 1139px */

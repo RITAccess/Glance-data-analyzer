@@ -21,6 +21,9 @@ function printPage()
    html += "<h3 style='text-align:center;'>Glance Graph</h3><div id='graphImg' style=\"background:" +bg + "\"><img tabindex='0' alt='Image of Glance Graph' title='Image of Glance Graph' width='800px' src='" + chart.toBase64Image() + "'/></div>";
    html += "<div id='summaryBox' style='display: block;'>";
    html += document.getElementById('summaryBox').innerHTML;
+
+    html += "<div id='summaryBox1' style='display: block;'>";
+    html += document.getElementById('summaryBox1').innerHTML;
    html += "</div><div id='printTable'><h3 id='printTableHeader'>Data Table</h3>";
    html += "<div id='printTableBody'>";
    var s = "<table class='printTable'>";
@@ -86,10 +89,15 @@ function printPage()
      inputs[i].style.display = "none";
    }
   var sumBox = printWin.document.getElementById("summaryBox");
+    var sumBox1 = printWin.document.getElementById("summaryBox1");
   var paragraphs = sumBox.getElementsByTagName("p");
   for(var i = 0; i < paragraphs.length; i++) {
     paragraphs[i].style.background = "rgba(0,0,0,0)";
   }
+    var paragraphs1 = sumBox1.getElementsByTagName("p");
+    for(var i = 0; i < paragraphs1.length; i++) {
+        paragraphs1[i].style.background = "rgba(0,0,0,0)";
+    }
    //var div = "squaredTwo";
    var divArr = printWin.document.getElementsByClassName("squaredTwo");
    for(var i = 0; i < divArr.length; i++){
@@ -128,6 +136,8 @@ function printPage()
    printWin.document.getElementById("printTable").style.borderTop = "3px solid " + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background));
    printWin.document.getElementById("summaryBox").style.borderTop = "3px solid " + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background));
    printWin.document.getElementsByTagName("h1")[0].setAttribute("style", "-webkit-text-stroke-width: 1px; -webkit-text-stroke-color:" + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background)));
-   printWin.focus();
+   printWin.document.getElementById("summaryBox1").style.borderTop = "3px solid " + findContrastor(convertRGBtoHex(document.getElementsByTagName("body")[0].style.background));
+
+    printWin.focus();
    setTimeout(function(){printWin.print();},100);
 }

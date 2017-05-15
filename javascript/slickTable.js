@@ -346,6 +346,7 @@ function undo() {
 	updateGrid();
 	chart.update();
 	summary.update();
+	summary1.update();
 	document.getElementById('tblContainer').style.width = "100%";
 }
 
@@ -406,6 +407,7 @@ function redo() {
 	updateGrid();
 	chart.update();
 	summary.update();
+    summary1.update();
 	document.getElementById('tblContainer').style.width = "100%";
 }
 
@@ -491,6 +493,7 @@ function tableReset() {
 			dataCount = 0;
 			totalData.splice(dataCount, totalData.length - dataCount - 1);
 		}
+
 	}
 	else {
 		alert("You cannot reset!");
