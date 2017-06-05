@@ -458,132 +458,120 @@ var loadChart = function(data, type, collection){
 
 // sets the data for the chart in a selection of generated colors
 function dataset(data, collection) {
-	var dataArray = [];
-	var inputBoxArray = [];
-	var red, green, blue;
-	red = green = blue = 0;
-	var colorIncrease = parseInt((255/ data.length).toFixed(0));
-	document.getElementById('colors').innerHTML= "";
-	for (var i = 1; i < data.length; i++) {
-		var color = [red, green, blue].join(", ");
-		data[i].splice(0, 1);
-		var line =
-		{
-			fillColor: "rgba(220, 220, 220, 0)",
-			strokeColor: "rgba("+ color +", 1)",
-			pointColor: "rgba("+ color +", 1)",
-			label: i,
+    var dataArray = [];
+    var inputBoxArray = [];
+    var red, green, blue;
+    red = green = blue = 0;
+    var colorIncrease = parseInt((255/ data.length).toFixed(0));
+    document.getElementById('colors').innerHTML= "";
+    for (var i = 1; i < data.length; i++) {
+        var color = [red, green, blue].join(", ");
+        data[i].splice(0, 1);
+        var line =
+            {
+                fillColor: "rgba(220, 220, 220, 0)",
+                strokeColor: "rgba("+ color +", 1)",
+                pointColor: "rgba("+ color +", 1)",
+                label: i,
 
-	      //pointStrokeColor: "#fff",
-			pointHighlightFill: "#fff",
-			pointHighlightStroke: "rgba("+ color +", 1)",
-			data: data[i]
-		}
-    //Fill Bar Color
-		if(type === "bar"){
-			line.fillColor = line.strokeColor;
-		}
-    //Put line into data Array
-  	if(hidden[i-1]===false){
-  		oldData[i-1].data = line;
-  		line.data = undefined;
-  	}
-		dataArray.push(line);
-    //Chech if previous line color existed
-    if(lineColors.length<i){
-      //If not, add it
-      lineColors.push(line.strokeColor);
-    }
-    else{
-      //If so, inherit previous color
-      line.strokeColor = lineColors[i-1];
-      line.pointColor= lineColors[i-1];
-      line.pointHighlightStroke = lineColors[i-1];
-      if(type === "bar"){
-        //Bar will inherit fill color as well
-        line.fillColor = lineColors[i-1];
-      }
-    }
-		// log color into color editor
-    var newColor = lineColors[i-1];
-		var entry = document.createElement('li');
-		var entry1 = document.createElement('li');
-        var script = document.createElement('script');
-		var textInput = document.createElement('input');
-		var toggleBox = document.createElement('input');
-		var inputDiv = document.createElement('div');
-		var inputLabel = document.createElement('label');
-		var keyValue = document.createElement('p');
-		//var removeButton = document.createElement('button');
-    if(type === "line"){
-			var keyLabel = document.createTextNode(shapes[(i-1)%6]);
-		}
-		else if(type === "scatter"){
-			var keyLabel = document.createTextNode(shapes[0]);
-		}
-    else if(type === "bar"){
-			var keyLabel = document.createElement('canvas');
-			keyLabel.setAttribute("style","padding:0px; height:24px; width:65px;");
-			var ctx = keyLabel.getContext("2d");
-			ctx.fillStyle = newColor;
-			ctx.fillRect(0,0,9999,9999);
-			keyLabel.style.border = "2px solid " + findContrastor(convertRGBtoHex(newColor));
-			//keyLabel.setAttribute("style", "background:" + newColor);
-			keyLabel.setAttribute("class", "colorblock");
-		}
-		if(hidden.length<= i-1){
-			hidden.push(true);
-		} // this has to do with the check boxes for Graph rows
-		inputBoxArray.push(textInput);
-        script.setAttribute("src", "libs/jscolor/jscolor.js");
-		toggleBox.setAttribute("id", "lineToggleBox" + i);
+                //pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba("+ color +", 1)",
+                data: data[i]
+            }
+        //Fill Bar Color
+        if(type === "bar"){
+            line.fillColor = line.strokeColor;
+        }
+        //Put line into data Array
+        if(hidden[i-1]===false){
+            oldData[i-1].data = line;
+            line.data = undefined;
+        }
+        dataArray.push(line);
+        //Chech if previous line color existed
+        if(lineColors.length<i){
+            //If not, add it
+            lineColors.push(line.strokeColor);
+        }
+        else{
+            //If so, inherit previous color
+            line.strokeColor = lineColors[i-1];
+            line.pointColor= lineColors[i-1];
+            line.pointHighlightStroke = lineColors[i-1];
+            if(type === "bar"){
+                //Bar will inherit fill color as well
+                line.fillColor = lineColors[i-1];
+            }
+        }
+        // log color into color editor
+        var newColor = lineColors[i-1];
+        var entry = document.createElement('li');
+        var textInput = document.createElement('input');
+        var toggleBox = document.createElement('input');
+        var inputDiv = document.createElement('div');
+        var inputLabel = document.createElement('label');
+        var keyValue = document.createElement('p');
+        //var removeButton = document.createElement('button');
+        if(type === "line"){
+            var keyLabel = document.createTextNode(shapes[(i-1)%6]);
+        }
+        else if(type === "scatter"){
+            var keyLabel = document.createTextNode(shapes[0]);
+        }
+        else if(type === "bar"){
+            var keyLabel = document.createElement('canvas');
+            keyLabel.setAttribute("style","padding:0px; height:24px; width:65px;")
+            var ctx = keyLabel.getContext("2d");
+            ctx.fillStyle = newColor;
+            ctx.fillRect(0,0,9999,9999);
+            keyLabel.style.border = "2px solid " + findContrastor(convertRGBtoHex(newColor));
+            //keyLabel.setAttribute("style", "background:" + newColor);
+            keyLabel.setAttribute("class", "colorblock");
+        }
+        if(hidden.length<= i-1){
+            hidden.push(true);
+        }
+        inputBoxArray.push(textInput);
+        toggleBox.setAttribute("id", "lineToggleBox" + i);
         textInput.setAttribute("class", "jscolor");
-		textInput.setAttribute("type", "text");
-		textInput.setAttribute("title", "Enter Color");
-		textInput.setAttribute("aria-label", "Enter Color");
-		inputDiv.setAttribute("class","squaredTwo");
-		inputDiv.style.marginTop = "3%";
-		inputLabel.setAttribute("for","lineToggleBox" + i);
-		toggleBox.setAttribute("type", "checkbox");
-		textInput.setAttribute("style","width:120px; font-size:20px;margin:3% 2% 0% 5%;");
-		if(hidden[i-1]===true)
-			toggleBox.setAttribute("checked", "checked");
-		toggleBox.setAttribute("title", "Display Data Set " + i);
-		inputLabel.setAttribute("title", "Display Data Set " + i);
-		inputDiv.appendChild(toggleBox);
-		inputDiv.appendChild(inputLabel);
-		var conColor = lineColors[i-1];
-		conColor = convertRGBtoHex(conColor);
-		keyValue.setAttribute("style", "color:" + newColor +"; display: inline;");
-		if(type != "bar"){
-			keyValue.style.background=findContrastor(conColor);
-		}
-		else{
-			keyValue.style.borderColor = findContrastor(conColor);
-		}
-		// Edit moved check boxes to new location
-		keyValue.appendChild(keyLabel);
-		//entry.appendChild(keyValue);
-		//entry.appendChild(inputDiv);
-        entry1.appendChild(inputDiv); // this is where the checked boxes are linked
-        entry1.appendChild(textInput);// this will input txt first
-		entry1.appendChild(keyValue); // this will place the color boxs for lines in table
-
-		document.getElementById('colors').appendChild(entry);// this doesnt pass anything that i can see but
-									           				// but if removed it renders the page blank more
-															// on this later
-        document.getElementById('colors1').appendChild(entry1);// this links data to graph rows table
-
-		red += colorIncrease + 15;
-		green += colorIncrease;
-		blue += colorIncrease - 15;
-	}
-	var returndata = new Object();
-	returndata.data = dataArray;
-	returndata.inputboxes = inputBoxArray;
-	return returndata;
+        textInput.setAttribute("type", "text");
+        textInput.setAttribute("title", "Enter Color");
+        textInput.setAttribute("aria-label", "Enter Color");
+        inputDiv.setAttribute("class","squaredTwo");
+        inputDiv.style.marginTop = "3%";
+        inputLabel.setAttribute("for","lineToggleBox" + i);
+        toggleBox.setAttribute("type", "checkbox");
+        textInput.setAttribute("style","width:120px; font-size:20px;margin:3% 2% 0% 2%;");
+        if(hidden[i-1]===true)
+            toggleBox.setAttribute("checked", "checked");
+        toggleBox.setAttribute("title", "Display Data Set " + i);
+        inputLabel.setAttribute("title", "Display Data Set " + i);
+        inputDiv.appendChild(toggleBox);
+        inputDiv.appendChild(inputLabel);
+        var conColor = lineColors[i-1];
+        conColor = convertRGBtoHex(conColor);
+        keyValue.setAttribute("style", "color:" + newColor +"; display: inline;");
+        if(type != "bar"){
+            keyValue.style.background=findContrastor(conColor);
+        }
+        else{
+            keyValue.style.borderColor = findContrastor(conColor);
+        }
+        keyValue.appendChild(keyLabel);
+        entry.appendChild(keyValue);
+        entry.appendChild(textInput);
+        entry.appendChild(inputDiv);
+        document.getElementById('colors').appendChild(entry);
+        red += colorIncrease + 15;
+        green += colorIncrease;
+        blue += colorIncrease - 15;
+    }
+    var returndata = new Object();
+    returndata.data = dataArray;
+    returndata.inputboxes = inputBoxArray;
+    return returndata;
 }
-
 // deques elements off the array
 function deque(array) {
 	var ele = array[0];
