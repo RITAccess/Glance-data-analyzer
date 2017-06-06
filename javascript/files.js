@@ -85,6 +85,7 @@ function loadFile(){
 var loadListeners = function(){
   var fileEl = document.getElementById('overlayBtn');
   var newTblEl = document.getElementById('newTable');
+  var colorlist = document.getElementById("colors");
 
   if(fileEl){
     document.getElementById('files').addEventListener('change', openFile, false);

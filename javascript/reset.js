@@ -86,6 +86,7 @@ var changeSiteBg = function(){
         document.getElementById("continuousBox").style.border = "3px solid " + contrastor;
       document.getElementById("audioSpanSec").style.borderTop = "3px solid " + contrastor;
       document.getElementById("summaryBox").style.borderTop="3px solid " +contrastor;
+      document.getElementById("summaryBox1").style.borderTop="3px solid " +contrastor;
       document.getElementById("bgColorChange").style.borderTop="3px solid " + contrastor;
     }
     else {
@@ -104,6 +105,7 @@ var changeSiteBg = function(){
         document.getElementById("continuousBox").style.border = "3px solid " + contrastor;
       document.getElementById("audioSpanSec").style.borderTop = "3px solid " + contrastor;
       document.getElementById("summaryBox").style.borderTop="3px solid " +contrastor;
+
       document.getElementById("bgColorChange").style.borderTop="3px solid " + contrastor;
     }
     else {
@@ -186,6 +188,7 @@ var changeTextColor = function(){
       document.getElementById("continuousBox").style.border = "3px solid " + newColor;
     document.getElementById("audioSpanSec").style.borderTop = "3px solid " + newColor;
     document.getElementById("summaryBox").style.borderTop="3px solid " +newColor;
+    document.getElementById("summaryBox1").style.borderTop="3px solid " +contrastor;
     document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
     if(document.getElementById("textContrast").checked){
       document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
@@ -203,6 +206,7 @@ var changeTextColor = function(){
       document.getElementById("continuousBox").style.border = "3px solid " + newColor;
     document.getElementById("audioSpanSec").style.borderTop = "3px solid " + newColor;
     document.getElementById("summaryBox").style.borderTop="3px solid " +newColor;
+    document.getElementById("summaryBox1").style.borderTop="3px solid " +contrastor;
     document.getElementById("bgColorChange").style.borderTop="3px solid " + newColor;
     if(document.getElementById("textContrast").checked){
       document.getElementsByTagName("body")[0].style.background = findContrastor(newColor);
@@ -262,6 +266,6 @@ var checkWarningLabels = function(){
 }
 var uncheckBoxes = function(){
   document.getElementById("siteContrast").checked = false;
-  // document.getElementById("graphContrast").checked = false;
+  document.getElementById("graphContrast").checked = false;
   document.getElementById("textContrast").checked = false;
 }

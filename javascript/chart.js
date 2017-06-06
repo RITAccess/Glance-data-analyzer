@@ -263,6 +263,8 @@ var loadChart = function(data, type, collection){
 							for(var i = 0; i<chart.datasets[index].points.length;i++){
 								chart.datasets[index].points[i].fillColor= "rgba("+ color +", 1)";
 							}
+                            //Redraw graph
+                            chart.update();
 						if(oldData[index]){
 									if(oldData[index].points){
 										var len = oldData[index].points.length;
@@ -349,6 +351,8 @@ var loadChart = function(data, type, collection){
 										}
 									}
 								}
+                        //Redraw graph
+                        chart.update();
 					}
 					//Set graph data color indicator
 					if(type === "line" || type==="scatter"){
@@ -363,7 +367,10 @@ var loadChart = function(data, type, collection){
 						block.getContext("2d").fillRect(0,0,9999,9999);
 						block.style.border = "2px solid " + contrastColor;
 					}
+                    //Redraw graph
+                    chart.update();
         }
+
 			};
 		//Setting behavior for all toggleboxes
 		var checkbox = chartdata.inputboxes[i].nextSibling.firstChild;
@@ -445,7 +452,6 @@ var loadChart = function(data, type, collection){
 							}
 						}
 					}
-					chart.update();
 					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
 					chart.update();
@@ -565,9 +571,9 @@ function dataset(data, collection) {
 		keyValue.appendChild(keyLabel);
 		//entry.appendChild(keyValue);
 		//entry.appendChild(inputDiv);
-        entry1.appendChild(inputDiv); // this is where the checked boxes are linked
-        entry1.appendChild(textInput);// this will input txt first
 		entry1.appendChild(keyValue); // this will place the color boxs for lines in table
+        entry1.appendChild(textInput);// this will input txt first
+        entry1.appendChild(inputDiv); // this is where the checked boxes are linked
 
 		document.getElementById('colors').appendChild(entry);// this doesnt pass anything that i can see but
 									           				// but if removed it renders the page blank more
@@ -577,6 +583,7 @@ function dataset(data, collection) {
 		red += colorIncrease + 15;
 		green += colorIncrease;
 		blue += colorIncrease - 15;
+
 	}
 	var returndata = new Object();
 	returndata.data = dataArray;
