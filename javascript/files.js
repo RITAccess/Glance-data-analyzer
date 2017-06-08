@@ -120,10 +120,14 @@ var createFile = function(rows, columns) {
   }
 
   // Reset color list
-  var colorlist = document.getElementById("colors");
+  var colorlist = document.getElementById("colors1");
   while(colorlist.firstChild){
     colorlist.removeChild(colorlist.firstChild);
   }
+  colorlist = document.getElementById("colors");
+    while(colorlist.firstChild){
+        colorlist.removeChild(colorlist.firstChild);
+    }
 
 
   // Used to create appropriately formated object to be passed in

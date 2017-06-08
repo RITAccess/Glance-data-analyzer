@@ -165,8 +165,8 @@ var linkSlickTable = function(chart, player, overlay, summary){
 		updateGrid();
 	    holdData(oldGrid);
 	    dataCount++;
-		chart.update();
-		summary.update();
+        chart.update();
+        summary.update();
 		overlay.updateSize(chart);
 	});
 }
@@ -259,7 +259,9 @@ function checkRemove(){
 	}
 
 	holdData(oldGrid);
+    updateGrid();
     chart.update();
+    summary.update();
 	document.getElementById('tblContainer').style.width="100%";
 }
 
@@ -286,7 +288,7 @@ function holdData(newData) {
 	}
 }
 
-// Goes back one in the totaldata set
+// Goes back one in the totaldata set // bug** creates duplicate in graph rows section!
 function undo() {
 	if (dataCount > 14) {
 		dataCount = 14;
@@ -343,11 +345,10 @@ function undo() {
 		alert("No more undos!");
 	}
 	// Updates everything
-	updateGrid();
-	chart.update();
-	summary.update();
-	summary1.update();
-	document.getElementById('tblContainer').style.width = "100%";
+    updateGrid();
+    chart.update();
+    summary.update();
+    document.getElementById('tblContainer').style.width = "100%";
 }
 
 function redo() {
@@ -407,7 +408,6 @@ function redo() {
 	updateGrid();
 	chart.update();
 	summary.update();
-    summary1.update();
 	document.getElementById('tblContainer').style.width = "100%";
 }
 

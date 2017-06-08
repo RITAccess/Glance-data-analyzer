@@ -409,7 +409,6 @@ var loadChart = function(data, type, collection){
 	          		oldData[index].scatter = chart.datasets[index].points;
 	          		chart.datasets[index].points = undefined;
 					}
-					chart.update();
 					overlay.updateSize(chart);
 					linkSlickTable(chart,player,overlay,summary);
 				}
@@ -470,6 +469,7 @@ function dataset(data, collection) {
 	red = green = blue = 0;
 	var colorIncrease = parseInt((255/ data.length).toFixed(0));
 	document.getElementById('colors').innerHTML= "";
+    document.getElementById('colors1').innerHTML= "";
 	for (var i = 1; i < data.length; i++) {
 		var color = [red, green, blue].join(", ");
 		data[i].splice(0, 1);

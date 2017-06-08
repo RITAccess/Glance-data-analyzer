@@ -39,7 +39,6 @@ require(["javascript/files.js"], function(print){
 var player;
 var overlay;
 var summary;
-var summary1;
 var chart;
 var collection;
 var type = null;
@@ -192,8 +191,8 @@ var loadData = function (data) {
     overlay.updateSize(chart);
     collection = new ArrayCollection(tempData);
     player.setCollection(collection.collection);
-    summary = new DataSummary(collection);
-    summary.dataSummary();
+    summary = new DataSummary(collection); // note we did not referrence summary 1 which handles Graph Rows Section
+    summary.dataSummary();                // this may present a problem in the future. commentor - Brashad
     linkSlickTable(chart, player, overlay, summary);
     document.getElementById('instrumentDropdown').innerHTML = "";
     if(!isSafari){

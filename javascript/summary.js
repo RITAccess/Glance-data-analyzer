@@ -4,6 +4,7 @@
 function DataSummary(collection) {
 
     this.currCollection = collection;
+    this.summaryDiv = document.getElementById("colors1");
     this.summaryDiv = document.getElementById("colors");
 }
 
