@@ -126,7 +126,7 @@ function helpAlert() {
 
 function instAlert() {
     this.render = function (dialog) {
-        var winW = window.innerWidth;
+        var winW = window.innerWidth;// currently not used. -bh
         var winH = window.innerHeight;
         var instOverlay = document.getElementById('instOverlay');
         var instBox = document.getElementById('instBox');
@@ -134,7 +134,12 @@ function instAlert() {
         instOverlay.style.height = "100%";
         instBox.style.display = "block";
         instBox.style.width = "70%";
+        instBox.style.height = "80%"; // forces window to fill up 80 % of the browser window. -bh
         instBox.style.top = "15%";
+        instBox.style.background = "white";// sets a background - bh
+        instBox.style.borderStyle = "solid";// gives the overlay a border. - bh
+        instBox.style.borderWidth = "thick";
+        instBox.style.borderColor = "black";
         instBox.style.left = "15%";
         document.getElementById('instBox').setAttribute("tabindex", "0");
         document.getElementById('instBoxHead').innerHTML = "<h1 tabindex='0'>Instructions</h1>";
@@ -155,10 +160,6 @@ function instAlert() {
         var instBox = document.getElementById('instBox');
         instOverlay.style.display = "block";
         instOverlay.style.height = "100%";
-        instBox.style.display = "block";
-        instBox.style.width = "70%";
-        instBox.style.top = "15%";
-        instBox.style.left = "15%";
         document.getElementById('instBox').setAttribute("tabindex", "0");
         document.getElementById('instBoxHead').innerHTML = "<h1 tabindex='0'>Instructions</h1>";
         document.getElementById('instBoxBody').innerHTML = "<p>II. Getting Started</p><ul><li>Loading a graph:<p> 1. Navigate to and click the “Load CSV” button<p><p>2. Use the file browser menu to select a .csv file to upload (can only load a .csv file)<p>" +
@@ -180,10 +181,6 @@ function instAlert() {
         var instBox = document.getElementById('instBox');
         instOverlay.style.display = "block";
         instOverlay.style.height = "100%";
-        instBox.style.display = "block";
-        instBox.style.width = "70%";
-        instBox.style.top = "15%";
-        instBox.style.left = "15%";
         document.getElementById('instBox').setAttribute("tabindex", "0");
         document.getElementById('instBoxHead').innerHTML = "<h1 tabindex='0'>Instructions</h1>";
         document.getElementById('instBoxBody').innerHTML = "<p>III. Editing Data</p><ul><li>Changing data in the graph:<p> 1. Navigate to the cell representing the data point/label you would like to edit in the data table<p><p>2. Edit the text in this cell<p>" +
@@ -209,10 +206,6 @@ function instAlert() {
         var instBox = document.getElementById('instBox');
         instOverlay.style.display = "block";
         instOverlay.style.height = "100%";
-        instBox.style.display = "block";
-        instBox.style.width = "70%";
-        instBox.style.top = "15%";
-        instBox.style.left = "15%";
         document.getElementById('instBox').setAttribute("tabindex", "0");
         document.getElementById('instBoxHead').innerHTML = "<h1 tabindex='0'>Instructions</h1>";
         document.getElementById('instBoxBody').innerHTML = "<p>IV. Saving Data</p><ul><li>Saving table data to file:<p> 1. Navigate to the “Download CSV” button: Screen readers will read “Download CSV”<p><p>2. Click this to download a CSV file representing the current table<p>" +
@@ -230,10 +223,6 @@ function instAlert() {
         var instBox = document.getElementById('instBox');
         instOverlay.style.display = "block";
         instOverlay.style.height = "100%";
-        instBox.style.display = "block";
-        instBox.style.width = "70%";
-        instBox.style.top = "15%";
-        instBox.style.left = "15%";
         document.getElementById('instBox').setAttribute("tabindex", "0");
         document.getElementById('instBoxHead').innerHTML = "<h1 tabindex='0'>Instructions</h1>";
         document.getElementById('instBoxBody').innerHTML = "<p>V. Data Sonification</p><ul><li>Play Current Row:<p> 1. Under the graph is the audio settings panel, this panel controls all audio settings for data sonification<p>" +
@@ -258,10 +247,6 @@ function instAlert() {
         var instBox = document.getElementById('instBox');
         instOverlay.style.display = "block";
         instOverlay.style.height = "100%";
-        instBox.style.display = "block";
-        instBox.style.width = "70%";
-        instBox.style.top = "15%";
-        instBox.style.left = "15%";
         document.getElementById('instBox').setAttribute("tabindex", "0");
         document.getElementById('instBoxHead').innerHTML = "<h1 tabindex='0'>Instructions</h1>";
         document.getElementById('instBoxBody').innerHTML = "<p>VI. Advanced Playback Options</p><ul><li>Select Play Mode:<p> 1. Inside the audio settings panel for bar graph or scatter plot, you will see an added menu for play mode<p>" +
@@ -284,10 +269,6 @@ function instAlert() {
         var instBox = document.getElementById('instBox');
         instOverlay.style.display = "block";
         instOverlay.style.height = "100%";
-        instBox.style.display = "block";
-        instBox.style.width = "70%";
-        instBox.style.top = "15%";
-        instBox.style.left = "15%";
         document.getElementById('instBox').setAttribute("tabindex", "0");
         document.getElementById('instBoxHead').innerHTML = "<h1 tabindex='0'>Instructions</h1>";
         document.getElementById('instBoxBody').innerHTML = "<p>VII. Changing Colors</p><ul><li>Change the color of a line:<p> 1. Navigate to the “Graph Data” section<p>" +
